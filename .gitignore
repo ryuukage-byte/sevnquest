@@ -1,0 +1,19 @@
+node_modules/
+build/
+dist/
+coverage/
+.DS_Store
+*.log
+.env*
+!.env.example
+ffmpeg-9.0.1/
+raw_data/
+Ocr JLPT/
+scratch/
+.vscode/
+*.bak
+.codegraph/
+kotoba kaigo raw/
+marketing/
+motionads/
+motionads.zip

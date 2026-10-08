@@ -1,0 +1,2687 @@
+@import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* ==========================================================================
+   SEVNQUEST — DESIGN SYSTEM
+   Fantasy Leather-Bound Skeuomorphic UI (v1.0)
+   ========================================================================== */
+
+:root,
+html.dark {
+  /* ==========================================================================
+     WASHI SCROLL — DARK MODE ("Malam Indigo di atas Kertas Washi")
+     ========================================================================== */
+  --bg-page: #12151d;
+
+  /* Surface Tiers (Single-Surface Sculpting) */
+  --color-surface-base: #12151d;
+  --color-surface-card: #1f242f;
+  --color-surface-elevated: #2a3040;
+  --color-surface-inset: #191d26;
+
+  /* Backward Compatibility Aliases for Leather Variables */
+  --leather-hi: var(--color-surface-elevated);
+  --leather-mid: var(--color-surface-card);
+  --leather-low: var(--color-surface-inset);
+
+  /* Primary Action & Indigo Theme (Aizome) */
+  --indigo-deep: #26314a;
+  --indigo: #6f93cf;
+  --choco: var(--indigo-deep);
+  --choco-hi: var(--indigo);
+  --color-leather-primary: var(--indigo-deep);
+  --color-leather-shadow: var(--color-surface-inset);
+
+  /* Sashiko Thread Motif (Benang Indigo Tipis Tradisional) */
+  --thread: rgba(151, 181, 224, 0.35);
+  --stitch: var(--thread);
+
+  /* Kinako Gold (Reserved for Rewards, Currency & Milestones) */
+  --gold: #f0be52;
+  --gold-soft: #fde8a8;
+  --color-gold-base: #f0be52;
+  --color-gold-highlight: #fde8a8;
+  --color-gold-shadow: #8c6810;
+  --color-furigana: #f0be52;
+
+  /* Typography Colors */
+  --text-primary: #edf0f6;
+  --text-secondary: #b1bace;
+  --text-muted: #96a1b8;
+  --ivory: var(--text-primary);
+  --ivory-dim: var(--text-secondary);
+  --tan: var(--text-muted);
+  --text-on-btn: #edf0f6;
+  --crumb-color: var(--text-secondary);
+
+  /* Hanko Red (Stempel Tinta Merah Jepang — Danger, Critical HP & Kanji) */
+  --wine: #8a3438;
+  --wine-accent: #e2555b;
+
+  /* Neumorphic Dual-Shadow Tokens */
+  --neu-d: rgba(0, 0, 0, 0.50);
+  --neu-l: rgba(255, 255, 255, 0.045);
+
+  /* Borders & Vignette */
+  --color-border-subtle: rgba(111, 147, 207, 0.18);
+  --color-border-primary: rgba(111, 147, 207, 0.4);
+  --color-vignette: rgba(0, 0, 0, 0.4);
+
+  /* Functional State Colors */
+  --color-state-success: #4fae86; /* Matcha Green */
+  --color-state-danger: #e2555b;  /* Hanko Coral */
+  --color-state-locked: rgba(139, 147, 166, 0.2);
+
+  /* Learning Category Pillars */
+  --color-kana: #4fae86;    /* Matcha */
+  --color-kanji: #e2555b;   /* Hanko */
+  --color-kotoba: #6f93cf;  /* Aizome Indigo */
+  --color-bunpou: #d9a54a;  /* Kinako Gold */
+  --color-choukai: #9b65c9; /* Fuji Purple */
+  --color-dokkai: #26a69a;  /* Teal */
+
+  /* Shadow Compatibility Bindings */
+  --shadow-color: var(--neu-d);
+  --shadow-btn: var(--neu-d);
+  --panel-highlight: var(--neu-l);
+  --shadow-rpg-ambient: 0 6px 16px var(--neu-d);
+  --shadow-rpg-extrusion: 4px 4px 10px var(--neu-d), -4px -4px 10px var(--neu-l);
+  --shadow-rpg-pressed: inset 3px 3px 6px var(--neu-d), inset -3px -3px 6px var(--neu-l);
+  --shadow-rpg-inset-highlight: inset 0 1px 0 var(--neu-l);
+}
+
+html.theme-light,
+.theme-light {
+  color-scheme: light;
+
+  /* ==========================================================================
+     WASHI SCROLL — LIGHT MODE ("Siang Hangat di atas Kertas Washi")
+     ========================================================================== */
+  --bg-page: #eae7de;
+
+  /* Surface Tiers (Washi Warm Sand) */
+  --color-surface-base: #eae7de;
+  --color-surface-card: #f1efe8;
+  --color-surface-elevated: #f6f4ee;
+  --color-surface-inset: #e3e0d6;
+
+  /* Backward Compatibility Aliases */
+  --leather-hi: var(--color-surface-elevated);
+  --leather-mid: var(--color-surface-card);
+  --leather-low: var(--color-surface-inset);
+
+  /* Warm Chestnut Russet Leather (Merah Kecoklatan Khas Penjilid Buku) */
+  --indigo: #253e63;
+  --indigo-deep: #182840;
+  --choco: #5f1f1b;
+  --choco-hi: #7c2d28;
+  --color-leather-primary: #7c2d28;
+  --color-leather-shadow: #3b100d;
+
+  /* Sashiko Thread (Warm Earthy Washi Stitch) */
+  --thread: rgba(94, 86, 64, 0.22);
+  --stitch: var(--thread);
+
+  /* Ochre Amber Gold (Refined for crisp contrast without muddy brown) */
+  --gold-base: #8c580f;
+  --gold-highlight: #a66a15;
+  --gold-shadow: #5c3805;
+  --gold: var(--gold-base);
+  --gold-soft: var(--gold-highlight);
+  --color-gold-base: #8c580f;
+  --color-gold-highlight: #a66a15;
+  --color-gold-shadow: #5c3805;
+  --color-furigana: #3f3a32;
+
+  /* Sumi Charcoal Typography (High Contrast WCAG AA) */
+  --color-text-primary: #262420;
+  --color-text-secondary: #544f45;
+  --color-text-muted: #756f61;
+  --text-primary: var(--color-text-primary);
+  --text-secondary: var(--color-text-secondary);
+  --text-muted: var(--color-text-muted);
+  --ivory: var(--color-text-primary);
+  --ivory-dim: var(--color-text-secondary);
+  --tan: var(--color-text-muted);
+  --text-on-btn: #f6f4ee;
+  --crumb-color: var(--color-text-secondary);
+
+  /* Hanko Crimson */
+  --wine: #80181c;
+  --wine-accent: #a82025;
+
+  /* Functional State Colors */
+  --color-state-success: #31684c; /* Forest Matcha */
+  --color-state-danger: #a82025;   /* Hanko Crimson */
+  --color-state-locked: rgba(84, 79, 69, 0.25);
+
+  /* Learning Category Pillars */
+  --color-kana: #31684c;
+  --color-kanji: #a82025;
+  --color-kotoba: #253e63;
+  --color-bunpou: #8c6019;
+  --color-choukai: #662d8f;
+  --color-dokkai: #1e7a68;
+
+  /* Neumorphic Dual-Shadow Tokens for Light Washi */
+  --neu-d: rgba(94, 86, 64, 0.28);
+  --neu-l: rgba(255, 255, 255, 0.85);
+
+  /* Borders & Vignette (Warm Earthen Washi Fiber) */
+  --color-border-subtle: rgba(94, 86, 64, 0.15);
+  --color-border-primary: rgba(94, 86, 64, 0.28);
+  --color-vignette: rgba(94, 86, 64, 0.12);
+
+  /* Shadow Compatibility Bindings */
+  --shadow-color: var(--neu-d);
+  --shadow-btn: var(--neu-d);
+  --panel-highlight: var(--neu-l);
+  --shadow-rpg-ambient: 0 6px 14px var(--neu-d);
+  --shadow-rpg-extrusion: 4px 4px 10px var(--neu-d), -4px -4px 10px var(--neu-l);
+  --shadow-rpg-pressed: inset 3px 3px 6px var(--neu-d), inset -3px -3px 6px var(--neu-l);
+  --shadow-rpg-inset-highlight: inset 0 1px 0 var(--neu-l);
+
+  /* Fallback overrides for hardcoded utility classes in light mode */
+  --color-stone-950: var(--color-surface-base);
+  --color-stone-900: var(--color-surface-card);
+  --color-stone-850: var(--color-surface-card);
+  --color-stone-800: var(--color-border-primary);
+  --color-stone-700: var(--color-border-subtle);
+  --color-stone-600: var(--color-text-muted);
+  --color-stone-500: var(--color-text-secondary);
+  --color-stone-400: var(--color-text-secondary);
+  --color-stone-300: var(--color-text-primary);
+  --color-stone-200: var(--color-text-primary);
+  --color-stone-100: var(--color-text-primary);
+
+  --color-amber-100: #fef3c7;
+  --color-amber-200: #fde68a;
+  --color-amber-300: #8c580f;
+  --color-amber-400: #8c580f;
+  --color-amber-500: #78350f;
+  --color-amber-600: #5c3805;
+  --color-amber-700: #b45309;
+  --color-amber-800: #92400e;
+  --color-amber-900: #78350f;
+  --color-amber-950: #451a03;
+
+  --color-emerald-950: #022c22;
+  --color-emerald-900: #064e3b;
+  --color-emerald-800: #065f46;
+  --color-emerald-700: #047857;
+  --color-emerald-600: #059669;
+  --color-emerald-500: #166534;
+  --color-emerald-400: #166534;
+  --color-emerald-300: #14532d;
+  --color-emerald-200: #a7f3d0;
+  --color-emerald-100: #e2f1e9;
+
+  --color-red-950: #450a0a;
+  --color-red-900: #7f1d1d;
+  --color-red-800: #991b1b;
+  --color-red-700: #b91c1c;
+  --color-red-600: #dc2626;
+  --color-red-500: #ef4444;
+  --color-red-400: #b7282e;
+  --color-red-300: #83161a;
+  --color-red-200: #fecaca;
+  --color-red-100: #fbeae9;
+
+  --color-rose-950: #4c0519;
+  --color-rose-900: #881337;
+  --color-rose-800: #9f1239;
+  --color-rose-700: #be123c;
+  --color-rose-600: #e11d48;
+  --color-rose-500: #f43f5e;
+  --color-rose-400: #b7282e;
+  --color-rose-300: #83161a;
+  --color-rose-200: #fecdd3;
+  --color-rose-100: #fbeae9;
+
+  --color-blue-950: #082f49;
+  --color-blue-900: #0c4a6e;
+  --color-blue-800: #075985;
+  --color-blue-700: #0369a1;
+  --color-blue-600: #0284c7;
+  --color-blue-500: #0ea5e9;
+  --color-blue-400: #1b2e49;
+  --color-blue-300: #142134;
+  --color-blue-200: #bae6fd;
+  --color-blue-100: #eaf0f7;
+
+  --color-sky-950: #082f49;
+  --color-sky-900: #0c4a6e;
+  --color-sky-800: #075985;
+  --color-sky-700: #0369a1;
+  --color-sky-600: #0284c7;
+  --color-sky-500: #0ea5e9;
+  --color-sky-400: #1b2e49;
+  --color-sky-300: #142134;
+  --color-sky-200: #bae6fd;
+  --color-sky-100: #eaf0f7;
+
+  --color-purple-950: #2e1065;
+  --color-purple-900: #4c1d95;
+  --color-purple-800: #5b21b6;
+  --color-purple-700: #6d28d9;
+  --color-purple-600: #7c3aed;
+  --color-purple-500: #8b5cf6;
+  --color-purple-400: #3f165c;
+  --color-purple-300: #2f0e47;
+  --color-purple-200: #ddd6fe;
+  --color-purple-100: #f2eefa;
+}
+
+@theme {
+  --font-display: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  --font-heading: 'Zen Old Mincho', 'Noto Serif JP', Georgia, serif;
+  --font-medieval: 'Zen Old Mincho', 'Noto Serif JP', Georgia, serif;
+  --font-body: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+  --font-jp: 'Noto Sans JP', 'Noto Serif JP', sans-serif;
+
+  --color-bg-page: var(--bg-page);
+  --color-leather-hi: var(--leather-hi);
+  --color-leather-mid: var(--leather-mid);
+  --color-leather-low: var(--leather-low);
+  --color-choco: var(--choco);
+  --color-choco-hi: var(--choco-hi);
+  --color-indigo: var(--indigo);
+  --color-indigo-deep: var(--indigo-deep);
+  --color-thread: var(--thread);
+  --color-stitch: var(--stitch);
+  --color-gold: var(--gold);
+  --color-gold-soft: var(--gold-soft);
+  --color-wine: var(--wine);
+  --color-wine-accent: var(--wine-accent);
+
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-muted: var(--text-muted);
+
+  --color-surface-base: var(--color-surface-base);
+  --color-surface-card: var(--color-surface-card);
+  --color-surface-elevated: var(--color-surface-elevated);
+  --color-surface-inset: var(--color-surface-inset);
+  --color-gold-base: var(--color-gold-base);
+  --color-gold-highlight: var(--color-gold-highlight);
+  --color-border-subtle: var(--color-border-subtle);
+  --color-border-primary: var(--color-border-primary);
+  --color-state-success: var(--color-state-success);
+  --color-state-danger: var(--color-state-danger);
+
+  --color-kana: var(--color-kana);
+  --color-kanji: var(--color-kanji);
+  --color-kotoba: var(--color-kotoba);
+  --color-bunpou: var(--color-bunpou);
+  --color-choukai: var(--color-choukai);
+  --color-dokkai: var(--color-dokkai);
+}
+
+@layer base {
+  body {
+    font-family: var(--font-body);
+    color: var(--text-primary);
+    background: var(--bg-page);
+    background-attachment: fixed;
+    min-height: 100vh;
+    letter-spacing: -0.01em;
+    margin: 0;
+  }
+  
+  h1, h2, h3, .font-heading, .font-medieval {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    letter-spacing: -0.01em;
+  }
+
+  .font-display {
+    font-family: var(--font-display);
+  }
+
+  .font-mono {
+    font-family: var(--font-mono);
+  }
+  
+  .font-jp {
+    font-family: var(--font-jp);
+  }
+}
+
+@layer components {
+  /* ==========================================================================
+     CORE DESIGN SYSTEM COMPONENTS (v1.0)
+     ========================================================================== */
+
+  /* 4.1 .panel — Material Dasar Washi Scroll (Semua Panel & Kartu RPG) */
+  .panel,
+  .rpg-card,
+  .rpg-card-interactive,
+  .rpg-surface-elevated {
+    border-radius: clamp(16px, 2.5vw, 20px);
+    padding: clamp(16px, 3vw, 24px) clamp(18px, 3.5vw, 28px);
+    background: var(--color-surface-card);
+    box-shadow:
+      6px 6px 14px var(--neu-d),
+      -6px -6px 14px var(--neu-l);
+    border: 1px solid var(--color-border-subtle);
+    position: relative;
+    color: var(--text-primary);
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+  }
+
+  .rpg-card-interactive {
+    cursor: pointer;
+    overflow: hidden;
+    transition: transform 0.15s ease, filter 0.15s ease, box-shadow 0.15s ease;
+  }
+  .rpg-card-interactive:hover {
+    transform: translateY(-2px);
+    filter: brightness(1.03);
+    box-shadow:
+      8px 8px 18px var(--neu-d),
+      -8px -8px 18px var(--neu-l);
+  }
+
+  /* Versi Berjahit Sashiko (Untuk Hero, Header, Stage Hub) */
+  .panel-stitched,
+  .panel.stitched {
+    position: relative;
+  }
+
+  .panel-stitched::after,
+  .panel.stitched::after {
+    content: '';
+    position: absolute;
+    inset: 8px;
+    border: 1px dashed var(--thread);
+    border-radius: 14px;
+    pointer-events: none;
+  }
+
+  /* 4.2 .btn & .rpg-btn — Tombol / Elemen Interaktif Aizome Indigo */
+  .btn,
+  .rpg-btn {
+    border-radius: 14px;
+    background: var(--indigo-deep);
+    box-shadow:
+      4px 4px 10px var(--neu-d),
+      -4px -4px 10px var(--neu-l);
+    color: var(--text-on-btn);
+    font-family: var(--font-body);
+    font-weight: 700;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 10px 18px;
+    cursor: pointer;
+    border: 1px solid var(--color-border-subtle);
+    user-select: none;
+    transition: transform 0.15s ease, box-shadow 0.15s ease, filter 0.15s ease;
+    text-decoration: none;
+  }
+
+  .btn:hover,
+  .rpg-btn:hover {
+    transform: translateY(-1px);
+    box-shadow:
+      5px 5px 12px var(--neu-d),
+      -5px -5px 12px var(--neu-l);
+    filter: brightness(1.08);
+  }
+
+  .btn:active,
+  .rpg-btn:active {
+    transform: translateY(1px);
+    box-shadow:
+      inset 3px 3px 6px var(--neu-d),
+      inset -3px -3px 6px var(--neu-l);
+  }
+
+  .btn-pill {
+    border-radius: 9999px;
+    padding: 6px 14px;
+    font-size: 11px;
+  }
+
+  /* Light mode: interactive pill buttons should be RAISED tactile skeuomorphic buttons, never sunken slots */
+  html.theme-light button.btn-pill,
+  html.theme-light a.btn-pill,
+  html.theme-light .btn.btn-pill,
+  .theme-light button.btn-pill,
+  .theme-light a.btn-pill,
+  .theme-light .btn.btn-pill {
+    background: var(--color-surface-card);
+    color: var(--text-primary);
+    border: 1px solid var(--color-border-primary);
+    box-shadow:
+      2px 2px 5px var(--neu-d),
+      -1px -1px 3px var(--neu-l),
+      inset 0 1px 0 rgba(255, 255, 255, 0.85);
+    transition: transform 0.15s ease, box-shadow 0.15s ease, filter 0.15s ease;
+  }
+
+  html.theme-light button.btn-pill:hover,
+  html.theme-light a.btn-pill:hover,
+  html.theme-light .btn.btn-pill:hover,
+  .theme-light button.btn-pill:hover,
+  .theme-light a.btn-pill:hover,
+  .theme-light .btn.btn-pill:hover {
+    transform: translateY(-1px);
+    box-shadow:
+      3px 3px 8px var(--neu-d),
+      -2px -2px 5px var(--neu-l),
+      inset 0 1px 0 rgba(255, 255, 255, 0.95);
+    filter: brightness(1.02);
+  }
+
+  html.theme-light button.btn-pill:active,
+  html.theme-light a.btn-pill:active,
+  html.theme-light .btn.btn-pill:active,
+  .theme-light button.btn-pill:active,
+  .theme-light a.btn-pill:active,
+  .theme-light .btn.btn-pill:active {
+    transform: translateY(1px);
+    box-shadow:
+      inset 1.5px 1.5px 3.5px var(--neu-d),
+      inset -1px -1px 2px var(--neu-l);
+  }
+
+  /* Static non-interactive pill badges: subtle clean washi pill */
+  html.theme-light span.btn-pill,
+  html.theme-light div.btn-pill:not(button):not(a),
+  .theme-light span.btn-pill,
+  .theme-light div.btn-pill:not(button):not(a) {
+    background: var(--color-surface-inset);
+    color: var(--text-secondary);
+    border: 1px solid var(--color-border-subtle);
+    box-shadow:
+      inset 1px 1px 3px var(--neu-d),
+      inset -1px -1px 3px var(--neu-l);
+  }
+
+  html.theme-light .btn:not(.btn-cta):not(.btn-danger),
+  .theme-light .btn:not(.btn-cta):not(.btn-danger) {
+    background: var(--color-surface-card);
+    color: var(--text-primary);
+    border: 1px solid var(--color-border-primary);
+    box-shadow:
+      3px 3px 8px var(--neu-d),
+      -3px -3px 8px var(--neu-l),
+      inset 0 1px 0 rgba(255, 255, 255, 0.85);
+  }
+
+  /* 4.3 World Gate Skeuomorphic Elements (Gerbang Dunia Hub) */
+  .world-gate-emblem {
+    width: 56px;
+    height: 56px;
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
+  /* Dark mode: NO orange outline, subtle dark shadowing, white typography */
+  html:not(.theme-light) .world-gate-emblem,
+  .dark .world-gate-emblem {
+    background: var(--color-surface-elevated);
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    box-shadow:
+      4px 4px 12px rgba(0, 0, 0, 0.65),
+      -2px -2px 6px rgba(255, 255, 255, 0.03);
+    color: #ffffff;
+  }
+
+  /* Light mode: NO outline, cream washi color matching background, subtle soft shadow, Sumi typography */
+  html.theme-light .world-gate-emblem,
+  .theme-light .world-gate-emblem {
+    background: var(--color-surface-card);
+    border: 1px solid rgba(94, 86, 64, 0.14);
+    box-shadow:
+      3px 3px 8px var(--neu-d),
+      -3px -3px 8px var(--neu-l);
+    color: var(--text-primary);
+  }
+
+  /* World Gate Stage Pill (Tactile Skeuomorphic Pill Badge) */
+  .world-gate-pill {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 9999px;
+    padding: 4px 12px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    transition: all 0.2s ease;
+  }
+
+  html:not(.theme-light) .world-gate-pill,
+  .dark .world-gate-pill {
+    background: var(--color-surface-inset);
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow:
+      inset 2px 2px 4px rgba(0, 0, 0, 0.5),
+      inset -1px -1px 2px rgba(255, 255, 255, 0.03);
+  }
+
+  html.theme-light .world-gate-pill,
+  .theme-light .world-gate-pill {
+    background: var(--color-surface-inset);
+    color: var(--text-primary);
+    border: 1px solid rgba(94, 86, 64, 0.16);
+    box-shadow:
+      inset 1.5px 1.5px 3.5px var(--neu-d),
+      inset -1.5px -1.5px 3.5px var(--neu-l);
+  }
+
+  /* ==========================================================================
+     SKEUOMORPHIC JAPANESE ADVENTURE NOTEBOOK (Deck Template Cards & Object UI)
+     ========================================================================== */
+
+  /* Raised Paper Notebook Card: Tangible thick washi stationery on desk */
+  .notebook-adventure-card {
+    border-radius: 24px;
+    padding: 22px 24px;
+    position: relative;
+    border: 1px solid rgba(140, 125, 95, 0.35);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 260px;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+  }
+
+  html.theme-light .notebook-adventure-card,
+  .theme-light .notebook-adventure-card {
+    background: #f7f3ea;
+    box-shadow:
+      0 1.5px 0 rgba(255, 255, 255, 0.95) inset,
+      inset 0 0 20px rgba(60, 48, 25, 0.035),
+      8px 10px 18px rgba(50, 40, 25, 0.12),
+      2px 4px 6px rgba(50, 40, 25, 0.05),
+      -4px -4px 10px rgba(255, 255, 255, 0.85);
+  }
+
+  html.theme-light .notebook-adventure-card:hover,
+  .theme-light .notebook-adventure-card:hover {
+    transform: translateY(-2px);
+    box-shadow:
+      0 1.5px 0 rgba(255, 255, 255, 1) inset,
+      inset 0 0 24px rgba(60, 48, 25, 0.045),
+      10px 14px 24px rgba(50, 40, 25, 0.14),
+      3px 5px 8px rgba(50, 40, 25, 0.07),
+      -4px -4px 12px rgba(255, 255, 255, 0.95);
+  }
+
+  html:not(.theme-light) .notebook-adventure-card,
+  .dark .notebook-adventure-card {
+    background: #1c212c;
+    border-color: rgba(111, 147, 207, 0.22);
+    box-shadow:
+      0 1px 0 rgba(255, 255, 255, 0.08) inset,
+      inset 0 0 20px rgba(0, 0, 0, 0.4),
+      8px 10px 24px rgba(0, 0, 0, 0.55),
+      -4px -4px 10px rgba(255, 255, 255, 0.02);
+  }
+
+  /* Subtle fibrous paper texture overlay */
+  .notebook-adventure-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 24px;
+    background-image: radial-gradient(rgba(140, 120, 85, 0.05) 1px, transparent 0);
+    background-size: 14px 14px;
+    pointer-events: none;
+    opacity: 0.75;
+  }
+
+  /* Sashiko stitched inner frame */
+  .notebook-adventure-card::after {
+    content: '';
+    position: absolute;
+    inset: 8px;
+    border: 1px dashed rgba(94, 86, 64, 0.28);
+    border-radius: 17px;
+    pointer-events: none;
+  }
+  html:not(.theme-light) .notebook-adventure-card::after,
+  .dark .notebook-adventure-card::after {
+    border-color: rgba(151, 181, 224, 0.22);
+  }
+
+  /* Object UI Inventory Slot (Kotoba 📜, Kanji 🪨, Bunpou 📘) */
+  .notebook-object-slot {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 6px 12px;
+    border-radius: 10px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 700;
+    user-select: none;
+    letter-spacing: 0.02em;
+    transition: all 0.15s ease;
+  }
+
+  html.theme-light .notebook-object-slot,
+  .theme-light .notebook-object-slot {
+    background: #ede8dc;
+    color: #383226;
+    border: 1px solid rgba(135, 120, 95, 0.35);
+    box-shadow:
+      inset 1.5px 1.5px 3px rgba(60, 48, 30, 0.14),
+      0 1px 0 rgba(255, 255, 255, 0.85);
+  }
+
+  html:not(.theme-light) .notebook-object-slot,
+  .dark .notebook-object-slot {
+    background: #151821;
+    color: #c2c9d8;
+    border: 1px solid rgba(111, 147, 207, 0.22);
+    box-shadow:
+      inset 1.5px 1.5px 3px rgba(0, 0, 0, 0.5),
+      0 1px 0 rgba(255, 255, 255, 0.05);
+  }
+
+  /* Level Hanko Stamped Tag */
+  .notebook-level-stamp {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 3px 10px;
+    border-radius: 9999px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.03em;
+  }
+
+  html.theme-light .notebook-level-stamp,
+  .theme-light .notebook-level-stamp {
+    background: #eae5d7;
+    color: #383226;
+    border: 1px solid rgba(135, 120, 95, 0.38);
+    box-shadow:
+      inset 1px 1px 2px rgba(60, 48, 30, 0.12),
+      0 1px 0 rgba(255, 255, 255, 0.9);
+  }
+
+  html:not(.theme-light) .notebook-level-stamp,
+  .dark .notebook-level-stamp {
+    background: #171b24;
+    color: #e2e8f0;
+    border: 1px solid rgba(111, 147, 207, 0.25);
+    box-shadow:
+      inset 1px 1px 2px rgba(0, 0, 0, 0.4),
+      0 1px 0 rgba(255, 255, 255, 0.05);
+  }
+
+  /* Meteran Alat Tulis (Ruler Gauge Progress Bar) */
+  .notebook-ruler-track {
+    width: 100%;
+    height: 10px;
+    border-radius: 9999px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  html.theme-light .notebook-ruler-track,
+  .theme-light .notebook-ruler-track {
+    background: #e3ded2;
+    border: 1px solid rgba(130, 115, 90, 0.42);
+    box-shadow:
+      inset 1.5px 1.5px 3.5px rgba(50, 40, 25, 0.22),
+      inset -1px -1px 2px rgba(255, 255, 255, 0.7);
+  }
+
+  html:not(.theme-light) .notebook-ruler-track,
+  .dark .notebook-ruler-track {
+    background: #141720;
+    border: 1px solid rgba(111, 147, 207, 0.25);
+    box-shadow:
+      inset 1.5px 1.5px 3.5px rgba(0, 0, 0, 0.6),
+      inset -1px -1px 2px rgba(255, 255, 255, 0.04);
+  }
+
+  .notebook-ruler-fill {
+    height: 100%;
+    border-radius: 9999px;
+    transition: width 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  html.theme-light .notebook-ruler-fill,
+  .theme-light .notebook-ruler-fill {
+    background: linear-gradient(180deg, #9e6d22 0%, #764f13 100%);
+    box-shadow:
+      0 1px 2px rgba(0, 0, 0, 0.22),
+      inset 0 1px 0 rgba(255, 255, 255, 0.45),
+      inset 0 -1px 0 rgba(0, 0, 0, 0.25);
+  }
+
+  html:not(.theme-light) .notebook-ruler-fill,
+  .dark .notebook-ruler-fill {
+    background: linear-gradient(180deg, #f0be52 0%, #c4962c 100%);
+    box-shadow:
+      0 1px 2px rgba(0, 0, 0, 0.4),
+      inset 0 1px 0 rgba(255, 255, 255, 0.4);
+  }
+
+  /* Physical Retro Game Key: Masuk World */
+  .btn-physical-primary {
+    font-family: var(--font-body);
+    font-weight: 700;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 8px 16px;
+    border-radius: 13px;
+    cursor: pointer;
+    user-select: none;
+    transform: translateY(0);
+    transition: transform 0.08s ease, box-shadow 0.08s ease, filter 0.08s ease;
+    text-decoration: none;
+  }
+
+  html.theme-light .btn-physical-primary,
+  .theme-light .btn-physical-primary {
+    background: linear-gradient(180deg, #7c2d28 0%, #5f1f1b 100%);
+    color: #f7f5ed;
+    border: 1px solid #4a1714;
+    box-shadow:
+      0 4px 0 #3b100d,
+      0 6px 12px rgba(60, 20, 15, 0.20),
+      inset 0 1px 0 rgba(255, 255, 255, 0.28);
+  }
+
+  html.theme-light .btn-physical-primary:hover,
+  .theme-light .btn-physical-primary:hover {
+    background: linear-gradient(180deg, #8a342f 0%, #6b2420 100%);
+    filter: brightness(1.03);
+  }
+
+  html.theme-light .btn-physical-primary:active,
+  .theme-light .btn-physical-primary:active {
+    transform: translateY(3px);
+    box-shadow:
+      0 1px 0 #3b100d,
+      0 2px 4px rgba(60, 20, 15, 0.16),
+      inset 0 1px 2px rgba(0, 0, 0, 0.25);
+  }
+
+  html:not(.theme-light) .btn-physical-primary,
+  .dark .btn-physical-primary {
+    background: linear-gradient(180deg, #3d5885 0%, #253959 100%);
+    color: #ffffff;
+    border: 1px solid #1b2940;
+    box-shadow:
+      0 4px 0 #121c2c,
+      0 6px 12px rgba(0, 0, 0, 0.4),
+      inset 0 1px 0 rgba(255, 255, 255, 0.25);
+  }
+  html:not(.theme-light) .btn-physical-primary:active,
+  .dark .btn-physical-primary:active {
+    transform: translateY(3px);
+    box-shadow:
+      0 1px 0 #121c2c,
+      0 2px 4px rgba(0, 0, 0, 0.3);
+  }
+
+  /* Physical Retro Game Key: Salin ke Buku Saku */
+  .btn-physical-secondary {
+    font-family: var(--font-body);
+    font-weight: 700;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    padding: 8px 14px;
+    border-radius: 13px;
+    cursor: pointer;
+    user-select: none;
+    transform: translateY(0);
+    transition: transform 0.08s ease, box-shadow 0.08s ease, background 0.15s ease;
+    text-decoration: none;
+  }
+
+  html.theme-light .btn-physical-secondary,
+  .theme-light .btn-physical-secondary {
+    background: linear-gradient(180deg, #faf7f0 0%, #ede6d8 100%);
+    color: #3b3528;
+    border: 1px solid #bbb19e;
+    box-shadow:
+      0 3px 0 #9c927f,
+      0 5px 8px rgba(45, 35, 20, 0.10),
+      inset 0 1px 0 rgba(255, 255, 255, 0.95);
+  }
+
+  html.theme-light .btn-physical-secondary:hover,
+  .theme-light .btn-physical-secondary:hover {
+    background: linear-gradient(180deg, #ffffff 0%, #f2ede1 100%);
+  }
+
+  html.theme-light .btn-physical-secondary:active,
+  .theme-light .btn-physical-secondary:active {
+    transform: translateY(2px);
+    box-shadow:
+      0 1px 0 #9c927f,
+      0 2px 4px rgba(45, 35, 20, 0.10),
+      inset 0 1px 2px rgba(0, 0, 0, 0.12);
+  }
+
+  html:not(.theme-light) .btn-physical-secondary,
+  .dark .btn-physical-secondary {
+    background: linear-gradient(180deg, #242a36 0%, #1a1e27 100%);
+    color: #d1d8e6;
+    border: 1px solid #363d4e;
+    box-shadow:
+      0 3px 0 #101319,
+      0 5px 8px rgba(0, 0, 0, 0.35),
+      inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  }
+  html:not(.theme-light) .btn-physical-secondary:active,
+  .dark .btn-physical-secondary:active {
+    transform: translateY(2px);
+    box-shadow:
+      0 1px 0 #101319,
+      0 2px 4px rgba(0, 0, 0, 0.25);
+  }
+
+  /* Notebook Filter Tabs (Physical Stationery Index Tabs) */
+  .notebook-filter-tab {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6px 14px;
+    border-radius: 12px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    white-space: nowrap;
+    cursor: pointer;
+    user-select: none;
+    transition: all 0.12s ease;
+  }
+
+  html.theme-light .notebook-filter-tab,
+  .theme-light .notebook-filter-tab {
+    background: #ede8dc;
+    color: #5c5344;
+    border: 1px solid rgba(135, 120, 95, 0.35);
+    box-shadow:
+      0 2px 0 #baa992,
+      0 3px 6px rgba(50, 40, 25, 0.06),
+      inset 0 1px 0 rgba(255, 255, 255, 0.85);
+  }
+
+  html.theme-light .notebook-filter-tab:hover,
+  .theme-light .notebook-filter-tab:hover {
+    color: #262420;
+    background: #f5f0e4;
+  }
+
+  html.theme-light .notebook-filter-tab.active,
+  .theme-light .notebook-filter-tab.active {
+    background: #ded7c6;
+    color: #1f1d19;
+    border-color: rgba(115, 100, 75, 0.55);
+    transform: translateY(2px);
+    box-shadow:
+      inset 1.5px 1.5px 3px rgba(60, 48, 30, 0.22),
+      0 1px 0 rgba(255, 255, 255, 0.85);
+  }
+
+  html:not(.theme-light) .notebook-filter-tab,
+  .dark .notebook-filter-tab {
+    background: #191e28;
+    color: #94a3b8;
+    border: 1px solid rgba(111, 147, 207, 0.22);
+    box-shadow:
+      0 2px 0 #0f131a,
+      inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  }
+
+  html:not(.theme-light) .notebook-filter-tab.active,
+  .dark .notebook-filter-tab.active {
+    background: #11141c;
+    color: #f1f5f9;
+    border-color: rgba(111, 147, 207, 0.4);
+    transform: translateY(2px);
+    box-shadow:
+      inset 1.5px 1.5px 3px rgba(0, 0, 0, 0.5),
+      0 1px 0 rgba(255, 255, 255, 0.05);
+  }
+
+  .btn-cta {
+    border-radius: 18px;
+    padding: 16px 24px;
+    font-size: 16px;
+    width: 100%;
+    background: var(--indigo-deep);
+    color: #edf0f6;
+    border: 1px solid var(--color-border-primary);
+    box-shadow:
+      5px 5px 14px var(--neu-d),
+      -5px -5px 14px var(--neu-l);
+  }
+
+  /* Light Mode Hanko Crimson Seal CTA */
+  html.theme-light .btn-cta,
+  .theme-light .btn-cta {
+    background: linear-gradient(135deg, #a82025 0%, #871418 100%);
+    color: #fdfbf7;
+    border: 1px solid #731216;
+    box-shadow:
+      0 4px 14px rgba(168, 32, 37, 0.32),
+      inset 0 1px 0 rgba(255, 255, 255, 0.25);
+    font-weight: 800;
+  }
+
+  html.theme-light .btn-cta:hover,
+  .theme-light .btn-cta:hover {
+    background: linear-gradient(135deg, #b8252a 0%, #94171c 100%);
+    box-shadow:
+      0 6px 18px rgba(168, 32, 37, 0.42),
+      inset 0 1px 0 rgba(255, 255, 255, 0.35);
+  }
+
+  /* 4.2.1 Skeuomorphic Indigo Action Button (.btn-skeuo-indigo) */
+  .btn-skeuo-indigo {
+    border-radius: 14px;
+    padding: 10px 18px;
+    font-size: 13px;
+    font-weight: 700;
+    font-family: var(--font-body);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    white-space: nowrap;
+    background: linear-gradient(180deg, #2e3954 0%, #1e2638 100%);
+    color: #edf0f6;
+    border: 1px solid rgba(111, 147, 207, 0.35);
+    box-shadow:
+      3px 3px 8px var(--neu-d),
+      -2px -2px 6px var(--neu-l),
+      inset 0 1px 0 rgba(255, 255, 255, 0.14);
+    cursor: pointer;
+    user-select: none;
+    transition: transform 0.15s ease, box-shadow 0.15s ease, filter 0.15s ease;
+    text-decoration: none;
+  }
+
+  .btn-skeuo-indigo:hover {
+    filter: brightness(1.1);
+    transform: translateY(-1px);
+    box-shadow:
+      4px 4px 10px var(--neu-d),
+      -3px -3px 8px var(--neu-l),
+      inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  }
+
+  .btn-skeuo-indigo:active {
+    transform: translateY(1px);
+    box-shadow:
+      inset 2px 2px 5px var(--neu-d),
+      inset -1px -1px 3px var(--neu-l);
+  }
+
+  /* Light mode: Rich Aizome Navy Leather Button */
+  html.theme-light .btn-skeuo-indigo,
+  .theme-light .btn-skeuo-indigo {
+    background: linear-gradient(180deg, #2b456e 0%, #1c3050 100%);
+    color: #fdfbf7;
+    border: 1px solid #14243b;
+    box-shadow:
+      0 3px 8px rgba(24, 40, 64, 0.3),
+      inset 0 1px 0 rgba(255, 255, 255, 0.25);
+  }
+
+  html.theme-light .btn-skeuo-indigo:hover,
+  .theme-light .btn-skeuo-indigo:hover {
+    background: linear-gradient(180deg, #325182 0%, #20375c 100%);
+    box-shadow:
+      0 4px 12px rgba(24, 40, 64, 0.4),
+      inset 0 1px 0 rgba(255, 255, 255, 0.35);
+  }
+
+  html.theme-light .btn-skeuo-indigo:active,
+  .theme-light .btn-skeuo-indigo:active {
+    box-shadow: inset 2px 2px 5px rgba(0, 0, 0, 0.45);
+  }
+
+  /* 4.2.2 Skeuomorphic Gold Button (.btn-skeuo-gold) */
+  .btn-skeuo-gold {
+    border-radius: 14px;
+    padding: 10px 18px;
+    font-size: 13px;
+    font-weight: 800;
+    font-family: var(--font-body);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    white-space: nowrap;
+    background: linear-gradient(180deg, #f7ce68 0%, #d49e32 100%);
+    color: #1a1303;
+    border: 1px solid #b8831e;
+    box-shadow:
+      3px 4px 10px rgba(0, 0, 0, 0.45),
+      inset 0 1px 0 rgba(255, 255, 255, 0.6);
+    cursor: pointer;
+    user-select: none;
+    transition: transform 0.15s ease, box-shadow 0.15s ease, filter 0.15s ease;
+    text-decoration: none;
+  }
+
+  .btn-skeuo-gold:hover {
+    filter: brightness(1.06);
+    transform: translateY(-1px);
+    box-shadow:
+      4px 5px 12px rgba(0, 0, 0, 0.5),
+      inset 0 1px 0 rgba(255, 255, 255, 0.75);
+  }
+
+  .btn-skeuo-gold:active {
+    transform: translateY(1px);
+    box-shadow:
+      inset 2px 2px 5px rgba(0, 0, 0, 0.4);
+  }
+
+  /* Light mode: Warm Kinako Ochre Gold with crisp text */
+  html.theme-light .btn-skeuo-gold,
+  .theme-light .btn-skeuo-gold {
+    background: linear-gradient(180deg, #d99f2e 0%, #b37c19 100%);
+    color: #ffffff;
+    text-shadow: 0 1px 2px rgba(80, 50, 5, 0.5);
+    border: 1px solid #8f5e08;
+    box-shadow:
+      0 3px 8px rgba(140, 91, 8, 0.35),
+      inset 0 1px 0 rgba(255, 255, 255, 0.4);
+  }
+
+  html.theme-light .btn-skeuo-gold:hover,
+  .theme-light .btn-skeuo-gold:hover {
+    background: linear-gradient(180deg, #e5a934 0%, #be841c 100%);
+    box-shadow:
+      0 5px 12px rgba(140, 91, 8, 0.45),
+      inset 0 1px 0 rgba(255, 255, 255, 0.5);
+  }
+
+  html.theme-light .btn-skeuo-gold:active,
+  .theme-light .btn-skeuo-gold:active {
+    box-shadow: inset 2px 2px 5px rgba(0, 0, 0, 0.4);
+  }
+
+  /* 4.3 Breadcrumb / Stage Label */
+  .breadcrumb-label {
+    font-family: var(--font-mono);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    font-size: 11px;
+    color: var(--crumb-color);
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  /* 4.4 Progress Bar (EXP / HP / MP / Stage) */
+  .rpg-progress-track {
+    height: 8px;
+    width: 100%;
+    border-radius: 9999px;
+    background: var(--color-surface-inset);
+    box-shadow:
+      inset 2px 2px 4px var(--neu-d),
+      inset -2px -2px 4px var(--neu-l);
+    overflow: hidden;
+    position: relative;
+    border: 1px solid var(--color-border-subtle);
+  }
+
+  .rpg-progress-fill {
+    height: 100%;
+    border-radius: 9999px;
+    background: var(--gold);
+    box-shadow: 0 0 10px rgba(217, 165, 74, 0.4);
+    transition: width 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
+  .rpg-progress-fill-hp {
+    background: var(--wine-accent);
+    box-shadow: 0 0 10px rgba(226, 85, 91, 0.4);
+  }
+
+  .rpg-progress-fill-mp {
+    background: var(--indigo);
+    box-shadow: 0 0 10px rgba(111, 147, 207, 0.4);
+  }
+
+  /* 4.5 Badge Peringatan / Titik Lemah / Hanko */
+  .badge-wine {
+    background: var(--wine);
+    color: #edf0f6;
+    border-radius: 9999px;
+    padding: 3px 10px;
+    font-size: 11px;
+    font-weight: 700;
+    font-family: var(--font-mono);
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    box-shadow: 2px 2px 6px var(--neu-d);
+    border: 1px solid var(--wine-accent);
+  }
+
+  /* 4.6 Rank Medal / Avatar Portrait */
+  .avatar-medal {
+    border-radius: 50%;
+    background: var(--color-surface-elevated);
+    border: 2px solid var(--gold);
+    box-shadow:
+      4px 4px 10px var(--neu-d),
+      -4px -4px 10px var(--neu-l);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+
+  .rpg-btn-primary {
+    background: var(--indigo);
+    color: #ffffff;
+    border: 1px solid var(--color-border-primary);
+  }
+  
+  .rpg-btn-primary:hover {
+    filter: brightness(1.08);
+  }
+
+  /* Light Mode Hanko Crimson Primary Button */
+  html.theme-light .rpg-btn-primary,
+  .theme-light .rpg-btn-primary {
+    background: linear-gradient(135deg, #a82025 0%, #871418 100%);
+    color: #fdfbf7;
+    border: 1px solid #731216;
+    box-shadow:
+      0 4px 12px rgba(168, 32, 37, 0.28),
+      inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    font-weight: 700;
+  }
+
+  html.theme-light .rpg-btn-primary:hover,
+  .theme-light .rpg-btn-primary:hover {
+    background: linear-gradient(135deg, #b8252a 0%, #94171c 100%);
+    box-shadow:
+      0 6px 16px rgba(168, 32, 37, 0.38),
+      inset 0 1px 0 rgba(255, 255, 255, 0.28);
+  }
+
+  .rpg-btn-secondary {
+    background: var(--color-surface-card);
+    color: var(--color-text-secondary);
+    border: 1px solid var(--color-border-subtle);
+  }
+  
+  .rpg-btn-secondary:hover {
+    background: var(--color-surface-elevated);
+    color: var(--color-text-primary);
+  }
+
+  .rpg-btn-danger {
+    background: var(--wine);
+    color: #ffffff;
+    border: 1px solid var(--wine-accent);
+  }
+  
+  .rpg-btn-danger:hover {
+    filter: brightness(1.08);
+  }
+
+  /* --- 3. BADGES & PILLS --- */
+  .rpg-badge {
+    @apply inline-flex items-center font-bold text-[11px] leading-none text-text-muted rounded-full;
+    padding: 3px 8px;
+    border: 1px solid var(--color-border-subtle);
+    background: var(--color-surface-inset);
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.5);
+  }
+
+  .rpg-badge-reward {
+    @apply inline-flex items-center font-bold text-[11px] leading-none text-gold-highlight border-gold-base rounded-full;
+    padding: 3px 8px;
+    border-width: 1px;
+    border-style: solid;
+    background: rgba(240, 190, 82, 0.15);
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.5);
+  }
+
+  .rpg-badge-status {
+    @apply inline-flex items-center font-bold text-[11px] leading-none text-state-success border-state-success rounded-full;
+    padding: 3px 8px;
+    border-width: 1px;
+    border-style: solid;
+    background: rgba(16, 185, 129, 0.15);
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.5);
+  }
+
+  /* --- 4. TYPOGRAPHY HELPERS --- */
+  .text-heading-page { @apply text-2xl sm:text-3xl font-extrabold tracking-tight text-text-primary; }
+  .text-heading-section { @apply text-lg sm:text-xl font-bold tracking-tight text-text-primary; }
+  .text-card-title { @apply text-sm font-bold tracking-tight text-text-primary; }
+  .text-body-regular { @apply text-[13px] leading-relaxed text-text-secondary font-medium; }
+  .text-caption-meta { @apply text-[11px] leading-none text-text-muted font-semibold; }
+}
+
+/* Scrollbars: Hidden globally for clean tactile feel; scrolling remains fully functional via mouse wheel, trackpad, and touch drag */
+* {
+  scrollbar-width: none !important; /* Firefox */
+  -ms-overflow-style: none !important; /* IE / Edge */
+}
+
+*::-webkit-scrollbar,
+::-webkit-scrollbar {
+  display: none !important;
+  width: 0px !important;
+  height: 0px !important;
+  background: transparent !important;
+}
+
+.no-scrollbar,
+.custom-scrollbar,
+.scrollbar-thin {
+  scrollbar-width: none !important;
+  -ms-overflow-style: none !important;
+}
+
+.no-scrollbar::-webkit-scrollbar,
+.custom-scrollbar::-webkit-scrollbar,
+.scrollbar-thin::-webkit-scrollbar {
+  display: none !important;
+  width: 0px !important;
+  height: 0px !important;
+}
+
+/* Ruby text / Furigana styling */
+ruby { ruby-align: center; }
+ruby rt {
+  font-size: 0.58em;
+  color: var(--color-furigana, #3f3a32);
+  opacity: 0.95;
+  font-weight: 600;
+  font-family: var(--font-jp);
+}
+
+html.dark ruby rt,
+.dark ruby rt {
+  color: var(--color-furigana, #f0be52) !important;
+}
+
+html.theme-light ruby rt,
+.theme-light ruby rt {
+  color: var(--color-furigana, #3f3a32) !important;
+}
+
+.formula-highlight ruby rt {
+  color: inherit !important;
+  opacity: 0.85;
+}
+
+.ruby-text {
+  line-height: 2.2;
+}
+.ruby-word {
+  ruby-position: over;
+  ruby-align: center;
+}
+
+/* Mobile-first Safe-Area insets */
+@layer base {
+  * { overflow-wrap: break-word; word-break: break-word; }
+  #root {
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: max(env(safe-area-inset-bottom, 0px), 16px);
+    padding-left: env(safe-area-inset-left, 0px);
+    padding-right: env(safe-area-inset-right, 0px);
+  }
+}
+
+/* ==========================================================================
+   NODE-BASED JOURNEY MAP — SKEUOMORPHIC & WORLD THEME TOKENS
+   ========================================================================== */
+
+/* 1. Base Journey Canvas */
+/* 1. Base Journey Canvas (Washi Scroll Base) */
+.journey-canvas {
+  background-color: var(--color-surface-base);
+  position: relative;
+}
+
+/* 3. Base Physical Node */
+.stage-node {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.25s ease;
+  user-select: none;
+  cursor: pointer;
+}
+
+/* Embossed State (Available) — Washi Neumorphic Token */
+.stage-node.available {
+  background: var(--color-surface-card);
+  box-shadow: 
+    4px 4px 10px var(--neu-d),
+    -4px -4px 10px var(--neu-l);
+  border: 2.5px solid var(--gold);
+  color: var(--color-text-primary);
+}
+
+/* Pulsing Glow Ring for Available Node */
+.stage-node.available::before {
+  content: '';
+  position: absolute;
+  inset: -6px;
+  border-radius: 50%;
+  border: 2px solid var(--gold);
+  animation: nodePulseRing 2.2s cubic-bezier(0.24, 0, 0.38, 1) infinite;
+  pointer-events: none;
+}
+
+@keyframes nodePulseRing {
+  0% {
+    transform: scale(0.95);
+    opacity: 0.9;
+  }
+  60% {
+    transform: scale(1.28);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1.28);
+    opacity: 0;
+  }
+}
+
+/* Debossed State (Locked) — Inset Washi */
+.stage-node.locked {
+  background: var(--color-surface-inset);
+  box-shadow: 
+    inset 2.5px 2.5px 6px var(--neu-d),
+    inset -2px -2px 5px var(--neu-l);
+  opacity: 0.6;
+  border: 1.5px solid var(--color-border-subtle);
+  color: var(--color-text-muted);
+  cursor: not-allowed;
+}
+
+/* Completed State — Matcha Green Token */
+.stage-node.completed {
+  background: var(--color-state-success);
+  box-shadow: 
+    3px 3px 8px var(--neu-d),
+    -3px -3px 8px var(--neu-l);
+  border: 2px solid var(--color-state-success);
+  color: #ffffff;
+}
+
+/* Boss Stage State — Hanko Crimson Medallion */
+.stage-node.boss {
+  width: 74px;
+  height: 74px;
+  border-radius: 22px;
+  background: var(--wine);
+  box-shadow: 
+    5px 5px 14px var(--neu-d),
+    -5px -5px 14px var(--neu-l);
+  border: 2.5px solid var(--wine-accent);
+  color: #ffffff;
+}
+
+.stage-node.boss.completed {
+  border-color: var(--gold);
+  box-shadow: 
+    4px 4px 12px var(--neu-d),
+    -4px -4px 12px var(--neu-l);
+}
+
+/* Stitched / Ancient Ink Path Styling (Sashiko Motif) */
+.journey-svg-path {
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  fill: none;
+}
+
+.journey-svg-path.locked {
+  stroke: var(--color-state-locked);
+  stroke-dasharray: 6 6;
+  stroke-width: 3.5;
+  opacity: 0.5;
+}
+
+.journey-svg-path.active {
+  stroke: var(--gold);
+  stroke-dasharray: 8 6;
+  stroke-width: 4.5;
+  animation: strokeDashMove 24s linear infinite;
+  filter: drop-shadow(0 0 3px rgba(217, 165, 74, 0.4));
+}
+
+.journey-svg-path.completed {
+  stroke: var(--color-state-success);
+  stroke-width: 4.5;
+  filter: drop-shadow(0 0 2px rgba(79, 174, 134, 0.3));
+}
+
+@keyframes strokeDashMove {
+  to {
+    stroke-dashoffset: -300;
+  }
+}
+
+/* ==========================================================================
+   WASHI SCROLL SKEUOMORPHIC JALUR SYSTEM (Single-Surface Washi & Sashiko)
+   ========================================================================== */
+
+/* Grayscale SVG Turbulence Grain for Washi Texture */
+.skeuo-grain {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.04;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 140px 140px;
+}
+
+/* Washi Scroll Header with Sashiko Inner Border */
+.skeuo-header {
+  background: var(--color-surface-card);
+  border-radius: 20px;
+  padding: 13px 18px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  box-shadow:
+    6px 6px 14px var(--neu-d),
+    -6px -6px 14px var(--neu-l);
+  border: 1px solid var(--color-border-subtle);
+  color: var(--text-primary);
+  width: 100%;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.skeuo-header.sticky,
+.skeuo-header:where(.sticky) {
+  position: sticky !important;
+}
+
+.skeuo-header.fixed,
+.skeuo-header:where(.fixed) {
+  position: fixed !important;
+}
+
+.skeuo-header::before {
+  content: '';
+  position: absolute;
+  inset: 6px;
+  border: 1px dashed var(--thread);
+  border-radius: 14px;
+  pointer-events: none;
+}
+
+.skeuo-header .crumb {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--crumb-color);
+  font-size: 11px;
+}
+
+.skeuo-header .crumb .back {
+  color: var(--text-primary);
+  font-weight: 800;
+}
+
+.skeuo-header .dungeon-btn,
+.dungeon-btn,
+.skeuo-btn {
+  background: var(--color-surface-inset);
+  color: var(--text-primary);
+  border-radius: 12px;
+  padding: 6px 12px;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition: all 0.15s ease;
+  box-shadow: 2px 2px 6px var(--neu-d), -2px -2px 6px var(--neu-l);
+  border: 1px solid var(--color-border-subtle);
+  font-family: var(--font-body);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  user-select: none;
+}
+
+.skeuo-header .dungeon-btn:hover,
+.dungeon-btn:hover,
+.skeuo-btn:hover {
+  background: var(--color-surface-elevated);
+  color: var(--text-primary);
+  transform: translateY(-1px);
+  box-shadow: 3px 3px 8px var(--neu-d), -3px -3px 8px var(--neu-l);
+}
+
+.skeuo-header .dungeon-btn:active,
+.dungeon-btn:active,
+.skeuo-btn:active {
+  transform: translateY(1px);
+  box-shadow: inset 2px 2px 5px var(--neu-d), inset -2px -2px 5px var(--neu-l);
+}
+
+/* Gold / Claim Action Button (Kinako Gold Highlight) */
+.skeuo-btn-gold {
+  background: var(--indigo-deep);
+  color: var(--gold-soft);
+  border: 1px solid var(--gold);
+  border-radius: 14px;
+  padding: 8px 18px;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition: all 0.15s ease;
+  box-shadow: 3px 3px 8px var(--neu-d), -3px -3px 8px var(--neu-l);
+  font-family: var(--font-body);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  user-select: none;
+}
+
+.skeuo-btn-gold:hover {
+  filter: brightness(1.1);
+  transform: translateY(-1px);
+  box-shadow: 4px 4px 10px var(--neu-d), -4px -4px 10px var(--neu-l);
+}
+
+.skeuo-btn-gold:active {
+  transform: translateY(1px);
+  box-shadow: inset 2px 2px 5px var(--neu-d), inset -2px -2px 5px var(--neu-l);
+}
+
+/* Debossed / Pending Button */
+.skeuo-btn-disabled {
+  background: var(--color-surface-inset);
+  border: 1px solid var(--color-border-subtle);
+  color: var(--color-text-muted);
+  border-radius: 14px;
+  padding: 8px 16px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+  flex-shrink: 0;
+  box-shadow: inset 2px 2px 4px var(--neu-d);
+  cursor: not-allowed;
+  opacity: 0.55;
+  font-family: var(--font-body);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+}
+
+/* Claimed / Success Stamp (Matcha Green) */
+.skeuo-btn-claimed {
+  background: rgba(79, 174, 134, 0.15);
+  border: 1px solid rgba(79, 174, 134, 0.4);
+  color: var(--color-state-success);
+  border-radius: 14px;
+  padding: 8px 16px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+  flex-shrink: 0;
+  box-shadow: inset 1px 1px 3px var(--neu-d);
+  cursor: not-allowed;
+  font-family: var(--font-body);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+}
+
+/* Washi Scroll Plaque Card with Sashiko Border */
+.skeuo-card {
+  background: var(--color-surface-card);
+  border-radius: 20px;
+  position: relative;
+  box-shadow:
+    6px 6px 14px var(--neu-d),
+    -6px -6px 14px var(--neu-l);
+  border: 1px solid var(--color-border-subtle);
+  transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+  overflow: hidden;
+  color: var(--text-primary);
+}
+
+.skeuo-card::before {
+  content: '';
+  position: absolute;
+  inset: 6px;
+  border: 1px dashed var(--thread);
+  border-radius: 14px;
+  pointer-events: none;
+  opacity: 0.7;
+}
+
+.skeuo-card:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    8px 8px 18px var(--neu-d),
+    -8px -8px 18px var(--neu-l);
+}
+
+.skeuo-card.active, .skeuo-card.completed {
+  border-color: var(--gold);
+  box-shadow:
+    6px 6px 14px var(--neu-d),
+    -6px -6px 14px var(--neu-l),
+    0 0 0 1px var(--gold);
+}
+
+/* Carved Groove Progress Bar */
+.skeuo-progress-track {
+  height: 8px;
+  width: 100%;
+  background: var(--color-surface-inset);
+  border-radius: 9999px;
+  box-shadow: inset 2px 2px 4px var(--neu-d), inset -2px -2px 4px var(--neu-l);
+  border: 1px solid var(--color-border-subtle);
+  overflow: hidden;
+  position: relative;
+}
+
+.skeuo-progress-bar {
+  height: 100%;
+  border-radius: 9999px;
+  background: var(--gold);
+  box-shadow: 0 0 10px rgba(217, 165, 74, 0.4);
+  transition: width 0.4s ease;
+}
+
+.skeuo-progress-bar.completed {
+  background: var(--color-state-success);
+  box-shadow: 0 0 8px rgba(79, 174, 134, 0.5);
+}
+
+/* Washi Scroll Belt Navbar */
+.skeuo-navbar {
+  background: var(--color-surface-card);
+  border-top: 1px solid var(--color-border-subtle);
+  box-shadow: 0 -6px 20px var(--neu-d);
+  position: relative;
+  will-change: transform;
+  transform: translateZ(0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+.skeuo-navbar.fixed,
+.skeuo-navbar:where(.fixed) {
+  position: fixed !important;
+}
+
+.skeuo-navbar.sticky,
+.skeuo-navbar:where(.sticky) {
+  position: sticky !important;
+}
+
+.skeuo-navbar::before {
+  content: '';
+  position: absolute;
+  top: 4px;
+  left: 8px;
+  right: 8px;
+  border-top: 1px dashed var(--thread);
+  pointer-events: none;
+  opacity: 0.6;
+}
+
+@media (min-width: 768px) {
+  .skeuo-navbar {
+    border-top: none;
+    border-right: 1px solid var(--color-border-subtle);
+    box-shadow: 6px 0 20px var(--neu-d);
+  }
+  .skeuo-navbar::before {
+    top: 8px;
+    bottom: 8px;
+    left: auto;
+    right: 4px;
+    border-top: none;
+    border-right: 1px dashed var(--thread);
+  }
+}
+
+/* Tier Ladder / Wilayah: Carved Washi Pebbles */
+.skeuo-tier-row {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding-bottom: 2px;
+  scrollbar-width: none;
+}
+
+.skeuo-tier-pill {
+  font-size: 11px;
+  font-weight: 700;
+  padding: 6px 14px;
+  border-radius: 9999px;
+  background: var(--color-surface-inset);
+  border: 1px solid var(--color-border-subtle);
+  color: var(--color-text-secondary);
+  box-shadow:
+    inset 2px 2px 4px var(--neu-d),
+    inset -2px -2px 4px var(--neu-l);
+  white-space: nowrap;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  user-select: none;
+}
+
+.skeuo-tier-pill:hover {
+  background: var(--color-surface-card);
+  color: var(--color-text-primary);
+  transform: translateY(-1px);
+}
+
+.skeuo-tier-pill.active {
+  background: var(--indigo);
+  color: #ffffff;
+  border-color: var(--indigo-deep);
+  box-shadow:
+    3px 3px 8px var(--neu-d),
+    -3px -3px 8px var(--neu-l);
+}
+
+html.theme-light .skeuo-tier-pill.active,
+.theme-light .skeuo-tier-pill.active {
+  background: var(--color-surface-card);
+  color: var(--text-primary);
+  border-color: var(--color-border-primary);
+  font-weight: 800;
+  box-shadow:
+    2px 2px 6px var(--neu-d),
+    -2px -2px 6px var(--neu-l),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9);
+}
+
+/* Journey Canvas Card Container */
+.journey-canvas-card {
+  background: var(--color-surface-base);
+  border: 1px solid var(--color-border-subtle);
+  position: relative;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+  box-shadow: inset 3px 3px 8px var(--neu-d), inset -3px -3px 8px var(--neu-l);
+}
+
+html.dark .journey-canvas-card {
+  background: #12151d;
+  border-color: rgba(111, 147, 207, 0.2);
+}
+
+html.theme-light .journey-canvas-card,
+.theme-light .journey-canvas-card {
+  background: #eae7de;
+  border-color: rgba(94, 86, 64, 0.18);
+}
+
+/* SVG Carved Groove Path Colors */
+.path-groove-shadow {
+  stroke: var(--neu-d);
+}
+
+.path-groove-highlight {
+  stroke: var(--neu-l);
+}
+
+.path-thread {
+  stroke: var(--thread);
+}
+
+/* Coin / Medallion Relief Nodes */
+.node-btn {
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  position: relative;
+  font-family: inherit;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+  user-select: none;
+}
+
+@media (min-width: 640px) {
+  .node-btn {
+    width: 64px;
+    height: 64px;
+  }
+}
+
+/* Inner Recessed Stamped Edge */
+.node-btn::after {
+  content: '';
+  position: absolute;
+  inset: 5px;
+  border-radius: 50%;
+  border: 1px solid var(--color-border-subtle);
+  pointer-events: none;
+}
+
+.node-btn:hover {
+  transform: translateY(-2px);
+}
+
+.node-btn:active {
+  transform: translateY(2px);
+}
+
+/* Current / Available Active Node with Pulsing Ring */
+.node-current {
+  background: var(--color-surface-elevated);
+  border: 2.5px solid var(--gold);
+  box-shadow:
+    4px 4px 10px var(--neu-d),
+    -4px -4px 10px var(--neu-l);
+}
+
+.node-current::before {
+  content: '';
+  position: absolute;
+  inset: -6px;
+  border-radius: 50%;
+  border: 2px solid var(--gold);
+  box-shadow: 0 0 12px rgba(217, 165, 74, 0.4);
+  animation: nodePulseRing 2.2s cubic-bezier(0.24, 0, 0.38, 1) infinite;
+  pointer-events: none;
+}
+
+.node-current svg {
+  width: 24px;
+  height: 24px;
+  fill: var(--gold-soft);
+  color: var(--gold-soft);
+  filter: drop-shadow(0 1px 2px var(--neu-d));
+}
+
+/* Available Unlocked Node */
+.node-available {
+  background: var(--color-surface-card);
+  border: 2px solid var(--color-border-primary);
+  box-shadow:
+    3px 3px 8px var(--neu-d),
+    -3px -3px 8px var(--neu-l);
+  color: var(--color-text-primary);
+}
+
+.node-available:hover {
+  transform: translateY(-2px);
+  background: var(--color-surface-elevated);
+}
+
+.node-available:active {
+  transform: translateY(2px);
+  box-shadow: inset 2px 2px 4px var(--neu-d);
+}
+
+/* Done / Completed Node (Matcha Green) */
+.node-done {
+  background: var(--color-state-success);
+  border: 2px solid var(--color-state-success);
+  color: #ffffff;
+  box-shadow:
+    3px 3px 8px var(--neu-d),
+    -3px -3px 8px var(--neu-l);
+}
+
+.node-done:active {
+  box-shadow: inset 2px 2px 4px var(--neu-d);
+}
+
+.node-done svg {
+  width: 22px;
+  height: 22px;
+  color: #ffffff;
+}
+
+/* Locked Recessed Node */
+.node-locked {
+  background: var(--color-surface-inset);
+  box-shadow:
+    inset 2px 2px 4px var(--neu-d),
+    inset -2px -2px 4px var(--neu-l);
+  border: 1px solid var(--color-border-subtle);
+  cursor: default;
+  opacity: 0.55;
+}
+
+.node-locked svg {
+  width: 18px;
+  height: 18px;
+  color: var(--color-text-muted);
+}
+
+.node-locked:hover {
+  transform: none;
+}
+
+/* Dungeon / Boss Stage: Hexagonal / Diamond Medallion in Hanko Crimson */
+.node-dungeon {
+  width: 60px;
+  height: 60px;
+  background: var(--wine);
+  border: 2.5px solid var(--wine-accent);
+  box-shadow:
+    5px 5px 12px var(--neu-d),
+    -5px -5px 12px var(--neu-l);
+  border-radius: 18px;
+  transform: rotate(45deg);
+}
+
+@media (min-width: 640px) {
+  .node-dungeon {
+    width: 66px;
+    height: 66px;
+    border-radius: 20px;
+  }
+}
+
+.node-dungeon::after {
+  inset: 5px;
+  border-radius: 12px;
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.node-dungeon svg {
+  transform: rotate(-45deg);
+  width: 24px;
+  height: 24px;
+  color: #ffffff;
+}
+
+.node-dungeon:hover {
+  transform: rotate(45deg) translateY(-2px);
+}
+
+.node-dungeon:active {
+  transform: rotate(45deg) translateY(2px);
+}
+
+/* Navigation Guide Button */
+.guide-btn {
+  background: var(--color-surface-elevated);
+  border: 1px solid var(--color-border-primary);
+  color: var(--color-text-primary);
+  border-radius: 12px;
+  padding: 7px 14px;
+  font-size: 12px;
+  font-weight: 700;
+  transition: all 0.15s ease;
+  cursor: pointer;
+  box-shadow: 2px 2px 6px var(--neu-d);
+}
+
+.guide-btn:hover {
+  background: var(--color-surface-card);
+  transform: translateY(-1px);
+}
+
+.guide-btn:active {
+  transform: translateY(1px);
+  box-shadow: inset 1px 1px 3px var(--neu-d);
+}
+
+/* ==========================================================================
+   CLEAN SKEUOMORPHIC LIBRARY & SEGMENTED CONTROLS
+   Consistent with the rest of the app's clean Washi / Neumorphic aesthetic
+   ========================================================================== */
+
+.book-tab-nav {
+  display: inline-flex;
+  background: var(--color-surface-inset);
+  padding: 5px;
+  border-radius: 20px;
+  border: 1px solid var(--color-border-subtle);
+  box-shadow:
+    inset 2px 2px 5px var(--neu-d),
+    inset -2px -2px 5px var(--neu-l);
+  gap: 6px;
+}
+
+.book-tab-btn {
+  padding: 8px 18px;
+  border-radius: 14px;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  user-select: none;
+  transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+  position: relative;
+  border: 1px solid transparent;
+  color: var(--text-muted);
+}
+
+.book-tab-btn.active {
+  background: var(--color-surface-card);
+  color: var(--text-primary);
+  border-color: var(--color-border-primary);
+  box-shadow:
+    3px 3px 8px var(--neu-d),
+    -3px -3px 8px var(--neu-l);
+  font-weight: 800;
+}
+
+.book-tab-btn.inactive:hover {
+  color: var(--text-primary);
+  background: var(--color-surface-elevated);
+}
+
+/* Clean, standard library card identical to app's other panels */
+.book-page-card {
+  background: var(--color-surface-card);
+  border-radius: 20px;
+  border: 1px solid var(--color-border-subtle);
+  box-shadow:
+    3px 3px 8px var(--neu-d),
+    -3px -3px 8px var(--neu-l);
+  position: relative;
+  transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+  cursor: pointer;
+}
+
+.book-page-card:hover {
+  transform: translateY(-2px);
+  box-shadow:
+    5px 5px 12px var(--neu-d),
+    -5px -5px 12px var(--neu-l);
+  border-color: var(--color-border-primary);
+}
+
+/* ==========================================================================
+   MOBILE, TABLET, iOS & ANDROID RESPONSIVENESS & TOUCH OPTIMIZATIONS
+   ========================================================================== */
+
+html, body {
+  overscroll-behavior-y: none;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Ensure smooth momentum scrolling on iOS */
+.overflow-y-auto, .overflow-x-auto, [data-scrollable] {
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Prevent double-tap zoom delay on interactive buttons and inputs */
+button, a, input, select, textarea, [role="button"] {
+  touch-action: manipulation;
+}
+
+/* Safe area utility classes */
+.pt-safe {
+  padding-top: max(0.5rem, env(safe-area-inset-top, 0px));
+}
+
+.pb-safe {
+  padding-bottom: max(0.5rem, env(safe-area-inset-bottom, 0px));
+}
+
+.pl-safe {
+  padding-left: max(0.25rem, env(safe-area-inset-left, 0px));
+}
+
+.pr-safe {
+  padding-right: max(0.25rem, env(safe-area-inset-right, 0px));
+}
+
+/* Fast GPU-accelerated tab transition for mobile & desktop */
+@keyframes tabFadeIn {
+  from {
+    opacity: 0.88;
+    transform: translateY(2px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-tab-enter {
+  animation: tabFadeIn 0.12s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+/* ==========================================================================
+   3D Flashcard Flip Animation (Smooth Elastic Cubic-Bezier)
+   ========================================================================== */
+.perspective-1000 {
+  perspective: 1000px;
+  -webkit-perspective: 1000px;
+}
+
+.card {
+  transform-style: preserve-3d;
+  -webkit-transform-style: preserve-3d;
+  transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+  will-change: transform;
+}
+
+.card.flipped {
+  transform: rotateY(180deg);
+}
+
+.face {
+  position: absolute;
+  inset: 0;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+.face.back {
+  transform: rotateY(180deg);
+}
+
+/* ==========================================================================
+   BOOT SPLASH (src/components/common/BootSplash.tsx) & AKSESIBILITAS GERAK
+   ========================================================================== */
+@keyframes bootSplashSlide {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(300%); }
+}
+.boot-splash-bar {
+  animation: bootSplashSlide 1.2s ease-in-out infinite;
+}
+
+/* Hormati preferensi pengguna: kurangi gerak (vestibular / kenyamanan). */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Input satu baris: teks/placeholder yang kepanjangan diberi elipsis, bukan terpotong di tengah huruf. */
+input:not([type="checkbox"]):not([type="radio"]) {
+  text-overflow: ellipsis;
+}
+
+/* Strip tab/filter yang bisa digeser: snap per item + sembunyikan scrollbar agar terlihat rapi. */
+.overflow-x-auto {
+  scroll-snap-type: x proximity;
+  -webkit-overflow-scrolling: touch;
+}
+.overflow-x-auto > * {
+  scroll-snap-align: start;
+}
+
+/* ==========================================================================
+   UNIFIED PHYSICAL BUTTONS (DESIGN.md: "Tombol Aksi Fisik")
+   Semua kelas tombol lama (.btn, .rpg-btn, .btn-cta, .btn-skeuo-*, .skeuo-btn, .btn-pill)
+   memakai bahan yang sama dengan .btn-physical-*: permukaan timbul + tepi bawah 3-4px yang
+   "tertekan" saat :active. Tidak ada tombol aksi datar, tidak ada outline berwarna.
+   ========================================================================== */
+@layer components {
+  /* ---------- PRIMER (gelap) ---------- */
+  html:not(.theme-light) :is(
+    .btn:not(.btn-secondary):not(.btn-pill),
+    .rpg-btn:not(.rpg-btn-secondary):not(.rpg-btn-danger),
+    .rpg-btn-primary, .btn-primary, .btn-cta, .btn-skeuo-indigo, .btn-skeuo-gold, .skeuo-btn-gold
+  ) {
+    background: linear-gradient(180deg, #3d5885 0%, #253959 100%);
+    color: #ffffff;
+    border: 1px solid #1b2940;
+    box-shadow:
+      0 4px 0 #121c2c,
+      0 6px 12px rgba(0, 0, 0, 0.4),
+      inset 0 1px 0 rgba(255, 255, 255, 0.25);
+    transform: translateY(0);
+    transition: transform 0.08s ease, box-shadow 0.08s ease, filter 0.08s ease;
+  }
+  html:not(.theme-light) :is(
+    .btn:not(.btn-secondary):not(.btn-pill),
+    .rpg-btn:not(.rpg-btn-secondary):not(.rpg-btn-danger),
+    .rpg-btn-primary, .btn-primary, .btn-cta, .btn-skeuo-indigo, .btn-skeuo-gold, .skeuo-btn-gold,
+    .btn-physical-primary
+  ):hover {
+    filter: brightness(1.08);
+    transform: translateY(0);
+  }
+  html:not(.theme-light) :is(
+    .btn:not(.btn-secondary):not(.btn-pill),
+    .rpg-btn:not(.rpg-btn-secondary):not(.rpg-btn-danger),
+    .rpg-btn-primary, .btn-primary, .btn-cta, .btn-skeuo-indigo, .btn-skeuo-gold, .skeuo-btn-gold
+  ):active {
+    transform: translateY(3px);
+    box-shadow:
+      0 1px 0 #121c2c,
+      0 2px 4px rgba(0, 0, 0, 0.3);
+  }
+  /* Label emas pada tombol "klaim" dipertahankan sebagai aksen TEKS, bukan outline */
+  html:not(.theme-light) :is(.btn-skeuo-gold, .skeuo-btn-gold) {
+    color: var(--gold-soft, #f0be52);
+  }
+
+  /* ---------- SEKUNDER / NETRAL (gelap) ---------- */
+  html:not(.theme-light) :is(
+    .btn-secondary, .rpg-btn-secondary, .btn.btn-pill, .skeuo-btn, .dungeon-btn
+  ) {
+    background: linear-gradient(180deg, #242a36 0%, #1a1e27 100%);
+    color: #d1d8e6;
+    border: 1px solid #363d4e;
+    box-shadow:
+      0 3px 0 #101319,
+      0 5px 8px rgba(0, 0, 0, 0.35),
+      inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    transform: translateY(0);
+    transition: transform 0.08s ease, box-shadow 0.08s ease, filter 0.08s ease;
+  }
+  html:not(.theme-light) :is(
+    .btn-secondary, .rpg-btn-secondary, .btn.btn-pill, .skeuo-btn, .dungeon-btn, .btn-physical-secondary
+  ):hover {
+    filter: brightness(1.12);
+    transform: translateY(0);
+  }
+  html:not(.theme-light) :is(
+    .btn-secondary, .rpg-btn-secondary, .btn.btn-pill, .skeuo-btn, .dungeon-btn
+  ):active {
+    transform: translateY(2px);
+    box-shadow:
+      0 1px 0 #101319,
+      0 2px 4px rgba(0, 0, 0, 0.3);
+  }
+
+  /* ---------- SEKUNDER (terang) ---------- */
+  html.theme-light :is(.btn-secondary, .rpg-btn-secondary) {
+    background: linear-gradient(180deg, #faf7f0 0%, #ede6d8 100%);
+    color: #3b3528;
+    border: 1px solid #bbb19e;
+    box-shadow:
+      0 3px 0 #9c927f,
+      0 5px 8px rgba(45, 35, 20, 0.10),
+      inset 0 1px 0 rgba(255, 255, 255, 0.95);
+  }
+  html.theme-light :is(.btn-secondary, .rpg-btn-secondary):active {
+    transform: translateY(2px);
+    box-shadow:
+      0 1px 0 #9c927f,
+      0 2px 4px rgba(45, 35, 20, 0.10),
+      inset 0 1px 2px rgba(0, 0, 0, 0.12);
+  }
+
+  /* .btn-secondary berdiri sendiri (tanpa .btn) tetap berbentuk tombol */
+  .btn-secondary:not(.btn) {
+    font-family: var(--font-body);
+    font-weight: 700;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    padding: 8px 14px;
+    border-radius: 13px;
+    cursor: pointer;
+    user-select: none;
+  }
+
+  /* ---------- BAHAYA (hapus / reset / keluar) ---------- */
+  .btn-physical-danger,
+  .rpg-btn-danger {
+    font-family: var(--font-body);
+    font-weight: 700;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    padding: 8px 14px;
+    border-radius: 13px;
+    cursor: pointer;
+    user-select: none;
+    background: linear-gradient(180deg, #96343a 0%, #6d2227 100%);
+    color: #fdf3f2;
+    border: 1px solid #4d171b;
+    box-shadow:
+      0 4px 0 #3a1013,
+      0 6px 12px rgba(0, 0, 0, 0.35),
+      inset 0 1px 0 rgba(255, 255, 255, 0.22);
+    transform: translateY(0);
+    transition: transform 0.08s ease, box-shadow 0.08s ease, filter 0.08s ease;
+  }
+  .btn-physical-danger:hover,
+  .rpg-btn-danger:hover {
+    filter: brightness(1.08);
+  }
+  .btn-physical-danger:active,
+  .rpg-btn-danger:active {
+    transform: translateY(3px);
+    box-shadow:
+      0 1px 0 #3a1013,
+      0 2px 4px rgba(0, 0, 0, 0.3);
+  }
+
+  /* ---------- Tombol nonaktif: tetap fisik, tetapi "mati" (tidak bisa ditekan) ---------- */
+  :is(.btn, .rpg-btn, .btn-cta, .btn-secondary, .btn-skeuo-indigo, .btn-skeuo-gold, .skeuo-btn, .skeuo-btn-gold,
+      .btn-physical-primary, .btn-physical-secondary, .btn-physical-danger):disabled {
+    filter: saturate(0.45) brightness(0.8);
+    cursor: not-allowed;
+    transform: none !important;
+  }
+
+  /* ---------- Kunci segmen aktif (tab / filter terpilih): tombol kecil yang timbul ---------- */
+  .seg-active {
+    border-color: transparent;
+    background: linear-gradient(180deg, #313a4d 0%, #262d3c 100%);
+    color: var(--text-primary);
+    /* cincin 1px lewat box-shadow (bukan border) supaya tidak menggeser tata letak saat aktif */
+    box-shadow:
+      0 0 0 1px #3d465a,
+      0 2px 0 #12151c,
+      0 3px 6px rgba(0, 0, 0, 0.3),
+      inset 0 1px 0 rgba(255, 255, 255, 0.12);
+  }
+  html.theme-light .seg-active {
+    background: linear-gradient(180deg, #ffffff 0%, #f2ede1 100%);
+    color: #3b3528;
+    box-shadow:
+      0 0 0 1px #bbb19e,
+      0 2px 0 #a59b88,
+      0 3px 6px rgba(45, 35, 20, 0.12),
+      inset 0 1px 0 rgba(255, 255, 255, 0.95);
+  }
+
+  /* ---------- Wadah cekung: semua bg-surface-inset tanpa shadow sendiri mendapat ukiran dalam ---------- */
+  :is(div, section, span, ul, li, label, p)[class~="bg-surface-inset"]:not([class*="shadow"]) {
+    box-shadow:
+      inset 1.5px 1.5px 4px var(--neu-d),
+      inset -1px -1px 2px var(--neu-l);
+  }
+}
+
+/* ==========================================================================
+   UNIFIED SURFACE: "dark layered / inset-outlined skeuomorphism" (acuan: kartu Buku Saku)
+   Satu material untuk semua tombol, filter, tab, dan item navigasi (tema gelap):
+   permukaan navy gelap + border luar tipis + garis dalam (inset) halus + shadow lembut.
+   Biru & emas hanya aksen (border/ikon/teks), bukan fill. Yang berbeda hanya hierarki:
+     primer  = border luar lebih kuat   | sekunder = border standar
+     emas    = teks/ikon emas           | bahaya   = border/teks merah
+     aktif   = permukaan sedikit lebih terang + border kuat
+   ========================================================================== */
+:root {
+  --ui-surface: #171d28;
+  --ui-surface-hi: #1c2433;
+  --ui-surface-well: #121824;
+  --ui-line: rgba(120, 150, 200, 0.28);
+  --ui-line-strong: rgba(120, 150, 200, 0.5);
+  --ui-line-inner: rgba(120, 150, 200, 0.16);
+  --ui-radius: 16px;
+  --ui-text: #d6dcea;
+  --ui-text-hi: #f1f4fa;
+  --ui-text-dim: #98a2b8;
+  --ui-hover: #1d2535;
+  --ui-press: #141a25;
+  --ui-shadow: rgba(0, 0, 0, 0.18);
+  --ui-hi: rgba(255, 255, 255, 0.04);
+  --ui-press-shadow: rgba(0, 0, 0, 0.35);
+  --ui-danger-bg: #1c161c;
+  --ui-danger-line: rgba(226, 85, 91, 0.45);
+  --ui-danger-text: #f2a3a7;
+  --ui-gold: #e5b93f;
+  --ui-gold-line: rgba(229, 185, 63, 0.42);
+}
+
+/* Tema terang (washi): material yang sama, palet hangat */
+html.theme-light {
+  --ui-surface: #f6f3ec;
+  --ui-surface-hi: #fbf9f4;
+  --ui-surface-well: #e6e2d6;
+  --ui-line: rgba(94, 86, 64, 0.32);
+  --ui-line-strong: rgba(94, 86, 64, 0.58);
+  --ui-line-inner: rgba(94, 86, 64, 0.16);
+  --ui-text: #3b3528;
+  --ui-text-hi: #1f1d19;
+  --ui-text-dim: #615a4b;
+  --ui-hover: #fffdf8;
+  --ui-press: #e4dfd2;
+  --ui-shadow: rgba(60, 48, 25, 0.14);
+  --ui-hi: rgba(255, 255, 255, 0.75);
+  --ui-press-shadow: rgba(60, 48, 25, 0.25);
+  --ui-danger-bg: #f7eae8;
+  --ui-danger-line: rgba(168, 32, 37, 0.5);
+  --ui-danger-text: #8f1a1f;
+  --ui-gold: #8c580f;
+  --ui-gold-line: rgba(140, 88, 15, 0.5);
+}
+
+/* Sengaja TANPA @layer: kelas lama (.skeuo-tier-pill, .skeuo-btn, dst.) tidak ber-layer dan harus dikalahkan. */
+  /* ---------- Permukaan dasar (kartu / panel) ---------- */
+  .ui-surface {
+    position: relative;
+    background: var(--ui-surface);
+    border: 1px solid var(--ui-line);
+    border-radius: 18px;
+    box-shadow:
+      0 8px 20px var(--ui-shadow),
+      inset 0 1px 0 var(--ui-hi);
+  }
+  .ui-surface::after {
+    content: "";
+    position: absolute;
+    inset: 10px;
+    border: 1px dashed var(--ui-line-inner);
+    border-radius: 14px;
+    pointer-events: none;
+  }
+  .ui-accent { color: var(--ui-gold); }
+  .ui-icon-box {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--ui-surface-well);
+    border: 1px solid var(--ui-line);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.03);
+    transition: background-color 0.15s ease, border-color 0.15s ease;
+  }
+  .ui-icon-box.is-active {
+    background: var(--ui-surface-hi);
+    border-color: var(--ui-line-strong);
+  }
+
+  /* ---------- Kunci (tombol aksi) & chip filter / tab: satu keluarga ---------- */
+  html:not(.ui-a):not(.ui-b) :is(
+    .btn, .rpg-btn, .rpg-btn-primary, .btn-primary, .btn-cta, .btn-skeuo-indigo, .btn-skeuo-gold,
+    .skeuo-btn-gold, .btn-secondary, .rpg-btn-secondary, .skeuo-btn, .dungeon-btn,
+    .btn-physical-primary, .btn-physical-secondary, .btn-physical-danger, .rpg-btn-danger,
+    .skeuo-tier-pill, .notebook-filter-tab, .ui-chip
+  ) {
+    --k-bg: var(--ui-surface);
+    --k-line: var(--ui-line);
+    background: var(--k-bg);
+    color: var(--ui-text);
+    border: 1px solid var(--k-line);
+    text-shadow: none;
+    box-shadow:
+      inset 0 0 0 4px var(--k-bg),
+      inset 0 0 0 5px var(--ui-line-inner),
+      0 8px 20px var(--ui-shadow),
+      inset 0 1px 0 var(--ui-hi);
+    transform: translateY(0);
+    filter: none;
+    transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease,
+      box-shadow 0.15s ease, transform 0.08s ease;
+  }
+
+  /* Hierarki: primer = border luar lebih kuat, teks terang */
+  html:not(.ui-a):not(.ui-b) :is(
+    .btn:not(.btn-secondary):not(.btn-pill), .rpg-btn:not(.rpg-btn-secondary):not(.rpg-btn-danger),
+    .rpg-btn-primary, .btn-primary, .btn-cta, .btn-skeuo-indigo, .btn-physical-primary
+  ) {
+    --k-bg: var(--ui-surface-hi);
+    --k-line: var(--ui-line-strong);
+    color: var(--ui-text-hi);
+  }
+
+  /* Hierarki: emas = aksen teks + border emas tipis (fill tetap navy) */
+  html:not(.ui-a):not(.ui-b) :is(.btn-skeuo-gold, .skeuo-btn-gold) {
+    --k-bg: var(--ui-surface-hi);
+    --k-line: var(--ui-gold-line);
+    color: var(--ui-gold);
+  }
+
+  /* Hierarki: bahaya = aksen merah, fill tetap gelap */
+  html:not(.ui-a):not(.ui-b) :is(.btn-physical-danger, .rpg-btn-danger) {
+    --k-bg: var(--ui-danger-bg);
+    --k-line: var(--ui-danger-line);
+    color: var(--ui-danger-text);
+  }
+
+  /* Hover: sedikit lebih terang + border lebih kuat (tanpa filter / gerak) */
+  html:not(.ui-a):not(.ui-b) :is(
+    .btn, .rpg-btn, .rpg-btn-primary, .btn-primary, .btn-cta, .btn-skeuo-indigo, .btn-skeuo-gold,
+    .skeuo-btn-gold, .btn-secondary, .rpg-btn-secondary, .skeuo-btn, .dungeon-btn,
+    .btn-physical-primary, .btn-physical-secondary, .btn-physical-danger, .rpg-btn-danger,
+    .skeuo-tier-pill, .notebook-filter-tab, .ui-chip
+  ):hover:not(:disabled) {
+    --k-bg: var(--ui-hover);
+    --k-line: var(--ui-line-strong);
+    color: var(--ui-text-hi);
+    filter: none;
+    transform: translateY(0);
+  }
+
+  /* Active (ditekan): permukaan lebih gelap, tenggelam 1px */
+  html:not(.ui-a):not(.ui-b) :is(
+    .btn, .rpg-btn, .rpg-btn-primary, .btn-primary, .btn-cta, .btn-skeuo-indigo, .btn-skeuo-gold,
+    .skeuo-btn-gold, .btn-secondary, .rpg-btn-secondary, .skeuo-btn, .dungeon-btn,
+    .btn-physical-primary, .btn-physical-secondary, .btn-physical-danger, .rpg-btn-danger,
+    .skeuo-tier-pill, .notebook-filter-tab, .ui-chip
+  ):active:not(:disabled) {
+    --k-bg: var(--ui-press);
+    transform: translateY(1px);
+    box-shadow:
+      inset 0 0 0 4px var(--k-bg),
+      inset 0 0 0 5px var(--ui-line-inner),
+      inset 0 2px 6px var(--ui-press-shadow);
+  }
+
+  /* Terpilih (tab / filter aktif): lebih terang + border kuat + ikon beraksen emas */
+  html:not(.ui-a):not(.ui-b) :is(
+    .skeuo-tier-pill.active, .notebook-filter-tab.active, .ui-chip.is-active, .seg-active
+  ) {
+    --k-bg: var(--ui-surface-hi);
+    --k-line: var(--ui-line-strong);
+    background: var(--k-bg);
+    color: var(--ui-text-hi);
+    border: 1px solid var(--k-line);
+    transform: translateY(0);
+    box-shadow:
+      inset 0 0 0 4px var(--k-bg),
+      inset 0 0 0 5px var(--ui-line-inner),
+      0 8px 20px var(--ui-shadow),
+      inset 0 1px 0 var(--ui-hi);
+  }
+  html:not(.ui-a):not(.ui-b) :is(.skeuo-tier-pill.active, .ui-chip.is-active) svg { color: var(--ui-gold); }
+
+  /* Chip filter tidak aktif: sumur tenang (lebih gelap, border redup) */
+  html:not(.ui-a):not(.ui-b) :is(.skeuo-tier-pill:not(.active), .notebook-filter-tab:not(.active), .ui-chip:not(.is-active)) {
+    --k-bg: var(--ui-surface-well);
+    --k-line: var(--ui-line-inner);
+    color: var(--ui-text-dim);
+  }
+  html:not(.ui-a):not(.ui-b) :is(.skeuo-tier-pill:not(.active), .notebook-filter-tab:not(.active), .ui-chip:not(.is-active)):hover:not(:disabled) {
+    --k-bg: var(--ui-surface);
+    --k-line: var(--ui-line);
+    color: var(--ui-text);
+  }
+
+  .ui-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+    user-select: none;
+    white-space: nowrap;
+  }
+
+  /* Disabled: tetap satu material, hanya redup */
+  html:not(.ui-a):not(.ui-b) :is(.btn, .rpg-btn, .btn-cta, .btn-secondary, .btn-skeuo-indigo, .btn-skeuo-gold, .skeuo-btn,
+    .skeuo-btn-gold, .btn-physical-primary, .btn-physical-secondary, .btn-physical-danger, .ui-chip):disabled {
+    filter: none;
+    opacity: 0.5;
+  }
+
+  /* Bar navigasi: permukaan yang sama */
+  html:not(.ui-a):not(.ui-b) .skeuo-navbar {
+    background: var(--ui-surface);
+    border-color: var(--ui-line);
+    box-shadow: 0 -8px 20px var(--ui-shadow), inset 0 1px 0 var(--ui-hi);
+  }
+
+html:not(.ui-a):not(.ui-b) :is(.skeuo-tier-pill, .ui-chip, .notebook-filter-tab, .btn-physical-primary, .btn-physical-secondary, .btn-physical-danger) {
+  border-radius: var(--ui-radius);
+}
+
+/* Kartu CTA lebar: garis dalam putus-putus (seperti kartu Buku Saku), bukan cincin solid */
+html:not(.ui-a):not(.ui-b) .btn-cta {
+  position: relative;
+  box-shadow: 0 8px 20px var(--ui-shadow), inset 0 1px 0 var(--ui-hi);
+}
+html:not(.ui-a):not(.ui-b) .btn-cta:active:not(:disabled) {
+  box-shadow: inset 0 2px 6px var(--ui-press-shadow);
+}
+.btn-cta::after {
+  content: "";
+  position: absolute;
+  inset: 5px;
+  border: 1px dashed var(--ui-line-inner);
+  border-radius: calc(var(--ui-radius) - 4px);
+  pointer-events: none;
+}

@@ -1,0 +1,1246 @@
+{
+  "id": "n1_2024_07",
+  "title": "Simulasi N1 — Paket 003",
+  "level": "N1",
+  "code": "003",
+  "passingScore": 100,
+  "maxScore": 180,
+  "sections": {
+    "mojiGoi": {
+      "title": "言語知識（文字・語彙）",
+      "timeLimitMinutes": 40,
+      "questions": [
+        {
+          "id": "n1_2024_07_mg_soal-1",
+          "prompt": "食品の腐敗を防止する",
+          "options": [
+            "ふはい",
+            "ふばい",
+            "ふうはい",
+            "ふうばい"
+          ],
+          "correctIndex": 0,
+          "instruction": "問題1 ___の言葉の読み方として最もよいものを、1から一つ選びなさい。",
+          "explanation": "Kata yang digarisbawahi adalah <b>腐敗</b> (membusuk/pembusukan). Cara baca yang benar adalah <b>ふはい</b> (fuhai).<br><br>• A) ふはい: Benar. 腐 dibaca ふ, 敗 dibaca はい dalam kata ini.<br>• B) ふばい: Salah, 敗 tidak menjadi ばい di sini.<br>• C) ふうはい / D) ふうばい: Salah, tidak ada bunyi panjang (ー) pada 腐.<br><br>Jawaban yang tepat adalah A."
+        },
+        {
+          "id": "n1_2024_07_mg_soal-2",
+          "prompt": "こちらの方が粗いようだ。",
+          "options": [
+            "にぶい",
+            "もろい",
+            "あらい",
+            "ゆるい"
+          ],
+          "correctIndex": 2,
+          "instruction": "問題1 ___の言葉の読み方として最もよいものを、1から一つ選びなさい。",
+          "explanation": "Kata yang digarisbawahi adalah <b>粗い</b>, berarti 'kasar/tidak halus'. Cara baca yang benar adalah <b>あらい</b> (arai).<br><br>• A) にぶい (鈍い): berarti 'tumpul/lamban', bukan 粗い.<br>• B) もろい (脆い): berarti 'rapuh', bukan 粗い.<br>• C) あらい: Benar, sesuai dengan makna dan bacaan 粗い.<br>• D) ゆるい (緩い): berarti 'longgar', bukan 粗い.<br><br>Jawaban yang tepat adalah C."
+        },
+        {
+          "id": "n1_2024_07_mg_soal-3",
+          "prompt": "これは胃の粘膜を保護する薬です。",
+          "options": [
+            "せんまく",
+            "ねんまく",
+            "ねんばく",
+            "せんばく"
+          ],
+          "correctIndex": 1,
+          "instruction": "問題1 ___の言葉の読み方として最もよいものを、1から一つ選びなさい。",
+          "explanation": "Kata yang digarisbawahi adalah <b>粘膜</b> (selaput lendir) dalam kalimat 「これは胃の粘膜を保護する薬です。」 (Ini adalah obat yang melindungi selaput lendir lambung).<br><br>1. 粘 (lengket/lendir) dibaca <b>ねん</b> dalam konteks medis/biologis seperti ini.<br>2. 膜 (membran/selaput) dibaca <b>まく</b>.<br>Gabungannya menjadi <b>ねんまく</b> (nenmaku).<br><br>• A) せんまく: Salah, bacaan untuk 粘 bukan せん.<br>• B) ねんまく: Benar, ini bacaan standar untuk 粘膜.<br>• C) ねんばく: Salah, 膜 tidak pernah dibaca ばく dalam konteks ini.<br>• D) せんばく: Salah, keduanya salah.<br><br>Jawaban yang tepat adalah B."
+        },
+        {
+          "id": "n1_2024_07_mg_soal-4",
+          "prompt": "医学の進歩によって、人々の寿命が延びた。",
+          "options": [
+            "じゅうみょう",
+            "じゅみょう",
+            "じゅめい",
+            "じゅうめい"
+          ],
+          "correctIndex": 1,
+          "instruction": "問題1 ___の言葉の読み方として最もよいものを、1から一つ選びなさい。",
+          "explanation": "Kata yang digarisbawahi adalah <b>寿命</b> (umur/masa hidup) dalam 「医学の進歩によって、人々の寿命が延びた。」 (Karena kemajuan ilmu kedokteran, umur manusia bertambah panjang).<br><br>寿命 dibaca <b>じゅみょう</b> (jumyō) — tanpa bunyi panjang う setelah じ.<br><br>• A) じゅうみょう: Salah, ada tambahan bunyi panjang yang tidak ada.<br>• B) じゅみょう: Benar.<br>• C) じゅめい / D) じゅうめい: Salah, 命 di sini dibaca みょう, bukan めい.<br><br>Jawaban yang tepat adalah B."
+        },
+        {
+          "id": "n1_2024_07_mg_soal-5",
+          "prompt": "手紙の内容は私を戒めるものだった。",
+          "options": [
+            "とがめる",
+            "せめる",
+            "なぐさめる",
+            "いましめる"
+          ],
+          "correctIndex": 3,
+          "instruction": "問題1 ___の言葉の読み方として最もよいものを、1から一つ選びなさい。",
+          "explanation": "Kata yang digarisbawahi adalah <b>戒める</b> dalam 「手紙の内容は私を戒めるものだった。」 (Isi surat itu adalah sesuatu yang menegur/memperingatkan saya).<br><br>戒める dibaca <b>いましめる</b> (imashimeru), berarti 'menegur, memperingatkan agar berhati-hati'.<br><br>• A) とがめる (咎める): berarti 'menyalahkan', kanjinya berbeda.<br>• B) せめる (責める): berarti 'menyalahkan/menuduh', kanjinya berbeda.<br>• C) なぐさめる (慰める): berarti 'menghibur', kanjinya berbeda.<br>• D) いましめる: Benar, sesuai dengan 戒める.<br><br>Jawaban yang tepat adalah D."
+        },
+        {
+          "id": "n1_2024_07_mg_soal-6",
+          "prompt": "誓約書に署名する時、少し緊張した。",
+          "options": [
+            "けいやくしょ",
+            "せつやくしょ",
+            "せいやくしょ",
+            "けつやくしょ"
+          ],
+          "correctIndex": 2,
+          "instruction": "問題1 ___の言葉の読み方として最もよいものを、1から一つ選びなさい。",
+          "explanation": "Kata yang digarisbawahi adalah <b>誓約書</b> (surat pernyataan/sumpah) dalam 「誓約書に署名する時、少し緊張した。」 (Saat menandatangani surat pernyataan, saya sedikit gugup).<br><br>誓約書 dibaca <b>せいやくしょ</b> (seiyakusho); 誓 dibaca せい, 約 dibaca やく.<br><br>• A) けいやくしょ: itu bacaan untuk 契約書 (surat kontrak), kanji berbeda (契 bukan 誓).<br>• B) せつやくしょ / D) けつやくしょ: Salah, tidak sesuai bacaan 誓.<br>• C) せいやくしょ: Benar.<br><br>Jawaban yang tepat adalah C."
+        },
+        {
+          "id": "n1_2024_07_mg_soal-7",
+          "prompt": "今回の遺跡の発見はこれまでの説を( )から覆すものになりそうだ。",
+          "options": [
+            "拠点",
+            "根底",
+            "原本",
+            "元祖"
+          ],
+          "correctIndex": 1,
+          "instruction": "問題2 ( )に入れるのに最もよいものを、1・2・3・4 から一つ選びなさい。",
+          "explanation": "Kalimat: 「今回の遺跡の発見はこれまでの説を( )から覆すものになりそうだ。」 (Penemuan situs kali ini sepertinya akan membalikkan teori yang ada selama ini dari <b>dasarnya</b>.)<br><br>• A) 拠点 (kyoten): 'basis/markas' — tidak cocok dengan konteks 'membalikkan teori'.<br>• B) 根底 (kontei): 'dasar/akar' — cocok, frasa 根底から覆す ('membalikkan dari dasarnya') adalah kolokasi umum.<br>• C) 原本 (genpon): 'naskah asli/dokumen asli' — tidak cocok.<br>• D) 元祖 (ganso): 'pencetus/yang pertama' — tidak cocok.<br><br>Jawaban yang tepat adalah B."
+        },
+        {
+          "id": "n1_2024_07_mg_soal-8",
+          "prompt": "1年で一番忙しい時期なので、休日を( )して働いています。",
+          "options": [
+            "寄付",
+            "還元",
+            "進呈",
+            "返上"
+          ],
+          "correctIndex": 2,
+          "instruction": "問題2 ( )に入れるのに最もよいものを、1・2・3・4 から一つ選びなさい。",
+          "explanation": "Kalimat: 「1年で一番忙しい時期なので、休日を( )して働いています。」 (Karena ini masa tersibuk dalam setahun, saya bekerja dengan <b>mengorbankan/melepaskan</b> hari libur.)<br><br>• A) 寄付 (kifu): 'menyumbang' — tidak cocok untuk hari libur.<br>• B) 還元 (kangen): 'mengembalikan (keuntungan)' — tidak cocok.<br>• C) 進呈 (shintei): 'memberikan/menghadiahkan' — tidak cocok.<br>• D) 返上 (henjō): 'mengembalikan/merelakan (hak/waktu istirahat) demi sesuatu' — cocok, 休日を返上する adalah ungkapan umum untuk 'bekerja meski hari libur'.<br><br>Jawaban yang tepat adalah D."
+        },
+        {
+          "id": "n1_2024_07_mg_soal-9",
+          "prompt": "外部からの問い合わせの電話は、用件を確認して担当者に ( ) ください。",
+          "options": [
+            "繰り越して",
+            "差し替えて",
+            "引き渡して",
+            "取り次いで"
+          ],
+          "correctIndex": 2,
+          "instruction": "問題2 ( )に入れるのに最もよいものを、1・2・3・4 から一つ選びなさい。",
+          "explanation": "Kalimat: 「外部からの問い合わせの電話は、用件を確認して担当者に ( ) ください。」 (Untuk telepon pertanyaan dari luar, mohon konfirmasi keperluannya lalu <b>sambungkan/teruskan</b> ke petugas terkait.)<br><br>• A) 繰り越して (kurikoshite): 'membawa maju/menunda ke periode berikutnya' — tidak cocok.<br>• B) 差し替えて (sashikaete): 'mengganti' — tidak cocok.<br>• C) 引き渡して (hikiwatashite): 'menyerahkan (barang/orang)' — kurang tepat untuk konteks telepon.<br>• D) 取り次いで (toritsuide): 'menyambungkan/meneruskan (telepon, pesan)' — cocok, ini istilah standar untuk transfer telepon ke orang lain.<br><br>Jawaban yang tepat adalah D."
+        },
+        {
+          "id": "n1_2024_07_mg_soal-10",
+          "prompt": "新しい生活への期待と不安が ( ) し、気持ちが落ち着かない。",
+          "options": [
+            "交錯",
+            "混合",
+            "連動",
+            "反発"
+          ],
+          "correctIndex": 0,
+          "instruction": "問題2 ( )に入れるのに最もよいものを、1・2・3・4 から一つ選びなさい。",
+          "explanation": "Kalimat: 「新しい生活への期待と不安が ( ) し、気持ちが落ち着かない。」 (Harapan dan kecemasan terhadap kehidupan baru <b>bercampur-aduk/saling silang</b>, sehingga perasaan tidak tenang.)<br><br>• A) 交錯 (kōsaku): 'saling silang, bercampur secara kompleks (perasaan yang bertentangan)' — cocok.<br>• B) 混合 (kongō): 'mencampur (benda/zat)' secara fisik — kurang tepat untuk perasaan abstrak seperti ini.<br>• C) 連動 (rendō): 'bergerak bersamaan/berkaitan' — tidak cocok.<br>• D) 反発 (hanpatsu): 'menolak/melawan' — tidak cocok.<br><br>Jawaban yang tepat adalah A."
+        },
+        {
+          "id": "n1_2024_07_mg_soal-11",
+          "prompt": "トンネル工事が始まって1年になるが、地盤の弱い箇所があり、工事は ( ) している。",
+          "options": [
+            "難航",
+            "低迷",
+            "衰退",
+            "脱落"
+          ],
+          "correctIndex": 0,
+          "instruction": "問題2 ( )に入れるのに最もよいものを、1・2・3・4 から一つ選びなさい。",
+          "explanation": "Kalimat: 「トンネル工事が始まって1年になるが、地盤の弱い箇所があり、工事は ( ) している。」 (Sudah 1 tahun sejak konstruksi terowongan dimulai, tetapi karena ada bagian tanah yang lemah, pekerjaan <b>mengalami kesulitan/tersendat</b>.)<br><br>• A) 難航 (nankō): 'mengalami kesulitan besar dalam kemajuan (proyek, negosiasi)' — cocok, sering dipakai untuk proyek konstruksi yang terhambat.<br>• B) 低迷 (teimei): 'stagnan/lesu (ekonomi, performa)' — kurang tepat untuk proyek konstruksi.<br>• C) 衰退 (suitai): 'menurun/merosot' — tidak cocok.<br>• D) 脱落 (datsuraku): 'gugur/tertinggal' — tidak cocok.<br><br>Jawaban yang tepat adalah A."
+        },
+        {
+          "id": "n1_2024_07_mg_soal-12",
+          "prompt": "会場は、人々の話し声で ( ) と騒がしく、アナウンスがよく聞こえなかった。",
+          "options": [
+            "じわじわ",
+            "どろどろ",
+            "がやがや",
+            "べたべた"
+          ],
+          "correctIndex": 2,
+          "instruction": "問題2 ( )に入れるのに最もよいものを、1・2・3・4 から一つ選びなさい。",
+          "explanation": "Kalimat: 「会場は、人々の話し声で ( ) と騒がしく、アナウンスがよく聞こえなかった。」 (Tempat acara <b>ramai riuh</b> oleh suara obrolan orang-orang, sehingga pengumuman tidak terdengar jelas.)<br><br>• A) じわじわ: menggambarkan sesuatu yang terjadi perlahan-lahan — tidak cocok untuk suara ramai.<br>• B) どろどろ: menggambarkan sesuatu yang kental/lengket, atau hubungan yang rumit — tidak cocok.<br>• C) がやがや: onomatope untuk suara ramai banyak orang bercakap-cakap — cocok.<br>• D) べたべた: menggambarkan sesuatu yang lengket — tidak cocok.<br><br>Jawaban yang tepat adalah C."
+        },
+        {
+          "id": "n1_2024_07_mg_soal-13",
+          "prompt": "登山に誘われたが、あまり経験がないので、みんなの ( ) になると思い、断った。",
+          "options": [
+            "骨折り",
+            "足手まとい",
+            "裏目",
+            "および腰"
+          ],
+          "correctIndex": 1,
+          "instruction": "問題2 ( )に入れるのに最もよいものを、1・2・3・4 から一つ選びなさい。",
+          "explanation": "Kalimat: 「登山に誘われたが、あまり経験がないので、みんなの ( ) になると思い、断った。」 (Diajak mendaki gunung, tapi karena kurang berpengalaman, saya khawatir akan <b>menjadi beban/penghalang</b> bagi yang lain, jadi saya menolak.)<br><br>• A) 骨折り (honeori): berarti 'usaha keras/jerih payah' — tidak cocok di sini.<br>• B) 足手まとい (ashidematoi): 'menjadi beban/penghalang bagi orang lain' — cocok persis dengan konteks khawatir merepotkan.<br>• C) 裏目 (urame): dari ungkapan 裏目に出る, 'berbalik jadi buruk (hasil sebaliknya dari yang diharapkan)' — tidak cocok konteksnya.<br>• D) および腰 (oyobigoshi): 'sikap ragu-ragu/setengah hati' — tidak cocok untuk kata benda 'menjadi ~'.<br><br>Jawaban yang tepat adalah B."
+        },
+        {
+          "id": "n1_2024_07_mg_soal-14",
+          "prompt": "これは A 社に委託することにした。",
+          "options": [
+            "戻す",
+            "送る",
+            "任せる",
+            "譲る"
+          ],
+          "correctIndex": 2,
+          "instruction": "問題3 ___ の言葉に意味が最も近いものを 1・2・3・4 から一つ選びなさい。",
+          "explanation": "Kata yang digarisbawahi adalah <b>委託する</b> dalam 「これはA社に委託することにした。」 (Ini diputuskan untuk <b>dipercayakan/diserahkan pengerjaannya</b> ke perusahaan A.)<br><br>委託する berarti 'mempercayakan pekerjaan/tugas kepada pihak lain'.<br><br>• A) 戻す: 'mengembalikan' — tidak sesuai.<br>• B) 送る: 'mengirim' — tidak sesuai.<br>• C) 任せる: 'mempercayakan/menyerahkan (tugas)' — makna paling dekat dengan 委託する.<br>• D) 譲る: 'menyerahkan hak/kepemilikan' — kurang tepat, ini soal pekerjaan bukan kepemilikan.<br><br>Jawaban yang tepat adalah C."
+        },
+        {
+          "id": "n1_2024_07_mg_soal-15",
+          "prompt": "その話を聞いて、すがすがしい気分になった。",
+          "options": [
+            "ゆううつな",
+            "爽やかな",
+            "楽しい",
+            "懐かしい"
+          ],
+          "correctIndex": 1,
+          "instruction": "問題3 ___ の言葉に意味が最も近いものを 1・2・3・4 から一つ選びなさい。",
+          "explanation": "Kata yang digarisbawahi adalah <b>すがすがしい</b> dalam 「その話を聞いて、すがすがしい気分になった。」 (Setelah mendengar cerita itu, perasaan menjadi <b>segar/lega</b>.)<br><br>すがすがしい berarti perasaan segar, bersih, dan lega.<br><br>• A) ゆううつな: 'suram/murung' — berlawanan makna.<br>• B) 爽やかな (sawayakana): 'segar/menyenangkan' — makna paling dekat.<br>• C) 楽しい: 'senang/menyenangkan' — mirip tapi tidak menekankan kesegaran/kelegaan seperti aslinya.<br>• D) 懐かしい: 'rindu/kangen (nostalgia)' — tidak sesuai.<br><br>Jawaban yang tepat adalah B."
+        },
+        {
+          "id": "n1_2024_07_mg_soal-16",
+          "prompt": "リフォームの費用を工面する必要がある。",
+          "options": [
+            "減らす",
+            "計算する",
+            "用意する",
+            "支払う"
+          ],
+          "correctIndex": 2,
+          "instruction": "問題3 ___ の言葉に意味が最も近いものを 1・2・3・4 から一つ選びなさい。",
+          "explanation": "Kata yang digarisbawahi adalah <b>工面する</b> dalam 「リフォームの費用を工面する必要がある。」 (Perlu <b>mengusahakan/menyiapkan (dana)</b> untuk biaya renovasi.)<br><br>工面する berarti 'berusaha menyediakan/mengumpulkan uang yang dibutuhkan'.<br><br>• A) 減らす: 'mengurangi' — tidak sesuai.<br>• B) 計算する: 'menghitung' — tidak sesuai.<br>• C) 用意する: 'menyiapkan' — makna paling dekat dengan usaha menyediakan dana.<br>• D) 支払う: 'membayar' — beda tahap, 工面する adalah usaha menyiapkan sebelum membayar.<br><br>Jawaban yang tepat adalah C."
+        },
+        {
+          "id": "n1_2024_07_mg_soal-17",
+          "prompt": "それは仕事の道具なんだから、ぞんざいな扱いをされては困るよ。",
+          "options": [
+            "雑な",
+            "変な",
+            "危険な",
+            "強引な"
+          ],
+          "correctIndex": 0,
+          "instruction": "問題3 ___ の言葉に意味が最も近いものを 1・2・3・4 から一つ選びなさい。",
+          "explanation": "Kata yang digarisbawahi adalah <b>ぞんざいな</b> dalam 「それは仕事の道具なんだから、ぞんざいな扱いをされては困るよ。」 (Itu kan alat kerja, jadi jangan diperlakukan secara <b>sembarangan/asal-asalan</b>.)<br><br>ぞんざい berarti kasar/sembrono dalam memperlakukan sesuatu.<br><br>• A) 雑な (zatsuna): 'sembarangan/tidak teliti' — makna paling dekat.<br>• B) 変な: 'aneh' — tidak sesuai.<br>• C) 危険な: 'berbahaya' — tidak sesuai.<br>• D) 強引な: 'memaksa' — tidak sesuai.<br><br>Jawaban yang tepat adalah A."
+        },
+        {
+          "id": "n1_2024_07_mg_soal-18",
+          "prompt": "男の子は父親の話をうなだれて聞いていた。",
+          "options": [
+            "ふざけた態度で",
+            "目を閉じて",
+            "まじめな表情で",
+            "下を向いて"
+          ],
+          "correctIndex": 3,
+          "instruction": "問題3 ___ の言葉に意味が最も近いものを 1・2・3・4 から一つ選びなさい。",
+          "explanation": "Kata yang digarisbawahi adalah <b>うなだれて</b> dalam 「男の子は父親の話をうなだれて聞いていた。」 (Anak laki-laki itu mendengarkan cerita ayahnya sambil <b>menundukkan kepala</b>.)<br><br>うなだれる berarti menundukkan kepala karena sedih/malu/menyesal.<br><br>• A) ふざけた態度で: 'dengan sikap bercanda' — berlawanan konteks.<br>• B) 目を閉じて: 'dengan mata tertutup' — tidak sama.<br>• C) まじめな表情で: 'dengan ekspresi serius' — tidak menangkap makna menunduk.<br>• D) 下を向いて: 'menghadap ke bawah/menunduk' — makna paling dekat dengan うなだれる.<br><br>Jawaban yang tepat adalah D."
+        },
+        {
+          "id": "n1_2024_07_mg_soal-19",
+          "prompt": "悪天候による工事の遅れは、担当者にとって大きな打撃だった。",
+          "options": [
+            "アクシデント",
+            "タブー",
+            "プレッシャー",
+            "ダメージ"
+          ],
+          "correctIndex": 3,
+          "instruction": "問題3 ___ の言葉に意味が最も近いものを 1・2・3・4 から一つ選びなさい。",
+          "explanation": "Kata yang digarisbawahi adalah <b>打撃</b> dalam 「悪天候による工事の遅れは、担当者にとって大きな打撃だった。」 (Keterlambatan proyek akibat cuaca buruk adalah <b>pukulan/kerugian besar</b> bagi penanggung jawab.)<br><br>打撃 di sini berarti dampak buruk/kerugian yang besar.<br><br>• A) アクシデント: 'kecelakaan/insiden' — ini menggambarkan peristiwanya, bukan dampaknya.<br>• B) タブー: 'tabu/pantangan' — tidak sesuai.<br>• C) プレッシャー: 'tekanan' — kurang tepat, bukan makna 'kerugian'.<br>• D) ダメージ: 'kerusakan/kerugian' — makna paling dekat dengan 打撃 dalam konteks ini.<br><br>Jawaban yang tepat adalah D."
+        },
+        {
+          "id": "n1_2024_07_mg_soal-20",
+          "prompt": "言葉の使い方として最もよいものを選びなさい: 風潮",
+          "options": [
+            "本田さんはいつも@@風潮@@のファッションに身を包んでいる。",
+            "何事も経済的な効率で判断するのが今の社会の@@風潮@@だ。",
+            "地形の関係でこの辺りは夏に雨が降りやすい@@風潮@@がある。",
+            "京都の町を歩いて古都の@@風潮@@を楽しんだ。"
+          ],
+          "correctIndex": 1,
+          "instruction": "問題4 次の言葉の使い方として、最もよいものを 1・2・3・4 から一つ選びなさい。",
+          "explanation": "Kata yang diuji adalah <b>風潮</b> (kecenderungan/arus zaman dalam masyarakat).<br><br>• A) Salah: 風潮のファッション tidak masuk akal, 風潮 bukan jenis gaya berpakaian.<br>• B) Benar: 「何事も経済的な効率で判断するのが今の社会の風潮だ」 (Menilai segala sesuatu dari efisiensi ekonomi adalah <b>kecenderungan</b> masyarakat sekarang) — pas menggambarkan tren sosial.<br>• C) Salah: 風潮 tidak dipakai untuk pola cuaca/iklim geografis.<br>• D) Salah: 古都の風潮 tidak tepat, seharusnya 風情 (suasana/nuansa kota kuno).<br><br>Jawaban yang tepat adalah B."
+        },
+        {
+          "id": "n1_2024_07_mg_soal-21",
+          "prompt": "言葉の使い方として最もよいものを選びなさい: もたらす",
+          "options": [
+            "科学技術の急速な進歩は我々の生活に大きな変化をもたらした。",
+            "この珍しいお菓子は宮下さんが海外からもたらしたお土産です。",
+            "弟は体力を@@もたらす@@ために毎朝公園をジョギングしている。",
+            "この計画は市が許可を@@もたらす@@まで実行されない見通しだ。"
+          ],
+          "correctIndex": 0,
+          "instruction": "問題4 次の言葉の使い方として、最もよいものを 1・2・3・4 から一つ選びなさい。",
+          "explanation": "Kata yang diuji adalah <b>もたらす</b> (membawa/mendatangkan sesuatu — dampak, hasil, perubahan).<br><br>• A) Benar: 「科学技術の急速な進歩は我々の生活に大きな変化をもたらした」 (Kemajuan pesat teknologi <b>mendatangkan</b> perubahan besar bagi kehidupan kita) — pas, もたらす dipakai untuk dampak abstrak seperti 変化.<br>• B) Salah: untuk oleh-oleh fisik yang dibawa seseorang, kata yang tepat adalah 持ってきた, bukan もたらした.<br>• C) Salah: seharusnya つける/つける体力をつける, bukan もたらす.<br>• D) Salah: seharusnya 出す/与える (市が許可を出す), bukan もたらす.<br><br>Jawaban yang tepat adalah A."
+        },
+        {
+          "id": "n1_2024_07_mg_soal-22",
+          "prompt": "言葉の使い方として最もよいものを選びなさい: 撤回",
+          "options": [
+            "雪が激しくなってきたので途中で登山を@@撤回@@して山小屋に戻った。",
+            "旅行の前日に風邪をひいてしまいホテルの予約を@@撤回@@した。",
+            "水野氏は今朝の記者会見でした発言を午後すぐに@@撤回@@した。",
+            "彼は医師になるという進路を@@撤回@@し音楽家を目指すことにしたそうだ。"
+          ],
+          "correctIndex": 2,
+          "instruction": "問題4 次の言葉の使い方として、最もよいものを 1・2・3・4 から一つ選びなさい。",
+          "explanation": "Kata yang diuji adalah <b>撤回</b> (menarik kembali pernyataan/keputusan resmi).<br><br>• A) Salah: untuk membatalkan rencana mendaki karena cuaca, kata yang tepat adalah 中止, bukan 撤回.<br>• B) Salah: untuk membatalkan reservasi hotel, kata yang tepat adalah キャンセル, bukan 撤回.<br>• C) Benar: 「水野氏は今朝の記者会見でした発言を午後すぐに撤回した」 (Mr. Mizuno <b>menarik kembali</b> pernyataannya di konferensi pers pagi itu pada sore harinya) — pas, 撤回 memang dipakai untuk menarik kembali ucapan/pernyataan resmi.<br>• D) Salah: untuk mengubah pilihan jalur karier, kata yang lebih tepat adalah 断念する/変更する, bukan 撤回.<br><br>Jawaban yang tepat adalah C."
+        },
+        {
+          "id": "n1_2024_07_mg_soal-23",
+          "prompt": "言葉の使い方として最もよいものを選びなさい: 補填",
+          "options": [
+            "書類をよく読んで空欄に必要事項を@@補填@@してください。",
+            "暑い中で運動して汗をかいたときは水分を@@補填@@することが大切だ。",
+            "新規事業で生じた赤字は別の事業の収益で@@補填@@することにした。",
+            "風邪で休んでいる間みんなが協力して私の仕事を@@補填@@してくれた。"
+          ],
+          "correctIndex": 2,
+          "instruction": "問題4 次の言葉の使い方として、最もよいものを 1・2・3・4 から一つ選びなさい。",
+          "explanation": "Kata yang diuji adalah <b>補填</b> (menutupi/mengganti kekurangan, terutama finansial).<br><br>• A) Salah: untuk mengisi kolom kosong pada formulir, kata yang tepat adalah 記入する, bukan 補填する.<br>• B) Salah: untuk mengganti cairan tubuh, kata yang tepat adalah 補給する, bukan 補填する.<br>• C) Benar: 「新規事業で生じた赤字は別の事業の収益で補填することにした」 (Defisit dari usaha baru diputuskan untuk <b>ditutupi</b> dengan keuntungan usaha lain) — pas, 補填 memang untuk menutup kekurangan finansial.<br>• D) Salah: untuk membantu menyelesaikan pekerjaan orang lain, kata yang tepat adalah カバーする/代わりにやる, bukan 補填する.<br><br>Jawaban yang tepat adalah C."
+        },
+        {
+          "id": "n1_2024_07_mg_soal-24",
+          "prompt": "言葉の使い方として最もよいものを選びなさい: コンスタント",
+          "options": [
+            "この商品は発売以来毎月50個程度@@コンスタント@@に売れている。",
+            "この映画を見るのは3度目だが何度見ても@@コンスタント@@に感動する。",
+            "この公園の電灯は防犯のためかひと晩中@@コンスタント@@についている。",
+            "石川先生は70歳を過ぎたそうだが@@コンスタント@@に若々しい。"
+          ],
+          "correctIndex": 2,
+          "instruction": "問題4 次の言葉の使い方として、最もよいものを 1・2・3・4 から一つ選びなさい。",
+          "explanation": "Kata yang diuji adalah <b>コンスタント</b> (konstan/stabil, tetap dalam jumlah atau kondisi yang sama).<br><br>• A) Benar: 「この商品は発売以来毎月50個程度コンスタントに売れている」 (Sejak diluncurkan, produk ini terjual <b>secara konstan</b> sekitar 50 unit per bulan) — pas, menunjukkan jumlah yang stabil dari waktu ke waktu.<br>• B) Salah: untuk perasaan terharu setiap menonton film, kata yang tepat adalah 何度も/いつも, bukan コンスタント.<br>• C) Salah: untuk lampu yang menyala terus semalaman, kata yang tepat adalah ずっと, bukan コンスタント (コンスタント menekankan keteraturan berulang, bukan kondisi terus-menerus tanpa henti).<br>• D) Salah: untuk tetap terlihat awet muda, kata yang tepat adalah 依然として/相変わらず, bukan コンスタント.<br><br>Jawaban yang tepat adalah A."
+        },
+        {
+          "id": "n1_2024_07_mg_soal-25",
+          "prompt": "言葉の使い方として最もよいものを選びなさい: ずばり",
+          "options": [
+            "木村さんの一言を聞いてあのときの出来事が@@ずばり@@と脳裏によみがえってきた。",
+            "息子はずっと続けていた野球を@@ずばり@@とやめ勉強に専念した。",
+            "森さんはきちょうめんな人で机の上の本はいつも@@ずばり@@とそろえて置かれている。",
+            "友人に自分の欠点を@@ずばり@@と指摘されてしばらく落ち込んだ。"
+          ],
+          "correctIndex": 3,
+          "instruction": "問題4 次の言葉の使い方として、最もよいものを 1・2・3・4 から一つ選びなさい。",
+          "explanation": "Kata yang diuji adalah <b>ずばり</b> (tepat sasaran/langsung mengena, biasanya untuk menunjuk inti masalah).<br><br>• A) Salah: untuk kenangan yang muncul kembali di benak, kata yang tepat adalah まざまざと/ふと, bukan ずばり.<br>• B) Salah: untuk berhenti bermain baseball secara tiba-tiba, kata yang tepat adalah きっぱり/すっぱり, bukan ずばり.<br>• C) Salah: untuk buku yang selalu tersusun rapi, kata yang tepat adalah きちんと, bukan ずばり.<br>• D) Benar: 「友人に自分の欠点をずばりと指摘されてしばらく落ち込んだ」 (Ditunjuk <b>tepat sasaran</b> kekurangannya oleh teman, ia jadi murung) — pas, ずばり memang dipakai saat sesuatu ditunjuk/dikatakan secara langsung dan tepat mengena.<br><br>Jawaban yang tepat adalah D."
+        }
+      ]
+    },
+    "bunpouDokkai": {
+      "title": "言語知識（文法）・読解",
+      "timeLimitMinutes": 70,
+      "questions": [
+        {
+          "id": "n1_2024_07_bd_soal-26",
+          "prompt": "机の引き出しを整理していたら、以前使っていた電卓が出てきた。まだ使え( )するが、使う機会がなさそうなので処分しようと思う。",
+          "options": [
+            "すら",
+            "さえ",
+            "は",
+            "も"
+          ],
+          "correctIndex": 2,
+          "instruction": "問題5 次の文の ( ) に入れるのに最もよいものを、１・2・3・4から一つ選びなさい。",
+          "explanation": "Kalimat: 「...まだ使え( )するが、使う機会がなさそうなので処分しようと思う。」 (Walaupun masih bisa dipakai, sepertinya tidak akan ada kesempatan memakainya, jadi saya pikir akan membuangnya.)<br><br>Pola yang dimaksud adalah <b>〜はする</b>, menekankan 'meskipun secara minimal masih Ⓐ, tapi...'. 使えはするが = 'meski bisa dipakai (sebatas itu), tapi...'.<br><br>• A) すら: 'bahkan (hal ekstrem)' — tidak cocok gramatikal di sini.<br>• B) さえ: 'bahkan' — tidak cocok pola ini.<br>• C) は: Benar, membentuk pola 動詞連用形+はする(が) yang menegaskan hal minimal yang tetap benar.<br>• D) も: 'juga' — tidak cocok pola ini.<br><br>Jawaban yang tepat adalah C."
+        },
+        {
+          "id": "n1_2024_07_bd_soal-27",
+          "prompt": "彼はわずか27歳( )市長となった。",
+          "options": [
+            "にしては",
+            "にあたって",
+            "に際して",
+            "に先立って"
+          ],
+          "correctIndex": 0,
+          "instruction": "問題5 次の文の ( ) に入れるのに最もよいものを、１・2・3・4から一つ選びなさい。",
+          "explanation": "Kalimat: 「彼はわずか27歳( )市長となった。」 (Dia menjadi wali kota <b>padahal</b> baru berusia 27 tahun.)<br><br>• A) にしては: 'untuk ukuran~, mengingat~' — menyatakan sesuatu di luar dugaan dibanding standar usia; cocok untuk menekankan keluarbiasaan usia muda menjadi wali kota.<br>• B) にあたって: 'pada saat/menjelang (momen penting)' — tidak cocok, bukan konteks momen.<br>• C) に際して: 'pada kesempatan~' — mirip B, tidak cocok.<br>• D) に先立って: 'sebelum/mendahului~' — tidak cocok.<br><br>Jawaban yang tepat adalah A."
+        },
+        {
+          "id": "n1_2024_07_bd_soal-28",
+          "prompt": "(ホームページで) 当センターの相談窓口に( )、事前にご連絡をお願いいたします。",
+          "options": [
+            "伺って以来",
+            "伺う際は",
+            "お越しになって以来",
+            "お越しになる際は"
+          ],
+          "correctIndex": 3,
+          "instruction": "問題5 次の文の ( ) に入れるのに最もよいものを、１・2・3・4から一つ選びなさい。",
+          "explanation": "Kalimat (di halaman web, bahasa formal/sopan): 「当センターの相談窓口に( )、事前にご連絡をお願いいたします。」 (Ketika hendak <b>datang</b> ke loket konsultasi kami, mohon hubungi kami terlebih dahulu.)<br><br>Karena ini kalimat sopan (敬語) untuk pengunjung/tamu, harus pakai bentuk hormat <b>お越しになる</b> (datang), bukan bentuk merendah 伺う (yang dipakai untuk diri sendiri).<br><br>• A) 伺って以来: 'sejak (saya) berkunjung' — salah, 伺う adalah kenjougo (merendah), tidak untuk tamu; juga 以来 tidak cocok maknanya.<br>• B) 伺う際は: sama, salah pemakaian keigo untuk tamu.<br>• C) お越しになって以来: bentuk hormat benar tapi 以来 ('sejak') salah makna untuk konteks ini.<br>• D) お越しになる際は: 'pada saat Anda datang' — benar, memakai sonkeigo yang tepat untuk tamu dan 際は ('pada saat~') sesuai makna kalimat.<br><br>Jawaban yang tepat adalah D."
+        },
+        {
+          "id": "n1_2024_07_bd_soal-29",
+          "prompt": "6歳の息子は、将来私と同じ消防士になりたいと言っている。実際に( )、そんなことを言ってくれたことがうれしい。",
+          "options": [
+            "なるかどうかに限らず",
+            "ならざるを得ないとしても",
+            "なるかどうかはともかく",
+            "ならざるを得ないばかりか"
+          ],
+          "correctIndex": 1,
+          "instruction": "問題5 次の文の ( ) に入れるのに最もよいものを、１・2・3・4から一つ選びなさい。",
+          "explanation": "Kalimat: 「...実際に( )、そんなことを言ってくれたことがうれしい。」 (<b>Terlepas dari apakah</b> nantinya benar-benar jadi atau tidak, saya senang dia mengatakan hal itu.)<br><br>• A) なるかどうかに限らず: tidak ada pola gramatikal seperti ini dalam bahasa Jepang standar.<br>• B) ならざるを得ないとしても: 'meskipun terpaksa harus jadi~' — tidak cocok konteksnya (anak belum tentu jadi pemadam kebakaran).<br>• C) なるかどうかはともかく: 'terlepas dari apakah jadi atau tidak' — cocok, menyatakan hal yang belum pasti dikesampingkan dulu, fokus pada rasa senang mendengarnya.<br>• D) ならざるを得ないばかりか: 'bukan hanya terpaksa jadi~, bahkan~' — tidak cocok.<br><br>Jawaban yang tepat adalah C."
+        },
+        {
+          "id": "n1_2024_07_bd_soal-30",
+          "prompt": "A大臣は、週刊誌の報道について、「事実ではないにもかかわらず、あたかも事実である( )報道されたことは遺憾である」と述べた。",
+          "options": [
+            "までもなく",
+            "がゆえに",
+            "からには",
+            "かのごとく"
+          ],
+          "correctIndex": 3,
+          "instruction": "問題5 次の文の ( ) に入れるのに最もよいものを、１・2・3・4から一つ選びなさい。",
+          "explanation": "Kalimat: 「事実ではないにもかかわらず、あたかも事実である( )報道されたことは遺憾である」 (Disayangkan bahwa hal itu diberitakan <b>seolah-olah</b> merupakan fakta, padahal bukan fakta.)<br><br>あたかも～かのごとく adalah pola tetap yang berarti 'seolah-olah/seakan-akan~'.<br><br>• A) までもなく: 'tidak perlu sampai~' — tidak cocok dengan あたかも.<br>• B) がゆえに: 'karena/oleh sebab~' — tidak cocok maknanya.<br>• C) からには: 'karena sudah~ maka' — tidak cocok.<br>• D) かのごとく: 'seolah-olah/seakan-akan' — pasangan tetap dengan あたかも, sesuai.<br><br>Jawaban yang tepat adalah D."
+        },
+        {
+          "id": "n1_2024_07_bd_soal-31",
+          "prompt": "今日はさんざんな一日だった。自転車はパンクするし、財布はなくすし、しまいには大雨に降られてずぶぬれになる ( )。",
+          "options": [
+            "始末だった",
+            "最中だった",
+            "思いだった",
+            "限りだった"
+          ],
+          "correctIndex": 0,
+          "instruction": "問題5 次の文の ( ) に入れるのに最もよいものを、１・2・3・4から一つ選びなさい。",
+          "explanation": "Kalimat: 「...しまいには大雨に降られてずぶぬれになる ( )。」 (...akhirnya <b>berujung pada</b> kebasahan kuyup terkena hujan lebat.)<br><br>Pola 〜という始末だ / 〜始末だった dipakai untuk menyatakan hasil akhir yang buruk/menyedihkan dari serangkaian kejadian buruk sebelumnya (sesuai konteks 'hari yang sial').<br><br>• A) 始末だった: 'berakhir dengan hal (buruk) seperti itu' — cocok, sesuai konteks rangkaian kesialan.<br>• B) 最中だった: 'sedang berlangsung' — tidak cocok, tidak menunjukkan hasil akhir.<br>• C) 思いだった: 'perasaan yang dirasakan' — tidak cocok gramatikal di sini.<br>• D) 限りだった: biasa dipakai setelah kata sifat (〜限りだ, 'sangat~'), tidak cocok untuk kalimat ini.<br><br>Jawaban yang tepat adalah A."
+        },
+        {
+          "id": "n1_2024_07_bd_soal-32",
+          "prompt": "森選手の予選敗退は、けがが原因だと言われているが、本人は「けがは関係ない。単に実力が足りなかった( )」とコメントしている。",
+          "options": [
+            "だけある",
+            "ものがある",
+            "だけのことだ",
+            "ようなものだ"
+          ],
+          "correctIndex": 2,
+          "instruction": "問題5 次の文の ( ) に入れるのに最もよいものを、１・2・3・4から一つ選びなさい。",
+          "explanation": "Kalimat: 「けがは関係ない。単に実力が足りなかった( )」 (Cedera tidak ada hubungannya. Itu <b>hanya karena</b> kemampuan saya yang kurang.)<br><br>• A) だけある: dari 〜だけあって/だけある, 'pantas saja karena~' — tidak cocok maknanya di sini.<br>• B) ものがある: 'ada sesuatu yang~ (menunjukkan kesan subjektif)' — tidak cocok konteks pernyataan tegas ini.<br>• C) だけのことだ: 'hanya itu saja masalahnya/tidak lebih dari itu' — cocok, menunjukkan sikap menerima kenyataan secara sederhana dan tegas (khas gaya bicara atlet yang legowo).<br>• D) ようなものだ: 'ibaratnya seperti~' — tidak cocok maknanya.<br><br>Jawaban yang tepat adalah C."
+        },
+        {
+          "id": "n1_2024_07_bd_soal-33",
+          "prompt": "エアコンが故障してしまい、この1週間暑くて大変だったが、今日ようやく修理してもらえた。これでもう暑さに( )。",
+          "options": [
+            "悩まされかねない",
+            "悩まされることはない",
+            "悩ませかねない",
+            "悩ませることはない"
+          ],
+          "correctIndex": 1,
+          "instruction": "問題5 次の文の ( ) に入れるのに最もよいものを、１・2・3・4から一つ選びなさい。",
+          "explanation": "Kalimat: 「...今日ようやく修理してもらえた。これでもう暑さに( )。」 (...akhirnya hari ini bisa diperbaiki. Dengan begini, saya <b>tidak akan lagi direpotkan</b> oleh panas.)<br><br>Karena AC sudah diperbaiki, maknanya harus positif (tidak akan menderita lagi), dan subjek yang menderita panas adalah si penulis sendiri (bentuk pasif 悩まされる, 'dibuat menderita/terganggu').<br><br>• A) 悩まされかねない: 'bisa jadi akan (masih) menderita' — salah arah makna, seharusnya sudah lega bukan khawatir.<br>• B) 悩まされることはない: 'tidak akan (lagi) menderita/terganggu' — cocok, sesuai rasa lega setelah AC diperbaiki.<br>• C) 悩ませかねない: bentuk aktif (menyebabkan orang lain menderita) — salah subjek.<br>• D) 悩ませることはない: bentuk aktif juga — salah subjek.<br><br>Jawaban yang tepat adalah B."
+        },
+        {
+          "id": "n1_2024_07_bd_soal-34",
+          "prompt": "(天気予報で) 「明日は低気圧の発達に伴い、西日本を中心に風雨が( )。」",
+          "options": [
+            "強めつつあります",
+            "強まりつつあります",
+            "強める見込みです",
+            "強まる見込みです"
+          ],
+          "correctIndex": 3,
+          "instruction": "問題5 次の文の ( ) に入れるのに最もよいものを、１・2・3・4から一つ選びなさい。",
+          "explanation": "Kalimat (ramalan cuaca): 「明日は低気圧の発達に伴い、西日本を中心に風雨が( )。」 (Besok, seiring berkembangnya tekanan rendah, angin dan hujan di wilayah Jepang bagian barat <b>diperkirakan akan menguat</b>.)<br><br>風雨 (angin & hujan) adalah subjek, jadi kata kerjanya harus intransitif: <b>強まる</b> (menguat dengan sendirinya), bukan 強める (transitif, 'menguatkan sesuatu'). Untuk ramalan cuaca, pola baku adalah 〜見込みです ('diperkirakan akan~'), bukan 〜つつあります ('sedang dalam proses~', lebih untuk kondisi yang sedang berjalan saat ini).<br><br>• A) 強めつつあります: salah, kata kerja transitif tidak cocok untuk subjek 風雨.<br>• B) 強まりつつあります: kata kerjanya benar (intransitif) tapi 〜つつあります kurang tepat untuk prakiraan cuaca esok hari (lebih untuk tren yang sedang terjadi sekarang).<br>• C) 強める見込みです: salah, kata kerja transitif tidak cocok.<br>• D) 強まる見込みです: benar, kata kerja intransitif + pola prakiraan resmi 見込みです.<br><br>Jawaban yang tepat adalah D."
+        },
+        {
+          "id": "n1_2024_07_bd_soal-35",
+          "prompt": "（育児の本で) 3歳前後の子供は、「なぜ?」「どうして?」と何でも( )。周囲の大人はめんどうくさがらずに、そういった質問に向き合ってあげましょう。",
+          "options": [
+            "知りたがるものです",
+            "知りたがることです",
+            "知りたそうなもので",
+            "知りそうなことです"
+          ],
+          "correctIndex": 0,
+          "instruction": "問題5 次の文の ( ) に入れるのに最もよいものを、１・2・3・4から一つ選びなさい。",
+          "explanation": "Kalimat (buku parenting): 「3歳前後の子供は、「なぜ?」「どうして?」と何でも( )。」 (Anak usia sekitar 3 tahun <b>cenderung ingin tahu</b> segala hal dengan bertanya 'kenapa?'.)<br><br>〜たがるものです adalah pola untuk menyatakan kecenderungan alami/umum suatu kelompok (di sini, anak-anak usia tertentu) — cocok untuk pernyataan umum di buku panduan.<br><br>• A) 知りたがるものです: benar, menyatakan sifat umum/wajar anak usia itu.<br>• B) 知りたがることです: 'adalah hal (bahwa mereka) ingin tahu' — secara gramatikal janggal sebagai penutup kalimat ini.<br>• C) 知りそうなもので: bentuk tidak lengkap/janggal secara gramatikal di sini.<br>• D) 知りそうなことです: makna 'sepertinya akan tahu', bukan 'ingin tahu' — salah makna.<br><br>Jawaban yang tepat adalah A."
+        },
+        {
+          "id": "n1_2024_07_bd_soal-36",
+          "prompt": "（問題6 次の文の ★ に入る最もよいものを、１・2・3・4から一つ選びなさい。）",
+          "options": [
+            "そうなるのも",
+            "緊張するんだから",
+            "勢いの前で何かをするのは",
+            "子供が"
+          ],
+          "correctIndex": 1,
+          "instruction": "問題6 次の文の ★ に入る最もよいものを、１・2・3・4から一つ選びなさい。",
+          "explanation": "Susunan lengkap: 大人だって <b>子供が</b> <b>勢いの前で何かをするのは</b> <b>_★_ そうなるのも</b> <b>緊張するんだから</b> 無理はないだろう.<br>Namun urutan yang tepat secara logis: 大人だって緊張するんだから、子供が勢いの前で何かをするのはそうなるのも無理はないだろう (Orang dewasa saja gugup, jadi wajar kalau anak-anak juga jadi begitu saat harus melakukan sesuatu di depan banyak orang).<br><br>Posisi ★ (posisi ke-3 dari 4 blok) jatuh pada kata <b>勢いの前で何かをするのは</b>, sehingga susunannya: 子供が → 勢いの前で何かをするのは → ★そうなるのも → 緊張するんだから.<br><br>Jawaban yang tepat adalah opsi <b>3</b> (勢いの前で何かをするのは)."
+        },
+        {
+          "id": "n1_2024_07_bd_soal-37",
+          "prompt": "（問題6 次の文の ★ に入る最もよいものを、１・2・3・4から一つ選びなさい。）",
+          "options": [
+            "雌に限っての",
+            "とか",
+            "行動なのだ",
+            "産卵を控えた"
+          ],
+          "correctIndex": 2,
+          "instruction": "問題6 次の文の ★ に入る最もよいものを、１・2・3・4から一つ選びなさい。",
+          "explanation": "Konteks: 「実は血を吸うのは雌だけだそうです。しかも、___ ___ _★_ ___ 専門家に詳しく聞いてみよう。」<br><br>Susunan logis: しかも、産卵を控えた雌に限っての行動なのだとか、専門家に詳しく聞いてみよう (Terlebih lagi, itu konon perilaku yang khusus terjadi pada nyamuk betina yang akan bertelur — mari tanyakan lebih lanjut ke ahlinya).<br><br>Urutan blok: 産卵を控えた → 雌に限っての → 行動なのだ → とか (baru kemudian 専門家に...).<br>Posisi ★ (blok ke-3) jatuh pada <b>行動なのだ</b>.<br><br>Jawaban yang tepat adalah opsi <b>3</b> (行動なのだ)."
+        },
+        {
+          "id": "n1_2024_07_bd_soal-38",
+          "prompt": "（問題6 次の文の ★ に入る最もよいものを、１・2・3・4から一つ選びなさい。）",
+          "options": [
+            "うえに",
+            "評判も良くなった",
+            "ことを踏まえ",
+            "受講者からの"
+          ],
+          "correctIndex": 1,
+          "instruction": "問題6 次の文の ★ に入る最もよいものを、１・2・3・4から一つ選びなさい。",
+          "explanation": "Konteks: 「まとめるのに時間がかかる___ ___ _★_ ___ を踏まえ、今年度は選択式で行うことにした。」<br><br>Susunan logis: まとめるのに時間がかかるうえに、受講者からの評判も良くなかったことを踏まえ (Selain memakan waktu untuk merangkum, mempertimbangkan bahwa penilaian dari peserta juga kurang baik...).<br>Urutan blok: うえに → 受講者からの → 評判も良くなった → ことを踏まえ.<br>Posisi ★ (blok ke-3) jatuh pada <b>評判も良くなった</b>.<br><br>Jawaban yang tepat adalah opsi <b>2</b> (評判も良くなった)."
+        },
+        {
+          "id": "n1_2024_07_bd_soal-39",
+          "prompt": "（問題6 次の文の ★ に入る最もよいものを、１・2・3・4から一つ選びなさい。）",
+          "options": [
+            "睡眠の質があるなんて",
+            "枕に換えるだけで",
+            "思っていなかったから",
+            "こんなにも"
+          ],
+          "correctIndex": 0,
+          "instruction": "問題6 次の文の ★ に入る最もよいものを、１・2・3・4から一つ選びなさい。",
+          "explanation": "Konteks: 「枕を変えたら、今までより良く眠れるようになった。自分に合った ___ ___ _★_ ___ 驚いた。」<br><br>Susunan logis: 自分に合った枕に換えるだけでこんなにも睡眠の質があるなんて思っていなかったから驚いた (Saya kaget karena tidak menyangka hanya dengan mengganti bantal yang cocok, kualitas tidur bisa sebegini baiknya).<br>Urutan blok: 枕に換えるだけで → こんなにも → 睡眠の質があるなんて → 思っていなかったから.<br>Posisi ★ (blok ke-3) jatuh pada <b>睡眠の質があるなんて</b>.<br><br>Jawaban yang tepat adalah opsi <b>1</b> (睡眠の質があるなんて)."
+        },
+        {
+          "id": "n1_2024_07_bd_soal-40",
+          "prompt": "（問題6 次の文の ★ に入る最もよいものを、１・2・3・4から一つ選びなさい。）",
+          "options": [
+            "メリットは理解しつつも",
+            "導入に至っていない",
+            "先端技術を取り入れる",
+            "扱える人材の確保やコスト面での難しさから"
+          ],
+          "correctIndex": 3,
+          "instruction": "問題6 次の文の ★ に入る最もよいものを、１・2・3・4から一つ選びなさい。",
+          "explanation": "Konteks: 「人工知能をはじめとする ___ ___ _★_ ___ 企業が多い。」<br><br>Susunan logis: 人工知能をはじめとする先端技術を取り入れるメリットは理解しつつも扱える人材の確保やコスト面での難しさから導入に至っていない企業が多い (Banyak perusahaan yang, meski memahami manfaat mengadopsi teknologi mutakhir seperti kecerdasan buatan, belum berhasil mengimplementasikannya karena kesulitan mendapatkan SDM yang mampu mengoperasikannya dan masalah biaya).<br>Urutan blok: 先端技術を取り入れる → メリットは理解しつつも → 扱える人材の確保やコスト面での難しさから → 導入に至っていない.<br>Posisi ★ (blok ke-3) jatuh pada <b>扱える人材の確保やコスト面での難しさから</b>.<br><br>Jawaban yang tepat adalah opsi <b>4</b> (扱える人材の確保やコスト面での難しさから)."
+        },
+        {
+          "id": "n1_2024_07_bd_soal-41",
+          "prompt": "【41】",
+          "options": [
+            "話したとしても",
+            "話そうものなら",
+            "話すことで",
+            "話さないかぎり"
+          ],
+          "correctIndex": 2,
+          "instruction": "問題7 次の文章を読んで、文章全体の内容を考えて、41から44の中に入る最もよいものを１・2・3・4から一つ選びなさい。",
+          "explanation": "Konteks: 「...会って【41】、相手も変わり、自分も変わる可能性があるということです。」<br><br>Kalimat sebelumnya membahas bahwa komunikasi tatap muka bisa memengaruhi kedua belah pihak. Pola yang tepat adalah 〜ことで, 'dengan cara/melalui~', menyatakan bahwa <b>melalui</b> tindakan bertemu dan berbicara, perubahan itu terjadi.<br><br>• A) 話したとしても: 'meskipun berbicara' — mengandung nuansa berlawanan (walau begitu tetap), tidak cocok konteks penjelasan sebab-akibat positif ini.<br>• B) 話そうものなら: 'kalau sampai berbicara (maka akan terjadi hal buruk)' — konotasi negatif, tidak cocok.<br>• C) 話すことで: 'dengan/melalui berbicara' — cocok, menjelaskan sarana terjadinya perubahan.<br>• D) 話さないかぎり: 'selama tidak berbicara' — berlawanan makna dengan konteks.<br><br>Jawaban yang tepat adalah C."
+        },
+        {
+          "id": "n1_2024_07_bd_soal-42",
+          "prompt": "【42】",
+          "options": [
+            "会うよりも",
+            "会ってこそ",
+            "会うまでに",
+            "会っただけでも"
+          ],
+          "correctIndex": 1,
+          "instruction": "問題7 次の文章を読んで、文章全体の内容を考えて、41から44の中に入る最もよいものを１・2・3・4から一つ選びなさい。",
+          "explanation": "Konteks: 「会わなくても...共感は生まれますが...むずかしいでしょう。やはり実際に【42】本当の共感は生まれると思います。」<br><br>Kalimat ini kontras dengan sebelumnya (tanpa bertemu pun bisa berempati, tapi sulit); di sini penulis menegaskan hanya <b>dengan benar-benar bertemulah</b> empati sejati muncul.<br><br>• A) 会うよりも: 'daripada bertemu' — tidak cocok, kalimat justru menekankan pentingnya bertemu.<br>• B) 会ってこそ: 'justru karena/hanya dengan bertemu' — cocok, menekankan bertemu adalah syarat mutlak.<br>• C) 会うまでに: 'sampai sebelum bertemu' — tidak cocok maknanya.<br>• D) 会っただけでも: 'hanya dengan bertemu saja (sudah cukup)' — kurang menekankan syarat mutlak seperti こそ.<br><br>Jawaban yang tepat adalah B."
+        },
+        {
+          "id": "n1_2024_07_bd_soal-43",
+          "prompt": "【43】",
+          "options": [
+            "思い出したくてたまらないのです",
+            "思い出すのではないでしょうか",
+            "思い出すしかありません",
+            "思い出してください"
+          ],
+          "correctIndex": 3,
+          "instruction": "問題7 次の文章を読んで、文章全体の内容を考えて、41から44の中に入る最もよいものを１・2・3・4から一つ選びなさい。",
+          "explanation": "Konteks: 「脳にとっても、刺激の度合いが違います。初恋の人とデートをしたときのことを【43】。胸がどきどきして...」<br><br>Kalimat ini mengajak pembaca membayangkan/mengingat pengalaman pribadi, sehingga bentuk yang cocok adalah kalimat perintah/ajakan langsung kepada pembaca: 思い出してください ('coba ingat kembali').<br><br>• A) 思い出したくてたまらないのです: 'sangat ingin mengingat' — salah subjek, ini pernyataan perasaan penulis, bukan ajakan ke pembaca.<br>• B) 思い出すのではないでしょうか: 'bukankah akan teringat?' — kurang pas nuansanya sebagai pembuka ajakan membayangkan.<br>• C) 思い出すしかありません: 'tidak ada pilihan selain mengingat' — tidak cocok maknanya.<br>• D) 思い出してください: 'silakan ingat kembali' — cocok, ajakan langsung ke pembaca sebelum menjelaskan perasaan yang dirasakan.<br><br>Jawaban yang tepat adalah D."
+        },
+        {
+          "id": "n1_2024_07_bd_soal-44",
+          "prompt": "【44】",
+          "options": [
+            "というわけです",
+            "という点です",
+            "とします",
+            "としています"
+          ],
+          "correctIndex": 0,
+          "instruction": "問題7 次の文章を読んで、文章全体の内容を考えて、41から44の中に入る最もよいものを１・2・3・4から一つ選びなさい。",
+          "explanation": "Konteks: 「...反対に嫌悪の情が流れることもあるでしょう。それだけ活性化される【44】。」<br><br>Kalimat ini menyimpulkan penjelasan sebelumnya (otak menjadi aktif oleh emosi, baik positif maupun negatif) dengan pola penutup kesimpulan 〜というわけです, 'itulah alasannya/maka begitulah'.<br><br>• A) というわけです: 'itulah sebabnya/maka begitulah' — cocok sebagai penutup kesimpulan dari penjelasan panjang sebelumnya.<br>• B) という点です: 'itulah poinnya' — kurang pas sebagai penutup penjelasan naratif seperti ini.<br>• C) とします: 'dianggap demikian' — tidak cocok nuansa penyimpulan naratif.<br>• D) としています: 'menyatakan demikian (mengutip pandangan pihak lain)' — tidak cocok, ini bukan kutipan pandangan orang lain.<br><br>Jawaban yang tepat adalah A."
+        },
+        {
+          "id": "n1_2024_07_bd_soal-45",
+          "prompt": "筆者の考えに合うのはどれか。",
+          "options": [
+            "本当に実力があれば、練習でできなかったことでも試合でできる。",
+            "全力で練習したから試合でも成功するというのは、甘い考えだ。",
+            "練習でしっかりできていても、試合で実力を発揮するのは難しい。",
+            "練習にも全力で取り組まなければ、試合でいい結果は出せない。"
+          ],
+          "correctIndex": 3,
+          "instruction": "問題8 次の文章を読んで、後の問いに対する答えとして、最もよいものを1・2・3・4から一つ選びなさい。",
+          "passage": "「練習ではできていなかったのに、試合では技を成功させられた」などという場合に「すごいね」とほめられると、「私は本番に強いから、練習はそこそこにして、本番で勝負をかければいい」と思ってしまいがちです。\n\n本番に強いのは悪いことではありませんが、練習でしっかりできていないことを「本番になればきっとできるだろう」と考えるのは、甘いと言わざるをえません。そのようなスタンスでは、トップクラスの結果を出すことはとうていできないでしょう。\n\n真の実力をつけるには、やはり練習でも常に全力投球する姿勢が必要です。",
+          "explanation": "Inti bacaan: Berhasil di pertandingan meski latihan kurang maksimal bisa membuat orang berpikir 'saya kuat di momen penting, jadi latihan asal-asalan saja tidak masalah' — tapi penulis menegaskan sikap itu 甘い ('naif/terlalu meremehkan') dan bahwa kekuatan sejati (真の実力) memerlukan sikap 全力投球 (berusaha penuh) bahkan saat latihan.<br><br>• A) Salah: bertentangan dengan pesan penulis bahwa mengandalkan 'kuat di hari-H' tanpa latihan serius itu naif.<br>• B) Salah: terbalik — penulis justru mengkritik anggapan latihan asal-asalan tapi sukses di hari-H, bukan latihan penuh yang dianggap naif.<br>• C) Salah: tidak sesuai isi bacaan, tidak dibahas soal kesulitan tampil di pertandingan meski sudah latihan maksimal.<br>• D) Benar: sesuai kalimat penutup 「真の実力をつけるには、やはり練習でも常に全力投球する姿勢が必要です」 — latihan dengan usaha penuh diperlukan untuk hasil baik di pertandingan.<br><br>Jawaban yang tepat adalah D."
+        },
+        {
+          "id": "n1_2024_07_bd_soal-46",
+          "prompt": "感情について、筆者はどのように述べているか。",
+          "options": [
+            "感情は生理的な反応より思考の影響が大きい。",
+            "感情は相手の対応ではなく自分の実感で決まる。",
+            "感情は実感だけではなく価値判断も含む。",
+            "感情は思考より先に生まれるものである。"
+          ],
+          "correctIndex": 2,
+          "instruction": "問題8 次の文章を読んで、後の問いに対する答えとして、最もよいものを1・2・3・4から一つ選びなさい。",
+          "passage": "感情とは、単純な生理的な反応のことではありません。電車のなかで足を踏まれても、踏んだ相手の自分への対応によって、怒りになったりならなかったりします。自分が痛い思いをしても、ときに(注)相手の方に同情しさえします。人が感じる怒りとは、自分が傷つけられたという実感に加えて、その傷つける振る舞いが不当であるという判断も含まれているのです。このように感情は、じつは価値判断に基づいているのであり、すでにそこには思考があるのです。\n(注)ときに: 時には",
+          "explanation": "Inti bacaan: Emosi (terutama marah) bukan sekadar reaksi fisiologis sederhana — ia juga melibatkan penilaian (判断) apakah perlakuan orang lain itu 'tidak pantas/salah', selain sekadar rasa sakit yang dialami.<br><br>• A) Salah: bacaan tidak membandingkan mana yang 'lebih besar pengaruhnya', hanya menyatakan bahwa keduanya (実感+判断) terlibat.<br>• B) Salah: bacaan justru mencontohkan bahwa respons lawan MEMENGARUHI apakah marah atau tidak, jadi bukan hanya soal rasa sakit diri sendiri.<br>• C) Benar: sesuai kalimat kunci 「人が感じる怒りとは...傷つけられたという実感に加えて...不当であるという判断も含まれている」 — emosi mencakup baik rasa sakit maupun penilaian nilai.<br>• D) Salah: bacaan mengatakan emosi mengandung pemikiran (すでにそこには思考がある), bukan bahwa emosi muncul sebelum pemikiran.<br><br>Jawaban yang tepat adalah C."
+        },
+        {
+          "id": "n1_2024_07_bd_soal-47",
+          "prompt": "科学者について、筆者はどのように述べているか。",
+          "options": [
+            "原因と結果が単純に結ばれない限り、疑い続ける。",
+            "原因と結果が論理的に証明できなければ、受け入れない。",
+            "原因と結果の関係が複雑であるほど、より強固な証拠を要求する。",
+            "原因と結果の関係が意外な場合には、証拠がない限り推測を述べない。"
+          ],
+          "correctIndex": 2,
+          "instruction": "問題8 次の文章を読んで、後の問いに対する答えとして、最もよいものを1・2・3・4から一つ選びなさい。",
+          "passage": "科学者は、一般に疑り深い。原因と結果が単純に結ばれる場合はそうでもないが、複雑な経路でつながっている場合には、論理の道筋がちゃんとたどれない限り疑い続けるのが通例(注)である。だから、新聞のインタビューなどで意外な結果や思いがけない現象について意見を聞かれたとき、必ず「もしそれが事実とすれば」という前置きをしてから推測を述べることになっている。より重大な結果を主張した論に対しては、より確実でより強固な証拠を要求するのも、その理由からである。\n(注) 通例: ここでは、一般的",
+          "explanation": "Inti bacaan: Ilmuwan cenderung skeptis, terutama bila hubungan sebab-akibat rumit; makin rumit hubungannya (dan makin besar klaim yang diajukan), makin kuat pula bukti yang mereka tuntut.<br><br>• A) Salah: terlalu menyederhanakan — bacaan tidak menyatakan ilmuwan selalu skeptis tanpa syarat, hanya saat hubungannya rumit.<br>• B) Salah: bacaan tidak menyatakan penolakan mutlak tanpa bukti logis, melainkan permintaan bukti yang lebih kuat.<br>• C) Benar: sesuai 「より重大な結果を主張した論に対しては、より確実でより強固な証拠を要求する」 — makin kompleks/besar klaimnya, makin kuat bukti yang diminta.<br>• D) Salah: fokus bacaan pada kompleksitas hubungan sebab-akibat, bukan 'keanehan' hasil semata.<br><br>Jawaban yang tepat adalah C."
+        },
+        {
+          "id": "n1_2024_07_bd_soal-48",
+          "prompt": "筆者の説明によると、自立した人とはどのような人か。",
+          "options": [
+            "自立と依存が全く違うことだと認識している人。",
+            "依存を少なくしたうえで、他者と生きようとする人。",
+            "必要に応じて依存し、自身の依存をよく理解している人。",
+            "孤立することを恐れず、依存をなくそうと努力している人。"
+          ],
+          "correctIndex": 2,
+          "instruction": "問題8 次の文章を読んで、後の問いに対する答えとして、最もよいものを1・2・3・4から一つ選びなさい。",
+          "passage": "人間は一人では生きていけない。誰かと依存し合っている。かつては、自立ということを単純に考え、依存を少なくするほど自立すると考えられたこともあった。しかし、現在の心理学はそれほど単純に自立と依存を一直線上にある対立概念としては見ていない。適切に依存し、そのことについてよく自覚している者こそ自立しているのだ、と考える。依存をなくそうと努力するあまり、人間は孤立してしまい、そのために生じる障害によって、かえって自立性を奪われてしまう。",
+          "explanation": "Inti bacaan: Psikologi modern tidak lagi memandang kemandirian dan ketergantungan sebagai dua ujung yang berlawanan; orang yang mandiri justru adalah yang mampu bergantung secara tepat DAN memahami dengan baik ketergantungannya sendiri.<br><br>• A) Salah: bacaan justru menolak pandangan bahwa mandiri dan bergantung adalah dua hal yang sepenuhnya berbeda/berlawanan.<br>• B) Salah: bacaan tidak menyebut 'mengurangi ketergantungan' sebagai ciri kemandirian, justru sebaliknya (mengurangi ketergantungan berlebihan bisa membuat orang terisolasi).<br>• C) Benar: sesuai 「適切に依存し、そのことについてよく自覚している者こそ自立しているのだ」 — bergantung secukupnya + sadar akan hal itu = mandiri.<br>• D) Salah: bacaan justru memperingatkan bahwa berusaha keras menghilangkan ketergantungan malah membuat orang terisolasi dan kehilangan kemandirian.<br><br>Jawaban yang tepat adalah C."
+        },
+        {
+          "id": "n1_2024_07_bd_soal-49",
+          "prompt": "筆者は何のために新聞を使って「修業」をしていたか。",
+          "options": [
+            "記事の人物について自分の考えを持つため。",
+            "記事を参考に、自分なりのストーリーを作り出すため。",
+            "自分自身の考えを持てるようにするため。",
+            "自分の考えを言葉で表現できるようになるため。"
+          ],
+          "correctIndex": 2,
+          "instruction": "問題9 次の文章を読んで、後の問いに対する答えとして、最もよいものを1・2・3・4から一つ選びなさい。",
+          "explanation": "Inti bacaan: Penulis (mangaka) melakukan 'latihan' membaca koran secara acak dan membayangkan diri sebagai tokoh dalam berita, untuk melatih diri berpikir dan mengambil keputusan sendiri, karena khawatir pendapatnya selama ini hanya ikut-ikutan orang lain.<br><br>• A) Salah: tujuannya bukan sekadar 'punya pendapat tentang tokoh berita' itu sendiri, melainkan melatih kemampuan berpikir mandiri secara umum.<br>• B) Salah: bacaan tidak menyebut tujuan itu untuk membuat cerita baru berdasarkan berita.<br>• C) Benar: sesuai 「『自分の考え』をどうやって確立するのか？...そこで新聞を使った『修業』を思いついた」 — tujuannya membangun kemampuan berpikir sendiri.<br>• D) Salah: kemampuan mengungkapkan dengan kata-kata (言葉で表現する) adalah HASIL dari latihan ini, bukan tujuan awalnya.<br><br>Jawaban yang tepat adalah C."
+        },
+        {
+          "id": "n1_2024_07_bd_soal-50",
+          "prompt": "筆者は、「修業」を繰り返した後、漫画で何を表現したいと思ったか。",
+          "options": [
+            "ヒロインが自ら決断し人生を生きる姿。",
+            "ヒロインが自らの人生について悩む姿。",
+            "ヒロインが自ら選んだ人生で成功する過程。",
+            "ヒロインの感情や心が変化する過程。"
+          ],
+          "correctIndex": 0,
+          "instruction": "問題9 次の文章を読んで、後の問いに対する答えとして、最もよいものを1・2・3・4から一つ選びなさい。",
+          "passage": "以下は、生物の進化について書かれた文章である。\n\n世界中にさまざまな形の角を持つカブトムシ(注1)がいますが、その中のどれかが生き残りやすいということはありません。カブトムシとしての条件さえ整っていれば、角の形はどれでもいい。たまたま突然変異(注2)でいろいろな角のカブトムシが生まれ、そこには環境圧力がからなかったので、どれも生き残っただけの話です(もちろん、たとえば移動が困難なほど巨大な角など、生きるのに邪魔になる形質の個体は淘汰(注3)されたでしょう)。\n\nこうした形質は、進化のプロセスにおける「遊び」の部分だといえます。たとえば自動車なら、四角い車体にタイヤが四つあり、中にはエンジンやハンドルがあるといった基本形は、どのメーカーでも変わりません。しかしそれ以外の細かい部分――ヘッドライトの形やシートの色や材質など――は、自動車としての本質にあまり関係がないので、車種やメーカーによってかなり多様性がある。デザイン的に遊べるのです。\n\n生物の場合も、デザイン的な遊びを入れる余地がなく、多くの種に共通する基本形はあります。生きている環境が同じなら、体型が似てくるのは当然の成り行きで、これは「収斂進化」と呼ばれています。たとえば哺乳類であるイルカの体型が魚類と似ているのは収斂進化の結果のひとつです。\n(中略)\n\n突然変異は生物の多様性を拡大しますが、環境圧力にはその多様性を絞り込む役割があるといえるでしょう。生物の進化には、その両面があるのです。\n\n(注1) カブトムシ: 昆虫の一種で、雄は角を持つ\n(注2) 突然変異: 親にはない生物的特徴が子に現れること\n(注3) 淘汰される: ここでは、滅びる",
+          "explanation": "Inti bacaan: Setelah latihan tersebut, penulis menyadari ingin menggambarkan tokoh perempuan (heroine) yang secara aktif berpikir, memutuskan, dan memilih jalan hidupnya sendiri — bukan sekadar menampilkan emosi/perasaannya saja.<br><br>• A) Benar: sesuai 「自ら考え決心して生き方を選ぶ少女を描きたかった」 — menggambarkan heroine yang memutuskan dan menjalani hidupnya sendiri.<br>• B) Salah: bukan sekadar 'galau memikirkan hidupnya', melainkan aktif memutuskan dan bertindak.<br>• C) Salah: bacaan tidak menekankan 'proses menuju kesuksesan', melainkan proses berpikir dan mengambil keputusan.<br>• D) Salah: penulis justru ingin menghindari pola lama yang hanya menampilkan perubahan emosi tokoh (喜怒哀楽) tanpa tindakan aktif.<br><br>Jawaban yang tepat adalah A."
+        },
+        {
+          "id": "n1_2024_07_bd_soal-51",
+          "prompt": "カブトムシの例を挙げて筆者が言おうとしていることは、何か。",
+          "options": [
+            "環境によって、個体が生き残るために必要な基本形も変化していく。",
+            "さまざまな形の個体が生まれても、時間がたてばひとつの形になっていく。",
+            "生存の条件に合う変化の生じた個体だけが生き残ることができる。",
+            "生存にかかわる本質的な部分の変化でなければ、どんな形の個体も生き残る。"
+          ],
+          "correctIndex": 3,
+          "instruction": "問題9 次の文章を読んで、後の問いに対する答えとして、最もよいものを1・2・3・4から一つ選びなさい。",
+          "passage": "以下は、生物の進化について書かれた文章である。\n\n世界中にさまざまな形の角を持つカブトムシ(注1)がいますが、その中のどれかが生き残りやすいということはありません。カブトムシとしての条件さえ整っていれば、角の形はどれでもいい。たまたま突然変異(注2)でいろいろな角のカブトムシが生まれ、そこには環境圧力がからなかったので、どれも生き残っただけの話です(もちろん、たとえば移動が困難なほど巨大な角など、生きるのに邪魔になる形質の個体は淘汰(注3)されたでしょう)。\n\nこうした形質は、進化のプロセスにおける「遊び」の部分だといえます。たとえば自動車なら、四角い車体にタイヤが四つあり、中にはエンジンやハンドルがあるといった基本形は、どのメーカーでも変わりません。しかしそれ以外の細かい部分――ヘッドライトの形やシートの色や材質など――は、自動車としての本質にあまり関係がないので、車種やメーカーによってかなり多様性がある。デザイン的に遊べるのです。\n\n生物の場合も、デザイン的な遊びを入れる余地がなく、多くの種に共通する基本形はあります。生きている環境が同じなら、体型が似てくるのは当然の成り行きで、これは「収斂進化」と呼ばれています。たとえば哺乳類であるイルカの体型が魚類と似ているのは収斂進化の結果のひとつです。\n(中略)\n\n突然変異は生物の多様性を拡大しますが、環境圧力にはその多様性を絞り込む役割があるといえるでしょう。生物の進化には、その両面があるのです。\n\n(注1) カブトムシ: 昆虫の一種で、雄は角を持つ\n(注2) 突然変異: 親にはない生物的特徴が子に現れること\n(注3) 淘汰される: ここでは、滅びる",
+          "explanation": "Inti bacaan: Berbagai bentuk tanduk kumbang badak bisa bertahan hidup bersama karena bentuk itu tidak memengaruhi kelangsungan hidup ('bagian bermain' dari evolusi) — kecuali bentuk yang benar-benar menghalangi kelangsungan hidup (misalnya tanduk terlalu besar yang mengganggu pergerakan).<br><br>• A) Salah: bacaan tidak menyatakan bahwa bentuk dasar itu ikut berubah sesuai lingkungan.<br>• B) Salah: bacaan tidak menyatakan keragaman bentuk akan menyatu menjadi satu bentuk seiring waktu.<br>• C) Salah: terbalik — bacaan menekankan bahwa banyak variasi bentuk bisa bertahan meski TIDAK ada tekanan seleksi terhadapnya, bukan hanya yang cocok dengan kondisi tertentu yang bertahan.<br>• D) Benar: sesuai 「カブトムシとしての条件さえ整っていれば、角の形はどれでもいい」 dan 「生きるのに邪魔になる形質の個体は淘汰された」 — selama tidak mengganggu esensi kelangsungan hidup, bentuk apa pun bisa bertahan.<br><br>Jawaban yang tepat adalah D."
+        },
+        {
+          "id": "n1_2024_07_bd_soal-52",
+          "prompt": "生物の進化について、筆者はどのように述べているか。",
+          "options": [
+            "突然変異で生じた多様性は、環境次第で維持されたり縮小したりする。",
+            "突然変異が頻繁に起こることで、環境の影響を受けない個体が生まれる。",
+            "突然変異も環境からの圧力も、多様性を拡大したり縮小したりする役割がある。",
+            "多様性は、環境からの圧力で絞り込まれても、突然変異によって拡大し続けていく。"
+          ],
+          "correctIndex": 0,
+          "instruction": "問題9 次の文章を読んで、後の問いに対する答えとして、最もよいものを1・2・3・4から一つ選びなさい。",
+          "passage": "不正に対して、腹の底からふつふつと怒りが湧き上がってくるのは、人間にとってとても大切なことです。そして、それが大きな共感となって社会全体に広がるとき、社会変革のうねり(注)が訪れます。\n\nしかし同時に私たちは、「正しい怒り」の罠についても、きちんと知っておかなくてはなりません。「正しい怒り」で胸がいっぱいになると、「怒っている私こそが正しいのだ」というふうに、私を正義の側に置いてしまいがちになります。すると、私の正義を邪魔するものは「悪」である、という思考回路ができあがります。\n\nそれがさらにもう一歩進むと、「悪」である彼らに正義の裁きを加えて社会を良くするためならば、こっちだって少々の「小さな悪」を行なってもかまわないはずだ、となってしまうことすらあるのです。\n\n歴史を振り返ってみれば、このような行き過ぎが何度も繰り返されてきました。そして「正しい怒り」で胸がいっぱいだと、なかなかそのような罠の存在に気づけません。\n\nすなわち、ほんとうの意味で「正しく怒る」とは、「不正は許せない!」という怒りによって動機づけられた自分の行為のひとつひとつが、客観的に見ても「正しい」と言えるのかどうかを、たえず冷静に自己点検しながら、その怒りのエネルギーを上手に正義へと結びつけていくことではないかと私は思うのです。それができてはじめて、私たちはより良い社会を作っていけるのです。\n\n(注)うねり: ここでは、大きな動き",
+          "explanation": "Inti bacaan: Mutasi memperluas keragaman biologis, sedangkan tekanan lingkungan mempersempitnya — keduanya adalah dua sisi dari proses evolusi.<br><br>• A) Benar: sesuai 「突然変異は生物の多様性を拡大しますが、環境圧力にはその多様性を絞り込む役割がある」 — keragaman dari mutasi dipertahankan atau dipersempit tergantung tekanan lingkungan.<br>• B) Salah: bacaan tidak menyebut mutasi sering menghasilkan individu yang 'kebal terhadap pengaruh lingkungan'.<br>• C) Salah: terbalik peran — mutasi memperluas keragaman, tekanan lingkungan mempersempitnya, bukan keduanya melakukan kedua hal itu sekaligus.<br>• D) Salah: bacaan tidak menyatakan keragaman terus meluas tanpa henti meski ada tekanan lingkungan; justru ada keseimbangan/pembatasan.<br><br>Jawaban yang tepat adalah A."
+        },
+        {
+          "id": "n1_2024_07_bd_soal-53",
+          "prompt": "「正しい怒り」の罠とはどういうことか。",
+          "options": [
+            "不正に対する怒りの感情が自分で制御できなくなってしまうこと。",
+            "不正に怒りを感じる自分の側に正義があると思い込んでしまうこと。",
+            "不正だけではなく正しいことに対しても怒りを抱いてしまうこと。",
+            "怒りによってしか不正を正すことができないと思い込んでしまうこと。"
+          ],
+          "correctIndex": 1,
+          "instruction": "問題9 次の文章を読んで、後の問いに対する答えとして、最もよいものを1・2・3・4から一つ選びなさい。",
+          "passage": "不正に対して、腹の底からふつふつと怒りが湧き上がってくるのは、人間にとってとても大切なことです。そして、それが大きな共感となって社会全体に広がるとき、社会変革のうねり(注)が訪れます。\n\nしかし同時に私たちは、「正しい怒り」の罠についても、きちんと知っておかなくてはなりません。「正しい怒り」で胸がいっぱいになると、「怒っている私こそが正しいのだ」というふうに、私を正義の側に置いてしまいがちになります。すると、私の正義を邪魔するものは「悪」である、という思考回路ができあがります。\n\nそれがさらにもう一歩進むと、「悪」である彼らに正義の裁きを加えて社会を良くするためならば、こっちだって少々の「小さな悪」を行なってもかまわないはずだ、となってしまうことすらあるのです。\n\n歴史を振り返ってみれば、このような行き過ぎが何度も繰り返されてきました。そして「正しい怒り」で胸がいっぱいだと、なかなかそのような罠の存在に気づけません。\n\nすなわち、ほんとうの意味で「正しく怒る」とは、「不正は許せない!」という怒りによって動機づけられた自分の行為のひとつひとつが、客観的に見ても「正しい」と言えるのかどうかを、たえず冷静に自己点検しながら、その怒りのエネルギーを上手に正義へと結びつけていくことではないかと私は思うのです。それができてはじめて、私たちはより良い社会を作っていけるのです。\n\n(注)うねり: ここでは、大きな動き",
+          "explanation": "Inti bacaan: 'Jebakan kemarahan yang benar' terjadi ketika seseorang yang marah karena ketidakadilan mulai menganggap dirinya sendiri berada di pihak yang benar/adil (正義の側), sehingga siapa pun yang menghalangi dianggap 'jahat'.<br><br>• A) Salah: bukan soal tidak bisa mengendalikan kemarahan, melainkan soal keyakinan diri berada di pihak benar.<br>• B) Benar: sesuai 「怒っている私こそが正しいのだ」というふうに、私を正義の側に置いてしまいがちになります」 — merasa diri sendiri berada di pihak yang benar karena marah pada ketidakadilan.<br>• C) Salah: bacaan tidak membahas marah terhadap hal yang benar, hanya soal marah terhadap ketidakadilan yang berubah menjadi jebakan.<br>• D) Salah: bacaan tidak menyatakan keyakinan bahwa kemarahan adalah satu-satunya cara memperbaiki ketidakadilan.<br><br>Jawaban yang tepat adalah B."
+        },
+        {
+          "id": "n1_2024_07_bd_soal-54",
+          "prompt": "「正しく怒る」ことについて、筆者の考えに合うのはどれか。",
+          "options": [
+            "怒りに基づいた行為が正当かどうかを社会全体で考えるべきだ。",
+            "怒りから生じた行為が正当かどうかを常に客観視する必要がある。",
+            "怒りをどのようにして正義に結びつけたらいいか冷静に考えるべきだ。",
+            "一人一人が自分の怒りの行動に責任を持ち、冷静でいる必要がある。"
+          ],
+          "correctIndex": 1,
+          "instruction": "問題9 次の文章を読んで、後の問いに対する答えとして、最もよいものを1・2・3・4から一つ選びなさい。",
+          "passage": "経済学者のケインズは、「本を読むときは好意的に読まなければならない」と発言したことがあるが、それは、ケインズの論敵(注1)だったある経済学者(スージーだったと記憶している)が、最初から悪意に基づく批判的な態度でケインズの著書を読むために、肝心の論点を一向に理解しないこと(できないこと)を嘆いての発言であった。\n\nつまり、読む前から批判的な姿勢を持っていると、批判という意図的フィルターの介在によって、他者のつくった知的生産物との関わり方が、出発点から歪んでしまうのである。高名な著者になんとかして批判の一矢を浴びせてやろうと意気込んでいる人が書いた書評などを読むと、浅薄な(注2)揚げ足取り(注3)に終始している場合が実に多いのは、そのせいである。そんな読み方をしていては、「知」が血肉化する(注4)ことなど到底ありえない。やはり最初は、好意的な読みからスタートした方が得だろう。好意的な読み方の先には、没入(注5)して読むという世界があると私は考えている。好意も批判もなく、ただ夢中になって読む。徹底的に読む。そうやって読んだものこそ、無意識のうちに内在化(注6)する。\n(中略)\n\nただし、私は批判的な読み方が不要だと言っているのではない。没入しないと深く読めないと言う一方で、しかし、批判的に読まなければ、読みが鋭くならないとも実感している。\n\nでは、どうすれば良いのだろうか。バランスを取るにかぎる、と物知り顔(注7)で言う人もいるかもしれない。しかし、ここで必要なのは、両者のバランスを取ろうとすることではない。そうではなくて、このふたつの読み方を意識的に往来することなのだ。\n\n(注1) 論敵: 論争の相手\n(注2) 浅薄な: 思慮が足りない\n(注3) 揚げ足取り: 重要でない部分を取り上げて批判すること\n(注4) 血肉化する: ここでは、自分のものになる\n(注5) 没入する: 熱中する\n(注6) 内在化する: ここでは、身につく\n(注7) 物知り顔: よく知っているかのような顔",
+          "explanation": "Inti bacaan: 'Marah dengan benar' berarti terus-menerus memeriksa secara objektif apakah tindakan yang didorong oleh kemarahan itu benar-benar 'benar' secara objektif, sambil menyalurkan energi marah itu ke arah keadilan.<br><br>• A) Salah: bacaan menekankan refleksi diri individu, bukan 'masyarakat secara keseluruhan yang harus mempertimbangkan'.<br>• B) Benar: sesuai 「自分の行為のひとつひとつが、客観的に見ても『正しい』と言えるのかどうかを、たえず冷静に自己点検しながら」 — perlu terus mengevaluasi objektif tindakan yang lahir dari kemarahan.<br>• C) Salah: fokus utama bacaan adalah pengecekan diri terus-menerus, bukan sekadar 'berpikir tenang cara menyalurkan kemarahan'.<br>• D) Salah: bacaan tidak secara spesifik membahas tanggung jawab individu atas tindakannya di hadapan orang lain, melainkan evaluasi diri sendiri.<br><br>Jawaban yang tepat adalah B."
+        },
+        {
+          "id": "n1_2024_07_bd_soal-55",
+          "prompt": "筆者によると、最初から批判的に読むことの問題点は何か。",
+          "options": [
+            "論点だけでなく、重要でない点まで取り上げて批判するようになること。",
+            "著者の主張が正しいと分かっているのに、受け入れられなくなること。",
+            "批判することが目的になり、著者の主張を正確に理解できなくなること。",
+            "批判することしか頭になくなり、自分の考えが持てなくなること。"
+          ],
+          "correctIndex": 2,
+          "instruction": "問題9 次の文章を読んで、後の問いに対する答えとして、最もよいものを1・2・3・4から一つ選びなさい。",
+          "passage": "経済学者のケインズは、「本を読むときは好意的に読まなければならない」と発言したことがあるが、それは、ケインズの論敵(注1)だったある経済学者(スージーだったと記憶している)が、最初から悪意に基づく批判的な態度でケインズの著書を読むために、肝心の論点を一向に理解しないこと(できないこと)を嘆いての発言であった。\n\nつまり、読む前から批判的な姿勢を持っていると、批判という意図的フィルターの介在によって、他者のつくった知的生産物との関わり方が、出発点から歪んでしまうのである。高名な著者になんとかして批判の一矢を浴びせてやろうと意気込んでいる人が書いた書評などを読むと、浅薄な(注2)揚げ足取り(注3)に終始している場合が実に多いのは、そのせいである。そんな読み方をしていては、「知」が血肉化する(注4)ことなど到底ありえない。やはり最初は、好意的な読みからスタートした方が得だろう。好意的な読み方の先には、没入(注5)して読むという世界があると私は考えている。好意も批判もなく、ただ夢中になって読む。徹底的に読む。そうやって読んだものこそ、無意識のうちに内在化(注6)する。\n(中略)\n\nただし、私は批判的な読み方が不要だと言っているのではない。没入しないと深く読めないと言う一方で、しかし、批判的に読まなければ、読みが鋭くならないとも実感している。\n\nでは、どうすれば良いのだろうか。バランスを取るにかぎる、と物知り顔(注7)で言う人もいるかもしれない。しかし、ここで必要なのは、両者のバランスを取ろうとすることではない。そうではなくて、このふたつの読み方を意識的に往来することなのだ。\n\n(注1) 論敵: 論争の相手\n(注2) 浅薄な: 思慮が足りない\n(注3) 揚げ足取り: 重要でない部分を取り上げて批判すること\n(注4) 血肉化する: ここでは、自分のものになる\n(注5) 没入する: 熱中する\n(注6) 内在化する: ここでは、身につく\n(注7) 物知り顔: よく知っているかのような顔",
+          "explanation": "Inti bacaan: Membaca dengan sikap kritis sejak awal membuat 'filter kritik' menghalangi pemahaman yang benar terhadap inti argumen penulis asli — orang jadi sibuk mencari celah untuk dikritik alih-alih memahami maksud sebenarnya.<br><br>• A) Salah: ini menggambarkan salah satu GEJALA (揚げ足取り), bukan masalah utamanya secara keseluruhan.<br>• B) Salah: bacaan tidak membahas kasus 'tahu penulis benar tapi menolak menerima'.<br>• C) Benar: sesuai 「批判という意図的フィルターの介在によって...肝心の論点を一向に理解しない」 — niat mengkritik membuat orang gagal memahami argumen sebenarnya.<br>• D) Salah: bacaan tidak menyatakan masalahnya adalah 'kehilangan kemampuan berpikir sendiri', melainkan gagal memahami argumen penulis.<br><br>Jawaban yang tepat adalah C."
+        },
+        {
+          "id": "n1_2024_07_bd_soal-56",
+          "prompt": "筆者の考えに合うのはどれか。",
+          "options": [
+            "批判的に読みながら徹底的な読みも加えることを意識するべきだ。",
+            "徹底的に読むことが必要だが、批判的な読みも忘れてはいけない。",
+            "徹底的に読むか批判的に読むかは内容によって決める必要がある。",
+            "徹底的に深く読めば、意識しなくても鋭く批判的に読むことができる。"
+          ],
+          "correctIndex": 1,
+          "instruction": "問題9 次の文章を読んで、後の問いに対する答えとして、最もよいものを1・2・3・4から一つ選びなさい。",
+          "passage": "経済学者のケインズは、「本を読むときは好意的に読まなければならない」と発言したことがあるが、それは、ケインズの論敵(注1)だったある経済学者(スージーだったと記憶している)が、最初から悪意に基づく批判的な態度でケインズの著書を読むために、肝心の論点を一向に理解しないこと(できないこと)を嘆いての発言であった。\n\nつまり、読む前から批判的な姿勢を持っていると、批判という意図的フィルターの介在によって、他者のつくった知的生産物との関わり方が、出発点から歪んでしまうのである。高名な著者になんとかして批判の一矢を浴びせてやろうと意気込んでいる人が書いた書評などを読むと、浅薄な(注2)揚げ足取り(注3)に終始している場合が実に多いのは、そのせいである。そんな読み方をしていては、「知」が血肉化する(注4)ことなど到底ありえない。やはり最初は、好意的な読みからスタートした方が得だろう。好意的な読み方の先には、没入(注5)して読むという世界があると私は考えている。好意も批判もなく、ただ夢中になって読む。徹底的に読む。そうやって読んだものこそ、無意識のうちに内在化(注6)する。\n(中略)\n\nただし、私は批判的な読み方が不要だと言っているのではない。没入しないと深く読めないと言う一方で、しかし、批判的に読まなければ、読みが鋭くならないとも実感している。\n\nでは、どうすれば良いのだろうか。バランスを取るにかぎる、と物知り顔(注7)で言う人もいるかもしれない。しかし、ここで必要なのは、両者のバランスを取ろうとすることではない。そうではなくて、このふたつの読み方を意識的に往来することなのだ。\n\n(注1) 論敵: 論争の相手\n(注2) 浅薄な: 思慮が足りない\n(注3) 揚げ足取り: 重要でない部分を取り上げて批判すること\n(注4) 血肉化する: ここでは、自分のものになる\n(注5) 没入する: 熱中する\n(注6) 内在化する: ここでは、身につく\n(注7) 物知り顔: よく知っているかのような顔",
+          "explanation": "Inti bacaan: Penulis menyimpulkan bahwa membaca dengan penuh penghayatan (没入) DAN membaca secara kritis sama-sama diperlukan, dan yang penting bukan menyeimbangkan keduanya sekaligus, melainkan bergantian secara sadar antara dua cara membaca ini.<br><br>• A) Salah: bacaan justru menolak melakukan keduanya secara bersamaan/seimbang dalam satu waktu.<br>• B) Benar: sesuai 「没入しないと深く読めないと言う一方で、しかし、批判的に読まなければ、読みが鋭くならないとも実感している」 — keduanya diperlukan.<br>• C) Salah: bacaan tidak menyatakan pemilihan cara membaca tergantung isi bacaan.<br>• D) Salah: bacaan justru menyatakan membaca kritis perlu dilakukan secara SADAR dan terpisah, bukan otomatis muncul dari membaca mendalam.<br><br>Jawaban yang tepat adalah B."
+        },
+        {
+          "id": "n1_2024_07_bd_soal-57",
+          "prompt": "数学の問題を解くことについて、筆者の考えに合うのはどれか。",
+          "options": [
+            "早く解けなくても、解き方を身につけることが大切だ。",
+            "解けても解けなくても、問題に取り組むことが大切だ。",
+            "解けなかった問題が解けるようになったらおもしろくなる。",
+            "解き方のわからない問題を解こうとすることに意味がある。"
+          ],
+          "correctIndex": 3,
+          "instruction": "問題10 次の文章を読んで、後の問いに対する答えとして、最もよいものを、1・2・3・4から一つ選びなさい。",
+          "explanation": "Inti bacaan: Kekuatan (kemampuan) justru terbentuk SELAMA proses belum tahu cara menyelesaikan masalah, bukan setelah tahu caranya — dan justru pada tahap 'belum bisa memecahkan' itulah terletak keseruannya serta makna sejati sebuah 'masalah'.<br><br>• A) Salah: hampir benar tapi kurang menangkap poin utama — bacaan menekankan proses BERUSAHA memecahkan masalah yang belum diketahui caranya, bukan sekadar 'menguasai cara'.<br>• B) Salah: terlalu umum, tidak menangkap poin spesifik tentang 'belum tahu cara' sebagai sumber kekuatan.<br>• C) Salah: bacaan justru mengatakan setelah bisa memecahkan, rasanya malah hampa (むなしい), bukan menyenangkan.<br>• D) Benar: sesuai 「解き方がわからないからこそ、問題の名にあたいするのだ」 — berusaha memecahkan masalah yang caranya belum diketahui itulah yang bermakna.<br><br>Jawaban yang tepat adalah D."
+        },
+        {
+          "id": "n1_2024_07_bd_soal-58",
+          "prompt": "頭のなかに飼っておくとはどういうことか。",
+          "options": [
+            "わかる問題を手がかりにして、わからない問題を考えること。",
+            "わかる問題とわからない問題を、頭のなかで区別しておくこと。",
+            "わからない問題をわかるまで解き続けていること。",
+            "わからない状態のまま、問題を頭のなかに残しておくこと。"
+          ],
+          "correctIndex": 2,
+          "instruction": "問題10 次の文章を読んで、後の問いに対する答えとして、最もよいものを、1・2・3・4から一つ選びなさい。",
+          "explanation": "Inti bacaan: 「頭のなかに飼っておく」 (memelihara di dalam kepala) merujuk pada membiarkan sebuah masalah yang belum terpecahkan tetap ada di pikiran (tanpa terburu-buru dipaksa selesai), sampai suatu saat menjadi paham dengan sendirinya.<br><br>• A) Salah: bacaan tidak membahas menggunakan soal yang sudah dipahami sebagai petunjuk untuk soal yang belum dipahami.<br>• B) Salah: bukan sekadar 'membedakan' kedua jenis soal, melainkan membiarkan yang belum paham tetap ada di pikiran.<br>• C) Salah: bukan berarti terus-menerus berusaha memecahkan, melainkan membiarkannya dulu tanpa dipaksa.<br>• D) Benar: sesuai konteks 「多少はわからないでも、うまく頭のなかに飼っておくと、そのうちに...わかってきたりする」 — membiarkan masalah yang belum dipahami tetap 'dipelihara' di kepala.<br><br>Jawaban yang tepat adalah D."
+        },
+        {
+          "id": "n1_2024_07_bd_soal-59",
+          "prompt": "筆者によると、どのように勉強すればよいか。",
+          "options": [
+            "結果を急がずに、考えることを楽しむ。",
+            "結果に達することができれば、どんなやり方でもよい。",
+            "目的を忘れないで、あせらずに勉強を楽しめばよい。",
+            "自分に合ったやり方を探して、時間を気にせず取り組む。"
+          ],
+          "correctIndex": 0,
+          "instruction": "問題10 次の文章を読んで、後の問いに対する答えとして、最もよいものを、1・2・3・4から一つ選びなさい。",
+          "explanation": "Inti bacaan: Penulis menganjurkan tidak buru-buru mengejar hasil (jawaban), melainkan menikmati proses berpikirnya, karena hal itulah yang membangun kekuatan/kemampuan sejati.<br><br>• A) Benar: sesuai keseluruhan bacaan, terutama 「その結果に達するまでの道筋を楽しむことで、力がつく」 — nikmati proses berpikir tanpa terburu-buru.<br>• B) Salah: bacaan justru menekankan PROSES (cara mencapainya) penting, bukan hanya hasil akhirnya saja yang penting.<br>• C) Salah: mendekati benar tapi kurang menangkap poin utama soal 'tidak terburu-buru', lebih menekankan tujuan.<br>• D) Salah: bacaan tidak secara spesifik menyarankan mencari 'cara yang cocok untuk diri sendiri', melainkan soal sikap tidak terburu-buru dan menikmati proses.<br><br>Jawaban yang tepat adalah A."
+        },
+        {
+          "id": "n1_2024_07_bd_soal-60",
+          "prompt": "あきらめることについて、AとBはどのように述べているか。",
+          "options": [
+            "AもBも、成果が出せる可能性が低い場合には、あきらめたほうがよいと述べている。",
+            "AもBも、つらくても、できるだけあきらめずに頑張ったほうがよいと述べている。",
+            "Aは状況によっては、あきらめたほうがよいこともあると述べ、Bはあきらめてもいいと思ったほうが、頑張り続けられる場合もあると述べている。",
+            "Aは努力しても結果に結びつかない場合は、あきらめたほうがよいと述べ、Bは十分にやってみるまでは、あきらめることを考えるべきではないと述べている。"
+          ],
+          "correctIndex": 3,
+          "instruction": "問題11 次のAとBの意見文を読んで、後の問いに対する答えとして、最もよいものを、1・2・3・4から一つ選びなさい。",
+          "explanation": "A menyatakan bahwa dalam kondisi tertentu (usaha maksimal tapi tidak berhasil/tidak puas), menyerah adalah pilihan yang baik. B menyatakan menyerah harus dipertimbangkan setelah benar-benar mencoba semua cara, dan bersikap 'boleh menyerah sejak awal' membuat orang sulit bertahan saat masa sulit.<br><br>• A) Salah: B tidak menyatakan menyerah itu baik bila kemungkinan berhasil rendah — B justru menekankan usaha maksimal dulu.<br>• B) Salah: A justru menyatakan menyerah bisa jadi pilihan baik dalam situasi tertentu, bukan 'sebisa mungkin jangan menyerah'.<br>• C) Salah: bagian tentang A cukup tepat, tapi kesimpulan tentang B ('berpikir boleh menyerah membuat lebih bisa bertahan') tidak sesuai isi B yang justru mengkritik sikap itu.<br>• D) Benar: sesuai — A: 「うまくいかない、成果が出ない...そうした場合は『あきらめる』というのも、十分よい選択肢になります」 (menyerah bisa jadi pilihan baik tergantung situasi); B: 「あきらめるということは、やれることはすべてやり尽くしたあとで考えるべきではないだろうか」 (menyerah harus dipertimbangkan setelah semua usaha dilakukan).<br><br>Jawaban yang tepat adalah D."
+        },
+        {
+          "id": "n1_2024_07_bd_soal-61",
+          "prompt": "AとBの認識で共通していることは何か。",
+          "options": [
+            "あきらめることになった原因を考えるべきだ。",
+            "あきらめるのが早ければ、早く立ち直れる。",
+            "あきらめたことでも、再挑戦することはできる。",
+            "あきらめたことを後悔してはいけない。"
+          ],
+          "correctIndex": 2,
+          "instruction": "問題11 次のAとBの意見文を読んで、後の問いに対する答えとして、最もよいものを、1・2・3・4から一つ選びなさい。",
+          "explanation": "Kesamaan pandangan A dan B: keduanya menyarankan agar setelah menyerah/berhenti dari sesuatu, seseorang TIDAK boleh terus menyesalinya (agar bisa segera bangkit kembali).<br><br>• A) Salah: memikirkan penyebab menyerah lebih ditekankan oleh B (「しっかり原因を考えて次に生かす」), sedangkan A tidak secara eksplisit membahas ini sebagai poin utama.<br>• B) Salah: A memang menyinggung soal bangkit lebih cepat, tapi B tidak secara langsung menyatakan 'makin cepat menyerah, makin cepat bangkit'.<br>• C) Salah: keduanya tidak membahas soal mencoba lagi (再挑戦) sebagai poin kesamaan.<br>• D) Benar: A: 「うまくいかなかったことを悔やみつつやめるのは、避けたいものです」 (hindari menyesali kegagalan setelah berhenti); B: 「落ち込んだりくよくよしたりするのではなく気持ちを切り替えて」 (jangan larut dalam kesedihan, ubah pola pikir) — keduanya sama-sama menyarankan tidak menyesali/larut dalam penyesalan.<br><br>Jawaban yang tepat adalah D."
+        },
+        {
+          "id": "n1_2024_07_bd_soal-62",
+          "prompt": "筆者によると、親や教師は子どもや生徒に対して何をしているか。",
+          "options": [
+            "反抗を容認しつつ、不自由な社会的規範に従わせている。",
+            "どの時代にも通用する社会的規範を身につけさせている。",
+            "社会的規範を教え、社会の枠組みに適応させている。",
+            "社会的規範を教えたうえで、自由に生きる方法を身につけさせている。"
+          ],
+          "correctIndex": 2,
+          "instruction": "問題12 次の文章を読んで、後の問いに対する答えとして、最もよいものを、1・2・3・4から一つ選びなさい。",
+          "explanation": "Inti bacaan: Orang tua/guru wajib menanamkan norma sosial (aturan, tata krama) kepada anak/murid sejak dini secara memaksa (tanpa banyak alasan), agar mereka bisa hidup dalam kerangka sosial — meskipun itu berarti membatasi kebebasan alami anak.<br><br>• A) Salah: bacaan tidak menyatakan pemberontakan/perlawanan (反抗) itu diterima; justru dikatakan 'bukan berarti pemberontakan itu diharapkan'.<br>• B) Salah: bacaan justru menyatakan norma sosial BERUBAH seiring waktu, bukan berlaku sepanjang zaman.<br>• C) Benar: sesuai 「まず子ども(生徒)たちを家庭や学校の生活の枠組みに入れなければならない」 dan 「理屈抜きで生活の型や秩序を押しつけざるをえない」 — mengajarkan norma sosial dan memasukkan anak ke kerangka aturan masyarakat.<br>• D) Salah: bacaan tidak membahas 'mengajarkan cara hidup bebas' setelah norma sosial diajarkan; fokusnya pada kepatuhan pada norma yang berlaku.<br><br>Jawaban yang tepat adalah C."
+        },
+        {
+          "id": "n1_2024_07_bd_soal-63",
+          "prompt": "精神的な財産とは何か。",
+          "options": [
+            "ひとが幸福になるために守ってきたもの。",
+            "ひとが本能を抑圧されずに生きるためのもの。",
+            "ひとが社会で生きていくために作られてきたもの。",
+            "これから生まれ育っていく子どもにとって必要なもの。"
+          ],
+          "correctIndex": 2,
+          "instruction": "問題12 次の文章を読んで、後の問いに対する答えとして、最もよいものを、1・2・3・4から一つ選びなさい。",
+          "explanation": "Kalimat kunci: 「そういうひとを規制し構成してきたもろもろの精神的な財産は、時代とともに変わってきたという事実である」 — 精神的な財産 (warisan spiritual/nilai) merujuk pada nilai-nilai dan aturan yang telah membentuk cara manusia hidup bersama secara sosial, dan ini terus berubah seiring zaman.<br><br>• A) Salah: tidak secara spesifik disebut sebagai 'demi kebahagiaan manusia', melainkan hal yang membentuk kehidupan sosial manusia.<br>• B) Salah: justru sebaliknya — ini adalah hal yang MEMBATASI naluri alami manusia (bukan untuk hidup tanpa batasan naluri).<br>• C) Benar: sesuai konteks paragraf sebelumnya tentang norma sosial yang membentuk cara manusia hidup bermasyarakat, yang terus berubah dari generasi ke generasi.<br>• D) Salah: bacaan justru menyatakan tidak diketahui apakah ini benar-benar dibutuhkan oleh generasi anak yang akan datang.<br><br>Jawaban yang tepat adalah C."
+        },
+        {
+          "id": "n1_2024_07_bd_soal-64",
+          "prompt": "筆者が言いたいことは何か。",
+          "options": [
+            "社会的規範は時代によって変化するものであり、子どもはおとなの思うとおりにならなくて当然である。",
+            "社会的規範は暫定的なものにすぎず、子どもが自身の考え方に合ったものを作っていくことが望ましい。",
+            "時代の変化に適応できるように、おとなは子どもに社会的規範の背景となる考え方を教えたほうがいい。",
+            "時代によって考え方は変化するものなので、それに合わせて次の世代が社会的規範を変えるべきだ。"
+          ],
+          "correctIndex": 0,
+          "instruction": "問題12 次の文章を読んで、後の問いに対する答えとして、最もよいものを、1・2・3・4から一つ選びなさい。",
+          "explanation": "Inti keseluruhan bacaan: Norma sosial berubah seiring waktu, sehingga wajar jika anak tidak menjadi persis seperti yang diinginkan orang tua/guru — dan hal ini (perbedaan antara generasi) seharusnya justru disambut baik, bukan dihindari.<br><br>• A) Benar: sesuai kesimpulan bacaan 「次の世代は、私たちと同じにはならない。したがって、子どもは親(教師)の思うとおりにはならないのだ」 serta penutup 「おとなと子どもとの誤差は、基本的にはいつでも歓迎していいことである」 — norma berubah sesuai zaman, jadi wajar anak tidak sama dengan orang tua.<br>• B) Salah: bacaan tidak menyarankan anak 'membuat sendiri' nilai yang cocok baginya; norma tetap diajarkan meski bersifat sementara.<br>• C) Salah: bacaan tidak secara eksplisit menyarankan orang tua mengajarkan 'latar belakang pemikiran' di balik norma agar anak bisa beradaptasi dengan zaman.<br>• D) Salah: bacaan tidak menyarankan generasi berikutnya harus MENGUBAH norma sosial secara aktif; ia hanya menyatakan bahwa perbedaan itu wajar dan pantas diterima.<br><br>Jawaban yang tepat adalah A."
+        },
+        {
+          "id": "n1_2024_07_bd_soal-65",
+          "prompt": "マリーさんは秋川大学で本を借りるために、図書館利用カードを作ろうと思っている。今日は金曜日である。明日の夜までに本を借りたいが、図書館利用カードは、どのように申請しなければならないか。",
+          "options": [
+            "今日、中央図書館か文学部図書館で9時から17時までの間に申請する。",
+            "今日、中央図書館で9時から17時までの間に申請する。文学部図書館では申請できない。",
+            "今日、中央図書館か文学部図書館で9時から17時までの間に申請するか、明日、中央図書館で9時から17時までの間に申請する。",
+            "今日か明日、中央図書館か文学部図書館で9時から17時までの間に申請する。"
+          ],
+          "correctIndex": 0,
+          "instruction": "問題13 右のページは、大学図書館の一般利用についての案内である。下の問いに対する答えとして最もよいものを一つ選びなさい。",
+          "explanation": "Marie ingin membuat kartu perpustakaan di Universitas Akikawa. Hari ini Jumat, dan ia ingin meminjam buku sebelum malam besok (Sabtu).<br><br>Berdasarkan panduan: kartu diproses HARI ITU JUGA jika permohonan diajukan pukul 9:00–17:00 di HARI KERJA (baik di Perpustakaan Pusat maupun Perpustakaan Fakultas Sastra, yang menerima permohonan hanya di hari kerja). Jika diajukan setelah 17:00 di hari kerja, atau di akhir pekan, kartu baru diberikan pada hari kerja berikutnya.<br><br>Karena besok (Sabtu) adalah akhir pekan, permohonan yang diajukan besok TIDAK akan selesai tepat waktu. Maka Marie harus mengajukan permohonan <b>hari ini (Jumat)</b>, pukul 9–17, di salah satu dari kedua perpustakaan tersebut, agar kartunya bisa didapat hari ini juga dan bisa dipakai meminjam buku sebelum besok malam.<br><br>• A) Benar: sesuai penjelasan di atas.<br>• B) Salah: Perpustakaan Fakultas Sastra JUGA menerima permohonan di hari kerja (bukan tidak bisa sama sekali), hanya saja tidak di akhir pekan.<br>• C) Salah: mengajukan besok (Sabtu) di Perpustakaan Pusat tidak akan membuat kartu selesai tepat waktu karena Sabtu adalah akhir pekan.<br>• D) Salah: mengajukan besok (Sabtu) tidak akan memenuhi tenggat waktu malam besok.<br><br>Jawaban yang tepat adalah A."
+        },
+        {
+          "id": "n1_2024_07_bd_soal-66",
+          "prompt": "カイさんは、研究のために資料を借りたり複写したりする必要があって、秋川大学の文学部図書館に来た。図書館利用カードは持っている。今日は、授業期間の火曜日である。貸し出しと複写は、何時まで可能か。",
+          "options": [
+            "貸し出しは18時の15分前まで、複写は18時まで可能である。",
+            "貸し出しは21時の15分前まで、複写は21時まで可能である。",
+            "貸し出しは21時の15分前まで、複写は21時の10分前まで可能である。",
+            "貸し出しは21時の30分前まで、複写は21時の10分前まで可能である。"
+          ],
+          "correctIndex": 1,
+          "instruction": "問題13 右のページは、大学図書館の一般利用についての案内である。下の問いに対する答えとして最もよいものを一つ選びなさい。",
+          "explanation": "Kai berada di Perpustakaan Fakultas Sastra pada hari Selasa selama masa perkuliahan (授業期間). Berdasarkan tabel jam buka, Perpustakaan Fakultas Sastra pada hari kerja masa perkuliahan buka <b>9:00–21:00</b>.<br><br>Berdasarkan panduan: peminjaman (貸し出し) di Perpustakaan Fakultas Sastra berhenti diterima <b>15 menit sebelum tutup</b> → 21:00 − 15 menit = 20:45 (21時の15分前まで). Mesin fotokopi di Perpustakaan Fakultas Sastra bisa dipakai <b>sampai jam tutup itu sendiri</b> → sampai 21:00 (21時まで).<br><br>• A) Salah: jam 18:00 adalah jam tutup periode libur (musim panas/semi), bukan masa perkuliahan.<br>• B) Benar: peminjaman sampai 20:45 (21時の15分前), fotokopi sampai 21:00 (21時まで) — sesuai aturan.<br>• C) Salah: fotokopi di Fakultas Sastra bisa sampai jam tutup itu sendiri (21:00), bukan 10 menit sebelumnya (aturan 10 menit sebelum tutup hanya berlaku untuk Perpustakaan Pusat).<br>• D) Salah: peminjaman berhenti 15 menit sebelum tutup (bukan 30 menit — itu aturan Perpustakaan Pusat), dan fotokopi tidak berhenti 10 menit sebelumnya.<br><br>Jawaban yang tepat adalah B."
+        }
+      ]
+    },
+    "choukai": {
+      "title": "聴解",
+      "timeLimitMinutes": 60,
+      "questions": [
+        {
+          "id": "n1_2024_07_ck_soal-chokai-1",
+          "prompt": "1番 — Audio (belum ada transkrip, dengarkan di tautan sumber):\nhttps://trynihongo.com/upload/mooddata/9f/0f/9f0f3621be5eb599acca1dd5acda8569809f16ac",
+          "options": [
+            "夏用の商品を棚に並べる",
+            "倉庫に日焼け止めクリームを運ぶ",
+            "パンに値引きシールをはる",
+            "棚の商品を片付ける"
+          ],
+          "correctIndex": 2,
+          "instruction": "問題1 Audio pembuka: https://trynihongo.com/upload/mooddata/00/2e/002e6dbd038edb1da78e81eccde007d731e5d9a3\n問題1では、まず質問を聞いてください。それから話を聞いて、問題用紙の1から4の中から、最もよいものを一つ選んでください。"
+        },
+        {
+          "id": "n1_2024_07_ck_soal-chokai-2",
+          "prompt": "2番 — Audio (belum ada transkrip, dengarkan di tautan sumber):\nhttps://trynihongo.com/upload/mooddata/b5/f6/b5f615f6b44997130be77dd4039701999c1147d7",
+          "options": [
+            "すべてのデザイン案を削除する",
+            "すべてのデザイン案のサイズをそろえる",
+            "年代別の回答のグラフの色を変える",
+            "年代別の回答のデータの位置を変える"
+          ],
+          "correctIndex": 1,
+          "instruction": "問題1 Audio pembuka: https://trynihongo.com/upload/mooddata/00/2e/002e6dbd038edb1da78e81eccde007d731e5d9a3\n問題1では、まず質問を聞いてください。それから話を聞いて、問題用紙の1から4の中から、最もよいものを一つ選んでください。"
+        },
+        {
+          "id": "n1_2024_07_ck_soal-chokai-3",
+          "prompt": "3番 — Audio (belum ada transkrip, dengarkan di tautan sumber):\nhttps://trynihongo.com/upload/mooddata/0b/fb/0bfb9a7a10069b441475ca843c2db5de23ab60de",
+          "options": [
+            "井上さんに納品日をかくにんする",
+            "職人のリストを社長に見せる",
+            "職人にサンプルの作成を頼む",
+            "バッグの予約受付を中止する"
+          ],
+          "correctIndex": 2,
+          "instruction": "問題1 Audio pembuka: https://trynihongo.com/upload/mooddata/00/2e/002e6dbd038edb1da78e81eccde007d731e5d9a3\n問題1では、まず質問を聞いてください。それから話を聞いて、問題用紙の1から4の中から、最もよいものを一つ選んでください。"
+        },
+        {
+          "id": "n1_2024_07_ck_soal-chokai-4",
+          "prompt": "4番 — Audio (belum ada transkrip, dengarkan di tautan sumber):\nhttps://trynihongo.com/upload/mooddata/da/1d/da1d7d24e9ba9da4a92f12027bd847902025eec5",
+          "options": [
+            "責任者の名前を書く",
+            "費用を詳しく書く",
+            "調理方法の説明を書く",
+            "第二希望の場所を書く"
+          ],
+          "correctIndex": 1,
+          "instruction": "問題1 Audio pembuka: https://trynihongo.com/upload/mooddata/00/2e/002e6dbd038edb1da78e81eccde007d731e5d9a3\n問題1では、まず質問を聞いてください。それから話を聞いて、問題用紙の1から4の中から、最もよいものを一つ選んでください。"
+        },
+        {
+          "id": "n1_2024_07_ck_soal-chokai-5",
+          "prompt": "5番 — Audio (belum ada transkrip, dengarkan di tautan sumber):\nhttps://trynihongo.com/upload/mooddata/2c/23/2c23be85e0ee77ecd1a36c5bcd7ec4d2b6744bb4",
+          "options": [
+            "海辺の生き物についてのセミナー",
+            "漁業体験",
+            "海辺の生き物の観察会",
+            "ヨットのそうじゅう体験"
+          ],
+          "correctIndex": 0,
+          "instruction": "問題1 Audio pembuka: https://trynihongo.com/upload/mooddata/00/2e/002e6dbd038edb1da78e81eccde007d731e5d9a3\n問題1では、まず質問を聞いてください。それから話を聞いて、問題用紙の1から4の中から、最もよいものを一つ選んでください。"
+        },
+        {
+          "id": "n1_2024_07_ck_soal-chokai-6",
+          "prompt": "1番 — Audio (belum ada transkrip, dengarkan di tautan sumber):\nhttps://trynihongo.com/upload/mooddata/d6/b8/d6b8f72dc14467eec7c6b6e19b86bbe7735a2678",
+          "options": [
+            "子供の年齢や好みに合う絵本",
+            "教育効果が高い絵本",
+            "長い間読まれている名作の絵本",
+            "自分自身が面白いと感じる絵本"
+          ],
+          "correctIndex": 3,
+          "instruction": "問題2 Audio pembuka: https://trynihongo.com/upload/mooddata/25/5c/255c5c5f3f604405f930d29d1f9bbf6b3633d105\n問題2では、まず質問を聞いてください。そのあと、問題用紙のせんたくしを読んでください。読む時間があります。それから話を聞いて、問題用紙の1から4の中から、最もよいものを一つ選んでください。"
+        },
+        {
+          "id": "n1_2024_07_ck_soal-chokai-7",
+          "prompt": "2番 — Audio (belum ada transkrip, dengarkan di tautan sumber):\nhttps://trynihongo.com/upload/mooddata/d1/e2/d1e2c7f079ad19ddf1cbb6a551a80de881ebe264",
+          "options": [
+            "固形タイプの商品にする",
+            "容量を少なくする",
+            "ふた付きの容器にする",
+            "味をもう少し甘くする"
+          ],
+          "correctIndex": 2,
+          "instruction": "問題2 Audio pembuka: https://trynihongo.com/upload/mooddata/25/5c/255c5c5f3f604405f930d29d1f9bbf6b3633d105\n問題2では、まず質問を聞いてください。そのあと、問題用紙のせんたくしを読んでください。読む時間があります。それから話を聞いて、問題用紙の1から4の中から、最もよいものを一つ選んでください。"
+        },
+        {
+          "id": "n1_2024_07_ck_soal-chokai-8",
+          "prompt": "3番 — Audio (belum ada transkrip, dengarkan di tautan sumber):\nhttps://trynihongo.com/upload/mooddata/1a/01/1a012459b4f1edd8534e2f6f4ec15b97c07f1fd7",
+          "options": [
+            "パソコンでイラストをえがく講座",
+            "油絵で風景をえがく講座",
+            "色えんぴつで動物をえがく講座",
+            "はがきに季節の花をえがく講座"
+          ],
+          "correctIndex": 0,
+          "instruction": "問題2 Audio pembuka: https://trynihongo.com/upload/mooddata/25/5c/255c5c5f3f604405f930d29d1f9bbf6b3633d105\n問題2では、まず質問を聞いてください。そのあと、問題用紙のせんたくしを読んでください。読む時間があります。それから話を聞いて、問題用紙の1から4の中から、最もよいものを一つ選んでください。"
+        },
+        {
+          "id": "n1_2024_07_ck_soal-chokai-9",
+          "prompt": "4番 — Audio (belum ada transkrip, dengarkan di tautan sumber):\nhttps://trynihongo.com/upload/mooddata/ae/37/ae377ee0cd0c005c18755f77ec2ac2059c9c8522",
+          "options": [
+            "設計変更の依頼に応じたこと",
+            "試作の部品がよくできたこと",
+            "予定より早く納品できたこと",
+            "納品したばねが高品質だったこと"
+          ],
+          "correctIndex": 1,
+          "instruction": "問題2 Audio pembuka: https://trynihongo.com/upload/mooddata/25/5c/255c5c5f3f604405f930d29d1f9bbf6b3633d105\n問題2では、まず質問を聞いてください。そのあと、問題用紙のせんたくしを読んでください。読む時間があります。それから話を聞いて、問題用紙の1から4の中から、最もよいものを一つ選んでください。"
+        },
+        {
+          "id": "n1_2024_07_ck_soal-chokai-10",
+          "prompt": "5番 — Audio (belum ada transkrip, dengarkan di tautan sumber):\nhttps://trynihongo.com/upload/mooddata/cf/60/cf60ca4221475298fa7eb95b03f60b0fb4465eb6",
+          "options": [
+            "ターゲットにした人が動画を見たか",
+            "動画の再生回数",
+            "さまざまな国の人に見られたか",
+            "動画が最後まで見られたか"
+          ],
+          "correctIndex": 0,
+          "instruction": "問題2 Audio pembuka: https://trynihongo.com/upload/mooddata/25/5c/255c5c5f3f604405f930d29d1f9bbf6b3633d105\n問題2では、まず質問を聞いてください。そのあと、問題用紙のせんたくしを読んでください。読む時間があります。それから話を聞いて、問題用紙の1から4の中から、最もよいものを一つ選んでください。"
+        },
+        {
+          "id": "n1_2024_07_ck_soal-chokai-11",
+          "prompt": "6番 — Audio (belum ada transkrip, dengarkan di tautan sumber):\nhttps://trynihongo.com/upload/mooddata/e4/0f/e40fe435fc74f816b4ab3f6ad2edbde779efa3e2",
+          "options": [
+            "サイズが規格外の魚",
+            "売れ残るほど多く捕れてしまった魚",
+            "一般にあまり知られていない魚",
+            "調理するのが面倒な魚"
+          ],
+          "correctIndex": 2,
+          "instruction": "問題2 Audio pembuka: https://trynihongo.com/upload/mooddata/25/5c/255c5c5f3f604405f930d29d1f9bbf6b3633d105\n問題2では、まず質問を聞いてください。そのあと、問題用紙のせんたくしを読んでください。読む時間があります。それから話を聞いて、問題用紙の1から4の中から、最もよいものを一つ選んでください。"
+        },
+        {
+          "id": "n1_2024_07_ck_soal-chokai-12",
+          "prompt": "1番 — Audio (belum ada transkrip, dengarkan di tautan sumber):\nhttps://trynihongo.com/upload/mooddata/2a/24/2a2456ffe2eed24453aa3d73d1188c2830c7caec",
+          "options": [
+            "1",
+            "2",
+            "3",
+            "4"
+          ],
+          "correctIndex": 1,
+          "instruction": "問題3 Audio pembuka: https://trynihongo.com/upload/mooddata/e4/1e/e41efd2ff5919538236733c750976d6e2f526652\n問題3では、問題用紙に何も印刷されていません。この問題は、全体としてどんな内容かを聞く問題です。話の前に質問はありません。まず話を聞いてください。それから、質問とせんたくしを聞いて、1から4の中から、最もよいものを一つ選んでください。"
+        },
+        {
+          "id": "n1_2024_07_ck_soal-chokai-13",
+          "prompt": "2番 — Audio (belum ada transkrip, dengarkan di tautan sumber):\nhttps://trynihongo.com/upload/mooddata/78/cc/78ccbb9736f7eac1e726fcb0b54afaf626bef3c3",
+          "options": [
+            "1",
+            "2",
+            "3",
+            "4"
+          ],
+          "correctIndex": 0,
+          "instruction": "問題3 Audio pembuka: https://trynihongo.com/upload/mooddata/e4/1e/e41efd2ff5919538236733c750976d6e2f526652\n問題3では、問題用紙に何も印刷されていません。この問題は、全体としてどんな内容かを聞く問題です。話の前に質問はありません。まず話を聞いてください。それから、質問とせんたくしを聞いて、1から4の中から、最もよいものを一つ選んでください。"
+        },
+        {
+          "id": "n1_2024_07_ck_soal-chokai-14",
+          "prompt": "3番 — Audio (belum ada transkrip, dengarkan di tautan sumber):\nhttps://trynihongo.com/upload/mooddata/3e/f7/3ef751fc525b71bcb8a75dbac11effc2d5204013",
+          "options": [
+            "1",
+            "2",
+            "3",
+            "4"
+          ],
+          "correctIndex": 3,
+          "instruction": "問題3 Audio pembuka: https://trynihongo.com/upload/mooddata/e4/1e/e41efd2ff5919538236733c750976d6e2f526652\n問題3では、問題用紙に何も印刷されていません。この問題は、全体としてどんな内容かを聞く問題です。話の前に質問はありません。まず話を聞いてください。それから、質問とせんたくしを聞いて、1から4の中から、最もよいものを一つ選んでください。"
+        },
+        {
+          "id": "n1_2024_07_ck_soal-chokai-15",
+          "prompt": "4番 — Audio (belum ada transkrip, dengarkan di tautan sumber):\nhttps://trynihongo.com/upload/mooddata/e3/44/e3443d908b466b7fb1123006eebe05d0495616fa",
+          "options": [
+            "1",
+            "2",
+            "3",
+            "4"
+          ],
+          "correctIndex": 2,
+          "instruction": "問題3 Audio pembuka: https://trynihongo.com/upload/mooddata/e4/1e/e41efd2ff5919538236733c750976d6e2f526652\n問題3では、問題用紙に何も印刷されていません。この問題は、全体としてどんな内容かを聞く問題です。話の前に質問はありません。まず話を聞いてください。それから、質問とせんたくしを聞いて、1から4の中から、最もよいものを一つ選んでください。"
+        },
+        {
+          "id": "n1_2024_07_ck_soal-chokai-16",
+          "prompt": "5番 — Audio (belum ada transkrip, dengarkan di tautan sumber):\nhttps://trynihongo.com/upload/mooddata/f4/06/f4064d40a6b347e9259223baabeaa843b7f82f81",
+          "options": [
+            "1",
+            "2",
+            "3",
+            "4"
+          ],
+          "correctIndex": 3,
+          "instruction": "問題3 Audio pembuka: https://trynihongo.com/upload/mooddata/e4/1e/e41efd2ff5919538236733c750976d6e2f526652\n問題3では、問題用紙に何も印刷されていません。この問題は、全体としてどんな内容かを聞く問題です。話の前に質問はありません。まず話を聞いてください。それから、質問とせんたくしを聞いて、1から4の中から、最もよいものを一つ選んでください。"
+        },
+        {
+          "id": "n1_2024_07_ck_soal-chokai-17",
+          "prompt": "1番 — Audio (belum ada transkrip, dengarkan di tautan sumber):\nhttps://trynihongo.com/upload/mooddata/43/a2/43a293ed4632cd4e1b3aa9870f0c5655b7921ca4",
+          "options": [
+            "1",
+            "2",
+            "3"
+          ],
+          "correctIndex": 0,
+          "instruction": "問題4 Audio pembuka: https://trynihongo.com/upload/mooddata/ae/49/ae49841ffcba732448dd52971afe7a85720f017d\n問題4では、問題用紙に何もいんさつされていません。まず文を聞いてください。それから、それに対する返事を聞いて、1から3の中から、最もよいものを一つ選んでください。"
+        },
+        {
+          "id": "n1_2024_07_ck_soal-chokai-18",
+          "prompt": "2番 — Audio (belum ada transkrip, dengarkan di tautan sumber):\nhttps://trynihongo.com/upload/mooddata/1a/75/1a75431b90e9fbf2fcafffcae15e09dcd42ab50c",
+          "options": [
+            "1",
+            "2",
+            "3"
+          ],
+          "correctIndex": 2,
+          "instruction": "問題4 Audio pembuka: https://trynihongo.com/upload/mooddata/ae/49/ae49841ffcba732448dd52971afe7a85720f017d\n問題4では、問題用紙に何もいんさつされていません。まず文を聞いてください。それから、それに対する返事を聞いて、1から3の中から、最もよいものを一つ選んでください。"
+        },
+        {
+          "id": "n1_2024_07_ck_soal-chokai-19",
+          "prompt": "3番 — Audio (belum ada transkrip, dengarkan di tautan sumber):\nhttps://trynihongo.com/upload/mooddata/2b/ad/2bad71961aa10142f37ef7ba0f781001196c049c",
+          "options": [
+            "1",
+            "2",
+            "3"
+          ],
+          "correctIndex": 2,
+          "instruction": "問題4 Audio pembuka: https://trynihongo.com/upload/mooddata/ae/49/ae49841ffcba732448dd52971afe7a85720f017d\n問題4では、問題用紙に何もいんさつされていません。まず文を聞いてください。それから、それに対する返事を聞いて、1から3の中から、最もよいものを一つ選んでください。"
+        },
+        {
+          "id": "n1_2024_07_ck_soal-chokai-20",
+          "prompt": "4番 — Audio (belum ada transkrip, dengarkan di tautan sumber):\nhttps://trynihongo.com/upload/mooddata/c2/6f/c26f76f2ea08ab22012ceac22b22dd2919b0cc22",
+          "options": [
+            "1",
+            "2",
+            "3"
+          ],
+          "correctIndex": 2,
+          "instruction": "問題4 Audio pembuka: https://trynihongo.com/upload/mooddata/ae/49/ae49841ffcba732448dd52971afe7a85720f017d\n問題4では、問題用紙に何もいんさつされていません。まず文を聞いてください。それから、それに対する返事を聞いて、1から3の中から、最もよいものを一つ選んでください。"
+        },
+        {
+          "id": "n1_2024_07_ck_soal-chokai-21",
+          "prompt": "5番 — Audio (belum ada transkrip, dengarkan di tautan sumber):\nhttps://trynihongo.com/upload/mooddata/1b/d6/1bd6012a66cb5d00572a8b99e371d6e9c4a54565",
+          "options": [
+            "1",
+            "2",
+            "3"
+          ],
+          "correctIndex": 2,
+          "instruction": "問題4 Audio pembuka: https://trynihongo.com/upload/mooddata/ae/49/ae49841ffcba732448dd52971afe7a85720f017d\n問題4では、問題用紙に何もいんさつされていません。まず文を聞いてください。それから、それに対する返事を聞いて、1から3の中から、最もよいものを一つ選んでください。"
+        },
+        {
+          "id": "n1_2024_07_ck_soal-chokai-22",
+          "prompt": "6番 — Audio (belum ada transkrip, dengarkan di tautan sumber):\nhttps://trynihongo.com/upload/mooddata/3c/0c/3c0c1710ccdc1af0a36a1fbc37b7f6ae29ed4d38",
+          "options": [
+            "1",
+            "2",
+            "3"
+          ],
+          "correctIndex": 1,
+          "instruction": "問題4 Audio pembuka: https://trynihongo.com/upload/mooddata/ae/49/ae49841ffcba732448dd52971afe7a85720f017d\n問題4では、問題用紙に何もいんさつされていません。まず文を聞いてください。それから、それに対する返事を聞いて、1から3の中から、最もよいものを一つ選んでください。"
+        },
+        {
+          "id": "n1_2024_07_ck_soal-chokai-23",
+          "prompt": "7番 — Audio (belum ada transkrip, dengarkan di tautan sumber):\nhttps://trynihongo.com/upload/mooddata/12/7d/127dba7f0f7d7c913c1a7b24ff8c29616f7dd558",
+          "options": [
+            "1",
+            "2",
+            "3"
+          ],
+          "correctIndex": 0,
+          "instruction": "問題4 Audio pembuka: https://trynihongo.com/upload/mooddata/ae/49/ae49841ffcba732448dd52971afe7a85720f017d\n問題4では、問題用紙に何もいんさつされていません。まず文を聞いてください。それから、それに対する返事を聞いて、1から3の中から、最もよいものを一つ選んでください。"
+        },
+        {
+          "id": "n1_2024_07_ck_soal-chokai-24",
+          "prompt": "8番 — Audio (belum ada transkrip, dengarkan di tautan sumber):\nhttps://trynihongo.com/upload/mooddata/bd/e2/bde2fd7cee92b06d08772a832c54a7d6d0455ec6",
+          "options": [
+            "1",
+            "2",
+            "3"
+          ],
+          "correctIndex": 0,
+          "instruction": "問題4 Audio pembuka: https://trynihongo.com/upload/mooddata/ae/49/ae49841ffcba732448dd52971afe7a85720f017d\n問題4では、問題用紙に何もいんさつされていません。まず文を聞いてください。それから、それに対する返事を聞いて、1から3の中から、最もよいものを一つ選んでください。"
+        },
+        {
+          "id": "n1_2024_07_ck_soal-chokai-25",
+          "prompt": "9番 — Audio (belum ada transkrip, dengarkan di tautan sumber):\nhttps://trynihongo.com/upload/mooddata/24/64/2464b9a1bdf2efbc414c77dd4f03aa2618dbde1e",
+          "options": [
+            "1",
+            "2",
+            "3"
+          ],
+          "correctIndex": 1,
+          "instruction": "問題4 Audio pembuka: https://trynihongo.com/upload/mooddata/ae/49/ae49841ffcba732448dd52971afe7a85720f017d\n問題4では、問題用紙に何もいんさつされていません。まず文を聞いてください。それから、それに対する返事を聞いて、1から3の中から、最もよいものを一つ選んでください。"
+        },
+        {
+          "id": "n1_2024_07_ck_soal-chokai-26",
+          "prompt": "10番 — Audio (belum ada transkrip, dengarkan di tautan sumber):\nhttps://trynihongo.com/upload/mooddata/28/1e/281e07af2f626b83bf7269727754457c299c003e",
+          "options": [
+            "1",
+            "2",
+            "3"
+          ],
+          "correctIndex": 0,
+          "instruction": "問題4 Audio pembuka: https://trynihongo.com/upload/mooddata/ae/49/ae49841ffcba732448dd52971afe7a85720f017d\n問題4では、問題用紙に何もいんさつされていません。まず文を聞いてください。それから、それに対する返事を聞いて、1から3の中から、最もよいものを一つ選んでください。"
+        },
+        {
+          "id": "n1_2024_07_ck_soal-chokai-27",
+          "prompt": "11番 — Audio (belum ada transkrip, dengarkan di tautan sumber):\nhttps://trynihongo.com/upload/mooddata/47/65/4765b119bc9da28b1d5ad4d4d069de0e583101a3",
+          "options": [
+            "1",
+            "2",
+            "3"
+          ],
+          "correctIndex": 1,
+          "instruction": "問題4 Audio pembuka: https://trynihongo.com/upload/mooddata/ae/49/ae49841ffcba732448dd52971afe7a85720f017d\n問題4では、問題用紙に何もいんさつされていません。まず文を聞いてください。それから、それに対する返事を聞いて、1から3の中から、最もよいものを一つ選んでください。"
+        },
+        {
+          "id": "n1_2024_07_ck_soal-chokai-28",
+          "prompt": "1番、2番 問題用紙に何もいんさつされていません。まず話を聞いてください。それから、質問とせんたくしを聞いて、1から4の中から、最もよいものを一つ選んでください。\n1番 — Audio (belum ada transkrip, dengarkan di tautan sumber):\nhttps://trynihongo.com/upload/mooddata/75/7b/757baf867aea6f93eb9f93327dbdb09ad4402001",
+          "options": [
+            "1",
+            "2",
+            "3",
+            "4"
+          ],
+          "correctIndex": 2,
+          "instruction": "問題5 問題5では、長めの話を聞きます。この問題には練習はありません。メモをとってもかまいません。"
+        },
+        {
+          "id": "n1_2024_07_ck_soal-chokai-29",
+          "prompt": "2番 まず話を聞いてください。それから、二つの質問を聞いて、それぞれ問題用紙の1から4の中から、最もよいものを一つ選んでください。\n質問1 — Audio (belum ada transkrip, dengarkan di tautan sumber):",
+          "options": [
+            "講座1番",
+            "講座2番",
+            "講座3番",
+            "講座4番"
+          ],
+          "correctIndex": 3,
+          "instruction": "問題5 問題5では、長めの話を聞きます。この問題には練習はありません。メモをとってもかまいません。"
+        },
+        {
+          "id": "n1_2024_07_ck_soal-chokai-30",
+          "prompt": "2番 まず話を聞いてください。それから、二つの質問を聞いて、それぞれ問題用紙の1から4の中から、最もよいものを一つ選んでください。\n質問2 — Audio (belum ada transkrip, dengarkan di tautan sumber):",
+          "options": [
+            "講座1番",
+            "講座2番",
+            "講座3番",
+            "講座4番"
+          ],
+          "correctIndex": 2,
+          "instruction": "問題5 問題5では、長めの話を聞きます。この問題には練習はありません。メモをとってもかまいません。"
+        }
+      ]
+    }
+  }
+}

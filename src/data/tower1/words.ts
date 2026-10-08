@@ -1,0 +1,188 @@
+// ==============================================================================
+// TOWER 1 — BANK KATA PER LANTAI (kolam tertutup)
+// Setiap kata hanya memakai aksara yang sudah diajarkan di lantainya; ini dijaga
+// oleh tes (tower1.content.test.ts), supaya klaim "baca tanpa Romaji" benar.
+// ==============================================================================
+
+export interface Word {
+  jp: string;
+  /** Arti (Indonesia). */
+  id: string;
+}
+
+/** Lantai 3 — hanya あ〜そ (baris A, K, S). */
+export const WORDS_F3: Word[] = [
+  { jp: 'あい', id: 'cinta' },
+  { jp: 'いえ', id: 'rumah' },
+  { jp: 'うえ', id: 'atas' },
+  { jp: 'あお', id: 'biru' },
+  { jp: 'あか', id: 'merah' },
+  { jp: 'あき', id: 'musim gugur' },
+  { jp: 'あさ', id: 'pagi' },
+  { jp: 'あし', id: 'kaki' },
+  { jp: 'いけ', id: 'kolam' },
+  { jp: 'いす', id: 'kursi' },
+  { jp: 'うし', id: 'sapi' },
+  { jp: 'えき', id: 'stasiun' },
+  { jp: 'おか', id: 'bukit' },
+  { jp: 'かお', id: 'wajah' },
+  { jp: 'かさ', id: 'payung' },
+  { jp: 'くさ', id: 'rumput' },
+  { jp: 'くうき', id: 'udara' },
+  { jp: 'けしき', id: 'pemandangan' },
+  { jp: 'こえ', id: 'suara' },
+  { jp: 'しお', id: 'garam' },
+  { jp: 'すし', id: 'sushi' },
+  { jp: 'せかい', id: 'dunia' },
+  { jp: 'せき', id: 'tempat duduk' },
+  { jp: 'そこ', id: 'di situ' },
+  { jp: 'ここ', id: 'di sini' },
+  { jp: 'あそこ', id: 'di sana' },
+  { jp: 'すいか', id: 'semangka' },
+  { jp: 'おかし', id: 'kue/camilan' }
+];
+
+/** Lantai 4 — kolam F3 + baris T, N, H. */
+export const WORDS_F4: Word[] = [
+  { jp: 'ねこ', id: 'kucing' },
+  { jp: 'いぬ', id: 'anjing' },
+  { jp: 'たこ', id: 'gurita' },
+  { jp: 'たけ', id: 'bambu' },
+  { jp: 'つき', id: 'bulan' },
+  { jp: 'ふね', id: 'kapal' },
+  { jp: 'ひと', id: 'orang' },
+  { jp: 'ひとつ', id: 'satu (buah)' },
+  { jp: 'ふたつ', id: 'dua (buah)' },
+  { jp: 'そと', id: 'luar' },
+  { jp: 'おと', id: 'bunyi' },
+  { jp: 'ほし', id: 'bintang' },
+  { jp: 'あに', id: 'kakak laki-laki (milikku)' },
+  { jp: 'あね', id: 'kakak perempuan (milikku)' },
+  { jp: 'ちち', id: 'ayah (milikku)' },
+  { jp: 'はは', id: 'ibu (milikku)' },
+  { jp: 'ちかく', id: 'dekat' },
+  { jp: 'にく', id: 'daging' },
+  { jp: 'ふく', id: 'pakaian' },
+  { jp: 'はこ', id: 'kotak' },
+  { jp: 'なつ', id: 'musim panas' },
+  { jp: 'てつ', id: 'besi' },
+  { jp: 'ひこうき', id: 'pesawat terbang' },
+  { jp: 'たいふう', id: 'topan' },
+  { jp: 'おいしい', id: 'enak' },
+  { jp: 'たかい', id: 'tinggi/mahal' },
+  { jp: 'あつい', id: 'panas' },
+  { jp: 'たのしい', id: 'menyenangkan' },
+  { jp: 'すてき', id: 'indah/keren' }
+];
+
+/** Lantai 5 — seluruh 46 hiragana dasar. */
+export const WORDS_F5: Word[] = [
+  { jp: 'さかな', id: 'ikan' },
+  { jp: 'やま', id: 'gunung' },
+  { jp: 'かわ', id: 'sungai' },
+  { jp: 'うみ', id: 'laut' },
+  { jp: 'くるま', id: 'mobil' },
+  { jp: 'さくら', id: 'bunga sakura' },
+  { jp: 'やすみ', id: 'libur/istirahat' },
+  { jp: 'ゆめ', id: 'mimpi' },
+  { jp: 'そら', id: 'langit' },
+  { jp: 'いま', id: 'sekarang' },
+  { jp: 'こころ', id: 'hati' },
+  { jp: 'ほん', id: 'buku' },
+  { jp: 'にほん', id: 'Jepang' },
+  { jp: 'みせ', id: 'toko' },
+  { jp: 'みち', id: 'jalan' },
+  { jp: 'ゆき', id: 'salju' },
+  { jp: 'よる', id: 'malam' },
+  { jp: 'わたし', id: 'saya' },
+  { jp: 'あなた', id: 'kamu' },
+  { jp: 'かれ', id: 'dia (laki-laki)' },
+  { jp: 'なまえ', id: 'nama' },
+  { jp: 'まいにち', id: 'setiap hari' },
+  { jp: 'みなみ', id: 'selatan' },
+  { jp: 'きた', id: 'utara' },
+  { jp: 'にし', id: 'barat' },
+  { jp: 'せんせい', id: 'guru' },
+  { jp: 'はやい', id: 'cepat/awal' },
+  { jp: 'ふるい', id: 'tua/lama (benda)' },
+  { jp: 'あたらしい', id: 'baru' },
+  { jp: 'ちいさい', id: 'kecil' },
+  { jp: 'のむ', id: 'minum' },
+  { jp: 'みる', id: 'melihat' },
+  { jp: 'いく', id: 'pergi' },
+  { jp: 'くる', id: 'datang' },
+  { jp: 'ねる', id: 'tidur' },
+  { jp: 'はなす', id: 'berbicara' },
+  { jp: 'よむ', id: 'membaca' },
+  { jp: 'かく', id: 'menulis' },
+  { jp: 'まつ', id: 'menunggu' },
+  { jp: 'つくる', id: 'membuat' },
+  { jp: 'らいねん', id: 'tahun depan' }
+];
+
+/** Lantai 6 — kata ber-dakuten/handakuten (kolam F6). */
+export const WORDS_F6: Word[] = [
+  { jp: 'ごはん', id: 'nasi/makan' },
+  { jp: 'かぎ', id: 'kunci' },
+  { jp: 'ぎんこう', id: 'bank' },
+  { jp: 'でんわ', id: 'telepon' },
+  { jp: 'だいがく', id: 'universitas' },
+  { jp: 'ともだち', id: 'teman' },
+  { jp: 'たべもの', id: 'makanan' },
+  { jp: 'ぶた', id: 'babi' },
+  { jp: 'かばん', id: 'tas' },
+  { jp: 'ぱん', id: 'roti' },
+  { jp: 'ぺん', id: 'pena' },
+  { jp: 'えんぴつ', id: 'pensil' },
+  { jp: 'さんぽ', id: 'jalan-jalan' },
+  { jp: 'りんご', id: 'apel' },
+  { jp: 'ぞう', id: 'gajah' },
+  { jp: 'かぜ', id: 'angin/masuk angin' },
+  { jp: 'まど', id: 'jendela' },
+  { jp: 'みどり', id: 'hijau' },
+  { jp: 'くだもの', id: 'buah-buahan' },
+  { jp: 'だれ', id: 'siapa' },
+  { jp: 'どこ', id: 'di mana' },
+  { jp: 'どれ', id: 'yang mana' },
+  { jp: 'ぜんぶ', id: 'semuanya' },
+  { jp: 'おんがく', id: 'musik' },
+  { jp: 'あぶない', id: 'berbahaya' },
+  { jp: 'ばんごう', id: 'nomor' },
+  { jp: 'ぼく', id: 'aku (laki-laki)' },
+  { jp: 'ごみ', id: 'sampah' },
+  { jp: 'まんが', id: 'komik' }
+];
+
+/** Lantai 7 — kata dengan っ, ゃゅょ, dan vokal panjang (tanpa dakuten). */
+export const WORDS_F7: Word[] = [
+  { jp: 'きって', id: 'perangko' },
+  { jp: 'ちょっと', id: 'sedikit' },
+  { jp: 'きょう', id: 'hari ini' },
+  { jp: 'りょこう', id: 'perjalanan wisata' },
+  { jp: 'しゃしん', id: 'foto' },
+  { jp: 'ひゃく', id: 'seratus' },
+  { jp: 'おちゃ', id: 'teh' },
+  { jp: 'いっしょ', id: 'bersama' },
+  { jp: 'けっこん', id: 'pernikahan' },
+  { jp: 'にっき', id: 'buku harian' },
+  { jp: 'こっち', id: 'sebelah sini' },
+  { jp: 'あっち', id: 'sebelah sana' },
+  { jp: 'とうきょう', id: 'Tokyo' },
+  { jp: 'りょうり', id: 'masakan' },
+  { jp: 'きょうしつ', id: 'ruang kelas' },
+  { jp: 'おおきい', id: 'besar' },
+  { jp: 'おおかみ', id: 'serigala' },
+  { jp: 'こおり', id: 'es' },
+  { jp: 'とおい', id: 'jauh' },
+  { jp: 'おかあさん', id: 'ibu' },
+  { jp: 'おとうさん', id: 'ayah' },
+  { jp: 'おはよう', id: 'selamat pagi' },
+  { jp: 'さようなら', id: 'selamat tinggal' },
+  { jp: 'ほうれんそう', id: 'bayam' },
+  { jp: 'とけい', id: 'jam' },
+  { jp: 'ゆき', id: 'salju' },
+  { jp: 'ゆうき', id: 'keberanian' },
+  { jp: 'おと', id: 'bunyi' },
+  { jp: 'おっと', id: 'suami' },
+  { jp: 'さっか', id: 'penulis' }
+];

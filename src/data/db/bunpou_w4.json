@@ -1,0 +1,650 @@
+[
+  {
+    "id": "w4d1g1",
+    "map_id": "map_bunpou_w4",
+    "stage_id": "stage_bunpou_w4d1",
+    "title": "あなたにとって（Nに＋とって／とっては／とっても）",
+    "formula": "Nに ＋ とって／とっては／とっても",
+    "meaning_en": "From someone's point of view / for someone.",
+    "meaning_id": "Bagi... / Dari sudut pandang... (Menilai kepentingan atau dampak dari kacamata seseorang)",
+    "explanation_note": "Subjektivitas prioritas nilai yang berbeda pada tiap individu.",
+    "examples": [
+      {
+        "jp": "あなたにとって、いちばん大切なものは何ですか。",
+        "en": "What is the most important thing to you?",
+        "id": "Bagi kamu, apa hal yang paling penting?"
+      }
+    ],
+    "question_ids": [
+      "w4d1g1_q1",
+      "w4d1g1_q2",
+      "w4d1g1_q3",
+      "w4d1g1_q4",
+      "w4d1g1_q5",
+      "w4d1g1_q6",
+      "w4d1g1_q7"
+    ],
+    "questions_status": "authored"
+  },
+  {
+    "id": "w4d1g2",
+    "map_id": "map_bunpou_w4",
+    "stage_id": "stage_bunpou_w4d1",
+    "title": "年のわりには（V/A/na/Nの＋わりに／わりには）",
+    "formula": "V・A・na・N（Nの／naな） ＋ わりに／わりには",
+    "meaning_en": "Relatively / unexpectedly, considering X.",
+    "meaning_id": "Padahal..., tapi herannya malah... (Nggak sebanding dengan apa yang dikira)",
+    "explanation_note": "Keheranan atas hasil yang meleset dari taksiran awal.",
+    "examples": [
+      {
+        "jp": "年のわりには若く見える。",
+        "en": "He looks young for his age.",
+        "id": "Terlihat muda untuk usianya."
+      }
+    ],
+    "question_ids": [
+      "w4d1g2_q1",
+      "w4d1g2_q2",
+      "w4d1g2_q3",
+      "w4d1g2_q4",
+      "w4d1g2_q5",
+      "w4d1g2_q6",
+      "w4d1g2_q7"
+    ],
+    "questions_status": "authored"
+  },
+  {
+    "id": "w4d1g3",
+    "map_id": "map_bunpou_w4",
+    "stage_id": "stage_bunpou_w4d1",
+    "title": "知っているくせに（V/A/na/Nの＋くせに）",
+    "formula": "V・A・na・N（Nの／naな） ＋ くせに",
+    "meaning_en": "Even though (with a feeling of blame/criticism).",
+    "meaning_id": "Padahal tahu, tapi kok malah gitu! (Menyindir atau kesal karena perilakunya bertolak belakang)",
+    "explanation_note": "Kekecewaan emosional atas ketidakjujuran atau kemalasan pihak lain.",
+    "examples": [
+      {
+        "jp": "知っているくせに、教えてくれない。",
+        "en": "Even though he knows, he won't tell me.",
+        "id": "Padahal dia tahu, tapi tidak mau kasih tahu."
+      }
+    ],
+    "question_ids": [
+      "w4d1g3_q1",
+      "w4d1g3_q2",
+      "w4d1g3_q3",
+      "w4d1g3_q4",
+      "w4d1g3_q5",
+      "w4d1g3_q6",
+      "w4d1g3_q7"
+    ],
+    "questions_status": "authored"
+  },
+  {
+    "id": "w4d1g4",
+    "map_id": "map_bunpou_w4",
+    "stage_id": "stage_bunpou_w4d1",
+    "title": "お化粧なんか（N/na/Nで＋なんか／なんて；Vて／Aく＋など）",
+    "formula": "N／na・Nで ＋ なんか／なんて；Vて／Aく ＋ など",
+    "meaning_en": "Emphasizes an unexpected or negative feeling; negative words follow.",
+    "meaning_id": "Hal sepele kayak gitu sih...! / Mana sudi... (Meremehkan, menganggap enteng, atau merendah)",
+    "explanation_note": "Memperkecil nilai suatu hal demi ketegasan atau kesopanan merendah.",
+    "examples": [
+      {
+        "jp": "お化粧なんかしてはいけません。",
+        "en": "You must not wear make-up.",
+        "id": "Tidak boleh pakai make-up segala."
+      }
+    ],
+    "question_ids": [
+      "w4d1g4_q1",
+      "w4d1g4_q2",
+      "w4d1g4_q3",
+      "w4d1g4_q4",
+      "w4d1g4_q5",
+      "w4d1g4_q6",
+      "w4d1g4_q7"
+    ],
+    "questions_status": "authored"
+  },
+  {
+    "id": "w4d2g1",
+    "map_id": "map_bunpou_w4",
+    "stage_id": "stage_bunpou_w4d2",
+    "title": "先生のおかげで（V/i-adj/na/Nの＋おかげで／おかげだ）",
+    "formula": "V・i形・na・N（Nの／naな） ＋ おかげで／おかげだ",
+    "meaning_en": "Thanks to (good result for the speaker).",
+    "meaning_id": "Berkat bantuan... / Beruntung karena... (Hasil positif yang disyukuri)",
+    "explanation_note": "Rasa terima kasih yang tulus atas kontribusi pihak lain.",
+    "examples": [
+      {
+        "jp": "先生のおかげで合格できました。",
+        "en": "Thanks to my teacher, I passed the exam.",
+        "id": "Berkat gurunya, aku bisa lulus ujian."
+      }
+    ],
+    "question_ids": [
+      "w4d2g1_q1",
+      "w4d2g1_q2",
+      "w4d2g1_q3",
+      "w4d2g1_q4",
+      "w4d2g1_q5",
+      "w4d2g1_q6",
+      "w4d2g1_q7"
+    ],
+    "questions_status": "authored"
+  },
+  {
+    "id": "w4d2g2",
+    "map_id": "map_bunpou_w4",
+    "stage_id": "stage_bunpou_w4d2",
+    "title": "遅れたせいで（V/i-adj/na/Nの＋せいで／せいか／せいだ）",
+    "formula": "V・i形・na・N（Nの／naな） ＋ せいで／せいか／せいだ",
+    "meaning_en": "Because of (bad result for the speaker).",
+    "meaning_id": "Gara-gara... / Akibat buruk dari... (Menyalahkan penyebab atas hasil buruk)",
+    "explanation_note": "Kekesalan atas dampak buruk yang menimpa diri sendiri.",
+    "examples": [
+      {
+        "jp": "バスが遅れたせいで、約束の時間に間に合わなかった。",
+        "en": "I missed my appointment because the bus was late.",
+        "id": "Gara-gara bus telat, aku tidak sempat memenuhi janji."
+      }
+    ],
+    "question_ids": [
+      "w4d2g2_q1",
+      "w4d2g2_q2",
+      "w4d2g2_q3",
+      "w4d2g2_q4",
+      "w4d2g2_q5",
+      "w4d2g2_q6",
+      "w4d2g2_q7"
+    ],
+    "questions_status": "authored"
+  },
+  {
+    "id": "w4d2g3",
+    "map_id": "map_bunpou_w4",
+    "stage_id": "stage_bunpou_w4d2",
+    "title": "ビールのかわりに（V/A/na/Nの＋かわりに；そのかわり(に)）",
+    "formula": "V・A・na・N（Nの／naな） ＋ かわりに；そのかわり(に)",
+    "meaning_en": "Instead of.",
+    "meaning_id": "Sebagai ganti... / Mengompensasi hal lain (Pertukaran peran atau kompensasi setara)",
+    "explanation_note": "Keseimbangan timbal balik dalam pertukaran opsi.",
+    "examples": [
+      {
+        "jp": "車で来たので、ビールのかわりにジュースをください。",
+        "en": "Since I am driving, I will have juice instead of beer.",
+        "id": "Karena aku bawa mobil, tolong kasih jus saja bukan bir."
+      }
+    ],
+    "question_ids": [
+      "w4d2g3_q1",
+      "w4d2g3_q2",
+      "w4d2g3_q3",
+      "w4d2g3_q4",
+      "w4d2g3_q5",
+      "w4d2g3_q6",
+      "w4d2g3_q7"
+    ],
+    "questions_status": "authored"
+  },
+  {
+    "id": "w4d2g4",
+    "map_id": "map_bunpou_w4",
+    "stage_id": "stage_bunpou_w4d2",
+    "title": "部長にかわって（Nに＋かわって／かわり）",
+    "formula": "Nに ＋ かわって／かわり",
+    "meaning_en": "On behalf of.",
+    "meaning_id": "Mewakili... / Atas nama... (Menggantikan peran orang lain secara resmi)",
+    "explanation_note": "Amanah resmi mewakili figur yang berhalangan hadir.",
+    "examples": [
+      {
+        "jp": "出張中の部長にかわって、私がごあいさつさせていただきます。",
+        "en": "Please allow me to say a few words on behalf of my division manager who is currently on a business trip.",
+        "id": "Izinkan saya menyampaikan sambutan mewakili kepala divisi yang sedang dinas luar."
+      }
+    ],
+    "question_ids": [
+      "w4d2g4_q1",
+      "w4d2g4_q2",
+      "w4d2g4_q3",
+      "w4d2g4_q4",
+      "w4d2g4_q5",
+      "w4d2g4_q6",
+      "w4d2g4_q7"
+    ],
+    "questions_status": "authored"
+  },
+  {
+    "id": "w4d3g1",
+    "map_id": "map_bunpou_w4",
+    "stage_id": "stage_bunpou_w4d3",
+    "title": "米粒くらい／米粒ほど（N/naな/Aい/Vる＋くらい／ぐらい／ほど＋だ／に／のN）",
+    "formula": "N・naな・Aい・Vる ＋ くらい／ぐらい／ほど（だ／に／のN）",
+    "meaning_en": "Approximately / to the extent of.",
+    "meaning_id": "Kira-kira sebesar... / Sampai ke tingkat... (Mengibaratkan ukuran atau derajat keparahan)",
+    "explanation_note": "Hiperbola wajar untuk menggambarkan intensitas perasaan.",
+    "examples": [
+      {
+        "jp": "それは米粒くらいの大きさです。",
+        "en": "It's about the size of a grain of rice.",
+        "id": "Ukurannya kira-kira sebesar butir beras."
+      }
+    ],
+    "question_ids": [
+      "w4d3g1_q1",
+      "w4d3g1_q2",
+      "w4d3g1_q3",
+      "w4d3g1_q4",
+      "w4d3g1_q5",
+      "w4d3g1_q6",
+      "w4d3g1_q7"
+    ],
+    "questions_status": "authored"
+  },
+  {
+    "id": "w4d3g2",
+    "map_id": "map_bunpou_w4",
+    "stage_id": "stage_bunpou_w4d3",
+    "title": "若い人ほど（Aい／naな＋ほど；Nほど）",
+    "formula": "Aい／naな ＋ ほど；Nほど",
+    "meaning_en": "The more (contrastive, ≠くらい).",
+    "meaning_id": "Makin... justru makin... (Korelasi bertingkat atau kecenderungan kuat)",
+    "explanation_note": "Kecenderungan proporsional yang terlihat pada kelompok tertentu.",
+    "examples": [
+      {
+        "jp": "若い人ほど朝寝坊をする。",
+        "en": "Young people seem to oversleep more.",
+        "id": "Semakin muda orangnya, semakin sering bangun kesiangan."
+      }
+    ],
+    "question_ids": [
+      "w4d3g2_q1",
+      "w4d3g2_q2",
+      "w4d3g2_q3",
+      "w4d3g2_q4",
+      "w4d3g2_q5",
+      "w4d3g2_q6",
+      "w4d3g2_q7"
+    ],
+    "questions_status": "authored"
+  },
+  {
+    "id": "w4d3g3",
+    "map_id": "map_bunpou_w4",
+    "stage_id": "stage_bunpou_w4d3",
+    "title": "知れば知るほど（Vば Vるほど／Aければ Aいほど／naならば naなほど）",
+    "formula": "Vば Vる ＋ ほど；Aければ Aい ＋ ほど；naならば naな ＋ ほど",
+    "meaning_en": "The more...the more (progressive correlation).",
+    "meaning_id": "Makin sering... makin bertambah pula... (Korelasi bertingkat sejalan)",
+    "explanation_note": "Progresivitas linier di mana dua variabel saling memacu naik.",
+    "examples": [
+      {
+        "jp": "彼のことを知れば知るほど好きになる。",
+        "en": "The more I get to know him, the better I like him.",
+        "id": "Semakin aku mengenalnya, semakin aku menyukainya."
+      }
+    ],
+    "question_ids": [
+      "w4d3g3_q1",
+      "w4d3g3_q2",
+      "w4d3g3_q3",
+      "w4d3g3_q4",
+      "w4d3g3_q5",
+      "w4d3g3_q6",
+      "w4d3g3_q7"
+    ],
+    "questions_status": "authored"
+  },
+  {
+    "id": "w4d3g4",
+    "map_id": "map_bunpou_w4",
+    "stage_id": "stage_bunpou_w4d3",
+    "title": "彼女くらい親切な人はいない（Nくらい／ほど＋N[人]はいない／N[物・事]はない）",
+    "formula": "Nくらい／ほど ＋ N[人]はいない／N[物・事]はない",
+    "meaning_en": "There is no one/nothing as X as N (superlative).",
+    "meaning_id": "Nggak ada yang se-... ini! (Paling tiada duanya / tidak ada tandingannya)",
+    "explanation_note": "Kekaguman mutlak tanpa tandingan pembanding.",
+    "examples": [
+      {
+        "jp": "彼女くらい親切な人はいない。",
+        "en": "There is no one as friendly as her.",
+        "id": "Tidak ada orang yang seramah dia."
+      }
+    ],
+    "question_ids": [
+      "w4d3g4_q1",
+      "w4d3g4_q2",
+      "w4d3g4_q3",
+      "w4d3g4_q4",
+      "w4d3g4_q5",
+      "w4d3g4_q6",
+      "w4d3g4_q7"
+    ],
+    "questions_status": "authored"
+  },
+  {
+    "id": "w4d4g1",
+    "map_id": "map_bunpou_w4",
+    "stage_id": "stage_bunpou_w4d4",
+    "title": "あやまることはない（Vる＋ことはない）",
+    "formula": "Vる ＋ ことはない",
+    "meaning_en": "No need to (do something).",
+    "meaning_id": "Nggak perlu sampai... segitunya / Tak usah repot-repot... (Menenangkan agar tidak berlebihan)",
+    "explanation_note": "Menghibur dan menenangkan hati lawan bicara yang sedang panik.",
+    "examples": [
+      {
+        "jp": "君があやまることはないよ。",
+        "en": "There is no need for you to apologize.",
+        "id": "Kamu tidak perlu minta maaf."
+      }
+    ],
+    "question_ids": [
+      "w4d4g1_q1",
+      "w4d4g1_q2",
+      "w4d4g1_q3",
+      "w4d4g1_q4",
+      "w4d4g1_q5",
+      "w4d4g1_q6",
+      "w4d4g1_q7"
+    ],
+    "questions_status": "authored"
+  },
+  {
+    "id": "w4d4g2",
+    "map_id": "map_bunpou_w4",
+    "stage_id": "stage_bunpou_w4d4",
+    "title": "遅れるということだ（V/A/na/N＋ということだ）",
+    "formula": "V・A・na・N ＋ ということだ",
+    "meaning_en": "It means that / I heard that (hearsay, can follow imperative/volitional forms too).",
+    "meaning_id": "Kabarnya katanya... / Itu artinya... (Menyampaikan kabar berita atau menyimpulkan makna)",
+    "explanation_note": "Penyampaian kabar yang terkonfirmasi atau penarikan kesimpulan logis.",
+    "examples": [
+      {
+        "jp": "田中さんから電話があって、少し遅れるということです。",
+        "en": "Tanaka-san called and he said he would be a little late.",
+        "id": "Tanaka-san telepon, katanya akan sedikit terlambat."
+      }
+    ],
+    "question_ids": [
+      "w4d4g2_q1",
+      "w4d4g2_q2",
+      "w4d4g2_q3",
+      "w4d4g2_q4",
+      "w4d4g2_q5",
+      "w4d4g2_q6",
+      "w4d4g2_q7"
+    ],
+    "questions_status": "authored"
+  },
+  {
+    "id": "w4d4g3",
+    "map_id": "map_bunpou_w4",
+    "stage_id": "stage_bunpou_w4d4",
+    "title": "休むことだ（Vる／Vない＋ことだ）",
+    "formula": "Vる／Vない ＋ ことだ",
+    "meaning_en": "You should do / used when giving advice or suggestions.",
+    "meaning_id": "Kuncinya ya harus... / Jalan terbaiknya adalah... (Saran tegas dari orang berpengalaman)",
+    "explanation_note": "Nasihat otoritatif yang penuh kearifan praktis.",
+    "examples": [
+      {
+        "jp": "暖かくして、ゆっくり休むことだ。",
+        "en": "You should keep warm, relax and rest.",
+        "id": "Sebaiknya kamu jaga badan tetap hangat dan istirahat dengan baik."
+      }
+    ],
+    "question_ids": [
+      "w4d4g3_q1",
+      "w4d4g3_q2",
+      "w4d4g3_q3",
+      "w4d4g3_q4",
+      "w4d4g3_q5",
+      "w4d4g3_q6",
+      "w4d4g3_q7"
+    ],
+    "questions_status": "authored"
+  },
+  {
+    "id": "w4d4g4",
+    "map_id": "map_bunpou_w4",
+    "stage_id": "stage_bunpou_w4d4",
+    "title": "どんなにうれしいことか（どんなに／どれだけ／どれほど／何度／何時間＋Aいことか, etc.）",
+    "formula": "どんなに／どれだけ／どれほど／何度 ＋ Aいことか／Aかったことか／naなことか／Vることか／Vたことか",
+    "meaning_en": "How very much... (rhetorical emphasis of degree).",
+    "meaning_id": "Betapa luar biasanya rasa... ini! (Luapan emosi mendalam yang tak terhingga)",
+    "explanation_note": "Ungkapan puitis dan emosional yang melampaui batas kata-kata biasa.",
+    "examples": [
+      {
+        "jp": "合格できたら、どんなにうれしいことか。",
+        "en": "How happy would I be if I passed!",
+        "id": "Kalau bisa lulus, betapa senangnya aku!"
+      }
+    ],
+    "question_ids": [
+      "w4d4g4_q1",
+      "w4d4g4_q2",
+      "w4d4g4_q3",
+      "w4d4g4_q4",
+      "w4d4g4_q5",
+      "w4d4g4_q6",
+      "w4d4g4_q7"
+    ],
+    "questions_status": "authored"
+  },
+  {
+    "id": "w4d5g1",
+    "map_id": "map_bunpou_w4",
+    "stage_id": "stage_bunpou_w4d5",
+    "title": "来週だっけ？（N/naだ(った)っけ；Aかったっけ；Vたっけ）",
+    "formula": "Nだ(った)っけ／naだ(った)っけ／Aかったっけ／Vたっけ",
+    "meaning_en": "Trying to recall/confirm something forgotten.",
+    "meaning_id": "Eh, bukannya... ya? / Waktu itu gimana ya? (Mencoba mengonfirmasi ingatan yang samar)",
+    "explanation_note": "Pengecekan ramah tanpa menghakimi kelupaan diri sendiri.",
+    "examples": [
+      {
+        "jp": "国へ帰るのは、来週だ(った)っけ？",
+        "en": "You said that you were going back to your country next week, didn't you?",
+        "id": "Kamu pulang ke negaramu minggu depan, kan?"
+      }
+    ],
+    "question_ids": [
+      "w4d5g1_q1",
+      "w4d5g1_q2",
+      "w4d5g1_q3",
+      "w4d5g1_q4",
+      "w4d5g1_q5",
+      "w4d5g1_q6",
+      "w4d5g1_q7"
+    ],
+    "questions_status": "authored"
+  },
+  {
+    "id": "w4d5g2",
+    "map_id": "map_bunpou_w4",
+    "stage_id": "stage_bunpou_w4d5",
+    "title": "やるしかない（Vる＋しかない）",
+    "formula": "Vる ＋ しかない",
+    "meaning_en": "There is no choice but to.",
+    "meaning_id": "Nggak ada pilihan lain selain harus...! (Tekad pasrah atau jalan satu-satunya)",
+    "explanation_note": "Kepasrahan berani untuk menghadapi tantangan terakhir.",
+    "examples": [
+      {
+        "jp": "できるまで、やるしかない。",
+        "en": "You must try until you get it.",
+        "id": "Harus terus dicoba sampai bisa."
+      }
+    ],
+    "question_ids": [
+      "w4d5g2_q1",
+      "w4d5g2_q2",
+      "w4d5g2_q3",
+      "w4d5g2_q4",
+      "w4d5g2_q5",
+      "w4d5g2_q6",
+      "w4d5g2_q7"
+    ],
+    "questions_status": "authored"
+  },
+  {
+    "id": "w4d5g3",
+    "map_id": "map_bunpou_w4",
+    "stage_id": "stage_bunpou_w4d5",
+    "title": "結婚してるんだって（V/A（んだ）って；na/N（んだ）って）",
+    "formula": "V・A（んだ）って；na・N（んだ）って",
+    "meaning_en": "Hearsay, casual: I heard that.",
+    "meaning_id": "Katanya sih... / Denger-denger katanya... (Kabar burung santai dalam obrolan)",
+    "explanation_note": "Ragam lisan akrab untuk berbagi kabar angin terkini.",
+    "examples": [
+      {
+        "jp": "田中さん、結婚してるんだって。",
+        "en": "I just found out Tanaka-san is married!",
+        "id": "Katanya Tanaka-san sudah menikah!"
+      }
+    ],
+    "question_ids": [
+      "w4d5g3_q1",
+      "w4d5g3_q2",
+      "w4d5g3_q3",
+      "w4d5g3_q4",
+      "w4d5g3_q5",
+      "w4d5g3_q6",
+      "w4d5g3_q7"
+    ],
+    "questions_status": "authored"
+  },
+  {
+    "id": "w4d5g4",
+    "map_id": "map_bunpou_w4",
+    "stage_id": "stage_bunpou_w4d5",
+    "title": "だってまずいんだもん（V/A（んだ）もん；na/N（んだ）もん）",
+    "formula": "V・A（んだ）もん；na・N（んだ）もん",
+    "meaning_en": "Casual expression showing a reason (usually with だって).",
+    "meaning_id": "Habisnya... sih! / Soalnya gimana dong... (Alasan manja atau membela diri)",
+    "explanation_note": "Pembelaan diri emosional dengan nada sedikit merengek atau manja.",
+    "examples": [
+      {
+        "jp": "「どうして食べないの？」「だって、まずいんだもん。」",
+        "en": "\"Why didn't you eat it?\" \"Because it tastes awful.\"",
+        "id": "\"Kenapa tidak dimakan?\" \"Habisnya, rasanya tidak enak.\""
+      }
+    ],
+    "question_ids": [
+      "w4d5g4_q1",
+      "w4d5g4_q2",
+      "w4d5g4_q3",
+      "w4d5g4_q4",
+      "w4d5g4_q5",
+      "w4d5g4_q6",
+      "w4d5g4_q7"
+    ],
+    "questions_status": "authored"
+  },
+  {
+    "id": "w4d6g1",
+    "map_id": "map_bunpou_w4",
+    "stage_id": "stage_bunpou_w4d6",
+    "title": "父の兄、つまり伯父（a。つまりa'。）",
+    "formula": "a。つまりa'。",
+    "meaning_en": "Used when rephrasing an idea using different words.",
+    "meaning_id": "Dengan kata lain... / Singkatnya... (Menyimpulkan atau memparafrasekan pokok bahasan)",
+    "explanation_note": "Penyederhanaan konsep rumit menjadi formula ringkas.",
+    "examples": [
+      {
+        "jp": "父の兄、つまり私の伯父は、医者をしている。",
+        "en": "My father's elder brother, in other words my uncle, is a doctor.",
+        "id": "Kakak ayahku, alias pamanku, berprofesi sebagai dokter."
+      }
+    ],
+    "question_ids": [
+      "w4d6g1_q1",
+      "w4d6g1_q2",
+      "w4d6g1_q3",
+      "w4d6g1_q4",
+      "w4d6g1_q5",
+      "w4d6g1_q6",
+      "w4d6g1_q7"
+    ],
+    "questions_status": "authored"
+  },
+  {
+    "id": "w4d6g2",
+    "map_id": "map_bunpou_w4",
+    "stage_id": "stage_bunpou_w4d6",
+    "title": "事故があった。そのため(に)遅れている。（a〈目的・理由〉。そのため(に)b〈結果〉。）",
+    "formula": "a。そのため(に)b。",
+    "meaning_en": "As a result of / because of (stating the reason first, result after).",
+    "meaning_id": "Oleh sebab itulah... / Akibatnya... (Penyebab logis yang memicu hasil berikutnya)",
+    "explanation_note": "Kausalitas formal berurutan tanpa bias emosi.",
+    "examples": [
+      {
+        "jp": "隣の駅で事故があったらしい。そのために電車が遅れている。",
+        "en": "It looks like there is an accident at the next station. The train is delayed because of that.",
+        "id": "Sepertinya ada kecelakaan di stasiun sebelah. Karena itu keretanya terlambat."
+      }
+    ],
+    "question_ids": [
+      "w4d6g2_q1",
+      "w4d6g2_q2",
+      "w4d6g2_q3",
+      "w4d6g2_q4",
+      "w4d6g2_q5",
+      "w4d6g2_q6",
+      "w4d6g2_q7"
+    ],
+    "questions_status": "authored"
+  },
+  {
+    "id": "w4d6g3",
+    "map_id": "map_bunpou_w4",
+    "stage_id": "stage_bunpou_w4d6",
+    "title": "努力した。その結果成功した。（a〈過去に起きたこと〉。その結果b〈aが原因/理由で起きたこと〉。）",
+    "formula": "a。その結果b。",
+    "meaning_en": "As a result (of a past event).",
+    "meaning_id": "Sebagai hasilnya... / Akhirnya... (Hasil akhir yang terwujud dari proses sebelumnya)",
+    "explanation_note": "Klimaks pembuktian atas upaya yang sudah dicurahkan sebelumnya.",
+    "examples": [
+      {
+        "jp": "父は、人の何倍も努力した。その結果、仕事で成功した。",
+        "en": "My father worked so much harder than anyone else. As a result, he has succeeded in his career.",
+        "id": "Ayahku berusaha jauh lebih keras dari orang lain. Hasilnya, dia sukses dalam karier."
+      }
+    ],
+    "question_ids": [
+      "w4d6g3_q1",
+      "w4d6g3_q2",
+      "w4d6g3_q3",
+      "w4d6g3_q4",
+      "w4d6g3_q5",
+      "w4d6g3_q6",
+      "w4d6g3_q7"
+    ],
+    "questions_status": "authored"
+  },
+  {
+    "id": "w4d6g4",
+    "map_id": "map_bunpou_w4",
+    "stage_id": "stage_bunpou_w4d6",
+    "title": "帰国する。なぜなら結婚式に出席するからだ。（なぜなら(ば)／なぜかというと／どうしてかというと〜からだ）",
+    "formula": "a。なぜなら(ば)／なぜかというと／どうしてかというと～からだ。",
+    "meaning_en": "Because (stating reason/cause afterward, explaining conclusion first).",
+    "meaning_id": "Hal itu karena... / Alasannya adalah karena... (Menjelaskan sebab setelah kesimpulan disebut)",
+    "explanation_note": "Struktur retorika logis yang meletakkan kesimpulan di depan.",
+    "examples": [
+      {
+        "jp": "来週、国に帰る予定です。なぜなら(ば)、親友の結婚式に出席するからです。",
+        "en": "I am going back home next week to attend my best friend's wedding.",
+        "id": "Minggu depan aku akan pulang ke negaraku, karena mau hadir di pernikahan sahabatku."
+      }
+    ],
+    "question_ids": [
+      "w4d6g4_q1",
+      "w4d6g4_q2",
+      "w4d6g4_q3",
+      "w4d6g4_q4",
+      "w4d6g4_q5",
+      "w4d6g4_q6",
+      "w4d6g4_q7"
+    ],
+    "questions_status": "authored"
+  }
+]

@@ -1,0 +1,544 @@
+[
+  {
+    "id": "map_kana_hiragana",
+    "world_id": "world_training",
+    "title_jp": "ひらがな道場 (Menulis 7 Sheet & Membaca 46 Huruf)",
+    "title_en": "Kuil Aksara Hiragana: 7 Lembar Menulis & Membaca",
+    "map_number": 1,
+    "source": "Akademi Aksara Seion",
+    "page_range": "46 Huruf Hiragana あ〜ん",
+    "stage_ids": [
+      "stage_kana_hira_1",
+      "stage_kana_hira_2",
+      "stage_kana_hira_3",
+      "stage_kana_hira_4",
+      "stage_kana_hira_5",
+      "stage_kana_hira_boss"
+    ],
+    "title_id": "Kuil Aksara Hiragana: 7 Lembar Menulis & Membaca"
+  },
+  {
+    "id": "map_kana_katakana",
+    "world_id": "world_training",
+    "title_jp": "カタカナ道場 (Menulis 7 Sheet & Kosakata Serapan)",
+    "title_en": "Kuil Aksara Katakana: 7 Lembar Menulis & Kata Serapan",
+    "map_number": 2,
+    "source": "Akademi Aksara Katakana",
+    "page_range": "46 Huruf Katakana ア〜ン",
+    "stage_ids": [
+      "stage_kana_kata_1",
+      "stage_kana_kata_2",
+      "stage_kana_kata_3",
+      "stage_kana_kata_4",
+      "stage_kana_kata_5",
+      "stage_kana_kata_boss"
+    ],
+    "title_id": "Kuil Aksara Katakana: 7 Lembar Menulis & Kata Serapan"
+  },
+  {
+    "id": "map_kana_verbs",
+    "world_id": "world_training",
+    "title_jp": "動詞の基本形 (Fondasi Konjugasi: Kamus, Masu, Nai, Ta, Te)",
+    "title_en": "Fondasi Kata Kerja: Kamus, Masu, Nai, Ta, Te",
+    "map_number": 3,
+    "source": "Fondasi Tata Bahasa Inti",
+    "page_range": "Konjugasi 5 Bentuk Kata Kerja",
+    "stage_ids": [
+      "stage_kana_verb_1",
+      "stage_kana_verb_2",
+      "stage_kana_verb_3",
+      "stage_kana_verb_4",
+      "stage_kana_verb_5",
+      "stage_kana_verb_boss"
+    ],
+    "title_id": "Fondasi Kata Kerja: Kamus, Masu, Nai, Ta, Te"
+  },
+  {
+    "id": "map_kana_grammar",
+    "world_id": "world_training",
+    "title_jp": "超基礎文型 (Pola Kalimat Dasar & Partikel Inti)",
+    "title_en": "Fondasi Kalimat: Partikel Inti & Kopula",
+    "map_number": 4,
+    "source": "Fondasi Pola Kalimat Pembuka",
+    "page_range": "Struktur Wa/Desu/Ka & Partikel Inti",
+    "stage_ids": [
+      "stage_kana_gram_1",
+      "stage_kana_gram_2",
+      "stage_kana_gram_3",
+      "stage_kana_gram_4",
+      "stage_kana_gram_5",
+      "stage_kana_gram_boss"
+    ],
+    "title_id": "Fondasi Kalimat: Partikel Inti & Kopula"
+  },
+  {
+    "id": "map_n5_w1",
+    "world_id": "world_n5",
+    "title_jp": "始まりの門 (Partikel Dasar & Salam)",
+    "title_en": "Gerbang Permulaan (Partikel Dasar & Salam)",
+    "map_number": 1,
+    "source": "Nihongo Quest N5 Basics",
+    "page_range": "1-15",
+    "stage_ids": [
+      "stage_n5_w1d1",
+      "stage_n5_w1d2",
+      "stage_n5_w1d3",
+      "stage_n5_w1d4",
+      "stage_n5_w1d5",
+      "stage_n5_w1d6",
+      "stage_n5_w1d7_boss"
+    ],
+    "title_id": "Gerbang Permulaan (Partikel Dasar & Salam)"
+  },
+  {
+    "id": "map_n5_w2",
+    "world_id": "world_n5",
+    "title_jp": "生活の村 (Kata Kerja & Benda Sehari-hari)",
+    "title_en": "Desa Kehidupan Sehari-hari (Verba & Nomina Keseharian)",
+    "map_number": 2,
+    "source": "Nihongo Quest N5 Daily Living",
+    "page_range": "16-30",
+    "stage_ids": [
+      "stage_n5_w2d1",
+      "stage_n5_w2d2",
+      "stage_n5_w2d3",
+      "stage_n5_w2d4",
+      "stage_n5_w2d5",
+      "stage_n5_w2d6",
+      "stage_n5_w2d7_boss"
+    ],
+    "title_id": "Desa Kehidupan Sehari-hari (Verba & Nomina Keseharian)"
+  },
+  {
+    "id": "map_n5_w3",
+    "world_id": "world_n5",
+    "title_jp": "時間の森 (Angka, Waktu, & Kata Sifat)",
+    "title_en": "Hutan Waktu (Angka, Waktu, & Kata Sifat)",
+    "map_number": 3,
+    "source": "Nihongo Quest N5 Time & Modifiers",
+    "page_range": "31-45",
+    "stage_ids": [
+      "stage_n5_w3d1",
+      "stage_n5_w3d2",
+      "stage_n5_w3d3",
+      "stage_n5_w3d4",
+      "stage_n5_w3d5",
+      "stage_n5_w3d6",
+      "stage_n5_w3d7_boss"
+    ],
+    "title_id": "Hutan Waktu (Angka, Waktu, & Kata Sifat)"
+  },
+  {
+    "id": "map_n5_w4",
+    "world_id": "world_n5",
+    "title_jp": "試練の神殿 (Bentuk Te & Boss Ujian N5)",
+    "title_en": "Kuil Ujian (Bentuk-Te & Boss Akhir N5)",
+    "map_number": 4,
+    "source": "Nihongo Quest N5 Mastery Trial",
+    "page_range": "46-60",
+    "stage_ids": [
+      "stage_n5_w4d1",
+      "stage_n5_w4d2",
+      "stage_n5_w4d3",
+      "stage_n5_w4d4",
+      "stage_n5_w4d5",
+      "stage_n5_w4d6",
+      "stage_n5_w4d7_boss"
+    ],
+    "title_id": "Kuil Ujian (Bentuk-Te & Boss Akhir N5)"
+  },
+  {
+    "id": "map_n4_w1",
+    "world_id": "world_n4",
+    "title_jp": "みんなの日本語 II (第26課〜第30課)",
+    "title_en": "Bab 26-30: Alasan (んです), Potensial & Kondisi (てある)",
+    "map_number": 1,
+    "source": "Minna no Nihongo Shokyu II (Bab 26-30)",
+    "page_range": "1-16",
+    "stage_ids": [
+      "stage_n4_w1d1",
+      "stage_n4_w1d2",
+      "stage_n4_w1d3",
+      "stage_n4_w1d4",
+      "stage_n4_w1d5",
+      "stage_n4_w1d6",
+      "stage_n4_w1d7_boss"
+    ]
+  },
+  {
+    "id": "map_n4_w2",
+    "world_id": "world_n4",
+    "title_jp": "みんなの日本語 II (第31課〜第35課)",
+    "title_en": "Bab 31-35: Bentuk Maksud (意向形), Saran & Pengandaian (ば)",
+    "map_number": 2,
+    "source": "Minna no Nihongo Shokyu II (Bab 31-35)",
+    "page_range": "17-32",
+    "stage_ids": [
+      "stage_n4_w2d1",
+      "stage_n4_w2d2",
+      "stage_n4_w2d3",
+      "stage_n4_w2d4",
+      "stage_n4_w2d5",
+      "stage_n4_w2d6",
+      "stage_n4_w2d7_boss"
+    ]
+  },
+  {
+    "id": "map_n4_w3",
+    "world_id": "world_n4",
+    "title_jp": "みんなの日本語 II (第36課〜第40課)",
+    "title_en": "Bab 36-40: Kebiasaan (ように), Bentuk Pasif (受身) & Sebab",
+    "map_number": 3,
+    "source": "Minna no Nihongo Shokyu II (Bab 36-40)",
+    "page_range": "33-48",
+    "stage_ids": [
+      "stage_n4_w3d1",
+      "stage_n4_w3d2",
+      "stage_n4_w3d3",
+      "stage_n4_w3d4",
+      "stage_n4_w3d5",
+      "stage_n4_w3d6",
+      "stage_n4_w3d7_boss"
+    ]
+  },
+  {
+    "id": "map_n4_w4",
+    "world_id": "world_n4",
+    "title_jp": "みんなの日本語 II (第41課〜第45課)",
+    "title_en": "Bab 41-45: Memberi-Menerima (授受), Tujuan (ために) & Nuansa",
+    "map_number": 4,
+    "source": "Minna no Nihongo Shokyu II (Bab 41-45)",
+    "page_range": "49-64",
+    "stage_ids": [
+      "stage_n4_w4d1",
+      "stage_n4_w4d2",
+      "stage_n4_w4d3",
+      "stage_n4_w4d4",
+      "stage_n4_w4d5",
+      "stage_n4_w4d6",
+      "stage_n4_w4d7_boss"
+    ]
+  },
+  {
+    "id": "map_n4_w5",
+    "world_id": "world_n4",
+    "title_jp": "みんなの日本語 II (第46課〜第50課)",
+    "title_en": "Bab 46-50: Bentuk Kausatif (使役), Tata Krama Keigo & Ujian N4",
+    "map_number": 5,
+    "source": "Minna no Nihongo Shokyu II (Bab 46-50)",
+    "page_range": "65-80",
+    "stage_ids": [
+      "stage_n4_w5d1",
+      "stage_n4_w5d2",
+      "stage_n4_w5d3",
+      "stage_n4_w5d4",
+      "stage_n4_w5d5",
+      "stage_n4_w5d6",
+      "stage_n4_w5d7_boss"
+    ]
+  },
+  {
+    "id": "map_bunpou_w1",
+    "title_jp": "がんばらなくちゃ！",
+    "title_en": "Minggu 1: Aku Harus Berjuang!",
+    "map_number": 1,
+    "source": "Nihongo Soumatome N3 Bunpou",
+    "page_range": "13-28",
+    "stage_ids": [
+      "stage_bunpou_w1d1",
+      "stage_bunpou_w1d2",
+      "stage_bunpou_w1d3",
+      "stage_bunpou_w1d4",
+      "stage_bunpou_w1d5",
+      "stage_bunpou_w1d6",
+      "stage_bunpou_w1d7_boss"
+    ],
+    "world_id": "world_n3",
+    "title_id": "Minggu 1: Aku Harus Berjuang!"
+  },
+  {
+    "id": "map_bunpou_w2",
+    "title_jp": "がんばってごらん！",
+    "title_en": "Minggu 2: Ayo Kita Coba!",
+    "map_number": 2,
+    "source": "Nihongo Soumatome N3 Bunpou",
+    "page_range": "29-44",
+    "stage_ids": [
+      "stage_bunpou_w2d1",
+      "stage_bunpou_w2d2",
+      "stage_bunpou_w2d3",
+      "stage_bunpou_w2d4",
+      "stage_bunpou_w2d5",
+      "stage_bunpou_w2d6",
+      "stage_bunpou_w2d7_boss"
+    ],
+    "world_id": "world_n3",
+    "title_id": "Minggu 2: Ayo Kita Coba!"
+  },
+  {
+    "id": "map_bunpou_w3",
+    "title_jp": "もっとがんばってほしい！",
+    "title_en": "Minggu 3: Ayo Lebih Semangat Lagi!",
+    "map_number": 3,
+    "source": "Nihongo Soumatome N3 Bunpou",
+    "page_range": "45-60",
+    "stage_ids": [
+      "stage_bunpou_w3d1",
+      "stage_bunpou_w3d2",
+      "stage_bunpou_w3d3",
+      "stage_bunpou_w3d4",
+      "stage_bunpou_w3d5",
+      "stage_bunpou_w3d6",
+      "stage_bunpou_w3d7_boss"
+    ],
+    "world_id": "world_n3",
+    "title_id": "Minggu 3: Ayo Lebih Semangat Lagi!"
+  },
+  {
+    "id": "map_bunpou_w4",
+    "title_jp": "がんばるしかない！",
+    "title_en": "Minggu 4: Bertahan Sedikit Lagi!",
+    "map_number": 4,
+    "source": "Nihongo Soumatome N3 Bunpou",
+    "page_range": "61-76",
+    "stage_ids": [
+      "stage_bunpou_w4d1",
+      "stage_bunpou_w4d2",
+      "stage_bunpou_w4d3",
+      "stage_bunpou_w4d4",
+      "stage_bunpou_w4d5",
+      "stage_bunpou_w4d6",
+      "stage_bunpou_w4d7_boss"
+    ],
+    "world_id": "world_n3",
+    "title_id": "Minggu 4: Bertahan Sedikit Lagi!"
+  },
+  {
+    "id": "map_bunpou_w5",
+    "title_jp": "もっとがんばればよかった！",
+    "title_en": "Minggu 5: Seandainya Berusaha Lebih Keras!",
+    "map_number": 5,
+    "source": "Nihongo Soumatome N3 Bunpou",
+    "page_range": "77-92",
+    "stage_ids": [
+      "stage_bunpou_w5d1",
+      "stage_bunpou_w5d2",
+      "stage_bunpou_w5d3",
+      "stage_bunpou_w5d4",
+      "stage_bunpou_w5d5",
+      "stage_bunpou_w5d6",
+      "stage_bunpou_w5d7_boss"
+    ],
+    "world_id": "world_n3",
+    "title_id": "Minggu 5: Seandainya Berusaha Lebih Keras!"
+  },
+  {
+    "id": "map_bunpou_w6",
+    "title_jp": "もっとがんばることにした",
+    "title_en": "Minggu 6: Memutuskan Untuk Terus Maju!",
+    "map_number": 6,
+    "source": "Nihongo Soumatome N3 Bunpou",
+    "page_range": "93-108",
+    "stage_ids": [
+      "stage_bunpou_w6d1",
+      "stage_bunpou_w6d2",
+      "stage_bunpou_w6d3",
+      "stage_bunpou_w6d4",
+      "stage_bunpou_w6d5",
+      "stage_bunpou_w6d6",
+      "stage_bunpou_w6d7_boss"
+    ],
+    "world_id": "world_n3",
+    "title_id": "Minggu 6: Memutuskan Untuk Terus Maju!"
+  },
+  {
+    "id": "map_n2_w1",
+    "world_id": "world_n2",
+    "title_jp": "形式の境界 (Ni saishite, Ni atatte, O keiki ni)",
+    "title_en": "Batas Formalitas (Ungkapan Resmi & Berita)",
+    "map_number": 1,
+    "source": "Nihongo Quest N2 Formal Discourse",
+    "page_range": "1-20",
+    "stage_ids": [
+      "stage_n2_w1d1",
+      "stage_n2_w1d2",
+      "stage_n2_w1d3",
+      "stage_n2_w1d4",
+      "stage_n2_w1d5",
+      "stage_n2_w1d6",
+      "stage_n2_w1d7_boss"
+    ],
+    "title_id": "Batas Formalitas (Ungkapan Resmi & Berita)"
+  },
+  {
+    "id": "map_n2_w2",
+    "world_id": "world_n2",
+    "title_jp": "対比の断崖 (Ippou de, Hanmen, Ni hanshite)",
+    "title_en": "Tebing Kontras (Oposisi & Sudut Pandang)",
+    "map_number": 2,
+    "source": "Nihongo Quest N2 Contrasts",
+    "page_range": "21-40",
+    "stage_ids": [
+      "stage_n2_w2d1",
+      "stage_n2_w2d2",
+      "stage_n2_w2d3",
+      "stage_n2_w2d4",
+      "stage_n2_w2d5",
+      "stage_n2_w2d6",
+      "stage_n2_w2d7_boss"
+    ],
+    "title_id": "Tebing Kontras (Oposisi & Sudut Pandang)"
+  },
+  {
+    "id": "map_n2_w3",
+    "world_id": "world_n2",
+    "title_jp": "情感の迷宮 (Te tamaranai, Zaru wo enai)",
+    "title_en": "Labirin Emosi & Kepastian Tak Terelakkan",
+    "map_number": 3,
+    "source": "Nihongo Quest N2 Nuances",
+    "page_range": "41-60",
+    "stage_ids": [
+      "stage_n2_w3d1",
+      "stage_n2_w3d2",
+      "stage_n2_w3d3",
+      "stage_n2_w3d4",
+      "stage_n2_w3d5",
+      "stage_n2_w3d6",
+      "stage_n2_w3d7_boss"
+    ],
+    "title_id": "Labirin Emosi & Kepastian Tak Terelakkan"
+  },
+  {
+    "id": "map_n2_w4",
+    "world_id": "world_n2",
+    "title_jp": "論理の回廊 (Nomi narazu, Ni hoka naranai)",
+    "title_en": "Koridor Logika Akademik & Penalaran",
+    "map_number": 4,
+    "source": "Nihongo Quest N2 Academic Discourse",
+    "page_range": "61-80",
+    "stage_ids": [
+      "stage_n2_w4d1",
+      "stage_n2_w4d2",
+      "stage_n2_w4d3",
+      "stage_n2_w4d4",
+      "stage_n2_w4d5",
+      "stage_n2_w4d6",
+      "stage_n2_w4d7_boss"
+    ],
+    "title_id": "Koridor Logika Akademik & Penalaran"
+  },
+  {
+    "id": "map_n2_w5",
+    "world_id": "world_n2",
+    "title_jp": "上級城塞 (Boss Ujian Penguasaan N2)",
+    "title_en": "Benteng Puncak Penguasaan N2 (Boss Besar)",
+    "map_number": 5,
+    "source": "Nihongo Quest N2 Apex Boss",
+    "page_range": "81-100",
+    "stage_ids": [
+      "stage_n2_w5d1",
+      "stage_n2_w5d2",
+      "stage_n2_w5d3",
+      "stage_n2_w5d4",
+      "stage_n2_w5d5",
+      "stage_n2_w5d6",
+      "stage_n2_w5d7_boss"
+    ],
+    "title_id": "Benteng Puncak Penguasaan N2 (Boss Besar)"
+  },
+  {
+    "id": "map_n1_w1",
+    "world_id": "world_n1",
+    "title_jp": "古典の極み (Gotoki, Nari ni, To ie domo)",
+    "title_en": "Puncak Ungkapan Klasik & Sastra",
+    "map_number": 1,
+    "source": "Nihongo Quest N1 Classical Grammar",
+    "page_range": "1-20",
+    "stage_ids": [
+      "stage_n1_w1d1",
+      "stage_n1_w1d2",
+      "stage_n1_w1d3",
+      "stage_n1_w1d4",
+      "stage_n1_w1d5",
+      "stage_n1_w1d6",
+      "stage_n1_w1d7_boss"
+    ],
+    "title_id": "Puncak Ungkapan Klasik & Sastra"
+  },
+  {
+    "id": "map_n1_w2",
+    "world_id": "world_n1",
+    "title_jp": "限界の深淵 (Ya ina ya, Soba kara, Majiki)",
+    "title_en": "Jurang Tata Bahasa Spontan & Larangan Keras",
+    "map_number": 2,
+    "source": "Nihongo Quest N1 Extremities",
+    "page_range": "21-40",
+    "stage_ids": [
+      "stage_n1_w2d1",
+      "stage_n1_w2d2",
+      "stage_n1_w2d3",
+      "stage_n1_w2d4",
+      "stage_n1_w2d5",
+      "stage_n1_w2d6",
+      "stage_n1_w2d7_boss"
+    ],
+    "title_id": "Jurang Tata Bahasa Spontan & Larangan Keras"
+  },
+  {
+    "id": "map_n1_w3",
+    "world_id": "world_n1",
+    "title_jp": "哲学の宮殿 (Ni atte, O oite, Ni kakete wa)",
+    "title_en": "Istana Filsafat Kritis & Konteks Mendalam",
+    "map_number": 3,
+    "source": "Nihongo Quest N1 Philosophical Writing",
+    "page_range": "41-60",
+    "stage_ids": [
+      "stage_n1_w3d1",
+      "stage_n1_w3d2",
+      "stage_n1_w3d3",
+      "stage_n1_w3d4",
+      "stage_n1_w3d5",
+      "stage_n1_w3d6",
+      "stage_n1_w3d7_boss"
+    ],
+    "title_id": "Istana Filsafat Kritis & Konteks Mendalam"
+  },
+  {
+    "id": "map_n1_w4",
+    "world_id": "world_n1",
+    "title_jp": "言霊の頂 (Kagiri da, Kiwamari nai, O fumaete)",
+    "title_en": "Puncak Kekuatan Linguistik Tertinggi",
+    "map_number": 4,
+    "source": "Nihongo Quest N1 Eloquence",
+    "page_range": "61-80",
+    "stage_ids": [
+      "stage_n1_w4d1",
+      "stage_n1_w4d2",
+      "stage_n1_w4d3",
+      "stage_n1_w4d4",
+      "stage_n1_w4d5",
+      "stage_n1_w4d6",
+      "stage_n1_w4d7_boss"
+    ],
+    "title_id": "Puncak Kekuatan Linguistik Tertinggi"
+  },
+  {
+    "id": "map_n1_w5",
+    "world_id": "world_n1",
+    "title_jp": "超越者の玉座 (Taikou no Shinwa - Final Grand Boss)",
+    "title_en": "Singgasana Transenden (Boss Mitos Agung)",
+    "map_number": 5,
+    "source": "Nihongo Quest N1 Emperor Apex",
+    "page_range": "81-100",
+    "stage_ids": [
+      "stage_n1_w5d1",
+      "stage_n1_w5d2",
+      "stage_n1_w5d3",
+      "stage_n1_w5d4",
+      "stage_n1_w5d5",
+      "stage_n1_w5d6",
+      "stage_n1_w5d7_boss"
+    ],
+    "title_id": "Singgasana Transenden (Boss Mitos Agung)"
+  }
+]

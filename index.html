@@ -1,0 +1,236 @@
+<!doctype html>
+<html lang="en" class="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover, interactive-widget=resizes-content"
+    />
+    <meta name="color-scheme" content="dark light" />
+    <meta name="theme-color" content="#12151d" id="meta-theme-color" />
+
+    <title>SevnQuest - Petualangan Bahasa Jepang (N5 - N1)</title>
+    <meta name="description" content="Aplikasi belajar bahasa Jepang (JLPT N5, N4, N3, N2, N1) dengan kanji, kotoba, tata bahasa, flashcard, dan latihan menulis kaligrafi." />
+
+    <!-- Favicons & Brand Icons -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+
+    <!-- Web App Manifest (PWA) -->
+    <link rel="manifest" href="/manifest.webmanifest" />
+
+    <!-- Mobile & PWA Optimization for iOS & Android -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="format-detection" content="telephone=no" />
+
+    <!-- Critical Mobile Inline Style: Anti-FOUC, No Pull-to-Refresh Glitch, Touch Manipulation -->
+    <style>
+      :root { color-scheme: dark; }
+      html.theme-light { color-scheme: light; }
+      html {
+        background-color: #12151d;
+        -webkit-text-size-adjust: 100%;
+        text-size-adjust: 100%;
+        overscroll-behavior-y: none;
+      }
+      html.theme-light { background-color: #eae7de; }
+      body {
+        margin: 0;
+        min-height: 100vh;
+        min-height: 100dvh;
+        overscroll-behavior-y: none;
+        -webkit-tap-highlight-color: transparent;
+      }
+      #root { isolation: isolate; }
+    </style>
+
+    <script>
+      (function () {
+        try {
+          var s = localStorage.getItem('nihongo_quest_player_stats_v2') || localStorage.getItem('player_stats_v1');
+          var isLight = false;
+          if (s) {
+            try { isLight = JSON.parse(s).theme === 'light'; } catch (e) {}
+          }
+          if (isLight) {
+            document.documentElement.classList.add('theme-light');
+            document.documentElement.classList.remove('dark');
+            document.documentElement.style.colorScheme = 'light';
+            var meta = document.getElementById('meta-theme-color');
+            if (meta) meta.setAttribute('content', '#eae7de');
+          } else {
+            document.documentElement.classList.add('dark');
+            document.documentElement.classList.remove('theme-light');
+            document.documentElement.style.colorScheme = 'dark';
+            var meta = document.getElementById('meta-theme-color');
+            if (meta) meta.setAttribute('content', '#12151d');
+          }
+        } catch (e) {}
+      })();
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@600;700&family=Noto+Sans+JP:wght@500;700&family=Noto+Serif+JP:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Zen+Old+Mincho:wght@600;700;900&display=swap" rel="stylesheet">
+  </head>
+  <body class="bg-page text-text-primary antialiased selection:bg-gold selection:text-surface-base">
+    <script>
+      window.__pwaInstallPrompt = null;
+      window.addEventListener('beforeinstallprompt', function (e) {
+        e.preventDefault();
+        window.__pwaInstallPrompt = e;
+        window.dispatchEvent(new CustomEvent('pwa-prompt-ready'));
+      });
+      window.addEventListener('appinstalled', function () {
+        window.__pwaInstallPrompt = null;
+        window.dispatchEvent(new CustomEvent('pwa-installed'));
+      });
+    </script>
+    <script>
+      (function() {
+        var hasRecovered = false;
+        var isLocalDev = window.location.hostname === 'localhost' || 
+                         window.location.hostname === '127.0.0.1' || 
+                         window.location.hostname.startsWith('192.168.') || 
+                         window.location.hostname.startsWith('10.') || 
+                         window.location.port !== '';
+
+        function forceClearAndReload() {
+          if (hasRecovered) return;
+          hasRecovered = true;
+          try {
+            if ('serviceWorker' in navigator) {
+              navigator.serviceWorker.getRegistrations().then(function(regs) {
+                for (var i = 0; i < regs.length; i++) { regs[i].unregister(); }
+              });
+            }
+            if ('caches' in window) {
+              caches.keys().then(function(keys) {
+                Promise.all(keys.map(function(k) { return caches.delete(k); })).then(function() {
+                  window.location.reload();
+                });
+              });
+              return;
+            }
+          } catch (e) {}
+          window.location.reload();
+        }
+
+        window.__sevnForceReload = forceClearAndReload;
+
+        function showRecoveryUI(detail) {
+          var root = document.getElementById('root');
+          if (root && root.children.length === 0) {
+            var box = document.getElementById('critical-crash-box');
+            if (!box) {
+              box = document.createElement('div');
+              box.id = 'critical-crash-box';
+              box.style.cssText = 'position:fixed;inset:0;z-index:999999;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px;background:#12151d;color:#e2e8f0;font-family:system-ui,sans-serif;text-align:center;';
+              document.body.appendChild(box);
+            }
+            box.innerHTML = '<div style="max-width:380px;background:#1a1f2c;border:1px solid rgba(235,178,59,0.3);border-radius:20px;padding:28px 20px;box-shadow:0 12px 32px rgba(0,0,0,0.6);">' +
+              '<div style="font-size:36px;margin-bottom:12px;">⛩️</div>' +
+              '<h3 style="margin:0 0 8px 0;color:#fcd34d;font-size:16px;font-weight:700;">Gagal Memuat Aplikasi</h3>' +
+              '<p style="margin:0 0 20px 0;font-size:12px;color:#94a3b8;line-height:1.6;">Berkas aplikasi memerlukan pembaruan atau terjadi kendala jaringan saat memuat data.</p>' +
+              '<button onclick="window.__sevnForceReload()" style="padding:10px 24px;background:linear-gradient(180deg,#ebc351 0%,#b58924 100%);color:#12151d;border:none;border-radius:12px;font-size:13px;font-weight:700;cursor:pointer;box-shadow:0 4px 12px rgba(0,0,0,0.3);display:inline-flex;align-items:center;gap:6px;">' +
+                '🔄 Muat Ulang & Bersihkan Cache' +
+              '</button>' +
+              (detail ? '<div style="margin-top:14px;font-size:10px;color:#64748b;font-family:monospace;word-break:break-all;">' + detail + '</div>' : '') +
+            '</div>';
+          }
+        }
+
+        // On local development, don't hijack error handling or watchdog reload loops
+        if (isLocalDev) {
+          return;
+        }
+
+        // 1. Capture dynamic import chunk load failures (e.g. 404 on outdated chunk in production PWA)
+        window.addEventListener('error', function(e) {
+          var msg = (e && e.message) || '';
+          if (msg.indexOf('dynamically imported module') !== -1 || msg.indexOf('chunk') !== -1 || msg.indexOf('Failed to fetch') !== -1) {
+            console.warn('[PWA Auto-Recovery] Chunk load failure caught:', e);
+            var retryKey = 'sevn_pwa_auto_retry';
+            var last = sessionStorage.getItem(retryKey);
+            if (!last || Date.now() - Number(last) > 30000) {
+              sessionStorage.setItem(retryKey, String(Date.now()));
+              forceClearAndReload();
+              return;
+            }
+            showRecoveryUI(msg);
+          }
+        }, true);
+
+        // 2. Capture dynamic import rejections
+        window.addEventListener('unhandledrejection', function(e) {
+          var reason = e.reason || '';
+          var msg = (typeof reason === 'object' ? reason.message : String(reason)) || '';
+          if (msg.indexOf('dynamically imported module') !== -1 || msg.indexOf('chunk') !== -1 || msg.indexOf('Failed to fetch') !== -1) {
+            console.warn('[PWA Auto-Recovery] Chunk rejection caught:', msg);
+            var retryKey = 'sevn_pwa_auto_retry';
+            var last = sessionStorage.getItem(retryKey);
+            if (!last || Date.now() - Number(last) > 30000) {
+              sessionStorage.setItem(retryKey, String(Date.now()));
+              forceClearAndReload();
+              return;
+            }
+            showRecoveryUI(msg);
+          }
+        });
+
+        // 3. Mount Watchdog: Only after 12 seconds in production if #root is completely empty
+        setTimeout(function() {
+          var root = document.getElementById('root');
+          if (root && root.children.length === 0) {
+            console.warn('[PWA Watchdog] #root is empty after 12s, triggering recovery UI');
+            showRecoveryUI('Modul utama belum terpasang setelah 12 detik.');
+          }
+        }, 12000);
+      })();
+    </script>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+    <script>
+      (function() {
+        var isLocalhost = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+        if (isLocalhost) {
+          // In development on localhost, purge service worker and caches to avoid stale React chunk collisions
+          if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.getRegistrations().then(function(regs) {
+              for (var i = 0; i < regs.length; i++) {
+                regs[i].unregister();
+              }
+            });
+          }
+          if ('caches' in window) {
+            caches.keys().then(function(keys) {
+              keys.forEach(function(k) { caches.delete(k); });
+            });
+          }
+        } else if ('serviceWorker' in navigator && window.location.protocol.startsWith('http')) {
+          window.addEventListener('load', function() {
+            navigator.serviceWorker.register('./sw.js').then(function(reg) {
+              reg.update();
+              reg.addEventListener('updatefound', function() {
+                var newWorker = reg.installing;
+                if (newWorker) {
+                  newWorker.addEventListener('statechange', function() {
+                    if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+                      newWorker.postMessage({ type: 'SKIP_WAITING' });
+                    }
+                  });
+                }
+              });
+            }).catch(function(err) {
+              console.debug('ServiceWorker registration error:', err);
+            });
+          });
+        }
+      })();
+    </script>
+  </body>
+</html>
+

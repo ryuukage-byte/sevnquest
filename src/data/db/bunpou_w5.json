@@ -1,0 +1,650 @@
+[
+  {
+    "id": "w5d1g1",
+    "map_id": "map_bunpou_w5",
+    "stage_id": "stage_bunpou_w5d1",
+    "title": "勉強はもちろん（N1はもちろんN2も；[文]のはもちろん〜(も)）",
+    "formula": "N1はもちろんN2も；[文]のはもちろん～(も)",
+    "meaning_en": "Of course... and also (needless to say).",
+    "meaning_id": "Sudah jelas... dan bahkan... pun juga! (Hal utama sudah pasti, apalagi yang lainnya)",
+    "explanation_note": "Memperluas cakupan dari hal mendasar ke hal yang mengejutkan.",
+    "examples": [
+      {
+        "jp": "彼は、勉強はもちろんスポーツもよくできる。",
+        "en": "He is not only a good student, he is a good athlete as well.",
+        "id": "Dia bukan cuma pintar belajar, olahraga juga jago."
+      }
+    ],
+    "question_ids": [
+      "w5d1g1_q1",
+      "w5d1g1_q2",
+      "w5d1g1_q3",
+      "w5d1g1_q4",
+      "w5d1g1_q5",
+      "w5d1g1_q6",
+      "w5d1g1_q7"
+    ],
+    "questions_status": "authored"
+  },
+  {
+    "id": "w5d1g2",
+    "map_id": "map_bunpou_w5",
+    "stage_id": "stage_bunpou_w5d1",
+    "title": "味が悪いばかりか（V/A/na/N＋ばかりか…(も)／ばかりでなく…(も)）",
+    "formula": "V・A・na・N（Nだ／naな） ＋ ばかりか…(も)／ばかりでなく…(も)",
+    "meaning_en": "Not only...but also (let alone).",
+    "meaning_id": "Bukan cuma..., bahkan... juga ikutan! (Menumpuk dua hal negatif atau positif sekaligus)",
+    "explanation_note": "Eskalasi masalah bertingkat yang memperparah situasi.",
+    "examples": [
+      {
+        "jp": "あの店は、味が悪いばかりか、店員の態度もひどい。",
+        "en": "That restaurant's service is terrible, let alone its food.",
+        "id": "Restoran itu, rasanya saja sudah buruk, sikap pelayannya pun parah."
+      }
+    ],
+    "question_ids": [
+      "w5d1g2_q1",
+      "w5d1g2_q2",
+      "w5d1g2_q3",
+      "w5d1g2_q4",
+      "w5d1g2_q5",
+      "w5d1g2_q6",
+      "w5d1g2_q7"
+    ],
+    "questions_status": "authored"
+  },
+  {
+    "id": "w5d1g3",
+    "map_id": "map_bunpou_w5",
+    "stage_id": "stage_bunpou_w5d1",
+    "title": "昨年に比べて（Nに＋比べて／比べ；[文]のに＋比べ）",
+    "formula": "Nに ＋ 比べて／比べ；[文]のに ＋ 比べ",
+    "meaning_en": "Compared to.",
+    "meaning_id": "Dibandingkan dengan... (Membandingkan dua objek atau kondisi secara objektif)",
+    "explanation_note": "Pengukuran objektif berbasis data komparasi.",
+    "examples": [
+      {
+        "jp": "試験問題は昨年に比べて易しくなった。",
+        "en": "Compared to last year, the questions this year are easier.",
+        "id": "Soal ujian tahun ini lebih mudah dibanding tahun lalu."
+      }
+    ],
+    "question_ids": [
+      "w5d1g3_q1",
+      "w5d1g3_q2",
+      "w5d1g3_q3",
+      "w5d1g3_q4",
+      "w5d1g3_q5",
+      "w5d1g3_q6",
+      "w5d1g3_q7"
+    ],
+    "questions_status": "authored"
+  },
+  {
+    "id": "w5d1g4",
+    "map_id": "map_bunpou_w5",
+    "stage_id": "stage_bunpou_w5d1",
+    "title": "生徒に対して（Nに／[文]のに＋対して／対し／対しては／対しても／対するN）",
+    "formula": "Nに／[文]のに ＋ 対して／対し／対しては／対しても／対するN",
+    "meaning_en": "Towards / in contrast to.",
+    "meaning_id": "Terhadap... / Bersikap kepada... (Arah sikap atau perlakuan kepada pihak sasaran)",
+    "explanation_note": "Arah orientasi tindakan interpersonal.",
+    "examples": [
+      {
+        "jp": "田中先生は、生徒に対して厳しい。",
+        "en": "Tanaka-sensei is a strict teacher (towards students).",
+        "id": "Guru Tanaka tegas terhadap murid-muridnya."
+      }
+    ],
+    "question_ids": [
+      "w5d1g4_q1",
+      "w5d1g4_q2",
+      "w5d1g4_q3",
+      "w5d1g4_q4",
+      "w5d1g4_q5",
+      "w5d1g4_q6",
+      "w5d1g4_q7"
+    ],
+    "questions_status": "authored"
+  },
+  {
+    "id": "w5d2g1",
+    "map_id": "map_bunpou_w5",
+    "stage_id": "stage_bunpou_w5d2",
+    "title": "書き上げる（Vます＋上げる／上がる）",
+    "formula": "Vます ＋ 上げる／上がる",
+    "meaning_en": "To completely finish an action.",
+    "meaning_id": "Tuntas beres terselesaikan! (Menuntaskan karya/tugas besar setelah kerja keras)",
+    "explanation_note": "Kelegaan membanggakan pasca perjuangan panjang.",
+    "examples": [
+      {
+        "jp": "やっとレポートを書き上げた。",
+        "en": "I finally finished my paper.",
+        "id": "Akhirnya laporan selesai kutulis."
+      }
+    ],
+    "question_ids": [
+      "w5d2g1_q1",
+      "w5d2g1_q2",
+      "w5d2g1_q3",
+      "w5d2g1_q4",
+      "w5d2g1_q5",
+      "w5d2g1_q6",
+      "w5d2g1_q7"
+    ],
+    "questions_status": "authored"
+  },
+  {
+    "id": "w5d2g2",
+    "map_id": "map_bunpou_w5",
+    "stage_id": "stage_bunpou_w5d2",
+    "title": "食べ切れない（Vます＋切る／切れる／切れない）",
+    "formula": "Vます ＋ 切る／切れる／切れない",
+    "meaning_en": "To finish completely / cannot finish (nothing is left).",
+    "meaning_id": "Menghabiskan sampai ludes / Tak sanggup menghabiskan semuanya (Batas tuntas tanpa sisa)",
+    "explanation_note": "Ketuntasan total atau batas kapasitas maksimal.",
+    "examples": [
+      {
+        "jp": "ご飯の量が多くて、食べ切れないよ。",
+        "en": "I can't finish the rice because there is so much.",
+        "id": "Nasinya terlalu banyak, aku tidak sanggup habiskan."
+      }
+    ],
+    "question_ids": [
+      "w5d2g2_q1",
+      "w5d2g2_q2",
+      "w5d2g2_q3",
+      "w5d2g2_q4",
+      "w5d2g2_q5",
+      "w5d2g2_q6",
+      "w5d2g2_q7"
+    ],
+    "questions_status": "authored"
+  },
+  {
+    "id": "w5d2g3",
+    "map_id": "map_bunpou_w5",
+    "stage_id": "stage_bunpou_w5d2",
+    "title": "読みかけの本（Vます＋かける／かけのN／かけだ）",
+    "formula": "Vます ＋ かける／かけのN／かけだ",
+    "meaning_en": "In the middle of doing something (unfinished).",
+    "meaning_id": "Baru setengah jalan... / Belum selesai tuntas (Terhenti di tengah proses pengerjaan)",
+    "explanation_note": "Kondisi menggantung yang masih menunggu kelanjutan.",
+    "examples": [
+      {
+        "jp": "この本はまだ読みかけだ。",
+        "en": "I haven't finished the book yet.",
+        "id": "Buku ini masih belum selesai kubaca."
+      }
+    ],
+    "question_ids": [
+      "w5d2g3_q1",
+      "w5d2g3_q2",
+      "w5d2g3_q3",
+      "w5d2g3_q4",
+      "w5d2g3_q5",
+      "w5d2g3_q6",
+      "w5d2g3_q7"
+    ],
+    "questions_status": "authored"
+  },
+  {
+    "id": "w5d2g4",
+    "map_id": "map_bunpou_w5",
+    "stage_id": "stage_bunpou_w5d2",
+    "title": "焼きたてのパン（Vます＋たてのN／たてだ）",
+    "formula": "Vます ＋ たてのN／たてだ",
+    "meaning_en": "Freshly done (just finished doing).",
+    "meaning_id": "Baru banget matang / Masih hangat-hangatnya baru jadi (Kondisi segar pasca aksi)",
+    "explanation_note": "Kenikmatan maksimal dari produk yang masih sangat baru.",
+    "examples": [
+      {
+        "jp": "焼きたてのパンはおいしい。",
+        "en": "Freshly baked bread is really good.",
+        "id": "Roti yang baru dipanggang itu enak sekali."
+      }
+    ],
+    "question_ids": [
+      "w5d2g4_q1",
+      "w5d2g4_q2",
+      "w5d2g4_q3",
+      "w5d2g4_q4",
+      "w5d2g4_q5",
+      "w5d2g4_q6",
+      "w5d2g4_q7"
+    ],
+    "questions_status": "authored"
+  },
+  {
+    "id": "w5d3g1",
+    "map_id": "map_bunpou_w5",
+    "stage_id": "stage_bunpou_w5d3",
+    "title": "うまく話せるといいなあ。（V/A/na/Nと＋いい(のに)なあ；Vたら/Aたら, naたら/Nたら, Vば/Aければ, naなら(ば)/Nなら(ば)＋(いいのに)なあ）",
+    "formula": "V・A・na・N ＋ と／たら／ば／なら ＋ いい(のに)なあ",
+    "meaning_en": "Expressing a wish/hope.",
+    "meaning_id": "Alangkah senangnya kalau bisa... / Semoga saja... ya (Harapan santai yang diangankan)",
+    "explanation_note": "Angan-angan hangat dalam lamunan positif.",
+    "examples": [
+      {
+        "jp": "もっと日本語がうまく話せたらいいなあ。",
+        "en": "I wish I could speak Japanese better.",
+        "id": "Andai saja aku bisa bicara bahasa Jepang lebih lancar."
+      }
+    ],
+    "question_ids": [
+      "w5d3g1_q1",
+      "w5d3g1_q2",
+      "w5d3g1_q3",
+      "w5d3g1_q4",
+      "w5d3g1_q5",
+      "w5d3g1_q6",
+      "w5d3g1_q7"
+    ],
+    "questions_status": "authored"
+  },
+  {
+    "id": "w5d3g2",
+    "map_id": "map_bunpou_w5",
+    "stage_id": "stage_bunpou_w5d3",
+    "title": "もっと早く家を出ればよかった。（Vば／Vなければ／Vたら／Vなかったら＋よかった）",
+    "formula": "Vば／Vなければ／Vたら／Vなかったら ＋ よかった",
+    "meaning_en": "Expressing regret about the past.",
+    "meaning_id": "Coba tadi... pasti nggak bakal begini! (Penyesalan atas hal yang sudah terlanjur terjadi)",
+    "explanation_note": "Rasa sesal mendalam atas kekeliruan langkah di masa lampau.",
+    "examples": [
+      {
+        "jp": "遅刻してしまった。もっと早く家を出ればよかった。",
+        "en": "I am late. I wish I had left home much earlier.",
+        "id": "Aku terlambat. Coba tadi berangkat lebih awal."
+      }
+    ],
+    "question_ids": [
+      "w5d3g2_q1",
+      "w5d3g2_q2",
+      "w5d3g2_q3",
+      "w5d3g2_q4",
+      "w5d3g2_q5",
+      "w5d3g2_q6",
+      "w5d3g2_q7"
+    ],
+    "questions_status": "authored"
+  },
+  {
+    "id": "w5d3g3",
+    "map_id": "map_bunpou_w5",
+    "stage_id": "stage_bunpou_w5d3",
+    "title": "あなたも行けばよかったのに。（Vば〜のに；Vたら〜のに）",
+    "formula": "Vば～のに；Vたら～のに",
+    "meaning_en": "Expressing regret / mild criticism (you should have...).",
+    "meaning_id": "Padahal harusnya kamu ikut... seru lho! (Kritik halus atau penyesalan untuk orang lain)",
+    "explanation_note": "Rasa menyayangkan keputusan orang lain dengan nada bersahabat.",
+    "examples": [
+      {
+        "jp": "パーティー、楽しかったよ。君も行けばよかったのに。",
+        "en": "I had a good time at the party. You should have come.",
+        "id": "Pestanya seru lho. Coba kamu ikut tadi."
+      }
+    ],
+    "question_ids": [
+      "w5d3g3_q1",
+      "w5d3g3_q2",
+      "w5d3g3_q3",
+      "w5d3g3_q4",
+      "w5d3g3_q5",
+      "w5d3g3_q6",
+      "w5d3g3_q7"
+    ],
+    "questions_status": "authored"
+  },
+  {
+    "id": "w5d3g4",
+    "map_id": "map_bunpou_w5",
+    "stage_id": "stage_bunpou_w5d3",
+    "title": "早く来ないかなあ。（Vるかな(あ)／Vないかな(あ)）",
+    "formula": "Vるかな(あ)／Vないかな(あ)",
+    "meaning_en": "Expressing hope or wonder (I wonder if...).",
+    "meaning_id": "Kapan ya datangnya... kok lama ya (Menunggu-nunggu dengan harap-harap cemas)",
+    "explanation_note": "Rasa gelisah menanti kehadiran yang belum kunjung tiba.",
+    "examples": [
+      {
+        "jp": "バス、早く来ないかなあ。",
+        "en": "I hope the bus will come soon.",
+        "id": "Semoga bus cepat datang ya."
+      }
+    ],
+    "question_ids": [
+      "w5d3g4_q1",
+      "w5d3g4_q2",
+      "w5d3g4_q3",
+      "w5d3g4_q4",
+      "w5d3g4_q5",
+      "w5d3g4_q6",
+      "w5d3g4_q7"
+    ],
+    "questions_status": "authored"
+  },
+  {
+    "id": "w5d4g1",
+    "map_id": "map_bunpou_w5",
+    "stage_id": "stage_bunpou_w5d4",
+    "title": "映画が始まるまで（Vるまで）",
+    "formula": "Vる ＋ まで",
+    "meaning_en": "Until.",
+    "meaning_id": "Sampai tiba saat... (Titik akhir waktu sebelum peristiwa dimulai)",
+    "explanation_note": "Ketekunan mempertahankan kondisi hingga garis finis waktu.",
+    "examples": [
+      {
+        "jp": "映画が始まるまで30分あります。",
+        "en": "The movie won't start for half an hour.",
+        "id": "Masih ada 30 menit sebelum film dimulai."
+      }
+    ],
+    "question_ids": [
+      "w5d4g1_q1",
+      "w5d4g1_q2",
+      "w5d4g1_q3",
+      "w5d4g1_q4",
+      "w5d4g1_q5",
+      "w5d4g1_q6",
+      "w5d4g1_q7"
+    ],
+    "questions_status": "authored"
+  },
+  {
+    "id": "w5d4g2",
+    "map_id": "map_bunpou_w5",
+    "stage_id": "stage_bunpou_w5d4",
+    "title": "骨まで食べられる（Nまで）",
+    "formula": "N ＋ まで",
+    "meaning_en": "Even / to that extent (extreme example, showing surprise).",
+    "meaning_id": "Bahkan sampai ke... pun sanggup! (Batas ekstrem yang mencengangkan)",
+    "explanation_note": "Keterkejutan atas cakupan yang melampaui batas normal.",
+    "examples": [
+      {
+        "jp": "この魚は骨まで食べられますよ。",
+        "en": "You can even eat the bones in this fish.",
+        "id": "Ikan ini bahkan tulangnya pun bisa dimakan."
+      }
+    ],
+    "question_ids": [
+      "w5d4g2_q1",
+      "w5d4g2_q2",
+      "w5d4g2_q3",
+      "w5d4g2_q4",
+      "w5d4g2_q5",
+      "w5d4g2_q6",
+      "w5d4g2_q7"
+    ],
+    "questions_status": "authored"
+  },
+  {
+    "id": "w5d4g3",
+    "map_id": "map_bunpou_w5",
+    "stage_id": "stage_bunpou_w5d4",
+    "title": "昼から夕方にかけて（N1からN2にかけて）",
+    "formula": "N1から N2に ＋ かけて",
+    "meaning_en": "From N1 to N2 (time or place, spanning a range).",
+    "meaning_id": "Dari rentang... hingga sekitar... (Rentang waktu atau wilayah yang menyebar luwes)",
+    "explanation_note": "Gradasi alami rentang waktu atau area geografis.",
+    "examples": [
+      {
+        "jp": "明日は昼から夕方にかけて雨でしょう。",
+        "en": "Tomorrow, it will rain from noon through late afternoon.",
+        "id": "Besok, hujan diperkirakan dari siang sampai sore."
+      }
+    ],
+    "question_ids": [
+      "w5d4g3_q1",
+      "w5d4g3_q2",
+      "w5d4g3_q3",
+      "w5d4g3_q4",
+      "w5d4g3_q5",
+      "w5d4g3_q6",
+      "w5d4g3_q7"
+    ],
+    "questions_status": "authored"
+  },
+  {
+    "id": "w5d4g4",
+    "map_id": "map_bunpou_w5",
+    "stage_id": "stage_bunpou_w5d4",
+    "title": "大阪において（Nにおいて）",
+    "formula": "N ＋ において",
+    "meaning_en": "At / in (more formal than で).",
+    "meaning_id": "Bertempat di... / Dalam kancah... (Ragam resmi/formal dari partikel で)",
+    "explanation_note": "Kewibawaan formal dalam penunjukan ruang dan waktu wacana.",
+    "examples": [
+      {
+        "jp": "大阪において、国際会議が行われた。",
+        "en": "An international conference took place in Osaka.",
+        "id": "Konferensi internasional diadakan di Osaka."
+      }
+    ],
+    "question_ids": [
+      "w5d4g4_q1",
+      "w5d4g4_q2",
+      "w5d4g4_q3",
+      "w5d4g4_q4",
+      "w5d4g4_q5",
+      "w5d4g4_q6",
+      "w5d4g4_q7"
+    ],
+    "questions_status": "authored"
+  },
+  {
+    "id": "w5d5g1",
+    "map_id": "map_bunpou_w5",
+    "stage_id": "stage_bunpou_w5d5",
+    "title": "たとえ反対されても（たとえ＋Vても／Aくても／naでも／Nでも）",
+    "formula": "たとえ ＋ Vても／Aくても／naでも／Nでも",
+    "meaning_en": "Even if (emphatic concessive with たとえ).",
+    "meaning_id": "Meskipun seandainya... sekali pun, tetap akan...! (Tekad pantang mundur)",
+    "explanation_note": "Keteguhan prinsip yang kebal terhadap segala hambatan.",
+    "examples": [
+      {
+        "jp": "たとえ反対されても留学します。",
+        "en": "Even if I am opposed, I will study abroad.",
+        "id": "Walaupun ditentang, aku tetap akan kuliah di luar negeri."
+      }
+    ],
+    "question_ids": [
+      "w5d5g1_q1",
+      "w5d5g1_q2",
+      "w5d5g1_q3",
+      "w5d5g1_q4",
+      "w5d5g1_q5",
+      "w5d5g1_q6",
+      "w5d5g1_q7"
+    ],
+    "questions_status": "authored"
+  },
+  {
+    "id": "w5d5g2",
+    "map_id": "map_bunpou_w5",
+    "stage_id": "stage_bunpou_w5d5",
+    "title": "もしかするとうそかもしれない。（もしかすると／もしかしたら＋V/A/na/N(N/naだ)＋かもしれない）",
+    "formula": "もしかすると／もしかしたら ＋ V・A・na・N（N／naだ） ＋ かもしれない",
+    "meaning_en": "Maybe / perhaps (possibility).",
+    "meaning_id": "Bisa jadi jangan-jangan... / Jangan-jangan beneran... (Kemungkinan tak terduga)",
+    "explanation_note": "Kecurigaan spontan yang memicu kewaspadaan.",
+    "examples": [
+      {
+        "jp": "もしかすると彼の話はうそかもしれない。",
+        "en": "He could be telling a lie.",
+        "id": "Bisa jadi ceritanya itu bohong."
+      }
+    ],
+    "question_ids": [
+      "w5d5g2_q1",
+      "w5d5g2_q2",
+      "w5d5g2_q3",
+      "w5d5g2_q4",
+      "w5d5g2_q5",
+      "w5d5g2_q6",
+      "w5d5g2_q7"
+    ],
+    "questions_status": "authored"
+  },
+  {
+    "id": "w5d5g3",
+    "map_id": "map_bunpou_w5",
+    "stage_id": "stage_bunpou_w5d5",
+    "title": "必ずしもいいとは限らない。（必ずしも＋V/A/na/N(N/na)＋とは限らない）",
+    "formula": "必ずしも ＋ V・A・na・N（N／na） ＋ とは限らない",
+    "meaning_en": "Not necessarily.",
+    "meaning_id": "Belum tentu selalu begitu! (Membantah anggapan umum yang seragam)",
+    "explanation_note": "Pemikiran kritis yang menolak generalisasi kaku.",
+    "examples": [
+      {
+        "jp": "（お）金持ちが必ずしも幸福だとは限らない。",
+        "en": "Being rich does not necessarily mean happy.",
+        "id": "Orang kaya belum tentu bahagia."
+      }
+    ],
+    "question_ids": [
+      "w5d5g3_q1",
+      "w5d5g3_q2",
+      "w5d5g3_q3",
+      "w5d5g3_q4",
+      "w5d5g3_q5",
+      "w5d5g3_q6",
+      "w5d5g3_q7"
+    ],
+    "questions_status": "authored"
+  },
+  {
+    "id": "w5d5g4",
+    "map_id": "map_bunpou_w5",
+    "stage_id": "stage_bunpou_w5d5",
+    "title": "まるで夢のよう（まるで[Nの/Vる]よう；まるで[V/A/na/N(N/na)]みたい）",
+    "formula": "まるで Nの／Vる ＋ よう；まるで V・A・na・N（N／na） ＋ みたい",
+    "meaning_en": "Just like / as if.",
+    "meaning_id": "Bener-bener persis seperti... seolah mimpi! (Perumpamaan dramatis yang sangat mirip)",
+    "explanation_note": "Kedalaman estetika perumpamaan yang memukau imajinasi.",
+    "examples": [
+      {
+        "jp": "合格した！まるで夢のようだ。",
+        "en": "I did it! I can't believe it (it's just like a dream)!",
+        "id": "Aku lulus! Rasanya seperti mimpi."
+      }
+    ],
+    "question_ids": [
+      "w5d5g4_q1",
+      "w5d5g4_q2",
+      "w5d5g4_q3",
+      "w5d5g4_q4",
+      "w5d5g4_q5",
+      "w5d5g4_q6",
+      "w5d5g4_q7"
+    ],
+    "questions_status": "authored"
+  },
+  {
+    "id": "w5d6g1",
+    "map_id": "map_bunpou_w5",
+    "stage_id": "stage_bunpou_w5d6",
+    "title": "行きたい。だけど、行けない。（a。だけどb。= けれども／しかし）",
+    "formula": "a。だけどb。",
+    "meaning_en": "But / however (casual, = けれども／しかし).",
+    "meaning_id": "Pengin sih, tapi... / Mau gimana lagi, namun... (Kata sambung 'tapi' santai)",
+    "explanation_note": "Kontras kasual yang wajar dalam percakapan lisan.",
+    "examples": [
+      {
+        "jp": "旅行に行きたい。だけどひまがない。",
+        "en": "I love to go traveling but I have no time.",
+        "id": "Aku ingin jalan-jalan, tapi tidak ada waktu luang."
+      }
+    ],
+    "question_ids": [
+      "w5d6g1_q1",
+      "w5d6g1_q2",
+      "w5d6g1_q3",
+      "w5d6g1_q4",
+      "w5d6g1_q5",
+      "w5d6g1_q6",
+      "w5d6g1_q7"
+    ],
+    "questions_status": "authored"
+  },
+  {
+    "id": "w5d6g2",
+    "map_id": "map_bunpou_w5",
+    "stage_id": "stage_bunpou_w5d6",
+    "title": "雨です。ですから、傘がいります。（ですから＝だから, formal）",
+    "formula": "a。ですからb。",
+    "meaning_en": "Therefore / so (more polite than だから).",
+    "meaning_id": "Maka dari itu... / Karena alasan tersebut... (Ragam sopan formal dari だから)",
+    "explanation_note": "Kesopanan logis yang menjembatani sebab dan kesimpulan.",
+    "examples": [
+      {
+        "jp": "天気予報では午後から雨だそうです。ですから、傘を持っていったほうがいいですよ。",
+        "en": "The weather forecast predicts rain in the afternoon, so you'd better take an umbrella.",
+        "id": "Ramalan cuaca bilang sore akan hujan. Jadi sebaiknya bawa payung."
+      }
+    ],
+    "question_ids": [
+      "w5d6g2_q1",
+      "w5d6g2_q2",
+      "w5d6g2_q3",
+      "w5d6g2_q4",
+      "w5d6g2_q5",
+      "w5d6g2_q6",
+      "w5d6g2_q7"
+    ],
+    "questions_status": "authored"
+  },
+  {
+    "id": "w5d6g3",
+    "map_id": "map_bunpou_w5",
+    "stage_id": "stage_bunpou_w5d6",
+    "title": "行く予定だった。ところが、行けなくなった。（a〈予想/予定〉。ところがb〈予想外の結果/事実〉。）",
+    "formula": "a。ところがb。",
+    "meaning_en": "However / unexpectedly (contrary to expectation).",
+    "meaning_id": "Tapi tak disangka-sangka, nyatanya malah... (Kejadian mengejutkan di luar rencana)",
+    "explanation_note": "Plot twist tak terduga yang membelokkan alur ekspektasi.",
+    "examples": [
+      {
+        "jp": "昨夜はコンサートに行くつもりだった。ところが病気で行けなくなった。",
+        "en": "I was planning to go to the concert last night but I couldn't go because I felt sick.",
+        "id": "Semalam rencananya mau nonton konser. Tapi karena sakit, jadi tidak bisa pergi."
+      }
+    ],
+    "question_ids": [
+      "w5d6g3_q1",
+      "w5d6g3_q2",
+      "w5d6g3_q3",
+      "w5d6g3_q4",
+      "w5d6g3_q5",
+      "w5d6g3_q6",
+      "w5d6g3_q7"
+    ],
+    "questions_status": "authored"
+  },
+  {
+    "id": "w5d6g4",
+    "map_id": "map_bunpou_w5",
+    "stage_id": "stage_bunpou_w5d6",
+    "title": "明日は試験だ。ところで、来週は？（a。ところでb。使って話題を換える）",
+    "formula": "a。ところでb。",
+    "meaning_en": "By the way (used when changing the topic).",
+    "meaning_id": "Ngomong-ngomong,... (Beralih ke topik obrolan baru yang berbeda)",
+    "explanation_note": "Jembatan pergantian topik yang mulus dan santun.",
+    "examples": [
+      {
+        "jp": "明日、試験でしょ。がんばってね。ところで、来週の月曜日は空いてる？",
+        "en": "The exam will be tomorrow, right? I wish you well. By the way, will you be free next Monday?",
+        "id": "Besok ujian kan? Semangat ya. Ngomong-ngomong, Senin depan kamu ada waktu?"
+      }
+    ],
+    "question_ids": [
+      "w5d6g4_q1",
+      "w5d6g4_q2",
+      "w5d6g4_q3",
+      "w5d6g4_q4",
+      "w5d6g4_q5",
+      "w5d6g4_q6",
+      "w5d6g4_q7"
+    ],
+    "questions_status": "authored"
+  }
+]

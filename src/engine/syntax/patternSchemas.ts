@@ -1,0 +1,318 @@
+// ==============================================================================
+// JAPANESE LANGUAGE INTELLIGENCE ENGINE (J-LIE) — GRAMMAR PATTERN SCHEMAS
+// ==============================================================================
+
+import { GrammarPatternSchema } from '../types';
+
+export const PATTERN_SCHEMAS: Record<string, GrammarPatternSchema> = {
+  'te_wa_ikenai': {
+    id: 'te_wa_ikenai',
+    pattern: '〜てはいけない',
+    title: 'Larangan Formal: 〜てはいけない',
+    jlpt: 'N5',
+    predicateType: 'verb',
+    requiredConjugation: 'te',
+    fixedSuffix: 'はいけない',
+    slots: [
+      { role: 'location', particle: 'で', required: false, allowedWordTypes: ['noun'] },
+      { role: 'object', particle: 'を', required: false, allowedWordTypes: ['noun'] },
+      { role: 'predicate', required: true, allowedWordTypes: ['verb'], conjugationRequirement: 'te' },
+    ],
+    meaningTemplateId: 'Tidak boleh {predicate} {object} di {location}',
+    meaningTemplateEn: 'You must not {predicate} {object} at {location}',
+    nuanceExplanation: 'Pola ini menyatakan larangan baku atau aturan formal yang tidak boleh dilanggar.',
+  },
+
+  'te_mo_ii': {
+    id: 'te_mo_ii',
+    pattern: '〜てもいい',
+    title: 'Pemberian Izin: 〜てもいい',
+    jlpt: 'N5',
+    predicateType: 'verb',
+    requiredConjugation: 'te',
+    fixedSuffix: 'もいい',
+    slots: [
+      { role: 'location', particle: 'で', required: false, allowedWordTypes: ['noun'] },
+      { role: 'object', particle: 'を', required: false, allowedWordTypes: ['noun'] },
+      { role: 'predicate', required: true, allowedWordTypes: ['verb'], conjugationRequirement: 'te' },
+    ],
+    meaningTemplateId: 'Boleh {predicate} {object} di {location}',
+    meaningTemplateEn: 'You may {predicate} {object} at {location}',
+    nuanceExplanation: 'Digunakan untuk memberikan atau meminta izin melakukan sesuatu secara wajar.',
+  },
+
+  'ta_hou_ga_ii': {
+    id: 'ta_hou_ga_ii',
+    pattern: '〜たほうがいい',
+    title: 'Saran & Anjuran Positif: 〜たほうがいい',
+    jlpt: 'N5',
+    predicateType: 'verb',
+    requiredConjugation: 'ta',
+    fixedSuffix: 'ほうがいい',
+    slots: [
+      { role: 'location', particle: 'で', required: false, allowedWordTypes: ['noun'] },
+      { role: 'object', particle: 'を', required: false, allowedWordTypes: ['noun'] },
+      { role: 'predicate', required: true, allowedWordTypes: ['verb'], conjugationRequirement: 'ta' },
+    ],
+    meaningTemplateId: 'Sebaiknya {predicate} {object} di {location}',
+    meaningTemplateEn: 'You should {predicate} {object} at {location}',
+    nuanceExplanation: 'Memberikan anjuran atau saran kuat yang menguntungkan lawan bicara.',
+  },
+
+  'nai_hou_ga_ii': {
+    id: 'nai_hou_ga_ii',
+    pattern: '〜ないほうがいい',
+    title: 'Saran Negatif: 〜ないほうがいい',
+    jlpt: 'N5',
+    predicateType: 'verb',
+    requiredConjugation: 'nai',
+    fixedSuffix: 'ほうがいい',
+    slots: [
+      { role: 'object', particle: 'を', required: false, allowedWordTypes: ['noun'] },
+      { role: 'predicate', required: true, allowedWordTypes: ['verb'], conjugationRequirement: 'nai' },
+    ],
+    meaningTemplateId: 'Sebaiknya jangan {predicate} {object}',
+    meaningTemplateEn: 'It is better not to {predicate} {object}',
+    nuanceExplanation: 'Menyarankan untuk tidak melakukan suatu tindakan demi mencegah hal buruk.',
+  },
+
+  'te_iru': {
+    id: 'te_iru',
+    pattern: '〜ている',
+    title: 'Sedang Berlangsung / Kondisi: 〜ている',
+    jlpt: 'N5',
+    predicateType: 'verb',
+    requiredConjugation: 'te',
+    fixedSuffix: 'いる',
+    slots: [
+      { role: 'location', particle: 'で', required: false, allowedWordTypes: ['noun'] },
+      { role: 'object', particle: 'を', required: false, allowedWordTypes: ['noun'] },
+      { role: 'predicate', required: true, allowedWordTypes: ['verb'], conjugationRequirement: 'te' },
+    ],
+    meaningTemplateId: 'Sedang {predicate} {object} di {location}',
+    meaningTemplateEn: 'Is {predicate}ing {object} at {location}',
+
+    nuanceExplanation: 'Menyatakan kegiatan yang sedang berjalan atau keadaan hasil dari tindakan sebelumnya.',
+  },
+
+  'nagara': {
+    id: 'nagara',
+    pattern: '〜ながら',
+    title: 'Aksi Simultan: 〜ながら',
+    jlpt: 'N5',
+    predicateType: 'verb',
+    requiredConjugation: 'masu_stem',
+    fixedSuffix: 'ながら',
+    slots: [
+      { role: 'object', particle: 'を', required: false, allowedWordTypes: ['noun'] },
+      { role: 'predicate', required: true, allowedWordTypes: ['verb'], conjugationRequirement: 'masu_stem' },
+    ],
+    meaningTemplateId: 'Sambil {predicate} {object}',
+    meaningTemplateEn: 'While {predicate}ing {object}',
+    nuanceExplanation: 'Melakukan dua aktivitas sekaligus oleh pelaku yang sama. Aksi utama diletakkan setelahながら.',
+  },
+
+  'te_kara': {
+    id: 'te_kara',
+    pattern: '〜てから',
+    title: 'Urutan Tindakan: 〜てから',
+    jlpt: 'N5',
+    predicateType: 'verb',
+    requiredConjugation: 'te',
+    fixedSuffix: 'から',
+    slots: [
+      { role: 'object', particle: 'を', required: false, allowedWordTypes: ['noun'] },
+      { role: 'predicate', required: true, allowedWordTypes: ['verb'], conjugationRequirement: 'te' },
+    ],
+    meaningTemplateId: 'Setelah {predicate} {object}',
+    meaningTemplateEn: 'After {predicate}ing {object}',
+    nuanceExplanation: 'Menegaskan bahwa tindakan pertama harus tuntas sebelum memulai tindakan berikutnya.',
+  },
+
+  'koto_ga_dekiru': {
+    id: 'koto_ga_dekiru',
+    pattern: '〜ことができる',
+    title: 'Kemampuan / Potensial: 〜ことができる',
+    jlpt: 'N5',
+    predicateType: 'verb',
+    requiredConjugation: 'jisho',
+    fixedSuffix: 'ことができる',
+    slots: [
+      { role: 'object', particle: 'を', required: false, allowedWordTypes: ['noun'] },
+      { role: 'predicate', required: true, allowedWordTypes: ['verb'], conjugationRequirement: 'jisho' },
+    ],
+    meaningTemplateId: 'Bisa / Mampu {predicate} {object}',
+    meaningTemplateEn: 'Can {predicate} {object}',
+    nuanceExplanation: 'Menyatakan potensi kemampuan atau izin situasional secara objektif.',
+  },
+
+  'tsumori_da': {
+    id: 'tsumori_da',
+    pattern: '〜つもりだ',
+    title: 'Niat / Rencana: 〜つもりだ',
+    jlpt: 'N5',
+    predicateType: 'verb',
+    requiredConjugation: 'jisho',
+    fixedSuffix: 'つもりだ',
+    slots: [
+      { role: 'object', particle: 'を', required: false, allowedWordTypes: ['noun'] },
+      { role: 'predicate', required: true, allowedWordTypes: ['verb'], conjugationRequirement: 'jisho' },
+    ],
+    meaningTemplateId: 'Berniat / Berencana {predicate} {object}',
+    meaningTemplateEn: 'Plan to {predicate} {object}',
+    nuanceExplanation: 'Menyatakan rencana atau intensi yang sudah dipikirkan matang-matang sebelumnya.',
+  },
+
+  'sugiru': {
+    id: 'sugiru',
+    pattern: '〜すぎる',
+    title: 'Berlebihan / Terlampau: 〜すぎる',
+    jlpt: 'N4',
+    predicateType: 'verb',
+    requiredConjugation: 'masu_stem',
+    fixedSuffix: 'すぎる',
+    slots: [
+      { role: 'object', particle: 'を', required: false, allowedWordTypes: ['noun'] },
+      { role: 'predicate', required: true, allowedWordTypes: ['verb'], conjugationRequirement: 'masu_stem' },
+    ],
+    meaningTemplateId: 'Terlalu banyak {predicate} {object}',
+    meaningTemplateEn: '{predicate} {object} too much',
+    nuanceExplanation: 'Menunjukkan bahwa suatu tindakan atau sifat melebihi batas wajar dan biasanya berakibat negatif.',
+  },
+
+  'tai': {
+    id: 'tai',
+    pattern: '〜たい',
+    title: 'Keinginan: 〜たい',
+    jlpt: 'N5',
+    predicateType: 'verb',
+    requiredConjugation: 'masu_stem',
+    fixedSuffix: 'たい',
+    slots: [
+      { role: 'object', particle: 'を', required: false, allowedWordTypes: ['noun'] },
+      { role: 'predicate', required: true, allowedWordTypes: ['verb'], conjugationRequirement: 'masu_stem' },
+    ],
+    meaningTemplateId: 'Ingin {predicate} {object}',
+    meaningTemplateEn: 'Want to {predicate} {object}',
+    nuanceExplanation: 'Menyatakan keinginan diri sendiri secara langsung untuk melakukan tindakan.',
+  },
+
+  'mae_ni': {
+    id: 'mae_ni',
+    pattern: '〜前に',
+    title: 'Sebelum: 〜前に',
+    jlpt: 'N5',
+    predicateType: 'verb',
+    requiredConjugation: 'jisho',
+    fixedSuffix: 'まえに',
+    slots: [
+      { role: 'object', particle: 'を', required: false, allowedWordTypes: ['noun'] },
+      { role: 'predicate', required: true, allowedWordTypes: ['verb'], conjugationRequirement: 'jisho' },
+    ],
+    meaningTemplateId: 'Sebelum {predicate} {object}',
+    meaningTemplateEn: 'Before {predicate}ing {object}',
+    nuanceExplanation: 'Menyatakan bahwa suatu hal dilakukan sebelum tindakan dalam klausa ini terjadi.',
+  },
+
+  'te_kudasai': {
+    id: 'te_kudasai',
+    pattern: '〜てください',
+    title: 'Permintaan Sopan: 〜てください',
+    jlpt: 'N5',
+    predicateType: 'verb',
+    requiredConjugation: 'te',
+    fixedSuffix: 'ください',
+    slots: [
+      { role: 'object', particle: 'を', required: false, allowedWordTypes: ['noun'] },
+      { role: 'predicate', required: true, allowedWordTypes: ['verb'], conjugationRequirement: 'te' },
+    ],
+    meaningTemplateId: 'Tolong {predicate} {object}',
+    meaningTemplateEn: 'Please {predicate} {object}',
+    nuanceExplanation: 'Permintaan atau permohonan sopan kepada lawan bicara untuk melakukan sesuatu.',
+  },
+
+  'nai_de_kudasai': {
+    id: 'nai_de_kudasai',
+    pattern: '〜ないでください',
+    title: 'Larangan Sopan: 〜ないでください',
+    jlpt: 'N5',
+    predicateType: 'verb',
+    requiredConjugation: 'nai',
+    fixedSuffix: 'でください',
+    slots: [
+      { role: 'object', particle: 'を', required: false, allowedWordTypes: ['noun'] },
+      { role: 'predicate', required: true, allowedWordTypes: ['verb'], conjugationRequirement: 'nai' },
+    ],
+    meaningTemplateId: 'Tolong jangan {predicate} {object}',
+    meaningTemplateEn: 'Please do not {predicate} {object}',
+    nuanceExplanation: 'Permohonan sopan untuk tidak melakukan suatu tindakan.',
+  },
+
+  'ta_koto_ga_aru': {
+    id: 'ta_koto_ga_aru',
+    pattern: '〜たことがある',
+    title: 'Pengalaman Lampau: 〜たことがある',
+    jlpt: 'N5',
+    predicateType: 'verb',
+    requiredConjugation: 'ta',
+    fixedSuffix: 'ことがある',
+    slots: [
+      { role: 'object', particle: 'を', required: false, allowedWordTypes: ['noun'] },
+      { role: 'predicate', required: true, allowedWordTypes: ['verb'], conjugationRequirement: 'ta' },
+    ],
+    meaningTemplateId: 'Pernah {predicate} {object}',
+    meaningTemplateEn: 'Have ever {predicate}ed {object}',
+    nuanceExplanation: 'Menyatakan pengalaman hidup yang pernah dilakukan di masa lampau.',
+  },
+
+  'te_shimau': {
+    id: 'te_shimau',
+    pattern: '〜てしまう',
+    title: 'Tuntas / Penyesalan: 〜てしまう',
+    jlpt: 'N4',
+    predicateType: 'verb',
+    requiredConjugation: 'te',
+    fixedSuffix: 'しまう',
+    slots: [
+      { role: 'object', particle: 'を', required: false, allowedWordTypes: ['noun'] },
+      { role: 'predicate', required: true, allowedWordTypes: ['verb'], conjugationRequirement: 'te' },
+    ],
+    meaningTemplateId: 'Terlanjur / sudah selesai {predicate} {object}',
+    meaningTemplateEn: 'Completely / accidentally {predicate} {object}',
+    nuanceExplanation: 'Menyatakan tindakan yang selesai tuntas atau penyesalan karena suatu hal yang tidak sengaja terjadi.',
+  },
+
+  'yasui': {
+    id: 'yasui',
+    pattern: '〜やすい',
+    title: 'Kemudahan: 〜やすい',
+    jlpt: 'N4',
+    predicateType: 'verb',
+    requiredConjugation: 'masu_stem',
+    fixedSuffix: 'やすい',
+    slots: [
+      { role: 'object', particle: 'を', required: false, allowedWordTypes: ['noun'] },
+      { role: 'predicate', required: true, allowedWordTypes: ['verb'], conjugationRequirement: 'masu_stem' },
+    ],
+    meaningTemplateId: 'Mudah untuk di-{predicate}',
+    meaningTemplateEn: 'Easy to {predicate}',
+    nuanceExplanation: 'Menunjukkan bahwa suatu tindakan mudah dilakukan atau suatu objek mudah mengalami hal tersebut.',
+  },
+
+  'nikui': {
+    id: 'nikui',
+    pattern: '〜にくい',
+    title: 'Kesulitan: 〜にくい',
+    jlpt: 'N4',
+    predicateType: 'verb',
+    requiredConjugation: 'masu_stem',
+    fixedSuffix: 'にくい',
+    slots: [
+      { role: 'object', particle: 'を', required: false, allowedWordTypes: ['noun'] },
+      { role: 'predicate', required: true, allowedWordTypes: ['verb'], conjugationRequirement: 'masu_stem' },
+    ],
+    meaningTemplateId: 'Sulit untuk di-{predicate}',
+    meaningTemplateEn: 'Hard to {predicate}',
+    nuanceExplanation: 'Menunjukkan bahwa suatu tindakan sukar atau tidak nyaman dilakukan.',
+  },
+};

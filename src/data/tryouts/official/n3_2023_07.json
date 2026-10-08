@@ -1,0 +1,1308 @@
+{
+  "id": "n3_2023_07",
+  "title": "Simulasi N3 — Paket 008",
+  "level": "N3",
+  "code": "008",
+  "passingScore": 95,
+  "maxScore": 180,
+  "sections": {
+    "mojiGoi": {
+      "title": "言語知識（文字・語彙）",
+      "timeLimitMinutes": 30,
+      "questions": [
+        {
+          "id": "n3_2023_07_mg_soal-1",
+          "prompt": "毎日復習したので、よくできるようになった。",
+          "options": [
+            "ふうしゅう",
+            "れんしゅう",
+            "ふくしゅう",
+            "れいしゅう"
+          ],
+          "correctIndex": 2,
+          "instruction": "問題1 ＿＿＿の言葉の読み方として最もよいものを、1・2・3・4から一つ選びなさい。",
+          "explanation": "Kanji「復習」(pelajaran ulang) dibaca「ふくしゅう」."
+        },
+        {
+          "id": "n3_2023_07_mg_soal-2",
+          "prompt": "小型のラジオが欲しいです。",
+          "options": [
+            "こかた",
+            "しょうがた",
+            "こがた",
+            "しょうかた"
+          ],
+          "correctIndex": 2,
+          "instruction": "問題1 ＿＿＿の言葉の読み方として最もよいものを、1・2・3・4から一つ選びなさい。",
+          "explanation": "Kanji「小型」(ukuran kecil) dibaca「こがた」."
+        },
+        {
+          "id": "n3_2023_07_mg_soal-3",
+          "prompt": "理由もないのに、人を疑ってはいけない。",
+          "options": [
+            "きらって",
+            "こわがって",
+            "しかって",
+            "うたがって"
+          ],
+          "correctIndex": 3,
+          "instruction": "問題1 ＿＿＿の言葉の読み方として最もよいものを、1・2・3・4から一つ選びなさい。",
+          "explanation": "Kanji「疑って」(mencurigai) dibaca「うたがって」."
+        },
+        {
+          "id": "n3_2023_07_mg_soal-4",
+          "prompt": "ここから先は道が細くなっている。",
+          "options": [
+            "ひろく",
+            "ふとく",
+            "せまく",
+            "ほそく"
+          ],
+          "correctIndex": 3,
+          "instruction": "問題1 ＿＿＿の言葉の読み方として最もよいものを、1・2・3・4から一つ選びなさい。",
+          "explanation": "Kanji「細く」(tipis) dibaca「ほそく」."
+        },
+        {
+          "id": "n3_2023_07_mg_soal-5",
+          "prompt": "川井さんは明日、退院するそうです。",
+          "options": [
+            "たいいん",
+            "たんいん",
+            "だいいん",
+            "だんいん"
+          ],
+          "correctIndex": 0,
+          "instruction": "問題1 ＿＿＿の言葉の読み方として最もよいものを、1・2・3・4から一つ選びなさい。",
+          "explanation": "Kanji「退院」(keluar RS) dibaca「たいいん」."
+        },
+        {
+          "id": "n3_2023_07_mg_soal-6",
+          "prompt": "パーテイーには夫婦で参加します。",
+          "options": [
+            "ふうふう",
+            "ふうふ",
+            "ふふう",
+            "ふふ"
+          ],
+          "correctIndex": 1,
+          "instruction": "問題1 ＿＿＿の言葉の読み方として最もよいものを、1・2・3・4から一つ選びなさい。",
+          "explanation": "Kanji「夫婦」(suami istri) dibaca「ふうふ」."
+        },
+        {
+          "id": "n3_2023_07_mg_soal-7",
+          "prompt": "留守の間に誰か来たようだ。",
+          "options": [
+            "るしゅ",
+            "るす",
+            "りゅうす",
+            "りゅうしゅ"
+          ],
+          "correctIndex": 1,
+          "instruction": "問題1 ＿＿＿の言葉の読み方として最もよいものを、1・2・3・4から一つ選びなさい。",
+          "explanation": "Kanji「留守」(tidak di rumah) dibaca「るす」."
+        },
+        {
+          "id": "n3_2023_07_mg_soal-8",
+          "prompt": "これは、とても高価な花瓶だそうです。",
+          "options": [
+            "こうか",
+            "ごうか",
+            "こうが",
+            "ごうが"
+          ],
+          "correctIndex": 0,
+          "instruction": "問題1 ＿＿＿の言葉の読み方として最もよいものを、1・2・3・4から一つ選びなさい。",
+          "explanation": "Kanji「高価」(mahal) dibaca「こうか」."
+        },
+        {
+          "id": "n3_2023_07_mg_soal-9",
+          "prompt": "彼はたんきだ。",
+          "options": [
+            "男気",
+            "単気",
+            "短気",
+            "断気"
+          ],
+          "correctIndex": 2,
+          "instruction": "問題2 ＿＿＿の言葉を漢字で書く時、最も良いものを、1・2・3・4から一つ選びなさい。",
+          "explanation": "Kata baca「たんき」(たんき) ditulis dengan kanji「短気」."
+        },
+        {
+          "id": "n3_2023_07_mg_soal-10",
+          "prompt": "上田さんは少ししんぱいしているようだ。",
+          "options": [
+            "心酔",
+            "心配",
+            "信配",
+            "信酔"
+          ],
+          "correctIndex": 1,
+          "instruction": "問題2 ＿＿＿の言葉を漢字で書く時、最も良いものを、1・2・3・4から一つ選びなさい。",
+          "explanation": "Kata baca「しんぱい」(しんぱい) ditulis dengan kanji「心配」."
+        },
+        {
+          "id": "n3_2023_07_mg_soal-11",
+          "prompt": "次はこれをやいてください。",
+          "options": [
+            "焼いて",
+            "燃いて",
+            "煙いて",
+            "炊いて"
+          ],
+          "correctIndex": 0,
+          "instruction": "問題2 ＿＿＿の言葉を漢字で書く時、最も良いものを、1・2・3・4から一つ選びなさい。",
+          "explanation": "Kata baca「やいて」(やいて) ditulis dengan kanji「焼いて」."
+        },
+        {
+          "id": "n3_2023_07_mg_soal-12",
+          "prompt": "明日、かならず来てください。",
+          "options": [
+            "確ず",
+            "要ず",
+            "必ず",
+            "直ず"
+          ],
+          "correctIndex": 2,
+          "instruction": "問題2 ＿＿＿の言葉を漢字で書く時、最も良いものを、1・2・3・4から一つ選びなさい。",
+          "explanation": "Kata baca「かならず」(かならず) ditulis dengan kanji「必ず」."
+        },
+        {
+          "id": "n3_2023_07_mg_soal-13",
+          "prompt": "私の学校はせいふくがありません。",
+          "options": [
+            "清衣",
+            "制衣",
+            "清服",
+            "制服"
+          ],
+          "correctIndex": 3,
+          "instruction": "問題2 ＿＿＿の言葉を漢字で書く時、最も良いものを、1・2・3・4から一つ選びなさい。",
+          "explanation": "Kata baca「せいふく」(せいふく) ditulis dengan kanji「制服」."
+        },
+        {
+          "id": "n3_2023_07_mg_soal-14",
+          "prompt": "探していたやっきょくが、やっと見つかりました。",
+          "options": [
+            "薬局",
+            "薬曲",
+            "楽局",
+            "楽曲"
+          ],
+          "correctIndex": 0,
+          "instruction": "問題2 ＿＿＿の言葉を漢字で書く時、最も良いものを、1・2・3・4から一つ選びなさい。",
+          "explanation": "Kata baca「やっきょく」(やっきょく) ditulis dengan kanji「薬局」."
+        },
+        {
+          "id": "n3_2023_07_mg_soal-15",
+          "prompt": "雨が降ってきましたが、私の家は近いので、傘がなくても（　）です。",
+          "options": [
+            "平気",
+            "安全",
+            "正常",
+            "十分"
+          ],
+          "correctIndex": 0,
+          "instruction": "問題3 （　　）に入れるのに最もよいものを、1・2・3・4から一つ選びなさい。",
+          "explanation": "「平気」= tidak masalah/tenang saja. Karena rumah dekat, tidak masalah meski tidak bawa payung saat hujan."
+        },
+        {
+          "id": "n3_2023_07_mg_soal-16",
+          "prompt": "仕事で疲れているときは、夕飯を作るのが（　）ので、外食することが多い。",
+          "options": [
+            "だらしない",
+            "めんどうくさい",
+            "くわしい",
+            "にくらしい"
+          ],
+          "correctIndex": 1,
+          "instruction": "問題3 （　　）に入れるのに最もよいものを、1・2・3・4から一つ選びなさい。",
+          "explanation": "「めんどうくさい」= merepotkan/malas melakukannya. Saat lelah kerja, memasak terasa merepotkan sehingga sering makan di luar."
+        },
+        {
+          "id": "n3_2023_07_mg_soal-17",
+          "prompt": "ゆうべはほとんど寝ていないので、今日は眠くて何度も（　）が出てしまう。",
+          "options": [
+            "しゃっくり",
+            "くしゃみ",
+            "せき",
+            "あくび"
+          ],
+          "correctIndex": 3,
+          "instruction": "問題3 （　　）に入れるのに最もよいものを、1・2・3・4から一つ選びなさい。",
+          "explanation": "「あくび」= menguap. Karena kurang tidur semalam, hari ini jadi sering mengantuk dan menguap."
+        },
+        {
+          "id": "n3_2023_07_mg_soal-18",
+          "prompt": "「私の国の社会問題」という（　）で、レポートを書くことになった。",
+          "options": [
+            "デザイン",
+            "テーマ",
+            "サイン",
+            "ルール"
+          ],
+          "correctIndex": 1,
+          "instruction": "問題3 （　　）に入れるのに最もよいものを、1・2・3・4から一つ選びなさい。",
+          "explanation": "「テーマ」= tema (dari bahasa Inggris/Jerman 'theme'). Menjadi tema laporan yang harus ditulis."
+        },
+        {
+          "id": "n3_2023_07_mg_soal-19",
+          "prompt": "この季節は、昼と夜の気温の（　）が大きい。",
+          "options": [
+            "台",
+            "段",
+            "差",
+            "列"
+          ],
+          "correctIndex": 2,
+          "instruction": "問題3 （　　）に入れるのに最もよいものを、1・2・3・4から一つ選びなさい。",
+          "explanation": "「差」= selisih/perbedaan. Selisih suhu siang dan malam yang besar pada musim ini."
+        },
+        {
+          "id": "n3_2023_07_mg_soal-20",
+          "prompt": "（　）して、鍵をかけないで家を出てしまった。",
+          "options": [
+            "はっきり",
+            "しっかり",
+            "ぴったり",
+            "うっかり"
+          ],
+          "correctIndex": 3,
+          "instruction": "問題3 （　　）に入れるのに最もよいものを、1・2・3・4から一つ選びなさい。",
+          "explanation": "「うっかり」= tanpa sadar/ceroboh. Tanpa sadar lupa mengunci pintu saat keluar rumah."
+        },
+        {
+          "id": "n3_2023_07_mg_soal-21",
+          "prompt": "まだ空席が少しあるので、今なら予約は（　）です。",
+          "options": [
+            "完全",
+            "無駄",
+            "可能",
+            "平等"
+          ],
+          "correctIndex": 2,
+          "instruction": "問題3 （　　）に入れるのに最もよいものを、1・2・3・4から一つ選びなさい。",
+          "explanation": "「可能」= memungkinkan/bisa dilakukan. Karena masih ada kursi kosong, reservasi masih bisa dilakukan sekarang."
+        },
+        {
+          "id": "n3_2023_07_mg_soal-22",
+          "prompt": "私のパソコンは古いので、（　）が遅いです。",
+          "options": [
+            "行動",
+            "活動",
+            "動作",
+            "運動"
+          ],
+          "correctIndex": 2,
+          "instruction": "問題3 （　　）に入れるのに最もよいものを、1・2・3・4から一つ選びなさい。",
+          "explanation": "「動作」= kinerja/gerakan (mesin/perangkat). Komputer lama sehingga kinerjanya (proses kerjanya) lambat."
+        },
+        {
+          "id": "n3_2023_07_mg_soal-23",
+          "prompt": "来週の説明会は、今日の12時が申し込みの（　）だ。",
+          "options": [
+            "期限",
+            "期間",
+            "日程",
+            "日常"
+          ],
+          "correctIndex": 0,
+          "instruction": "問題3 （　　）に入れるのに最もよいものを、1・2・3・4から一つ選びなさい。",
+          "explanation": "「期限」= batas waktu/tenggat. Jam 12 siang ini adalah batas waktu pendaftaran untuk sesi penjelasan minggu depan."
+        },
+        {
+          "id": "n3_2023_07_mg_soal-24",
+          "prompt": "外国で生活するのは楽しいが、ときどき国の料理が（　）なる。",
+          "options": [
+            "恋しく",
+            "親しく",
+            "苦しく",
+            "貧しく"
+          ],
+          "correctIndex": 0,
+          "instruction": "問題3 （　　）に入れるのに最もよいものを、1・2・3・4から一つ選びなさい。",
+          "explanation": "「恋しく」= merindukan. Terkadang merindukan masakan negeri sendiri saat tinggal di luar negeri."
+        },
+        {
+          "id": "n3_2023_07_mg_soal-25",
+          "prompt": "夫とは、3年間（　）から結婚しました。",
+          "options": [
+            "取り囲んで",
+            "引き受けて",
+            "思いついて",
+            "付き合って"
+          ],
+          "correctIndex": 3,
+          "instruction": "問題3 （　　）に入れるのに最もよいものを、1・2・3・4から一つ選びなさい。",
+          "explanation": "「付き合って」= berpacaran/menjalin hubungan. Berpacaran 3 tahun sebelum menikah dengan suami."
+        },
+        {
+          "id": "n3_2023_07_mg_soal-26",
+          "prompt": "その部屋にある家具のサイズを聞いてきてください。",
+          "options": [
+            "重さ",
+            "数",
+            "形",
+            "大きさ"
+          ],
+          "correctIndex": 3,
+          "instruction": "問題4 ＿＿＿に意味が最も近いものを、1・2・3・4から一つ選びなさい。",
+          "explanation": "ukuran (sinonim: 大きさ)."
+        },
+        {
+          "id": "n3_2023_07_mg_soal-27",
+          "prompt": "この部分を暗記してください。",
+          "options": [
+            "読んで",
+            "書いて",
+            "覚えて",
+            "教えて"
+          ],
+          "correctIndex": 2,
+          "instruction": "問題4 ＿＿＿に意味が最も近いものを、1・2・3・4から一つ選びなさい。",
+          "explanation": "menghafal (sinonim: 覚えて)."
+        },
+        {
+          "id": "n3_2023_07_mg_soal-28",
+          "prompt": "伊藤さんは魚を料理するのが得意なようだ。",
+          "options": [
+            "あまり好きじゃない",
+            "あまり上手じゃない",
+            "とても好きな",
+            "とても上手な"
+          ],
+          "correctIndex": 3,
+          "instruction": "問題4 ＿＿＿に意味が最も近いものを、1・2・3・4から一つ選びなさい。",
+          "explanation": "jago (sinonim: とても上手な)."
+        },
+        {
+          "id": "n3_2023_07_mg_soal-29",
+          "prompt": "誰にでも欠点はあると思う。",
+          "options": [
+            "つまらないところ",
+            "よくないところ",
+            "間違えるところ",
+            "忘れるところ"
+          ],
+          "correctIndex": 1,
+          "instruction": "問題4 ＿＿＿に意味が最も近いものを、1・2・3・4から一つ選びなさい。",
+          "explanation": "kelemahan (sinonim: よくないところ)."
+        },
+        {
+          "id": "n3_2023_07_mg_soal-30",
+          "prompt": "そんなにどならないでください。",
+          "options": [
+            "大声で怒らないで",
+            "強く押さないで",
+            "たくさん食べないで",
+            "早く歩かないで"
+          ],
+          "correctIndex": 0,
+          "instruction": "問題4 ＿＿＿に意味が最も近いものを、1・2・3・4から一つ選びなさい。",
+          "explanation": "jangan berteriak (sinonim: 大声で怒らないで)."
+        },
+        {
+          "id": "n3_2023_07_mg_soal-31",
+          "prompt": "進歩",
+          "options": [
+            "この会社は社長が一人で始めたが、今は大きな会社に進歩した",
+            "技術が進歩して、人々の生活は便利になった",
+            "病気が治って、食欲もだんだん進歩してきた",
+            "アパートの家賃が進歩して、来年から5000円高くなるそうだ"
+          ],
+          "correctIndex": 1,
+          "instruction": "問題5 つぎの言葉の使い方として最もよいものを、1・2・3・4から一つ選びなさい。",
+          "explanation": "「進歩」= kemajuan. Digunakan untuk perkembangan teknologi/ilmu, bukan untuk kemunduran."
+        },
+        {
+          "id": "n3_2023_07_mg_soal-32",
+          "prompt": "話しかける",
+          "options": [
+            "昨日、駅で観光客に英語で話しかけられた",
+            "次の旅行の行き先は、家族と話しかけて決めようと思う",
+            "名前を話しかけるので、呼ばれた人は手を挙げてください",
+            "先輩にお土産をあげて、お礼を話しかけられました"
+          ],
+          "correctIndex": 0,
+          "instruction": "問題5 つぎの言葉の使い方として最もよいものを、1・2・3・4から一つ選びなさい。",
+          "explanation": "「話しかける」= mengajak bicara. Digunakan untuk memulai percakapan, bukan untuk mengakhiri."
+        },
+        {
+          "id": "n3_2023_07_mg_soal-33",
+          "prompt": "交流",
+          "options": [
+            "二つの色が交流して、きれいなピンク色になりました",
+            "このドレッシングは、野菜と交流するとおいしいですね",
+            "息子の学校は、海外の人たちと交流する機会が多いようだ",
+            "この引き出しには、兄の物と私の物が交流している"
+          ],
+          "correctIndex": 2,
+          "instruction": "問題5 つぎの言葉の使い方として最もよいものを、1・2・3・4から一つ選びなさい。",
+          "explanation": "「交流」= interaksi/pertukaran. Digunakan untuk hubungan antar orang/budaya, bukan untuk lalu lintas."
+        },
+        {
+          "id": "n3_2023_07_mg_soal-34",
+          "prompt": "渋滞",
+          "options": [
+            "新しい家の工事が渋滞していて、なかなか引っ越せない",
+            "事故で道が渋滞していたので、遅刻してしまった",
+            "最近仕事が忙しくて、ストレスが渋滞している",
+            "この商品はあまり売れないので、倉庫の中で渋滞している"
+          ],
+          "correctIndex": 1,
+          "instruction": "問題5 つぎの言葉の使い方として最もよいものを、1・2・3・4から一つ選びなさい。",
+          "explanation": "「渋滞」= macet. Digunakan untuk lalu lintas, bukan untuk keramaian toko."
+        },
+        {
+          "id": "n3_2023_07_mg_soal-35",
+          "prompt": "にこにこ",
+          "options": [
+            "ガソリンが少なくなって、車が途中で止まりそうでにこにこした",
+            "大勢の前で歌ったとき、緊張して胸がにこにこした",
+            "昨日から具合が悪くて、今朝も頭が少しにこにこしている",
+            "遊んでいる私たちを見て、祖母はうれしそうににこにこしていた"
+          ],
+          "correctIndex": 3,
+          "instruction": "問題5 つぎの言葉の使い方として最もよいものを、1・2・3・4から一つ選びなさい。",
+          "explanation": "「にこにこ」= tersenyum lembut. Digunakan untuk senyum, bukan untuk tertawa keras."
+        }
+      ]
+    },
+    "bunpouDokkai": {
+      "title": "言語知識（文法）・読解",
+      "timeLimitMinutes": 70,
+      "questions": [
+        {
+          "id": "n3_2023_07_bd_soal-1",
+          "prompt": "歌手の青山ケイは、海外でも人気があり、アジア（　）中心にいろいろな国でコンサートを行っている。",
+          "options": [
+            "が",
+            "で",
+            "の",
+            "を"
+          ],
+          "correctIndex": 3,
+          "instruction": "問題1 次の文の（　　）に入れるのに最もよいものを、1・2・3・4から一つ選びなさい。",
+          "explanation": "「を中心に」= berpusat pada... (idiom). Bukan partikel objek biasa, melainkan pola tetap yang menandai fokus/pusat suatu aktivitas."
+        },
+        {
+          "id": "n3_2023_07_bd_soal-2",
+          "prompt": "南中学校で、読書の習慣について調査が行われた。調査の結果を見ると、学年が上がる（　）生徒の読書時間が減っていることがわかる。",
+          "options": [
+            "ことから",
+            "としたら",
+            "にしたがって",
+            "のに比べて"
+          ],
+          "correctIndex": 2,
+          "instruction": "問題1 次の文の（　　）に入れるのに最もよいものを、1・2・3・4から一つ選びなさい。",
+          "explanation": "「にしたがって」= seiring dengan. Perubahan beriringan."
+        },
+        {
+          "id": "n3_2023_07_bd_soal-3",
+          "prompt": "友達に誘われて、夏休みに二人で海外旅行に行くことになった。海外旅行は今まで家族（　）行ったことがないので、楽しみだ。",
+          "options": [
+            "だけで",
+            "だけが",
+            "となら",
+            "としか"
+          ],
+          "correctIndex": 3,
+          "instruction": "問題1 次の文の（　　）に入れるのに最もよいものを、1・2・3・4から一つ選びなさい。",
+          "explanation": "「としか〜ない」= tidak bisa lain selain... Eksklusif."
+        },
+        {
+          "id": "n3_2023_07_bd_soal-4",
+          "prompt": "（不動産屋で）\\n店員「こちらのアパートはいかがですか。駅から歩いて15分なんですが、広くてきれいですよ。」\\n客「ああ、部屋はよさそうなんですが、ちょっと駅から遠いですね。（　）もう少し近いところがいいんですが……。」",
+          "options": [
+            "できれば",
+            "別に",
+            "せっかく",
+            "確かに"
+          ],
+          "correctIndex": 0,
+          "instruction": "問題1 次の文の（　　）に入れるのに最もよいものを、1・2・3・4から一つ選びなさい。",
+          "explanation": "「できれば」= kalau bisa. Harapan/syarat."
+        },
+        {
+          "id": "n3_2023_07_bd_soal-5",
+          "prompt": "散歩中、急に雨が（　）だしたので、慌てて近くの喫茶店に入った。",
+          "options": [
+            "降る",
+            "降り",
+            "降って",
+            "降った"
+          ],
+          "correctIndex": 1,
+          "instruction": "問題1 次の文の（　　）に入れるのに最もよいものを、1・2・3・4から一つ選びなさい。",
+          "explanation": "「動詞ます形+だす」= mulai tiba-tiba melakukan sesuatu. 「降りだした」= tiba-tiba mulai turun (hujan)."
+        },
+        {
+          "id": "n3_2023_07_bd_soal-6",
+          "prompt": "（病院の受付で）\\n受付の人「お名前が（　）、診察室の前でお待ちください。」",
+          "options": [
+            "呼ぶと",
+            "呼ぶまで",
+            "呼ばれると",
+            "呼ばれるまで"
+          ],
+          "correctIndex": 3,
+          "instruction": "問題1 次の文の（　　）に入れるのに最もよいものを、1・2・3・4から一つ選びなさい。",
+          "explanation": "「〜まで」= sampai dipanggil. Batas waktu."
+        },
+        {
+          "id": "n3_2023_07_bd_soal-7",
+          "prompt": "今朝は電車が遅れた（　）、会社に遅刻してしまった。",
+          "options": [
+            "間に",
+            "点で",
+            "たびに",
+            "せいで"
+          ],
+          "correctIndex": 3,
+          "instruction": "問題1 次の文の（　　）に入れるのに最もよいものを、1・2・3・4から一つ選びなさい。",
+          "explanation": "「せいで」= karena (sebab negatif). Penyebab merugikan."
+        },
+        {
+          "id": "n3_2023_07_bd_soal-8",
+          "prompt": "明日の授業までにテキストを30ページまで（　）のに、まだ全然読んでいない。",
+          "options": [
+            "読んでおいてはいけない",
+            "読んでおかなければならない",
+            "読むことにしてはいけない",
+            "読むことにしなければならない"
+          ],
+          "correctIndex": 1,
+          "instruction": "問題1 次の文の（　　）に入れるのに最もよいものを、1・2・3・4から一つ選びなさい。",
+          "explanation": "「〜ておく」= melakukan persiapan lebih dulu + 「〜なければならない」= harus. Gabungan: harus sudah membaca duluan (sebagai persiapan) sebelum kelas besok."
+        },
+        {
+          "id": "n3_2023_07_bd_soal-9",
+          "prompt": "昨日の夜は風の音が気になって、少しも（　）。",
+          "options": [
+            "眠りたかった",
+            "眠ろうとした",
+            "眠れなかった",
+            "眠らなくなった"
+          ],
+          "correctIndex": 2,
+          "instruction": "問題1 次の文の（　　）に入れるのに最もよいものを、1・2・3・4から一つ選びなさい。",
+          "explanation": "「〜れない」= tidak bisa tidur. Potensial negatif."
+        },
+        {
+          "id": "n3_2023_07_bd_soal-10",
+          "prompt": "私の夢は、いつか自分のケーキ屋を（　）。",
+          "options": [
+            "開くと思う",
+            "開きたいと思う",
+            "開くことだ",
+            "開きたいことだ"
+          ],
+          "correctIndex": 2,
+          "instruction": "問題1 次の文の（　　）に入れるのに最もよいものを、1・2・3・4から一つ選びなさい。",
+          "explanation": "「〜ことだ」= sebaiknya/hendaknya. Saran."
+        },
+        {
+          "id": "n3_2023_07_bd_soal-11",
+          "prompt": "妻「雨、全然（　）ね。今日は出かけるのやめようか。」\\n夫「そうだね。」",
+          "options": [
+            "やむはずがない",
+            "やみそうにない",
+            "やむに違いない",
+            "やんでもしかたない"
+          ],
+          "correctIndex": 1,
+          "instruction": "問題1 次の文の（　　）に入れるのに最もよいものを、1・2・3・4から一つ選びなさい。",
+          "explanation": "「〜そうにない」= sepertinya tidak akan berhenti. Dugaan negatif."
+        },
+        {
+          "id": "n3_2023_07_bd_soal-12",
+          "prompt": "（大学で）\\nA「先輩に聞いたんだけど、今度、駅前に新しいカフェが（　）よ。」\\nB「そうなんだ。楽しみだね。」",
+          "options": [
+            "できるらしい",
+            "できてほしい",
+            "できることがある",
+            "できたほうがいい"
+          ],
+          "correctIndex": 0,
+          "instruction": "問題1 次の文の（　　）に入れるのに最もよいものを、1・2・3・4から一つ選びなさい。",
+          "explanation": "「らしい」= sepertinya/kabarnya. Dugaan berdasarkan info."
+        },
+        {
+          "id": "n3_2023_07_bd_soal-13",
+          "prompt": "（美容院で）店員「長さは、このぐらいでいいですか。」\\n客「もう少し短く（　）。」\\n店員「はい、わかりました。」",
+          "options": [
+            "してあげますか",
+            "なってあげますか",
+            "してもらえますか",
+            "なってもらえますか"
+          ],
+          "correctIndex": 2,
+          "instruction": "問題1 次の文の（　　）に入れるのに最もよいものを、1・2・3・4から一つ選びなさい。",
+          "explanation": "「〜てもらえますか」= bisakah Anda...? Meminta tolong."
+        },
+        {
+          "id": "n3_2023_07_bd_soal-14",
+          "prompt": "パソコンや携帯電話の　___　___　★　___　原因で、頭が痛くなることもあるそうだ。",
+          "options": [
+            "が",
+            "による",
+            "見すぎ",
+            "目の疲れ"
+          ],
+          "correctIndex": 1,
+          "instruction": "問題2 つぎの文の★に入る最もよいものを、1・2・3・4から一つ選びなさい。",
+          "explanation": "Urutan yang benar: 目の疲れ(4) 見すぎ(3) による(2) が(1). Posisi ★ ada di urutan ke-3, yaitu「による」, menyatakan 'disebabkan oleh' kelelahan mata akibat kebanyakan melihat layar."
+        },
+        {
+          "id": "n3_2023_07_bd_soal-15",
+          "prompt": "私は子供の時、ピアノを習っていたが、3年でやめてしまった。何回　___　___　★　___　嫌になってしまったのだ。",
+          "options": [
+            "上手に弾けない",
+            "練習しても",
+            "なかなか",
+            "曲があって"
+          ],
+          "correctIndex": 0,
+          "instruction": "問題2 つぎの文の★に入る最もよいものを、1・2・3・4から一つ選びなさい。",
+          "explanation": "Urutan yang benar: 練習しても(2) なかなか(3) 上手に弾けない(1) 曲があって(4). Posisi ★ ada di urutan ke-3, yaitu「上手に弾けない」, menyatakan sudah berlatih berkali-kali tetap tidak bisa mahir."
+        },
+        {
+          "id": "n3_2023_07_bd_soal-16",
+          "prompt": "失敗をすることは誰にでもある。大切な　___　___　★　___　考えて、同じ失敗を繰り返さないようにすることだ。",
+          "options": [
+            "失敗をしてしまった",
+            "どうして",
+            "のか",
+            "のは"
+          ],
+          "correctIndex": 0,
+          "instruction": "問題2 つぎの文の★に入る最もよいものを、1・2・3・4から一つ選びなさい。",
+          "explanation": "Urutan yang benar: のは(4) どうして(2) 失敗をしてしまった(1) のか(3). Posisi ★ ada di urutan ke-3, yaitu「失敗をしてしまった」, tentang memikirkan mengapa kegagalan itu terjadi."
+        },
+        {
+          "id": "n3_2023_07_bd_soal-17",
+          "prompt": "（教室で）南「西川さんの誕生日に、何かプレゼントをあげない？」\\n森「いいね。スポーツが好きだと言っていた　___　___　★　___　？」",
+          "options": [
+            "いいんじゃない",
+            "から",
+            "とか",
+            "タオル"
+          ],
+          "correctIndex": 2,
+          "instruction": "問題2 つぎの文の★に入る最もよいものを、1・2・3・4から一つ選びなさい。",
+          "explanation": "Urutan yang benar: タオル(4) とか(3) いいんじゃない(1) から(2). Posisi ★ ada di urutan ke-3, yaitu「とか」, menyatakan pilihan seperti handuk sebagai contoh hadiah."
+        },
+        {
+          "id": "n3_2023_07_bd_soal-18",
+          "prompt": "（講演会で）司会者「本日は、鳥の　___　___　★　___　見ることができる様々な鳥について、お話をしていただきます。」",
+          "options": [
+            "専門家で",
+            "都会で",
+            "いらっしゃる",
+            "山下花子先生に"
+          ],
+          "correctIndex": 3,
+          "instruction": "問題2 つぎの文の★に入る最もよいものを、1・2・3・4から一つ選びなさい。",
+          "explanation": "Urutan yang benar: 都会で(2) いらっしゃる(3) 山下花子先生に(4) 専門家で(1). Posisi ★ ada di urutan ke-3, yaitu「山下花子先生に」, memperkenalkan pembicara sebagai ahli burung."
+        },
+        {
+          "id": "n3_2023_07_bd_soal-19",
+          "prompt": "19",
+          "options": [
+            "でも",
+            "だから",
+            "すると",
+            "そのうえ"
+          ],
+          "correctIndex": 0,
+          "instruction": "問題3 つぎの文章を読んで、文章全体の内容を考えて、(19)から(23)の中に入る最もよいものを、1・2・3・4から一つ選びなさい。",
+          "explanation": "「でも」= namun. Konteks: penulis kerja keras, TAPI teman-teman toko selalu membantu sehingga bisa terus bekerja."
+        },
+        {
+          "id": "n3_2023_07_bd_soal-20",
+          "prompt": "20",
+          "options": [
+            "書いておいた",
+            "書きたかった",
+            "書かれていた",
+            "書いてほしかった"
+          ],
+          "correctIndex": 2,
+          "instruction": "問題3 つぎの文章を読んで、文章全体の内容を考えて、(19)から(23)の中に入る最もよいものを、1・2・3・4から一つ選びなさい。",
+          "explanation": "「書かれていた」= tertulis (pasif lampau). Banyak kata terima kasih tertulis di kartu dari rekan kerja."
+        },
+        {
+          "id": "n3_2023_07_bd_soal-21",
+          "prompt": "21",
+          "options": [
+            "そこ",
+            "大学",
+            "その大学",
+            "そういうところ"
+          ],
+          "correctIndex": 1,
+          "instruction": "問題3 つぎの文章を読んで、文章全体の内容を考えて、(19)から(23)の中に入る最もよいものを、1・2・3・4から一つ選びなさい。",
+          "explanation": "「大学」= universitas. Penulis melihat kartu sebelum pergi ke kampus setiap hari."
+        },
+        {
+          "id": "n3_2023_07_bd_soal-22",
+          "prompt": "22",
+          "options": [
+            "頑張っているのです",
+            "頑張ることができるからです",
+            "頑張っているみたいです",
+            "頑張ることができそうです"
+          ],
+          "correctIndex": 1,
+          "instruction": "問題3 つぎの文章を読んで、文章全体の内容を考えて、(19)から(23)の中に入る最もよいものを、1・2・3・4から一つ選びなさい。",
+          "explanation": "「頑張ることができるからです」= karena bisa bersemangat. Kartu memberi motivasi untuk terus berusaha."
+        },
+        {
+          "id": "n3_2023_07_bd_soal-23",
+          "prompt": "夏祭りの日にホテル岩中に泊まっている人が、ホテルから受けられるサービスとして合っているのはどれか。",
+          "options": [
+            "浴衣を着れば、夏祭り会場まで、ホテルのバスが利用できる",
+            "ホテルのレストランで、ドリンクが1杯無料で飲める",
+            "ホテルから、好きな浴衣と帯が特別料金で借りられる",
+            "浴衣と帯の料金のほかに2000円払えば、ホテルの人に着るのを手伝ってもらえる"
+          ],
+          "correctIndex": 2,
+          "instruction": "問題4 つぎの(1)から(4)の文章を読んで、質問に答えなさい。答えは、1・2・3・4から最もよいものを一つ選びなさい。",
+          "passage": "これは、あるホテルにチェックインした人が、フロントでもらったちらしである。\n\n8月11日・12日にホテル岩中にお泊まりのお客様\\n「岩中村夏祭り」のご案内\n\n8月11日(土)・12日(日)に、岩中公園で夏祭りが行われます。\\n会場とホテルの間は、ホテルのバスのご利用が可能です(約5分)。\\n浴衣を着ている方は、会場内のどの店もドリンクが1杯無料になります。皆様も、浴衣を着て出かけてみてはいかがでしょうか。\\nホテルでは、お好きな浴衣と帯を特別料金【1日2000円】でお貸しします(浴衣の着方がわからない方は、お手伝いいたします)。\\nご希望の方は、フロントでお申し込みください。\\nホテル岩中",
+          "explanation": "Teks: 「お好きな浴衣と帯を特別料金【1日2000円】でお貸しします」= hotel menyewakan yukata & obi dengan harga khusus."
+        },
+        {
+          "id": "n3_2023_07_bd_soal-24",
+          "prompt": "頑張ろうとあるが、どうしてそう思ったのか。",
+          "options": [
+            "自分でも忘れていた、アメリカに留学したいという夢が本当になったから",
+            "自分でも忘れていた、先生になりたいという夢が本当になったから",
+            "子供のころからずっと行きたいと思い続けていたアメリカに留学てきたから",
+            "子供のころからずっとなりたいと思い続けていた先生になれたから"
+          ],
+          "correctIndex": 1,
+          "instruction": "問題4 つぎの(1)から(4)の文章を読んで、質問に答えなさい。答えは、1・2・3・4から最もよいものを一つ選びなさい。",
+          "passage": "先月、留学していたアメリカから帰国した。そして、知り合いに頼まれ、4月から大学で数学を教えることになった。働き始める前に、実家の部屋を整理しようと思って掃除をしていたら、小学生のときに書いた「私の夢」という作文が出てきた。そこには、先生になりたいと書いてあった。そんなことはすっかり忘れていたが、小さいときにそう書いていたのだ。とても驚いたが、子供のころの夢が本当になったのだし、頑張ろうと思う。",
+          "explanation": "Teks: penulis menemukan karangan SD menulis mimpi menjadi guru. Mimpi terlupakan kini jadi kenyataan → termotivasi."
+        },
+        {
+          "id": "n3_2023_07_bd_soal-25",
+          "prompt": "このメールによると、自分で野球場に行こうと思っている学生が、必ずしなければならないことは何か。",
+          "options": [
+            "26日までに学校で招待券を受け取っておく",
+            "26日までに学校で招待券を受け取って、当日、13時に野球場の前に集合する",
+            "当日、12時に学校に行って、招待券を中川先生から受取る",
+            "当日、13時に野球場に行って、招待券を中川先生から受取る"
+          ],
+          "correctIndex": 0,
+          "instruction": "問題4 つぎの(1)から(4)の文章を読んで、質問に答えなさい。答えは、1・2・3・4から最もよいものを一つ選びなさい。",
+          "passage": "これはある日本語学校から学生に届いたメールである。\n\n学校がもらった招待券の試合は今週末です。\\n日時: 2月27日(土) 開場: 13時 試合開始: 14時\\n場所: 春山公園野球場\\nまだ招待券を受け取っていない人は、26日(金)までに事務室に取りに来てください。\\n自分だけで行くのが不安だと言う人がいたので、中川先生が一緒に行くことになりました。一緒に行きたい人は、12時に学校に集合してください。その場合、招待券は当日、中川先生からもらってもいいです。\\n自分で行く人は、学校にも野球場にも集合する必要はありません。\\n寒いですから、暖かい服装で行きましょう。\\n川野日本語学校",
+          "explanation": "Teks: 「26日(金)までに事務室に取りに来てください」= ambil undangan di kantor sebelum tanggal 26."
+        },
+        {
+          "id": "n3_2023_07_bd_soal-26",
+          "prompt": "この実験から、魚の中には、どのようなものがいることがわかったか。",
+          "options": [
+            "鏡を見て、自分に汚れをつけるものがいる",
+            "鏡の中の魚が自分だとわかるものがいる",
+            "鏡に気づくと、すぐに鏡の前に行きたがるものがいる",
+            "鏡が汚れていたら、きれいにしようとするものがいる"
+          ],
+          "correctIndex": 1,
+          "instruction": "問題4 つぎの(1)から(4)の文章を読んで、質問に答えなさい。答えは、1・2・3・4から最もよいものを一つ選びなさい。",
+          "passage": "面白い実験を行った研究者がいる。その実験では、ある魚の顔に汚れをつけて鏡を見せた。すると、その魚は砂で汚れを落とすような動きをしてから、また鏡を見た。これは、自分の顔についた汚れを落とし、その後、汚れが消えたかどうかを確認する動作なのだそうだ。鏡の中にいる自分を見て、それが自分自身だとわかるのは、サルなどの頭のいい動物だけだと考えられていた。しかし、魚にもそれができるものがいるのだと、この研究者は言っている。",
+          "explanation": "Teks: ikan membersihkan kotoran setelah lihat cermin → bisa mengenali diri sendiri di cermin."
+        },
+        {
+          "id": "n3_2023_07_bd_soal-27",
+          "prompt": "運転をやめることにしてとあるが、それはなぜか。",
+          "options": [
+            "運転に自信があったのに、車をぶつけてしまったから",
+            "自分も安全に運転が続けられるか心配になったから",
+            "若いころから自分の運転技術に不安があったから",
+            "車の運転をやめたほうがいいと妻に言われたから"
+          ],
+          "correctIndex": 1,
+          "instruction": "問題5 つぎの(1)と(2)の文章を読んで、質問に答えなさい。答えは、1・2・3・4から最もよいものを一つ選びなさい。",
+          "explanation": "Teks: teman 70 tahun menabrak tembok → penulis khawatir kemampuan sendiri → berhenti mengemudi."
+        },
+        {
+          "id": "n3_2023_07_bd_soal-28",
+          "prompt": "困ったこととあるが、どんなことか。",
+          "options": [
+            "毎日、妻と二人でスーパーに買い物に行かなければならなくなったこと",
+            "今までより遠くのスーパーまで、買い物に行かなければならなくなったこと",
+            "スーパーに行くとき、ついでにしていた運動ができなくなり、運動不足になったこと",
+            "スーパーで買った物を歩いて持って帰ってくるのが、予想ほど楽ではなかったこと"
+          ],
+          "correctIndex": 3,
+          "instruction": "問題5 つぎの(1)と(2)の文章を読んで、質問に答えなさい。答えは、1・2・3・4から最もよいものを一つ選びなさい。",
+          "explanation": "Teks: 「車を使わず荷物を持って坂を上がって帰るのは、思ったより大変だった」= bawa belanjaan naik bukit tanpa mobil berat."
+        },
+        {
+          "id": "n3_2023_07_bd_soal-29",
+          "prompt": "スーパーのサービスを利用して、「私」は今、引っ越しについてどう考えているか。",
+          "options": [
+            "買った商品を持って帰るのが大変なので、スーパーの近くに引っ越したほうがいいかもしれない",
+            "届けてもらった商品に配達料がかかるので、スーパーの近くに引っ越したほうがいいかもしれない",
+            "届けてもらった商品に満足したし、今後はこのサービスを利用すれば、引っ越す必要はないだろう",
+            "届けてもらった商品の中には満足できないものもあったが、このサービスを利用すれば、引っ越す必要はないだろう"
+          ],
+          "correctIndex": 2,
+          "instruction": "問題5 つぎの(1)と(2)の文章を読んで、質問に答えなさい。答えは、1・2・3・4から最もよいものを一つ選びなさい。",
+          "passage": "日本では、音楽を聞きに行ったり、絵や映画を見に行ったりすることが好きな人でも、子供が小さいうちは、行くのを我慢してしまうことがあります。子供は、騒いでしまう心配があるので連れて行けないし、人に預けることも簡単ではないからです。\n\nしかし、最近は少しずつですが、子供を預かってくれる音楽会場や美術館、映画館などが増えてきました。また、親子が一緒に楽しめるように工夫をするところも出てきています。例えば、ある映画館では、映画の間も会場を少し明るくしておくそうです。暗いと、怖がって泣いてしまう子供がいるからです。大きな音を聞くと、びっくりする子供もいるので、音も大きすぎないようにしてあります。\n\nこのように、最近は、小さな子供がいる人が安心して、出かけて楽しめる場所が増えてきています。",
+          "explanation": "Teks: 「いい方法が見つかった。これで引っ越しをしなくてもよさそう」= belanja online sukses, tidak perlu pindah."
+        },
+        {
+          "id": "n3_2023_07_bd_soal-30",
+          "prompt": "行くのを我慢してしまうことがありますとあるが、どうしてか。",
+          "options": [
+            "音楽や絵や映画などを楽しめる場所が、近くにないことが多いから",
+            "子供の世話をするのに忙しくて、時間がないから",
+            "子供を連れて行くのも、親だけで出かけるのも難しいから",
+            "大人だけでなく、子供の料金も払わなければならないから"
+          ],
+          "correctIndex": 2,
+          "instruction": "問題5 つぎの(1)と(2)の文章を読んで、質問に答えなさい。答えは、1・2・3・4から最もよいものを一つ選びなさい。",
+          "passage": "日本では、音楽を聞きに行ったり、絵や映画を見に行ったりすることが好きな人でも、子供が小さいうちは、行くのを我慢してしまうことがあります。子供は、騒いでしまう心配があるので連れて行けないし、人に預けることも簡単ではないからです。\n\nしかし、最近は少しずつですが、子供を預かってくれる音楽会場や美術館、映画館などが増えてきました。また、親子が一緒に楽しめるように工夫をするところも出てきています。例えば、ある映画館では、映画の間も会場を少し明るくしておくそうです。暗いと、怖がって泣いてしまう子供がいるからです。大きな音を聞くと、びっくりする子供もいるので、音も大きすぎないようにしてあります。\n\nこのように、最近は、小さな子供がいる人が安心して、出かけて楽しめる場所が増えてきています。",
+          "explanation": "Teks: 「子供は騒いでしまう心配があるので連れて行けないし、人に預けることも簡単ではない」= sulit bawa anak & sulit titipkan."
+        },
+        {
+          "id": "n3_2023_07_bd_soal-31",
+          "prompt": "親子が一緒に楽しめるように工夫をするとあるが、どのようなことをしている映画館があると言っているか。",
+          "options": [
+            "子供と親が話しながら映画が見られる特別な席を用意する",
+            "子供が騒ぐ音が気にならないように、映画の音を大きくする",
+            "子供にも大人にも楽しんで見てもらえるような映画を選ぶ",
+            "子供が怖がったり驚いたりしないような明るさや音量にする"
+          ],
+          "correctIndex": 3,
+          "instruction": "問題5 つぎの(1)と(2)の文章を読んで、質問に答えなさい。答えは、1・2・3・4から最もよいものを一つ選びなさい。",
+          "passage": "日本では、音楽を聞きに行ったり、絵や映画を見に行ったりすることが好きな人でも、子供が小さいうちは、行くのを我慢してしまうことがあります。子供は、騒いでしまう心配があるので連れて行けないし、人に預けることも簡単ではないからです。\n\nしかし、最近は少しずつですが、子供を預かってくれる音楽会場や美術館、映画館などが増えてきました。また、親子が一緒に楽しめるように工夫をするところも出てきています。例えば、ある映画館では、映画の間も会場を少し明るくしておくそうです。暗いと、怖がって泣いてしまう子供がいるからです。大きな音を聞くと、びっくりする子供もいるので、音も大きすぎないようにしてあります。\n\nこのように、最近は、小さな子供がいる人が安心して、出かけて楽しめる場所が増えてきています。",
+          "explanation": "Teks: 「会場を少し明るく」「音も大きすぎないように」= ruang lebih terang & volume pelan."
+        },
+        {
+          "id": "n3_2023_07_bd_soal-32",
+          "prompt": "この文章のテーマは何か。",
+          "options": [
+            "日本で、子供がいる親も音楽や映画を楽しめる環境ができてきたこと",
+            "日本で、大人と子供が一緒に楽しめる音楽や映画が減ってきたこと",
+            "日本で、大人だけで音楽会や映画に出かける親が増えてきたこと",
+            "日本で、音楽や映画を楽しむ子供が増えてきたこと"
+          ],
+          "correctIndex": 0,
+          "instruction": "問題5 つぎの(1)と(2)の文章を読んで、質問に答えなさい。答えは、1・2・3・4から最もよいものを一つ選びなさい。",
+          "passage": "日本では、音楽を聞きに行ったり、絵や映画を見に行ったりすることが好きな人でも、子供が小さいうちは、行くのを我慢してしまうことがあります。子供は、騒いでしまう心配があるので連れて行けないし、人に預けることも簡単ではないからです。\n\nしかし、最近は少しずつですが、子供を預かってくれる音楽会場や美術館、映画館などが増えてきました。また、親子が一緒に楽しめるように工夫をするところも出てきています。例えば、ある映画館では、映画の間も会場を少し明るくしておくそうです。暗いと、怖がって泣いてしまう子供がいるからです。大きな音を聞くと、びっくりする子供もいるので、音も大きすぎないようにしてあります。\n\nこのように、最近は、小さな子供がいる人が安心して、出かけて楽しめる場所が増えてきています。",
+          "explanation": "Teks: orang tua anak kecil kini bisa nikmati musik/film karena tempat ramah anak bertambah."
+        },
+        {
+          "id": "n3_2023_07_bd_soal-33",
+          "prompt": "靴の会社は、どうしてお年寄りのための靴を作ることにしたか。",
+          "options": [
+            "お年寄りから、いい靴を作ってほしいという手紙がたくさんきたから",
+            "お年寄りが室内でスリッパを履かなくなり、靴を履くようになったから",
+            "お年寄りのための介護施設の経営者から、靴について相談されたから",
+            "お年寄りの歩き方を調査して、靴の問題点を見つけたから"
+          ],
+          "correctIndex": 2,
+          "instruction": "問題6 つぎの文章を読んで、質問に答えなさい。答えは、1・2・3・4から最もよいものを一つ選びなさい。",
+          "explanation": "Teks: 「介護施設の経営者から...相談をされた」= pemilik fasilitas lansia yang minta dibuatkan sepatu aman."
+        },
+        {
+          "id": "n3_2023_07_bd_soal-34",
+          "prompt": "調査結果をもう一度確認することにしたとあるが、その結果、例えばどんなことがわかったか。",
+          "options": [
+            "お年寄りには、転びやすい人がいること",
+            "お年寄りには、靴の値段が高いと思っている人がいること",
+            "お年寄りになると、靴を履く機会が減る人がいること",
+            "お年寄りになると、右と左で足の形が変わる人がいること"
+          ],
+          "correctIndex": 3,
+          "instruction": "問題6 つぎの文章を読んで、質問に答えなさい。答えは、1・2・3・4から最もよいものを一つ選びなさい。",
+          "explanation": "Teks: 「左右の足の大きさが違ってきたりして...困っている人が少なくない」= kaki kanan-kiri berbeda ukuran pada lansia."
+        },
+        {
+          "id": "n3_2023_07_bd_soal-35",
+          "prompt": "そんなこととあるが、それは何か。",
+          "options": [
+            "調査にお金をかけること",
+            "左右の大きさが同じ靴だけを売ること",
+            "「お年寄りのための靴」だけを作ること",
+            "片方ずつでも靴を売ること"
+          ],
+          "correctIndex": 3,
+          "instruction": "問題6 つぎの文章を読んで、質問に答えなさい。答えは、1・2・3・4から最もよいものを一つ選びなさい。",
+          "explanation": "Teks: 「片方だけでも買えるようにした」= jual sepatu per satuan. Senior keberatan. 「そんなこと」= jual satuan."
+        },
+        {
+          "id": "n3_2023_07_bd_soal-36",
+          "prompt": "このような会社とあるが、どのようなものか。",
+          "options": [
+            "困っている人のことを一生懸命に考えて、商品を作って売ること",
+            "自分の会社の商品の良さを信じて、売れなくても商品を売り続けること",
+            "人がしないことを探して、周りの人に反対されても実行すること",
+            "客のことをよくわかっている社員だけで、いいものを作り続けること"
+          ],
+          "correctIndex": 0,
+          "instruction": "問題6 つぎの文章を読んで、質問に答えなさい。答えは、1・2・3・4から最もよいものを一つ選びなさい。",
+          "explanation": "Teks: 「困っている人の問題を解決するためにいいものを作り...届けようとした」= usaha selesaikan masalah pelanggan dengan tulus."
+        },
+        {
+          "id": "n3_2023_07_bd_soal-37",
+          "prompt": "今日は大学の休暇期間中の平日である。テイムさんは、13時に大学の食堂かカフェで食事をしようと考えている。学生のテイムさんが行ける食堂・カフェはどれか。",
+          "options": [
+            "①と②と③",
+            "①と②",
+            "③と④",
+            "③"
+          ],
+          "correctIndex": 3,
+          "instruction": "問題7 右のページは、丸川大学の食堂・カフェの案内である。これを読んで、下の質問に答えなさい。答えは、1・2・3・4から最もよいものを一つ選びなさい。",
+          "explanation": "Libur kuliah, hari kerja, jam 13:00. ①② tutup. ③ buka 8-14. ④ hanya staf. Hanya ③ yang bisa dipakai siswa."
+        },
+        {
+          "id": "n3_2023_07_bd_soal-38",
+          "prompt": "丸川大学の学生のオウさんは、10月23日(土)に②の食堂でクラスのパーティーを開きたいと考えている。10月23日に②の食堂がパーティーに利用できることは確認できたが、そのほかに気をつけなければならないこととして、合っているのはどれか。",
+          "options": [
+            "学生が申し込みをすることはできない",
+            "料理は、一人2500円以上注文しなければならない",
+            "予約できる最少の人数は、20人である",
+            "パーティーは、21時までに終える必要がある"
+          ],
+          "correctIndex": 1,
+          "instruction": "問題7 右のページは、丸川大学の食堂・カフェの案内である。これを読んで、下の質問に答えなさい。答えは、1・2・3・4から最もよいものを一つ選びなさい。",
+          "explanation": "Teks: 「土曜、日曜、祝日は、2500円以上」= Sabtu minimum 2.500 yen/orang untuk pesta."
+        }
+      ]
+    },
+    "choukai": {
+      "title": "聴解",
+      "timeLimitMinutes": 40,
+      "questions": [
+        {
+          "id": "n3_2023_07_ck_soal-c1-1",
+          "prompt": "1番",
+          "options": [
+            "西田さんにあずける",
+            "じっかにつれていく",
+            "ペットホテルにあずける",
+            "家においていく"
+          ],
+          "correctIndex": 2,
+          "instruction": "問題1 では、まず質問を聞いてください。それから話を聞いて、問題用紙の1から4の中から、最もよいものを一つ選んでください。"
+        },
+        {
+          "id": "n3_2023_07_ck_soal-c1-2",
+          "prompt": "2番",
+          "options": [
+            "3人分コピーして、かちょうにわたす",
+            "3人分コピーして、木村さんにわたす",
+            "13人分コピーして、かちょうにわたす",
+            "13人分コピーして、木村さんにわたす"
+          ],
+          "correctIndex": 3,
+          "instruction": "問題1 では、まず質問を聞いてください。それから話を聞いて、問題用紙の1から4の中から、最もよいものを一つ選んでください。"
+        },
+        {
+          "id": "n3_2023_07_ck_soal-c1-3",
+          "prompt": "3番",
+          "options": [
+            "1",
+            "2",
+            "3",
+            "4"
+          ],
+          "correctIndex": 1,
+          "instruction": "問題1 では、まず質問を聞いてください。それから話を聞いて、問題用紙の1から4の中から、最もよいものを一つ選んでください。"
+        },
+        {
+          "id": "n3_2023_07_ck_soal-c1-4",
+          "prompt": "4番",
+          "options": [
+            "1",
+            "2",
+            "3",
+            "4"
+          ],
+          "correctIndex": 3,
+          "instruction": "問題1 では、まず質問を聞いてください。それから話を聞いて、問題用紙の1から4の中から、最もよいものを一つ選んでください。"
+        },
+        {
+          "id": "n3_2023_07_ck_soal-c1-5",
+          "prompt": "5番",
+          "options": [
+            "パンフレットを用意する",
+            "会場のじゅんびをする",
+            "さんかしゃにメールを送る",
+            "スケジュールを作りなおす"
+          ],
+          "correctIndex": 1,
+          "instruction": "問題1 では、まず質問を聞いてください。それから話を聞いて、問題用紙の1から4の中から、最もよいものを一つ選んでください。"
+        },
+        {
+          "id": "n3_2023_07_ck_soal-c1-6",
+          "prompt": "6番",
+          "options": [
+            "日時を書いたひょうに名前を書く",
+            "めんせつのれんしゅうをする",
+            "質問の答えを考える",
+            "スーツを用意する"
+          ],
+          "correctIndex": 0,
+          "instruction": "問題1 では、まず質問を聞いてください。それから話を聞いて、問題用紙の1から4の中から、最もよいものを一つ選んでください。"
+        },
+        {
+          "id": "n3_2023_07_ck_soal-c2-1",
+          "prompt": "1番",
+          "options": [
+            "友だちとあそびに行くこと",
+            "姉の子どもに会うこと",
+            "かぞくとおんせんに行くこと",
+            "新しいアルバイトを始めること"
+          ],
+          "correctIndex": 1,
+          "instruction": "問題2 では、まず質問を聞いてください。そのあと、問題用紙を見てください。読む時間があります。それから話を聞いて、問題用紙の1から4の中から、最もよいものを一つ選んでください。"
+        },
+        {
+          "id": "n3_2023_07_ck_soal-c2-2",
+          "prompt": "2番",
+          "options": [
+            "今日の午後4時から",
+            "今日の午後5時から",
+            "あしたの午後4時から",
+            "あしたの午後5時から"
+          ],
+          "correctIndex": 2,
+          "instruction": "問題2 では、まず質問を聞いてください。そのあと、問題用紙を見てください。読む時間があります。それから話を聞いて、問題用紙の1から4の中から、最もよいものを一つ選んでください。"
+        },
+        {
+          "id": "n3_2023_07_ck_soal-c2-3",
+          "prompt": "3番",
+          "options": [
+            "軽くて使いやすいこと",
+            "体にいい料理が作れること",
+            "かんたんにおいしい料理ができること",
+            "とってがとれること"
+          ],
+          "correctIndex": 2,
+          "instruction": "問題2 では、まず質問を聞いてください。そのあと、問題用紙を見てください。読む時間があります。それから話を聞いて、問題用紙の1から4の中から、最もよいものを一つ選んでください。"
+        },
+        {
+          "id": "n3_2023_07_ck_soal-c2-4",
+          "prompt": "4番",
+          "options": [
+            "日本ではたらきたかったから",
+            "日本語の音がきれいだと思ったから",
+            "日本のまんがにきょうみがあったから",
+            "ちがうぶんかを知りたかったから"
+          ],
+          "correctIndex": 1,
+          "instruction": "問題2 では、まず質問を聞いてください。そのあと、問題用紙を見てください。読む時間があります。それから話を聞いて、問題用紙の1から4の中から、最もよいものを一つ選んでください。"
+        },
+        {
+          "id": "n3_2023_07_ck_soal-c2-5",
+          "prompt": "5番",
+          "options": [
+            "じっけんのもくてきを書くこと",
+            "じっけんの方法を正しく書くこと",
+            "けっかをひょうにすること",
+            "ひょうにタイトルをつけること"
+          ],
+          "correctIndex": 3,
+          "instruction": "問題2 では、まず質問を聞いてください。そのあと、問題用紙を見てください。読む時間があります。それから話を聞いて、問題用紙の1から4の中から、最もよいものを一つ選んでください。"
+        },
+        {
+          "id": "n3_2023_07_ck_soal-c2-6",
+          "prompt": "6番",
+          "options": [
+            "仕事でひつようだから",
+            "いろいろなサイトを見たいから",
+            "インターネットに写真をのせたいから",
+            "つまに習うといいと言われたから"
+          ],
+          "correctIndex": 2,
+          "instruction": "問題2 では、まず質問を聞いてください。そのあと、問題用紙を見てください。読む時間があります。それから話を聞いて、問題用紙の1から4の中から、最もよいものを一つ選んでください。"
+        },
+        {
+          "id": "n3_2023_07_ck_soal-c3-1",
+          "prompt": "1番",
+          "options": [
+            "選択肢1",
+            "選択肢2",
+            "選択肢3",
+            "選択肢4"
+          ],
+          "correctIndex": 1,
+          "instruction": "問題3 では、問題用紙に何もいんさつされていません。この問題は、全体としてどんな内容かを聞く問題です。話の前に質問はありません。まず話を聞いてください。それから、質問とせんたくしを聞いて、1から4の中から、最もよいものを一つ選んでください。"
+        },
+        {
+          "id": "n3_2023_07_ck_soal-c3-2",
+          "prompt": "2番",
+          "options": [
+            "選択肢1",
+            "選択肢2",
+            "選択肢3",
+            "選択肢4"
+          ],
+          "correctIndex": 3,
+          "instruction": "問題3 では、問題用紙に何もいんさつされていません。この問題は、全体としてどんな内容かを聞く問題です。話の前に質問はありません。まず話を聞いてください。それから、質問とせんたくしを聞いて、1から4の中から、最もよいものを一つ選んでください。"
+        },
+        {
+          "id": "n3_2023_07_ck_soal-c3-3",
+          "prompt": "3番",
+          "options": [
+            "選択肢1",
+            "選択肢2",
+            "選択肢3",
+            "選択肢4"
+          ],
+          "correctIndex": 0,
+          "instruction": "問題3 では、問題用紙に何もいんさつされていません。この問題は、全体としてどんな内容かを聞く問題です。話の前に質問はありません。まず話を聞いてください。それから、質問とせんたくしを聞いて、1から4の中から、最もよいものを一つ選んでください。"
+        },
+        {
+          "id": "n3_2023_07_ck_soal-c4-1",
+          "prompt": "1番",
+          "options": [
+            "選択肢1",
+            "選択肢2",
+            "選択肢3"
+          ],
+          "correctIndex": 0,
+          "instruction": "問題4 では、絵を見ながら質問を聞いてください。やじるし（→）の人は何とか言いますか。1から3の中から、最もよいものを一つ選んでください。"
+        },
+        {
+          "id": "n3_2023_07_ck_soal-c4-2",
+          "prompt": "2番",
+          "options": [
+            "選択肢1",
+            "選択肢2",
+            "選択肢3"
+          ],
+          "correctIndex": 0,
+          "instruction": "問題4 では、絵を見ながら質問を聞いてください。やじるし（→）の人は何とか言いますか。1から3の中から、最もよいものを一つ選んでください。"
+        },
+        {
+          "id": "n3_2023_07_ck_soal-c4-3",
+          "prompt": "3番",
+          "options": [
+            "選択肢1",
+            "選択肢2",
+            "選択肢3"
+          ],
+          "correctIndex": 1,
+          "instruction": "問題4 では、絵を見ながら質問を聞いてください。やじるし（→）の人は何とか言いますか。1から3の中から、最もよいものを一つ選んでください。"
+        },
+        {
+          "id": "n3_2023_07_ck_soal-c4-4",
+          "prompt": "4番",
+          "options": [
+            "選択肢1",
+            "選択肢2",
+            "選択肢3"
+          ],
+          "correctIndex": 2,
+          "instruction": "問題4 では、絵を見ながら質問を聞いてください。やじるし（→）の人は何とか言いますか。1から3の中から、最もよいものを一つ選んでください。"
+        },
+        {
+          "id": "n3_2023_07_ck_soal-c5-1",
+          "prompt": "1番",
+          "options": [
+            "選択肢1",
+            "選択肢2",
+            "選択肢3"
+          ],
+          "correctIndex": 2,
+          "instruction": "問題5 では、問題用紙に何もいんさつされていません。まず文を聞いてください。それから、そのへんじを聞いて、1から3の中から、最もよいものを一つ選んでください。"
+        },
+        {
+          "id": "n3_2023_07_ck_soal-c5-2",
+          "prompt": "2番",
+          "options": [
+            "選択肢1",
+            "選択肢2",
+            "選択肢3"
+          ],
+          "correctIndex": 1,
+          "instruction": "問題5 では、問題用紙に何もいんさつされていません。まず文を聞いてください。それから、そのへんじを聞いて、1から3の中から、最もよいものを一つ選んでください。"
+        },
+        {
+          "id": "n3_2023_07_ck_soal-c5-3",
+          "prompt": "3番",
+          "options": [
+            "選択肢1",
+            "選択肢2",
+            "選択肢3"
+          ],
+          "correctIndex": 0,
+          "instruction": "問題5 では、問題用紙に何もいんさつされていません。まず文を聞いてください。それから、そのへんじを聞いて、1から3の中から、最もよいものを一つ選んでください。"
+        },
+        {
+          "id": "n3_2023_07_ck_soal-c5-4",
+          "prompt": "4番",
+          "options": [
+            "選択肢1",
+            "選択肢2",
+            "選択肢3"
+          ],
+          "correctIndex": 1,
+          "instruction": "問題5 では、問題用紙に何もいんさつされていません。まず文を聞いてください。それから、そのへんじを聞いて、1から3の中から、最もよいものを一つ選んでください。"
+        },
+        {
+          "id": "n3_2023_07_ck_soal-c5-5",
+          "prompt": "5番",
+          "options": [
+            "選択肢1",
+            "選択肢2",
+            "選択肢3"
+          ],
+          "correctIndex": 2,
+          "instruction": "問題5 では、問題用紙に何もいんさつされていません。まず文を聞いてください。それから、そのへんじを聞いて、1から3の中から、最もよいものを一つ選んでください。"
+        },
+        {
+          "id": "n3_2023_07_ck_soal-c5-6",
+          "prompt": "6番",
+          "options": [
+            "選択肢1",
+            "選択肢2",
+            "選択肢3"
+          ],
+          "correctIndex": 0,
+          "instruction": "問題5 では、問題用紙に何もいんさつされていません。まず文を聞いてください。それから、そのへんじを聞いて、1から3の中から、最もよいものを一つ選んでください。"
+        },
+        {
+          "id": "n3_2023_07_ck_soal-c5-7",
+          "prompt": "7番",
+          "options": [
+            "選択肢1",
+            "選択肢2",
+            "選択肢3"
+          ],
+          "correctIndex": 1,
+          "instruction": "問題5 では、問題用紙に何もいんさつされていません。まず文を聞いてください。それから、そのへんじを聞いて、1から3の中から、最もよいものを一つ選んでください。"
+        },
+        {
+          "id": "n3_2023_07_ck_soal-c5-8",
+          "prompt": "8番",
+          "options": [
+            "選択肢1",
+            "選択肢2",
+            "選択肢3"
+          ],
+          "correctIndex": 2,
+          "instruction": "問題5 では、問題用紙に何もいんさつされていません。まず文を聞いてください。それから、そのへんじを聞いて、1から3の中から、最もよいものを一つ選んでください。"
+        },
+        {
+          "id": "n3_2023_07_ck_soal-c5-9",
+          "prompt": "9番",
+          "options": [
+            "選択肢1",
+            "選択肢2",
+            "選択肢3"
+          ],
+          "correctIndex": 0,
+          "instruction": "問題5 では、問題用紙に何もいんさつされていません。まず文を聞いてください。それから、そのへんじを聞いて、1から3の中から、最もよいものを一つ選んでください。"
+        }
+      ]
+    }
+  }
+}

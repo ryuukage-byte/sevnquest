@@ -1,0 +1,1109 @@
+{
+  "id": "jft_001",
+  "title": "Simulasi JFT-Basic — Paket 001",
+  "level": "JFT",
+  "code": "001",
+  "year": 2026,
+  "passingScore": 200,
+  "maxScore": 250,
+  "sections": {
+    "mojiGoi": {
+      "title": "文字・語彙 (Huruf & Kosakata)",
+      "timeLimitMinutes": 20,
+      "questions": [
+        {
+          "id": "jft_mg_1",
+          "instruction": "Bagaimana cara baca kanji yang digarisbawahi?",
+          "prompt": "わたしは 「会社「に いきます。",
+          "options": [
+            "かいしゃ",
+            "かいしゃう",
+            "がいしゃ",
+            "かいじゃ"
+          ],
+          "correctIndex": 0,
+          "explanation": "会社 = かいしゃ (kaisha) artinya perusahaan. Kanji 会 dibaca かい, 社 dibaca しゃ."
+        },
+        {
+          "id": "jft_mg_2",
+          "instruction": "Bagaimana cara baca kanji yang digarisbawahi?",
+          "prompt": "あしたは 「月曜日「です。",
+          "options": [
+            "きんようび",
+            "げつようび",
+            "かようび",
+            "どようび"
+          ],
+          "correctIndex": 1,
+          "explanation": "月曜日 = げつようび (getsuyoubi) artinya hari Senin. Kanji 月 di sini dibaca げつ, bukan つき."
+        },
+        {
+          "id": "jft_mg_3",
+          "instruction": "Bagaimana cara baca kanji yang digarisbawahi?",
+          "prompt": "あの 「人「は だれですか。",
+          "options": [
+            "ひと",
+            "じん",
+            "にん",
+            " にんげん"
+          ],
+          "correctIndex": 0,
+          "explanation": "Saat berdiri sendiri, 人 dibaca ひと (hito) artinya orang. Kalau menempel pada nama negara jadi じん, misalnya にほんじん."
+        },
+        {
+          "id": "jft_mg_4",
+          "instruction": "Bagaimana cara baca kanji yang digarisbawahi?",
+          "prompt": "「時間「が ありません。",
+          "options": [
+            "じかん",
+            "じっかん",
+            "ときかん",
+            "じあいだ"
+          ],
+          "correctIndex": 0,
+          "explanation": "時間 = じかん (jikan) artinya waktu. Kanji 時 juga dipakai untuk menyebut jam, misalnya さんじ."
+        },
+        {
+          "id": "jft_mg_5",
+          "instruction": "Bagaimana cara baca kanji yang digarisbawahi?",
+          "prompt": "あしたは 「休み「です。",
+          "options": [
+            "やすみ",
+            "きゅう",
+            "やすむ",
+            "やすまい"
+          ],
+          "correctIndex": 0,
+          "explanation": "休み = やすみ (yasumi) artinya libur atau istirahat. Kata kerjanya やすむ (beristirahat)."
+        },
+        {
+          "id": "jft_mg_6",
+          "instruction": "Bagaimana cara baca kanji yang digarisbawahi?",
+          "prompt": "「電話「を かけます。",
+          "options": [
+            "でんわ",
+            "てんわ",
+            "でんは",
+            "でんご"
+          ],
+          "correctIndex": 0,
+          "explanation": "電話 = でんわ (denwa) artinya telepon. Kanji 電 berarti listrik, 話 berarti bicara."
+        },
+        {
+          "id": "jft_mg_7",
+          "instruction": "Kata mana yang tepat untuk mengisi bagian kosong?",
+          "prompt": "まいあさ ごはんを ______。",
+          "options": [
+            "のみます",
+            "たべます",
+            "ききます",
+            "よみます"
+          ],
+          "correctIndex": 1,
+          "explanation": "Untuk makanan seperti ごはん (nasi) dipakai たべます. のみます hanya untuk minuman."
+        },
+        {
+          "id": "jft_mg_8",
+          "instruction": "Kata mana yang tepat untuk mengisi bagian kosong?",
+          "prompt": "きょうは とても ______ですね。コートを きます。",
+          "options": [
+            "あつい",
+            "つめたい",
+            "さむい",
+            "ぬるい"
+          ],
+          "correctIndex": 2,
+          "explanation": "Untuk suhu udara atau cuaca dipakai さむい (dingin). つめたい dipakai untuk benda yang disentuh."
+        },
+        {
+          "id": "jft_mg_9",
+          "instruction": "Kata mana yang tepat untuk mengisi bagian kosong?",
+          "prompt": "すみません、もっと ______ はなして ください。",
+          "options": [
+            "まっすぐ",
+            "ゆっくり",
+            "たくさん",
+            "そろそろ"
+          ],
+          "correctIndex": 1,
+          "explanation": "ゆっくり = perlahan. Cocok untuk permintaan supaya bicara lebih lambat."
+        },
+        {
+          "id": "jft_mg_10",
+          "instruction": "Kata serapan mana yang tepat?",
+          "prompt": "5かいへ いきます。______に のります。",
+          "options": [
+            "エアコン",
+            "アイロン",
+            "エレベーター",
+            "テーブル"
+          ],
+          "correctIndex": 2,
+          "explanation": "エレベーター (erebeetaa) = lift. Dipakai untuk naik ke lantai atas gedung."
+        },
+        {
+          "id": "jft_mg_11",
+          "instruction": "Kata mana yang tepat untuk mengisi bagian kosong?",
+          "prompt": "あした 10じから ______が あります。みんな あつまって ください。",
+          "options": [
+            "ざんぎょう",
+            "かいぎ",
+            "けんしゅう",
+            "きゅうりょう"
+          ],
+          "correctIndex": 1,
+          "explanation": "かいぎ = rapat. Kata ini sangat sering muncul di konteks tempat kerja."
+        },
+        {
+          "id": "jft_mg_12",
+          "instruction": "Manakah kata yang artinya paling dekat dengan yang digarisbawahi?",
+          "prompt": "しごとが 「すみました「。",
+          "options": [
+            "つかれました",
+            "おわりました",
+            "はじまりました",
+            "やすみました"
+          ],
+          "correctIndex": 1,
+          "explanation": "しごとが すみました dan しごとが おわりました dua-duanya berarti pekerjaannya sudah selesai."
+        },
+        {
+          "id": "jft_mg_13",
+          "instruction": "Bagaimana cara baca kanji yang digarisbawahi?",
+          "prompt": "いっしょに 「食事「を しませんか。",
+          "options": [
+            "たべもの",
+            "しょくじ",
+            "のみもの",
+            "りょうり"
+          ],
+          "correctIndex": 1,
+          "explanation": "食事 = しょくじ (shokuji) artinya makan atau bersantap. たべもの (食べ物) artinya makanan."
+        },
+        {
+          "id": "jft_mg_14",
+          "instruction": "Bagaimana cara baca kanji yang digarisbawahi?",
+          "prompt": "つぎの かいぎは 「水曜日「です。",
+          "options": [
+            "みず",
+            "すいようび",
+            "もくようび",
+            "かようび"
+          ],
+          "correctIndex": 1,
+          "explanation": "水曜日 = すいようび (suiyoubi) artinya hari Rabu. Kanji 水 di sini dibaca すい, bukan みず."
+        },
+        {
+          "id": "jft_mg_15",
+          "instruction": "Bagaimana cara baca kanji yang digarisbawahi?",
+          "prompt": "「入口「は あちらです。",
+          "options": [
+            "でぐち",
+            "いりぐち",
+            "いりくち",
+            "でくち"
+          ],
+          "correctIndex": 1,
+          "explanation": "入口 = いりぐち (iriguchi) artinya pintu masuk. Kebalikannya でぐち (出口) pintu keluar."
+        },
+        {
+          "id": "jft_mg_16",
+          "instruction": "Kata mana yang tepat untuk mengisi bagian kosong?",
+          "prompt": "でんきを ______ ください。もう ねます。",
+          "options": [
+            "あけて",
+            "しめて",
+            "つけて",
+            "けして"
+          ],
+          "correctIndex": 3,
+          "explanation": "Untuk lampu atau mesin, mematikan = けす. つける berarti menyalakan."
+        },
+        {
+          "id": "jft_mg_17",
+          "instruction": "Kata mana yang tepat untuk mengisi bagian kosong?",
+          "prompt": "きょうは ______ですから、いけません。",
+          "options": [
+            "いそがしい",
+            "ひまな",
+            "たいへんな",
+            "しずかな"
+          ],
+          "correctIndex": 0,
+          "explanation": "いそがしい = sibuk. Cocok untuk alasan tidak bisa pergi."
+        },
+        {
+          "id": "jft_mg_18",
+          "instruction": "Kata serapan mana yang tepat?",
+          "prompt": "しごとで ______を つかいます。",
+          "options": [
+            "パソコン",
+            "テレビ",
+            "ラジオ",
+            "カメラ"
+          ],
+          "correctIndex": 0,
+          "explanation": "パソコン (pasokon) = komputer. Berasal dari personal computer."
+        },
+        {
+          "id": "jft_mg_19",
+          "instruction": "Manakah kata yang artinya paling dekat dengan yang digarisbawahi?",
+          "prompt": "かいしゃを 「やめました「。",
+          "options": [
+            "はじめました",
+            "やめました",
+            "つづけました",
+            "わすれました"
+          ],
+          "correctIndex": 1,
+          "explanation": "しごとを やめました berarti berhenti dari pekerjaan, sama dengan やめる."
+        },
+        {
+          "id": "jft_mg_20",
+          "instruction": "Kata mana yang tepat untuk mengisi bagian kosong?",
+          "prompt": "まいつき 25にちに ______を もらいます。",
+          "options": [
+            "きゅうりょう",
+            "ざんぎょう",
+            "やちん",
+            "りょうきん"
+          ],
+          "correctIndex": 0,
+          "explanation": "きゅうりょう = gaji. やちん berarti uang sewa rumah."
+        }
+      ]
+    },
+    "bunpouDokkai": {
+      "title": "会話・文法・読解 (Percakapan & Membaca)",
+      "timeLimitMinutes": 25,
+      "questions": [
+        {
+          "id": "jft_kaiwa_1",
+          "instruction": "Percakapan & Ekspresi (会話・表現):",
+          "prompt": "Kamu datang terlambat ke tempat kerja. Apa yang kamu katakan?",
+          "options": [
+            "おつかれさまです。",
+            "すみません、おくれました。",
+            "しつれいします。",
+            "おさきに どうぞ。"
+          ],
+          "correctIndex": 1,
+          "explanation": "Terlambat berarti minta maaf: すみません、おくれました (maaf, saya terlambat)."
+        },
+        {
+          "id": "jft_kaiwa_2",
+          "instruction": "Percakapan & Ekspresi (会話・表現):",
+          "prompt": "Atasanmu memberi barang kepadamu. Jawaban paling tepat?",
+          "options": [
+            "どうぞ。",
+            "ありがとうございます。",
+            "いいえ、けっこうです。",
+            "おねがいします。"
+          ],
+          "correctIndex": 1,
+          "explanation": "Saat menerima sesuatu, ucapkan ありがとうございます. どうぞ dipakai saat MEMBERI."
+        },
+        {
+          "id": "jft_kaiwa_3",
+          "instruction": "Percakapan & Ekspresi (会話・表現):",
+          "prompt": "Kamu pulang lebih dulu dari kantor. Apa yang kamu katakan?",
+          "options": [
+            "いってきます。",
+            "おさきに しつれいします。",
+            "ただいま。",
+            "おかえりなさい。"
+          ],
+          "correctIndex": 1,
+          "explanation": "おさきに しつれいします = permisi, saya pulang lebih dulu. Ungkapan wajib di tempat kerja Jepang."
+        },
+        {
+          "id": "jft_kaiwa_4",
+          "instruction": "Percakapan & Ekspresi (会話・表現):",
+          "prompt": "Rekan kerjamu masih bekerja saat kamu pulang. Kamu menyapanya dengan...",
+          "options": [
+            "おつかれさまです。",
+            "はじめまして。",
+            "おめでとうございます。",
+            "いただきます。"
+          ],
+          "correctIndex": 0,
+          "explanation": "おつかれさまです menghargai kerja keras orang lain. Dipakai setiap hari di kantor."
+        },
+        {
+          "id": "jft_kaiwa_5",
+          "instruction": "Percakapan & Ekspresi (会話・表現):",
+          "prompt": "Bagaimana cara meminta izin dengan sopan?",
+          "options": [
+            "トイレに いきます。",
+            "トイレに いっても いいですか。",
+            "トイレに いきたい。",
+            "トイレは どこ。"
+          ],
+          "correctIndex": 1,
+          "explanation": "Pola 〜ても いいですか adalah cara meminta izin yang sopan."
+        },
+        {
+          "id": "jft_kaiwa_6",
+          "instruction": "Percakapan & Ekspresi (会話・表現):",
+          "prompt": "Kamu tidak paham penjelasan atasan. Apa yang kamu katakan?",
+          "options": [
+            "わかりました。",
+            "もう いちど おねがいします。",
+            "そうですね。",
+            "けっこうです。"
+          ],
+          "correctIndex": 1,
+          "explanation": "Jangan bilang わかりました kalau belum paham. Katakan もう いちど おねがいします."
+        },
+        {
+          "id": "jft_kaiwa_7",
+          "instruction": "Percakapan & Ekspresi (会話・表現):",
+          "prompt": "Kalimat mana yang tepat untuk menolak dengan sopan?",
+          "options": [
+            "いやです。",
+            "だめです。",
+            "すみません、ちょっと むずかしいです。",
+            "しません。"
+          ],
+          "correctIndex": 2,
+          "explanation": "Orang Jepang menolak secara tidak langsung. ちょっと むずかしいです jauh lebih halus daripada いやです."
+        },
+        {
+          "id": "jft_kaiwa_8",
+          "instruction": "Percakapan & Ekspresi (会話・表現):",
+          "prompt": "Sebelum mulai makan, kamu mengucapkan...",
+          "options": [
+            "ごちそうさまでした。",
+            "いただきます。",
+            "おいしいです。",
+            "たべましょう。"
+          ],
+          "correctIndex": 1,
+          "explanation": "いただきます diucapkan SEBELUM makan, ごちそうさまでした SESUDAH makan."
+        },
+        {
+          "id": "jft_kaiwa_9",
+          "instruction": "Percakapan & Ekspresi (会話・表現):",
+          "prompt": "Apa jawaban yang tepat?",
+          "options": [
+            "はい、だいじょうぶです。",
+            "はい、そうです。",
+            "いいえ、ちがいます。",
+            "はい、おねがいします。"
+          ],
+          "correctIndex": 0,
+          "explanation": "Ditanya keadaan (だいじょうぶですか), jawabnya soal keadaan juga: はい、だいじょうぶです."
+        },
+        {
+          "id": "jft_kaiwa_10",
+          "instruction": "Percakapan & Ekspresi (会話・表現):",
+          "prompt": "Apa jawaban yang tepat?",
+          "options": [
+            "はい、わかります。",
+            "いいえ、まだです。",
+            "はい、そうします。",
+            "いいえ、いりません。"
+          ],
+          "correctIndex": 1,
+          "explanation": "Ditanya sudah selesai belum (もう〜ましたか), jawaban belum adalah いいえ、まだです."
+        },
+        {
+          "id": "jft_kaiwa_11",
+          "instruction": "Percakapan & Ekspresi (会話・表現):",
+          "prompt": "Kamu ingin menanyakan cara memakai mesin. Kalimat paling tepat?",
+          "options": [
+            "これは なんですか。",
+            "この つかいかたを おしえて ください。",
+            "これを ください。",
+            "これは いくらですか。"
+          ],
+          "correctIndex": 1,
+          "explanation": "つかいかた = cara memakai. 〜を おしえて ください = tolong ajari saya."
+        },
+        {
+          "id": "jft_kaiwa_12",
+          "instruction": "Percakapan & Ekspresi (会話・表現):",
+          "prompt": "Atasan bertanya apakah kamu bisa kerja lembur hari ini. Jawaban sopan jika bisa?",
+          "options": [
+            "はい、だいじょうぶです。",
+            "はい、します。",
+            "いいですよ。",
+            "べつに。"
+          ],
+          "correctIndex": 0,
+          "explanation": "はい、だいじょうぶです sopan dan alami. いいですよ terlalu santai untuk atasan."
+        },
+        {
+          "id": "jft_kaiwa_13",
+          "instruction": "Percakapan & Ekspresi (会話・表現):",
+          "prompt": "Kamu mau minta tolong rekan kerja. Kalimat paling tepat?",
+          "options": [
+            "てつだって ください。",
+            "てつだいます。",
+            "てつだいたいです。",
+            "てつだいましょうか。"
+          ],
+          "correctIndex": 0,
+          "explanation": "〜て ください adalah bentuk permintaan. てつだいましょうか justru berarti menawarkan bantuan."
+        },
+        {
+          "id": "jft_kaiwa_14",
+          "instruction": "Percakapan & Ekspresi (会話・表現):",
+          "prompt": "Rekanmu terlihat kesulitan. Kamu menawarkan bantuan dengan...",
+          "options": [
+            "てつだって ください。",
+            "てつだいましょうか。",
+            "てつだいません。",
+            "てつだいたいですか。"
+          ],
+          "correctIndex": 1,
+          "explanation": "〜ましょうか dipakai untuk menawarkan diri: \"mau saya bantu?\""
+        },
+        {
+          "id": "jft_kaiwa_15",
+          "instruction": "Percakapan & Ekspresi (会話・表現):",
+          "prompt": "Kamu baru masuk kerja hari pertama. Sapaan yang tepat?",
+          "options": [
+            "おつかれさまでした。",
+            "はじめまして、よろしく おねがいします。",
+            "おかえりなさい。",
+            "ごちそうさまでした。"
+          ],
+          "correctIndex": 1,
+          "explanation": "Perkenalan pertama selalu はじめまして dan ditutup よろしく おねがいします."
+        },
+        {
+          "id": "jft_kaiwa_16",
+          "instruction": "Percakapan & Ekspresi (会話・表現):",
+          "prompt": "Apa jawaban yang tepat?",
+          "options": [
+            "はい、あります。",
+            "いいえ、いきません。",
+            "はい、そうです。",
+            "ごじです。"
+          ],
+          "correctIndex": 0,
+          "explanation": "Ditanya keberadaan dengan ありますか, jawabnya はい、あります atau いいえ、ありません."
+        },
+        {
+          "id": "jft_kaiwa_17",
+          "instruction": "Percakapan & Ekspresi (会話・表現):",
+          "prompt": "Kamu ingin permisi lewat di tempat sempit. Kamu bilang...",
+          "options": [
+            "ごめんなさい。",
+            "すみません、ちょっと とおります。",
+            "しつれいしました。",
+            "おねがいします。"
+          ],
+          "correctIndex": 1,
+          "explanation": "すみません、ちょっと とおります dipakai saat ingin lewat. Sopan dan alami."
+        },
+        {
+          "id": "jft_kaiwa_18",
+          "instruction": "Percakapan & Ekspresi (会話・表現):",
+          "prompt": "Atasan memuji hasil kerjamu. Jawaban paling pantas?",
+          "options": [
+            "そうですね。",
+            "ありがとうございます。がんばります。",
+            "べつに。",
+            "もちろんです。"
+          ],
+          "correctIndex": 1,
+          "explanation": "Terima pujian dengan ucapan terima kasih, lalu tunjukkan niat terus berusaha."
+        },
+        {
+          "id": "jft_kaiwa_19",
+          "instruction": "Percakapan & Ekspresi (会話・表現):",
+          "prompt": "Kamu tidak bisa datang besok. Cara memberi tahu paling sopan?",
+          "options": [
+            "あした いきません。",
+            "あした やすみたいです。",
+            "すみませんが、あした やすませて いただけますか。",
+            "あした だめです。"
+          ],
+          "correctIndex": 2,
+          "explanation": "Bentuk 〜させて いただけますか adalah permintaan izin paling sopan di tempat kerja."
+        },
+        {
+          "id": "jft_kaiwa_20",
+          "instruction": "Percakapan & Ekspresi (会話・表現):",
+          "prompt": "Apa jawaban yang tepat?",
+          "options": [
+            "げんかんに あります。",
+            "はい、そうです。",
+            "いいえ、ちがいます。",
+            "さんぜんえんです。"
+          ],
+          "correctIndex": 3,
+          "explanation": "Ditanya harga dengan いくらですか, jawabannya menyebut jumlah uang."
+        },
+        {
+          "id": "jft_dokkai_1",
+          "instruction": "Baca pengumuman ini. Hari apa gedung tutup?",
+          "prompt": "Baca pengumuman ini. Hari apa gedung tutup?",
+          "passage": "【おしらせ】\nこの ビルは にちようびは やすみです。\nげつようびから どようびまで あいて います。",
+          "options": [
+            "Sabtu",
+            "Minggu",
+            "Senin",
+            "Setiap hari"
+          ],
+          "correctIndex": 1,
+          "explanation": "Tertulis にちようびは やすみです — hari Minggu tutup."
+        },
+        {
+          "id": "jft_dokkai_2",
+          "instruction": "Baca pesan ini. Apa yang harus dilakukan pembaca?",
+          "prompt": "Baca pesan ini. Apa yang harus dilakukan pembaca?",
+          "passage": "たなかさんへ\n3じに でんわを して ください。\nだいじな はなしが あります。",
+          "options": [
+            "Menelepon Tanaka",
+            "Menunggu Tanaka",
+            "Pergi ke kantor Tanaka",
+            "Mengirim email"
+          ],
+          "correctIndex": 0,
+          "explanation": "Tertulis でんわを して ください — tolong telepon."
+        },
+        {
+          "id": "jft_dokkai_3",
+          "instruction": "Baca papan ini. Apa artinya?",
+          "prompt": "Baca papan ini. Apa artinya?",
+          "passage": "【ちゅうい】\nここに はいらないで ください。",
+          "options": [
+            "Boleh masuk",
+            "Jangan masuk",
+            "Buka jam 9",
+            "Sedang diperbaiki"
+          ],
+          "correctIndex": 1,
+          "explanation": "はいらないで ください = jangan masuk."
+        },
+        {
+          "id": "jft_dokkai_4",
+          "instruction": "Baca jadwal ini. Jam berapa istirahat makan siang mulai?",
+          "prompt": "Baca jadwal ini. Jam berapa istirahat makan siang mulai?",
+          "passage": "【しごとの じかん】\n9じから 17じまで\nひるやすみ：12じから 13じまで",
+          "options": [
+            "11 : 00",
+            "12 : 00",
+            "13 : 00",
+            "17 : 00"
+          ],
+          "correctIndex": 1,
+          "explanation": "Tertulis ひるやすみ 12じから 13じまで — mulai jam 12."
+        },
+        {
+          "id": "jft_dokkai_5",
+          "instruction": "Baca catatan ini. Apa yang dibawa besok?",
+          "prompt": "Baca catatan ini. Apa yang dibawa besok?",
+          "passage": "あしたは あめです。\nかさを もって きて ください。",
+          "options": [
+            "Uang",
+            "Paspor",
+            "Payung",
+            "Makan siang"
+          ],
+          "correctIndex": 2,
+          "explanation": "Tertulis かさを もって きて ください — bawalah payung."
+        },
+        {
+          "id": "jft_dokkai_6",
+          "instruction": "Baca email ini. Kenapa dia tidak masuk kerja?",
+          "prompt": "Baca email ini. Kenapa dia tidak masuk kerja?",
+          "passage": "ぶちょう、おはようございます。\nきょうは ねつが あります。\nすみませんが、やすみます。",
+          "options": [
+            "Sedang liburan",
+            "Sedang sakit",
+            "Ada urusan keluarga",
+            "Kereta terlambat"
+          ],
+          "correctIndex": 1,
+          "explanation": "Tertulis ねつが あります (demam) dan やすみます (izin tidak masuk)."
+        },
+        {
+          "id": "jft_dokkai_7",
+          "instruction": "Baca petunjuk ini. Setelah menekan tombol, apa yang dilakukan?",
+          "prompt": "Baca petunjuk ini. Setelah menekan tombol, apa yang dilakukan?",
+          "passage": "【つかいかた】\n1. ボタンを おします。\n2. すこし まって ください。",
+          "options": [
+            "Menunggu",
+            "Menekan lagi",
+            "Membuka pintu",
+            "Menarik tuas"
+          ],
+          "correctIndex": 0,
+          "explanation": "Tertulis すこし まって ください — tunggu sebentar."
+        },
+        {
+          "id": "jft_dokkai_8",
+          "instruction": "Baca pengumuman ini. Siapa yang boleh memakai ruangan ini?",
+          "prompt": "Baca pengumuman ini. Siapa yang boleh memakai ruangan ini?",
+          "passage": "【この へや】\nしゃいん だけ つかえます。",
+          "options": [
+            "Semua orang",
+            "Hanya pegawai",
+            "Hanya tamu",
+            "Hanya atasan"
+          ],
+          "correctIndex": 1,
+          "explanation": "Tertulis しゃいん だけ — hanya pegawai."
+        },
+        {
+          "id": "jft_dokkai_9",
+          "instruction": "Baca pesan ini. Rapatnya jadi kapan?",
+          "prompt": "Baca pesan ini. Rapatnya jadi kapan?",
+          "passage": "きょうの かいぎは\nあしたの あさ 9じに かわりました。",
+          "options": [
+            "Tetap hari ini",
+            "Besok pagi",
+            "Besok siang",
+            "Dibatalkan"
+          ],
+          "correctIndex": 1,
+          "explanation": "Tertulis あしたの あさ 9じに かわりました — diubah jadi besok pagi jam 9."
+        },
+        {
+          "id": "jft_dokkai_10",
+          "instruction": "Baca aturan ini. Apa yang dilarang?",
+          "prompt": "Baca aturan ini. Apa yang dilarang?",
+          "passage": "【きそく】\nこの へやで たべものは だめです。\nのみものは いいです。",
+          "options": [
+            "Membawa tas",
+            "Makan di dalam",
+            "Memakai sepatu",
+            "Berbicara"
+          ],
+          "correctIndex": 1,
+          "explanation": "Tertulis たべものは だめです — makanan tidak boleh."
+        },
+        {
+          "id": "jft_dokkai_11",
+          "instruction": "Baca catatan ini. Ke mana orang ini pergi?",
+          "prompt": "Baca catatan ini. Ke mana orang ini pergi?",
+          "passage": "ちょっと ぎんこうに いって きます。\n30ぷんで もどります。",
+          "options": [
+            "Ke rumah sakit",
+            "Ke bank",
+            "Ke kantor pos",
+            "Ke stasiun"
+          ],
+          "correctIndex": 1,
+          "explanation": "Tertulis ぎんこうに いって きます — pergi ke bank."
+        },
+        {
+          "id": "jft_dokkai_12",
+          "instruction": "Baca pengumuman ini. Kapan lift tidak bisa dipakai?",
+          "prompt": "Baca pengumuman ini. Kapan lift tidak bisa dipakai?",
+          "passage": "【おしらせ】\nエレベーターは あした 一日 つかえません。\nかいだんを つかって ください。",
+          "options": [
+            "Pagi ini",
+            "Sore ini",
+            "Besok sepanjang hari",
+            "Minggu depan"
+          ],
+          "correctIndex": 2,
+          "explanation": "Tertulis あした 一日 つかえません — besok sepanjang hari tidak bisa dipakai."
+        },
+        {
+          "id": "jft_dokkai_13",
+          "instruction": "Baca pengumuman ini. Sampai jam berapa buka hari Sabtu?",
+          "prompt": "Baca pengumuman ini. Sampai jam berapa buka hari Sabtu?",
+          "passage": "【うけつけ じかん】\nへいじつ：9じから 18じまで\nどようび：9じから 15じまで",
+          "options": [
+            "15 : 00",
+            "17 : 00",
+            "18 : 00",
+            "20 : 00"
+          ],
+          "correctIndex": 0,
+          "explanation": "Tertulis どようびは 15じまで — hari Sabtu hanya sampai jam 15."
+        },
+        {
+          "id": "jft_dokkai_14",
+          "instruction": "Baca pesan ini. Apa yang harus dibawa?",
+          "prompt": "Baca pesan ini. Apa yang harus dibawa?",
+          "passage": "あしたの テストで\nペンを もって きて ください。",
+          "options": [
+            "Uang tunai",
+            "Kartu identitas",
+            "Alat tulis",
+            "Baju ganti"
+          ],
+          "correctIndex": 2,
+          "explanation": "Tertulis ペンを もって きて ください — bawalah pulpen."
+        },
+        {
+          "id": "jft_dokkai_15",
+          "instruction": "Baca papan ini. Apa yang boleh dilakukan?",
+          "prompt": "Baca papan ini. Apa yang boleh dilakukan?",
+          "passage": "【この へや】\nたばこ：だめ\nのみもの：いいです",
+          "options": [
+            "Merokok",
+            "Minum",
+            "Memotret",
+            "Berlari"
+          ],
+          "correctIndex": 1,
+          "explanation": "Tertulis のみものは いいです — minuman diperbolehkan."
+        },
+        {
+          "id": "jft_dokkai_16",
+          "instruction": "Baca catatan ini. Apa yang terjadi dengan mesin cuci?",
+          "prompt": "Baca catatan ini. Apa yang terjadi dengan mesin cuci?",
+          "passage": "【おしらせ】\nせんたくきは いま しゅうり中です。\nあしたから つかえます。",
+          "options": [
+            "Sudah diperbaiki",
+            "Sedang diperbaiki",
+            "Akan dibeli baru",
+            "Dipindahkan"
+          ],
+          "correctIndex": 1,
+          "explanation": "Tertulis いま しゅうり中です — sedang dalam perbaikan."
+        },
+        {
+          "id": "jft_dokkai_17",
+          "instruction": "Baca email ini. Apa yang diminta pengirim?",
+          "prompt": "Baca email ini. Apa yang diminta pengirim?",
+          "passage": "たなかさん\nきょうの うちに\nおきゃくさまに れんらくして ください。",
+          "options": [
+            "Datang lebih awal",
+            "Mengganti jadwal",
+            "Membawa rekan",
+            "Menghubungi klien"
+          ],
+          "correctIndex": 3,
+          "explanation": "Tertulis おきゃくさまに れんらくして ください — tolong hubungi kliennya."
+        },
+        {
+          "id": "jft_dokkai_18",
+          "instruction": "Baca aturan ini. Jam berapa paling lambat masuk?",
+          "prompt": "Baca aturan ini. Jam berapa paling lambat masuk?",
+          "passage": "【しゅっきん】\n8じ30ふんまでに きて ください。\nしごとは 9じから です。",
+          "options": [
+            "8 : 30",
+            "8 : 45",
+            "9 : 00",
+            "9 : 15"
+          ],
+          "correctIndex": 0,
+          "explanation": "Tertulis 8じ30ふんまでに きて ください — datang paling lambat jam 08.30."
+        },
+        {
+          "id": "jft_dokkai_19",
+          "instruction": "Baca petunjuk ini. Apa langkah pertama?",
+          "prompt": "Baca petunjuk ini. Apa langkah pertama?",
+          "passage": "【つかいかた】\n1. ふたを あけます。\n2. みずを いれます。\n3. ボタンを おします。",
+          "options": [
+            "Menekan tombol hijau",
+            "Mencabut kabel",
+            "Membuka penutup",
+            "Menunggu lampu menyala"
+          ],
+          "correctIndex": 2,
+          "explanation": "Tertulis 1. ふたを あけます — langkah pertama membuka penutup."
+        },
+        {
+          "id": "jft_dokkai_20",
+          "instruction": "Baca pesan ini. Kenapa dia menelepon?",
+          "prompt": "Baca pesan ini. Kenapa dia menelepon?",
+          "passage": "よやくの じかんを かえたいです。\nあとで でんわします。",
+          "options": [
+            "Ingin membatalkan",
+            "Ingin mengubah waktu",
+            "Ingin bertanya harga",
+            "Ingin memesan"
+          ],
+          "correctIndex": 1,
+          "explanation": "Tertulis じかんを かえたいです — ingin mengubah waktunya."
+        }
+      ]
+    },
+    "choukai": {
+      "title": "聴解 (Menyimak / Listening)",
+      "timeLimitMinutes": 15,
+      "questions": [
+        {
+          "id": "jft_ch_1",
+          "instruction": "Dengarkan, lalu pilih jawaban yang tepat. Jam berapa rapatnya?",
+          "prompt": "Dengarkan, lalu pilih jawaban yang tepat. Jam berapa rapatnya?",
+          "audio": "かいぎは くじはんから です。",
+          "options": [
+            "9 : 00",
+            "9 : 30",
+            "10 : 00",
+            "10 : 30"
+          ],
+          "correctIndex": 1,
+          "explanation": "Yang diucapkan: かいぎは くじはんから です (rapat mulai jam setengah sepuluh, yaitu 09.30)."
+        },
+        {
+          "id": "jft_ch_2",
+          "instruction": "Dengarkan. Apa yang harus dilakukan orang ini?",
+          "prompt": "Dengarkan. Apa yang harus dilakukan orang ini?",
+          "audio": "すみません、ここで まって ください。",
+          "options": [
+            "Menunggu di sini",
+            "Pulang",
+            "Masuk ruangan",
+            "Menelepon"
+          ],
+          "correctIndex": 0,
+          "explanation": "Yang diucapkan: ここで まって ください (tolong tunggu di sini)."
+        },
+        {
+          "id": "jft_ch_3",
+          "instruction": "Dengarkan. Di mana toiletnya?",
+          "prompt": "Dengarkan. Di mana toiletnya?",
+          "audio": "トイレは にかいです。",
+          "options": [
+            "Lantai satu",
+            "Lantai dua",
+            "Lantai tiga",
+            "Di luar gedung"
+          ],
+          "correctIndex": 1,
+          "explanation": "Yang diucapkan: トイレは にかいです (toilet ada di lantai dua)."
+        },
+        {
+          "id": "jft_ch_4",
+          "instruction": "Dengarkan. Apa yang diminta?",
+          "prompt": "Dengarkan. Apa yang diminta?",
+          "audio": "さむいので、ドアを しめて ください。",
+          "options": [
+            "Menyalakan AC",
+            "Mematikan lampu",
+            "Membuka jendela",
+            "Menutup pintu"
+          ],
+          "correctIndex": 3,
+          "explanation": "Yang diucapkan: ドアを しめて ください (tolong tutup pintunya)."
+        },
+        {
+          "id": "jft_ch_5",
+          "instruction": "Dengarkan. Kapan barangnya datang?",
+          "prompt": "Dengarkan. Kapan barangnya datang?",
+          "audio": "にもつは あした きます。",
+          "options": [
+            "Hari ini",
+            "Besok",
+            "Minggu depan",
+            "Bulan depan"
+          ],
+          "correctIndex": 1,
+          "explanation": "Yang diucapkan: にもつは あした きます (barangnya datang besok)."
+        },
+        {
+          "id": "jft_ch_6",
+          "instruction": "Dengarkan. Berapa harganya?",
+          "prompt": "Dengarkan. Berapa harganya?",
+          "audio": "これは はっぴゃくえんです。",
+          "options": [
+            "300 yen",
+            "500 yen",
+            "800 yen",
+            "1000 yen"
+          ],
+          "correctIndex": 2,
+          "explanation": "Yang diucapkan: はっぴゃくえんです (800 yen)."
+        },
+        {
+          "id": "jft_ch_7",
+          "instruction": "Dengarkan. Apa yang sedang dilakukan orang ini?",
+          "prompt": "Dengarkan. Apa yang sedang dilakukan orang ini?",
+          "audio": "いま やすんで います。",
+          "options": [
+            "Sedang makan",
+            "Sedang bekerja",
+            "Sedang istirahat",
+            "Sedang belajar"
+          ],
+          "correctIndex": 2,
+          "explanation": "Yang diucapkan: いま やすんで います (sekarang sedang istirahat)."
+        },
+        {
+          "id": "jft_ch_8",
+          "instruction": "Dengarkan. Bagaimana cuacanya besok?",
+          "prompt": "Dengarkan. Bagaimana cuacanya besok?",
+          "audio": "あしたは あめが ふります。",
+          "options": [
+            "Hujan",
+            "Cerah",
+            "Bersalju",
+            "Berangin"
+          ],
+          "correctIndex": 0,
+          "explanation": "Yang diucapkan: あしたは あめが ふります (besok akan hujan)."
+        },
+        {
+          "id": "jft_ch_9",
+          "instruction": "Dengarkan. Apa jawaban yang tepat untuk pertanyaan ini?",
+          "prompt": "Dengarkan. Apa jawaban yang tepat untuk pertanyaan ini?",
+          "audio": "なんじに おきましたか。",
+          "options": [
+            "はい、げんきです。",
+            "はい、そうです。",
+            "いいえ、ちがいます。",
+            "ろくじです。"
+          ],
+          "correctIndex": 3,
+          "explanation": "Yang ditanyakan: なんじに おきましたか (jam berapa kamu bangun). Jadi jawabannya menyebut jam."
+        },
+        {
+          "id": "jft_ch_10",
+          "instruction": "Dengarkan. Instruksinya apa?",
+          "prompt": "Dengarkan. Instruksinya apa?",
+          "audio": "ここに なまえを かいて ください。",
+          "options": [
+            "Duduk",
+            "Berdiri",
+            "Melihat papan tulis",
+            "Menulis nama"
+          ],
+          "correctIndex": 3,
+          "explanation": "Yang diucapkan: ここに なまえを かいて ください (tolong tulis nama di sini)."
+        },
+        {
+          "id": "jft_ch_11",
+          "instruction": "Dengarkan. Naik apa orang ini ke kantor?",
+          "prompt": "Dengarkan. Naik apa orang ini ke kantor?",
+          "audio": "わたしは じてんしゃで かいしゃに いきます。",
+          "options": [
+            "Kereta",
+            "Bus",
+            "Sepeda",
+            "Jalan kaki"
+          ],
+          "correctIndex": 2,
+          "explanation": "Yang diucapkan: じてんしゃで かいしゃに いきます (pergi ke kantor dengan sepeda)."
+        },
+        {
+          "id": "jft_ch_12",
+          "instruction": "Dengarkan. Apa yang tidak boleh dilakukan?",
+          "prompt": "Dengarkan. Apa yang tidak boleh dilakukan?",
+          "audio": "ここで たばこを すわないで ください。",
+          "options": [
+            "Merokok",
+            "Makan",
+            "Berbicara",
+            "Memotret"
+          ],
+          "correctIndex": 0,
+          "explanation": "Yang diucapkan: ここで たばこを すわないで ください (jangan merokok di sini)."
+        },
+        {
+          "id": "jft_ch_13",
+          "instruction": "Dengarkan. Jam berapa dia pulang?",
+          "prompt": "Dengarkan. Jam berapa dia pulang?",
+          "audio": "きょうは ろくじはんに かえります。",
+          "options": [
+            "5 : 00",
+            "6 : 00",
+            "6 : 30",
+            "7 : 00"
+          ],
+          "correctIndex": 2,
+          "explanation": "Yang diucapkan: ろくじはんに かえります (pulang jam setengah tujuh, yaitu 06.30)."
+        },
+        {
+          "id": "jft_ch_14",
+          "instruction": "Dengarkan. Apa yang tidak boleh dibawa?",
+          "prompt": "Dengarkan. Apa yang tidak boleh dibawa?",
+          "audio": "たべものは もって こないで ください。",
+          "options": [
+            "Tas",
+            "Makanan",
+            "Ponsel",
+            "Payung"
+          ],
+          "correctIndex": 1,
+          "explanation": "Yang diucapkan: たべものは もって こないで ください (jangan membawa makanan)."
+        },
+        {
+          "id": "jft_ch_15",
+          "instruction": "Dengarkan. Berapa lama perjalanannya?",
+          "prompt": "Dengarkan. Berapa lama perjalanannya?",
+          "audio": "えきまで さんじゅっぷん かかります。",
+          "options": [
+            "10 menit",
+            "20 menit",
+            "30 menit",
+            "1 jam"
+          ],
+          "correctIndex": 2,
+          "explanation": "Yang diucapkan: さんじゅっぷん かかります (memerlukan 30 menit)."
+        },
+        {
+          "id": "jft_ch_16",
+          "instruction": "Dengarkan. Apa yang dicari orang ini?",
+          "prompt": "Dengarkan. Apa yang dicari orang ini?",
+          "audio": "こまりました。かぎが ありません。",
+          "options": [
+            "Kunci",
+            "Dompet",
+            "Ponsel",
+            "Kacamata"
+          ],
+          "correctIndex": 0,
+          "explanation": "Yang diucapkan: かぎが ありません (kuncinya tidak ada)."
+        },
+        {
+          "id": "jft_ch_17",
+          "instruction": "Dengarkan. Kapan harus dikumpulkan?",
+          "prompt": "Dengarkan. Kapan harus dikumpulkan?",
+          "audio": "この しょるいは らいしゅうまでに だして ください。",
+          "options": [
+            "Hari ini",
+            "Besok",
+            "Lusa",
+            "Minggu depan"
+          ],
+          "correctIndex": 3,
+          "explanation": "Yang diucapkan: らいしゅうまでに だして ください (serahkan sebelum minggu depan)."
+        },
+        {
+          "id": "jft_ch_18",
+          "instruction": "Dengarkan. Orang ini sedang di mana?",
+          "prompt": "Dengarkan. Orang ini sedang di mana?",
+          "audio": "いま えきに います。",
+          "options": [
+            "Di rumah",
+            "Di stasiun",
+            "Di kantor",
+            "Di toko"
+          ],
+          "correctIndex": 1,
+          "explanation": "Yang diucapkan: いま えきに います (sekarang ada di stasiun)."
+        },
+        {
+          "id": "jft_ch_19",
+          "instruction": "Dengarkan. Apa yang diminta dilakukan?",
+          "prompt": "Dengarkan. Apa yang diminta dilakukan?",
+          "audio": "あとで メールを おくって ください。",
+          "options": [
+            "Menelepon",
+            "Mengirim email",
+            "Datang langsung",
+            "Menunggu"
+          ],
+          "correctIndex": 1,
+          "explanation": "Yang diucapkan: メールを おくって ください (tolong kirim email)."
+        },
+        {
+          "id": "jft_ch_20",
+          "instruction": "Dengarkan. Bagaimana perasaan orang ini?",
+          "prompt": "Dengarkan. Bagaimana perasaan orang ini?",
+          "audio": "きょうは とても つかれました。",
+          "options": [
+            "Senang",
+            "Lelah",
+            "Marah",
+            "Khawatir"
+          ],
+          "correctIndex": 1,
+          "explanation": "Yang diucapkan: とても つかれました (sangat lelah)."
+        }
+      ]
+    }
+  }
+}

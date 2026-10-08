@@ -1,0 +1,596 @@
+[
+  {
+    "id": "w3d1g1",
+    "map_id": "map_bunpou_w3",
+    "stage_id": "stage_bunpou_w3d1",
+    "title": "調べてもわからなかった（Vても／Aくても／na/Nでも）",
+    "formula": "Vて も／Aく ても／na・N でも",
+    "meaning_en": "Even if (concessive).",
+    "meaning_id": "Biarpun sudah... tetap saja... / Walaupun... (Hasil tidak berubah meski sudah berusaha)",
+    "explanation_note": "Kontras nyata antara curahan usaha dengan hasil akhir yang tidak sebanding.",
+    "examples": [
+      {
+        "jp": "調べてもわからなかったので、先生に聞いた。",
+        "en": "I couldn't understand it even after looking it up, so I asked the teacher.",
+        "id": "Sudah dicari tapi tetap tidak paham, jadi aku tanya guru."
+      }
+    ],
+    "question_ids": [
+      "w3d1g1_q1",
+      "w3d1g1_q2",
+      "w3d1g1_q3",
+      "w3d1g1_q4",
+      "w3d1g1_q5",
+      "w3d1g1_q6",
+      "w3d1g1_q7"
+    ],
+    "questions_status": "authored"
+  },
+  {
+    "id": "w3d1g2",
+    "map_id": "map_bunpou_w3",
+    "stage_id": "stage_bunpou_w3d1",
+    "title": "どんなに練習しても（どんなに／いくら＋Vても／Aくても／naでも／Nでも）",
+    "formula": "どんなに／いくら ＋ Vても／Aくても／naでも／Nでも",
+    "meaning_en": "No matter how much (emphatic concessive).",
+    "meaning_id": "Mau seberapa keras pun... / Tak peduli sebanyak apa pun... (Tingkat usaha tidak mengubah hasil)",
+    "explanation_note": "Penekanan intensitas maksimal yang tetap tidak sanggup membalikkan keadaan.",
+    "examples": [
+      {
+        "jp": "ギターを習い始めたが、どんなに練習しても全然うまくならない。",
+        "en": "I've started taking guitar lessons but I'm not getting any better no matter how much I practice.",
+        "id": "Sudah mulai belajar gitar, tapi seberapa pun latihan tetap tidak jago-jago."
+      }
+    ],
+    "question_ids": [
+      "w3d1g2_q1",
+      "w3d1g2_q2",
+      "w3d1g2_q3",
+      "w3d1g2_q4",
+      "w3d1g2_q5",
+      "w3d1g2_q6",
+      "w3d1g2_q7"
+    ],
+    "questions_status": "authored"
+  },
+  {
+    "id": "w3d1g3",
+    "map_id": "map_bunpou_w3",
+    "stage_id": "stage_bunpou_w3d1",
+    "title": "辞書を使わずに（Vずに）",
+    "formula": "V（ない→ずに；しない→せずに）",
+    "meaning_en": "Without doing (formal, = Vないで).",
+    "meaning_id": "Tanpa melakukan... (Ragam formal tertulis dari 〜ないで)",
+    "explanation_note": "Gaya bahasa tertulis yang anggun dan berwibawa.",
+    "examples": [
+      {
+        "jp": "辞書を使わずに書いたので、自信がありません。",
+        "en": "I do not have much confidence since I wrote it without using a dictionary.",
+        "id": "Aku menulis tanpa pakai kamus, jadi kurang yakin."
+      }
+    ],
+    "question_ids": [
+      "w3d1g3_q1",
+      "w3d1g3_q2",
+      "w3d1g3_q3",
+      "w3d1g3_q4",
+      "w3d1g3_q5",
+      "w3d1g3_q6",
+      "w3d1g3_q7"
+    ],
+    "questions_status": "authored"
+  },
+  {
+    "id": "w3d2g1",
+    "map_id": "map_bunpou_w3",
+    "stage_id": "stage_bunpou_w3d2",
+    "title": "日本代表として（Nと＋して／しては／しても／してのN）",
+    "formula": "Nと ＋ して／しては／しても／してのN",
+    "meaning_en": "As / in the capacity of.",
+    "meaning_id": "Sebagai... / Selaku... (Menyatakan peran, status, atau kapasitas resmi)",
+    "explanation_note": "Menjalankan tindakan yang terikat pada tanggung jawab peran tersebut.",
+    "examples": [
+      {
+        "jp": "彼は外国人だが、日本代表として試合に出る。",
+        "en": "He is a foreigner, but he participates in games as a representative of Japan.",
+        "id": "Dia orang asing, tapi bertanding sebagai wakil Jepang."
+      }
+    ],
+    "question_ids": [
+      "w3d2g1_q1",
+      "w3d2g1_q2",
+      "w3d2g1_q3",
+      "w3d2g1_q4",
+      "w3d2g1_q5",
+      "w3d2g1_q6",
+      "w3d2g1_q7"
+    ],
+    "questions_status": "authored"
+  },
+  {
+    "id": "w3d2g2",
+    "map_id": "map_bunpou_w3",
+    "stage_id": "stage_bunpou_w3d2",
+    "title": "外国人にしては（V/A/na/Nに＋しては；それにしては）",
+    "formula": "V・A・na・N（Nに／naに） ＋ しては；それにしては",
+    "meaning_en": "Considering X, an unexpected feeling.",
+    "meaning_id": "Untuk ukuran..., kok tumben... (Di luar dugaan jika melihat standar biasanya)",
+    "explanation_note": "Keterkejutan positif atau evaluasi yang melampaui tolok ukur umum.",
+    "examples": [
+      {
+        "jp": "外国人にしては日本語が上手だ。",
+        "en": "For a foreigner, his Japanese is very good.",
+        "id": "Untuk orang asing, bahasa Jepangnya bagus sekali."
+      }
+    ],
+    "question_ids": [
+      "w3d2g2_q1",
+      "w3d2g2_q2",
+      "w3d2g2_q3",
+      "w3d2g2_q4",
+      "w3d2g2_q5",
+      "w3d2g2_q6",
+      "w3d2g2_q7"
+    ],
+    "questions_status": "authored"
+  },
+  {
+    "id": "w3d2g3",
+    "map_id": "map_bunpou_w3",
+    "stage_id": "stage_bunpou_w3d2",
+    "title": "100円にしても（V/A/na/Nに＋しても）",
+    "formula": "V・A・na・N（Nに／naに） ＋ しても",
+    "meaning_en": "Even if / even granting X.",
+    "meaning_id": "Sekalipun memang begitu..., tapi tetap saja... (Kesimpulan tetap berlaku bahkan dalam kasus ekstrem)",
+    "explanation_note": "Menolak pemakluman berlebihan demi menegakkan batasan prinsip.",
+    "examples": [
+      {
+        "jp": "これは、100円にしても、高いと思う。",
+        "en": "Even 100 yen is too expensive for this.",
+        "id": "Ini, walau cuma 100 yen, tetap terasa mahal menurutku."
+      }
+    ],
+    "question_ids": [
+      "w3d2g3_q1",
+      "w3d2g3_q2",
+      "w3d2g3_q3",
+      "w3d2g3_q4",
+      "w3d2g3_q5",
+      "w3d2g3_q6",
+      "w3d2g3_q7"
+    ],
+    "questions_status": "authored"
+  },
+  {
+    "id": "w3d2g4",
+    "map_id": "map_bunpou_w3",
+    "stage_id": "stage_bunpou_w3d2",
+    "title": "本当だとしたら（N/na/A/V＋としたら／すれば）",
+    "formula": "N・na・A・V ＋ としたら／すれば",
+    "meaning_en": "If it were the case that... (hypothetical).",
+    "meaning_id": "Seandainya benar begitu... / Andaikan... (Mengandaikan situasi imajiner yang belum pasti)",
+    "explanation_note": "Eksplorasi skenario imajiner yang belum terkonfirmasi di dunia nyata.",
+    "examples": [
+      {
+        "jp": "その話が本当だとしたら、うれしいです。",
+        "en": "If that's true, I'm so happy.",
+        "id": "Kalau itu benar, aku senang sekali."
+      }
+    ],
+    "question_ids": [
+      "w3d2g4_q1",
+      "w3d2g4_q2",
+      "w3d2g4_q3",
+      "w3d2g4_q4",
+      "w3d2g4_q5",
+      "w3d2g4_q6",
+      "w3d2g4_q7"
+    ],
+    "questions_status": "authored"
+  },
+  {
+    "id": "w3d3g1",
+    "map_id": "map_bunpou_w3",
+    "stage_id": "stage_bunpou_w3d3",
+    "title": "行くつもりでした（Vる／Vない＋つもりだった）",
+    "formula": "Vる／Vない ＋ つもりだった",
+    "meaning_en": "Was planning to do / not to do something (but didn't happen).",
+    "meaning_id": "Tadinya niatnya mau... (tapi kenyataannya batal / meleset)",
+    "explanation_note": "Ada rasa kecewa atau penjelasan mengapa rencana awal kandas di tengah jalan.",
+    "examples": [
+      {
+        "jp": "昨日は買い物に行くつもりでしたが、頭が痛かったのでずっと家にいました。",
+        "en": "I was planning to go shopping yesterday but I stayed home because of a headache.",
+        "id": "Kemarin rencananya mau belanja, tapi karena pusing jadi di rumah saja."
+      }
+    ],
+    "question_ids": [
+      "w3d3g1_q1",
+      "w3d3g1_q2",
+      "w3d3g1_q3",
+      "w3d3g1_q4",
+      "w3d3g1_q5",
+      "w3d3g1_q6",
+      "w3d3g1_q7"
+    ],
+    "questions_status": "authored"
+  },
+  {
+    "id": "w3d3g2",
+    "map_id": "map_bunpou_w3",
+    "stage_id": "stage_bunpou_w3d3",
+    "title": "家にいないはずだ（V/A/na/N＋はずだ／はずがない）",
+    "formula": "V・A・na・N ＋ はずだ／はずがない",
+    "meaning_en": "Should be / is expected to be (logical conclusion); はずがない = strong negation.",
+    "meaning_id": "Seharusnya pasti... / Mana mungkin begitu! (Keyakinan kuat berdasar logika atau jadwal)",
+    "explanation_note": "Perhitungan rasional dan kepastian berdasarkan premis yang kuat.",
+    "examples": [
+      {
+        "jp": "田中さんは今、旅行中だから、家にいないはずだ。",
+        "en": "Tanaka-san can't be home as he is travelling now.",
+        "id": "Tanaka-san sedang bepergian, jadi seharusnya tidak ada di rumah."
+      }
+    ],
+    "question_ids": [
+      "w3d3g2_q1",
+      "w3d3g2_q2",
+      "w3d3g2_q3",
+      "w3d3g2_q4",
+      "w3d3g2_q5",
+      "w3d3g2_q6",
+      "w3d3g2_q7"
+    ],
+    "questions_status": "authored"
+  },
+  {
+    "id": "w3d3g3",
+    "map_id": "map_bunpou_w3",
+    "stage_id": "stage_bunpou_w3d3",
+    "title": "守るべきだ（Vる／naである／Aくある＋べきだ／べきではない）",
+    "formula": "Vる／naである／Aくある ＋ べきだ／べきではない",
+    "meaning_en": "Should do / should not do (obligation, duty). Note: すべき＝するべきだ.",
+    "meaning_id": "Sudah sepantasnya... / Wajib secara moral (Kewajiban moral atau etika akal sehat)",
+    "explanation_note": "Beban moral batiniah yang disepakati oleh nurani masyarakat.",
+    "examples": [
+      {
+        "jp": "約束は守るべきだ。",
+        "en": "Promises should be kept.",
+        "id": "Janji harus ditepati."
+      }
+    ],
+    "question_ids": [
+      "w3d3g3_q1",
+      "w3d3g3_q2",
+      "w3d3g3_q3",
+      "w3d3g3_q4",
+      "w3d3g3_q5",
+      "w3d3g3_q6",
+      "w3d3g3_q7"
+    ],
+    "questions_status": "authored"
+  },
+  {
+    "id": "w3d3g4",
+    "map_id": "map_bunpou_w3",
+    "stage_id": "stage_bunpou_w3d3",
+    "title": "よく遊んだものだ（Vた／Vなかった＋ものだ／もんだ）",
+    "formula": "Vた／Vなかった ＋ ものだ／もんだ",
+    "meaning_en": "Expressing nostalgic memories.",
+    "meaning_id": "Dulu sering banget... (Mengenang memori masa lalu dengan rasa nostalgia)",
+    "explanation_note": "Rasa rindu nostalgia yang hangat saat menengok kembali perjalanan hidup.",
+    "examples": [
+      {
+        "jp": "子どものころはよく川で遊んだものだ。",
+        "en": "When I was a child, I used to play on the river.",
+        "id": "Waktu kecil, aku sering main di sungai."
+      }
+    ],
+    "question_ids": [
+      "w3d3g4_q1",
+      "w3d3g4_q2",
+      "w3d3g4_q3",
+      "w3d3g4_q4",
+      "w3d3g4_q5",
+      "w3d3g4_q6",
+      "w3d3g4_q7"
+    ],
+    "questions_status": "authored"
+  },
+  {
+    "id": "w3d4g1",
+    "map_id": "map_bunpou_w3",
+    "stage_id": "stage_bunpou_w3d4",
+    "title": "散歩のついでに（Nの／Vる／Vた＋ついでに）",
+    "formula": "Nの／Vる／Vた ＋ ついでに",
+    "meaning_en": "While doing something else / taking the opportunity of.",
+    "meaning_id": "Sekalian / Mumpung lagi... (Memanfaatkan satu kesempatan untuk urusan lain)",
+    "explanation_note": "Efisiensi cerdas dalam memanfaatkan satu jalan untuk dua manfaat.",
+    "examples": [
+      {
+        "jp": "散歩のついでに、この手紙を出してきてくれませんか。",
+        "en": "Since you are going for a walk, will you mail this letter for me?",
+        "id": "Sekalian jalan-jalan, tolong postingkan surat ini ya."
+      }
+    ],
+    "question_ids": [
+      "w3d4g1_q1",
+      "w3d4g1_q2",
+      "w3d4g1_q3",
+      "w3d4g1_q4",
+      "w3d4g1_q5",
+      "w3d4g1_q6",
+      "w3d4g1_q7"
+    ],
+    "questions_status": "authored"
+  },
+  {
+    "id": "w3d4g2",
+    "map_id": "map_bunpou_w3",
+    "stage_id": "stage_bunpou_w3d4",
+    "title": "買い物のたびに（Nの／Vる＋たびに／たび）",
+    "formula": "Nの／Vる ＋ たびに／たび",
+    "meaning_en": "Every time.",
+    "meaning_id": "Tiap kali... pasti... (Setiap kali peristiwa terjadi, selalu dibarengi hal yang sama)",
+    "explanation_note": "Pengulangan pola yang konsisten dari waktu ke waktu.",
+    "examples": [
+      {
+        "jp": "買い物のたびに、袋をたくさんもらう。",
+        "en": "I end up with lots of bags every time I go shopping.",
+        "id": "Setiap kali belanja, dapat banyak kantong plastik."
+      }
+    ],
+    "question_ids": [
+      "w3d4g2_q1",
+      "w3d4g2_q2",
+      "w3d4g2_q3",
+      "w3d4g2_q4",
+      "w3d4g2_q5",
+      "w3d4g2_q6",
+      "w3d4g2_q7"
+    ],
+    "questions_status": "authored"
+  },
+  {
+    "id": "w3d4g3",
+    "map_id": "map_bunpou_w3",
+    "stage_id": "stage_bunpou_w3d4",
+    "title": "開けたとたん（Vた＋とたん／とたんに）",
+    "formula": "Vた ＋ とたん／とたんに",
+    "meaning_en": "The moment that / just as.",
+    "meaning_id": "Baru saja... tiba-tiba langsung...! (Perubahan mendadak dan tak terduga tepat setelah aksi)",
+    "explanation_note": "Kecepatan momentum yang mengagetkan tanpa jeda waktu.",
+    "examples": [
+      {
+        "jp": "窓を開けたとたん、強い風が入ってきた。",
+        "en": "The moment I opened the window, a strong wind came in.",
+        "id": "Begitu membuka jendela, angin kencang langsung masuk."
+      }
+    ],
+    "question_ids": [
+      "w3d4g3_q1",
+      "w3d4g3_q2",
+      "w3d4g3_q3",
+      "w3d4g3_q4",
+      "w3d4g3_q5",
+      "w3d4g3_q6",
+      "w3d4g3_q7"
+    ],
+    "questions_status": "authored"
+  },
+  {
+    "id": "w3d4g4",
+    "map_id": "map_bunpou_w3",
+    "stage_id": "stage_bunpou_w3d4",
+    "title": "食事の最中に（Nの／Vている＋最中に／最中だ）",
+    "formula": "Nの／Vている ＋ 最中に／最中だ",
+    "meaning_en": "Right in the middle of doing something.",
+    "meaning_id": "Tepat di tengah-tengah asyik... (Sedang sibuk beraktivitas lalu mendadak disela)",
+    "explanation_note": "Interupsi mendadak yang merusak fokus aktivitas utama.",
+    "examples": [
+      {
+        "jp": "食事の最中に、お客さんが来た。",
+        "en": "A visitor came right in the middle of the meal.",
+        "id": "Pas sedang makan, ada tamu datang."
+      }
+    ],
+    "question_ids": [
+      "w3d4g4_q1",
+      "w3d4g4_q2",
+      "w3d4g4_q3",
+      "w3d4g4_q4",
+      "w3d4g4_q5",
+      "w3d4g4_q6",
+      "w3d4g4_q7"
+    ],
+    "questions_status": "authored"
+  },
+  {
+    "id": "w3d5g1",
+    "map_id": "map_bunpou_w3",
+    "stage_id": "stage_bunpou_w3d5",
+    "title": "地図のとおり（Vる／Vた／Nの＋とおり；Nどおり）",
+    "formula": "Vる／Vた／Nの ＋ とおり；Nどおり",
+    "meaning_en": "As / according to / in the same way as.",
+    "meaning_id": "Persis sesuai dengan... / Persis seperti yang... (Mengikuti petunjuk tanpa melenceng)",
+    "explanation_note": "Presisi dan kesesuaian sempurna dengan acuan rujukan.",
+    "examples": [
+      {
+        "jp": "友達がかいてくれた地図のとおりに来たが、道に迷った。",
+        "en": "I got lost even though I followed the map my friend drew for me.",
+        "id": "Aku sudah ikuti peta dari temanku, tapi tetap tersesat."
+      }
+    ],
+    "question_ids": [
+      "w3d5g1_q1",
+      "w3d5g1_q2",
+      "w3d5g1_q3",
+      "w3d5g1_q4",
+      "w3d5g1_q5",
+      "w3d5g1_q6",
+      "w3d5g1_q7"
+    ],
+    "questions_status": "authored"
+  },
+  {
+    "id": "w3d5g2",
+    "map_id": "map_bunpou_w3",
+    "stage_id": "stage_bunpou_w3d5",
+    "title": "テレビをつけたまま（Vた／Vない／A/na/N＋まま）",
+    "formula": "Vた／Vない／A・na・N ＋ まま",
+    "meaning_en": "Leaving a state as it is / while still in that state.",
+    "meaning_id": "Dalam kondisi tetap... / Dibiarkan begitu saja (Melakukan hal lain tanpa mengubah kondisi awal)",
+    "explanation_note": "Mempertahankan status quo keadaan pertama.",
+    "examples": [
+      {
+        "jp": "昨夜は、テレビをつけたまま寝てしまった。",
+        "en": "I fell asleep with the TV on.",
+        "id": "Semalam aku tertidur dengan TV masih menyala."
+      }
+    ],
+    "question_ids": [
+      "w3d5g2_q1",
+      "w3d5g2_q2",
+      "w3d5g2_q3",
+      "w3d5g2_q4",
+      "w3d5g2_q5",
+      "w3d5g2_q6",
+      "w3d5g2_q7"
+    ],
+    "questions_status": "authored"
+  },
+  {
+    "id": "w3d5g3",
+    "map_id": "map_bunpou_w3",
+    "stage_id": "stage_bunpou_w3d5",
+    "title": "開けっぱなし（Vますっぱなし）",
+    "formula": "V（ます形） ＋ っぱなし",
+    "meaning_en": "Leaving something in a certain state (often negative nuance, neglect).",
+    "meaning_id": "Dibiarkan melulu... / Lupa dibereskan (Keteledoran atau kelalaian membiarkan kondisi)",
+    "explanation_note": "Kelalaian yang menimbulkan pemborosan atau rasa jengkel orang sekitar.",
+    "examples": [
+      {
+        "jp": "窓を開けっぱなしで出てきた。",
+        "en": "I left home with the windows open.",
+        "id": "Aku pergi tanpa menutup jendela dulu."
+      }
+    ],
+    "question_ids": [
+      "w3d5g3_q1",
+      "w3d5g3_q2",
+      "w3d5g3_q3",
+      "w3d5g3_q4",
+      "w3d5g3_q5",
+      "w3d5g3_q6",
+      "w3d5g3_q7"
+    ],
+    "questions_status": "authored"
+  },
+  {
+    "id": "w3d5g4",
+    "map_id": "map_bunpou_w3",
+    "stage_id": "stage_bunpou_w3d5",
+    "title": "二人きり（N＋きり／きりだ／っきり／っきりだ）",
+    "formula": "N ＋ きり／きりだ／っきり／っきりだ",
+    "meaning_en": "Only / just (small quantity), used with N showing small numbers.",
+    "meaning_id": "Cuma ber-... saja / Hanya itu saja (Menekankan jumlah yang sangat sedikit atau terbatas)",
+    "explanation_note": "Kesendirian hening atau kelangkaan kesempatan.",
+    "examples": [
+      {
+        "jp": "二人（っ）きりで話をしたいです。",
+        "en": "I'd like to have a private talk with you (just the two of us).",
+        "id": "Aku ingin bicara berdua saja denganmu."
+      }
+    ],
+    "question_ids": [
+      "w3d5g4_q1",
+      "w3d5g4_q2",
+      "w3d5g4_q3",
+      "w3d5g4_q4",
+      "w3d5g4_q5",
+      "w3d5g4_q6",
+      "w3d5g4_q7"
+    ],
+    "questions_status": "authored"
+  },
+  {
+    "id": "w3d6g1",
+    "map_id": "map_bunpou_w3",
+    "stage_id": "stage_bunpou_w3d6",
+    "title": "怖がらないで（A/na→がる／がって／がらないで）",
+    "formula": "A（い→がる）／na＋がる／がって／がらないで",
+    "meaning_en": "Shows an outward display of feeling (fear, desire, etc.) by a third person.",
+    "meaning_id": "Kelihatan ingin... / Menunjukkan gelagat... (Menggambarkan emosi/keinginan pihak ketiga)",
+    "explanation_note": "Membatasi pengamatan pada tanda-tanda lahiriah yang terlihat secara sopan.",
+    "examples": [
+      {
+        "jp": "怖がらないでください。",
+        "en": "Please don't be afraid.",
+        "id": "Tolong jangan takut."
+      }
+    ],
+    "question_ids": [
+      "w3d6g1_q1",
+      "w3d6g1_q2",
+      "w3d6g1_q3",
+      "w3d6g1_q4",
+      "w3d6g1_q5",
+      "w3d6g1_q6",
+      "w3d6g1_q7"
+    ],
+    "questions_status": "authored"
+  },
+  {
+    "id": "w3d6g2",
+    "map_id": "map_bunpou_w3",
+    "stage_id": "stage_bunpou_w3d6",
+    "title": "見せてほしい（Vて＋ほしい；Vないで＋ほしい／もらいたい）",
+    "formula": "Vて／Vないで ＋ ほしい／もらいたい",
+    "meaning_en": "Wanting someone to do (or not do) something.",
+    "meaning_id": "Penginnya kamu... / Berharap pihak lain bersedia... (Menyatakan harapan terhadap orang lain)",
+    "explanation_note": "Permohonan personal yang mengharapkan kerja sama pihak lain.",
+    "examples": [
+      {
+        "jp": "教科書を見せてほしいんですが……。",
+        "en": "Excuse me. Could I see your textbook?",
+        "id": "Maaf, boleh lihat buku pelajarannya?"
+      }
+    ],
+    "question_ids": [
+      "w3d6g2_q1",
+      "w3d6g2_q2",
+      "w3d6g2_q3",
+      "w3d6g2_q4",
+      "w3d6g2_q5",
+      "w3d6g2_q6",
+      "w3d6g2_q7"
+    ],
+    "questions_status": "authored"
+  },
+  {
+    "id": "w3d6g3",
+    "map_id": "map_bunpou_w3",
+    "stage_id": "stage_bunpou_w3d6",
+    "title": "知っているふりをする（V/A/na/N＋ふりをする）",
+    "formula": "V・A・na・N ＋ ふりをする",
+    "meaning_en": "Pretend to be / act as if.",
+    "meaning_id": "Pura-pura... / Bersikap seolah-olah... (Bertingkah layaknya suatu keadaan padahal tidak)",
+    "explanation_note": "Sandiwara sosial demi menghindari konflik atau menutupi rasa malu.",
+    "examples": [
+      {
+        "jp": "彼はそのことについて知っているふりをしているが、本当は知らないと思う。",
+        "en": "He pretends to know about it but I don't think he really does.",
+        "id": "Dia pura-pura tahu soal itu, tapi kurasa sebenarnya tidak tahu."
+      }
+    ],
+    "question_ids": [
+      "w3d6g3_q1",
+      "w3d6g3_q2",
+      "w3d6g3_q3",
+      "w3d6g3_q4",
+      "w3d6g3_q5",
+      "w3d6g3_q6",
+      "w3d6g3_q7"
+    ],
+    "questions_status": "authored"
+  }
+]

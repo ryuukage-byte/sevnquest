@@ -1,0 +1,996 @@
+{
+  "w1d1g1": {
+    "meaning_id": "Tertulis / Dibuat / Dikatakan bahwa... (Fakta umum atau teks resmi tanpa menyebut pelaku)",
+    "keyTakeaway": "Dipakai saat fokus kalimat adalah isi tulisan, tradisi sejarah, atau pengumuman resmi di mana siapa pelaku spesifiknya tidak penting untuk disebutkan.",
+    "nuance": "Menyatakan fakta objektif dari sudut pandang teks atau peristiwa yang sudah diakui umum.",
+    "beforeState": "Fokus Pelaku: Menyebutkan siapa yang menulis/membuat 👤",
+    "afterState": "Fakta Objektif: Menegaskan isi tulisan atau keberadaan bendanya 📜"
+  },
+  "w1d1g2": {
+    "meaning_id": "Kena getah kerepotan akibat... (Pasif kerugian: subjek merasa repot/terganggu oleh aksi orang lain)",
+    "keyTakeaway": "Pola 'pasif kerepotan (迷惑受身)': subjek merasa dirugikan atau terganggu oleh perbuatan pihak lain, meskipun tidak ada kontak fisik langsung (misal: kehujanan, bayi menangis semalaman).",
+    "nuance": "Mengandung rasa jengkel, sedih, atau kerepotan mendalam akibat peristiwa di luar kendali.",
+    "beforeState": "Kalimat Netral: Fakta biasa pihak lain melakukan aksi 💬",
+    "afterState": "Pasif Kerepotan: Subjek merasa sangat terbebani atau dirugikan 🛡️"
+  },
+  "w1d1g3": {
+    "meaning_id": "Tolong izinkan saya untuk... (Meminta izin dengan sopan agar diri sendiri boleh berbuat)",
+    "keyTakeaway": "Hati-hati! Pola V(さ)せてください meminta izin agar PEMBICARA yang diizinkan berbuat, beda dengan Vてください yang menyuruh LAWAN BICARA yang berbuat.",
+    "nuance": "Permohonan santun kepada atasan atau lawan bicara demi kenyamanan bersama.",
+    "beforeState": "Menyuruh Lawan Bicara: 〜てください (Lawan bicara yang berbuat) 👥",
+    "afterState": "Meminta Izin Diri Sendiri: 〜(さ)せてください (Izinkan saya yang berbuat) 🤝"
+  },
+  "w1d2g1": {
+    "meaning_id": "Harus segera... / Nggak boleh nggak! (Bentuk lisan santai untuk keharusan mendesak)",
+    "keyTakeaway": "Singkatan lisan praktis dari 〜なければならない. Sangat sering dipakai saat bergumam pada diri sendiri atau mengingatkan teman dekat tentang hal mendesak.",
+    "nuance": "Ragam percakapan akrab yang cepat dan lincah tanpa kesan kaku seperti buku teks.",
+    "beforeState": "Bentuk Standar: 〜なければならない (Panjang & kaku diucapkan) 📜",
+    "afterState": "Ragam Lisan: 〜なくちゃ / 〜なきゃ (Cepat, lincah, & natural) 💬"
+  },
+  "w1d2g2": {
+    "meaning_id": "Sudah keburu... / Terlanjur... (Aksi tuntas beres atau keteledoran yang disesali)",
+    "keyTakeaway": "Singkatan lisan dari Vてしまう. Memiliki 2 rasa bahasa: (1) aksi sudah beres tuntas sampai habis, atau (2) penyesalan atas keteledoran yang terlanjur terjadi.",
+    "nuance": "Arti ditentukan konteks kalimat: apakah sengaja dituntaskan atau kelalaian yang disesali.",
+    "beforeState": "Bentuk Standar: 〜てしまう / 〜でしまう 📜",
+    "afterState": "Ragam Lisan: 〜ちゃう / 〜じゃう (Ekspresif & akrab) 💬"
+  },
+  "w1d2g3": {
+    "meaning_id": "Mempersiapkan terlebih dahulu / Biarkan saja begitu (Bekal persiapan masa depan)",
+    "keyTakeaway": "Singkatan lisan dari Vておく. Dipakai untuk aksi yang sengaja dikerjakan sekarang demi kemudahan nanti, atau membiarkan kondisi barang tetap seperti semula.",
+    "nuance": "Praktis dalam obrolan santai saat membagi tugas atau merapikan barang.",
+    "beforeState": "Bentuk Standar: 〜ておく / 〜でおく 📜",
+    "afterState": "Ragam Lisan: 〜とく / 〜どく (Praktis dalam obrolan santai) 💬"
+  },
+  "w1d3g1": {
+    "meaning_id": "Kelihatannya seperti... / Mirip banget kayak... (Perumpamaan atau dugaan visual spontan)",
+    "keyTakeaway": "Menyatakan kemiripan sifat atau perumpamaan subjektif dari apa yang diamati langsung. Kata benda langsung disambung tanpa partikel の (misal: 女みたい).",
+    "nuance": "Ragam percakapan lisan santai untuk mengibaratkan hal yang mirip padahal aslinya bukan.",
+    "beforeState": "Fakta Aslinya: Bukan hal tersebut 👤",
+    "afterState": "Kesan Tampang: Terlihat dan bertingkah mirip sekali 💡"
+  },
+  "w1d3g2": {
+    "meaning_id": "Bener-bener khas... banget! (Mencerminkan sifat sejati dan karakter ideal aslinya)",
+    "keyTakeaway": "Beda dengan みたいだ! Pola らしい dipakai saat objek tersebut MEMANG ASLINYA adalah hal itu dan memancarkan sifat aslinya secara sempurna (contoh: 春らしい = beneran musim semi yang sejuk indah).",
+    "nuance": "Pujian atau penegasan bahwa objek memiliki karakter ideal sesuai status aslinya.",
+    "beforeState": "Kemiripan Luar: Mirip tapi aslinya bukan hal itu (みたい) 🎭",
+    "afterState": "Karakter Sejati: Memang aslinya hal itu dan mencerminkan sifat khasnya (らしい) 🌟"
+  },
+  "w1d3g3": {
+    "meaning_id": "Gayanya agak ke-...-an / Cenderung kayak... (Kesan lahiriah yang tampak dari luar)",
+    "keyTakeaway": "Menyatakan kesan fisik atau kecenderungan sifat yang tampak sekilas. Sering bernuansa agak negatif atau meremehkan jika dipadukan kata sifat (contoh: 安っぽい = murahan, 怒りっぽい = gampang ngambek).",
+    "nuance": "Pengamatan kasual atas kecenderungan penampilan lahiriah.",
+    "beforeState": "Sifat Ideal: Memiliki citra yang pantas dan selayaknya 👤",
+    "afterState": "Kesan Lahiriah: Cenderung bergaya atau bersikap ke arah itu 🎨"
+  },
+  "w1d4g1": {
+    "meaning_id": "Berusaha selalu membiasakan... (Usaha sadar dan konsisten untuk menjaga hal/kebiasaan baik)",
+    "keyTakeaway": "Menunjukkan komitmen dan usaha sadar yang dilakukan terus-menerus setiap hari agar terbentuk kebiasaan baik atau terhindar dari kelalaian.",
+    "nuance": "Menekankan niat dan kedisiplinan yang dijaga secara berkesinambungan.",
+    "beforeState": "Niat Sesaat: Sekadar ingin melakukan saat itu saja ⏳",
+    "afterState": "Kebiasaan Sadar: Terus-menerus berupaya membiasakan diri 🔄"
+  },
+  "w1d4g2": {
+    "meaning_id": "Supaya bisa... / Agar terwujud kondisi... (Tindakan demi mencapai keadaan yang diinginkan)",
+    "keyTakeaway": "Klausa sebelum ように biasanya memakai kata kerja bentuk potensial (bisa) atau non-kehendak (contoh: 聞こえるように = agar terdengar jelas, 忘れないように = supaya tidak lupa).",
+    "nuance": "Fokus pada tercapainya suatu kondisi target yang berada di luar kendali langsung otot pembicara.",
+    "beforeState": "Aksi Biasa: Melakukan sesuatu tanpa target kondisi spesifik 💬",
+    "afterState": "Aksi Bertujuan: Berbicara lantang agar kondisi 'terdengar jelas' tercapai 🎯"
+  },
+  "w1d4g3": {
+    "meaning_id": "Sekarang sudah menjadi bisa... / Mulai terbiasa... (Perubahan kemampuan atau kebiasaan baru)",
+    "keyTakeaway": "Dipakai saat ada transisi nyata: dulu tidak bisa atau belum biasa, sekarang seiring waktu menjadi mampu atau mulai terbiasa melakukan aksi tersebut.",
+    "nuance": "Menandai perkembangan keterampilan pribadi atau adaptasi gaya hidup baru.",
+    "beforeState": "Dulu: ❌ Tidak bisa / Belum biasa melakukan",
+    "afterState": "Sekarang: ✅ Menjadi bisa / Mulai mahir dan terbiasa"
+  },
+  "w1d5g1": {
+    "meaning_id": "Sebagaimana yang kita tahu / Seperti yang terlihat... (Pengantar merujuk pada fakta yang sudah dipahami bersama)",
+    "keyTakeaway": "Ungkapan pengantar sopan sebelum menjelaskan inti topik, mengajak pendengar mengingat fakta yang sudah sama-sama diketahui bersama.",
+    "nuance": "Membangun kesamaan persepsi dan memuluskan transisi pembicaraan.",
+    "beforeState": "Penjelasan Mendadak: Langsung menyebutkan data tanpa pengantar 📢",
+    "afterState": "Pengantar Halus: Menyelaraskan pemahaman pendengar terlebih dahulu 🤝"
+  },
+  "w1d5g2": {
+    "meaning_id": "Dimohon untuk selalu... / Harap supaya... (Instruksi atau arahan halus dari guru/atasan)",
+    "keyTakeaway": "Perintah atau instruksi yang disampaikan secara lebih lunak dan halus dibanding bentuk perintah langsung. Sangat lazim di sekolah atau tempat kerja.",
+    "nuance": "Arahan resmi bernada membimbing tanpa terdengar kasar atau menekan.",
+    "beforeState": "Perintah Kasar: Bentuk perintah langsung yang terkesan memaksa ⚠️",
+    "afterState": "Arahan Sopan: Mengarahkan tindakan dengan nada pembimbing yang santun 📋"
+  },
+  "w1d5g3": {
+    "meaning_id": "Semoga... terkabul! (Doa dan permohonan tulus yang dipanjatkan)",
+    "keyTakeaway": "Khusus dipakai untuk memanjatkan doa kepada Tuhan, menulis harapan di jimat kuil (ema), atau mendoakan kesuksesan orang lain dengan tulus.",
+    "nuance": "Penuh muatan spiritual, harapan masa depan, dan ketulusan hati.",
+    "beforeState": "Keinginan Pribadi: 〜たい (Saya ingin lulus) 💭",
+    "afterState": "Doa Tulus: 〜ますように (Semoga dikabulkan Yang Maha Kuasa) 🙏"
+  },
+  "w1d6g1": {
+    "meaning_id": "Berniat untuk... / Sedang berencana... (Niat dalam hati yang ingin diwujudkan)",
+    "keyTakeaway": "Menyatakan tekad atau rencana pribadi di dalam pikiran. Gunakan 〜と思っています jika niat tersebut sudah dipikirkan sejak beberapa waktu lalu dan masih berlanjut.",
+    "nuance": "Menunjukkan komitmen internal sebelum melangkah ke tindakan nyata.",
+    "beforeState": "Tanpa Rencana: Masih bimbang belum ada kepastian niat ❓",
+    "afterState": "Niat Mantap: Sudah menetapkan rencana tindakan di dalam hati 💡"
+  },
+  "w1d6g2": {
+    "meaning_id": "Baru saja mau... / Tepat pas hendak... (Detik-detik tepat sebelum suatu aksi dimulai)",
+    "keyTakeaway": "Menunjukkan momen sepersekian detik tepat saat hendak beraksi, namun kemudian mendadak disela atau terhalang oleh peristiwa tak terduga lain.",
+    "nuance": "Ketepatan momentum sesaat sebelum tindakan dieksekusi.",
+    "beforeState": "Aksi Berlangsung: Sedang di dalam kendaraan 🚆",
+    "afterState": "Momen Hendak Melangkah: Kaki baru mau melangkah masuk pintu ⏱️"
+  },
+  "w1d6g3": {
+    "meaning_id": "Sama sekali nggak mau... / Ogah banget... (Menunjukkan keengganan keras atau sikap mogok orang lain)",
+    "keyTakeaway": "Hanya dipakai untuk pihak ketiga (orang lain atau hewan peliharaan), menunjukkan bahwa mereka sama sekali tidak menunjukkan iktikad atau kemauan untuk bertindak.",
+    "nuance": "Mengamati sikap keras kepala atau penolakan pasif dari orang lain.",
+    "beforeState": "Belum Melakukan: Sekadar belum sempat makan ⏳",
+    "afterState": "Sengaja Menolak: Mogok makan dan sama sekali ogah menyentuh makanan 🙅"
+  },
+  "w2d1g1": {
+    "meaning_id": "Cuma... melulu! / Kebanyakan... doang (Banyak sekali sampai terkesan berlebihan atau menjengkelkan)",
+    "keyTakeaway": "Bukan sekadar berarti 'hanya', melainkan memberi kesan 'jumlahnya melulu hal itu sampai terasa berlebihan atau bikin risih' (contoh: kerjanya main game melulu).",
+    "nuance": "Sering mengandung nada teguran, kritik, atau keluhan atas ketidakseimbangan aktivitas.",
+    "beforeState": "Fakta Jumlah: Menyebutkan jumlah biasa secara netral 💬",
+    "afterState": "Nada Keluhan: Merasa frekuensinya melulu hal itu dan berlebihan 💢"
+  },
+  "w2d1g2": {
+    "meaning_id": "Cuma... doang, nggak ada selain itu (Hanya terbatas pada itu saja, selain itu sama sekali tidak)",
+    "keyTakeaway": "Kombinasi だけ (hanya) + しか〜ない (tidak ada selain). Jauh lebih eksklusif dan mutlak daripada cuma だけ biasa.",
+    "nuance": "Menegaskan batas tegas yang tidak menyisakan ruang bagi opsi lain.",
+    "beforeState": "Batasan Biasa: Hanya ini yang ada (だけ) 📦",
+    "afterState": "Sangat Terbatas: Sama sekali tak ada yang lain selain ini (だけしか〜ない) 🔒"
+  },
+  "w2d1g3": {
+    "meaning_id": "Bahkan... pun sampai segitunya (Menyebut contoh paling dasar/ekstrem untuk menunjukkan keparahan)",
+    "keyTakeaway": "Menyebutkan contoh yang paling sepele/mendasar untuk menegaskan bahwa hal-hal lain di atasnya sudah pasti demikian (contoh: huruf hiragana saja tidak bisa, apalagi kanji).",
+    "nuance": "Menyoroti kontras ekstrem untuk menunjukkan betapa parah atau luar biasanya suatu situasi.",
+    "beforeState": "Penyebutan Normal: Menyebut tingkat kesulitan biasa 💬",
+    "afterState": "Contoh Paling Dasar: Hal yang paling sepele saja gagal/terkena ⚡"
+  },
+  "w2d1g4": {
+    "meaning_id": "Justru kali ini pasti...! / Karena alasan itulah justru... (Menegaskan tekad bulat membara)",
+    "keyTakeaway": "Dipakai untuk menegaskan tekad yang bulat ('Besoklah saatnya aku buktikan!') atau alasan kuat mengapa sesuatu dilakukan (justru karena sayang anak, makanya dididik tegas).",
+    "nuance": "Memberikan sorotan utama dan dorongan emosional yang kuat pada kata yang dilekatkan.",
+    "beforeState": "Pernyataan Biasa: Berniat melakukan besok 💬",
+    "afterState": "Tekad Membara: Justru besoklah titik balik yang tak boleh gagal! 🔥"
+  },
+  "w2d2g1": {
+    "meaning_id": "Berkenaan dengan... / Mengenai topik... (Bahasa resmi/formal untuk mengangkat topik bahasan/isu)",
+    "keyTakeaway": "Bermakna 'mengenai/tentang', namun bergaya bahasa formal, resmi, atau akademis (berita, seminar, artikel penelitian). Versi santainya dalam obrolan adalah について.",
+    "nuance": "Mengangkat isu atau wacana yang luas dalam ranah formal.",
+    "beforeState": "Obrolan Santai: Membahas masalah sehari-hari (について) ☕",
+    "afterState": "Wacana Formal: Mengkaji perkara resmi atau isu kenegaraan (に関して) 📑"
+  },
+  "w2d2g2": {
+    "meaning_id": "Tentang... / Soal... (Membicarakan hal yang menjadi isi atau topik utama obrolan)",
+    "keyTakeaway": "Ungkapan sehari-hari paling umum untuk menyatakan topik bahasan ('berbicara tentang...', 'berpikir tentang...'). Dapat dipakai dalam situasi santai maupun semiformal.",
+    "nuance": "Menandai tema inti yang sedang menjadi fokus perbincangan.",
+    "beforeState": "Tanpa Topik: Berbicara tanpa menandai tema utama 💬",
+    "afterState": "Topik Tertuju: Menegaskan bahwa perbincangan berputar di tema tersebut 🎯"
+  },
+  "w2d2g3": {
+    "meaning_id": "Berdasarkan kabar dari... / Menurut... (Mengutip sumber data atau berita tepercaya)",
+    "keyTakeaway": "Wajib diakhiri dengan bentuk kabar burung atau dugaan seperti 〜そうだ atau 〜ということだ (contoh: 天気予報によれば、雨が降るそうだ).",
+    "nuance": "Merujuk pada otoritas sumber informasi pihak ketiga yang kredibel.",
+    "beforeState": "Pendapat Pribadi: Mengira-ngira sendiri tanpa rujukan 💭",
+    "afterState": "Rujukan Berita: Mempertanggungjawabkan informasi dari sumber tepercaya 📻"
+  },
+  "w2d2g4": {
+    "meaning_id": "Melalui... / Tergantung pada... / Karena faktor... (Metode, penyebab, atau keragaman kasus)",
+    "keyTakeaway": "Pola serbaguna dengan 3 fungsi utama: (1) Cara/sarana (melalui kerja keras), (2) Sebab/pemicu (rusak karena gempa), (3) Variasi kasus ('berbeda tergantung pada negaranya').",
+    "nuance": "Ragam resmi tertulis untuk menghubungkan instrumen, kausalitas, atau variasi.",
+    "beforeState": "Penyebab Netral: Menghubungkan sebab biasa dengan から 💬",
+    "afterState": "Hubungan Formal: Menjelaskan instrumen atau korelasi logis secara elegan 📊"
+  },
+  "w2d3g1": {
+    "meaning_id": "Tingkat / Kadar... (Mengubah kata sifat jadi ukuran terukur: panasnya, panjangnya, beratnya)",
+    "keyTakeaway": "Mengubah kata sifat menjadi besaran kuantitatif yang objektif dan bisa diukur (misal: 重さ = beratnya dalam kilogram, 高さ = tingginya dalam meter).",
+    "nuance": "Objektivitas matematis dan derajat besaran yang dapat dibandingkan secara nyata.",
+    "beforeState": "Kata Sifat Murni: Berat (重い) / Tinggi (高い) 📏",
+    "afterState": "Besaran Terukur: Beratnya / Tingginya (重さ / 高さ) ⚖️"
+  },
+  "w2d3g2": {
+    "meaning_id": "Rasa mendalam... / Kesan... (Mengubah kata sifat jadi kualitas rasa emosional yang berbekas)",
+    "keyTakeaway": "Mengubah kata sifat menjadi kualitas rasa, nuansa subjektif, atau emosi yang dirasakan mendalam di batin (misal: 悲しみ = kesedihan mendalam, 暖かみ = rasa hangat hati).",
+    "nuance": "Kedalaman emosional dan kesan batin yang berbekas di perasaan.",
+    "beforeState": "Kata Sifat Biasa: Sedih (悲しい) / Hangat (暖かい) 💭",
+    "afterState": "Kesan Batin: Kedalaman rasa sedih / Kehangatan hati (悲しみ / 暖かみ) 💖"
+  },
+  "w2d3g3": {
+    "meaning_id": "Hal ihwal tentang... / Soal... (Menjadikan gagasan atau topik sebagai objek pemikiran)",
+    "keyTakeaway": "Menjadikan suatu fakta atau aktivitas sebagai objek pemikiran abstrak di dalam pikiran (misal: memikirkan tentang ujian, berjanji tentang sesuatu).",
+    "nuance": "Mengonseptualisasikan gagasan abstrak ke dalam ranah mental.",
+    "beforeState": "Aksi Langsung: Belajar untuk ujian 📚",
+    "afterState": "Objek Pemikiran: Hal ihwal atau urusan tentang ujian tersebut 🧠"
+  },
+  "w2d3g4": {
+    "meaning_id": "Aksi / Kegiatan... (Mengubah kata kerja jadi objek nyata yang dirasakan panca indra)",
+    "keyTakeaway": "Menjadikan aktivitas sebagai hal fisik atau momen langsung yang dirasakan oleh panca indra (terlihat, terdengar, dihentikan seketika, atau kelupaan dilakukan).",
+    "nuance": "Aksi dinamis yang tertangkap langsung oleh mata, telinga, atau sentuhan.",
+    "beforeState": "Kata Kerja Biasa: Menelepon (電話する) 📞",
+    "afterState": "Objek Tindakan Nyata: Kegiatan meneleponnya itu sendiri (電話するの) 👁️"
+  },
+  "w2d4g1": {
+    "meaning_id": "Orang / Hal yang bernama... (Menjelaskan sebutan nama benda/orang yang belum dikenal lawan bicara)",
+    "keyTakeaway": "Dipakai saat memperkenalkan hal atau orang yang menurut perkiraanmu belum dikenal oleh lawan bicara (misal: orang yang bernama Tanaka, buku berjudul X).",
+    "nuance": "Menyebutkan label identitas awal sebelum mendalami isi topik.",
+    "beforeState": "Nama Langsung: Menyebut nama yang mungkin asing bagi lawan bicara ❓",
+    "afterState": "Penjelasan Sebutan: Memperjelas identitasnya dengan sebutan nama yang ramah 🏷️"
+  },
+  "w2d4g2": {
+    "meaning_id": "Yang dimaksud dengan... adalah... (Mendefinisikan arti istilah atau singkatan kata)",
+    "keyTakeaway": "Digunakan saat menjelaskan definisi istilah baru/singkatan asing, atau menanyakan arti kata yang tidak dipahami lawan bicara.",
+    "nuance": "Menyibak arti hakiki di balik suatu kata wacana.",
+    "beforeState": "Istilah Membingungkan: Mendengar istilah teknis yang belum dimengerti 🧩",
+    "afterState": "Definisi Terbuka: Mengupas arti dan makna inti dari istilah tersebut 📖"
+  },
+  "w2d4g3": {
+    "meaning_id": "Kabar bahwa... / Hal bahwa... (Mengangkat keseluruhan kalimat/peristiwa menjadi topik)",
+    "keyTakeaway": "Menjadikan seluruh isi kalimat atau rumor peristiwa sebagai subjek perbincangan (misal: 'Kabar bahwa dia lulus itu apa beneran?').",
+    "nuance": "Mengemas seluruh wacana kabar angin ke dalam satu paket topik bahasan.",
+    "beforeState": "Gosip Terpisah: Dia lulus ujian 📢",
+    "afterState": "Paket Kabar: Kabar peristiwa bahwa dia lulus itu kini diperbincangkan 📦"
+  },
+  "w2d5g1": {
+    "meaning_id": "Bukannya dibilang begitu, lebih tepatnya malah... (Bukan dibilang..., tapi lebih pasnya...)",
+    "keyTakeaway": "Gunakan saat kamu merasa kata yang baru saja diucapkan kurang pas, lalu ingin langsung meralatnya ke deskripsi yang jauh lebih akurat dan tepat menggambarkan situasi nyata.",
+    "nuance": "Koreksi spontan yang memperhalus dan memperjelas realitas sebenarnya.",
+    "beforeState": "Sebutan Pertama: Memakai kata awal yang dirasa kurang pas (misal: lari) 💬",
+    "afterState": "Ralat Akurat: Langsung meralat ke istilah yang jauh lebih tepat (merayap) 🎯"
+  },
+  "w2d5g2": {
+    "meaning_id": "Kalau ngomongin soal..., langsung kepikiran... (Asosiasi spontan hal pertama yang terlintas)",
+    "keyTakeaway": "Dipakai saat mendengar satu topik, lalu secara spontan pikiranmu langsung mengaitkannya dengan ciri khas atau ikon utamanya (contoh: dengar kata Kyoto, langsung kepikiran kuil dan matcha).",
+    "nuance": "Koneksi asosiasi pikiran alami yang paling melekat di benak masyarakat.",
+    "beforeState": "Topik Tunggal: Mendengar nama kota atau makanan 🏙️",
+    "afterState": "Asosiasi Spontan: Hal ikonik pertama yang langsung terbayang di kepala 💡"
+  },
+  "w2d5g3": {
+    "meaning_id": "Walau dibilang begitu, sebenarnya aslinya cuma... (Meluruskan ekspektasi agar tidak salah paham)",
+    "keyTakeaway": "Gunakan untuk meredam imajinasi lawan bicara agar tidak membayangkan hal yang terlalu muluk atau mewah dibanding realitas yang sebenarnya sederhana.",
+    "nuance": "Meluruskan ekspektasi lawan bicara dengan nada merendah atau realistis.",
+    "beforeState": "Ekspektasi Mewah: Lawan bicara membayangkan hal hebat/mahal 🏰",
+    "afterState": "Kenyataan Sebenarnya: Meluruskan bahwa faktanya biasa-biasa saja 🛖"
+  },
+  "w2d6g1": {
+    "meaning_id": "Coba deh lakukan... (Ajakan ramah menyemangati dari orang tua/senior kepada junior)",
+    "keyTakeaway": "Hanya dipakai oleh orang tua, guru, atau senior kepada anak kecil/junior dengan nada ramah menyemangati untuk mencoba ('Coba sendiri dulu yuk').",
+    "nuance": "Dorongan suportif hangat yang santun tanpa nada memaksa.",
+    "beforeState": "Ragu Melangkah: Anak kecil/junior ragu untuk mencoba ❓",
+    "afterState": "Dorongan Ramah: Senior mengajak mencoba dengan nada menyemangati 🎈"
+  },
+  "w2d6g2": {
+    "meaning_id": "Menyampaikan agar... / Menyuruh supaya... (Melaporkan pesan atau instruksi secara tidak langsung)",
+    "keyTakeaway": "Bentuk kutipan tidak langsung untuk meneruskan instruksi atau permintaan kepada orang ketiga tanpa mengulang kata perintah yang kasar.",
+    "nuance": "Penyampaian instruksi secara diplomatis dan beretika.",
+    "beforeState": "Perintah Asli: Kalimat perintah langsung dari atasan 🗣️",
+    "afterState": "Penyampaian Halus: Melaporkan inti instruksi secara tidak langsung 📨"
+  },
+  "w2d6g3": {
+    "meaning_id": "Kena tegur disuruh / dimarahi jangan... (Melaporkan bahwa diri sendiri ditegur atau dilarang keras)",
+    "keyTakeaway": "Digunakan saat menceritakan pengalaman bahwa diri kita ditegur, diperintah, atau dimarahi oleh atasan/guru ('Saya dimarahi disuruh jangan terlambat').",
+    "nuance": "Menceritakan kembali teguran keras yang membekas dari pihak yang berwenang.",
+    "beforeState": "Momen Dimarahi: Langsung berhadapan dengan teguran atasan ⚠️",
+    "afterState": "Menceritakan Pengalaman: Membagikan cerita teguran tersebut kepada teman 🗣️"
+  },
+  "w2d6g4": {
+    "meaning_id": "Dimintai tolong supaya... (Melaporkan permohonan santai dari orang lain)",
+    "keyTakeaway": "Melaporkan bahwa orang lain meminta bantuan atau memohon kepada kita secara akrab ('Dia minta tolong diajari').",
+    "nuance": "Kutipan santai atas permohonan tolong yang diterima.",
+    "beforeState": "Permintaan Tolong: Orang lain memohon bantuan secara langsung 🤝",
+    "afterState": "Melaporkan Permintaan: Menceritakan kepada orang lain bahwa kita dimintai tolong 💬"
+  },
+  "w3d1g1": {
+    "meaning_id": "Biarpun sudah... tetap saja... / Walaupun... (Hasil tidak berubah meski sudah berusaha)",
+    "keyTakeaway": "Menghubungkan dua fakta di mana hasil akhir tetap tidak tercapai atau meleset dari ekspektasi normal, meski upaya keras sudah dikerahkan.",
+    "nuance": "Kontras nyata antara curahan usaha dengan hasil akhir yang tidak sebanding.",
+    "beforeState": "Usaha Keras: Sudah mencari di kamus dan bertanya 🔍",
+    "afterState": "Hasil Nihil: Tetap saja tidak menemukan jawabannya ❌"
+  },
+  "w3d1g2": {
+    "meaning_id": "Mau seberapa keras pun... / Tak peduli sebanyak apa pun... (Tingkat usaha tidak mengubah hasil)",
+    "keyTakeaway": "Dipadukan dengan kata tanya seperti どんなに / いくら untuk menegaskan bahwa seberapa pun ekstrem usahanya, hasilnya tetap tidak berubah.",
+    "nuance": "Penekanan intensitas maksimal yang tetap tidak sanggup membalikkan keadaan.",
+    "beforeState": "Usaha Berkali-kali: Latihan terus-menerus tanpa kenal lelah 🏋️",
+    "afterState": "Kenyataan Tetap: Tetap saja belum sanggup mengalahkannya 🛡️"
+  },
+  "w3d1g3": {
+    "meaning_id": "Tanpa melakukan... (Ragam formal tertulis dari 〜ないで)",
+    "keyTakeaway": "Bentuk tulisan formal yang setara dengan 〜ないで. Khusus kata kerja する berubah bentuk menjadi せずに (bukan しずに).",
+    "nuance": "Gaya bahasa tertulis yang anggun dan berwibawa.",
+    "beforeState": "Ragam Lisan: 〜ないで (Umum dalam percakapan sehari-hari) 💬",
+    "afterState": "Ragam Tertulis: 〜ずに (Elegan dalam esai dan laporan resmi) ✒️"
+  },
+  "w3d2g1": {
+    "meaning_id": "Sebagai... / Selaku... (Menyatakan peran, status, atau kapasitas resmi)",
+    "keyTakeaway": "Menegaskan sudut pandang, profesi, tugas, atau kapasitas resmi seseorang dalam bertindak (contoh: selaku dokter, sebagai perwakilan negara).",
+    "nuance": "Menjalankan tindakan yang terikat pada tanggung jawab peran tersebut.",
+    "beforeState": "Tindakan Pribadi: Bertindak atas nama kesenangan sendiri 👤",
+    "afterState": "Kapasitas Resmi: Bertindak mengemban amanah status dan peran 🏅"
+  },
+  "w3d2g2": {
+    "meaning_id": "Untuk ukuran..., kok tumben... (Di luar dugaan jika melihat standar biasanya)",
+    "keyTakeaway": "Dipakai saat hasil atau kenyataannya di luar dugaan standar kategori tersebut (misal: untuk ukuran orang asing, bahasa Jepangnya fasih banget).",
+    "nuance": "Keterkejutan positif atau evaluasi yang melampaui tolok ukur umum.",
+    "beforeState": "Standar Umum: Ekspektasi normal untuk kategori tersebut 📊",
+    "afterState": "Di Luar Dugaan: Hasil nyata ternyata jauh melampaui tolok ukur biasa 🌟"
+  },
+  "w3d2g3": {
+    "meaning_id": "Sekalipun memang begitu..., tapi tetap saja... (Kesimpulan tetap berlaku bahkan dalam kasus ekstrem)",
+    "keyTakeaway": "Menegaskan bahwa bahkan dalam kondisi yang paling bisa dimaklumi sekali pun, perbuatan atau hal tersebut tetap tidak bisa dibenarkan.",
+    "nuance": "Menolak pemakluman berlebihan demi menegakkan batasan prinsip.",
+    "beforeState": "Alasan Pemakluman: Harganya cuma 100 yen / keadaannya darurat 🪙",
+    "afterState": "Prinsip Tegas: Tetap saja mencuri itu perbuatan salah! 🚫"
+  },
+  "w3d2g4": {
+    "meaning_id": "Seandainya benar begitu... / Andaikan... (Mengandaikan situasi imajiner yang belum pasti)",
+    "keyTakeaway": "Mengasumsikan suatu kondisi hipotetis sebagai premis, lalu menimbang apa yang akan terjadi jika pengandaian itu benar-benar terwujud.",
+    "nuance": "Eksplorasi skenario imajiner yang belum terkonfirmasi di dunia nyata.",
+    "beforeState": "Fakta Menggantung: Berita rumor yang belum pasti kebenarannya ❓",
+    "afterState": "Skenario Hipotetis: Membedah dampak jika rumor tersebut beneran fakta 💭"
+  },
+  "w3d3g1": {
+    "meaning_id": "Tadinya niatnya mau... (tapi kenyataannya batal / meleset)",
+    "keyTakeaway": "Menyatakan rencana atau niat masa lalu yang pada akhirnya tidak terwujud karena terbentur halangan atau situasi tak terduga.",
+    "nuance": "Ada rasa kecewa atau penjelasan mengapa rencana awal kandas di tengah jalan.",
+    "beforeState": "Rencana Awal: Berniat pergi jalan-jalan bersama teman 🎒",
+    "afterState": "Kenyataan Meleset: Mendadak sakit sehingga rencana terpaksa batal 🌧️"
+  },
+  "w3d3g2": {
+    "meaning_id": "Seharusnya pasti... / Mana mungkin begitu! (Keyakinan kuat berdasar logika atau jadwal)",
+    "keyTakeaway": "Berdasarkan bukti atau jadwal logis: はずだ = seharusnya pasti terjadi; はずがない = secara akal sehat mustahil terjadi.",
+    "nuance": "Perhitungan rasional dan kepastian berdasarkan premis yang kuat.",
+    "beforeState": "Dugaan Ragu: Masih mengira-ngira tanpa dasar pasti ❓",
+    "afterState": "Keyakinan Logis: Yakin seyakin-yakinnya karena jadwalnya sudah tertera 📌"
+  },
+  "w3d3g3": {
+    "meaning_id": "Sudah sepantasnya... / Wajib secara moral (Kewajiban moral atau etika akal sehat)",
+    "keyTakeaway": "Bukan aturan hukum tertulis, melainkan norma etika, moral, dan akal sehat umum (contoh: janji itu sudah sepantasnya ditepati). Khusus kata kerja する bisa disingkat すべき.",
+    "nuance": "Beban moral batiniah yang disepakati oleh nurani masyarakat.",
+    "beforeState": "Hukum Tertulis: Aturan formal denda atau sanksi penjara 📜",
+    "afterState": "Norma Moral: Nurani akal sehat yang mewajibkan kebaikan ⚖️"
+  },
+  "w3d3g4": {
+    "meaning_id": "Dulu sering banget... (Mengenang memori masa lalu dengan rasa nostalgia)",
+    "keyTakeaway": "Khusus menyambung ke kata kerja bentuk lampau (Vた), dipakai saat mengenang kembali rutinitas atau kenangan manis masa kecil/masa lalu.",
+    "nuance": "Rasa rindu nostalgia yang hangat saat menengok kembali perjalanan hidup.",
+    "beforeState": "Fakta Lampau Biasa: Dulu pernah bermain di sungai 🌊",
+    "afterState": "Sentuhan Nostalgia: Mengenang betapa seringnya bermain di sungai semasa kecil 🌅"
+  },
+  "w3d4g1": {
+    "meaning_id": "Sekalian / Mumpung lagi... (Memanfaatkan satu kesempatan untuk urusan lain)",
+    "keyTakeaway": "Aktivitas utama dilakukan dulu, lalu memanfaatkan momentum jalan tersebut untuk sekalian menyelesaikan urusan sampingan yang searah.",
+    "nuance": "Efisiensi cerdas dalam memanfaatkan satu jalan untuk dua manfaat.",
+    "beforeState": "Dua Urusan Terpisah: Pergi jalan-jalan dan pergi ke kantor pos terpisah 🚶",
+    "afterState": "Sekali Jalan: Mumpung jalan-jalan, sekalian kirim surat di kantor pos 📮"
+  },
+  "w3d4g2": {
+    "meaning_id": "Tiap kali... pasti... (Setiap kali peristiwa terjadi, selalu dibarengi hal yang sama)",
+    "keyTakeaway": "Menunjukkan keteraturan alami: setiap kali hal A terjadi, tanpa terkecuali hal B selalu mengiringi bersamanya.",
+    "nuance": "Pengulangan pola yang konsisten dari waktu ke waktu.",
+    "beforeState": "Kejadian Terisolasi: Belanja sekali saat hari libur 🛍️",
+    "afterState": "Pola Berulang: Tiap kali belanja, pasti selalu membeli buku baru 📚"
+  },
+  "w3d4g3": {
+    "meaning_id": "Baru saja... tiba-tiba langsung...! (Perubahan mendadak dan tak terduga tepat setelah aksi)",
+    "keyTakeaway": "Menunjukkan kejutan spontan: tepat detik itu juga terjadi perubahan di luar kendali pembicara (klausa kedua tidak boleh berupa ajakan atau niat sadar).",
+    "nuance": "Kecepatan momentum yang mengagetkan tanpa jeda waktu.",
+    "beforeState": "Aksi Sadar: Membuka jendela kamar 🪟",
+    "afterState": "Kejutan Spontan: Angin kencang mendadak langsung menerobos masuk 🌪️"
+  },
+  "w3d4g4": {
+    "meaning_id": "Tepat di tengah-tengah asyik... (Sedang sibuk beraktivitas lalu mendadak disela)",
+    "keyTakeaway": "Menunjukkan klimaks aktivitas yang sedang berlangsung intens, lalu tiba-tiba terganggu oleh interupsi tak terduga (contoh: gempa pas lagi makan).",
+    "nuance": "Interupsi mendadak yang merusak fokus aktivitas utama.",
+    "beforeState": "Aktivitas Biasa: Sedang makan malam bersama keluarga 🍲",
+    "afterState": "Terinterupsi Tiba-tiba: Pas lagi asyik-asyiknya makan, mendadak listrik padam ⚡"
+  },
+  "w3d5g1": {
+    "meaning_id": "Persis sesuai dengan... / Persis seperti yang... (Mengikuti petunjuk tanpa melenceng)",
+    "keyTakeaway": "Melakukan tindakan persis menjiplak petunjuk, ramalan, atau rencana awal tanpa melenceng (misal: jalan sesuai petunjuk peta). Jika langsung menempel kata benda berubah bunyi menjadi どおり.",
+    "nuance": "Presisi dan kesesuaian sempurna dengan acuan rujukan.",
+    "beforeState": "Rencana Awal: Rute perjalanan yang tergambar di peta 🗺️",
+    "afterState": "Eksekusi Tepat: Berjalan menelusuri rute persis sesuai petunjuk peta 🚶"
+  },
+  "w3d5g2": {
+    "meaning_id": "Dalam kondisi tetap... / Dibiarkan begitu saja (Melakukan hal lain tanpa mengubah kondisi awal)",
+    "keyTakeaway": "Kondisi semula sengaja dibiarkan bertahan tanpa dikembalikan ke keadaan normal saat melakukan tindakan berikutnya (misal: tidur dalam keadaan lampu masih menyala).",
+    "nuance": "Mempertahankan status quo keadaan pertama.",
+    "beforeState": "Kondisi Awal: Lampu kamar tidur menyala terang 💡",
+    "afterState": "Tindakan Berikut: Masuk ke selimut dan tidur dengan lampu tetap menyala 🛏️"
+  },
+  "w3d5g3": {
+    "meaning_id": "Dibiarkan melulu... / Lupa dibereskan (Keteledoran atau kelalaian membiarkan kondisi)",
+    "keyTakeaway": "Selalu mengandung rasa kesal, teledor, atau kritik karena suatu benda ditinggalkan begitu saja tanpa ditutup/dimatikan (pintu terbuka terus, keran mengalir terus).",
+    "nuance": "Kelalaian yang menimbulkan pemborosan atau rasa jengkel orang sekitar.",
+    "beforeState": "Pintu Terbuka: Membuka pintu kamar saat masuk 🚪",
+    "afterState": "Lupa Menutup: Ditinggal pergi dengan pintu dibiarkan menganga melulu ⚠️"
+  },
+  "w3d5g4": {
+    "meaning_id": "Cuma ber-... saja / Hanya itu saja (Menekankan jumlah yang sangat sedikit atau terbatas)",
+    "keyTakeaway": "Menekankan eksklusivitas atau kesendirian yang minim (misal: cuma berdua saja di ruangan, hanya sekali itu saja seumur hidup). Ragam lisan menjadi っきり.",
+    "nuance": "Kesendirian hening atau kelangkaan kesempatan.",
+    "beforeState": "Banyak Orang: Suasana ramai pesta 👥",
+    "afterState": "Eksklusif Minim: Tinggal berdua saja di dalam ruangan sunyi 🕯️"
+  },
+  "w3d6g1": {
+    "meaning_id": "Kelihatan ingin... / Menunjukkan gelagat... (Menggambarkan emosi/keinginan pihak ketiga)",
+    "keyTakeaway": "Emosi dan sensasi orang lain tidak bisa dirasakan langsung di kepala kita, jadi orang Jepang wajib memakai 〜がる saat mendeskripsikan gelagat emosi orang ketiga.",
+    "nuance": "Membatasi pengamatan pada tanda-tanda lahiriah yang terlihat secara sopan.",
+    "beforeState": "Perasaan Sendiri: Saya merasa takut (怖い) 😨",
+    "afterState": "Gelagat Orang Lain: Dia tampak menunjukkan rasa takut (怖がる) 👤"
+  },
+  "w3d6g2": {
+    "meaning_id": "Penginnya kamu... / Berharap pihak lain bersedia... (Menyatakan harapan terhadap orang lain)",
+    "keyTakeaway": "Bukan keinginan diri sendiri untuk bertindak, melainkan harapan tulus agar LAWAN BICARA yang melakukan (atau tidak melakukan) tindakan tersebut.",
+    "nuance": "Permohonan personal yang mengharapkan kerja sama pihak lain.",
+    "beforeState": "Keinginan Diri: Saya ingin melihat dokumen itu (見たい) 👁️",
+    "afterState": "Harapan pada Rekan: Saya ingin Anda yang memperlihatkan dokumen itu (見せてほしい) 📄"
+  },
+  "w3d6g3": {
+    "meaning_id": "Pura-pura... / Bersikap seolah-olah... (Bertingkah layaknya suatu keadaan padahal tidak)",
+    "keyTakeaway": "Menunjukkan kepura-puraan lahiriah yang sengaja ditampilkan untuk menutupi kenyataan sebenarnya (misal: pura-pura tidur, pura-pura tidak tahu masalah).",
+    "nuance": "Sandiwara sosial demi menghindari konflik atau menutupi rasa malu.",
+    "beforeState": "Kenyataan Sebenarnya: Sebenarnya masih terjaga dan mendengar semuanya 👂",
+    "afterState": "Sandiwara Luar: Menutup mata dan bernapas teratur pura-pura tidur 😴"
+  },
+  "w4d1g1": {
+    "meaning_id": "Bagi... / Dari sudut pandang... (Menilai kepentingan atau dampak dari kacamata seseorang)",
+    "keyTakeaway": "Menilai arti penting, nilai, atau standar dari kacamata subjek yang bersangkutan (contoh: bagi saya, keluarga adalah nomor satu).",
+    "nuance": "Subjektivitas prioritas nilai yang berbeda pada tiap individu.",
+    "beforeState": "Fakta Objektif: Pekerjaan yang berat bagi siapa saja 💼",
+    "afterState": "Kacamata Pribadi: Bagi saya pribadi, pekerjaan ini sangat bermakna 🌟"
+  },
+  "w4d1g2": {
+    "meaning_id": "Padahal..., tapi herannya malah... (Nggak sebanding dengan apa yang dikira)",
+    "keyTakeaway": "Digunakan saat kenyataan yang terjadi tidak proporsional atau berbeda dari ekspektasi wajar yang melekat pada kondisi tersebut (misal: harganya mahal tapi herannya rasanya biasa saja).",
+    "nuance": "Keheranan atas hasil yang meleset dari taksiran awal.",
+    "beforeState": "Ekspektasi Logis: Usia tua semestinya staminanya menurun 👴",
+    "afterState": "Di Luar Dugaan: Padahal sudah berusia lanjut, staminanya masih sangat lincah! 🏃"
+  },
+  "w4d1g3": {
+    "meaning_id": "Padahal tahu, tapi kok malah gitu! (Menyindir atau kesal karena perilakunya bertolak belakang)",
+    "keyTakeaway": "Selalu mengandung nada menyindir, geram, atau kritik tajam kepada pihak lain yang bertingkah berlawanan dengan apa yang diketahuinya/dimilikinya.",
+    "nuance": "Kekecewaan emosional atas ketidakjujuran atau kemalasan pihak lain.",
+    "beforeState": "Kenyataan Pengetahuan: Dia sebenarnya tahu letak kesalahannya 🧠",
+    "afterState": "Sindiran Pedas: Padahal tahu, kok pura-pura polos dan diam saja! 😠"
+  },
+  "w4d1g4": {
+    "meaning_id": "Hal sepele kayak gitu sih...! / Mana sudi... (Meremehkan, menganggap enteng, atau merendah)",
+    "keyTakeaway": "Meremehkan hal yang dianggap sepele, atau merendahkan diri sendiri secara santun ('hal kayak gitu sih gak butuh', 'saya mah gak pantas dipuji').",
+    "nuance": "Memperkecil nilai suatu hal demi ketegasan atau kesopanan merendah.",
+    "beforeState": "Penyebutan Normal: Membahas dandan atau penampilan 💄",
+    "afterState": "Meremehkan: Dandan kayak gitu mah sama sekali nggak penting bagiku! 🙅"
+  },
+  "w4d2g1": {
+    "meaning_id": "Berkat bantuan... / Beruntung karena... (Hasil positif yang disyukuri)",
+    "keyTakeaway": "Selalu diikuti hasil yang menyenangkan atau menguntungkan pembicara. Mengungkapkan rasa syukur dan terima kasih mendalam atas bantuan orang lain.",
+    "nuance": "Rasa terima kasih yang tulus atas kontribusi pihak lain.",
+    "beforeState": "Usaha Sendiri: Belajar keras menghadapi ujian 📖",
+    "afterState": "Rasa Syukur: Berkat bimbingan guru, saya akhirnya bisa lulus! 🎉"
+  },
+  "w4d2g2": {
+    "meaning_id": "Gara-gara... / Akibat buruk dari... (Menyalahkan penyebab atas hasil buruk)",
+    "keyTakeaway": "Selalu diikuti hasil yang merugikan, sial, atau menjengkelkan. Mengarahkan kambing hitam kepada pemicu masalah.",
+    "nuance": "Kekesalan atas dampak buruk yang menimpa diri sendiri.",
+    "beforeState": "Kondisi Cuaca: Hujan turun sangat deras 🌧️",
+    "afterState": "Menyalahkan Dampak: Gara-gara hujan deras, rencana liburan jadi kacau balau 💢"
+  },
+  "w4d2g3": {
+    "meaning_id": "Sebagai ganti... / Mengompensasi hal lain (Pertukaran peran atau kompensasi setara)",
+    "keyTakeaway": "Bisa berarti menggantikan objek secara langsung (minum jus sebagai ganti bir), atau kompensasi timbal balik (gajinya kecil tapi liburnya banyak).",
+    "nuance": "Keseimbangan timbal balik dalam pertukaran opsi.",
+    "beforeState": "Pilihan Utama: Minum kopi berkafein di malam hari ☕",
+    "afterState": "Pengganti Sehat: Minum teh herbal hangat sebagai penggantinya 🍵"
+  },
+  "w4d2g4": {
+    "meaning_id": "Mewakili... / Atas nama... (Menggantikan peran orang lain secara resmi)",
+    "keyTakeaway": "Dipakai saat seseorang menggantikan peran orang lain untuk menyampaikan sambutan, tugas resmi, atau perwakilan organisasi.",
+    "nuance": "Amanah resmi mewakili figur yang berhalangan hadir.",
+    "beforeState": "Pejabat Asli: Manajer berhalangan hadir dalam rapat 🏢",
+    "afterState": "Perwakilan Resmi: Mewakili manajer, saya menyampaikan laporan ini 🤝"
+  },
+  "w4d3g1": {
+    "meaning_id": "Kira-kira sebesar... / Sampai ke tingkat... (Mengibaratkan ukuran atau derajat keparahan)",
+    "keyTakeaway": "Mengibaratkan seberapa ekstrem derajat suatu kondisi dengan perumpamaan nyata ('saking laparnya sampai serasa mau pingsan'). ほど lebih formal dibanding くらい.",
+    "nuance": "Hiperbola wajar untuk menggambarkan intensitas perasaan.",
+    "beforeState": "Kondisi Lapar: Merasa sangat lapar di siang hari 🍽️",
+    "afterState": "Ibarat Ekstrem: Saking laparnya sampai serasa mau pingsan di jalan! 😵"
+  },
+  "w4d3g2": {
+    "meaning_id": "Makin... justru makin... (Korelasi bertingkat atau kecenderungan kuat)",
+    "keyTakeaway": "Menunjukkan bahwa semakin tinggi tingkat kategori tersebut, semakin kuat pula sifat yang disebutkan berlaku padanya (misal: makin muda orangnya, makin cepat belajarnya).",
+    "nuance": "Kecenderungan proporsional yang terlihat pada kelompok tertentu.",
+    "beforeState": "Kategori Usia: Mengamati orang muda dan orang tua 👥",
+    "afterState": "Korelasi Sifat: Makin muda usianya, justru makin cepat daya adaptasinya 🚀"
+  },
+  "w4d3g3": {
+    "meaning_id": "Makin sering... makin bertambah pula... (Korelasi bertingkat sejalan)",
+    "keyTakeaway": "Kombinasi bentuk syarat 〜ば + 〜ほど. Menunjukkan proses bertahap yang berjalan searah: makin dipelajari, makin terasa menarik dan menantang.",
+    "nuance": "Progresivitas linier di mana dua variabel saling memacu naik.",
+    "beforeState": "Belajar Bahasa: Menghafal kosakata baru 📖",
+    "afterState": "Semakin Mendalam: Makin sering dipelajari, justru makin terasa keindahannya 🌟"
+  },
+  "w4d3g4": {
+    "meaning_id": "Nggak ada yang se-... ini! (Paling tiada duanya / tidak ada tandingannya)",
+    "keyTakeaway": "Bentuk superlatif mutlak: menyatakan bahwa tidak ada orang atau benda lain di dunia ini yang sanggup menyaingi tingginya sifat objek tersebut.",
+    "nuance": "Kekaguman mutlak tanpa tandingan pembanding.",
+    "beforeState": "Perbandingan Banyak: Membandingkan banyak orang ramah 👥",
+    "afterState": "Juara Mutlak: Tidak ada orang yang sehangat dan seramah beliau di dunia ini! 🥇"
+  },
+  "w4d4g1": {
+    "meaning_id": "Nggak perlu sampai... segitunya / Tak usah repot-repot... (Menenangkan agar tidak berlebihan)",
+    "keyTakeaway": "Memberi tahu pihak lain bahwa situasi tidak seburuk itu, sehingga tidak perlu merasa cemas, meminta maaf, atau tergesa-gesa berlebihan.",
+    "nuance": "Menghibur dan menenangkan hati lawan bicara yang sedang panik.",
+    "beforeState": "Kecemasan Berlebih: Lawan bicara panik dan terus minta maaf 🙇",
+    "afterState": "Menenangkan Ramah: Tidak perlu sampai minta maaf segitunya, ini hal sepele kok! 🍀"
+  },
+  "w4d4g2": {
+    "meaning_id": "Kabarnya katanya... / Itu artinya... (Menyampaikan kabar berita atau menyimpulkan makna)",
+    "keyTakeaway": "Memiliki 2 fungsi: (1) ragam resmi menyampaikan kabar berita dari luar, (2) menyimpulkan arti dari suatu kejadian ('Nilainya 0, artinya dia tidak lulus').",
+    "nuance": "Penyampaian kabar yang terkonfirmasi atau penarikan kesimpulan logis.",
+    "beforeState": "Data Fakta: Kereta berhenti mendadak di jalur utama 🚆",
+    "afterState": "Kesimpulan Makna: Itu artinya kita bakal terlambat sampai kantor ⏰"
+  },
+  "w4d4g3": {
+    "meaning_id": "Kuncinya ya harus... / Jalan terbaiknya adalah... (Saran tegas dari orang berpengalaman)",
+    "keyTakeaway": "Saran atau anjuran tegas dari orang yang lebih berpengalaman/ahli mengenai solusi terbaik atas suatu permasalahan (misal: kalau mau lekas sembuh, kuncinya ya harus istirahat total).",
+    "nuance": "Nasihat otoritatif yang penuh kearifan praktis.",
+    "beforeState": "Keluhan Sakit: Mengeluh badan demam dan lemas 🤒",
+    "afterState": "Saran Mantap: Kuncinya ya harus tidur cukup dan makan bergizi! 💡"
+  },
+  "w4d4g4": {
+    "meaning_id": "Betapa luar biasanya rasa... ini! (Luapan emosi mendalam yang tak terhingga)",
+    "keyTakeaway": "Bentuk seruan emosional yang meluap-luap, selalu dipadukan dengan kata seperti どんなに / どれほど untuk mengungkapkan rasa bahagia, sedih, atau terharu yang luar biasa.",
+    "nuance": "Ungkapan puitis dan emosional yang melampaui batas kata-kata biasa.",
+    "beforeState": "Rasa Senang Biasa: Merasa bahagia menerima kabar 💭",
+    "afterState": "Luapan Haru: Betapa bahagianya hati ini saat mendengar berita kelulusanmu! 💖"
+  },
+  "w4d5g1": {
+    "meaning_id": "Eh, bukannya... ya? / Waktu itu gimana ya? (Mencoba mengonfirmasi ingatan yang samar)",
+    "keyTakeaway": "Ragam lisan akrab saat berusaha mengingat kembali detail yang pernah didengar tapi sekarang agak lupa atau ragu-ragu di kepala.",
+    "nuance": "Pengecekan ramah tanpa menghakimi kelupaan diri sendiri.",
+    "beforeState": "Ingatan Ragu: Merasa lupa jadwal rapat minggu depan ❓",
+    "afterState": "Konfirmasi Santai: Eh, jadwal rapatnya bukannya hari Selasa ya? 🤔"
+  },
+  "w4d5g2": {
+    "meaning_id": "Nggak ada pilihan lain selain harus...! (Tekad pasrah atau jalan satu-satunya)",
+    "keyTakeaway": "Karena semua jalan keluar lain sudah buntu, satu-satunya opsi yang tersisa adalah maju dan menuntaskannya sampai selesai.",
+    "nuance": "Kepasrahan berani untuk menghadapi tantangan terakhir.",
+    "beforeState": "Mencari Alternatif: Menimbang jalan keluar yang mudah 🧭",
+    "afterState": "Satu Pilihan Tegas: Tak ada jalan lain, kita harus berjuang sampai titik darah penghabisan! ⚔️"
+  },
+  "w4d5g3": {
+    "meaning_id": "Katanya sih... / Denger-denger katanya... (Kabar burung santai dalam obrolan)",
+    "keyTakeaway": "Bentuk santai sehari-hari dari 〜そうだ (kabar burung), sangat umum dipakai dalam percakapan lisan untuk membagikan gosip atau berita yang baru didengar.",
+    "nuance": "Ragam lisan akrab untuk berbagi kabar angin terkini.",
+    "beforeState": "Kabar Resmi: Berita tertulis di koran 📰",
+    "afterState": "Obrolan Akrab: Denger-denger katanya dia mau menikah bulan depan lho! 💬"
+  },
+  "w4d5g4": {
+    "meaning_id": "Habisnya... sih! / Soalnya gimana dong... (Alasan manja atau membela diri)",
+    "keyTakeaway": "Ragam lisan bernada sedikit merajuk atau membela diri, sering dipakai oleh anak-anak, wanita, atau saat mengelak di depan teman akrab.",
+    "nuance": "Pembelaan diri emosional dengan nada sedikit merengek atau manja.",
+    "beforeState": "Ditegur Teman: Ditegur mengapa tidak menghabiskan makanan 🍽️",
+    "afterState": "Alasan Manja: Habisnya rasanya aneh dan pahit banget sih! 🥺"
+  },
+  "w4d6g1": {
+    "meaning_id": "Dengan kata lain... / Singkatnya... (Menyimpulkan atau memparafrasekan pokok bahasan)",
+    "keyTakeaway": "Kata sambung untuk merangkum penjelasan panjang ke dalam satu kesimpulan inti yang padat dan mudah dipahami.",
+    "nuance": "Penyederhanaan konsep rumit menjadi formula ringkas.",
+    "beforeState": "Uraian Panjang: Penjelasan teknis berbelit-belit 📜",
+    "afterState": "Inti Padat: Singkatnya, kita harus hemat anggaran mulai besok! 🎯"
+  },
+  "w4d6g2": {
+    "meaning_id": "Oleh sebab itulah... / Akibatnya... (Penyebab logis yang memicu hasil berikutnya)",
+    "keyTakeaway": "Kata sambung formal tertulis di mana kalimat pertama adalah pemicu masalah/alasan, dan kalimat kedua adalah dampak langsungnya.",
+    "nuance": "Kausalitas formal berurutan tanpa bias emosi.",
+    "beforeState": "Kejadian Pemicu: Ada kecelakaan beruntun di jalan tol 💥",
+    "afterState": "Dampak Langsung: Oleh sebab itulah, seluruh armada bus mengalami keterlambatan 🚌"
+  },
+  "w4d6g3": {
+    "meaning_id": "Sebagai hasilnya... / Akhirnya... (Hasil akhir yang terwujud dari proses sebelumnya)",
+    "keyTakeaway": "Menegaskan bahwa peristiwa di kalimat kedua adalah buah atau hasil akhir nyata yang lahir dari proses di kalimat pertama.",
+    "nuance": "Klimaks pembuktian atas upaya yang sudah dicurahkan sebelumnya.",
+    "beforeState": "Proses Perjuangan: Belajar giat setiap malam tanpa henti 🕯️",
+    "afterState": "Hasil Manis: Sebagai hasilnya, berhasil meraih peringkat satu paralel 🏆"
+  },
+  "w4d6g4": {
+    "meaning_id": "Hal itu karena... / Alasannya adalah karena... (Menjelaskan sebab setelah kesimpulan disebut)",
+    "keyTakeaway": "Pola berpasangan formal: kesimpulan atau keputusan disebut terlebih dahulu di awal, lalu diikuti なぜなら ... からだ untuk membeberkan alasannya secara terstruktur.",
+    "nuance": "Struktur retorika logis yang meletakkan kesimpulan di depan.",
+    "beforeState": "Keputusan Mandiri: Saya memutuskan untuk mengundurkan diri 🚪",
+    "afterState": "Penjelasan Sebab: Hal itu karena saya ingin fokus melanjutkan studi di luar negeri 🎓"
+  },
+  "w5d1g1": {
+    "meaning_id": "Sudah jelas... dan bahkan... pun juga! (Hal utama sudah pasti, apalagi yang lainnya)",
+    "keyTakeaway": "Hal pertama dianggap sudah sewajarnya diketahui semua orang, lalu ditambahkan hal kedua yang derajatnya melampaui ekspektasi.",
+    "nuance": "Memperluas cakupan dari hal mendasar ke hal yang mengejutkan.",
+    "beforeState": "Hal Pokok: Bahasa Jepang sudah tentu harus dikuasai 🇯🇵",
+    "afterState": "Tambahan Mengejutkan: Bahkan budaya dan dialek daerahnya pun dia pahami! 🗾"
+  },
+  "w5d1g2": {
+    "meaning_id": "Bukan cuma..., bahkan... juga ikutan! (Menumpuk dua hal negatif atau positif sekaligus)",
+    "keyTakeaway": "Menegaskan bahwa tidak hanya satu masalah yang terjadi, melainkan ada kejutan masalah lain yang menyusul di belakangnya.",
+    "nuance": "Eskalasi masalah bertingkat yang memperparah situasi.",
+    "beforeState": "Satu Masalah: Rasanya hambar dan tidak enak 🍲",
+    "afterState": "Bertambah Parah: Bukan cuma hambar, bahkan harganya pun mahal selangit! 💸"
+  },
+  "w5d1g3": {
+    "meaning_id": "Dibandingkan dengan... (Membandingkan dua objek atau kondisi secara objektif)",
+    "keyTakeaway": "Pola pembanding netral untuk menjejerkan dua data, periode waktu, atau kelompok agar terlihat kontras perbedaannya secara terukur.",
+    "nuance": "Pengukuran objektif berbasis data komparasi.",
+    "beforeState": "Data Sendiri: Penjualan tahun ini mencapai target 📈",
+    "afterState": "Perbandingan Nyata: Dibandingkan tahun lalu, pertumbuhan tahun ini melonjak 30% 📊"
+  },
+  "w5d1g4": {
+    "meaning_id": "Terhadap... / Bersikap kepada... (Arah sikap atau perlakuan kepada pihak sasaran)",
+    "keyTakeaway": "Menunjukkan kepada siapa sikap, keramahan, ketegasan, atau kebijakan ditujukan secara langsung.",
+    "nuance": "Arah orientasi tindakan interpersonal.",
+    "beforeState": "Sikap Netral: Bersikap ramah dalam keseharian 😊",
+    "afterState": "Sasaran Sikap: Selalu bersikap sopan dan hangat terhadap semua pelanggan 🤝"
+  },
+  "w5d2g1": {
+    "meaning_id": "Tuntas beres terselesaikan! (Menuntaskan karya/tugas besar setelah kerja keras)",
+    "keyTakeaway": "Hanya dipakai untuk proyek atau pekerjaan yang menuntut usaha besar (menulis skripsi, memanggang kue, merajut baju) yang akhirnya sukses beres tuntas.",
+    "nuance": "Kelegaan membanggakan pasca perjuangan panjang.",
+    "beforeState": "Sedang Berproses: Bergadang berminggu-minggu menyusun laporan 📑",
+    "afterState": "Tuntas Beres: Laporan setebal 200 halaman akhirnya tuntas terselesaikan! 🏁"
+  },
+  "w5d2g2": {
+    "meaning_id": "Menghabiskan sampai ludes / Tak sanggup menghabiskan semuanya (Batas tuntas tanpa sisa)",
+    "keyTakeaway": "Menghabiskan sampai tetes/butir terakhir. Dalam bentuk 〜切れない menyatakan kapasitas sudah meluap tak sanggup ditampung lagi.",
+    "nuance": "Ketuntasan total atau batas kapasitas maksimal.",
+    "beforeState": "Porsi Jumbo: Makanan dalam porsi mangkuk raksasa 🍜",
+    "afterState": "Melampaui Kapasitas: Porsinya terlalu banyak sampai tak sanggup kuhabiskan! 😵"
+  },
+  "w5d2g3": {
+    "meaning_id": "Baru setengah jalan... / Belum selesai tuntas (Terhenti di tengah proses pengerjaan)",
+    "keyTakeaway": "Menunjukkan kondisi aktivitas yang baru dikerjakan sebagian lalu tertunda atau ditinggal (misal: buku yang baru dibaca separuh, makanan yang belum habis).",
+    "nuance": "Kondisi menggantung yang masih menunggu kelanjutan.",
+    "beforeState": "Aktivitas Utuh: Membaca novel sampai selesai 📖",
+    "afterState": "Tergantung di Tengah: Buku yang baru dibaca separuh ditinggalkan di meja 🔖"
+  },
+  "w5d2g4": {
+    "meaning_id": "Baru banget matang / Masih hangat-hangatnya baru jadi (Kondisi segar pasca aksi)",
+    "keyTakeaway": "Menonjolkan kesegaran, kehangatan, atau kualitas terbaik dari sesuatu yang baru saja selesai diproses (roti baru matang, ikan baru dipancing).",
+    "nuance": "Kenikmatan maksimal dari produk yang masih sangat baru.",
+    "beforeState": "Roti Toko: Roti yang sudah dingin di rak pajangan 🥖",
+    "afterState": "Segar Baru Keluar: Roti yang baru saja keluar dari oven masih mengepul hangat! 🥐"
+  },
+  "w5d3g1": {
+    "meaning_id": "Alangkah senangnya kalau bisa... / Semoga saja... ya (Harapan santai yang diangankan)",
+    "keyTakeaway": "Bergumam mengangankan hasil yang indah dan menyenangkan bagi diri sendiri atau orang terdekat.",
+    "nuance": "Angan-angan hangat dalam lamunan positif.",
+    "beforeState": "Kenyataan Sekarang: Belum lancar berbicara bahasa Jepang 💬",
+    "afterState": "Angan-angan Indah: Alangkah senangnya kalau bisa mengobrol santai tanpa ragu! ✨"
+  },
+  "w5d3g2": {
+    "meaning_id": "Coba tadi... pasti nggak bakal begini! (Penyesalan atas hal yang sudah terlanjur terjadi)",
+    "keyTakeaway": "Menyesali keputusan di masa lalu: 'Seandainya dulu aku lakukan X, pasti sekarang tidak akan apes begini'.",
+    "nuance": "Rasa sesal mendalam atas kekeliruan langkah di masa lampau.",
+    "beforeState": "Terlambat Tiba: Ketinggalan kereta dan panik di stasiun 🚉",
+    "afterState": "Penyesalan Lampau: Coba tadi berangkat sepuluh menit lebih awal, pasti nggak terlambat! 🤦"
+  },
+  "w5d3g3": {
+    "meaning_id": "Padahal harusnya kamu ikut... seru lho! (Kritik halus atau penyesalan untuk orang lain)",
+    "keyTakeaway": "Dipakai untuk lawan bicara: menyayangkan mengapa dia tidak mengambil kesempatan emas tersebut padahal hasilnya sangat bagus.",
+    "nuance": "Rasa menyayangkan keputusan orang lain dengan nada bersahabat.",
+    "beforeState": "Pilihan Lawan Bicara: Teman memutuskan tidak ikut acara festival 🎪",
+    "afterState": "Menyayangkan Kesempatan: Acaranya seru banget, padahal harusnya kamu ikut! 🎆"
+  },
+  "w5d3g4": {
+    "meaning_id": "Kapan ya datangnya... kok lama ya (Menunggu-nunggu dengan harap-harap cemas)",
+    "keyTakeaway": "Bentuk gumaman pada diri sendiri saat menunggu kedatangan seseorang atau menanti kepastian kabar dengan rasa tidak sabar.",
+    "nuance": "Rasa gelisah menanti kehadiran yang belum kunjung tiba.",
+    "beforeState": "Menunggu Sendirian: Menatap jam tangan di stasiun ⌚",
+    "afterState": "Harap-harap Cemas: Busnya kapan datang ya, kok sudah terlambat 15 menit... 🚌"
+  },
+  "w5d4g1": {
+    "meaning_id": "Sampai tiba saat... (Titik akhir waktu sebelum peristiwa dimulai)",
+    "keyTakeaway": "Menunjukkan batas akhir waktu di mana suatu aktivitas atau kondisi terus dipertahankan tanpa putus sampai titik itu tiba.",
+    "nuance": "Ketekunan mempertahankan kondisi hingga garis finis waktu.",
+    "beforeState": "Menunggu Dimulai: Film bioskop akan diputar pukul 7 malam 🎬",
+    "afterState": "Mempertahankan Aksi: Terus menunggu dengan sabar sampai filmnya dimulai 🍿"
+  },
+  "w5d4g2": {
+    "meaning_id": "Bahkan sampai ke... pun sanggup! (Batas ekstrem yang mencengangkan)",
+    "keyTakeaway": "Menyebutkan batas yang jauh melampaui dugaan normal untuk menunjukkan betapa hebat atau ekstremnya kemampuan/kondisi tersebut.",
+    "nuance": "Keterkejutan atas cakupan yang melampaui batas normal.",
+    "beforeState": "Ekspektasi Makan Ikan: Mengira hanya daging ikannya yang bisa dimakan 🐟",
+    "afterState": "Batas Ekstrem: Tulangnya dimasak lunak sampai tulangnya pun bisa dimakan! 🦴"
+  },
+  "w5d4g3": {
+    "meaning_id": "Dari rentang... hingga sekitar... (Rentang waktu atau wilayah yang menyebar luwes)",
+    "keyTakeaway": "Beda dengan から〜まで yang batasnya tegas (garis kaku). 〜にかけて batas akhirnya kabur dan menyebar luas secara bertahap.",
+    "nuance": "Gradasi alami rentang waktu atau area geografis.",
+    "beforeState": "Titik Tegas: Jam 1 sampai jam 5 tepat (〜まで) ⏱️",
+    "afterState": "Rentang Gradual: Dari siang hingga berangsur ke sore hari (〜にかけて) 🌇"
+  },
+  "w5d4g4": {
+    "meaning_id": "Bertempat di... / Dalam kancah... (Ragam resmi/formal dari partikel で)",
+    "keyTakeaway": "Gaya bahasa resmi berita, pidato, atau laporan tertulis untuk menunjukkan lokasi acara besar, era sejarah, atau bidang wacana.",
+    "nuance": "Kewibawaan formal dalam penunjukan ruang dan waktu wacana.",
+    "beforeState": "Ragam Lisan: Berada di Osaka (で) 📍",
+    "afterState": "Ragam Resmi: Diselenggarakan bertempat di kota Osaka (において) 🏛️"
+  },
+  "w5d5g1": {
+    "meaning_id": "Meskipun seandainya... sekali pun, tetap akan...! (Tekad pantang mundur)",
+    "keyTakeaway": "Dipadukan dengan たとえ untuk menegaskan bahwa rintangan terberat sekali pun tidak akan mampu menggoyahkan tekad pembicara.",
+    "nuance": "Keteguhan prinsip yang kebal terhadap segala hambatan.",
+    "beforeState": "Hambatan Berat: Semua orang menentang keputusannya 👥",
+    "afterState": "Tekad Baja: Biarpun seluruh dunia menentang, aku tetap akan maju! 🛡️"
+  },
+  "w5d5g2": {
+    "meaning_id": "Bisa jadi jangan-jangan... / Jangan-jangan beneran... (Kemungkinan tak terduga)",
+    "keyTakeaway": "Menyatakan firasat atau kemungkinan yang terlintas di kepala bahwa ada potensi suatu hal mengejutkan itu benar adanya.",
+    "nuance": "Kecurigaan spontan yang memicu kewaspadaan.",
+    "beforeState": "Cerita Mengagumkan: Mendengar kabar yang terdengar terlalu muluk 💭",
+    "afterState": "Kecurigaan Spontan: Jangan-jangan semua cerita itu cuma bohong belaka... 🕵️"
+  },
+  "w5d5g3": {
+    "meaning_id": "Belum tentu selalu begitu! (Membantah anggapan umum yang seragam)",
+    "keyTakeaway": "Dipadukan dengan 必ずしも untuk menegaskan bahwa tidak semua kasus bisa dipukul rata (misal: barang mahal belum tentu kualitasnya selalu bagus).",
+    "nuance": "Pemikiran kritis yang menolak generalisasi kaku.",
+    "beforeState": "Anggapan Umum: Orang kaya sudah pasti hidupnya bahagia 💰",
+    "afterState": "Fakta Kritis: Banyak uang belum tentu selalu menjamin kebahagiaan hati ⚖️"
+  },
+  "w5d5g4": {
+    "meaning_id": "Bener-bener persis seperti... seolah mimpi! (Perumpamaan dramatis yang sangat mirip)",
+    "keyTakeaway": "Dipadukan dengan まるで untuk memberi efek dramatis bahwa kemiripannya begitu luar biasa nyata, seolah-olah hal itu benar-benar terjadi.",
+    "nuance": "Kedalaman estetika perumpamaan yang memukau imajinasi.",
+    "beforeState": "Pemandangan Indah: Melihat pemandangan salju di pegunungan 🏔️",
+    "afterState": "Perumpamaan Dramatis: Keindahannya luar biasa, persis seperti negeri dongeng! 🏰"
+  },
+  "w5d6g1": {
+    "meaning_id": "Pengin sih, tapi... / Mau gimana lagi, namun... (Kata sambung 'tapi' santai)",
+    "keyTakeaway": "Kata sambung santai sehari-hari untuk membalikkan alur pembicaraan (setara dengan でも atau けれども).",
+    "nuance": "Kontras kasual yang wajar dalam percakapan lisan.",
+    "beforeState": "Niat Positif: Sangat ingin ikut liburan bersama teman 🎒",
+    "afterState": "Hambatan Nyata: Tapi sayang dompet lagi tipis, jadi nggak bisa ikut 💸"
+  },
+  "w5d6g2": {
+    "meaning_id": "Maka dari itu... / Karena alasan tersebut... (Ragam sopan formal dari だから)",
+    "keyTakeaway": "Bentuk sopan halus dari だから, sangat pas digunakan dalam percakapan sopan (Keigo) atau presentasi bisnis.",
+    "nuance": "Kesopanan logis yang menjembatani sebab dan kesimpulan.",
+    "beforeState": "Ragam Santai: だから (Biasa dalam obrolan sesama teman) 💬",
+    "afterState": "Ragam Sopan: ですから (Elegan di hadapan pelanggan atau atasan) 👔"
+  },
+  "w5d6g3": {
+    "meaning_id": "Tapi tak disangka-sangka, nyatanya malah... (Kejadian mengejutkan di luar rencana)",
+    "keyTakeaway": "Kata sambung dramatis yang menandai bahwa hasil akhir berbelok drastis dan mengejutkan, bertolak belakang dengan apa yang sudah direncanakan.",
+    "nuance": "Plot twist tak terduga yang membelokkan alur ekspektasi.",
+    "beforeState": "Ekspektasi Rencana: Sudah bersiap pergi ke bandara sesuai jadwal ✈️",
+    "afterState": "Plot Twist Nyata: Tapi tak disangka-sangka, semua penerbangan dibatalkan karena badai! ⛈️"
+  },
+  "w5d6g4": {
+    "meaning_id": "Ngomong-ngomong,... (Beralih ke topik obrolan baru yang berbeda)",
+    "keyTakeaway": "Dipakai saat ingin menutup topik sebelumnya dan memulai bahan obrolan baru yang sama sekali segar.",
+    "nuance": "Jembatan pergantian topik yang mulus dan santun.",
+    "beforeState": "Topik Pertama: Selesai membahas hasil ujian kemarin 📝",
+    "afterState": "Topik Baru: Ngomong-ngomong, liburan akhir pekan besok ada acara apa? ☕"
+  },
+  "w6d1g1": {
+    "meaning_id": "Seandainya waktu itu aku... (Mengandaikan hal di masa lalu yang tak sempat terjadi)",
+    "keyTakeaway": "Mengandaikan skenario di masa lalu yang tidak terwujud, lalu membayangkan betapa berbedanya hasil yang didapat hari ini.",
+    "nuance": "Refleksi mendalam atas pilihan hidup di masa lalu.",
+    "beforeState": "Kenyataan Sekarang: Tidak mengambil peluang kerja tersebut 💼",
+    "afterState": "Refleksi Pengandaian: Seandainya waktu itu aku terima, mungkin sekarang sudah di Tokyo 🗼"
+  },
+  "w6d1g2": {
+    "meaning_id": "Kalaupun seandainya memang bisa..., tapi tetap saja... (Pengandaian konsesif)",
+    "keyTakeaway": "Mengasumsikan skenario terbaik sekalipun, kesimpulan atau hambatannya tetap tidak akan berubah.",
+    "nuance": "Keteguhan fakta yang tak tergoyahkan oleh pengandaian lunak.",
+    "beforeState": "Kemungkinan Libur: Seandainya dapat jatah cuti panjang 🏖️",
+    "afterState": "Hambatan Nyata: Tetap saja ongkos tiketnya terlalu mahal untuk kantong saat ini ✈️"
+  },
+  "w6d1g3": {
+    "meaning_id": "Jika sampai terjadi situasi darurat / Andaikan hal terburuk terjadi (Kesiapsiagaan)",
+    "keyTakeaway": "Pola formal untuk mengantisipasi musibah, situasi darurat, bencana, atau hal krisis yang tak diharapkan (contoh: bekal persiapan di saat darurat).",
+    "nuance": "Kesiapsiagaan preventif menghadapi skenario krisis.",
+    "beforeState": "Kehidupan Normal: Menjalani hari-hari tenang tanpa bencana 🌤️",
+    "afterState": "Kesiapsiagaan: Menyiapkan ransel darurat jika sewaktu-waktu terjadi gempa bumi 🎒"
+  },
+  "w6d2g1": {
+    "meaning_id": "Sudah diputuskan bahwa... / Hasil akhirnya menjadi... (Keputusan pihak luar atau aturan)",
+    "keyTakeaway": "Beda dengan ことにする (keputusan sendiri)! Pola ことになる menyatakan bahwa keputusan dibuat oleh institusi, takdir, atau pihak luar.",
+    "nuance": "Keputusan institusional di mana subjek mematuhi ketetapan.",
+    "beforeState": "Keputusan Mandiri: Saya yang memutuskan mutasi (ことにする) 👤",
+    "afterState": "Keputusan Perusahaan: Perusahaan menetapkan saya dipindahtugaskan (ことになる) 🏢"
+  },
+  "w6d2g2": {
+    "meaning_id": "Membiasakan diri secara rutin untuk... (Disiplin pribadi yang dijaga)",
+    "keyTakeaway": "Menunjukkan aturan pribadi dan komitmen disiplin diri yang terus dijalankan secara konsisten setiap hari demi kesehatan/kebaikan diri.",
+    "nuance": "Kedisiplinan konsisten yang lahir dari niat pribadi.",
+    "beforeState": "Olahraga Insidental: Sesekali lari pagi kalau sempat 🏃",
+    "afterState": "Disiplin Rutin: Mewajibkan diri sendiri olahraga 30 menit setiap subuh ⏰"
+  },
+  "w6d2g3": {
+    "meaning_id": "Ya kalau dibilang bisa sih memang bisa, tapi... (Mengakui suatu fakta dengan catatan)",
+    "keyTakeaway": "Mengakui bahwa hal tersebut benar adanya, namun segera memberi catatan batasan (misal: bisa main piano sih bisa, cuma belum tentu jago).",
+    "nuance": "Kejujuran proporsional yang menghindari kesan sombong.",
+    "beforeState": "Pernyataan Mutlak: Saya bisa berbahasa Jepang 🇯🇵",
+    "afterState": "Pengakuan Berimbang: Ya kalau dibilang bisa sih bisa, tapi baru taraf percakapan dasar 🗣️"
+  },
+  "w6d2g4": {
+    "meaning_id": "Bukannya nggak mau / Bukannya nggak bisa sama sekali (Bisa saja jika ada kondisi tertentu)",
+    "keyTakeaway": "Penolakan ganda (double negative): secara halus mengindikasikan bahwa kemungkinan tersebut tetap terbuka jika syaratnya dipenuhi.",
+    "nuance": "Diplomasi kesantunan yang membuka peluang kompromi.",
+    "beforeState": "Penolakan Keras: Saya tidak bisa hadir 🚫",
+    "afterState": "Peluang Terbuka: Bukannya tidak bisa hadir sama sekali sih, asalkan acaranya malam hari 🌙"
+  },
+  "w6d3g1": {
+    "meaning_id": "Pas dicoba lakukan, ternyata hasilnya baru ketahuan bahwa... (Mengetahui fakta baru setelah mencoba)",
+    "keyTakeaway": "Melakukan suatu tindakan pancingan terlebih dahulu (misal: bertanya, meneliti), dan momen itu membuahkan informasi baru yang mengejutkan.",
+    "nuance": "Tindakan eksplorasi yang membuka wawasan baru.",
+    "beforeState": "Belum Tahu Fakta: Ragu apakah toko tersebut buka di hari libur ❓",
+    "afterState": "Fakta Terungkap: Pas dicoba telepon, ternyata baru ketahuan tokonya sedang renovasi 📞"
+  },
+  "w6d3g2": {
+    "meaning_id": "Hampir saja... / Nyaris celaka! (Untung saja tidak sampai terjadi)",
+    "keyTakeaway": "Menyatakan situasi kritis di mana bahaya atau bencana nyaris saja terjadi sepersekian detik lagi, namun untungnya berhasil selamat.",
+    "nuance": "Kelegaan luar biasa setelah lolos dari jurang bahaya.",
+    "beforeState": "Terpeleset di Tangga: Kaki terpeleset di lantai licin 🪜",
+    "afterState": "Lolos Kritis: Untung cepat memegang pegangan tangan, nyaris saja jatuh berguling! 😮‍💨"
+  },
+  "w6d3g3": {
+    "meaning_id": "Tepat pas lagi... / Sedang di tengah-tengah... (Titik fase berlangsungnya aksi)",
+    "keyTakeaway": "Vるところ = baru mau mulai; Vているところ = sedang asyik di tengah aksi; Vたところ = baru saja tuntas beres beberapa detik lalu.",
+    "nuance": "Ketepatan fase temporal aksi dari awal hingga akhir.",
+    "beforeState": "Aksi Utuh: Memasak makan malam 🍳",
+    "afterState": "Fase Tepat: Baru saja mau menyalakan kompor pas telepon berdering 📱"
+  },
+  "w6d3g4": {
+    "meaning_id": "Percuma saja biarpun sudah dicoba..., hasilnya bakal sia-sia (Tindakan yang sia-sia)",
+    "keyTakeaway": "Selalu diikuti kalimat penyangkalan: menegaskan bahwa biarpun tindakan tersebut dikerjakan, hal itu tidak akan menghasilkan dampak positif apa pun.",
+    "nuance": "Kepastian rasional bahwa tindakan tersebut sudah terlambat atau tak berguna.",
+    "beforeState": "Mencoba Berlari: Berlari kencang mengejar kereta 🏃",
+    "afterState": "Kenyataan Sia-sia: Keretanya sudah jalan, percuma saja lari sekencang apa pun! 🚆"
+  },
+  "w6d4g1": {
+    "meaning_id": "Mau nggak mau harus berangkat / Nggak mungkin bisa mangkir (Tuntutan sosial atau etika)",
+    "keyTakeaway": "Bukan paksaan fisik, melainkan beban sosial, tanggung jawab moral, atau etika kesopanan yang membuat kita tidak bisa menolaknya.",
+    "nuance": "Tanggung jawab sosial yang menuntut komitmen kehadiran.",
+    "beforeState": "Keinginan Istirahat: Badan merasa lelah ingin rebahan di rumah 🛋️",
+    "afterState": "Tuntutan Sosial: Karena ini pernikahan sahabat karib, mau nggak mau harus hadir! 💒"
+  },
+  "w6d4g2": {
+    "meaning_id": "Pantas saja begitu! / Masuk akal banget sekarang (Baru paham setelah tahu alasannya)",
+    "keyTakeaway": "Seruan pemahaman spontan setelah mendengar alasan atau bukti di baliknya ('Pantas saja dia lemas seharian, rupanya semalam demam tinggi!').",
+    "nuance": "Pencerahan logis yang menyambungkan teka-teki penyebab.",
+    "beforeState": "Keheranan Awal: Heran kenapa dia tertidur pulas di meja kantor ❓",
+    "afterState": "Pencerahan Logis: Pantas saja begitu, ternyata dia lembur sampai jam 4 subuh! 💡"
+  },
+  "w6d4g3": {
+    "meaning_id": "Bukan berarti benci begitu sih / Jangan salah paham dulu (Membantah generalisasi berlebihan)",
+    "keyTakeaway": "Dipakai untuk meluruskan asumsi lawan bicara agar tidak menggeneralisasi secara berlebihan ('Bukan berarti aku nggak suka masakannya, cuma perutku lagi kenyang saja').",
+    "nuance": "Membantah ekstremitas penilaian secara halus dan berimbang.",
+    "beforeState": "Asumsi Ekstrem: Mengira lawan bicara membenci makanan pedas 🌶️",
+    "afterState": "Klarifikasi Halus: Bukan berarti benci sih, cuma lambungku lagi kurang fit hari ini 🍵"
+  },
+  "w6d4g4": {
+    "meaning_id": "Mana mungkin bisa menang! / Mustahil banget secara logika (Penolakan mutlak)",
+    "keyTakeaway": "Penolakan keras dan mutlak berdasarkan akal sehat: secara logika atau perhitungan apa pun, kemungkinan hal itu terjadi adalah nol besar.",
+    "nuance": "Ketidakmungkinan mutlak yang bertentangan dengan hukum logika.",
+    "beforeState": "Peluang Masih Ada: Berharap keajaiban menang melawan atlet juara dunia 🥊",
+    "afterState": "Penolakan Mutlak: Baru latihan seminggu, mana mungkin bisa menang melawan juara dunia! ❌"
+  },
+  "w6d5g1": {
+    "meaning_id": "Silakan datang / Silakan berkunjung (Ungkapan hormat sonkeigo kepada tamu/klien)",
+    "keyTakeaway": "Bentuk sonkeigo sopan untuk menghormati pelanggan atau tamu kehormatan, mempersilakan mereka melakukan tindakan dengan ramah dan santun.",
+    "nuance": "Penghormatan tinggi khas keramahan bisnis Jepang (Omotenashi).",
+    "beforeState": "Instruksi Biasa: Silakan datang ke kantor (来てください) 🚶",
+    "afterState": "Sonkeigo Santun: Silakan berkunjung ke galeri pameran kami (お越しください) 🌸"
+  },
+  "w6d5g2": {
+    "meaning_id": "Melihat (Sonkeigo: Tamu yang melihat / Kenjougo: Saya yang melihat dokumen)",
+    "keyTakeaway": "Jangan sampai tertukar! ご覧になる = menghormati lawan bicara yang melihat; 拝見する = merendahkan diri kita sendiri yang melihat dokumen lawan bicara.",
+    "nuance": "Penataan hierarki kesantunan yang sangat esensial dalam dunia kerja.",
+    "beforeState": "Kata Kerja Netral: Melihat dokumen (見る) 👁️",
+    "afterState": "Hierarki Tepat: Tamu yang melihat (ご覧になる) / Saya yang memeriksa (拝見する) 📋"
+  },
+  "w6d5g3": {
+    "meaning_id": "Izinkan kami memandu / Dengan hormat kami sampaikan (Kenjougo melayani klien)",
+    "keyTakeaway": "Bentuk kenjougo tingkat tinggi yang dipakai staf, pemandu, atau presenter perusahaan untuk melayani audiens atau pelanggan terhormat.",
+    "nuance": "Dedikasi pelayanan rendah hati demi kepuasan klien.",
+    "beforeState": "Pelayanan Standar: Saya akan memandu Anda berkeliling (案内します) 🚶",
+    "afterState": "Kenjougo Bisnis: Dengan hormat kami memandu kunjungan Anda (ご案内申し上げます) 🏛️"
+  },
+  "w6d5g4": {
+    "meaning_id": "Terima kasih atas kesediaan Anda untuk datang (Menghargai kebaikan pihak lain)",
+    "keyTakeaway": "Bentuk sangat santun dari 〜てもらって, mengungkapkan rasa terima kasih mendalam atas kemurahan hati pihak lain yang sudi meluangkan waktu.",
+    "nuance": "Apresiasi elegan atas waktu dan kehadiran tamu kehormatan.",
+    "beforeState": "Terima Kasih Biasa: Makasih sudah datang (来てくれてありがとう) 💬",
+    "afterState": "Kehormatan Tinggi: Terima kasih sebesar-besarnya atas kesediaan Bapak/Ibu hadir (お越しいただき) 💐"
+  },
+  "w6d6g1": {
+    "meaning_id": "Apakah kiranya berkenan jika...? (Permohonan izin atau konfirmasi bisnis sangat santun)",
+    "keyTakeaway": "Pertanyaan sangat halus dalam komunikasi bisnis untuk memohon izin, mengecek kesiapan waktu, atau memastikan persetujuan klien tanpa nada memaksa.",
+    "nuance": "Kesantunan tingkat tinggi dalam negosiasi dan kesepakatan kerja.",
+    "beforeState": "Pertanyaan Biasa: Boleh minta waktu sebentar? (いいですか) ❓",
+    "afterState": "Keigo Bisnis Elegan: Apakah kiranya Bapak/Ibu berkenan meluangkan waktu sejenak? (よろしいでしょうか) 🤝"
+  },
+  "w6d6g2": {
+    "meaning_id": "Mohon sudi sampaikan salam saya kepada... (Titip pesan secara santun)",
+    "keyTakeaway": "Ungkapan elegan untuk menitipkan salam hangat atau meneruskan informasi penting kepada pihak ketiga melalui lawan bicara.",
+    "nuance": "Mempererat relasi interpersonal antar instansi.",
+    "beforeState": "Titip Pesan Biasa: Tolong bilangin ke bos ya (伝えてください) 💬",
+    "afterState": "Diplomasi Santun: Mohon sudi kiranya menyampaikan salam hormat kami kepada Bapak Direktur (お伝えください) ✉️"
+  },
+  "w6d6g3": {
+    "meaning_id": "Review Menyeluruh Pola Kalimat N3 (Penguasaan rasa bahasa & anti-tertukar)",
+    "keyTakeaway": "Kunci utama menguasai tata bahasa tingkat menengah: jangan hanya menghafal terjemahan kata per kata, tapi rasakan konteks emosi dan situasi kapan orang Jepang memakainya.",
+    "nuance": "Integrasi menyeluruh rasa bahasa agar terdengar alami bak penutur asli.",
+    "beforeState": "Hafalan Kaku: Menghafal rumus secara mekanis tanpa konteks rasa 🤖",
+    "afterState": "Penguasaan Alami: Memahami nuansa emosional dan konteks situasi yang tepat sasaran 🎯"
+  },
+  "bp_n5_013": {
+    "meaning_id": "Entah ... atau ... (Pilihan di antara dua hal)",
+    "keyTakeaway": "Dipakai saat memilih salah satu di antara dua kemungkinan pilihan (misal: minum teh atau kopi).",
+    "nuance": "Memberikan opsi terbuka di antara dua alternatif yang setara."
+  },
+  "bp_n5_042": {
+    "meaning_id": "Melakukan hal-hal seperti ... dan ... (Contoh aktivitas santai tanpa urutan kaku)",
+    "keyTakeaway": "Dipakai untuk menyebutkan beberapa contoh kegiatan saat hari libur atau santai, tanpa bermaksud mengurutkannya secara kronologis.",
+    "nuance": "Menyebutkan cuplikan kegiatan acak dari banyak hal yang dikerjakan."
+  },
+  "bp_n5_098": {
+    "meaning_id": "Lebih ... dibanding ... (Membandingkan dua objek)",
+    "keyTakeaway": "Pola dasar komparatif: menyebutkan objek utama yang lebih unggul dibandingkan objek tolok ukurnya.",
+    "nuance": "Perbandingan dua objek untuk menonjolkan keunggulan salah satunya."
+  },
+  "bp_n5_115": {
+    "meaning_id": "Dibanding ..., yang ini justru lebih ...",
+    "keyTakeaway": "Menempatkan tolok ukur perbandingan di depan dengan より, lalu menegaskan objek pemenang dengan 〜のほうが.",
+    "nuance": "Menegaskan pilihan yang lebih unggul setelah menimbang opsi lain."
+  },
+  "bp_n4_117": {
+    "meaning_id": "Setiap kali / begitu ..., pasti otomatis ... (Akibat alami atau otomatis)",
+    "keyTakeaway": "Pola syarat otomatis: begitu tombol ditekan atau musim semi tiba, peristiwa berikutnya pasti langsung terjadi secara alami tanpa campur tangan niat manusia.",
+    "nuance": "Hukum alam, petunjuk arah jalan, atau kerja mekanis mesin."
+  },
+  "bp_n4_118": {
+    "meaning_id": "Di antara ... atau ..., mana yang lebih ...? (Pilihan komparatif)",
+    "keyTakeaway": "Pertanyaan komparatif untuk menanyakan preferensi atau keunggulan di antara dua opsi pilihan.",
+    "nuance": "Meminta lawan bicara memilih satu yang paling unggul di antara dua hal."
+  },
+  "bp_n4_125": {
+    "meaning_id": "Contohnya seperti ... atau ... (Menyebut beberapa contoh santai)",
+    "keyTakeaway": "Ragam lisan akrab untuk memberikan contoh-contoh santai di dalam percakapan sehari-hari.",
+    "nuance": "Penyebutan contoh non-formal yang lincah."
+  },
+  "bp_n4_143": {
+    "meaning_id": "Frekuensi: ... kali dalam ... (Berapa kali per satuan waktu)",
+    "keyTakeaway": "Menunjukkan frekuensi pengulangan aktivitas dalam satu periode waktu tertentu (misal: 3 kali dalam seminggu).",
+    "nuance": "Rasio keteraturan jadwal aktivitas."
+  },
+  "bp_n4_154": {
+    "meaning_id": "Kontras: Kalau yang satu ..., tapi kalau yang satunya lagi ...",
+    "keyTakeaway": "Mempertemukan dua partikel は untuk menonjolkan perbedaan kontras antara dua kondisi (misal: bahasa Jepang bisa, tapi bahasa Mandarin tidak bisa).",
+    "nuance": "Kontras tegas antara dua kemampuan atau kondisi."
+  },
+  "bp_n2_024": {
+    "meaning_id": "Baru saja... belum sempat beres, detik itu juga langsung... (Terjadi hampir bersamaan)",
+    "keyTakeaway": "Menunjukkan dua peristiwa yang terjadi hampir pada detik yang sama: aksi pertama belum tuntas seutuhnya, aksi kedua sudah langsung menyusul.",
+    "nuance": "Kecepatan suksesi peristiwa yang membuat napas serasa tertahan."
+  },
+  "bp_n2_102": {
+    "meaning_id": "Contoh-contoh seperti ... dan semacamnya (Menyebut representasi)",
+    "keyTakeaway": "Menyebutkan beberapa contoh representatif untuk mewakili kelompok kategori yang lebih luas.",
+    "nuance": "Ragam tulisan atau pidato yang rapi untuk mengelompokkan contoh."
+  },
+  "bp_n2_122": {
+    "meaning_id": "Segala-galanya dari awal sampai akhir tanpa terlewat satu pun",
+    "keyTakeaway": "Menekankan ketuntasan total yang mencakup seluruh aspek tanpa ada satu pun yang dikecualikan (misal: diurus semuanya dari A sampai Z).",
+    "nuance": "Cakupan menyeluruh dan tuntas."
+  },
+  "bp_n1_017": {
+    "meaning_id": "Dua-duanya sama saja nggak beresnya / Kalau yang satu begitu, yang satunya pun ikutan parah",
+    "keyTakeaway": "Kritik pedas yang menyamakan dua pihak: menegaskan bahwa jika pihak pertama sudah bertingkah buruk, pihak pasangannya pun sama-sama tidak beres.",
+    "nuance": "Kekecewaan atau celaan atas dua pihak yang sama-sama bobrok."
+  },
+  "bp_n1_085": {
+    "meaning_id": "Entah itu... ataupun..., keduanya diperlakukan setara tanpa beda",
+    "keyTakeaway": "Ragam formal tertulis untuk menegaskan bahwa aturan atau perlakuan berlaku mutlak bagi kedua kategori tanpa membeda-bedakan status.",
+    "nuance": "Kesetaraan perlakuan hukum atau prinsip di hadapan aturan."
+  }
+}

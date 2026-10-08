@@ -1,0 +1,501 @@
+[
+  {
+    "id": "w1d1g1",
+    "map_id": "map_bunpou_w1",
+    "stage_id": "stage_bunpou_w1d1",
+    "title": "書かれている（受身形 / passive form）",
+    "formula": "Vれる（受身形）",
+    "meaning_en": "Passive voice used to state a fact without mentioning the subject.",
+    "meaning_id": "Tertulis / Dibuat / Dikatakan bahwa... (Fakta umum atau teks resmi tanpa menyebut pelaku)",
+    "explanation_note": "Menyatakan fakta objektif dari sudut pandang teks atau peristiwa yang sudah diakui umum.",
+    "examples": [
+      {
+        "jp": "これは、世界でいちばん大きいダイヤモンドだと言われています。",
+        "en": "This is believed to be the biggest diamond in the world.",
+        "id": "Ini dikatakan sebagai berlian terbesar di dunia."
+      }
+    ],
+    "question_ids": [
+      "w1d1g1_q1",
+      "w1d1g1_q2",
+      "w1d1g1_q3",
+      "w1d1g1_q4",
+      "w1d1g1_q5",
+      "w1d1g1_q6",
+      "w1d1g1_q7"
+    ],
+    "questions_status": "authored"
+  },
+  {
+    "id": "w1d1g2",
+    "map_id": "map_bunpou_w1",
+    "stage_id": "stage_bunpou_w1d1",
+    "title": "赤ちゃんに泣かれた（迷惑の受身 / adversative passive）",
+    "formula": "（Nに）Vれる",
+    "meaning_en": "Shows a difficult/troublesome situation as a result of someone's action.",
+    "meaning_id": "Kena getah kerepotan akibat... (Pasif kerugian: subjek merasa repot/terganggu oleh aksi orang lain)",
+    "explanation_note": "Mengandung rasa jengkel, sedih, atau kerepotan mendalam akibat peristiwa di luar kendali.",
+    "examples": [
+      {
+        "jp": "友達の赤ちゃんを抱っこしたら、泣かれてしまった。",
+        "en": "When I held my friend's baby, it cried (and I was troubled).",
+        "id": "Saat menggendong bayi temanku, dia menangis (dan aku jadi repot)."
+      }
+    ],
+    "question_ids": [
+      "w1d1g2_q1",
+      "w1d1g2_q2",
+      "w1d1g2_q3",
+      "w1d1g2_q4",
+      "w1d1g2_q5",
+      "w1d1g2_q6",
+      "w1d1g2_q7"
+    ],
+    "questions_status": "authored"
+  },
+  {
+    "id": "w1d1g3",
+    "map_id": "map_bunpou_w1",
+    "stage_id": "stage_bunpou_w1d1",
+    "title": "早く帰らせてください（V(さ)せてください / もらえますか / もらえませんか）",
+    "formula": "V(さ)せて + ください／もらえますか／もらえませんか",
+    "meaning_en": "Expression used when asking for permission from the other person regarding one's own action.",
+    "meaning_id": "Tolong izinkan saya untuk... (Meminta izin dengan sopan agar diri sendiri boleh berbuat)",
+    "explanation_note": "Permohonan santun kepada atasan atau lawan bicara demi kenyamanan bersama.",
+    "examples": [
+      {
+        "jp": "ちょっと気分が悪いので、早く帰らせてください。",
+        "en": "Since I am not feeling well, could I go home early?",
+        "id": "Karena badan kurang enak, bolehkah saya pulang lebih awal?"
+      }
+    ],
+    "question_ids": [
+      "w1d1g3_q1",
+      "w1d1g3_q2",
+      "w1d1g3_q3",
+      "w1d1g3_q4",
+      "w1d1g3_q5",
+      "w1d1g3_q6",
+      "w1d1g3_q7"
+    ],
+    "questions_status": "authored"
+  },
+  {
+    "id": "w1d2g1",
+    "map_id": "map_bunpou_w1",
+    "stage_id": "stage_bunpou_w1d2",
+    "title": "もう寝ないと（Vないと／Vなくちゃ）",
+    "formula": "Vないと／Vなくちゃ",
+    "meaning_en": "Shortened form of 'Vなければならない' (must / have to).",
+    "meaning_id": "Harus segera... / Nggak boleh nggak! (Bentuk lisan santai untuk keharusan mendesak)",
+    "explanation_note": "Ragam percakapan akrab yang cepat dan lincah tanpa kesan kaku seperti buku teks.",
+    "examples": [
+      {
+        "jp": "明日は早く出かけるから、もう寝ないと。",
+        "en": "I must go to bed now since I will go early tomorrow morning.",
+        "id": "Aku harus tidur sekarang karena besok berangkat pagi-pagi."
+      }
+    ],
+    "question_ids": [
+      "w1d2g1_q1",
+      "w1d2g1_q2",
+      "w1d2g1_q3",
+      "w1d2g1_q4",
+      "w1d2g1_q5",
+      "w1d2g1_q6",
+      "w1d2g1_q7"
+    ],
+    "questions_status": "authored"
+  },
+  {
+    "id": "w1d2g2",
+    "map_id": "map_bunpou_w1",
+    "stage_id": "stage_bunpou_w1d2",
+    "title": "食べちゃった（Vちゃう／Vじゃう）",
+    "formula": "Vて→Vちゃう ／ V で→Vじゃう",
+    "meaning_en": "Colloquial contracted form of 'Vてしまう' (to have finished doing / to have done something regrettable).",
+    "meaning_id": "Sudah keburu... / Terlanjur... (Aksi tuntas beres atau keteledoran yang disesali)",
+    "explanation_note": "Arti ditentukan konteks kalimat: apakah sengaja dituntaskan atau kelalaian yang disesali.",
+    "examples": [
+      {
+        "jp": "試験が終わった！今日は飲んじゃおう！",
+        "en": "Oh, the exam is over! I am going to have a drink!",
+        "id": "Ujian sudah selesai! Hari ini aku mau minum-minum!"
+      }
+    ],
+    "question_ids": [
+      "w1d2g2_q1",
+      "w1d2g2_q2",
+      "w1d2g2_q3",
+      "w1d2g2_q4",
+      "w1d2g2_q5",
+      "w1d2g2_q6",
+      "w1d2g2_q7"
+    ],
+    "questions_status": "authored"
+  },
+  {
+    "id": "w1d2g3",
+    "map_id": "map_bunpou_w1",
+    "stage_id": "stage_bunpou_w1d2",
+    "title": "書いとく（Vとく／Vどく）",
+    "formula": "Vて おく→Vとく ／ Vで おく→Vどく",
+    "meaning_en": "Colloquial contracted form of 'Vておく' (to do something in advance / for later).",
+    "meaning_id": "Mempersiapkan terlebih dahulu / Biarkan saja begitu (Bekal persiapan masa depan)",
+    "explanation_note": "Praktis dalam obrolan santai saat membagi tugas atau merapikan barang.",
+    "examples": [
+      {
+        "jp": "テストで間違ったところを、ノートに書いとこう。",
+        "en": "I will make a note of what I did wrong in the test.",
+        "id": "Aku akan mencatat bagian yang salah di ujian ke buku catatan."
+      }
+    ],
+    "question_ids": [
+      "w1d2g3_q1",
+      "w1d2g3_q2",
+      "w1d2g3_q3",
+      "w1d2g3_q4",
+      "w1d2g3_q5",
+      "w1d2g3_q6",
+      "w1d2g3_q7"
+    ],
+    "questions_status": "authored"
+  },
+  {
+    "id": "w1d3g1",
+    "map_id": "map_bunpou_w1",
+    "stage_id": "stage_bunpou_w1d3",
+    "title": "女みたいだ（N/V/A/na/N＋みたいだ／みたいに／みたいなN）",
+    "formula": "N・V・A・na・N ＋ みたいだ／みたいに／みたいなN",
+    "meaning_en": "More colloquial than '〜ようだ' (looks like / seems like / similar to).",
+    "meaning_id": "Kelihatannya seperti... / Mirip banget kayak... (Perumpamaan atau dugaan visual spontan)",
+    "explanation_note": "Ragam percakapan lisan santai untuk mengibaratkan hal yang mirip padahal aslinya bukan.",
+    "examples": [
+      {
+        "jp": "彼の話し方は、女みたいだ。",
+        "en": "He talks like a woman.",
+        "id": "Cara bicaranya seperti perempuan."
+      }
+    ],
+    "question_ids": [
+      "w1d3g1_q1",
+      "w1d3g1_q2",
+      "w1d3g1_q3",
+      "w1d3g1_q4",
+      "w1d3g1_q5",
+      "w1d3g1_q6",
+      "w1d3g1_q7"
+    ],
+    "questions_status": "authored"
+  },
+  {
+    "id": "w1d3g2",
+    "map_id": "map_bunpou_w1",
+    "stage_id": "stage_bunpou_w1d3",
+    "title": "春らしい（Nらしい）",
+    "formula": "N ＋ らしい",
+    "meaning_en": "Expresses that something truly feels/fits the typical image of N.",
+    "meaning_id": "Bener-bener khas... banget! (Mencerminkan sifat sejati dan karakter ideal aslinya)",
+    "explanation_note": "Pujian atau penegasan bahwa objek memiliki karakter ideal sesuai status aslinya.",
+    "examples": [
+      {
+        "jp": "今日は、春らしい暖かい日でした。",
+        "en": "Today was a very warm and spring-like day.",
+        "id": "Hari ini adalah hari yang hangat dan terasa seperti musim semi."
+      }
+    ],
+    "question_ids": [
+      "w1d3g2_q1",
+      "w1d3g2_q2",
+      "w1d3g2_q3",
+      "w1d3g2_q4",
+      "w1d3g2_q5",
+      "w1d3g2_q6",
+      "w1d3g2_q7"
+    ],
+    "questions_status": "authored"
+  },
+  {
+    "id": "w1d3g3",
+    "map_id": "map_bunpou_w1",
+    "stage_id": "stage_bunpou_w1d3",
+    "title": "大人っぽい（Nっぽい）",
+    "formula": "N ＋ っぽい",
+    "meaning_en": "Expresses a strong impression/tendency of having the quality of N (often mildly negative for na-adj-like words).",
+    "meaning_id": "Gayanya agak ke-...-an / Cenderung kayak... (Kesan lahiriah yang tampak dari luar)",
+    "explanation_note": "Pengamatan kasual atas kecenderungan penampilan lahiriah.",
+    "examples": [
+      {
+        "jp": "あの小学生は、大人っぽい。",
+        "en": "That child (primary school student) acts very adult-like.",
+        "id": "Anak SD itu bersikap seperti orang dewasa."
+      }
+    ],
+    "question_ids": [
+      "w1d3g3_q1",
+      "w1d3g3_q2",
+      "w1d3g3_q3",
+      "w1d3g3_q4",
+      "w1d3g3_q5",
+      "w1d3g3_q6",
+      "w1d3g3_q7"
+    ],
+    "questions_status": "authored"
+  },
+  {
+    "id": "w1d4g1",
+    "map_id": "map_bunpou_w1",
+    "stage_id": "stage_bunpou_w1d4",
+    "title": "忘れ物をしないようにしましょう（Vる／Vない＋ようにする）",
+    "formula": "Vる／Vない ＋ ようにする",
+    "meaning_en": "Shows habit, mindfulness, or effort.",
+    "meaning_id": "Berusaha selalu membiasakan... (Usaha sadar dan konsisten untuk menjaga hal/kebiasaan baik)",
+    "explanation_note": "Menekankan niat dan kedisiplinan yang dijaga secara berkesinambungan.",
+    "examples": [
+      {
+        "jp": "忘れ物をしないようにしましょう。",
+        "en": "Try not to leave things behind.",
+        "id": "Usahakan untuk tidak meninggalkan barang."
+      }
+    ],
+    "question_ids": [
+      "w1d4g1_q1",
+      "w1d4g1_q2",
+      "w1d4g1_q3",
+      "w1d4g1_q4",
+      "w1d4g1_q5",
+      "w1d4g1_q6",
+      "w1d4g1_q7"
+    ],
+    "questions_status": "authored"
+  },
+  {
+    "id": "w1d4g2",
+    "map_id": "map_bunpou_w1",
+    "stage_id": "stage_bunpou_w1d4",
+    "title": "聞こえるように話す（Vる／Vない／Vれる＋ように）",
+    "formula": "Vる／Vない／Vれる ＋ ように",
+    "meaning_en": "Means 'with the aim/purpose of achieving that state'.",
+    "meaning_id": "Supaya bisa... / Agar terwujud kondisi... (Tindakan demi mencapai keadaan yang diinginkan)",
+    "explanation_note": "Fokus pada tercapainya suatu kondisi target yang berada di luar kendali langsung otot pembicara.",
+    "examples": [
+      {
+        "jp": "みんなに聞こえるようにもっと大きな声で話してください。",
+        "en": "Please speak louder so everyone can hear you.",
+        "id": "Tolong bicara lebih keras agar semua orang bisa dengar."
+      }
+    ],
+    "question_ids": [
+      "w1d4g2_q1",
+      "w1d4g2_q2",
+      "w1d4g2_q3",
+      "w1d4g2_q4",
+      "w1d4g2_q5",
+      "w1d4g2_q6",
+      "w1d4g2_q7"
+    ],
+    "questions_status": "authored"
+  },
+  {
+    "id": "w1d4g3",
+    "map_id": "map_bunpou_w1",
+    "stage_id": "stage_bunpou_w1d4",
+    "title": "使えるようになった（Vるようになる）",
+    "formula": "Vる ＋ ようになる",
+    "meaning_en": "Shows a change to a state where something has become possible.",
+    "meaning_id": "Sekarang sudah menjadi bisa... / Mulai terbiasa... (Perubahan kemampuan atau kebiasaan baru)",
+    "explanation_note": "Menandai perkembangan keterampilan pribadi atau adaptasi gaya hidup baru.",
+    "examples": [
+      {
+        "jp": "直してもらったから、使えるようになったよ。",
+        "en": "I had it repaired so you can use it now.",
+        "id": "Sudah diperbaiki, jadi sekarang bisa dipakai."
+      }
+    ],
+    "question_ids": [
+      "w1d4g3_q1",
+      "w1d4g3_q2",
+      "w1d4g3_q3",
+      "w1d4g3_q4",
+      "w1d4g3_q5",
+      "w1d4g3_q6",
+      "w1d4g3_q7"
+    ],
+    "questions_status": "authored"
+  },
+  {
+    "id": "w1d5g1",
+    "map_id": "map_bunpou_w1",
+    "stage_id": "stage_bunpou_w1d5",
+    "title": "ご存じのように（Nの／V＋ように）",
+    "formula": "Nの／V ＋ ように",
+    "meaning_en": "Often used as an introductory phrase before an explanation.",
+    "meaning_id": "Sebagaimana yang kita tahu / Seperti yang terlihat... (Pengantar merujuk pada fakta yang sudah dipahami bersama)",
+    "explanation_note": "Membangun kesamaan persepsi dan memuluskan transisi pembicaraan.",
+    "examples": [
+      {
+        "jp": "皆様ご存じのように、試験の内容が変わります。",
+        "en": "As you are aware, the content of the exam will change.",
+        "id": "Seperti yang Anda ketahui, isi ujian akan berubah."
+      }
+    ],
+    "question_ids": [
+      "w1d5g1_q1",
+      "w1d5g1_q2",
+      "w1d5g1_q3",
+      "w1d5g1_q4",
+      "w1d5g1_q5",
+      "w1d5g1_q6",
+      "w1d5g1_q7"
+    ],
+    "questions_status": "authored"
+  },
+  {
+    "id": "w1d5g2",
+    "map_id": "map_bunpou_w1",
+    "stage_id": "stage_bunpou_w1d5",
+    "title": "早く来るように。（Vる／Vない＋ように。）",
+    "formula": "Vる／Vない ＋ ように。",
+    "meaning_en": "Indicates a soft/light command.",
+    "meaning_id": "Dimohon untuk selalu... / Harap supaya... (Instruksi atau arahan halus dari guru/atasan)",
+    "explanation_note": "Arahan resmi bernada membimbing tanpa terdengar kasar atau menekan.",
+    "examples": [
+      {
+        "jp": "明日はもっと早く来るように。",
+        "en": "Please come much earlier tomorrow.",
+        "id": "Besok harap datang lebih awal ya. (Bentuk Vる: Aksi Positif)",
+        "reading": "あしたはもっとはやくくるように。"
+      },
+      {
+        "jp": "明日の会議には絶対に遅れないように。",
+        "en": "Make sure not to be late for tomorrow's meeting.",
+        "id": "Pastikan besok tidak terlambat hadir pada rapat ya. (Bentuk Vない: Pencegahan)",
+        "reading": "あしたのかいぎにはぜったいにおくれないように。"
+      },
+      {
+        "jp": "宿題は明日までに必ず提出するように。",
+        "en": "Make sure to submit your homework by tomorrow.",
+        "id": "Pastikan tugas diserahkan paling lambat besok ya. (Instruksi resmi guru/atasan)",
+        "reading": "しゅくだいはあしたまでにかならずていしゅつするように。"
+      }
+    ],
+    "question_ids": [
+      "w1d5g2_q1",
+      "w1d5g2_q2",
+      "w1d5g2_q3",
+      "w1d5g2_q4",
+      "w1d5g2_q5",
+      "w1d5g2_q6",
+      "w1d5g2_q7"
+    ],
+    "questions_status": "authored"
+  },
+  {
+    "id": "w1d5g3",
+    "map_id": "map_bunpou_w1",
+    "stage_id": "stage_bunpou_w1d5",
+    "title": "合格しますように。（Vます／Vません／Vれます＋ように。）",
+    "formula": "Vます／Vません／Vれます ＋ ように。",
+    "meaning_en": "Expresses a hope/wish.",
+    "meaning_id": "Semoga... terkabul! (Doa dan permohonan tulus yang dipanjatkan)",
+    "explanation_note": "Penuh muatan spiritual, harapan masa depan, dan ketulusan hati.",
+    "examples": [
+      {
+        "jp": "合格しますように。",
+        "en": "I hope I will pass the exam.",
+        "id": "Semoga aku lulus ujian."
+      }
+    ],
+    "question_ids": [
+      "w1d5g3_q1",
+      "w1d5g3_q2",
+      "w1d5g3_q3",
+      "w1d5g3_q4",
+      "w1d5g3_q5",
+      "w1d5g3_q6",
+      "w1d5g3_q7"
+    ],
+    "questions_status": "authored"
+  },
+  {
+    "id": "w1d6g1",
+    "map_id": "map_bunpou_w1",
+    "stage_id": "stage_bunpou_w1d6",
+    "title": "やめようと思う（Vようと思う）",
+    "formula": "Vよう ＋ と思う",
+    "meaning_en": "Shows one's will or plan.",
+    "meaning_id": "Berniat untuk... / Sedang berencana... (Niat dalam hati yang ingin diwujudkan)",
+    "explanation_note": "Menunjukkan komitmen internal sebelum melangkah ke tindakan nyata.",
+    "examples": [
+      {
+        "jp": "会社をやめようと思っている。",
+        "en": "I am thinking of quitting my job.",
+        "id": "Aku sedang berpikir untuk berhenti kerja."
+      }
+    ],
+    "question_ids": [
+      "w1d6g1_q1",
+      "w1d6g1_q2",
+      "w1d6g1_q3",
+      "w1d6g1_q4",
+      "w1d6g1_q5",
+      "w1d6g1_q6",
+      "w1d6g1_q7"
+    ],
+    "questions_status": "authored"
+  },
+  {
+    "id": "w1d6g2",
+    "map_id": "map_bunpou_w1",
+    "stage_id": "stage_bunpou_w1d6",
+    "title": "電車に乗ろうとしたときに（Vようとする）",
+    "formula": "Vよう ＋ とする",
+    "meaning_en": "Shows the moment one is about to start an action.",
+    "meaning_id": "Baru saja mau... / Tepat pas hendak... (Detik-detik tepat sebelum suatu aksi dimulai)",
+    "explanation_note": "Ketepatan momentum sesaat sebelum tindakan dieksekusi.",
+    "examples": [
+      {
+        "jp": "電車に乗ろうとしたときに、ドアが閉まって乗れなかった。",
+        "en": "I missed the train. The door closed just as I was about to get on.",
+        "id": "Aku ketinggalan kereta. Pintunya menutup pas aku mau naik."
+      }
+    ],
+    "question_ids": [
+      "w1d6g2_q1",
+      "w1d6g2_q2",
+      "w1d6g2_q3",
+      "w1d6g2_q4",
+      "w1d6g2_q5",
+      "w1d6g2_q6",
+      "w1d6g2_q7"
+    ],
+    "questions_status": "authored"
+  },
+  {
+    "id": "w1d6g3",
+    "map_id": "map_bunpou_w1",
+    "stage_id": "stage_bunpou_w1d6",
+    "title": "食べようとしない（Vようとしない）",
+    "formula": "Vよう ＋ としない",
+    "meaning_en": "Indicates that one cannot feel the will/intention to do an action (present continuous negative intention).",
+    "meaning_id": "Sama sekali nggak mau... / Ogah banget... (Menunjukkan keengganan keras atau sikap mogok orang lain)",
+    "explanation_note": "Mengamati sikap keras kepala atau penolakan pasif dari orang lain.",
+    "examples": [
+      {
+        "jp": "ご飯を食べようとしないんだよ。",
+        "en": "He hasn't been eating at all (shows no intention to eat).",
+        "id": "Dia sama sekali tidak mau makan."
+      }
+    ],
+    "question_ids": [
+      "w1d6g3_q1",
+      "w1d6g3_q2",
+      "w1d6g3_q3",
+      "w1d6g3_q4",
+      "w1d6g3_q5",
+      "w1d6g3_q6",
+      "w1d6g3_q7"
+    ],
+    "questions_status": "authored"
+  }
+]
