@@ -1,0 +1,43 @@
+{
+  "name": "SevnQuest - Petualangan Bahasa Jepang",
+  "short_name": "SevnQuest",
+  "description": "Aplikasi RPG belajar bahasa Jepang komprehensif (Kana, JLPT N5 - N1, Kaigo, Kanji, Bunpou, Kotoba).",
+  "start_url": "./",
+  "id": "./",
+  "display": "standalone",
+  "background_color": "#12151d",
+  "theme_color": "#12151d",
+  "orientation": "any",
+  "scope": "./",
+  "categories": ["education", "games"],
+  "icons": [
+    {
+      "src": "./favicon-32x32.png",
+      "sizes": "32x32",
+      "type": "image/png"
+    },
+    {
+      "src": "./apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    },
+    {
+      "src": "./icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "./icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "./icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}
