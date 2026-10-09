@@ -34,7 +34,7 @@ export function createFusionState(
     baseWord,
     currentStep: 0,
     currentWord: { japanese: baseWord.japanese, reading: baseWord.reading },
-    currentForm: 'jisho',
+    currentForm: stage.initialForm ?? 'jisho',
     selectedComponent: null,
     transformationHistory: [],
     availableComponents: shuffled(stage.components, rand),

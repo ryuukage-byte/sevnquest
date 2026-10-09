@@ -3,8 +3,8 @@ import { createPortal } from 'react-dom';
 import { X, Swords, Lightbulb, RotateCcw, Check, Wind, Trophy, ArrowRight, Shuffle, Dices } from 'lucide-react';
 import { createFusionState, fusionReducer } from '../../../engine/fusion/fusionEngine';
 import { formLabel, getRule } from '../../../engine/fusion/rules';
-import { buildFreeStage } from '../../../engine/fusion/freeStage';
-import { getFusionPatterns, getFusionVerbs, type FusionVerbEntry } from '../../../data/fusion/verbPool';
+import { buildFreeStage, patternWordKind } from '../../../engine/fusion/freeStage';
+import { getFusionPatterns, getFusionWords, type FusionVerbEntry } from '../../../data/fusion/verbPool';
 import type { GrammarPatternSchema } from '../../../engine/types';
 import type { FusionAnimationPhase, FusionBaseWord, FusionRuleId, FusionStage } from '../../../engine/fusion/types';
 import { playSound } from '../../../utils/audio';
@@ -396,13 +396,22 @@ const randomItem = <T,>(items: T[], not?: T): T => {
   return pool[Math.floor(Math.random() * pool.length)];
 };
 
+interface Pick { verb: FusionVerbEntry; pattern: GrammarPatternSchema }
+
+/** Pola baru + kata dasar yang cocok: kata lama dipertahankan bila jenisnya sama, selain itu diacak dari jenis yang dibutuhkan pola. */
+const pickWithPattern = (pattern: GrammarPatternSchema, current?: FusionVerbEntry): Pick => {
+  const kind = patternWordKind(pattern);
+  return { pattern, verb: current && (current.kind ?? 'verb') === kind ? current : randomItem(getFusionWords(kind)) };
+};
+
+const KIND_LABEL: Record<string, string> = { verb: 'kata kerja', noun: 'kata benda', 'adjective-i': 'kata sifat-i', 'adjective-na': 'kata sifat-na' };
+
 /** Dungeon = sandbox engine: pola dan kotoba diacak lewat tombol, tidak ada stage. */
 export const GrammarFusionModal: React.FC<Props> = ({ onClose, soundEnabled = true, onRewardPlayer }) => {
-  const allVerbs = React.useMemo(() => getFusionVerbs(), []);
   const allPatterns = React.useMemo(() => getFusionPatterns(), []);
   const [runId, setRunId] = useState(0);
   const [reduceMotion, setReduceMotion] = useState(readReduceMotion);
-  const [pick, setPick] = useState(() => ({ verb: randomItem<FusionVerbEntry>(allVerbs), pattern: randomItem<GrammarPatternSchema>(allPatterns) }));
+  const [pick, setPick] = useState(() => pickWithPattern(randomItem<GrammarPatternSchema>(allPatterns)));
   const [picker, setPicker] = useState<'pattern' | 'verb' | null>(null);
   const click = () => playSound('click', soundEnabled);
 
@@ -420,9 +429,12 @@ export const GrammarFusionModal: React.FC<Props> = ({ onClose, soundEnabled = tr
     return { exp, gold, note: 'Hadiah kombinasi baru.' };
   }, [pick, onRewardPlayer]);
 
-  const shufflePattern = () => { click(); setPick(p => ({ ...p, pattern: randomItem(allPatterns, p.pattern) })); };
-  const shuffleAll = () => { click(); setPick(p => ({ pattern: randomItem(allPatterns, p.pattern), verb: randomItem(allVerbs, p.verb) })); };
-  const shuffleVerb = () => { click(); setPick(p => ({ ...p, verb: randomItem(allVerbs, p.verb) })); };
+  const kindWords = () => getFusionWords(patternWordKind(pick.pattern));
+  const reshufflePattern = (p: Pick) => pickWithPattern(randomItem(allPatterns, p.pattern), p.verb);
+  const reshuffleWord = (p: Pick): Pick => ({ ...p, verb: randomItem(getFusionWords(patternWordKind(p.pattern)), p.verb) });
+  const shufflePattern = () => { click(); setPick(reshufflePattern); };
+  const shuffleAll = () => { click(); setPick(p => pickWithPattern(randomItem(allPatterns, p.pattern))); };
+  const shuffleVerb = () => { click(); setPick(reshuffleWord); };
 
   const toggleMotion = () => {
     const next = !reduceMotion;
@@ -438,8 +450,8 @@ export const GrammarFusionModal: React.FC<Props> = ({ onClose, soundEnabled = tr
 
   const endActions: EndAction[] = [
     { label: 'Ulangi', onClick: () => setRunId(r => r + 1) },
-    { label: 'Acak Kotoba', onClick: () => setPick(p => ({ ...p, verb: randomItem(allVerbs, p.verb) })) },
-    { label: 'Acak Pola', primary: true, onClick: () => setPick(p => ({ ...p, pattern: randomItem(allPatterns, p.pattern) })) },
+    { label: 'Acak Kotoba', onClick: () => setPick(reshuffleWord) },
+    { label: 'Acak Pola', primary: true, onClick: () => setPick(reshufflePattern) },
   ];
 
   const shuffleBtn = 'btn-physical-secondary flex items-center gap-1.5 whitespace-nowrap px-2.5 sm:px-3 py-2 rounded-xl text-xs font-bold cursor-pointer';
@@ -498,10 +510,10 @@ export const GrammarFusionModal: React.FC<Props> = ({ onClose, soundEnabled = tr
         </div>
       </div>
       {picker === 'pattern' && (
-        <FusionPickerDialog kind="pattern" items={allPatterns} currentId={pick.pattern.id} onClose={() => setPicker(null)} onPick={pattern => { setPick(p => ({ ...p, pattern })); setPicker(null); }} />
+        <FusionPickerDialog kind="pattern" items={allPatterns} currentId={pick.pattern.id} onClose={() => setPicker(null)} onPick={pattern => { setPick(p => pickWithPattern(pattern, p.verb)); setPicker(null); }} />
       )}
       {picker === 'verb' && (
-        <FusionPickerDialog kind="verb" items={allVerbs} currentId={pick.verb.id} onClose={() => setPicker(null)} onPick={verb => { setPick(p => ({ ...p, verb })); setPicker(null); }} />
+        <FusionPickerDialog kind="verb" items={kindWords()} wordLabel={KIND_LABEL[patternWordKind(pick.pattern)]} currentId={pick.verb.id} onClose={() => setPicker(null)} onPick={verb => { setPick(p => ({ ...p, verb })); setPicker(null); }} />
       )}
     </div>,
     document.body

@@ -63,4 +63,28 @@ export const FORM_INFO: Record<string, FusionFormInfo> = {
     examples: ['食べる → 食べよう', '飲む → 飲もう'],
     use: 'Mengajak, menyatakan niat, dan dasar pola 〜ようと思う／〜とする.',
   },
+  noun: {
+    title: 'Kata benda (名詞)',
+    rule: 'Kata yang menyebut benda, orang, tempat, atau hal. Tidak berubah bentuk.',
+    examples: ['学生 (siswa)', '天気 (cuaca)'],
+    use: 'Menempel ke pola langsung, atau lewat partikel seperti に／の／と／で.',
+  },
+  adj_i: {
+    title: 'Kata sifat-i, bentuk kamus (い形容詞)',
+    rule: 'Kata sifat yang berakhiran い, dipakai apa adanya.',
+    examples: ['高い (tinggi / mahal)', '暑い (panas)'],
+    use: 'Bentuk dasar yang langsung disambung ke banyak pola, mis. 〜ほど, 〜わけだ.',
+  },
+  adj_na: {
+    title: 'Kata sifat-na, tanpa な (な形容詞)',
+    rule: 'Kata sifat-na dalam bentuk dasarnya, tanpa な di belakang.',
+    examples: ['静か (tenang)', '便利 (praktis)'],
+    use: 'Ada pola yang menempel langsung (〜で, 〜というより), ada yang butuh な dulu.',
+  },
+  adj_na_attr: {
+    title: 'Kata sifat-na + な (連体形)',
+    rule: 'Kata sifat-na ditambah な, bentuk untuk menerangkan kata benda.',
+    examples: ['静か → 静かな', '便利 → 便利な'],
+    use: 'Bentuk yang dipakai sebelum kata benda dan sebelum pola seperti 〜ほど, 〜くらい.',
+  },
 };

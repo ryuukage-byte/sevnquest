@@ -14,9 +14,13 @@ export interface FusionWord {
   reading: string;
 }
 
-/** Kata kerja dasar sebuah stage. */
+/** Jenis kata dasar; kosong = kata kerja. */
+export type FusionWordKind = 'verb' | 'noun' | 'adjective-i' | 'adjective-na';
+
+/** Kata dasar sebuah stage (kata kerja, kata benda, atau kata sifat). */
 export interface FusionBaseWord extends FusionWord {
   meaning: string;
+  kind?: FusionWordKind;
 }
 
 /** Konteks yang dibutuhkan rule: kata dasar (untuk konjugasi) + kata saat ini + bentuknya. */
@@ -60,6 +64,8 @@ export interface FusionStage {
   title: string;
   jlpt: 'N5' | 'N4' | 'N3' | 'N2' | 'N1';
   difficulty: 1 | 2 | 3 | 4 | 5;
+  /** Bentuk awal kata di papan; default 'jisho' (kata kerja). Kata benda / kata sifat memakai bentuknya sendiri. */
+  initialForm?: FusionFormId;
   /** Kata dasar; stage mengambil satu secara acak. */
   words: FusionBaseWord[];
   target: {

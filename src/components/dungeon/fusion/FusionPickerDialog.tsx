@@ -6,19 +6,36 @@ import type { FusionVerbEntry } from '../../../data/fusion/verbPool';
 
 type Props =
   | { kind: 'pattern'; items: GrammarPatternSchema[]; currentId?: string; onPick: (p: GrammarPatternSchema) => void; onClose: () => void }
-  | { kind: 'verb'; items: FusionVerbEntry[]; currentId?: string; onPick: (v: FusionVerbEntry) => void; onClose: () => void };
+  | { kind: 'verb'; items: FusionVerbEntry[]; wordLabel?: string; currentId?: string; onPick: (v: FusionVerbEntry) => void; onClose: () => void };
 
 const LEVELS = ['all', 'N5', 'N4', 'N3', 'N2', 'N1'] as const;
 const MAX_ROWS = 80;
 const FORM_TAG: Record<string, string> = {
   jisho: '辞書形', nai: 'ない形', te: 'て形', ta: 'た形', masu: 'ます形', masu_stem: 'ます語幹', volitional: '意向形',
 };
+const KINDS = [
+  { id: 'all', label: 'Semua jenis' },
+  { id: 'verb', label: 'Kata kerja' },
+  { id: 'noun', label: 'Kata benda' },
+  { id: 'adjective', label: 'Kata sifat' },
+] as const;
+
+/** Penanda sisi kiri pola: V辞書形, N+に, Aい, naな, ... */
+const patternTag = (p: GrammarPatternSchema): string => {
+  if (p.predicateType === 'noun') return `N${p.leftParticle ? `+${p.leftParticle}` : ''}`;
+  if (p.predicateType === 'adjective-i') return 'Aい';
+  if (p.predicateType === 'adjective-na') return p.requiredConjugation === 'attributive' ? 'naな' : 'na';
+  return `V${FORM_TAG[p.requiredConjugation] ?? p.requiredConjugation}`;
+};
+const matchesKind = (p: GrammarPatternSchema, kind: string) =>
+  kind === 'all' || (kind === 'adjective' ? p.predicateType.startsWith('adjective') : p.predicateType === kind);
 
 /** Pemilih pola / kotoba dengan pencarian + filter level; dibuka dari kartu TARGET atau kartu kata. */
 export const FusionPickerDialog: React.FC<Props> = props => {
   const { kind, onClose } = props;
   const [query, setQuery] = useState('');
   const [level, setLevel] = useState('all');
+  const [kindFilter, setKindFilter] = useState('all');
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') { e.stopImmediatePropagation(); onClose(); } };
@@ -29,11 +46,11 @@ export const FusionPickerDialog: React.FC<Props> = props => {
   const rows = useMemo(() => {
     const q = query.trim().toLowerCase();
     if (props.kind === 'pattern') {
-      return props.items.filter(p => (level === 'all' || p.jlpt === level) && (!q || p.pattern.includes(q) || p.title.toLowerCase().includes(q)));
+      return props.items.filter(p => (level === 'all' || p.jlpt === level) && matchesKind(p, kindFilter) && (!q || p.pattern.includes(q) || p.title.toLowerCase().includes(q)));
     }
     return props.items.filter(v => (level === 'all' || v.level === level) &&
       (!q || v.japanese.includes(q) || v.reading.includes(q) || v.meaning.toLowerCase().includes(q)));
-  }, [props.kind, props.items, query, level]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [props.kind, props.items, query, level, kindFilter]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const pickRandom = () => {
     if (rows.length === 0) return;
@@ -43,7 +60,7 @@ export const FusionPickerDialog: React.FC<Props> = props => {
   };
 
   const row = (active: boolean) => `w-full text-left px-3 py-2 rounded-xl border text-sm cursor-pointer transition-colors ${active ? 'bg-gold/20 border-gold' : 'bg-surface-inset border-border-subtle hover:border-border-primary'}`;
-  const title = kind === 'pattern' ? 'Pilih pola grammar' : 'Pilih kotoba';
+  const title = kind === 'pattern' ? 'Pilih pola grammar' : props.kind === 'verb' && props.wordLabel ? `Pilih kotoba (${props.wordLabel})` : 'Pilih kotoba';
 
   return createPortal(
     <div className="fixed inset-0 z-[90] flex items-end sm:items-center justify-center p-3 sm:p-4 bg-black/70" onClick={onClose}>
@@ -73,12 +90,21 @@ export const FusionPickerDialog: React.FC<Props> = props => {
             </button>
           ))}
         </div>
+        {kind === 'pattern' && (
+          <div className="flex gap-1 overflow-x-auto scrollbar-none shrink-0 pb-0.5" role="group" aria-label="Filter jenis kata">
+            {KINDS.map(k => (
+              <button key={k.id} type="button" aria-pressed={kindFilter === k.id} onClick={() => setKindFilter(k.id)} className={`px-2.5 py-1 rounded-lg text-[11px] font-bold border cursor-pointer shrink-0 ${kindFilter === k.id ? 'bg-gold/20 text-gold border-gold' : 'bg-surface-inset text-text-muted border-border-subtle'}`}>
+                {k.label}
+              </button>
+            ))}
+          </div>
+        )}
         <div className="space-y-1.5 overflow-y-auto flex-1 min-h-0 pr-1">
           {props.kind === 'pattern'
             ? (rows as GrammarPatternSchema[]).map(p => (
                 <button key={p.id} type="button" onClick={() => props.onPick(p)} aria-pressed={props.currentId === p.id} className={row(props.currentId === p.id)}>
                   <span className="font-heading font-black text-gold" lang="ja">{p.pattern}</span>
-                  <span className="text-xs text-text-muted"> · {p.jlpt} · V{FORM_TAG[p.requiredConjugation] ?? p.requiredConjugation}</span>
+                  <span className="text-xs text-text-muted"> · {p.jlpt} · {patternTag(p)}</span>
                   <span className="block text-xs text-text-secondary truncate">{p.title}</span>
                 </button>
               ))
