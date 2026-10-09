@@ -245,6 +245,13 @@ export function conjugateVerb(
   forms.ta = make(taSuffix);
   forms.nai = make(shift.a + 'ない');
   forms.nakatta = make(shift.a + 'なかった');
+  // Pengecualian: ある (ada) negatifnya ない / なかった, bukan あらない. Berlaku juga untuk 有る/在る & majemuknya.
+  if (/(ある|有る|在る)$/.test(w) && /ある$/.test(r)) {
+    const stemJpAru = w.replace(/(ある|有る|在る)$/, '');
+    const stemRdAru = r.replace(/ある$/, '');
+    forms.nai = { japanese: stemJpAru + 'ない', reading: stemRdAru + 'ない' };
+    forms.nakatta = { japanese: stemJpAru + 'なかった', reading: stemRdAru + 'なかった' };
+  }
   forms.ba = make(shift.e + 'ば');
   forms.tara = make(taSuffix + 'ら');
   forms.volitional = make(shift.o);

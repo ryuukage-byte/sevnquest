@@ -26,15 +26,17 @@ function buildLibraryPatterns(): GrammarPatternSchema[] {
       const m = left.trim().match(/^V(る|ない|て|た|よう|ます)$/);
       if (!m) continue;
       const example = item.examples[0];
+      // "Vます ＋ 上げる/切る/かける/たて" memakai akar ます (食べ), bukan ます penuh; hanya "Vます ＋ ように" yang memakai ます.
+      const form: ConjugationForm = m[1] === 'ます' && !suffix.startsWith('よう') ? 'masu_stem' : FORM_MAP[m[1]];
       result.push({
-        id: `lib_${item.id}_${FORM_MAP[m[1]]}`,
+        id: `lib_${item.id}_${form}`,
         pattern: `〜${suffix}`,
         title: item.title,
         jlpt: (item.level as GrammarPatternSchema['jlpt']) || 'N3',
         predicateType: 'verb',
-        requiredConjugation: FORM_MAP[m[1]],
+        requiredConjugation: form,
         fixedSuffix: suffix,
-        slots: [{ role: 'predicate', required: true, allowedWordTypes: ['verb'], conjugationRequirement: FORM_MAP[m[1]] }],
+        slots: [{ role: 'predicate', required: true, allowedWordTypes: ['verb'], conjugationRequirement: form }],
         meaningTemplateId: `{predicate} · ${item.meaningId}`,
         meaningTemplateEn: `{predicate} · ${item.meaningEn}`,
         nuanceExplanation: item.meaningId,
