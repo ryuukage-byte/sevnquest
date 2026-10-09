@@ -86,7 +86,7 @@ const DEFAULT_ACHIEVEMENTS: TowerAchievement[] = [
     title: 'Inisiasi Alkemia Kata',
     japaneseTitle: '変化の錬金術 (Henka no Renkinjutsu)',
     description: 'Berhasil melakukan 50 konjugasi kata kerja tanpa bantuan.',
-    icon: 'sparkles',
+    icon: 'flask-conical',
     category: 'conjugation',
     targetValue: 50,
     currentValue: 0,

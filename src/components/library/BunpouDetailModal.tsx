@@ -1070,7 +1070,7 @@ export const BunpouDetailModal: React.FC<BunpouDetailModalProps> = ({
                                   <span>Tepat Sekali! Skill Pola Kalimat Berhasil Diuji.</span>
                                 </div>
                                 <span className="text-xs font-mono font-bold text-gold shrink-0">
-                                  +15 EXP 🌟
+                                  +15 EXP
                                 </span>
                               </div>
                             ) : (
