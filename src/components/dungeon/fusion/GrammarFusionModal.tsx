@@ -36,6 +36,13 @@ function readReduceMotion(): boolean {
   return typeof window !== 'undefined' && !!window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
 }
 
+/** Ringkas arti: satu alternatif pertama yang berisi kata, tanpa keterangan dalam kurung. */
+const shortMeaning = (t: string) => {
+  const parts = t.replace(/[（(][^）)]*[）)]/g, '').split(/\s*[·;/／、]\s*/).map(x => x.trim()).filter(x => x.replace(/\.{2,}|…/g, '').trim().length > 1);
+  return (parts[0] ?? t).replace(/\s+/g, ' ').trim();
+};
+const fillSlot = (template: string, word: string) => template.replace(/\.{2,}|…/g, ` ${word} `).replace(/\s+/g, ' ').trim();
+
 const card = 'p-3 rounded-2xl bg-surface-inset border border-border-subtle';
 
 interface RewardOut { exp: number; gold: number; note?: string }
@@ -194,7 +201,7 @@ const FusionPlayer: React.FC<PlayerProps> = ({ stage, baseWord, soundEnabled, re
             <div className="text-[10px] font-mono uppercase tracking-wider text-text-muted">Target</div>
             <div className="font-heading font-black text-gold text-lg leading-tight break-words">{state.stage.target.pattern}</div>
           </div>
-          <div className="min-w-0 text-xs text-text-secondary mt-1 text-left break-words">{state.stage.target.meaning}</div>
+          <div className="min-w-0 text-xs text-text-secondary mt-1 text-left break-words">{shortMeaning(state.stage.target.meaning)}</div>
           <div className="text-[10px] font-mono text-text-muted mt-1">Ketuk untuk ganti pola</div>
         </button>
         {stepper}
@@ -273,20 +280,23 @@ const FusionPlayer: React.FC<PlayerProps> = ({ stage, baseWord, soundEnabled, re
           <div className={`${card} text-center space-y-3`}>
             <Trophy className="w-8 h-8 text-gold mx-auto" />
             <div className="font-heading font-black text-base sm:text-lg text-text-primary break-words">
-              {state.currentWord.japanese} — {state.stage.target.meaning.split('...').join(baseWord.meaning)}
+              {state.currentWord.japanese}
+            </div>
+            <div className="text-sm text-text-secondary break-words">
+              {fillSlot(shortMeaning(state.stage.target.meaning), shortMeaning(baseWord.meaning))}
             </div>
             <div className="text-sm font-mono text-gold">
               +{reward?.exp ?? state.score.exp} EXP · +{reward?.gold ?? state.score.gold} Gold
               {reward?.note && <span className="block text-[11px] text-text-muted font-body">{reward.note}</span>}
             </div>
-            <div className="text-xs text-text-secondary">Kesalahan {state.mistakes} · Petunjuk {state.hintsUsed}</div>
-            <div className="flex flex-col sm:flex-row gap-2">
+            <div className="text-xs text-text-muted">Salah {state.mistakes} · Hint {state.hintsUsed}</div>
+            <div className="grid grid-cols-3 gap-2">
               {endActions.map(a => (
                 <button
                   key={a.label}
                   type="button"
                   onClick={() => { click(); a.onClick(); }}
-                  className={`flex-1 min-w-0 px-3 py-3 rounded-2xl text-sm break-words cursor-pointer ${a.primary ? 'btn-cta font-heading font-black' : 'btn-physical-secondary font-bold'}`}
+                  className={`min-w-0 h-12 px-2 rounded-2xl text-xs sm:text-sm font-bold whitespace-nowrap flex items-center justify-center cursor-pointer ${a.primary ? 'btn-cta' : 'btn-physical-secondary'}`}
                 >
                   {a.label}
                 </button>
@@ -348,15 +358,9 @@ const FusionPlayer: React.FC<PlayerProps> = ({ stage, baseWord, soundEnabled, re
               <span>{lastEntry.from.japanese}</span><ArrowRight className="w-4 h-4 text-gold" /><span>{lastEntry.to.japanese}</span>
             </div>
             <div className="text-[11px] font-mono text-gold">{formLabel(lastEntry.toForm, state.stage)}</div>
-            <p className="text-sm text-text-secondary font-body leading-relaxed break-words">{lastEntry.explanation}</p>
-            <p className="text-xs text-text-muted">Arti: {state.stage.steps[lastEntry.stepIndex].resultMeaning}</p>
           </div>
         ) : (
           <div className={`${card} text-sm text-text-secondary`}>Seret komponen ke <b>kartu kata</b> lalu lepaskan. Kalau cocok, kata berubah; kalau tidak, komponen ditolak.</div>
-        )}
-
-        {state.completed && !busy && (
-          <div className={`${card} text-sm text-text-secondary font-body leading-relaxed break-words`}>{state.stage.target.explanation}</div>
         )}
 
         {state.transformationHistory.length - (busy ? 1 : 0) > 0 && (
@@ -433,8 +437,8 @@ export const GrammarFusionModal: React.FC<Props> = ({ onClose, soundEnabled = tr
 
   const endActions: EndAction[] = [
     { label: 'Ulangi', onClick: () => setRunId(r => r + 1) },
-    { label: 'Acak kotoba', onClick: () => setPick(p => ({ ...p, verb: randomItem(allVerbs, p.verb) })) },
-    { label: 'Acak pola', primary: true, onClick: () => setPick(p => ({ ...p, pattern: randomItem(allPatterns, p.pattern) })) },
+    { label: 'Acak Kotoba', onClick: () => setPick(p => ({ ...p, verb: randomItem(allVerbs, p.verb) })) },
+    { label: 'Acak Pola', primary: true, onClick: () => setPick(p => ({ ...p, pattern: randomItem(allPatterns, p.pattern) })) },
   ];
 
   const shuffleBtn = 'btn-physical-secondary flex items-center gap-1.5 whitespace-nowrap px-2.5 sm:px-3 py-2 rounded-xl text-xs font-bold cursor-pointer';
