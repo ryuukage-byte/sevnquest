@@ -10,6 +10,8 @@ import type { FusionAnimationPhase, FusionBaseWord, FusionRuleId, FusionStage } 
 import { playSound } from '../../../utils/audio';
 import { FusionWordBoard } from './FusionWordBoard';
 import { FusionPickerDialog } from './FusionPickerDialog';
+import { FusionFormInfoDialog } from './FusionFormInfoDialog';
+import { FORM_INFO } from '../../../engine/fusion/formInfo';
 
 interface Props {
   onClose: () => void;
@@ -69,6 +71,7 @@ const FusionPlayer: React.FC<PlayerProps> = ({ stage, baseWord, soundEnabled, re
   const [drag, setDrag] = useState<{ id: FusionRuleId; x: number; y: number; over: boolean } | null>(null);
   const [dropTip, setDropTip] = useState<string | null>(null);
   const stopDragRef = useRef<(() => void) | null>(null);
+  const [formInfo, setFormInfo] = useState<string | null>(null);
   const rewardedRef = useRef(false);
 
   const click = () => playSound('click', soundEnabled);
@@ -226,19 +229,11 @@ const FusionPlayer: React.FC<PlayerProps> = ({ stage, baseWord, soundEnabled, re
             type="button"
             onClick={() => { click(); onPickVerb(); }}
             aria-label="Ganti kotoba"
-            className="absolute top-2 left-3 right-3 z-10 text-left truncate text-[11px] font-mono text-text-muted hover:text-gold cursor-pointer"
+            className="absolute top-2 left-3 z-10 max-w-[calc(100%-1.5rem)] text-left truncate text-[11px] font-mono text-text-muted hover:text-gold cursor-pointer"
           >
             {baseWord.japanese} · {baseWord.meaning} (ganti)
           </button>
-          <div
-            role="button"
-            tabIndex={0}
-            aria-label="Klik kata untuk mengganti kotoba"
-            title="Klik kata untuk mengganti kotoba"
-            onClick={() => { if (!busy && !drag) { click(); onPickVerb(); } }}
-            onKeyDown={e => { if (e.key === 'Enter' && e.target === e.currentTarget) { click(); onPickVerb(); } }}
-            className="cursor-pointer"
-          >
+          <div>
           <FusionWordBoard
             word={state.currentWord}
             form={state.currentForm}
@@ -248,6 +243,8 @@ const FusionPlayer: React.FC<PlayerProps> = ({ stage, baseWord, soundEnabled, re
             reduceMotion={reduceMotion}
             flight={flight}
             wordRef={wordRef}
+            onFormClick={form => { click(); setFormInfo(form); }}
+            onWordClick={busy ? undefined : () => { click(); onPickVerb(); }}
           />
           </div>
           <div className="min-h-[1.75rem] pb-2 text-center text-xs sm:text-sm text-text-secondary font-body" aria-live="polite">
@@ -373,6 +370,9 @@ const FusionPlayer: React.FC<PlayerProps> = ({ stage, baseWord, soundEnabled, re
           </ul>
         )}
       </section>
+      {formInfo && FORM_INFO[formInfo] && (
+        <FusionFormInfoDialog info={FORM_INFO[formInfo]} onClose={() => setFormInfo(null)} />
+      )}
       {drag && createPortal(
         <div
           aria-hidden="true"

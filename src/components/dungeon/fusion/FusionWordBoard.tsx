@@ -3,6 +3,7 @@ import { motion } from 'motion/react';
 import { toRomaji } from 'wanakana';
 import { diffWords } from '../../../engine/fusion/fusionEngine';
 import { formLabel } from '../../../engine/fusion/rules';
+import { FORM_INFO } from '../../../engine/fusion/formInfo';
 import type { FusionAnimationPhase, FusionFormId, FusionHistoryEntry, FusionStage, FusionWord } from '../../../engine/fusion/types';
 
 interface Props {
@@ -16,6 +17,9 @@ interface Props {
   /** Posisi awal komponen relatif ke pusat kata (px); null = tanpa efek terbang. */
   flight: { dx: number; dy: number; label: string } | null;
   wordRef: React.RefObject<HTMLDivElement | null>;
+  /** Klik lencana bentuk kata (penjelasan) dan teks kata (ganti kotoba); opsional. */
+  onFormClick?: (form: FusionFormId) => void;
+  onWordClick?: () => void;
 }
 
 const PARTICLES = Array.from({ length: 10 }, (_, i) => {
@@ -27,7 +31,7 @@ const PARTICLES = Array.from({ length: 10 }, (_, i) => {
  * Papan kata. Teks yang tampil SELALU berasal dari state engine (from/to);
  * fase animasi hanya mengatur gaya per-karakter, sehingga bacaan tetap terbaca di setiap fase.
  */
-export const FusionWordBoard: React.FC<Props> = ({ word, form, stage, animating, phase, reduceMotion, flight, wordRef }) => {
+export const FusionWordBoard: React.FC<Props> = ({ word, form, stage, animating, phase, reduceMotion, flight, wordRef, onFormClick, onWordClick }) => {
   const showFrom = !!animating && (phase === 'approach' || phase === 'absorb' || phase === 'morph');
   const shown = animating ? (showFrom ? animating.from : animating.to) : word;
   const shownForm = animating ? (showFrom ? animating.fromForm : animating.toForm) : form;
@@ -93,9 +97,21 @@ export const FusionWordBoard: React.FC<Props> = ({ word, form, stage, animating,
 
   return (
     <div className="relative flex flex-col items-center justify-center text-center px-3 py-3 sm:py-6 lg:[--fusion-cap:4.25rem]" style={{ containerType: 'inline-size' }} role="img" aria-label={`${shown.japanese}, ${formLabel(shownForm, stage)}`}>
-      <span className="max-w-full px-3 py-1 rounded-full text-[11px] sm:text-xs font-mono font-bold bg-gold/15 text-gold border border-border-subtle uppercase tracking-wider mb-2 sm:mb-3 break-words">
+      {onFormClick && FORM_INFO[shownForm] ? (
+        <button
+          type="button"
+          onClick={() => onFormClick(shownForm)}
+          aria-label={`Penjelasan ${formLabel(shownForm, stage)}`}
+          className="max-w-full px-3 py-1 rounded-full text-[11px] sm:text-xs font-mono font-bold bg-gold/15 text-gold border border-border-subtle uppercase tracking-wider mb-2 sm:mb-3 break-words cursor-pointer hover:border-gold"
+        >
         {formLabel(shownForm, stage)}
-      </span>
+          <span aria-hidden="true" className="ml-1.5 opacity-70">?</span>
+        </button>
+      ) : (
+        <span className="max-w-full px-3 py-1 rounded-full text-[11px] sm:text-xs font-mono font-bold bg-gold/15 text-gold border border-border-subtle uppercase tracking-wider mb-2 sm:mb-3 break-words">
+        {formLabel(shownForm, stage)}
+        </span>
+      )}
 
       <div ref={wordRef} className="relative max-w-full">
         {/* Partikel kecil, tidak menutup teks (aria-hidden, nonaktif saat reduced motion). */}
@@ -114,7 +130,8 @@ export const FusionWordBoard: React.FC<Props> = ({ word, form, stage, animating,
         )}
 
         <div
-          className="relative font-heading font-black text-text-primary whitespace-nowrap leading-tight"
+          className={`relative font-heading font-black text-text-primary whitespace-nowrap leading-tight ${onWordClick ? 'cursor-pointer' : ''}`}
+          onClick={onWordClick}
           style={{ fontSize: `min(calc(88cqw / ${n}), var(--fusion-cap, 5.5rem))` }}
           lang="ja"
         >

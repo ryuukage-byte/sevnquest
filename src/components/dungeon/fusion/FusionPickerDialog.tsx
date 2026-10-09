@@ -46,8 +46,8 @@ export const FusionPickerDialog: React.FC<Props> = props => {
   const title = kind === 'pattern' ? 'Pilih pola grammar' : 'Pilih kotoba';
 
   return createPortal(
-    <div className="fixed inset-0 z-[90] flex items-center justify-center p-0 sm:p-4 bg-black/70" onClick={onClose}>
-      <div role="dialog" aria-modal="true" aria-label={title} onClick={e => e.stopPropagation()} className="panel w-full sm:max-w-lg h-[100dvh] sm:h-auto sm:max-h-[85dvh] flex flex-col gap-3 p-4 bg-surface-card border border-border-subtle sm:rounded-3xl shadow-2xl">
+    <div className="fixed inset-0 z-[90] flex items-end sm:items-center justify-center p-3 sm:p-4 bg-black/70" onClick={onClose}>
+      <div role="dialog" aria-modal="true" aria-label={title} onClick={e => e.stopPropagation()} className="panel w-full sm:max-w-md max-h-[70dvh] flex flex-col gap-3 p-3 bg-surface-card border border-border-subtle rounded-3xl shadow-2xl">
         <div className="flex items-center justify-between gap-2">
           <h4 className="font-heading font-black text-text-primary">{title} <span className="font-mono text-text-muted text-xs">({rows.length})</span></h4>
           <div className="flex items-center gap-2">
@@ -66,7 +66,7 @@ export const FusionPickerDialog: React.FC<Props> = props => {
             className="w-full pl-9 pr-3 py-2 bg-surface-inset border border-border-subtle rounded-xl text-sm font-body text-text-primary placeholder:text-text-muted focus:outline-hidden focus:border-border-primary"
           />
         </div>
-        <div className="flex gap-1 overflow-x-auto scrollbar-none" role="group" aria-label="Filter level">
+        <div className="flex gap-1 overflow-x-auto scrollbar-none shrink-0 pb-0.5" role="group" aria-label="Filter level">
           {LEVELS.map(l => (
             <button key={l} type="button" aria-pressed={level === l} onClick={() => setLevel(l)} className={`px-2.5 py-1 rounded-lg text-[11px] font-mono font-bold border cursor-pointer shrink-0 ${level === l ? 'bg-gold/20 text-gold border-gold' : 'bg-surface-inset text-text-muted border-border-subtle'}`}>
               {l === 'all' ? 'Semua' : l}
