@@ -200,10 +200,11 @@ const FusionPlayer: React.FC<PlayerProps> = ({ stage, baseWord, soundEnabled, re
           title="Klik untuk mengganti pola"
           className={`${card} w-full text-left block cursor-pointer hover:border-gold transition-colors`}
         >
-          <div className="min-w-0">
-            <div className="text-[10px] font-mono uppercase tracking-wider text-text-muted">Target</div>
-            <div className="font-heading font-black text-gold text-lg leading-tight break-words">{state.stage.target.pattern}</div>
+          <div className="flex items-center justify-between gap-2">
+            <span className="text-[10px] font-mono uppercase tracking-wider text-text-muted">Target</span>
+            <span aria-label={`Level JLPT ${state.stage.jlpt}`} className="shrink-0 px-2 py-0.5 rounded-md bg-gold/15 border border-border-subtle text-[10px] font-mono font-bold text-gold">{state.stage.jlpt}</span>
           </div>
+          <div className="min-w-0 font-heading font-black text-gold text-lg leading-tight break-words">{state.stage.target.pattern}</div>
           <div className="min-w-0 text-xs text-text-secondary mt-1 text-left break-words">{shortMeaning(state.stage.target.meaning)}</div>
           <div className="text-[10px] font-mono text-text-muted mt-1">Ketuk untuk ganti pola</div>
         </button>
