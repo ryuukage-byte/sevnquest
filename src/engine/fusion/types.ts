@@ -3,15 +3,11 @@
 // Data stage, rule, dan state dipisah dari UI agar stage baru cukup ditambah lewat data.
 // ==============================================================================
 
-/** Bentuk grammar yang bisa dimiliki sebuah kata di tengah proses fusion. */
-export type FusionFormId = 'jisho' | 'nai' | 'nai_de' | 'nai_de_kudasai' | 'te' | 'masu';
+/** Bentuk grammar yang bisa dimiliki sebuah kata di tengah proses fusion ('jisho', 'nai', 'nai_de', ...). */
+export type FusionFormId = string;
 
-export type FusionRuleId =
-  | 'dictionary_to_nai'
-  | 'dictionary_to_te'
-  | 'dictionary_to_masu'
-  | 'add_de'
-  | 'add_kudasai';
+/** Id rule: 'dictionary_to_nai', 'add_de', ... (stage Latihan Bebas membuat rule-nya sendiri lewat stage.rules). */
+export type FusionRuleId = string;
 
 export interface FusionWord {
   japanese: string;
@@ -74,6 +70,10 @@ export interface FusionStage {
   steps: FusionStep[];
   /** Komponen yang ditampilkan: jawaban benar + pengecoh. */
   components: FusionRuleId[];
+  /** Rule khusus stage (Latihan Bebas); menimpa rule bawaan dengan id yang sama. */
+  rules?: Record<FusionRuleId, FusionRule>;
+  /** Label bentuk khusus stage, mis. nama pola untuk bentuk akhir. */
+  formLabels?: Record<FusionFormId, string>;
   reward: { exp: number; gold: number };
 }
 

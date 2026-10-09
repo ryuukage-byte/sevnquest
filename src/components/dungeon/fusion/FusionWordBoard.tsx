@@ -2,12 +2,13 @@ import React, { useMemo } from 'react';
 import { motion } from 'motion/react';
 import { toRomaji } from 'wanakana';
 import { diffWords } from '../../../engine/fusion/fusionEngine';
-import { FUSION_FORM_LABEL } from '../../../engine/fusion/rules';
-import type { FusionAnimationPhase, FusionFormId, FusionHistoryEntry, FusionWord } from '../../../engine/fusion/types';
+import { formLabel } from '../../../engine/fusion/rules';
+import type { FusionAnimationPhase, FusionFormId, FusionHistoryEntry, FusionStage, FusionWord } from '../../../engine/fusion/types';
 
 interface Props {
   word: FusionWord;
   form: FusionFormId;
+  stage: Pick<FusionStage, 'formLabels'>;
   /** Entri transformasi yang sedang dianimasikan (null saat idle). */
   animating: FusionHistoryEntry | null;
   phase: FusionAnimationPhase;
@@ -26,7 +27,7 @@ const PARTICLES = Array.from({ length: 10 }, (_, i) => {
  * Papan kata. Teks yang tampil SELALU berasal dari state engine (from/to);
  * fase animasi hanya mengatur gaya per-karakter, sehingga bacaan tetap terbaca di setiap fase.
  */
-export const FusionWordBoard: React.FC<Props> = ({ word, form, animating, phase, reduceMotion, flight, wordRef }) => {
+export const FusionWordBoard: React.FC<Props> = ({ word, form, stage, animating, phase, reduceMotion, flight, wordRef }) => {
   const showFrom = !!animating && (phase === 'approach' || phase === 'absorb' || phase === 'morph');
   const shown = animating ? (showFrom ? animating.from : animating.to) : word;
   const shownForm = animating ? (showFrom ? animating.fromForm : animating.toForm) : form;
@@ -91,9 +92,9 @@ export const FusionWordBoard: React.FC<Props> = ({ word, form, animating, phase,
   }
 
   return (
-    <div className="relative flex flex-col items-center justify-center text-center py-3 sm:py-6 lg:[--fusion-cap:4.25rem]" role="img" aria-label={`${shown.japanese}, ${FUSION_FORM_LABEL[shownForm]}`}>
+    <div className="relative flex flex-col items-center justify-center text-center py-3 sm:py-6 lg:[--fusion-cap:4.25rem]" role="img" aria-label={`${shown.japanese}, ${formLabel(shownForm, stage)}`}>
       <span className="px-3 py-1 rounded-full text-[11px] sm:text-xs font-mono font-bold bg-gold/15 text-gold border border-border-subtle uppercase tracking-wider mb-2 sm:mb-3">
-        {FUSION_FORM_LABEL[shownForm]}
+        {formLabel(shownForm, stage)}
       </span>
 
       <div ref={wordRef} className="relative">

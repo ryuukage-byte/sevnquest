@@ -97,3 +97,72 @@ test('data stage konsisten: tiap langkah valid berurutan & ada komponen', () => 
     }
   }
 });
+
+// ---------------------------------------------------------------------------
+// Latihan Bebas: semua pola × semua kata kerja
+// ---------------------------------------------------------------------------
+import { buildFreeStage } from './freeStage';
+import { getFusionPatterns, getFusionVerbs } from '../../data/fusion/verbPool';
+
+const verbs = getFusionVerbs();
+const patterns = getFusionPatterns();
+
+function playFree(patternId: string, japanese: string) {
+  const pattern = patterns.find(p => p.id === patternId)!;
+  const verb = verbs.find(v => v.japanese === japanese)!;
+  const st = buildFreeStage(pattern, verb, { allPatterns: patterns, rand: () => 0.5 });
+  let s = createFusionState(st, verb, () => 0.5);
+  for (const step of st.steps) s = settle(pick(s, step.ruleId));
+  return s;
+}
+
+test('Latihan Bebas: seluruh kombinasi pola × kata kerja bisa diselesaikan', () => {
+  assert.ok(verbs.length > 1000 && patterns.length >= 60);
+  const failures: string[] = [];
+  for (const p of patterns) {
+    for (const v of verbs) {
+      const st = buildFreeStage(p, v, { allPatterns: patterns, rand: () => 0.5 });
+      let s = createFusionState(st, v, () => 0.5);
+      for (const step of st.steps) s = settle(pick(s, step.ruleId));
+      const ok = s.completed && s.currentWord.japanese.endsWith(p.fixedSuffix) && s.currentWord.reading.length > 0;
+      if (!ok && failures.length < 5) failures.push(`${p.id}/${v.japanese}`);
+    }
+  }
+  assert.deepEqual(failures, []);
+});
+
+test('Latihan Bebas: hasil akhir persis conjugateVerb(bentuk pola) + sufiks', () => {
+  assert.equal(playFree('te_wa_ikenai', '行く').currentWord.japanese, '行ってはいけない');
+  assert.equal(playFree('te_mo_ii', '飲む').currentWord.japanese, '飲んでもいい');
+  assert.equal(playFree('nai_hou_ga_ii', 'ある').currentWord.japanese, 'ないほうがいい');
+  assert.equal(playFree('ta_hou_ga_ii', '来る').currentWord.japanese, '来たほうがいい');
+  const suruVerb = verbs.find(v => v.japanese.length > 2 && v.japanese.endsWith('する'))!;
+  assert.equal(playFree('te_wa_ikenai', suruVerb.japanese).currentWord.reading, suruVerb.reading.slice(0, -2) + 'してはいけない');
+});
+
+test('Latihan Bebas: pola berbentuk kamus hanya 1 langkah; pengecoh ditolak dengan alasan', () => {
+  const jisho = patterns.find(p => p.requiredConjugation === 'jisho')!;
+  const verb = verbs.find(v => v.japanese === '食べる')!;
+  const st = buildFreeStage(jisho, verb, { allPatterns: patterns, rand: () => 0.5 });
+  assert.equal(st.steps.length, 1);
+  const decoy = st.components.find(c => c.startsWith('dictionary_to_'))!;
+  const s = pick(createFusionState(st, verb, () => 0.5), decoy);
+  assert.equal(s.currentStep, 0);
+  assert.equal(s.mistakes, 1);
+  assert.equal(s.currentWord.japanese, '食べる');
+  assert.ok(s.feedbackState!.message.length > 10);
+});
+
+test('pola library "Vます＋上げる/切る" memakai akar ます', () => {
+  const ageru = patterns.find(p => p.fixedSuffix === '上げる');
+  assert.equal(ageru?.requiredConjugation, 'masu_stem');
+  const s = (() => {
+    const verb = verbs.find(v => v.japanese === '書く')!;
+    const st = buildFreeStage(ageru!, verb, { allPatterns: patterns, rand: () => 0.5 });
+    let state = createFusionState(st, verb, () => 0.5);
+    for (const step of st.steps) state = settle(pick(state, step.ruleId));
+    return state.currentWord;
+  })();
+  assert.equal(s.japanese, '書き上げる');
+  assert.equal(s.reading, 'かきあげる');
+});

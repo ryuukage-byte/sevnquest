@@ -4,7 +4,7 @@
 // Animasi hanya membaca state; ia tidak menghitung grammar.
 // ==============================================================================
 
-import { applyRule, FUSION_FORM_LABEL, getRule } from './rules';
+import { applyRule, formLabel, getRule } from './rules';
 import type {
   FusionAction, FusionBaseWord, FusionFeedback, FusionRuleId, FusionStage, FusionState, FusionWord,
 } from './types';
@@ -56,11 +56,11 @@ export function computeScore(stage: FusionStage, mistakes: number, hintsUsed: nu
 
 /** Pesan salah: selalu menyebut alasan grammar-nya. */
 export function explainWrongChoice(state: FusionState, ruleId: FusionRuleId): string {
-  const rule = getRule(ruleId);
-  const expectedRule = getRule(state.stage.steps[state.currentStep].ruleId);
-  const applied = applyRule(ruleId, { base: state.baseWord, current: state.currentWord, form: state.currentForm });
+  const rule = getRule(ruleId, state.stage);
+  const expectedRule = getRule(state.stage.steps[state.currentStep].ruleId, state.stage);
+  const applied = applyRule(ruleId, { base: state.baseWord, current: state.currentWord, form: state.currentForm }, state.stage);
   if (!applied) {
-    return `${rule.label} belum bisa dipakai pada ${state.currentWord.japanese} (${FUSION_FORM_LABEL[state.currentForm]}). ${rule.whyNot}`;
+    return `${rule.label} belum bisa dipakai pada ${state.currentWord.japanese} (${formLabel(state.currentForm, state.stage)}). ${rule.whyNot}`;
   }
   return `${state.baseWord.japanese} + ${rule.label} → ${applied.word.japanese}, tetapi itu bukan arah pola ${state.stage.target.pattern}. Langkah ini membutuhkan ${expectedRule.label}.`;
 }
@@ -87,7 +87,7 @@ export function fusionReducer(state: FusionState, action: FusionAction): FusionS
         };
       }
 
-      const result = applyRule(chosen, { base: state.baseWord, current: state.currentWord, form: state.currentForm });
+      const result = applyRule(chosen, { base: state.baseWord, current: state.currentWord, form: state.currentForm }, state.stage);
       if (!result) return state; // data stage tidak konsisten dengan rule; jangan merusak progres
       const nextStep = state.currentStep + 1;
       const completed = nextStep >= state.stage.steps.length;
@@ -105,7 +105,7 @@ export function fusionReducer(state: FusionState, action: FusionAction): FusionS
           {
             stepIndex: state.currentStep,
             ruleId: chosen,
-            componentLabel: getRule(chosen).label,
+            componentLabel: getRule(chosen, state.stage).label,
             from: state.currentWord,
             to: result.word,
             fromForm: state.currentForm,
@@ -129,7 +129,7 @@ export function fusionReducer(state: FusionState, action: FusionAction): FusionS
     case 'HINT': {
       if (state.completed || state.animationState !== 'idle') return state;
       const step = state.stage.steps[state.currentStep];
-      const rule = getRule(step.ruleId);
+      const rule = getRule(step.ruleId, state.stage);
       return {
         ...state,
         hintsUsed: state.hintedComponent === step.ruleId ? state.hintsUsed : state.hintsUsed + 1,
@@ -149,7 +149,7 @@ export function fusionReducer(state: FusionState, action: FusionAction): FusionS
 /** Teks "kata + komponen" untuk pratinjau pilihan. */
 export function previewSelection(state: FusionState): FusionWord | null {
   if (!state.selectedComponent) return null;
-  return applyRule(state.selectedComponent, { base: state.baseWord, current: state.currentWord, form: state.currentForm })?.word ?? null;
+  return applyRule(state.selectedComponent, { base: state.baseWord, current: state.currentWord, form: state.currentForm }, state.stage)?.word ?? null;
 }
 
 /** Diff awalan: bagian yang tetap, dibuang, dan ditambah — dipakai UI untuk efek morph. */
