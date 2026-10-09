@@ -2,7 +2,7 @@
 import { KOTOBA_DATABASE } from '../kotoba';
 import { VERB_CONJUGATION_DATABASE } from '../conjugationRules';
 import { PATTERN_SCHEMAS } from '../../engine/syntax/patternSchemas';
-import { LIBRARY_PATTERN_SCHEMAS } from '../libraryPatterns';
+import { LIBRARY_PATTERN_SCHEMAS_EXTENDED } from '../libraryPatterns';
 import type { GrammarPatternSchema } from '../../engine/types';
 import type { FusionBaseWord } from '../../engine/fusion/types';
 
@@ -38,5 +38,5 @@ export function getFusionVerbs(): FusionVerbEntry[] {
 }
 
 export function getFusionPatterns(): GrammarPatternSchema[] {
-  return [...Object.values(PATTERN_SCHEMAS), ...LIBRARY_PATTERN_SCHEMAS];
+  return [...Object.values(PATTERN_SCHEMAS), ...LIBRARY_PATTERN_SCHEMAS_EXTENDED];
 }
