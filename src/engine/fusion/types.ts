@@ -119,6 +119,8 @@ export interface FusionState {
 export type FusionAction =
   | { type: 'SELECT'; ruleId: FusionRuleId }
   | { type: 'CHECK' }
+  /** Komponen dilepas ke kartu tengah: pilih + validasi sekaligus (drag and drop). */
+  | { type: 'DROP'; ruleId: FusionRuleId }
   | { type: 'ANIMATION_PHASE'; phase: FusionAnimationPhase }
   | { type: 'ANIMATION_DONE' }
   | { type: 'HINT' }

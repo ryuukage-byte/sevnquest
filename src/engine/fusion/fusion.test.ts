@@ -166,3 +166,14 @@ test('pola library "Vます＋上げる/切る" memakai akar ます', () => {
   assert.equal(s.japanese, '書き上げる');
   assert.equal(s.reading, 'かきあげる');
 });
+
+test('DROP benar langsung bertransformasi; DROP salah ditolak dan dihitung', () => {
+  const ok = fusionReducer(start(), { type: 'DROP', ruleId: stage.steps[0].ruleId });
+  assert.equal(ok.currentStep, 1);
+  assert.equal(ok.animationState, 'approach');
+  const bad = fusionReducer(start(), { type: 'DROP', ruleId: stage.steps[1].ruleId });
+  assert.equal(bad.currentStep, 0);
+  assert.equal(bad.mistakes, 1);
+  assert.equal(bad.currentWord.japanese, start().currentWord.japanese);
+  assert.equal(fusionReducer(ok, { type: 'DROP', ruleId: stage.steps[1].ruleId }), ok);
+});

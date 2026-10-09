@@ -73,6 +73,12 @@ export function fusionReducer(state: FusionState, action: FusionAction): FusionS
       return { ...state, selectedComponent: action.ruleId, feedbackState: null };
     }
 
+    case 'DROP': {
+      if (state.completed || state.animationState !== 'idle') return state;
+      if (!state.availableComponents.includes(action.ruleId)) return state;
+      return fusionReducer({ ...state, selectedComponent: action.ruleId }, { type: 'CHECK' });
+    }
+
     case 'CHECK': {
       if (state.completed || state.animationState !== 'idle' || !state.selectedComponent) return state;
       const step = state.stage.steps[state.currentStep];

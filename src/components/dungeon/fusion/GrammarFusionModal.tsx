@@ -1,14 +1,11 @@
 import React, { useCallback, useEffect, useReducer, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
-import { X, Sparkles, Lightbulb, RotateCcw, Check, Wind, Trophy, ArrowRight } from 'lucide-react';
-import { FUSION_STAGES } from '../../../data/fusion/stages';
-import { createFusionState, fusionReducer, previewSelection } from '../../../engine/fusion/fusionEngine';
+import { X, Swords, Lightbulb, RotateCcw, Check, Wind, Trophy, ArrowRight, Shuffle } from 'lucide-react';
+import { createFusionState, fusionReducer } from '../../../engine/fusion/fusionEngine';
 import { formLabel, getRule } from '../../../engine/fusion/rules';
 import { buildFreeStage } from '../../../engine/fusion/freeStage';
 import { getFusionPatterns, getFusionVerbs, type FusionVerbEntry } from '../../../data/fusion/verbPool';
 import type { GrammarPatternSchema } from '../../../engine/types';
-import { FusionPicker } from './FusionPicker';
-import { loadFusionProgress, recordFusionClear, saveFusionProgress, type FusionProgress } from '../../../engine/fusion/progress';
 import type { FusionAnimationPhase, FusionBaseWord, FusionRuleId, FusionStage } from '../../../engine/fusion/types';
 import { playSound } from '../../../utils/audio';
 import { FusionWordBoard } from './FusionWordBoard';
@@ -27,7 +24,6 @@ const PHASES: { phase: FusionAnimationPhase; ms: number }[] = [
   { phase: 'reveal', ms: 200 },
   { phase: 'settle', ms: 120 },
 ];
-const REPEAT_REWARD_RATIO = 0.4;
 const MOTION_KEY = 'nq_fusion_reduce_motion';
 
 function readReduceMotion(): boolean {
@@ -59,14 +55,16 @@ const FusionPlayer: React.FC<PlayerProps> = ({ stage, baseWord, soundEnabled, re
   const [flight, setFlight] = useState<{ dx: number; dy: number; label: string } | null>(null);
   const [reward, setReward] = useState<RewardOut | null>(null);
   const wordRef = useRef<HTMLDivElement>(null);
-  const btnRefs = useRef<Partial<Record<FusionRuleId, HTMLButtonElement | null>>>({});
+  const boardRef = useRef<HTMLDivElement>(null);
+  const [drag, setDrag] = useState<{ id: FusionRuleId; x: number; y: number; over: boolean } | null>(null);
+  const [dropTip, setDropTip] = useState<string | null>(null);
+  const stopDragRef = useRef<(() => void) | null>(null);
   const rewardedRef = useRef(false);
 
   const click = () => playSound('click', soundEnabled);
   const busy = state.animationState !== 'idle';
   const lastEntry = state.transformationHistory[state.transformationHistory.length - 1] ?? null;
   const step = state.stage.steps[Math.min(state.currentStep, state.stage.steps.length - 1)];
-  const preview = previewSelection(state);
 
   // Penggerak animasi: hanya memajukan fase; grammar sudah final di reducer.
   // Dipicu sekali per transformasi (panjang history). reduceMotion dibaca lewat ref agar
@@ -100,30 +98,52 @@ const FusionPlayer: React.FC<PlayerProps> = ({ stage, baseWord, soundEnabled, re
     }
   }, [state.completed, busy]); // eslint-disable-line react-hooks/exhaustive-deps
 
-  const handleSelect = (id: FusionRuleId) => {
-    if (busy || state.completed) return;
-    click();
-    dispatch({ type: 'SELECT', ruleId: id });
+  // Drag and drop berbasis pointer events: satu jalur untuk mouse, sentuhan, dan pena.
+  useEffect(() => () => stopDragRef.current?.(), []);
+
+  const isOverBoard = (x: number, y: number) => {
+    const r = boardRef.current?.getBoundingClientRect();
+    const pad = 12;
+    return !!r && x >= r.left - pad && x <= r.right + pad && y >= r.top - pad && y <= r.bottom + pad;
   };
 
-  const handleCheck = () => {
-    if (busy || state.completed || !state.selectedComponent) return;
-    const isRight = state.selectedComponent === step.ruleId;
+  const startDrag = (e: React.PointerEvent, id: FusionRuleId) => {
+    if (busy || state.completed || (e.pointerType === 'mouse' && e.button !== 0)) return;
+    e.preventDefault();
+    stopDragRef.current?.();
+    click();
+    setDropTip(null);
+    setDrag({ id, x: e.clientX, y: e.clientY, over: isOverBoard(e.clientX, e.clientY) });
+    const move = (ev: PointerEvent) => setDrag({ id, x: ev.clientX, y: ev.clientY, over: isOverBoard(ev.clientX, ev.clientY) });
+    const end = (ev: PointerEvent) => {
+      stop();
+      if (ev.type === 'pointerup' && isOverBoard(ev.clientX, ev.clientY)) handleDrop(id, ev.clientX, ev.clientY);
+      else if (ev.type === 'pointerup') setDropTip('Lepaskan komponen di atas kartu kata untuk menggabungkannya.');
+    };
+    const stop = () => {
+      window.removeEventListener('pointermove', move);
+      window.removeEventListener('pointerup', end);
+      window.removeEventListener('pointercancel', end);
+      stopDragRef.current = null;
+      setDrag(null);
+    };
+    window.addEventListener('pointermove', move);
+    window.addEventListener('pointerup', end);
+    window.addEventListener('pointercancel', end);
+    stopDragRef.current = stop;
+  };
+
+  const handleDrop = (id: FusionRuleId, x?: number, y?: number) => {
+    if (busy || state.completed) return;
+    const isRight = id === step.ruleId;
     playSound(isRight ? 'correct' : 'wrong', soundEnabled);
-    if (isRight && !reduceMotion) {
-      const btn = btnRefs.current[state.selectedComponent];
-      const w = wordRef.current;
-      if (btn && w) {
-        const b = btn.getBoundingClientRect();
-        const r = w.getBoundingClientRect();
-        setFlight({
-          dx: b.left + b.width / 2 - (r.left + r.width / 2),
-          dy: b.top + b.height / 2 - (r.top + r.height / 2),
-          label: getRule(state.selectedComponent, state.stage).label,
-        });
-      }
+    const w = wordRef.current;
+    if (isRight && !reduceMotion && w && x !== undefined && y !== undefined) {
+      const r = w.getBoundingClientRect();
+      setFlight({ dx: x - (r.left + r.width / 2), dy: y - (r.top + r.height / 2), label: getRule(id, state.stage).label });
     }
-    dispatch({ type: 'CHECK' });
+    setDropTip(null);
+    dispatch({ type: 'DROP', ruleId: id });
   };
 
   const fb = state.feedbackState;
@@ -178,7 +198,13 @@ const FusionPlayer: React.FC<PlayerProps> = ({ stage, baseWord, soundEnabled, re
 
       {/* TENGAH: papan fusion + komponen + aksi */}
       <section className="flex flex-col gap-3 min-w-0 lg:min-h-0 lg:overflow-y-auto">
-        <div className="panel rounded-3xl border border-border-subtle bg-surface-inset relative overflow-hidden">
+        <div
+          ref={boardRef}
+          aria-label="Kartu kata: lepaskan komponen di sini"
+          className={`panel rounded-3xl border bg-surface-inset relative overflow-hidden transition-colors ${
+            drag?.over ? 'border-gold ring-4 ring-gold/40' : drag ? 'border-dashed border-gold/70' : 'border-border-subtle'
+          }`}
+        >
           <div className="absolute top-2 left-3 text-[11px] font-mono text-text-muted">
             {baseWord.japanese} · {baseWord.meaning}
           </div>
@@ -192,15 +218,12 @@ const FusionPlayer: React.FC<PlayerProps> = ({ stage, baseWord, soundEnabled, re
             flight={flight}
             wordRef={wordRef}
           />
-          {/* Pratinjau pilihan (kata belum berubah sampai Cek Jawaban) */}
           <div className="min-h-[1.75rem] pb-2 text-center text-xs sm:text-sm text-text-secondary font-body" aria-live="polite">
-            {!state.completed && !busy && (state.selectedComponent && preview ? (
-              <span>
-                {state.currentWord.japanese} + <b className="text-gold">{getRule(state.selectedComponent, state.stage).label}</b> → ?
-              </span>
-            ) : (
-              <span className="lg:hidden">{step.instruction}</span>
-            ))}
+            {!state.completed && !busy && (
+              drag
+                ? <span>{state.currentWord.japanese} + <b className="text-gold">{getRule(drag.id, state.stage).label}</b> {drag.over ? '— lepas untuk menggabungkan' : '— seret ke kartu ini'}</span>
+                : <span>{dropTip ?? 'Seret komponen dari bawah ke kartu ini, lalu lepaskan.'}</span>
+            )}
           </div>
         </div>
 
@@ -250,18 +273,20 @@ const FusionPlayer: React.FC<PlayerProps> = ({ stage, baseWord, soundEnabled, re
             <div role="group" aria-label="Komponen grammar" className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-2">
               {state.availableComponents.map(id => {
                 const r = getRule(id, state.stage);
-                const selected = state.selectedComponent === id;
                 const hinted = state.hintedComponent === id;
+                const dragging = drag?.id === id;
                 return (
                   <button
                     key={id}
-                    ref={el => { btnRefs.current[id] = el; }}
                     type="button"
                     disabled={busy || state.completed}
-                    aria-pressed={selected}
-                    onClick={() => handleSelect(id)}
-                    className={`min-h-[56px] px-2 py-2 rounded-2xl border text-center transition-all cursor-pointer disabled:cursor-not-allowed disabled:opacity-60 ${
-                      selected ? 'bg-gold/25 border-gold shadow-md -translate-y-0.5' : 'bg-surface-card border-border-subtle hover:border-border-primary'
+                    aria-label={`${r.label}. Seret ke kartu kata; atau tekan Enter untuk menjatuhkannya.`}
+                    onPointerDown={e => startDrag(e, id)}
+                    onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); click(); handleDrop(id); } }}
+                    onClick={e => e.preventDefault()}
+                    style={{ touchAction: 'none' }}
+                    className={`min-h-[56px] px-2 py-2 rounded-2xl border text-center transition-all select-none cursor-grab active:cursor-grabbing disabled:cursor-not-allowed disabled:opacity-60 bg-surface-card border-border-subtle hover:border-border-primary ${
+                      dragging ? 'opacity-40' : ''
                     } ${hinted ? 'ring-2 ring-gold' : ''}`}
                   >
                     <span className="block font-heading font-black text-text-primary text-base">{r.label}</span>
@@ -272,18 +297,7 @@ const FusionPlayer: React.FC<PlayerProps> = ({ stage, baseWord, soundEnabled, re
             </div>
 
             {/* Aksi: menempel di bawah pada HP agar terjangkau ibu jari */}
-            <div className="sticky bottom-0 lg:static -mx-3 px-3 pb-2 pt-2 lg:m-0 lg:p-0 bg-surface-card/95 lg:bg-transparent backdrop-blur flex items-center gap-2 border-t border-border-subtle lg:border-0">
-              <button
-                type="button"
-                onClick={handleCheck}
-                disabled={!state.selectedComponent || busy}
-                className={`flex-1 flex items-center justify-center gap-2 px-6 py-3.5 rounded-2xl font-heading font-black text-sm select-none ${
-                  state.selectedComponent && !busy ? 'btn-cta cursor-pointer' : 'bg-surface-inset text-text-muted border border-border-subtle opacity-60 cursor-not-allowed'
-                }`}
-              >
-                <Sparkles className="w-4 h-4" />
-                <span>Cek Jawaban</span>
-              </button>
+            <div className="sticky bottom-0 lg:static -mx-3 px-3 pb-2 pt-2 lg:m-0 lg:p-0 bg-surface-card/95 lg:bg-transparent backdrop-blur flex items-center justify-end gap-2 border-t border-border-subtle lg:border-0">
               <button type="button" aria-label="Petunjuk" disabled={busy} onClick={() => { click(); dispatch({ type: 'HINT' }); }} className="btn-physical-secondary w-12 h-12 rounded-2xl flex items-center justify-center cursor-pointer p-0 disabled:opacity-50">
                 <Lightbulb className="w-5 h-5" />
               </button>
@@ -313,7 +327,7 @@ const FusionPlayer: React.FC<PlayerProps> = ({ stage, baseWord, soundEnabled, re
             <p className="text-xs text-text-muted">Arti: {state.stage.steps[lastEntry.stepIndex].resultMeaning}</p>
           </div>
         ) : (
-          <div className={`${card} text-sm text-text-secondary`}>Pilih komponen, lalu tekan <b>Cek Jawaban</b> untuk melihat kata berubah.</div>
+          <div className={`${card} text-sm text-text-secondary`}>Seret komponen ke <b>kartu kata</b> lalu lepaskan. Kalau cocok, kata berubah; kalau tidak, komponen ditolak.</div>
         )}
 
         {state.completed && !busy && (
@@ -330,65 +344,53 @@ const FusionPlayer: React.FC<PlayerProps> = ({ stage, baseWord, soundEnabled, re
           </ul>
         )}
       </section>
+      {drag && createPortal(
+        <div
+          aria-hidden="true"
+          style={{ position: 'fixed', left: drag.x, top: drag.y, transform: 'translate(-50%, -50%)', pointerEvents: 'none', zIndex: 100 }}
+          className={`px-4 py-3 rounded-2xl border-2 font-heading font-black text-base shadow-2xl ${drag.over ? 'bg-gold text-black border-gold scale-110' : 'bg-surface-card text-text-primary border-gold'}`}
+        >
+          {getRule(drag.id, state.stage).label}
+        </div>,
+        document.body
+      )}
     </div>
   );
 };
 
-// Kombinasi (pola × kata) Latihan Bebas yang sudah memberi hadiah pada sesi halaman ini — mencegah farming.
+// Kombinasi (pola × kata) yang sudah memberi hadiah pada sesi halaman ini — mencegah farming.
 const freeRewarded = new Set<string>();
-const FREE_TABS = [
-  { id: 'stage', label: 'Stage' },
-  { id: 'free', label: 'Latihan Bebas' },
-] as const;
 
+const randomItem = <T,>(items: T[], not?: T): T => {
+  const pool = items.length > 1 && not !== undefined ? items.filter(i => i !== not) : items;
+  return pool[Math.floor(Math.random() * pool.length)];
+};
+
+/** Dungeon = sandbox engine: pola dan kotoba diacak lewat tombol, tidak ada stage. */
 export const GrammarFusionModal: React.FC<Props> = ({ onClose, soundEnabled = true, onRewardPlayer }) => {
-  const [mode, setMode] = useState<'stage' | 'free'>('stage');
-  const [progress, setProgress] = useState<FusionProgress>(() => loadFusionProgress());
-  const [stageIndex, setStageIndex] = useState(0);
-  const [runId, setRunId] = useState(0);
-  const [reduceMotion, setReduceMotion] = useState(readReduceMotion);
-  const [freePick, setFreePick] = useState<{ verb: FusionVerbEntry; pattern: GrammarPatternSchema } | null>(null);
-  const click = () => playSound('click', soundEnabled);
-
-  const stage = FUSION_STAGES[stageIndex];
-  // Kata dasar dipilih sekali per percobaan (runId), bukan tiap render.
-  const baseWord = React.useMemo(() => stage.words[Math.floor(Math.random() * stage.words.length)], [stage, runId]); // eslint-disable-line react-hooks/exhaustive-deps
-
   const allVerbs = React.useMemo(() => getFusionVerbs(), []);
   const allPatterns = React.useMemo(() => getFusionPatterns(), []);
-  const freeStage = React.useMemo(
-    () => (freePick ? buildFreeStage(freePick.pattern, freePick.verb, { allPatterns }) : null),
+  const [runId, setRunId] = useState(0);
+  const [reduceMotion, setReduceMotion] = useState(readReduceMotion);
+  const [pick, setPick] = useState(() => ({ verb: randomItem<FusionVerbEntry>(allVerbs), pattern: randomItem<GrammarPatternSchema>(allPatterns) }));
+  const click = () => playSound('click', soundEnabled);
+
+  const stage = React.useMemo(
+    () => buildFreeStage(pick.pattern, pick.verb, { allPatterns }),
     // runId ikut agar pengecoh diacak ulang saat "Ulangi".
-    [freePick, allPatterns, runId] // eslint-disable-line react-hooks/exhaustive-deps
+    [pick, allPatterns, runId] // eslint-disable-line react-hooks/exhaustive-deps
   );
 
-  const handleStageFinished = useCallback((mistakes: number, hints: number, exp: number, gold: number): RewardOut => {
-    const { progress: next, firstClear } = recordFusionClear(progress, stage.id, mistakes, hints);
-    setProgress(next);
-    saveFusionProgress(next);
-    const ratio = firstClear ? 1 : REPEAT_REWARD_RATIO;
-    const out: RewardOut = {
-      exp: Math.round(exp * ratio),
-      gold: Math.round(gold * ratio),
-      note: firstClear ? undefined : `Ulangan: hadiah ${Math.round(REPEAT_REWARD_RATIO * 100)}%`,
-    };
-    onRewardPlayer?.(out.exp, out.gold);
-    return out;
-  }, [progress, stage.id, onRewardPlayer]);
-
-  const handleFreeFinished = useCallback((_m: number, _h: number, exp: number, gold: number): RewardOut => {
-    if (!freePick) return { exp: 0, gold: 0 };
-    const key = `${freePick.pattern.id}|${freePick.verb.japanese}`;
-    if (freeRewarded.has(key)) return { exp: 0, gold: 0, note: 'Latihan bebas: kombinasi ini sudah memberi hadiah di sesi ini.' };
+  const handleFinished = useCallback((_m: number, _h: number, exp: number, gold: number): RewardOut => {
+    const key = `${pick.pattern.id}|${pick.verb.japanese}`;
+    if (freeRewarded.has(key)) return { exp: 0, gold: 0, note: 'Kombinasi pola dan kata ini sudah memberi hadiah di sesi ini.' };
     freeRewarded.add(key);
     onRewardPlayer?.(exp, gold);
-    return { exp, gold, note: 'Latihan bebas: hadiah kombinasi baru.' };
-  }, [freePick, onRewardPlayer]);
+    return { exp, gold, note: 'Hadiah kombinasi baru.' };
+  }, [pick, onRewardPlayer]);
 
-  const randomVerbFor = () => {
-    const pool = allVerbs.filter(v => v.japanese !== freePick?.verb.japanese);
-    return pool[Math.floor(Math.random() * pool.length)];
-  };
+  const shufflePattern = () => { click(); setPick(p => ({ ...p, pattern: randomItem(allPatterns, p.pattern) })); };
+  const shuffleVerb = () => { click(); setPick(p => ({ ...p, verb: randomItem(allVerbs, p.verb) })); };
 
   const toggleMotion = () => {
     const next = !reduceMotion;
@@ -402,24 +404,13 @@ export const GrammarFusionModal: React.FC<Props> = ({ onClose, soundEnabled = tr
     return () => window.removeEventListener('keydown', onKey);
   }, [onClose]);
 
-  const subtitle =
-    mode === 'free'
-      ? freePick ? `${freePick.pattern.jlpt} · ${freePick.pattern.title}` : `Pilih kata & pola · ${allVerbs.length} kata kerja × ${allPatterns.length} pola`
-      : `${stage.jlpt} · ${stage.title}${progress.cleared[stage.id] ? ' · ✓ selesai' : ''}`;
-
-  const stageActions: EndAction[] = [
-    { label: 'Ulangi (kata baru)', onClick: () => setRunId(r => r + 1) },
-    stageIndex + 1 < FUSION_STAGES.length
-      ? { label: 'Stage berikutnya', primary: true, onClick: () => { setStageIndex(i => i + 1); setRunId(r => r + 1); } }
-      : { label: 'Latihan Bebas', primary: true, onClick: () => setMode('free') },
+  const endActions: EndAction[] = [
+    { label: 'Ulangi', onClick: () => setRunId(r => r + 1) },
+    { label: 'Acak kotoba', onClick: () => setPick(p => ({ ...p, verb: randomItem(allVerbs, p.verb) })) },
+    { label: 'Acak pola', primary: true, onClick: () => setPick(p => ({ ...p, pattern: randomItem(allPatterns, p.pattern) })) },
   ];
-  const freeActions: EndAction[] = freePick
-    ? [
-        { label: 'Ulangi', onClick: () => setRunId(r => r + 1) },
-        { label: 'Kata acak lain', onClick: () => { setFreePick({ ...freePick, verb: randomVerbFor() }); setRunId(r => r + 1); } },
-        { label: 'Ganti pilihan', primary: true, onClick: () => setFreePick(null) },
-      ]
-    : [];
+
+  const shuffleBtn = 'btn-physical-secondary flex items-center gap-2 px-3 py-2 rounded-xl text-xs font-bold cursor-pointer';
 
   return createPortal(
     <div className="fixed inset-0 z-[80] flex items-center justify-center p-0 sm:p-3 bg-black/85">
@@ -427,21 +418,20 @@ export const GrammarFusionModal: React.FC<Props> = ({ onClose, soundEnabled = tr
         <div className="flex items-center justify-between gap-3 p-3 sm:p-4 border-b border-border-subtle shrink-0">
           <div className="flex items-center gap-3 min-w-0">
             <div className="w-10 h-10 rounded-2xl bg-gold/15 text-gold border border-border-subtle flex items-center justify-center shrink-0">
-              <Sparkles className="w-5 h-5" />
+              <Swords className="w-5 h-5" />
             </div>
             <div className="min-w-0">
               <h3 className="font-heading font-black text-text-primary truncate">Bunpou Dungeon: Grammar Fusion</h3>
-              <p className="text-[11px] text-text-secondary truncate">{subtitle}</p>
+              <p className="text-[11px] text-text-secondary truncate">{pick.pattern.jlpt} · {pick.pattern.title} · {pick.verb.japanese}</p>
             </div>
           </div>
           <div className="flex items-center gap-2 shrink-0">
-            <div role="tablist" aria-label="Mode" className="hidden sm:flex p-1 rounded-xl bg-surface-inset border border-border-subtle gap-1">
-              {FREE_TABS.map(t => (
-                <button key={t.id} type="button" role="tab" aria-selected={mode === t.id} onClick={() => { click(); setMode(t.id); }} className={`px-3 py-1.5 rounded-lg text-xs font-bold cursor-pointer ${mode === t.id ? 'bg-surface-card text-gold border border-border-subtle' : 'text-text-muted hover:text-text-primary'}`}>
-                  {t.label}
-                </button>
-              ))}
-            </div>
+            <button type="button" onClick={shufflePattern} className={`${shuffleBtn} hidden sm:flex`}>
+              <Shuffle className="w-4 h-4" />Acak Pola
+            </button>
+            <button type="button" onClick={shuffleVerb} className={`${shuffleBtn} hidden sm:flex`}>
+              <Shuffle className="w-4 h-4" />Acak Kotoba
+            </button>
             <button type="button" aria-pressed={reduceMotion} aria-label="Kurangi gerak" title="Kurangi gerak" onClick={toggleMotion} className={`btn-physical-secondary w-9 h-9 rounded-xl flex items-center justify-center cursor-pointer p-0 ${reduceMotion ? 'text-gold' : ''}`}>
               <Wind className="w-4 h-4" />
             </button>
@@ -451,46 +441,22 @@ export const GrammarFusionModal: React.FC<Props> = ({ onClose, soundEnabled = tr
           </div>
         </div>
 
-        {/* Tab mode untuk HP (di header tidak muat) */}
-        <div role="tablist" aria-label="Mode" className="sm:hidden flex p-1 mx-3 mt-2 rounded-xl bg-surface-inset border border-border-subtle gap-1 shrink-0">
-          {FREE_TABS.map(t => (
-            <button key={t.id} type="button" role="tab" aria-selected={mode === t.id} onClick={() => { click(); setMode(t.id); }} className={`flex-1 px-3 py-2 rounded-lg text-xs font-bold cursor-pointer ${mode === t.id ? 'bg-surface-card text-gold border border-border-subtle' : 'text-text-muted'}`}>
-              {t.label}
-            </button>
-          ))}
+        {/* Tombol acak untuk HP (di header tidak muat) */}
+        <div className="sm:hidden grid grid-cols-2 gap-2 mx-3 mt-2 shrink-0">
+          <button type="button" onClick={shufflePattern} className={`${shuffleBtn} justify-center`}><Shuffle className="w-4 h-4" />Acak Pola</button>
+          <button type="button" onClick={shuffleVerb} className={`${shuffleBtn} justify-center`}><Shuffle className="w-4 h-4" />Acak Kotoba</button>
         </div>
 
         <div className="flex-1 min-h-0 overflow-y-auto lg:overflow-hidden p-3 sm:p-4">
-          {mode === 'stage' && (
-            <FusionPlayer
-              key={`${stage.id}:${runId}`}
-              stage={stage}
-              baseWord={baseWord}
-              soundEnabled={soundEnabled}
-              reduceMotion={reduceMotion}
-              onFinished={handleStageFinished}
-              endActions={stageActions}
-            />
-          )}
-          {mode === 'free' && !freePick && (
-            <FusionPicker
-              verbs={allVerbs}
-              patterns={allPatterns}
-              soundEnabled={soundEnabled}
-              onStart={(verb, pattern) => { setFreePick({ verb, pattern }); setRunId(r => r + 1); }}
-            />
-          )}
-          {mode === 'free' && freePick && freeStage && (
-            <FusionPlayer
-              key={`${freeStage.id}:${freePick.verb.japanese}:${runId}`}
-              stage={freeStage}
-              baseWord={freePick.verb}
-              soundEnabled={soundEnabled}
-              reduceMotion={reduceMotion}
-              onFinished={handleFreeFinished}
-              endActions={freeActions}
-            />
-          )}
+          <FusionPlayer
+            key={`${stage.id}:${pick.verb.japanese}:${runId}`}
+            stage={stage}
+            baseWord={pick.verb}
+            soundEnabled={soundEnabled}
+            reduceMotion={reduceMotion}
+            onFinished={handleFinished}
+            endActions={endActions}
+          />
         </div>
       </div>
     </div>,
