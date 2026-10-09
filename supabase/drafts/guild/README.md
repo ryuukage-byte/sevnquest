@@ -32,8 +32,16 @@ Tiga tahap terpisah: **draf -> review/uji -> penerapan**; menulis file ini bukan
 
 ## Prasyarat sebelum penerapan (belum dikerjakan)
 - Baseline skema live ke `supabase/migrations/` (pekerjaan terpisah; jangan dibuat dari asumsi).
-- Verifikasi `VITE_SECURE_LEADERBOARD=true` di deployment produksi; jika tidak, `weekly_scores` tidak bertambah
-  (v1 `submit_score_event` sudah dicabut dari `authenticated`) dan Guild akan selalu 0.
+- Pastikan `VITE_SECURE_LEADERBOARD=true` di dashboard hosting, pada environment Production DAN Preview. Jika tidak,
+  `weekly_scores` tidak bertambah (v1 `submit_score_event` sudah dicabut dari `authenticated`) dan Guild akan selalu 0.
+  Status per 2026-10-09: nilai di dashboard **belum bisa dibaca** dari sesi ini (variabel hanya dibaca saat build
+  di `src/lib/supabase.ts`, tidak ada di repo; `sevnquest.sevnsoul.site` diblokir kebijakan jaringan sesi).
+  Bukti tidak langsung dari database menunjukkan build produksi yang aktif memakai jalur v2 (flag efektif `true`):
+  sejak migrasi `sec03_2b` (2026-10-04 08:30 UTC) ada 231 baris `weekly_scores` diperbarui (terbaru 2026-10-09
+  05:33 UTC), 486 baris `leaderboard` ber-`exp_credit_at` (hanya diisi RPC), dan `score_event_log` (hanya diisi
+  v2) terisi hingga 05:37 UTC. Ini bukti perilaku build aktif, bukan nilai konfigurasi: build berikutnya masih
+  bisa kehilangan variabel bila hanya diset di salah satu environment. Cara verifikasi langsung: dashboard hosting
+  (Settings > Variables and Secrets), atau DevTools > Network di situs produksi, cari `rpc/submit_score_event_v2`.
 - Review SQL/RLS/hak eksekusi oleh manusia, lalu coba di branch database Supabase sebelum produksi.
 
 ## Menjalankan uji (hanya database lokal sekali pakai)
