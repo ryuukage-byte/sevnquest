@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useReducer, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
-import { X, Swords, Lightbulb, RotateCcw, Check, Wind, Trophy, ArrowRight, Shuffle } from 'lucide-react';
+import { X, Swords, Lightbulb, RotateCcw, Check, Wind, Trophy, ArrowRight, Shuffle, Dices } from 'lucide-react';
 import { createFusionState, fusionReducer } from '../../../engine/fusion/fusionEngine';
 import { formLabel, getRule } from '../../../engine/fusion/rules';
 import { buildFreeStage } from '../../../engine/fusion/freeStage';
@@ -416,6 +416,7 @@ export const GrammarFusionModal: React.FC<Props> = ({ onClose, soundEnabled = tr
   }, [pick, onRewardPlayer]);
 
   const shufflePattern = () => { click(); setPick(p => ({ ...p, pattern: randomItem(allPatterns, p.pattern) })); };
+  const shuffleAll = () => { click(); setPick(p => ({ pattern: randomItem(allPatterns, p.pattern), verb: randomItem(allVerbs, p.verb) })); };
   const shuffleVerb = () => { click(); setPick(p => ({ ...p, verb: randomItem(allVerbs, p.verb) })); };
 
   const toggleMotion = () => {
@@ -436,7 +437,7 @@ export const GrammarFusionModal: React.FC<Props> = ({ onClose, soundEnabled = tr
     { label: 'Acak pola', primary: true, onClick: () => setPick(p => ({ ...p, pattern: randomItem(allPatterns, p.pattern) })) },
   ];
 
-  const shuffleBtn = 'btn-physical-secondary flex items-center gap-2 px-3 py-2 rounded-xl text-xs font-bold cursor-pointer';
+  const shuffleBtn = 'btn-physical-secondary flex items-center gap-1.5 whitespace-nowrap px-2.5 sm:px-3 py-2 rounded-xl text-xs font-bold cursor-pointer';
 
   return createPortal(
     <div className="fixed inset-0 z-[80] flex items-center justify-center p-0 sm:p-3 bg-black/85">
@@ -458,7 +459,10 @@ export const GrammarFusionModal: React.FC<Props> = ({ onClose, soundEnabled = tr
             <button type="button" onClick={shuffleVerb} className={`${shuffleBtn} hidden sm:flex`}>
               <Shuffle className="w-4 h-4" />Acak Kotoba
             </button>
-            <button type="button" aria-pressed={reduceMotion} aria-label="Kurangi gerak" title="Kurangi gerak" onClick={toggleMotion} className={`btn-physical-secondary w-9 h-9 rounded-xl flex items-center justify-center cursor-pointer p-0 ${reduceMotion ? 'text-gold' : ''}`}>
+            <button type="button" onClick={shuffleAll} aria-label="Acak Semua" title="Acak pola dan kotoba sekaligus" className={`${shuffleBtn} hidden sm:flex`}>
+              <Dices className="w-4 h-4" />Acak Semua
+            </button>
+            <button type="button" aria-pressed={reduceMotion} aria-label="Kurangi gerak" title="Kurangi gerak (matikan animasi fusion)" onClick={toggleMotion} className={`btn-physical-secondary w-9 h-9 rounded-xl flex items-center justify-center cursor-pointer p-0 ${reduceMotion ? 'text-gold' : ''}`}>
               <Wind className="w-4 h-4" />
             </button>
             <button type="button" aria-label="Tutup" onClick={() => { click(); onClose(); }} className="btn-physical-secondary w-9 h-9 rounded-xl flex items-center justify-center cursor-pointer p-0">
@@ -468,9 +472,10 @@ export const GrammarFusionModal: React.FC<Props> = ({ onClose, soundEnabled = tr
         </div>
 
         {/* Tombol acak untuk HP (di header tidak muat) */}
-        <div className="sm:hidden grid grid-cols-2 gap-2 mx-3 mt-2 shrink-0">
-          <button type="button" onClick={shufflePattern} className={`${shuffleBtn} justify-center`}><Shuffle className="w-4 h-4" />Acak Pola</button>
-          <button type="button" onClick={shuffleVerb} className={`${shuffleBtn} justify-center`}><Shuffle className="w-4 h-4" />Acak Kotoba</button>
+        <div className="sm:hidden grid grid-cols-3 gap-2 mx-3 mt-2 shrink-0">
+          <button type="button" onClick={shufflePattern} className={`${shuffleBtn} justify-center`}><Shuffle className="w-3.5 h-3.5" />Acak Pola</button>
+          <button type="button" onClick={shuffleVerb} className={`${shuffleBtn} justify-center`}><Shuffle className="w-3.5 h-3.5" />Acak Kotoba</button>
+          <button type="button" onClick={shuffleAll} aria-label="Acak Semua" title="Acak pola dan kotoba sekaligus" className={`${shuffleBtn} justify-center`}><Dices className="w-4 h-4" />Semua</button>
         </div>
 
         <div className="flex-1 min-h-0 overflow-y-auto lg:overflow-hidden p-3 sm:p-4">
