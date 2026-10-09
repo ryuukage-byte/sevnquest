@@ -169,9 +169,9 @@ const FusionPlayer: React.FC<PlayerProps> = ({ stage, baseWord, soundEnabled, re
             <span className={`w-6 h-6 shrink-0 rounded-full flex items-center justify-center font-mono font-bold text-[11px] border ${done ? 'bg-state-success text-white border-state-success' : 'border-border-subtle'}`}>
               {done ? <Check className="w-3.5 h-3.5" /> : i + 1}
             </span>
-            <span className="min-w-0">
-              <span className="block font-heading font-black text-text-primary truncate">+ {rule.label}</span>
-              <span className="hidden lg:block text-text-secondary leading-snug">{s.instruction}</span>
+            <span className="min-w-0 flex-1">
+              <span className="block font-heading font-black text-text-primary break-words">+ {rule.label}</span>
+              <span className="hidden lg:block text-text-secondary leading-snug break-words">{s.instruction}</span>
             </span>
           </li>
         );
@@ -188,14 +188,14 @@ const FusionPlayer: React.FC<PlayerProps> = ({ stage, baseWord, soundEnabled, re
           onClick={() => { click(); onPickPattern(); }}
           aria-label="Ganti pola grammar"
           title="Klik untuk mengganti pola"
-          className={`${card} w-full text-left flex lg:block items-center justify-between gap-2 cursor-pointer hover:border-gold transition-colors`}
+          className={`${card} w-full text-left block cursor-pointer hover:border-gold transition-colors`}
         >
-          <div>
+          <div className="min-w-0">
             <div className="text-[10px] font-mono uppercase tracking-wider text-text-muted">Target</div>
-            <div className="font-heading font-black text-gold text-lg leading-tight">{state.stage.target.pattern}</div>
+            <div className="font-heading font-black text-gold text-lg leading-tight break-words">{state.stage.target.pattern}</div>
           </div>
-          <div className="text-xs text-text-secondary lg:mt-1 text-right lg:text-left">{state.stage.target.meaning}</div>
-          <div className="hidden lg:block text-[10px] font-mono text-text-muted mt-1">Klik untuk ganti pola</div>
+          <div className="min-w-0 text-xs text-text-secondary mt-1 text-left break-words">{state.stage.target.meaning}</div>
+          <div className="text-[10px] font-mono text-text-muted mt-1">Ketuk untuk ganti pola</div>
         </button>
         {stepper}
         {!state.completed && (
@@ -219,7 +219,7 @@ const FusionPlayer: React.FC<PlayerProps> = ({ stage, baseWord, soundEnabled, re
             type="button"
             onClick={() => { click(); onPickVerb(); }}
             aria-label="Ganti kotoba"
-            className="absolute top-2 left-3 z-10 text-[11px] font-mono text-text-muted hover:text-gold cursor-pointer"
+            className="absolute top-2 left-3 right-3 z-10 text-left truncate text-[11px] font-mono text-text-muted hover:text-gold cursor-pointer"
           >
             {baseWord.japanese} · {baseWord.meaning} (ganti)
           </button>
@@ -272,7 +272,7 @@ const FusionPlayer: React.FC<PlayerProps> = ({ stage, baseWord, soundEnabled, re
         {showBoardReward ? (
           <div className={`${card} text-center space-y-3`}>
             <Trophy className="w-8 h-8 text-gold mx-auto" />
-            <div className="font-heading font-black text-lg text-text-primary">
+            <div className="font-heading font-black text-base sm:text-lg text-text-primary break-words">
               {state.currentWord.japanese} — {state.stage.target.meaning.split('...').join(baseWord.meaning)}
             </div>
             <div className="text-sm font-mono text-gold">
@@ -286,7 +286,7 @@ const FusionPlayer: React.FC<PlayerProps> = ({ stage, baseWord, soundEnabled, re
                   key={a.label}
                   type="button"
                   onClick={() => { click(); a.onClick(); }}
-                  className={`flex-1 px-4 py-3 rounded-2xl text-sm cursor-pointer ${a.primary ? 'btn-cta font-heading font-black' : 'btn-physical-secondary font-bold'}`}
+                  className={`flex-1 min-w-0 px-3 py-3 rounded-2xl text-sm break-words cursor-pointer ${a.primary ? 'btn-cta font-heading font-black' : 'btn-physical-secondary font-bold'}`}
                 >
                   {a.label}
                 </button>
@@ -314,8 +314,8 @@ const FusionPlayer: React.FC<PlayerProps> = ({ stage, baseWord, soundEnabled, re
                       dragging ? 'opacity-40' : ''
                     } ${hinted ? 'ring-2 ring-gold' : ''}`}
                   >
-                    <span className="block font-heading font-black text-text-primary text-base">{r.label}</span>
-                    <span className="block text-[11px] font-mono text-text-muted">{r.hint}</span>
+                    <span className="block font-heading font-black text-text-primary text-sm sm:text-base break-words leading-tight">{r.label}</span>
+                    <span className="block text-[11px] font-mono text-text-muted break-words">{r.hint}</span>
                   </button>
                 );
               })}
@@ -344,11 +344,11 @@ const FusionPlayer: React.FC<PlayerProps> = ({ stage, baseWord, soundEnabled, re
         {lastEntry && !busy ? (
           <div className={`${card} space-y-1.5`}>
             <div className="text-[10px] font-mono uppercase tracking-wider text-text-muted">Perubahan terakhir</div>
-            <div className="font-heading font-black text-text-primary flex flex-wrap items-center gap-1.5" lang="ja">
+            <div className="font-heading font-black text-text-primary flex flex-wrap items-center gap-1.5 break-all" lang="ja">
               <span>{lastEntry.from.japanese}</span><ArrowRight className="w-4 h-4 text-gold" /><span>{lastEntry.to.japanese}</span>
             </div>
             <div className="text-[11px] font-mono text-gold">{formLabel(lastEntry.toForm, state.stage)}</div>
-            <p className="text-sm text-text-secondary font-body leading-relaxed">{lastEntry.explanation}</p>
+            <p className="text-sm text-text-secondary font-body leading-relaxed break-words">{lastEntry.explanation}</p>
             <p className="text-xs text-text-muted">Arti: {state.stage.steps[lastEntry.stepIndex].resultMeaning}</p>
           </div>
         ) : (
@@ -356,13 +356,13 @@ const FusionPlayer: React.FC<PlayerProps> = ({ stage, baseWord, soundEnabled, re
         )}
 
         {state.completed && !busy && (
-          <div className={`${card} text-sm text-text-secondary font-body leading-relaxed`}>{state.stage.target.explanation}</div>
+          <div className={`${card} text-sm text-text-secondary font-body leading-relaxed break-words`}>{state.stage.target.explanation}</div>
         )}
 
         {state.transformationHistory.length - (busy ? 1 : 0) > 0 && (
           <ul className={`${card} space-y-1 text-sm`} aria-label="Riwayat transformasi" lang="ja">
             {state.transformationHistory.slice(0, state.transformationHistory.length - (busy ? 1 : 0)).map(h => (
-              <li key={h.stepIndex} className="font-body text-text-primary">
+              <li key={h.stepIndex} className="font-body text-text-primary break-words">
                 {h.from.japanese} <span className="text-gold">+ {h.componentLabel}</span> → <b>{h.to.japanese}</b>
               </li>
             ))}
@@ -448,7 +448,7 @@ export const GrammarFusionModal: React.FC<Props> = ({ onClose, soundEnabled = tr
             </div>
             <div className="min-w-0">
               <h3 className="font-heading font-black text-text-primary truncate">Bunpou Dungeon: Grammar Fusion</h3>
-              <p className="text-[11px] text-text-secondary truncate">{pick.pattern.jlpt} · {pick.pattern.title} · {pick.verb.japanese}</p>
+              <p className="text-[11px] text-text-secondary truncate" title={`${pick.pattern.title}`}>{pick.pattern.jlpt} · {pick.pattern.title} · {pick.verb.japanese}</p>
             </div>
           </div>
           <div className="flex items-center gap-2 shrink-0">

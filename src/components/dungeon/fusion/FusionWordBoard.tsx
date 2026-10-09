@@ -92,12 +92,12 @@ export const FusionWordBoard: React.FC<Props> = ({ word, form, stage, animating,
   }
 
   return (
-    <div className="relative flex flex-col items-center justify-center text-center py-3 sm:py-6 lg:[--fusion-cap:4.25rem]" role="img" aria-label={`${shown.japanese}, ${formLabel(shownForm, stage)}`}>
-      <span className="px-3 py-1 rounded-full text-[11px] sm:text-xs font-mono font-bold bg-gold/15 text-gold border border-border-subtle uppercase tracking-wider mb-2 sm:mb-3">
+    <div className="relative flex flex-col items-center justify-center text-center px-3 py-3 sm:py-6 lg:[--fusion-cap:4.25rem]" style={{ containerType: 'inline-size' }} role="img" aria-label={`${shown.japanese}, ${formLabel(shownForm, stage)}`}>
+      <span className="max-w-full px-3 py-1 rounded-full text-[11px] sm:text-xs font-mono font-bold bg-gold/15 text-gold border border-border-subtle uppercase tracking-wider mb-2 sm:mb-3 break-words">
         {formLabel(shownForm, stage)}
       </span>
 
-      <div ref={wordRef} className="relative">
+      <div ref={wordRef} className="relative max-w-full">
         {/* Partikel kecil, tidak menutup teks (aria-hidden, nonaktif saat reduced motion). */}
         {!reduceMotion && (phase === 'absorb' || phase === 'reveal') && (
           <div className="pointer-events-none absolute inset-0" aria-hidden="true">
@@ -115,7 +115,7 @@ export const FusionWordBoard: React.FC<Props> = ({ word, form, stage, animating,
 
         <div
           className="relative font-heading font-black text-text-primary whitespace-nowrap leading-tight"
-          style={{ fontSize: `min(calc(80vw / ${n}), var(--fusion-cap, 5.5rem))` }}
+          style={{ fontSize: `min(calc(88cqw / ${n}), var(--fusion-cap, 5.5rem))` }}
           lang="ja"
         >
           {chars}
