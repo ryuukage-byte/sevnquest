@@ -57,7 +57,7 @@ export const PlayerShowcaseCard: React.FC<PlayerShowcaseCardProps> = ({
       `📜 Estimasi Level: JLPT ${jlptEstimate}\n` +
       `🀄 Kanji Dikuasai: ${kanjiMasteredCount}\n` +
       `📖 Kosakata Dikuasai: ${vocabMasteredCount}\n` +
-      `✨ Kemenangan Flawless: ${flawlessFloorCount} Lantai\n` +
+      `🏆 Kemenangan Flawless: ${flawlessFloorCount} Lantai\n` +
       `⚔️ Gelar: 「${activeTitle}」\n` +
       `#SevnQuest #NihongoTower #BelajarJepang`;
 

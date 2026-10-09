@@ -1277,7 +1277,7 @@ const BESPOKE_SKILL_NODES: Record<string, Partial<GrammarSkillNodes>> = {
     concept: {
       summary: 'Semoga... / Mudah-mudahan... (Doa tulus atau harapan hati)',
       beforeState: 'Harapan / Doa Dalam Hati: Sangat ingin lulus ujian 🙏',
-      afterState: 'Doa Yang Terucap: 合格しますように。 (Semoga berhasil lulus!) ✨',
+      afterState: 'Doa Yang Terucap: 合格しますように。 (Semoga berhasil lulus!)',
       starterExample: {
         japanese: '試験に合格しますように。',
         reading: 'しけんにごうかくしますように。',

@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useReducer, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
-import { X, Sparkles, Lightbulb, RotateCcw, Check, Wind, Trophy, ArrowRight } from 'lucide-react';
+import { X, Atom, Lightbulb, RotateCcw, Check, Wind, Trophy, ArrowRight } from 'lucide-react';
 import { FUSION_STAGES } from '../../../data/fusion/stages';
 import { createFusionState, fusionReducer, previewSelection } from '../../../engine/fusion/fusionEngine';
 import { formLabel, getRule } from '../../../engine/fusion/rules';
@@ -281,7 +281,7 @@ const FusionPlayer: React.FC<PlayerProps> = ({ stage, baseWord, soundEnabled, re
                   state.selectedComponent && !busy ? 'btn-cta cursor-pointer' : 'bg-surface-inset text-text-muted border border-border-subtle opacity-60 cursor-not-allowed'
                 }`}
               >
-                <Sparkles className="w-4 h-4" />
+                <Atom className="w-4 h-4" />
                 <span>Cek Jawaban</span>
               </button>
               <button type="button" aria-label="Petunjuk" disabled={busy} onClick={() => { click(); dispatch({ type: 'HINT' }); }} className="btn-physical-secondary w-12 h-12 rounded-2xl flex items-center justify-center cursor-pointer p-0 disabled:opacity-50">
@@ -427,7 +427,7 @@ export const GrammarFusionModal: React.FC<Props> = ({ onClose, soundEnabled = tr
         <div className="flex items-center justify-between gap-3 p-3 sm:p-4 border-b border-border-subtle shrink-0">
           <div className="flex items-center gap-3 min-w-0">
             <div className="w-10 h-10 rounded-2xl bg-gold/15 text-gold border border-border-subtle flex items-center justify-center shrink-0">
-              <Sparkles className="w-5 h-5" />
+              <Atom className="w-5 h-5" />
             </div>
             <div className="min-w-0">
               <h3 className="font-heading font-black text-text-primary truncate">Bunpou Dungeon: Grammar Fusion</h3>

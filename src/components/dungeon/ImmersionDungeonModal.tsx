@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { motion } from 'motion/react';
-import { X, Headphones, Music, Clapperboard, ChevronRight, ChevronLeft, Play, Sparkles } from 'lucide-react';
+import { X, Headphones, Music, Clapperboard, ChevronRight, ChevronLeft, Play, Bot } from 'lucide-react';
 import { parseYouTubeId } from '../../utils/youtube';
 import { playSound } from '../../utils/audio';
 import { ImmersionStage } from './ImmersionStage';
@@ -196,7 +196,7 @@ export const ImmersionDungeonModal: React.FC<Props> = ({ onClose, soundEnabled =
                   onClick={() => setShowAi(v => !v)}
                   className={`ui-chip px-3 py-1.5 text-xs font-heading font-bold cursor-pointer flex items-center gap-1.5 ${showAi ? 'is-active' : ''}`}
                 >
-                  <Sparkles className="w-3.5 h-3.5" /> Prompt AI &amp; JSON
+                  <Bot className="w-3.5 h-3.5" /> Prompt AI &amp; JSON
                 </button>
                 {showAi && <ImmersionTemplatePanel videoId={videoId} fetchedLines={fetched} onLoad={loadTemplate} />}
               </div>
