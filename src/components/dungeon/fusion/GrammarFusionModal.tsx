@@ -251,7 +251,7 @@ const FusionPlayer: React.FC<PlayerProps> = ({ stage, baseWord, soundEnabled, re
             {!state.completed && !busy && (
               drag
                 ? <span>{state.currentWord.japanese} + <b className="text-gold">{getRule(drag.id, state.stage).label}</b> {drag.over ? '— lepas untuk menggabungkan' : '— seret ke kartu ini'}</span>
-                : <span>{dropTip ?? 'Seret komponen dari bawah ke kartu ini, lalu lepaskan.'}</span>
+                : <span>{dropTip ?? 'Klik kotoba untuk mengganti kata'}</span>
             )}
           </div>
         </div>
