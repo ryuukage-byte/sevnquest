@@ -7,6 +7,7 @@ import { playSound } from '../../utils/audio';
 import { DungeonType, DungeonPayload, generateDungeonSession } from '../../utils/dungeonGenerator';
 import { TextStudyDungeonModal } from '../dungeon/TextStudyDungeonModal';
 import { ImmersionDungeonModal } from '../dungeon/ImmersionDungeonModal';
+import { GrammarFusionModal } from '../dungeon/fusion/GrammarFusionModal';
 import { DungeonPortalHub } from '../dungeon/DungeonPortalHub';
 import { DungeonSetupModal } from '../dungeon/DungeonSetupModal';
 import { DungeonSessionRunner } from '../dungeon/DungeonSessionRunner';
@@ -64,6 +65,7 @@ export const WorldView: React.FC<WorldViewProps> = ({
   const [setupDungeonType, setSetupDungeonType] = useState<DungeonType | null>(null);
   const [textStudyOpen, setTextStudyOpen] = useState(false);
   const [immersionOpen, setImmersionOpen] = useState(false);
+  const [fusionOpen, setFusionOpen] = useState(false);
   const [activeDungeonPayload, setActiveDungeonPayload] = useState<DungeonPayload | null>(null);
 
   useEffect(() => {
@@ -82,6 +84,7 @@ export const WorldView: React.FC<WorldViewProps> = ({
       setSetupDungeonType(null);
       setTextStudyOpen(false);
       setImmersionOpen(false);
+      setFusionOpen(false);
       setActiveDungeonPayload(null);
     }
   }, [resetSignal]);
@@ -222,6 +225,8 @@ export const WorldView: React.FC<WorldViewProps> = ({
           onSelectDungeon={(type) => {
             if (type === 'text_study') {
               setTextStudyOpen(true);
+            } else if (type === 'grammar_fusion') {
+              setFusionOpen(true);
             } else if (type === 'immersion') {
               setImmersionOpen(true);
             } else if (type === 'blackboard') {
@@ -279,6 +284,14 @@ export const WorldView: React.FC<WorldViewProps> = ({
           soundEnabled={soundEnabled}
           onRewardPlayer={onRewardPlayer}
           onClose={() => setTextStudyOpen(false)}
+        />
+      )}
+
+      {fusionOpen && (
+        <GrammarFusionModal
+          soundEnabled={soundEnabled}
+          onRewardPlayer={onRewardPlayer}
+          onClose={() => setFusionOpen(false)}
         />
       )}
 

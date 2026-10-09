@@ -11,7 +11,7 @@
     "clean": "rm -rf dist server.js",
     "lint": "tsc --noEmit",
     "deploy": "gh-pages -d dist",
-    "test": "tsx --test src/engine/search/universalSearch.test.ts src/engine/deck/deckBuilder.test.ts src/utils/weekId.test.ts src/data/bunpou.golden.test.ts src/engine/morphology/inflectionEngine.test.ts src/engine/tower1/tower1.test.ts src/engine/tower1/tower2.test.ts src/engine/textStudy/textAnalyzer.test.ts src/utils/youtube.test.ts src/engine/textStudy/captionAnalysis.test.ts src/engine/textStudy/wordTiming.test.ts src/engine/textStudy/immersionTemplate.test.ts api/captions.test.ts"
+    "test": "tsx --test src/engine/search/universalSearch.test.ts src/engine/deck/deckBuilder.test.ts src/utils/weekId.test.ts src/data/bunpou.golden.test.ts src/engine/morphology/inflectionEngine.test.ts src/engine/tower1/tower1.test.ts src/engine/tower1/tower2.test.ts src/engine/fusion/fusion.test.ts src/engine/textStudy/textAnalyzer.test.ts src/utils/youtube.test.ts src/engine/textStudy/captionAnalysis.test.ts src/engine/textStudy/wordTiming.test.ts src/engine/textStudy/immersionTemplate.test.ts api/captions.test.ts"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.112.4",

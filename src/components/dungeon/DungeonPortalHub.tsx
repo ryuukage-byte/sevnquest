@@ -13,13 +13,14 @@ import {
   ScrollText,
   Presentation,
   Library,
-  Headphones
+  Headphones,
+  Sparkles
 } from 'lucide-react';
 import { DungeonType } from '../../utils/dungeonGenerator';
 import { playSound } from '../../utils/audio';
 
 /** 'text_study' dan 'immersion' bukan DungeonType generator: masing-masing membuka modal sendiri (tanpa payload soal). */
-export type DungeonGateType = DungeonType | 'text_study' | 'immersion';
+export type DungeonGateType = DungeonType | 'text_study' | 'immersion' | 'grammar_fusion';
 
 interface DungeonPortalHubProps {
   onSelectDungeon: (type: DungeonGateType) => void;
@@ -111,6 +112,15 @@ const DUNGEON_GATES: DungeonGateInfo[] = [
     description: 'Lihat bagaimana kata berubah di berbagai pola kalimat.',
     expPerQuestion: 15,
     goldPerQuestion: 8,
+  },
+  {
+    type: 'grammar_fusion',
+    title: 'Bunpou Dungeon: Grammar Fusion',
+    accentColor: 'hover:border-border-primary',
+    icon: Sparkles,
+    description: 'Lebur komponen tata bahasa ke kata dasar dan lihat 食べる berubah jadi 食べないでください.',
+    expPerQuestion: 60,
+    goldPerQuestion: 30,
   },
   {
     type: 'text_study',
@@ -227,7 +237,7 @@ export const DungeonPortalHub: React.FC<DungeonPortalHubProps> = ({
                   <span className="text-[11px] font-mono font-bold text-gold flex items-center gap-1">
                     <span>+{gate.expPerQuestion} EXP</span>
                     <span className="text-text-muted">·</span>
-                    <span>+{gate.goldPerQuestion} Gold / soal</span>
+                    <span>+{gate.goldPerQuestion} Gold / {gate.type === 'grammar_fusion' ? 'stage' : 'soal'}</span>
                   </span>
                 ) : (
                   <span className="text-[11px] font-mono font-bold text-text-muted">Musik · Video</span>
