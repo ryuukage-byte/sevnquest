@@ -34,7 +34,7 @@ export function createFusionState(
     baseWord,
     currentStep: 0,
     currentWord: { japanese: baseWord.japanese, reading: baseWord.reading },
-    currentForm: 'jisho',
+    currentForm: stage.initialForm ?? 'jisho',
     selectedComponent: null,
     transformationHistory: [],
     availableComponents: shuffled(stage.components, rand),
@@ -71,6 +71,12 @@ export function fusionReducer(state: FusionState, action: FusionAction): FusionS
       if (state.completed || state.animationState !== 'idle') return state;
       if (!state.availableComponents.includes(action.ruleId)) return state;
       return { ...state, selectedComponent: action.ruleId, feedbackState: null };
+    }
+
+    case 'DROP': {
+      if (state.completed || state.animationState !== 'idle') return state;
+      if (!state.availableComponents.includes(action.ruleId)) return state;
+      return fusionReducer({ ...state, selectedComponent: action.ruleId }, { type: 'CHECK' });
     }
 
     case 'CHECK': {
