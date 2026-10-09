@@ -9,6 +9,7 @@ import type { GrammarPatternSchema } from '../../../engine/types';
 import type { FusionAnimationPhase, FusionBaseWord, FusionRuleId, FusionStage } from '../../../engine/fusion/types';
 import { playSound } from '../../../utils/audio';
 import { FusionWordBoard } from './FusionWordBoard';
+import { FusionPickerDialog } from './FusionPickerDialog';
 
 interface Props {
   onClose: () => void;
@@ -48,9 +49,11 @@ interface PlayerProps {
   reduceMotion: boolean;
   onFinished: (mistakes: number, hints: number, exp: number, gold: number) => RewardOut;
   endActions: EndAction[];
+  onPickPattern: () => void;
+  onPickVerb: () => void;
 }
 
-const FusionPlayer: React.FC<PlayerProps> = ({ stage, baseWord, soundEnabled, reduceMotion, onFinished, endActions }) => {
+const FusionPlayer: React.FC<PlayerProps> = ({ stage, baseWord, soundEnabled, reduceMotion, onFinished, endActions, onPickPattern, onPickVerb }) => {
   const [state, dispatch] = useReducer(fusionReducer, undefined, () => createFusionState(stage, baseWord));
   const [flight, setFlight] = useState<{ dx: number; dy: number; label: string } | null>(null);
   const [reward, setReward] = useState<RewardOut | null>(null);
@@ -180,13 +183,20 @@ const FusionPlayer: React.FC<PlayerProps> = ({ stage, baseWord, soundEnabled, re
     <div className="grid gap-3 lg:grid-cols-[230px_minmax(0,1fr)_280px] lg:h-full lg:min-h-0">
       {/* KIRI / ATAS: target + langkah */}
       <section className="space-y-2 lg:overflow-y-auto" aria-label="Target dan langkah">
-        <div className={`${card} flex lg:block items-center justify-between gap-2`}>
+        <button
+          type="button"
+          onClick={() => { click(); onPickPattern(); }}
+          aria-label="Ganti pola grammar"
+          title="Klik untuk mengganti pola"
+          className={`${card} w-full text-left flex lg:block items-center justify-between gap-2 cursor-pointer hover:border-gold transition-colors`}
+        >
           <div>
             <div className="text-[10px] font-mono uppercase tracking-wider text-text-muted">Target</div>
             <div className="font-heading font-black text-gold text-lg leading-tight">{state.stage.target.pattern}</div>
           </div>
           <div className="text-xs text-text-secondary lg:mt-1 text-right lg:text-left">{state.stage.target.meaning}</div>
-        </div>
+          <div className="hidden lg:block text-[10px] font-mono text-text-muted mt-1">Klik untuk ganti pola</div>
+        </button>
         {stepper}
         {!state.completed && (
           <div className={`${card} text-sm hidden lg:block`}>
@@ -205,9 +215,23 @@ const FusionPlayer: React.FC<PlayerProps> = ({ stage, baseWord, soundEnabled, re
             drag?.over ? 'border-gold ring-4 ring-gold/40' : drag ? 'border-dashed border-gold/70' : 'border-border-subtle'
           }`}
         >
-          <div className="absolute top-2 left-3 text-[11px] font-mono text-text-muted">
-            {baseWord.japanese} · {baseWord.meaning}
-          </div>
+          <button
+            type="button"
+            onClick={() => { click(); onPickVerb(); }}
+            aria-label="Ganti kotoba"
+            className="absolute top-2 left-3 z-10 text-[11px] font-mono text-text-muted hover:text-gold cursor-pointer"
+          >
+            {baseWord.japanese} · {baseWord.meaning} (ganti)
+          </button>
+          <div
+            role="button"
+            tabIndex={0}
+            aria-label="Klik kata untuk mengganti kotoba"
+            title="Klik kata untuk mengganti kotoba"
+            onClick={() => { if (!busy && !drag) { click(); onPickVerb(); } }}
+            onKeyDown={e => { if (e.key === 'Enter' && e.target === e.currentTarget) { click(); onPickVerb(); } }}
+            className="cursor-pointer"
+          >
           <FusionWordBoard
             word={state.currentWord}
             form={state.currentForm}
@@ -218,6 +242,7 @@ const FusionPlayer: React.FC<PlayerProps> = ({ stage, baseWord, soundEnabled, re
             flight={flight}
             wordRef={wordRef}
           />
+          </div>
           <div className="min-h-[1.75rem] pb-2 text-center text-xs sm:text-sm text-text-secondary font-body" aria-live="polite">
             {!state.completed && !busy && (
               drag
@@ -373,6 +398,7 @@ export const GrammarFusionModal: React.FC<Props> = ({ onClose, soundEnabled = tr
   const [runId, setRunId] = useState(0);
   const [reduceMotion, setReduceMotion] = useState(readReduceMotion);
   const [pick, setPick] = useState(() => ({ verb: randomItem<FusionVerbEntry>(allVerbs), pattern: randomItem<GrammarPatternSchema>(allPatterns) }));
+  const [picker, setPicker] = useState<'pattern' | 'verb' | null>(null);
   const click = () => playSound('click', soundEnabled);
 
   const stage = React.useMemo(
@@ -456,9 +482,17 @@ export const GrammarFusionModal: React.FC<Props> = ({ onClose, soundEnabled = tr
             reduceMotion={reduceMotion}
             onFinished={handleFinished}
             endActions={endActions}
+            onPickPattern={() => setPicker('pattern')}
+            onPickVerb={() => setPicker('verb')}
           />
         </div>
       </div>
+      {picker === 'pattern' && (
+        <FusionPickerDialog kind="pattern" items={allPatterns} currentId={pick.pattern.id} onClose={() => setPicker(null)} onPick={pattern => { setPick(p => ({ ...p, pattern })); setPicker(null); }} />
+      )}
+      {picker === 'verb' && (
+        <FusionPickerDialog kind="verb" items={allVerbs} currentId={pick.verb.id} onClose={() => setPicker(null)} onPick={verb => { setPick(p => ({ ...p, verb })); setPicker(null); }} />
+      )}
     </div>,
     document.body
   );
