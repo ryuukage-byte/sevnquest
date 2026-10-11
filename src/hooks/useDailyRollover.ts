@@ -4,6 +4,7 @@ import { INITIAL_DAILY_MISSIONS, INITIAL_WEEKLY_MISSIONS } from '../data/mission
 import { getTodayLocalDate, getLocalIsoWeekId } from '../utils/time';
 import { safeGetItem, safeSetItem } from '../utils/storage';
 import { STORAGE_KEY_LAST_DAILY_RESET, STORAGE_KEY_LAST_WEEKLY_RESET } from '../state/storageKeys';
+import { refreshRecallQueue } from '../state/derivedState';
 
 interface Params {
   setStats: Dispatch<SetStateAction<PlayerStats>>;
@@ -60,7 +61,10 @@ export function useDailyRollover({ setStats, setDailyMissions, setWeeklyMissions
         lastStudyDate: today,
       };
     });
-  }, []);
+
+    // Jadwal SRS jatuh tempo menurut jam, jadi antrean Recall ikut dihitung ulang setiap rollover.
+    setStats(refreshRecallQueue);
+  }, [setStats, setDailyMissions, setWeeklyMissions]);
 
   useEffect(() => {
     applyRollover();

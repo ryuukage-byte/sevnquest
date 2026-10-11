@@ -39,6 +39,25 @@ export function applyLevelFromExp(stats: PlayerStats): { stats: PlayerStats; lev
   };
 }
 
+/**
+ * Bangun ulang antrean Recall berdasarkan waktu sekarang. Jadwal SRS jatuh tempo menurut jam, jadi antrean
+ * bisa basi tanpa ada jawaban baru. Mengembalikan objek yang sama bila isi antrean tidak berubah,
+ * supaya pemanggilan berkala tidak memicu render ulang.
+ */
+export function refreshRecallQueue(stats: PlayerStats): PlayerStats {
+  let nextQueue: PlayerStats['recallQueue'];
+  try {
+    nextQueue = buildSmartRecallQueue(stats.itemMastery || {});
+  } catch (err) {
+    console.warn('Failed to refresh recall queue', err);
+    return stats;
+  }
+  const signature = (queue: PlayerStats['recallQueue'] = []) =>
+    queue.map(q => `${q.itemId}:${q.priorityTier}`).join('|');
+  if (signature(nextQueue) === signature(stats.recallQueue)) return stats;
+  return { ...stats, recallQueue: nextQueue };
+}
+
 /** Hitung ulang data turunan setelah stats dimuat/digabung dari sumber luar. */
 export function withDerivedStats(stats: PlayerStats): PlayerStats {
   const leveled = applyLevelFromExp(stats).stats;

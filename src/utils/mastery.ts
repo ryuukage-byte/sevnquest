@@ -970,7 +970,7 @@ function generateAdaptiveQuestion(
  */
 export function buildSmartRecallQueue(
   itemMastery: Record<string, ItemMasteryRecord> = {},
-  maxItems: number = 10
+  maxItems: number = 50
 ): RecallQueueItem[] {
   const records = Object.values(itemMastery);
   const now = new Date().getTime();
