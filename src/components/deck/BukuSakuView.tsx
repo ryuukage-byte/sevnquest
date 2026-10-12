@@ -50,6 +50,7 @@ import { DeckDetailView } from './DeckDetailView';
 import { UniversalEntityModal } from '../modals/UniversalEntityModal';
 import { KotobaDetailModal } from '../library/KotobaDetailModal';
 import { KanjiDetailModal } from '../library/KanjiDetailModal';
+import { recordKanjiWriting } from '../../utils/kanjiWritingRecord';
 import { BunpouDetailModal } from '../library/BunpouDetailModal';
 
 
@@ -825,6 +826,10 @@ export const BukuSakuView: React.FC<BukuSakuViewProps> = ({
         item={selectedKanji}
         onClose={() => setSelectedKanji(null)}
         soundEnabled={soundEnabled}
+        masteryRecord={selectedKanji ? itemMastery?.[selectedKanji.id || selectedKanji.character] : undefined}
+        onCompleteSheet={(_sheet, score, reward) =>
+          recordKanjiWriting(selectedKanji, score, reward, { onCompleteStudyItem, onRewardPlayer })
+        }
       />
 
 

@@ -4,6 +4,7 @@ import { Filter, ChevronDown, BookOpen, Bookmark, Trash2, LayoutGrid, Table } fr
 import { KANJI_DATABASE } from '../../data/kanji';
 import { KanjiItem, ItemMasteryRecord } from '../../types/content';
 import { KanjiDetailModal } from './KanjiDetailModal';
+import { recordKanjiWriting } from '../../utils/kanjiWritingRecord';
 import { playSound } from '../../utils/audio';
 import { UserDeck } from '../../types/rpg';
 import { isItemBookmarked } from '../../utils/decks';
@@ -789,15 +790,15 @@ export const KanjiLibraryView: React.FC<KanjiLibraryViewProps> = ({
         onUpdateDecks={onUpdateDecks}
         onCompleteSheet={(_sheet, score, reward) => {
           if (!selectedKanji) return;
-          const exp = reward?.expGained ?? 15;
-          const gold = reward?.goldGained ?? 5;
           const kanjiId = selectedKanji.id || selectedKanji.character;
-          if (onRecordInteraction) {
-            onRecordInteraction(kanjiId, 'kanji', 'writing', score >= 60);
-          }
           if (onCompleteStudyItem) {
-            onCompleteStudyItem('kanji', exp, gold, kanjiId, score >= 60 ? 1 : 0, 1);
+            // Satu jalur saja: handleStudyComplete sudah mencatat EXP/gold, mastery (writingCount) dan misi.
+            // Memanggil onRecordInteraction juga membuat writingCount/attempts terhitung dua kali.
+            recordKanjiWriting(selectedKanji, score, reward, { onCompleteStudyItem });
           } else {
+            const exp = reward?.expGained ?? 15;
+            const gold = reward?.goldGained ?? 5;
+            onRecordInteraction?.(kanjiId, 'kanji', 'writing', score >= 60);
             onRewardPlayer?.(exp, gold);
             onRecordStudy?.('kanjiWriting', kanjiId, 1);
           }
