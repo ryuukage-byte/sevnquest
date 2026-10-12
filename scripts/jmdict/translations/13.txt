@@ -1,0 +1,400 @@
+0|書名|Judul buku
+1|書面|Dokumen tertulis; surat
+2|助っ人|Penolong; pemain asing bayaran
+3|助演|Peran pendukung
+4|助産婦|Bidan
+5|叙勲|Penganugerahan tanda jasa
+6|女らしい|Feminin; keibuan
+7|女神|Dewi
+8|序列|Urutan peringkat; hierarki
+9|除草|Penyiangan
+10|傷口|Luka (bagian yang terbuka)
+11|償い|Ganti rugi; penebusan
+12|償う|Mengganti rugi; menebus
+13|勝者|Pemenang
+14|勝訴|Menang perkara
+15|商い|Perdagangan; omzet
+16|商会|Firma dagang
+17|商標|Merek dagang
+18|商品券|Voucer belanja
+19|商用|Untuk urusan bisnis
+20|将来性|Prospek masa depan
+21|将来像|Gambaran masa depan
+22|小結|Komusubi (peringkat sumo ke-4)
+23|小康|Reda sementara; kondisi stabil
+24|小さじ|Sendok teh
+25|小数点|Titik desimal
+26|小説家|Novelis
+27|小僧|Anak kecil; biksu muda
+28|小道具|Perkakas kecil; properti panggung
+29|小品|Karya kecil
+30|小物|Aksesori; orang kecil
+31|小文字|Huruf kecil
+32|小惑星|Asteroid
+33|少額|Jumlah kecil
+34|少佐|Mayor
+35|少将|Mayor jenderal
+36|床下|Bawah lantai
+37|招集|Pemanggilan; penyelenggaraan sidang
+38|掌握|Penguasaan; menggenggam
+39|昇給|Kenaikan gaji
+40|松葉|Daun jarum pinus
+41|消耗品|Barang habis pakai
+42|渉外|Hubungan eksternal
+43|焼却|Pembakaran; insinerasi
+44|焼酎|Shochu; minuman suling Jepang
+45|焦り|Ketidaksabaran; kegelisahan
+46|照射|Penyinaran
+47|照準|Bidikan; pembidikan
+48|省令|Peraturan menteri
+49|称号|Gelar
+50|詳報|Laporan terperinci
+51|象牙|Gading
+52|賞与|Bonus; hadiah
+53|上機嫌|Suasana hati gembira
+54|上記|Tersebut di atas
+55|上手投げ|Lemparan tangan atas (sumo)
+56|上積み|Tambahan; lapisan atas
+57|上層|Lapisan atas
+58|上体|Tubuh bagian atas
+59|上品|Anggun; elegan
+60|乗じる|Memanfaatkan; mengalikan
+61|乗っ取り|Pengambilalihan; pembajakan
+62|乗り回す|Berkendara berkeliling
+63|乗り降り|Naik dan turun kendaraan
+64|乗り出す|Mulai terjun; berlayar
+65|乗り切る|Melewati (masa sulit)
+66|乗り遅れる|Ketinggalan (kendaraan/zaman)
+67|乗降|Naik turun penumpang
+68|乗車券|Tiket naik kendaraan
+69|乗馬|Berkuda; kuda tunggangan
+70|場内|Di dalam tempat/gedung
+71|常習|Kebiasaan tetap
+72|常駐|Bertugas tetap di tempat
+73|情感|Perasaan; emosi
+74|情景|Pemandangan; adegan
+75|情報処理|Pengolahan data
+76|条文|Bunyi pasal
+77|浄水|Air bersih
+78|浄土|Tanah Suci (Buddhisme)
+79|譲り渡す|Menyerahkan; mengalihkan
+80|醸成|Peragian; menimbulkan
+81|醸造|Pembuatan (bir/sake)
+82|嘱託|Pegawai honorer; penugasan
+83|植樹|Penanaman pohon
+84|植林|Penghijauan
+85|職権|Wewenang jabatan
+86|職能|Kemampuan kerja; fungsi
+87|色気|Pesona; nuansa warna
+88|色合い|Corak warna; nuansa
+89|色紙|Kertas persegi (untuk tanda tangan)
+90|色素|Pigmen
+91|色調|Corak warna
+92|触れ合う|Saling bersentuhan; berinteraksi
+93|触媒|Katalis
+94|触発|Terpicu; memicu
+95|食い止める|Menahan; mencegah
+96|食パン|Roti tawar
+97|食道|Kerongkongan
+98|食肉|Daging konsumsi
+99|食品添加物|Zat tambahan makanan
+100|伸びやか|Lapang; santai
+101|伸び悩む|Stagnan; kurang berkembang
+102|信義|Kesetiaan; kejujuran
+103|信号機|Lampu lalu lintas
+104|信条|Keyakinan; prinsip
+105|信徒|Umat; penganut
+106|信販会社|Perusahaan kredit
+107|信用組合|Koperasi kredit
+108|信頼性|Keandalan
+109|侵犯|Pelanggaran (wilayah/hak)
+110|寝かす|Menidurkan; membaringkan
+111|寝巻き|Piyama
+112|寝顔|Wajah saat tidur
+113|寝具|Perlengkapan tidur
+114|寝床|Tempat tidur
+115|寝不足|Kurang tidur
+116|心外|Mengecewakan; tak terduga
+117|心構え|Kesiapan mental
+118|心待ち|Menantikan dengan hati
+119|振り回す|Mengayunkan; memamerkan
+120|振り切る|Melepaskan diri; mengayun penuh
+121|新居|Rumah baru
+122|新曲|Lagu baru
+123|新語|Kata baru; neologisme
+124|新手|Pasukan segar; pendatang baru
+125|新制|Sistem baru
+126|新星|Nova; bintang baru
+127|新体|Gaya baru
+128|新任|Baru diangkat
+129|新婦|Pengantin wanita
+130|新風|Angin segar; gaya baru
+131|新緑|Hijau muda dedaunan
+132|新郎|Pengantin pria
+133|浸る|Terendam; larut dalam
+134|浸水|Kebanjiran; terendam air
+135|深海|Laut dalam
+136|深刻化|Semakin serius
+137|深層|Lapisan dalam
+138|申|Monyet (shio ke-9)
+139|真顔|Wajah serius
+140|真新しい|Baru sekali
+141|真正面|Tepat di depan
+142|真摯|Tulus; sungguh-sungguh
+143|神学|Teologi
+144|神楽|Musik dan tarian Shinto kuno
+145|神経質|Gugup; perasa
+146|神髄|Inti sari
+147|神秘的|Misterius; mistis
+148|神妙|Patuh; kagum
+149|薪|Kayu bakar
+150|親愛|Kasih sayang; tercinta
+151|親衛|Pengawal raja
+152|親近感|Rasa akrab
+153|親孝行|Berbakti kepada orang tua
+154|親父|Ayah; bos
+155|親分|Bos; pemimpin
+156|身の上|Kehidupan pribadi; nasib
+157|身寄り|Sanak saudara
+158|身上|Latar belakang; kelebihan
+159|身体障害者|Penyandang disabilitas fisik
+160|身代わり|Pengganti
+161|身分証明書|Kartu identitas
+162|身辺|Di sekitar diri
+163|進撃|Menyerbu; maju menyerang
+164|震動|Getaran
+165|人為|Perbuatan manusia
+166|人為的|Buatan manusia
+167|人違い|Salah orang
+168|人一倍|Lebih dari orang lain
+169|人間的|Manusiawi
+170|人気者|Orang populer
+171|人見知り|Malu pada orang asing
+172|人工衛星|Satelit buatan
+173|人工呼吸|Pernapasan buatan
+174|人工的|Buatan
+175|人骨|Tulang manusia
+176|人妻|Wanita bersuami
+177|人殺し|Pembunuhan; pembunuh
+178|人事異動|Mutasi pegawai
+179|人だかり|Kerumunan orang
+180|人生観|Pandangan hidup
+181|人相|Paras muka
+182|人中|Di tengah orang banyak
+183|人道主義|Humanisme
+184|人民戦線|Front rakyat
+185|人類学|Antropologi
+186|腎臓|Ginjal
+187|陣地|Posisi; kubu pertahanan
+188|陣中|Di dalam perkemahan militer
+189|陣痛|Kontraksi persalinan
+190|陣容|Formasi; susunan tim
+191|図解|Ilustrasi diagram
+192|図式|Diagram; skema
+193|図版|Gambar ilustrasi
+194|図柄|Motif; pola
+195|図面|Gambar rancangan
+196|厨房|Dapur
+197|吹き込む|Meniupkan; merekam; menanamkan
+198|垂らす|Meneteskan; menggantungkan
+199|たれ|Saus celup; yang menggantung
+200|推す|Merekomendasikan; menduga
+201|推奨|Rekomendasi
+202|水域|Perairan
+203|水稲|Padi sawah
+204|水温|Suhu air
+205|水割り|Minuman dicampur air
+206|水銀|Raksa
+207|水彩画|Lukisan cat air
+208|水産業|Industri perikanan
+209|水産物|Hasil perikanan
+210|水死|Mati tenggelam
+211|水色|Biru muda
+212|水槽|Tangki air; akuarium
+213|水揚げ|Pendaratan hasil tangkapan
+214|水路|Saluran air
+215|衰弱|Kelemahan; kelelahan fisik
+216|衰退|Kemunduran
+217|酔っ払う|Mabuk
+218|随一|Nomor satu
+219|随時|Sewaktu-waktu
+220|随所|Di mana-mana
+221|数億年|Beberapa ratus juta tahun
+222|数個|Beberapa buah
+223|数千|Ribuan
+224|寸断|Terpotong-potong
+225|世界大戦|Perang dunia
+226|世紀末|Akhir abad
+227|世襲|Turun-temurun
+228|瀬戸|Selat
+229|瀬戸際|Di ujung tanduk
+230|制圧|Penaklukan; penindasan
+231|制止|Pencegahan; penghentian
+232|性教育|Pendidikan seks
+233|性向|Kecenderungan
+234|性行|Watak dan tingkah laku
+235|成し遂げる|Menyelesaikan; mencapai
+236|成層圏|Stratosfer
+237|政見|Pandangan politik
+238|政治力|Kekuatan politik
+239|政情|Situasi politik
+240|政敵|Lawan politik
+241|星空|Langit berbintang
+242|正す|Memperbaiki; meluruskan
+243|正教|Ortodoks
+244|正常化|Normalisasi
+245|正装|Pakaian resmi
+246|正則|Teratur; formal
+247|正当防衛|Pembelaan diri yang sah
+248|正統|Sah; ortodoks
+249|正反対|Berlawanan sepenuhnya
+250|正論|Argumen yang masuk akal
+251|清酒|Sake murni
+252|清浄|Bersih; suci
+253|清貧|Kemiskinan yang terhormat
+254|清流|Aliran jernih
+255|清涼|Sejuk; menyegarkan
+256|生き|Hidup; kesegaran
+257|生き返る|Hidup kembali
+258|生ぬるい|Suam-suam kuku; setengah hati
+259|生化学|Biokimia
+260|生家|Rumah kelahiran
+261|生殖|Reproduksi
+262|生成|Pembentukan; penciptaan
+263|生態学|Ekologi
+264|生中継|Siaran langsung
+265|盛り上がり|Puncak; kemeriahan
+266|盛り上げる|Memeriahkan; menumpuk
+267|盛況|Ramai dan sukses
+268|精鋭|Pasukan pilihan
+269|精算|Perhitungan akhir; penyelesaian
+270|精神科|Psikiatri
+271|精製|Pemurnian
+272|精米|Penggilingan beras
+273|精力|Tenaga; vitalitas
+274|聖域|Tempat suci; hal tabu
+275|聖戦|Perang suci
+276|聖堂|Kuil Konfusius; gereja
+277|声高|Bersuara keras
+278|西ドイツ|Jerman Barat
+279|西南|Barat daya
+280|西洋人|Orang Barat
+281|誓い|Sumpah; janji
+282|誓約|Ikrar; sumpah
+283|請け負う|Memborong pekerjaan; menyanggupi
+284|青ざめる|Menjadi pucat
+285|青果|Buah dan sayur
+286|青色|Warna biru
+287|青田買い|Membeli hasil panen sebelum matang; merekrut lebih awal
+288|静けさ|Keheningan
+289|静観|Mengamati dengan tenang
+290|静寂|Sunyi senyap
+291|静粛|Hening; tenang
+292|静脈|Pembuluh vena
+293|斉唱|Menyanyi serempak
+294|税引き|Setelah pajak
+295|税法|Hukum pajak
+296|税理士|Konsultan pajak
+297|石灰|Kapur
+298|石垣|Tembok batu
+299|石室|Ruang batu; makam batu
+300|積|Hasil kali; volume
+301|積み込む|Memuat (barang)
+302|積載|Pemuatan; muatan
+303|積算|Penjumlahan; integrasi
+304|積立金|Dana cadangan
+305|赤外線|Sinar inframerah
+306|赤軍|Tentara Merah
+307|赤飯|Nasi merah (hidangan perayaan)
+308|切り口|Penampang; sudut pandang
+309|切望|Kerinduan besar
+310|拙速|Tergesa-gesa asal selesai
+311|接見|Wawancara; pertemuan
+312|接種|Vaksinasi; inokulasi
+313|接着|Perekatan
+314|折から|Tepat pada saat itu
+315|折り合い|Kompromi; hubungan
+316|折り返し|Balik; segera membalas
+317|折半|Dibagi dua rata
+318|設問|Pertanyaan; soal
+319|節減|Penghematan
+320|節度|Kesederhanaan; batas wajar
+321|説明書|Buku petunjuk
+322|雪国|Daerah bersalju
+323|雪辱|Membalas kekalahan
+324|絶縁|Memutus hubungan; isolasi listrik
+325|絶句|Terdiam; puisi empat baris
+326|絶交|Memutus persahabatan
+327|絶大|Sangat besar
+328|絶頂|Puncak
+329|絶妙|Sangat bagus; sempurna
+330|蝉|Tonggeret
+331|先々|Masa depan jauh; tempat-tempat yang dituju
+332|先安|Harga masa depan lebih rendah
+333|先駆|Pelopor
+334|先駆ける|Menjadi yang pertama
+335|先見|Pandangan jauh ke depan
+336|先遣|Dikirim terlebih dahulu
+337|先取|Meraih lebih dulu
+338|先取り|Menerima di muka; mengantisipasi
+339|先人|Pendahulu; leluhur
+340|先陣|Barisan terdepan
+341|先導|Pemanduan; memimpin jalan
+342|先方|Pihak lain; di depan
+343|千秋楽|Hari terakhir pertunjukan/turnamen
+344|ちどり|Burung cerek
+345|千島|Kepulauan Kuril
+346|占拠|Pendudukan
+347|宣教師|Misionaris
+348|宣誓|Sumpah
+349|宣戦|Pernyataan perang
+350|専属|Eksklusif; terikat
+351|専任|Penuh waktu
+352|専念|Mencurahkan perhatian
+353|専売|Monopoli
+354|専門的|Profesional; teknis
+355|川沿い|Sepanjang sungai
+356|川上|Hulu sungai
+357|川端|Tepi sungai
+358|川柳|Senryu; puisi humor
+359|戦域|Wilayah perang
+360|戦艦|Kapal tempur
+361|戦国|Zaman Negara Berperang
+362|戦士|Prajurit
+363|戦勝|Kemenangan perang
+364|戦犯|Penjahat perang
+365|戦列|Barisan tempur
+366|洗面|Mencuci muka
+367|洗礼|Baptisan
+368|洗練|Penghalusan; kecanggihan
+369|しみ|Noda; bintik
+370|旋風|Angin puyuh; kehebohan
+371|線量|Dosis radiasi
+372|船員|Awak kapal
+373|船主|Pemilik kapal
+374|選挙権|Hak pilih
+375|選任|Pengangkatan; pemilihan
+376|選別|Penyortiran; seleksi
+377|鮮魚|Ikan segar
+378|鮮度|Tingkat kesegaran
+379|鮮烈|Tajam; mencolok
+380|前記|Tersebut di atas
+381|前週|Minggu lalu
+382|前哨戦|Pertempuran pendahuluan
+383|前触れ|Pertanda; pemberitahuan awal
+384|前代未聞|Belum pernah terjadi
+385|前頭|Maegashira (peringkat sumo)
+386|前髪|Poni
+387|前半戦|Babak pertama
+388|前部|Bagian depan
+389|前文|Kalimat di atas; mukadimah
+390|前夜祭|Perayaan malam sebelumnya
+391|善悪|Baik dan buruk
+392|善戦|Bertarung dengan baik
+393|善隣|Tetangga baik
+394|全曲|Seluruh lagu
+395|全権|Kekuasaan penuh
+396|全校|Seluruh sekolah
+397|全社|Seluruh perusahaan
+398|全速力|Kecepatan penuh
+399|全体主義|Totalitarianisme

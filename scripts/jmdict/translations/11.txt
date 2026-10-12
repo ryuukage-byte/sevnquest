@@ -1,0 +1,400 @@
+0|軍医|Dokter militer
+1|軍政|Pemerintahan militer
+2|軍属|Pegawai sipil militer
+3|軍団|Korps tentara
+4|軍配|Kipas komando; kipas wasit sumo
+5|郡部|Wilayah kabupaten/pedesaan
+6|係官|Petugas yang bertanggung jawab
+7|係争|Sengketa
+8|傾注|Pencurahan perhatian
+9|刑事事件|Perkara pidana
+10|兄さん|Kakak laki-laki
+11|兄貴|Kakak laki-laki; senior
+12|啓発|Pencerahan; pengembangan diri
+13|啓蒙|Pencerahan; penyuluhan
+14|形見|Kenang-kenangan dari almarhum
+15|形状|Bentuk
+16|形跡|Jejak; bukti
+17|恵比寿|Ebisu; dewa nelayan dan perdagangan
+18|掲揚|Pengibaran (bendera)
+19|携える|Membawa; menyertai
+20|渓谷|Lembah sungai; ngarai
+21|系譜|Silsilah
+22|ほたる|Kunang-kunang
+23|計り知れない|Tak terukur
+24|計上|Pencantuman dalam perhitungan; alokasi
+25|計測|Pengukuran
+26|計量|Penimbangan; pengukuran
+27|警視|Superintenden polisi
+28|警鐘|Lonceng peringatan; peringatan keras
+29|軽震|Gempa ringan
+30|軽薄|Dangkal; sembrono
+31|軽妙|Ringan dan cerdas
+32|軽油|Solar
+33|鶏肉|Daging ayam
+34|芸者|Geisha
+35|芸人|Penghibur; seniman pertunjukan
+36|芸名|Nama panggung
+37|迎撃|Pencegatan
+38|劇作|Penulisan drama
+39|撃墜|Menembak jatuh (pesawat)
+40|激減|Penurunan drastis
+41|激怒|Kemarahan besar
+42|激突|Tabrakan keras; bentrokan
+43|隙|Celah; kesempatan
+44|欠員|Lowongan jabatan
+45|欠損|Defisit; kerugian; kerusakan sebagian
+46|決する|Memutuskan
+47|決め付ける|Menvonis sepihak
+48|決裁|Persetujuan (pejabat)
+49|決別|Perpisahan; berpisah jalan
+50|潔い|Ksatria; bersih hati
+51|穴埋め|Menutup lubang; pengganti sementara
+52|結びつく|Terhubung; berujung pada
+53|結社|Perkumpulan; asosiasi
+54|結党|Pembentukan partai
+55|血液型|Golongan darah
+56|血痕|Noda darah
+57|血友病|Hemofilia
+58|月経|Menstruasi
+59|月見|Melihat bulan purnama
+60|月光|Cahaya bulan
+61|月収|Penghasilan bulanan
+62|月初め|Awal bulan
+63|月食|Gerhana bulan
+64|月面|Permukaan bulan
+65|月夜|Malam berbulan
+66|月例|Bulanan
+67|兼ね合い|Keseimbangan
+68|兼ね備える|Memiliki keduanya sekaligus
+69|兼任|Merangkap jabatan
+70|兼務|Merangkap tugas
+71|剣士|Pendekar pedang
+72|圏内|Dalam jangkauan/cakupan
+73|嫌がらせ|Pelecehan; gangguan
+74|嫌疑|Kecurigaan
+75|建議|Usulan; saran resmi
+76|建材|Bahan bangunan
+77|建設的|Konstruktif
+78|建造|Pembangunan
+79|建立|Pendirian (kuil/monumen)
+80|憲政|Pemerintahan konstitusional
+81|拳|Kepalan tangan
+82|拳銃|Pistol
+83|検疫|Karantina
+84|検挙|Penangkapan
+85|検出|Pendeteksian
+86|権益|Hak dan kepentingan
+87|献上|Mempersembahkan
+88|県営|Dikelola prefektur
+89|県下|Di dalam prefektur
+90|県道|Jalan prefektur
+91|肩こり|Pegal bahu
+92|見違える|Tidak mengenali; salah lihat
+93|見下す|Meremehkan; memandang rendah
+94|見識|Pandangan; wawasan
+95|見失う|Kehilangan jejak
+96|見捨てる|Menelantarkan
+97|見守る|Mengawasi dengan penuh perhatian
+98|見受ける|Melihat; tampak
+99|見習う|Meniru teladan
+100|見上げる|Menengadah; mengagumi
+101|見切り|Menyerah; obral
+102|見知らぬ|Asing; tak dikenal
+103|見張る|Berjaga; membelalak
+104|見当たる|Ditemukan
+105|見物人|Penonton; pengunjung
+106|見聞|Pengetahuan dan pengalaman
+107|見本市|Pameran dagang
+108|賢人|Orang bijak
+109|鍵盤|Papan tuts
+110|顕在|Nyata; terlihat
+111|顕彰|Penghargaan publik
+112|元号|Nama era kekaisaran
+113|元帥|Marsekal
+114|元祖|Pelopor; pendiri
+115|元本|Modal pokok
+116|元禄|Era Genroku
+117|原画|Gambar asli; key frame
+118|原義|Makna asli
+119|原型|Prototipe; model
+120|原材料|Bahan baku
+121|原産地|Tempat asal
+122|原子核|Inti atom
+123|原人|Manusia purba
+124|原水爆|Bom atom dan bom hidrogen
+125|原生|Asli; primitif
+126|原潜|Kapal selam nuklir
+127|原本|Naskah asli
+128|原野|Padang liar
+129|厳守|Ketaatan ketat
+130|厳粛|Khidmat; serius
+131|幻覚|Halusinasi
+132|弦楽|Musik gesek
+133|減価償却|Penyusutan nilai aset
+134|減退|Kemunduran; penurunan
+135|減免|Pengurangan dan pembebasan
+136|源泉|Sumber (mata air/pendapatan)
+137|源流|Hulu sungai; asal-usul
+138|玄米|Beras merah/beras pecah kulit
+139|現況|Keadaan saat ini
+140|現住所|Alamat sekarang
+141|言い切る|Menegaskan; menyatakan tegas
+142|言い返す|Membalas ucapan
+143|言うまでもない|Tak perlu dikatakan lagi
+144|言質|Janji; komitmen lisan
+145|限りない|Tak terbatas
+146|個人差|Perbedaan individu
+147|古今|Dulu dan sekarang
+148|古参|Senior; veteran
+149|古巣|Tempat lama
+150|古着|Pakaian bekas
+151|古典的|Klasik
+152|古都|Kota tua; bekas ibu kota
+153|古来|Sejak dahulu kala
+154|呼び捨て|Memanggil tanpa sebutan hormat
+155|呼び水|Pemicu; pancingan
+156|呼応|Saling menyahut; selaras
+157|呼吸器|Organ pernapasan
+158|呼称|Sebutan; penamaan
+159|孤児院|Panti asuhan
+160|戸外|Luar ruangan
+161|戸締まり|Mengunci pintu dan jendela
+162|戸惑う|Kebingungan
+163|ゆえに|Oleh karena itu
+164|故国|Tanah kelahiran
+165|故事|Peristiwa/kisah kuno
+166|湖沼|Danau dan rawa
+167|湖畔|Tepi danau
+168|袴|Hakama; rok lipit formal pria
+169|互角|Seimbang; setara
+170|互換|Pertukaran; kompatibel
+171|互助|Saling membantu
+172|午|Kuda (shio ke-7); tengah hari
+173|呉服|Kain kimono; tekstil
+174|後ろ姿|Penampilan dari belakang
+175|後ろ盾|Pendukung; sokongan
+176|後押し|Dukungan; dorongan dari belakang
+177|後見|Perwalian; wali
+178|後手|Kehilangan inisiatif; langkah kedua
+179|後書き|Kata penutup
+180|後世|Generasi mendatang
+181|後日|Di kemudian hari
+182|後発|Berangkat belakangan
+183|後片付け|Beres-beres setelah selesai
+184|後戻り|Mundur; kembali
+185|御苑|Taman kekaisaran
+186|御所|Istana kekaisaran
+187|ご飯|Nasi; makanan
+188|御輿|Tandu kuil (mikoshi)
+189|ごらん|Cobalah; lihatlah
+190|語り口|Gaya bertutur
+191|語気|Nada bicara
+192|誤算|Salah hitung
+193|誤字|Salah tulis
+194|誤認|Salah mengenali
+195|護岸|Tanggul sungai/pantai
+196|護送|Pengawalan
+197|鯉|Ikan mas koi
+198|交響楽|Musik simfoni
+199|交信|Komunikasi; korespondensi
+200|交戦|Pertempuran
+201|交通網|Jaringan transportasi
+202|交友|Pergaulan; teman
+203|光栄|Kehormatan
+204|光学|Optik
+205|光明|Cahaya terang; harapan
+206|公益法人|Badan hukum nirlaba
+207|公会堂|Balai pertemuan umum
+208|公海|Laut lepas
+209|公館|Kediaman resmi
+210|公金|Dana publik
+211|公庫|Lembaga keuangan pemerintah
+212|公債|Obligasi pemerintah
+213|公司|Perusahaan (Tiongkok)
+214|公子|Putra bangsawan
+215|公私|Umum dan pribadi
+216|公社債|Obligasi publik
+217|公衆衛生|Kesehatan masyarakat
+218|公衆電話|Telepon umum
+219|公称|Nominal; resmi
+220|公人|Tokoh publik
+221|公設|Didirikan pemerintah
+222|公訴|Dakwaan; penuntutan
+223|公認会計士|Akuntan publik bersertifikat
+224|公文|Dokumen resmi
+225|公報|Buletin resmi
+226|公民権|Hak sipil
+227|公有|Milik publik
+228|公論|Opini publik
+229|効能|Khasiat
+230|効用|Kegunaan; manfaat
+231|勾配|Kemiringan; lereng
+232|厚み|Ketebalan; kedalaman
+233|口コミ|Dari mulut ke mulut
+234|口火|Sumbu; pemicu
+235|口径|Kaliber; diameter
+236|口語|Bahasa lisan
+237|口止め|Menyuruh tutup mulut; uang tutup mulut
+238|口出し|Ikut campur bicara
+239|口上|Pidato; kata pembuka (kabuki)
+240|口ぶり|Cara bicara
+241|口笛|Siulan
+242|口利き|Perantara; orang berpengaruh
+243|好都合|Menguntungkan; pas
+244|工科|Jurusan teknik
+245|工作機械|Mesin perkakas
+246|工兵|Zeni militer
+247|工法|Metode konstruksi
+248|工房|Bengkel kerja; studio
+249|工務|Urusan teknik
+250|巷|Jalanan; masyarakat umum
+251|広州|Guangzhou
+252|広東|Guangdong
+253|広範囲|Cakupan luas
+254|恒常|Tetap; permanen
+255|抗菌|Antibakteri
+256|抗原|Antigen
+257|抗生物質|Antibiotik
+258|抗体|Antibodi
+259|抗日|Anti-Jepang
+260|拘禁|Penahanan
+261|控え|Cadangan; catatan
+262|攻略|Penaklukan; strategi mengalahkan
+263|更衣室|Ruang ganti
+264|更改|Pembaruan; revisi
+265|更正|Koreksi; perbaikan
+266|更生|Rehabilitasi; lahir kembali
+267|更迭|Pergantian (personel/kabinet)
+268|杭|Tiang pancang
+269|校歌|Lagu sekolah
+270|校内|Dalam sekolah
+271|校門|Gerbang sekolah
+272|江戸っ子|Orang asli Edo (Tokyo)
+273|港内|Dalam pelabuhan
+274|甲状腺|Kelenjar tiroid
+275|皇族|Keluarga kekaisaran
+276|皇太后|Ibu suri
+277|皇太子妃|Putri mahkota
+278|硬化|Pengerasan
+279|硬式|Keras (bola/tenis)
+280|硬直|Kekakuan
+281|稿|Naskah; draf
+282|考察|Kajian; pertimbangan
+283|航法|Navigasi
+284|荒波|Ombak ganas; kesulitan hidup
+285|行き先|Tujuan; keberadaan
+286|行脚|Ziarah; berjalan keliling
+287|行司|Wasit sumo
+288|講談|Kisah lisan dramatis (kodan)
+289|購買力|Daya beli
+290|酵素|Enzim
+291|鋼|Baja
+292|鋼材|Bahan baja
+293|降雨|Hujan
+294|降参|Menyerah
+295|降水量|Curah hujan
+296|降雪|Turunnya salju
+297|高圧|Tegangan/tekanan tinggi
+298|高位|Pangkat tinggi
+299|高音|Nada tinggi; sopran
+300|高架|Layang
+301|高給|Gaji tinggi
+302|高見|Pendapat Anda; gagasan bagus
+303|高性能|Berkinerja tinggi
+304|高台|Dataran tinggi
+305|高波|Ombak tinggi
+306|高品質|Kualitas tinggi
+307|高揚|Peningkatan (semangat)
+308|号車|Gerbong nomor
+309|号令|Aba-aba; perintah
+310|合金|Paduan logam
+311|合作|Karya bersama; kolaborasi
+312|合唱団|Paduan suara
+313|合奏|Permainan musik bersama
+314|合否|Lulus atau tidak
+315|合併症|Komplikasi
+316|合法的|Sah menurut hukum
+317|合力|Resultan gaya; bantuan
+318|拷問|Penyiksaan
+319|豪雨|Hujan deras
+320|豪快|Gagah berani; megah
+321|麹|Koji; beras fermentasi
+322|克己|Penguasaan diri
+323|刻々|Dari saat ke saat
+324|刻み|Rajangan; takik
+325|刻一刻|Detik demi detik
+326|国歌|Lagu kebangsaan
+327|国会議事堂|Gedung parlemen nasional
+328|国策|Kebijakan nasional
+329|国士|Patriot
+330|国是|Kebijakan dasar negara
+331|国勢|Keadaan negara
+332|国大|Universitas negeri
+333|国賓|Tamu negara
+334|国務大臣|Menteri negara
+335|酷似|Sangat mirip
+336|黒っぽい|Kehitam-hitaman
+337|黒鉛|Grafit
+338|黒色|Warna hitam
+339|黒星|Titik hitam; tanda kalah
+340|黒潮|Arus Kuroshio
+341|黒幕|Dalang di balik layar
+342|黒木|Kayu gelondongan tanpa kulit
+343|獄中|Di dalam penjara
+344|骨董|Barang antik
+345|骨抜き|Membuang tulang; melemahkan (rencana)
+346|今時|Zaman sekarang
+347|今宵|Malam ini
+348|今日的|Mutakhir; zaman sekarang
+349|困り果てる|Kebingungan setengah mati
+350|婚姻|Pernikahan
+351|懇親|Keakraban; silaturahmi
+352|懇話|Obrolan akrab
+353|根絶|Pemberantasan sampai ke akar
+354|混成|Campuran
+355|混入|Tercampur; mencampurkan
+356|痕跡|Jejak; bekas
+357|左記|Yang tertera di sebelah kiri
+358|左折|Belok kiri
+359|左遷|Penurunan jabatan
+360|差し控える|Menahan diri; mengurangi
+361|差し込む|Memasukkan; masuk (cahaya); kram
+362|差し伸べる|Mengulurkan
+363|差し戻す|Mengembalikan
+364|査定|Penilaian
+365|砂防|Pengendalian erosi
+366|座り込み|Aksi duduk (protes)
+367|座禅|Zazen; meditasi Zen
+368|挫折|Kegagalan; patah semangat
+369|再演|Pementasan ulang
+370|再考|Pertimbangan ulang
+371|再婚|Menikah lagi
+372|再任|Pengangkatan kembali
+373|再燃|Menyala kembali; kambuh
+374|再販|Penjualan kembali
+375|再来|Kembali lagi; kedatangan kedua
+376|最愛|Tersayang
+377|最寄り|Terdekat
+378|最高峰|Puncak tertinggi; otoritas tertinggi
+379|最少|Paling sedikit
+380|最盛期|Masa jaya
+381|最短|Terpendek
+382|最良|Terbaik
+383|宰相|Perdana menteri
+384|彩り|Warna; perpaduan warna
+385|彩る|Mewarnai
+386|彩色|Pewarnaan
+387|歳末|Akhir tahun
+388|祭壇|Altar
+389|細々|Dengan susah payah; tipis-tipis
+390|細か|Kecil; rinci
+391|細心|Cermat; teliti
+392|細長い|Panjang dan sempit
+393|細分|Pembagian menjadi bagian kecil
+394|細目|Rincian
+395|菜園|Kebun sayur
+396|菜食|Diet sayuran
+397|在外|Di luar negeri
+398|在職|Sedang menjabat
+399|材質|Bahan; kualitas bahan

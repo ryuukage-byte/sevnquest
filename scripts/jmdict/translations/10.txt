@@ -1,0 +1,400 @@
+0|快調|Lancar; kondisi baik
+1|怪しむ|Mencurigai
+2|怪奇|Aneh dan misterius
+3|怪談|Cerita hantu
+4|怪物|Monster
+5|懐かしむ|Merindukan; bernostalgia
+6|戒める|Memperingatkan; menegur
+7|戒厳令|Darurat militer
+8|戒告|Teguran resmi
+9|改新|Pembaruan; reformasi
+10|改組|Reorganisasi
+11|改装|Renovasi; penataan ulang
+12|改編|Reorganisasi; penyusunan ulang
+13|海岸線|Garis pantai
+14|海産物|Hasil laut
+15|海水浴場|Pantai untuk berenang
+16|海藻|Rumput laut
+17|海賊|Bajak laut
+18|海中|Dalam laut
+19|海難|Kecelakaan laut
+20|海浜|Tepi pantai
+21|界隈|Sekitar; lingkungan
+22|皆無|Tidak ada sama sekali
+23|絵巻|Gulungan lukisan
+24|開き直る|Bersikap menantang; berubah sikap
+25|開演|Dimulainya pertunjukan
+26|開花|Mekar; berbuah hasil
+27|開館|Pembukaan (perpustakaan/museum)
+28|開業医|Dokter praktik pribadi
+29|開局|Pembukaan stasiun/kantor
+30|開口|Bukaan; mulai berbicara
+31|開校|Pembukaan sekolah
+32|開場|Pembukaan pintu; peresmian
+33|開閉|Buka-tutup
+34|外圧|Tekanan dari luar
+35|外科医|Dokter bedah
+36|外郭団体|Organisasi afiliasi
+37|外気|Udara luar
+38|外需|Permintaan luar negeri
+39|外壁|Dinding luar
+40|外面|Permukaan luar; penampilan
+41|外来語|Kata serapan
+42|街路|Jalan
+43|街路樹|Pohon pinggir jalan
+44|鎧|Baju zirah
+45|垣|Pagar; pagar tanaman
+46|各位|Hadirin sekalian
+47|格安|Murah; harga terjangkau
+48|格上げ|Peningkatan status
+49|格段|Sangat jauh; jelas lebih
+50|格付け|Peringkat; klasifikasi
+51|核家族|Keluarga inti
+52|核酸|Asam nukleat
+53|核武装|Persenjataan nuklir
+54|核分裂|Fisi nuklir
+55|核融合|Fusi nuklir
+56|確固|Teguh; kokoh
+57|確約|Janji pasti
+58|角膜|Kornea
+59|隔て|Pemisah; perbedaan
+60|隔月|Dua bulan sekali
+61|学業|Pelajaran; studi
+62|学区|Zona sekolah
+63|学卒|Lulusan perguruan tinggi
+64|学徒|Pelajar; murid
+65|学童|Anak sekolah
+66|学内|Di dalam sekolah/kampus
+67|岳|Puncak gunung
+68|楽園|Surga; firdaus
+69|楽屋|Ruang rias; belakang panggung
+70|楽曲|Komposisi musik
+71|楽章|Gerakan (musik)
+72|楽団|Orkes
+73|楽天的|Optimis
+74|笠|Topi caping
+75|割り切る|Memutuskan dengan tegas
+76|割り当てる|Membagikan; mengalokasikan
+77|活況|Keramaian; kemakmuran
+78|活路|Jalan keluar
+79|渇き|Rasa haus; dahaga
+80|渇水|Kekurangan air
+81|滑降|Meluncur turun; ski luncur
+82|葛|Kudzu
+83|葛藤|Konflik batin
+84|褐色|Cokelat tua
+85|兜|Helm perang
+86|刈り込む|Memangkas
+87|がれき|Puing
+88|寒冷|Dingin
+89|勧奨|Dorongan; anjuran
+90|巻末|Akhir buku
+91|喚起|Membangkitkan
+92|堪能|Mahir; puas menikmati
+93|完結|Selesai; tamat
+94|完走|Menyelesaikan lomba
+95|完敗|Kekalahan total
+96|官界|Dunia birokrasi
+97|官公庁|Kantor pemerintah
+98|官報|Berita negara
+99|干潟|Dataran lumpur pasang surut
+100|患う|Menderita sakit
+101|感じ取る|Merasakan; menangkap
+102|感嘆|Kekaguman
+103|慣用句|Idiom
+104|換金|Menguangkan
+105|敢行|Melaksanakan dengan berani
+106|敢闘|Bertarung gagah berani
+107|歓喜|Kegembiraan besar
+108|漢文|Tulisan klasik Tiongkok
+109|灌漑|Irigasi
+110|環状|Berbentuk cincin
+111|甘え|Sikap manja; ketergantungan
+112|監獄|Penjara
+113|監察|Pengawasan; inspeksi
+114|監修|Pengawasan editorial
+115|監理|Pengawasan
+116|看過|Membiarkan; mengabaikan
+117|管区|Wilayah yurisdiksi
+118|管弦楽|Musik orkestra
+119|管弦楽団|Orkestra
+120|簡略|Ringkas
+121|緩急|Cepat lambat; keadaan darurat
+122|肝硬変|Sirosis hati
+123|肝要|Sangat penting
+124|艦船|Kapal perang
+125|艦艇|Kapal militer
+126|観劇|Menonton teater
+127|還流|Arus balik
+128|間一髪|Nyaris saja
+129|間口|Lebar muka bangunan; cakupan
+130|間借り|Menyewa kamar
+131|間取り|Denah ruangan
+132|間接税|Pajak tidak langsung
+133|間中|Selama
+134|閑散|Sepi; lengang
+135|関心事|Hal yang diminati
+136|関知|Urusan; keterlibatan
+137|陥る|Jatuh ke dalam; terjerumus
+138|陥没|Amblas
+139|陥落|Jatuh (kota); menyerah
+140|丸刈り|Potongan cepak
+141|丸太|Gelondongan kayu
+142|含有|Mengandung
+143|岸壁|Dermaga; tebing curam
+144|岩間|Di antara bebatuan
+145|岩山|Gunung batu
+146|岩盤|Lapisan batuan dasar
+147|頑な|Keras kepala
+148|顔面|Wajah
+149|顔立ち|Raut wajah
+150|企てる|Merencanakan; mencoba
+151|企業家|Pengusaha
+152|危篤|Kritis (menjelang ajal)
+153|器材|Alat dan bahan
+154|器物|Wadah; perkakas
+155|基幹|Tulang punggung; inti
+156|奇異|Aneh
+157|奇襲|Serangan mendadak
+158|奇抜|Orisinal; nyentrik
+159|寄せ集め|Kumpulan campur aduk
+160|寄り道|Mampir di jalan
+161|寄金|Sumbangan
+162|寄港|Singgah di pelabuhan
+163|寄生|Parasit
+164|寄生虫|Cacing parasit
+165|寄席|Gedung pertunjukan hiburan (rakugo, dll.)
+166|岐路|Persimpangan jalan
+167|幾何|Geometri
+168|幾何学|Ilmu ukur
+169|机上|Di atas meja; teoretis
+170|旗手|Pembawa bendera
+171|旗揚げ|Memulai usaha; meluncurkan
+172|既成事実|Fakta yang sudah terjadi
+173|既製|Siap pakai
+174|既定|Yang sudah ditetapkan
+175|既得権|Hak yang telah diperoleh
+176|棋士|Pemain shogi/go profesional
+177|機械化|Mekanisasi
+178|機関銃|Senapan mesin
+179|機首|Hidung pesawat
+180|帰り道|Jalan pulang
+181|帰属|Kepemilikan; penyerahan
+182|帰途|Dalam perjalanan pulang
+183|気概|Semangat; tekad
+184|気管支|Bronkus
+185|気球|Balon udara
+186|気取る|Berlagak; bergaya
+187|気象台|Observatorium meteorologi
+188|気心|Watak; tabiat
+189|気勢|Semangat; gairah
+190|気性|Watak; tempramen
+191|気絶|Pingsan
+192|気前|Kemurahan hati
+193|気筒|Silinder
+194|気迫|Semangat membara
+195|気負い|Antusiasme berlebihan
+196|汽笛|Peluit uap
+197|祈念|Doa
+198|希少|Langka
+199|紀元|Era; masehi
+200|紀元前|Sebelum Masehi
+201|紀行|Catatan perjalanan
+202|規程|Peraturan resmi
+203|記帳|Pencatatan; pembukuan
+204|記念碑|Monumen peringatan
+205|貴金属|Logam mulia
+206|貴社|Perusahaan Anda
+207|貴重品|Barang berharga
+208|起き上がる|Bangun; berdiri
+209|起因|Penyebab; asal
+210|起工|Dimulainya pembangunan
+211|起債|Penerbitan obligasi
+212|起死回生|Bangkit dari keterpurukan
+213|起草|Menyusun draf
+214|起爆|Peledakan
+215|起立|Berdiri
+216|軌跡|Jejak; lintasan
+217|輝き|Kilau; kecemerlangan
+218|飢え|Kelaparan
+219|騎士|Ksatria
+220|騎馬|Berkuda; penunggang kuda
+221|偽証|Sumpah palsu
+222|戯れ|Bermain-main; bercanda
+223|技巧|Teknik; keahlian
+224|犠打|Bunt pengorbanan
+225|疑義|Keraguan
+226|疑獄|Skandal suap
+227|疑心|Kecurigaan
+228|疑問符|Tanda tanya
+229|義援金|Uang sumbangan (bencana/amal)
+230|義塾|Sekolah swasta
+231|義務教育|Pendidikan wajib
+232|議事|Persidangan; agenda
+233|議事録|Risalah rapat
+234|喫する|Menyantap; mengalami (kekalahan)
+235|橘|Jeruk tachibana
+236|詰まらせる|Menyumbat; tersedak
+237|客員|Anggota tamu
+238|客車|Gerbong penumpang
+239|客船|Kapal penumpang
+240|逆境|Kesulitan; kemalangan
+241|逆襲|Serangan balik
+242|逆輸入|Impor kembali
+243|休する|Berakhir; beristirahat
+244|休まる|Beristirahat; tenang
+245|休刊|Penghentian terbit sementara
+246|休校|Sekolah libur
+247|休止|Jeda; penghentian
+248|休場|Teater tutup; absen turnamen
+249|休職|Cuti dari jabatan
+250|吸血鬼|Vampir
+251|宮中|Istana kekaisaran
+252|宮廷|Istana
+253|急ぎ|Tergesa-gesa
+254|急死|Mati mendadak
+255|急所|Bagian vital; titik lemah
+256|急騰|Lonjakan harga
+257|急病|Sakit mendadak
+258|急変|Perubahan mendadak
+259|急務|Tugas mendesak
+260|救世主|Juru selamat
+261|求職|Mencari kerja
+262|泣き|Tangisan
+263|泣き声|Suara tangis
+264|球技|Olahraga bola
+265|球菌|Kokus (bakteri bulat)
+266|窮状|Keadaan menyedihkan
+267|窮地|Posisi sulit
+268|給油|Pengisian bahan bakar; pelumasan
+269|旧制|Sistem lama
+270|旧姓|Nama gadis; nama keluarga lama
+271|旧正月|Tahun Baru Imlek
+272|旧態|Keadaan lama
+273|旧来|Dari dulu; tradisional
+274|去就|Pergi atau tinggal; sikap
+275|居合わせる|Kebetulan hadir
+276|巨匠|Maestro
+277|巨体|Tubuh besar
+278|拒む|Menolak
+279|拒絶反応|Reaksi penolakan
+280|挙式|Menggelar upacara pernikahan
+281|挙党|Seluruh partai
+282|虚無|Kekosongan; nihil
+283|許し|Pengampunan; izin
+284|許諾|Persetujuan; izin
+285|漁獲|Hasil tangkapan
+286|漁港|Pelabuhan nelayan
+287|漁場|Tempat menangkap ikan
+288|魚介類|Hasil laut
+289|魚類|Jenis ikan
+290|供える|Mempersembahkan
+291|供養|Upacara peringatan arwah
+292|競う|Bersaing
+293|競泳|Lomba renang
+294|競演|Adu penampilan
+295|競合|Persaingan
+296|競走|Lomba lari
+297|競艇|Balap perahu motor
+298|競売|Lelang
+299|競歩|Jalan cepat
+300|競輪|Balap sepeda keirin
+301|共栄|Kemakmuran bersama
+302|共著|Penulisan bersama
+303|共通語|Bahasa umum; bahasa baku
+304|共犯|Keterlibatan dalam kejahatan
+305|共謀|Persekongkolan
+306|共立|Didirikan bersama
+307|共和制|Sistem republik
+308|卿|Tuan; menteri negara
+309|叫び声|Teriakan
+310|境地|Keadaan batin; bidang
+311|強大|Kuat; perkasa
+312|強敵|Musuh tangguh
+313|強度|Kekuatan; intensitas
+314|挟み撃ち|Serangan dari dua sisi
+315|教え子|Murid
+316|教官|Instruktur; dosen
+317|教書|Pesan (presiden)
+318|教祖|Pendiri aliran agama
+319|教団|Organisasi keagamaan
+320|教壇|Mimbar guru
+321|教務|Urusan akademik/keagamaan
+322|橋脚|Pilar jembatan
+323|狂気|Kegilaan
+324|狂乱|Kegilaan; kalap
+325|狭まる|Menyempit
+326|狭める|Mempersempit
+327|狭心症|Angina pektoris
+328|矯正|Koreksi; perbaikan
+329|胸中|Isi hati
+330|胸部|Dada
+331|興す|Menghidupkan; mendirikan
+332|興味深い|Sangat menarik
+333|仰向け|Telentang
+334|凝った|Rumit dan indah; berseni
+335|凝固|Pembekuan; pengerasan
+336|凝縮|Pemadatan; kondensasi
+337|局員|Staf biro/kantor pos
+338|局地|Daerah setempat
+339|曲折|Kelok-kelok; liku-liku
+340|曲目|Daftar lagu; nomor musik
+341|極度|Ekstrem; sangat
+342|極力|Sekuat tenaga
+343|玉虫色|Warna irisasi; ambigu
+344|勤続|Dinas berkesinambungan
+345|均整|Keseimbangan; proporsi
+346|禁句|Kata tabu
+347|禁酒|Berhenti minum alkohol
+348|筋書き|Alur cerita; skenario
+349|筋道|Logika; urutan
+350|緊縮|Penghematan; pengetatan
+351|謹慎|Menahan diri; skorsing
+352|近海|Laut dekat pantai
+353|近況|Kabar terbaru
+354|近親|Kerabat dekat
+355|近代的|Modern
+356|近辺|Sekitar; kawasan dekat
+357|金貨|Koin emas
+358|金具|Perangkat logam
+359|金脈|Urat emas; sumber dana
+360|金網|Kawat jaring
+361|銀色|Warna perak
+362|九重|Sembilan lapis; istana
+363|句集|Kumpulan haiku
+364|区議|Anggota dewan distrik
+365|苦言|Nasihat pahit
+366|苦渋|Kepahitan; penderitaan
+367|苦笑い|Senyum getir
+368|苦難|Penderitaan
+369|苦肉の策|Langkah terakhir yang terpaksa
+370|駆け込み|Menerobos masuk; terburu-buru di menit akhir
+371|駆除|Pembasmian (hama)
+372|駆逐艦|Kapal perusak
+373|具|Alat; isi (sup/nasi)
+374|具象|Konkret; perwujudan
+375|空き缶|Kaleng kosong
+376|空虚|Kekosongan
+377|空車|Taksi kosong; parkir tersedia
+378|空前|Belum pernah terjadi
+379|空調|Pendingin udara
+380|空転|Berputar kosong; berputar-putar
+381|空輸|Angkutan udara
+382|空路|Jalur udara
+383|偶像|Berhala; idola
+384|偶発|Terjadi kebetulan
+385|屈指|Terkemuka
+386|屈辱|Penghinaan
+387|屈託|Kecemasan; kebosanan
+388|繰り延べ|Penundaan
+389|繰り広げる|Menggelar; membentangkan
+390|繰り出す|Mengeluarkan; berangkat bersama
+391|繰り上げる|Memajukan
+392|桑|Pohon murbei
+393|勲章|Bintang jasa; medali
+394|君子|Orang berbudi luhur
+395|君臨|Bertakhta; menguasai
+396|訓示|Amanat; instruksi
+397|群れる|Berkerumun
+398|群像|Kelompok; patung kelompok
+399|群島|Kepulauan
