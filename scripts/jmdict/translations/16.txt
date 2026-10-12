@@ -1,0 +1,400 @@
+0|平行線|Garis sejajar; tak ada titik temu
+1|平時|Masa damai
+2|平静|Tenang
+3|平年並み|Setara tahun normal
+4|平方キロメートル|Kilometer persegi
+5|閉ざす|Menutup; menghalangi
+6|閉じこもる|Mengurung diri
+7|閉塞|Penyumbatan; kemacetan
+8|閉幕|Penutupan acara
+9|米穀|Beras
+10|米飯|Nasi
+11|別院|Kuil cabang
+12|別館|Gedung tambahan
+13|別冊|Edisi terpisah; suplemen
+14|別室|Ruangan lain
+15|別途|Secara terpisah
+16|偏り|Kecenderungan; ketidakseimbangan
+17|偏重|Terlalu menekankan
+18|変質|Perubahan sifat/kualitas
+19|変造|Pemalsuan; pengubahan
+20|変則|Tidak teratur; menyimpang
+21|変貌|Perubahan wujud
+22|片隅|Sudut; pojok
+23|辺境|Daerah perbatasan terpencil
+24|返却|Pengembalian
+25|返金|Pengembalian uang
+26|返送|Pengiriman kembali
+27|返品|Barang retur
+28|便利さ|Kemudahan; kepraktisan
+29|勉学|Belajar; menuntut ilmu
+30|弁慶|Orang kuat; benteng kokoh
+31|弁護人|Pembela; pengacara
+32|弁済|Pelunasan utang
+33|持ち合い|Saling mengimbangi; saling memiliki
+34|保健婦|Perawat kesehatan masyarakat
+35|歩き回る|Berjalan mondar-mandir
+36|歩み寄る|Berkompromi; mendekati
+37|歩合|Persentase; komisi
+38|歩兵|Infanteri
+39|補完|Pelengkapan
+40|補修|Perbaikan
+41|母性|Naluri keibuan
+42|母乳|ASI
+43|菩薩|Bodhisattva
+44|報|Kabar; balasan
+45|報いる|Membalas; mengganjar
+46|奉公|Mengabdi (magang tinggal serumah); pengabdian
+47|宝庫|Gudang harta; sumber kaya
+48|抱え|Sepelukan; pegawai
+49|放課後|Sepulang sekolah
+50|放水|Penyemprotan air; pengaliran air
+51|放任|Pembiaran
+52|放浪|Mengembara
+53|方位|Arah mata angin
+54|法王|Paus
+55|法外|Keterlaluan; melampaui batas
+56|法師|Biksu
+57|砲火|Tembakan artileri
+58|砲弾|Peluru meriam
+59|邦画|Film Jepang
+60|邦楽|Musik tradisional Jepang
+61|飽食|Kekenyangan; kelimpahan makanan
+62|傍観|Menonton saja; berpangku tangan
+63|坊主|Biksu; kepala botak
+64|妨げ|Hambatan
+65|忘却|Lupa sepenuhnya
+66|暴挙|Tindakan nekat
+67|暴徒|Perusuh
+68|暴騰|Lonjakan harga tajam
+69|暴風雨|Badai
+70|冒す|Menerjang; mengambil risiko
+71|防疫|Pencegahan penyakit menular
+72|防空|Pertahanan udara
+73|防波堤|Pemecah ombak
+74|北アイルランド|Irlandia Utara
+75|北緯|Lintang utara
+76|北海|Laut utara
+77|北海道開発庁長官|-
+78|北極圏|Lingkar Arktik
+79|北口|Pintu utara
+80|北上|Bergerak ke utara
+81|北端|Ujung utara
+82|墨付き|Surat pengesahan; restu
+83|牧草|Rumput ternak
+84|牧野|Padang penggembalaan
+85|堀川|-
+86|奔放|Bebas; liar
+87|本家|Rumah induk; asal-usul
+88|本校|Sekolah induk; sekolah ini
+89|本腰|Kesungguhan
+90|本省|Kementerian induk
+91|本職|Pekerjaan utama; profesional
+92|本数|Jumlah batang/judul
+93|本籍|Domisili terdaftar
+94|本隊|Pasukan utama
+95|本題|Pokok pembicaraan
+96|本朝|Negeri ini
+97|本調子|Kondisi normal
+98|本島|Pulau utama
+99|本堂|Aula utama kuil
+100|本命|Unggulan; pilihan utama
+101|本木|-
+102|本流|Aliran utama
+103|本領|Keunggulan sejati
+104|本塁|Markas; home plate
+105|翻す|Membalik; mengubah (keputusan)
+106|盆栽|Bonsai
+107|魔術|Sihir; trik sulap
+108|魔女|Penyihir wanita
+109|魔力|Kekuatan gaib
+110|埋葬|Penguburan
+111|幕開け|Pembukaan (pertunjukan/era)
+112|幕切れ|Akhir adegan
+113|幕内|Divisi tertinggi sumo
+114|幕府|Keshogunan
+115|幕僚|Staf perwira
+116|抹消|Penghapusan
+117|末広|Melebar seperti kipas; makmur
+118|まで|Sampai; hingga
+119|万が一|Seandainya terjadi hal yang tak diinginkan
+120|万引き|Mencuri di toko
+121|万国|Semua negara
+122|万年|Selama-lamanya; abadi
+123|万里|Ribuan mil
+124|慢性的|Kronis
+125|満開|Mekar penuh
+126|満喫|Menikmati sepuasnya
+127|満場一致|Suara bulat
+128|満席|Kursi penuh
+129|満杯|Penuh sesak
+130|満腹|Kenyang
+131|味付け|Pembumbuan
+132|味の素|Ajinomoto; MSG
+133|未解決|Belum terselesaikan
+134|未熟児|Bayi prematur
+135|未知数|Hal yang belum diketahui; variabel
+136|未納|Belum dibayar
+137|未発表|Belum diumumkan
+138|未払い|Belum dibayar; tunggakan
+139|未亡人|Janda
+140|魅了|Memikat
+141|魅惑|Daya tarik; pesona
+142|密航|Menyelundup naik kapal
+143|密着|Menempel erat; dekat sekali
+144|密猟|Perburuan liar
+145|脈絡|Kaitan logis
+146|民営化|Privatisasi
+147|民芸|Kerajinan rakyat
+148|民主国|Negara demokrasi
+149|民需|Permintaan swasta
+150|民政|Pemerintahan sipil
+151|民族自決|Penentuan nasib sendiri
+152|眠気|Rasa kantuk
+153|夢想|Lamunan; khayalan
+154|ない|-
+155|無益|Sia-sia
+156|無気力|Tidak bersemangat
+157|無給|Tanpa gaji
+158|無形|Tak berwujud
+159|無差別|Tanpa pandang bulu
+160|無作為|Acak
+161|無傷|Tanpa luka; mulus
+162|無情|Tak berperasaan
+163|無色|Tak berwarna; netral
+164|無政府|Anarki
+165|無秩序|Kekacauan
+166|無敵|Tak terkalahkan
+167|無法|Tanpa hukum; keterlaluan
+168|無欲|Tidak serakah
+169|矛先|Ujung tombak; arah serangan
+170|霧雨|Gerimis
+171|娘婿|Menantu laki-laki
+172|名案|Gagasan bagus
+173|名画|Lukisan terkenal; film klasik
+174|名曲|Lagu terkenal
+175|名実|Nama dan kenyataan
+176|名手|Ahli; jago
+177|名乗り出る|Mengajukan diri; menampilkan diri
+178|名乗る|Menyebut nama; mengaku sebagai
+179|名著|Buku terkenal
+180|命運|Nasib
+181|命題|Proposisi; tema
+182|命名|Pemberian nama
+183|明言|Pernyataan tegas
+184|明示|Penegasan; pencantuman jelas
+185|明朝|Besok pagi
+186|盟主|Pemimpin aliansi
+187|盟友|Sahabat setia
+188|迷う|Tersesat; bimbang
+189|鳴き声|Suara (hewan)
+190|滅多|Sembarangan; jarang sekali
+191|免職|Pemecatan
+192|免責|Pembebasan tanggung jawab
+193|綿密|Teliti; cermat
+194|麺|Mi
+195|模擬|Tiruan; simulasi
+196|猛威|Keganasan
+197|猛攻|Serangan sengit
+198|猛打|Pukulan keras
+199|盲学校|Sekolah tunanetra
+200|盲人|Tunanetra
+201|盲腸|Usus buntu
+202|盲導犬|Anjing pemandu tunanetra
+203|網戸|Kasa jendela
+204|網膜|Retina
+205|網羅|Mencakup semuanya
+206|木の実|Buah pohon; kacang
+207|木の葉|Daun pohon
+208|木戸|Pintu pagar; pintu masuk tempat hiburan
+209|木場|-
+210|木星|Planet Jupiter
+211|木製|Terbuat dari kayu
+212|木炭|Arang kayu
+213|黙とう|Mengheningkan cipta
+214|目覚まし|Jam weker; pembangun
+215|目先|Di depan mata; jangka pendek
+216|めじろ|Burung kacamata Jepang
+217|目薬|Obat tetes mata
+218|戻り|Kembali; pemulihan
+219|門戸|Pintu gerbang
+220|門扉|Daun pintu gerbang
+221|夜学|Sekolah malam
+222|野性|Sifat liar
+223|野蛮|Biadab
+224|野放し|Dibiarkan lepas
+225|野望|Ambisi
+226|役柄|Peran
+227|薬価|Harga obat
+228|薬学|Farmasi
+229|薬剤|Obat; bahan kimia
+230|訳者|Penerjemah
+231|躍起|Kalap; bersemangat
+232|躍動|Gerak lincah; denyut
+233|油井|Sumur minyak
+234|優越感|Rasa superioritas
+235|優雅|Anggun
+236|優先的|Prioritas
+237|勇者|Pahlawan; orang berani
+238|友愛|Persaudaraan
+239|憂慮|Kekhawatiran
+240|有償|Berbayar
+241|有人|Berawak
+242|有線|Berkabel
+243|有頂天|Sangat gembira
+244|有用|Berguna
+245|誘い|Ajakan; godaan
+246|遊び場|Tempat bermain
+247|遊撃|Serangan gerilya; shortstop
+248|遊撃手|Shortstop
+249|雄弁|Fasih berbicara
+250|融合|Peleburan; fusi
+251|夕刻|Waktu sore
+252|予備費|Dana cadangan
+253|余す|Menyisakan
+254|あまりに|Terlalu; saking
+255|余韻|Gema; kesan yang tertinggal
+256|余剰|Kelebihan; surplus
+257|余震|Gempa susulan
+258|余談|Selingan cerita
+259|余念|Pikiran lain
+260|余波|Dampak lanjutan
+261|余命|Sisa hidup
+262|余力|Tenaga cadangan
+263|預かり|Penitipan; hasil seri
+264|預け入れる|Menyetor; menitipkan
+265|幼なじみ|Teman masa kecil
+266|幼少|Masa kanak-kanak
+267|幼虫|Larva
+268|妖怪|Makhluk gaib; yokai
+269|妖精|Peri
+270|容姿|Penampilan fisik
+271|揚げ|Gorengan; tahu goreng tipis
+272|擁する|Memiliki
+273|洋楽|Musik Barat
+274|洋間|Ruangan gaya Barat
+275|洋裁|Menjahit pakaian Barat
+276|洋式|Gaya Barat; toilet duduk
+277|洋室|Kamar gaya Barat
+278|洋書|Buku berbahasa asing
+279|用心棒|Pengawal; satpam
+280|用水|Air untuk irigasi/keperluan
+281|用例|Contoh pemakaian
+282|窯|Tungku; oven keramik
+283|踊り子|Penari
+284|陽光|Sinar matahari
+285|養育|Pengasuhan
+286|養父|Ayah angkat
+287|抑揚|Intonasi
+288|欲張る|Serakah
+289|翌月|Bulan berikutnya
+290|来店|Datang ke toko
+291|来賓|Tamu undangan
+292|雷雨|Hujan petir
+293|落ち度|Kesalahan
+294|落とし穴|Lubang jebakan
+295|落語家|Pencerita rakugo
+296|落書き|Coretan; grafiti
+297|落胆|Kekecewaan
+298|乱雑|Berantakan
+299|乱闘|Perkelahian massal
+300|乱発|Penerbitan berlebihan
+301|乱立|Berdiri berjubel
+302|卵子|Sel telur
+303|卵巣|Ovarium
+304|あい|Nila
+305|利払い|Pembayaran bunga
+306|理工|Sains dan teknik
+307|理工学部|Fakultas sains dan teknik
+308|理想的|Ideal
+309|理髪|Potong rambut
+310|理不尽|Tidak masuk akal
+311|裏切り|Pengkhianatan
+312|裏切り者|Pengkhianat
+313|裏通り|Gang belakang
+314|裏表|Depan-belakang; bolak-balik
+315|裏付ける|Memperkuat dengan bukti
+316|裏方|Orang di balik layar
+317|裏面|Sisi belakang
+318|裏目|Berbalik hasilnya
+319|里帰り|Pulang kampung
+320|里子|Anak asuh
+321|離宮|Istana peristirahatan
+322|離散|Berpencar; terpisah
+323|離反|Menjauh; berpaling
+324|陸路|Jalur darat
+325|立ち去る|Pergi meninggalkan
+326|立ち直り|Pemulihan
+327|立ち直る|Bangkit kembali
+328|立ち話|Bicara sambil berdiri
+329|立て替える|Menalangi
+330|立案|Perencanaan; penyusunan draf
+331|立憲|Konstitusionalisme
+332|立法府|Lembaga legislatif
+333|略式|Tidak resmi; disederhanakan
+334|略歴|Riwayat hidup singkat
+335|流れ込む|Mengalir masuk
+336|流行歌|Lagu populer
+337|流派|Aliran
+338|流用|Penyalahgunaan dana; pemakaian ulang
+339|留置|Penahanan
+340|留保|Penahanan; reservasi
+341|隆盛|Kemakmuran; kejayaan
+342|旅先|Tempat tujuan perjalanan
+343|旅団|Brigade
+344|両岸|Kedua tepi
+345|両軍|Kedua pasukan
+346|両輪|Dua roda
+347|両論|Kedua pendapat
+348|両腕|Kedua lengan
+349|量産|Produksi massal
+350|量的|Secara kuantitas
+351|力む|Mengerahkan tenaga; bergaya
+352|力学|Mekanika
+353|力作|Karya hasil kerja keras
+354|力持ち|Orang kuat
+355|力点|Titik tekan; penekanan
+356|力投|Melempar sekuat tenaga
+357|緑地|Area hijau
+358|倫理的|Etis
+359|林道|Jalan hutan
+360|林立|Berdiri berjajar rapat
+361|臨界|Batas kritis
+362|臨終|Saat ajal
+363|臨場感|Kesan kehadiran langsung
+364|輪ゴム|Karet gelang
+365|輪切り|Irisan melingkar
+366|うろこ|Sisik
+367|瑠璃|Lapis lazuli
+368|塁|Base; benteng
+369|累計|Total kumulatif
+370|累進|Kenaikan bertahap; progresif
+371|令状|Surat perintah
+372|例会|Rapat rutin
+373|例外的|Bersifat pengecualian
+374|例文|Contoh kalimat
+375|冷え|Rasa dingin
+376|冷え込む|Menjadi sangat dingin
+377|冷え性|Mudah kedinginan
+378|冷害|Kerusakan akibat cuaca dingin
+379|励み|Dorongan semangat
+380|礼状|Surat terima kasih
+381|礼拝|Ibadah
+382|礼服|Pakaian resmi
+383|零下|Di bawah nol derajat
+384|零細|Kecil sekali
+385|霊園|Taman pemakaman
+386|齢|Umur
+387|列挙|Penyebutan satu per satu
+388|劣悪|Buruk; berkualitas rendah
+389|劣化|Penurunan kualitas
+390|劣勢|Posisi tertekan
+391|劣等感|Rasa rendah diri
+392|連れ去る|Membawa pergi; menculik
+393|連結|Sambungan; penggandengan
+394|連鎖|Rantai; berantai
+395|連座|Terlibat (dalam kejahatan)
+396|連隊|Resimen
+397|連動|Bekerja bersamaan; terhubung
+398|連発|Tembakan beruntun
+399|連峰|Barisan pegunungan

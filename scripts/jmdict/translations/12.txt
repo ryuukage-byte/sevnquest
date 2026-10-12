@@ -1,0 +1,400 @@
+0|財政難|Kesulitan keuangan
+1|坂道|Jalan menanjak
+2|作り出す|Menciptakan; menghasilkan
+3|作り上げる|Menyelesaikan pembuatan; mengarang
+4|作風|Gaya karya
+5|作柄|Kondisi panen; mutu karya
+6|削り節|Serutan ikan bonito
+7|搾取|Eksploitasi; pemerasan
+8|昨晩|Tadi malam
+9|策略|Siasat; taktik
+10|冊子|Buku kecil; brosur
+11|察知|Menyadari; menduga
+12|札束|Segepok uang kertas
+13|殺意|Niat membunuh
+14|殺菌|Sterilisasi; disinfeksi
+15|殺傷|Pembunuhan dan pelukaan
+16|殺虫剤|Insektisida
+17|殺到|Menyerbu; membanjir
+18|雑居|Tinggal campur; gedung multi-penyewa
+19|雑煮|Sup mochi (hidangan Tahun Baru)
+20|雑木林|Hutan kecil campuran
+21|さめ|Hiu
+22|三権|Tiga kekuasaan negara
+23|３次元|Tiga dimensi
+24|三女|Putri ketiga
+25|三省|Introspeksi berulang
+26|三選|Pemilihan periode ketiga
+27|三枚|Tiga lembar; memfilet ikan
+28|三流|Kelas tiga
+29|三輪|Tiga roda
+30|三塁手|Penjaga base ketiga
+31|参画|Ikut serta dalam perencanaan
+32|参観|Kunjungan; observasi
+33|参事|Sekretaris; anggota dewan
+34|参戦|Ikut berperang; ikut bertanding
+35|参道|Jalan menuju kuil
+36|参与|Partisipasi; penasihat
+37|参列|Menghadiri (upacara)
+38|山陰|Bayangan gunung; wilayah San'in
+39|山火事|Kebakaran hutan
+40|山菜|Sayuran liar gunung
+41|山小屋|Pondok gunung
+42|山川|Gunung dan sungai
+43|山荘|Vila gunung
+44|山地|Daerah pegunungan
+45|山登り|Mendaki gunung
+46|山道|Jalan setapak gunung
+47|惨事|Bencana; tragedi
+48|惨状|Pemandangan mengerikan
+49|散らばる|Berserakan
+50|散会|Bubar (rapat)
+51|散策|Jalan-jalan santai
+52|散発|Sporadis; sesekali
+53|散髪|Potong rambut
+54|散布|Penyebaran; penyemprotan
+55|産科|Kebidanan
+56|算出|Perhitungan
+57|賛辞|Pujian
+58|賛同|Persetujuan; dukungan
+59|斬新|Segar dan baru; inovatif
+60|残虐|Kejam; bengis
+61|残存|Tersisa
+62|仕業|Perbuatan (biasanya buruk)
+63|仕込み|Pelatihan; persiapan stok
+64|仕事場|Tempat kerja
+65|仕切り|Sekat; penyelesaian
+66|仕草|Gerak-gerik
+67|仕方がない|Tidak ada cara lain; apa boleh buat
+68|仕立て|Menjahit; penjahitan
+69|使い分け|Penggunaan sesuai konteks
+70|使者|Utusan
+71|使用者|Pengguna; pemberi kerja
+72|使用料|Biaya pemakaian
+73|刺し|Sashimi; tusukan
+74|司会者|Pembawa acara
+75|司令|Komando; komandan
+76|史家|Sejarawan
+77|史学|Ilmu sejarah
+78|史実|Fakta sejarah
+79|史料|Sumber sejarah
+80|四重奏|Kuartet
+81|四畳半|Ruangan empat setengah tatami
+82|四輪車|Mobil
+83|士官|Perwira
+84|士気|Semangat juang
+85|始業|Mulai kerja/pelajaran
+86|始動|Menyalakan (mesin)
+87|姉さん|Kakak perempuan
+88|子宮|Rahim
+89|子女|Putra dan putri; anak-anak
+90|子弟|Anak-anak; pemuda
+91|市営|Dikelola kota
+92|市場調査|Riset pasar
+93|市政|Pemerintahan kota
+94|市民権|Hak kewarganegaraan; penerimaan luas
+95|師事|Berguru kepada
+96|師範|Instruktur; guru
+97|思い上がる|Menjadi sombong
+98|思い切る|Merelakan; memutuskan dengan tekad
+99|思い直す|Berpikir ulang; berubah pikiran
+100|思春期|Masa pubertas
+101|指し示す|Menunjukkan; menunjuk
+102|指先|Ujung jari
+103|指名手配|Masuk daftar buronan
+104|支柱|Tiang penopang
+105|支流|Anak sungai
+106|施政|Penyelenggaraan pemerintahan
+107|旨|Maksud; pokok isi
+108|死活|Hidup mati
+109|死刑囚|Terpidana mati
+110|死人|Orang mati; jenazah
+111|死亡者|Korban tewas
+112|私見|Pendapat pribadi
+113|私書箱|Kotak pos
+114|私生活|Kehidupan pribadi
+115|私設|Swasta; milik pribadi
+116|私費|Biaya sendiri
+117|紙芝居|Kamishibai; dongeng bergambar
+118|紙袋|Kantong kertas
+119|紫色|Warna ungu
+120|いたるところ|Di mana-mana
+121|至難|Sangat sulit
+122|至福|Kebahagiaan tertinggi
+123|視界|Jarak pandang
+124|視聴|Menonton dan mendengarkan
+125|試金石|Batu ujian; tolok ukur
+126|試行|Percobaan
+127|試作|Pembuatan contoh uji
+128|試写|Pemutaran perdana terbatas
+129|試食|Mencicipi makanan
+130|試薬|Reagen
+131|試料|Sampel
+132|資質|Bakat; watak dasar
+133|飼料|Pakan ternak
+134|歯ごたえ|Kekenyalan; tantangan
+135|歯科医|Dokter gigi
+136|歯科医師|Dokter gigi
+137|歯切れ|Kerenyahan; kejelasan ucapan
+138|歯痒い|Gemas; tidak sabar
+139|事実無根|Tidak berdasar fakta
+140|事象|Peristiwa; fenomena
+141|事変|Insiden; kekacauan
+142|事務官|Pejabat administrasi
+143|事務的|Administratif; kaku
+144|事務当局|Pejabat berwenang
+145|似せる|Meniru
+146|似合い|Cocok; serasi
+147|侍従|Pengawal istana
+148|字形|Bentuk huruf
+149|字幕|Teks terjemahan
+150|慈悲|Belas kasih
+151|持ち出す|Membawa keluar; mengangkat (topik)
+152|持ち前|Sifat bawaan
+153|持ち直す|Pulih; membaik
+154|持久|Daya tahan
+155|持病|Penyakit kronis
+156|時雨|Hujan sesaat (akhir musim gugur)
+157|時間切れ|Kehabisan waktu
+158|時期尚早|Masih terlalu dini
+159|時代錯誤|Anakronisme
+160|時報|Pengumuman waktu; buletin
+161|次席|Kedua; asisten
+162|次代|Zaman berikutnya
+163|次男|Putra kedua
+164|次点|Peringkat berikutnya
+165|治水|Pengendalian banjir
+166|治癒|Kesembuhan
+167|示談|Penyelesaian damai di luar pengadilan
+168|耳障り|Mengganggu telinga
+169|自家|Rumah sendiri; milik sendiri
+170|自活|Hidup mandiri
+171|自作|Buatan sendiri
+172|自称|Mengaku sebagai
+173|自炊|Memasak sendiri
+174|自制|Menahan diri
+175|自他|Diri sendiri dan orang lain; transitif
+176|自伝|Autobiografi
+177|自動販売機|Mesin penjual otomatis
+178|自発|Spontan
+179|自費|Biaya sendiri
+180|自筆|Tulisan tangan sendiri
+181|自負|Kebanggaan diri
+182|自閉症|Autisme
+183|自明|Sudah jelas
+184|自滅|Menghancurkan diri sendiri
+185|自律|Otonomi; kendali diri
+186|辞令|Surat keputusan jabatan; basa-basi
+187|識者|Orang berpengetahuan
+188|失脚|Kehilangan jabatan
+189|失敬|Tidak sopan; permisi
+190|失跡|Menghilang
+191|失速|Kehilangan daya angkat; melambat
+192|失明|Kehilangan penglihatan
+193|失礼|Tidak sopan; permisi
+194|室内楽|Musik kamar
+195|湿原|Lahan basah
+196|湿疹|Eksim
+197|漆|Pernis; pohon pernis
+198|疾病|Penyakit
+199|質屋|Rumah gadai
+200|質的|Kualitatif
+201|実り|Hasil panen; pematangan
+202|実演|Demonstrasi; pertunjukan langsung
+203|実兄|Kakak kandung laki-laki
+204|実験室|Laboratorium
+205|実証|Pembuktian nyata
+206|実数|Bilangan real
+207|実弾|Peluru tajam
+208|実地|Praktik lapangan
+209|実用的|Praktis
+210|実利|Manfaat nyata
+211|実力行使|Penggunaan kekuatan
+212|実話|Kisah nyata
+213|偲ぶ|Mengenang
+214|射撃|Penembakan
+215|射殺|Menembak mati
+216|射止める|Menembak jatuh; meraih
+217|煮詰める|Mengentalkan; menuntaskan
+218|煮込む|Merebus lama
+219|煮物|Masakan rebus
+220|社外|Di luar perusahaan
+221|謝意|Rasa terima kasih
+222|車検|Pemeriksaan kendaraan
+223|車線|Jalur lalu lintas
+224|車体|Bodi mobil
+225|蛇の目|Pola mata sasaran; payung bermotif
+226|邪|Jahat
+227|尺度|Ukuran; tolok ukur
+228|釈明|Penjelasan; pembelaan diri
+229|すず|Timah
+230|若葉|Daun muda
+231|弱音|Keluhan lemah
+232|弱体|Lemah (organisasi)
+233|弱虫|Penakut
+234|主たる|Utama
+235|主因|Penyebab utama
+236|主幹|Pemimpin redaksi; penanggung jawab
+237|主管|Pengelolaan; pengawas
+238|主観的|Subjektif
+239|主眼|Tujuan utama; fokus
+240|主計|Bendahara
+241|主計局|Biro anggaran
+242|主査|Pemeriksa utama
+243|主治医|Dokter yang merawat
+244|主審|Wasit utama
+245|主戦|Menganjurkan perang
+246|主体的|Mandiri; aktif
+247|主犯|Pelaku utama
+248|主筆|Pemimpin redaksi
+249|主砲|Meriam utama
+250|取り囲む|Mengepung; mengelilingi
+251|取り外す|Melepas; membongkar
+252|取り掛かる|Mulai mengerjakan
+253|取り残す|Meninggalkan
+254|取り返す|Merebut kembali
+255|手記|Catatan pribadi
+256|手ごわい|Tangguh
+257|手堅い|Mantap; teguh
+258|手ごろ|Pas; terjangkau
+259|手始め|Awal mula
+260|手持ち|Yang dipegang; persediaan
+261|手書き|Tulisan tangan
+262|手助け|Bantuan
+263|手振り|Gerakan tangan
+264|手製|Buatan tangan
+265|手直し|Perbaikan kecil
+266|手痛い|Parah; berat
+267|手提げ|Tas tangan
+268|手渡す|Menyerahkan
+269|手当たり次第|Asal comot; sembarangan
+270|手動|Manual
+271|手抜き|Mengurangi tahapan; asal-asalan
+272|手柄|Jasa; prestasi
+273|手立て|Cara; langkah
+274|手話|Bahasa isyarat
+275|殊勲|Jasa istimewa
+276|狩り|Berburu; memetik
+277|狩猟|Perburuan
+278|種族|Suku bangsa; spesies
+279|種別|Penggolongan jenis
+280|腫瘍|Tumor
+281|趣向|Gagasan; rancangan
+282|酒造|Pembuatan sake
+283|酒類|Minuman beralkohol
+284|首班|Pemimpin; perdana menteri
+285|首謀|Dalang; otak rencana
+286|儒教|Konfusianisme
+287|受刑|Menjalani hukuman
+288|受信機|Pesawat penerima
+289|受精卵|Sel telur yang dibuahi
+290|受像|Penerimaan gambar (TV)
+291|受難|Penderitaan; penyaliban
+292|受容|Penerimaan
+293|受理|Penerimaan (berkas)
+294|授業料|Uang kuliah
+295|樹齢|Umur pohon
+296|囚人|Narapidana
+297|収縮|Pengerutan; kontraksi
+298|収納|Penyimpanan; penerimaan dana
+299|収用|Pengambilalihan paksa
+300|収量|Hasil panen
+301|周到|Teliti; saksama
+302|周波数|Frekuensi
+303|宗派|Aliran agama; sekte
+304|宗門|Aliran agama
+305|就学|Masuk sekolah
+306|就航|Mulai beroperasi (rute)
+307|修める|Mempelajari; menyelesaikan
+308|修道|Belajar; menempuh jalan seni
+309|修道院|Biara
+310|拾い物|Temuan; barang murah beruntung
+311|拾得|Menemukan barang hilang
+312|秀才|Orang cerdas; siswa berbakat
+313|秋口|Awal musim gugur
+314|秋風|Angin musim gugur
+315|終局|Akhir; berakhirnya permainan
+316|終息|Mereda; berakhir
+317|終着駅|Stasiun akhir
+318|終末|Akhir
+319|終焉|Berakhirnya; kematian
+320|習性|Kebiasaan; tabiat
+321|襲名|Mewarisi nama panggung
+322|集荷|Pengumpulan barang
+323|集約|Pemadatan; penyatuan
+324|住人|Penghuni
+325|住専|Perusahaan kredit perumahan
+326|充てる|Menugaskan; mengalokasikan
+327|充足|Pemenuhan; kecukupan
+328|充電|Mengisi daya
+329|充当|Pengalokasian
+330|充満|Penuh sesak; memenuhi
+331|十二分|Lebih dari cukup
+332|従属|Ketergantungan; subordinasi
+333|渋る|Enggan; ragu
+334|縦書き|Tulisan vertikal
+335|縦断|Melintasi dari utara ke selatan
+336|重ね合わせ|Superposisi
+337|重る|Menjadi berat; memburuk
+338|重圧|Tekanan berat
+339|重工業|Industri berat
+340|重責|Tanggung jawab berat
+341|重鎮|Tokoh berpengaruh
+342|重油|Minyak berat
+343|重要視|Menganggap penting
+344|重要文化財|Cagar budaya penting
+345|銃器|Senjata api ringan
+346|銃声|Suara tembakan
+347|宿屋|Penginapan
+348|祝儀|Perayaan; hadiah selamat
+349|祝辞|Ucapan selamat
+350|祝電|Telegram ucapan selamat
+351|熟知|Mengenal dengan baik
+352|熟練|Keterampilan; mahir
+353|出撃|Serangan keluar; sortie
+354|出欠|Hadir atau tidak
+355|出向く|Pergi menuju
+356|出港|Berangkat dari pelabuhan
+357|だし|Dashi; kaldu Jepang
+358|出陣|Berangkat ke medan perang
+359|出遅れる|Terlambat start
+360|出張所|Kantor cabang
+361|出展|Memamerkan
+362|出土|Penggalian arkeologi
+363|出頭|Menghadap; menyerahkan diri
+364|出入|Keluar-masuk; pemasukan dan pengeluaran
+365|出版物|Terbitan
+366|出塁|Sampai ke base
+367|術|Seni; teknik; cara
+368|俊足|Kaki cepat; orang berbakat
+369|春夏秋冬|Empat musim
+370|春休み|Libur musim semi
+371|春先|Awal musim semi
+372|春分|Ekuinoks musim semi
+373|瞬時|Sekejap
+374|旬|Musim terbaik; periode sepuluh hari
+375|潤滑油|Pelumas
+376|純益|Laba bersih
+377|純金|Emas murni
+378|純度|Kemurnian
+379|巡業|Tur keliling daerah
+380|巡航|Pelayaran jelajah
+381|巡視|Inspeksi keliling
+382|巡礼|Ziarah; peziarah
+383|順に|Berurutan
+384|処方|Resep; formula
+385|初回|Pertama kali; babak pertama
+386|初出|Kemunculan pertama
+387|初心者|Pemula
+388|初雪|Salju pertama
+389|初対面|Pertemuan pertama
+390|初夢|Mimpi pertama tahun baru
+391|初恋|Cinta pertama
+392|初老|Mendekati usia tua
+393|所見|Pandangan; temuan
+394|所在地|Lokasi; alamat
+395|書き込む|Mengisi; memposting
+396|書き直す|Menulis ulang
+397|書院|Ruang belajar; penerbit
+398|書式|Format penulisan
+399|書体|Jenis huruf; gaya tulisan

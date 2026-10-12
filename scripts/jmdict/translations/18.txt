@@ -1,0 +1,400 @@
+0|園内|Di dalam taman
+1|演舞|Pertunjukan tari
+2|横手|-
+3|横断幕|Spanduk membentang
+4|卸売市場|Pasar grosir
+5|何にも|Sama sekali tidak
+6|加点|Penambahan poin
+7|家裁|Pengadilan keluarga
+8|家庭内|Dalam rumah tangga
+9|河川敷|Bantaran sungai
+10|火付け役|Pemicu; pencetus
+11|稼働率|Tingkat pengoperasian
+12|花柳|Kawasan hiburan malam
+13|会計検査院|Badan Pemeriksa Keuangan
+14|会社更生法|Undang-undang rehabilitasi perusahaan
+15|快勝|Kemenangan mudah
+16|海戦|Pertempuran laut
+17|海道|-
+18|開国|Pembukaan negara; pendirian negara
+19|開発部|Departemen pengembangan
+20|外苑|Taman luar
+21|外洋|Laut lepas
+22|閣内|Dalam kabinet
+23|学校法人|Badan hukum pendidikan
+24|学際|Antardisiplin
+25|学習指導要領|Pedoman kurikulum
+26|割引債|Obligasi diskonto
+27|巻き添え|Terseret; ikut terlibat
+28|完工|Selesainya pembangunan
+29|完治|Sembuh total
+30|完全試合|Perfect game
+31|完売|Terjual habis
+32|感情的|Emosional
+33|感染症|Penyakit infeksi
+34|漢方|Pengobatan tradisional Tiongkok
+35|管区気象台|Observatorium meteorologi wilayah
+36|管財|Pengelolaan harta
+37|管制官|Petugas pengatur lalu lintas udara
+38|管長|Kepala biara
+39|簡易保険|Asuransi pos
+40|簡裁|Pengadilan ringkas
+41|観音|Kannon (Avalokiteshvara)
+42|還付|Pengembalian; restitusi
+43|間伐|Penjarangan hutan
+44|関取|Pesumo peringkat atas
+45|館内|Di dalam gedung
+46|頑張り|Ketekunan
+47|顔見知り|Kenalan
+48|顔負け|Kalah pamor
+49|企画室|Kantor perencanaan
+50|喜ばしい|Menggembirakan
+51|基軸|Poros; dasar
+52|基準法|Undang-undang standar
+53|旗印|Lambang bendera; panji perjuangan
+54|棋院|Lembaga go
+55|気に入り|Kesukaan
+56|気鋭|Bersemangat; menjanjikan
+57|起訴猶予|Penundaan dakwaan
+58|義太夫|Gidayu (narasi teater boneka)
+59|義務付け|Pewajiban
+60|義勇|Keberanian dan kesetiaan
+61|議院運営委員会|Komite pengelola sidang
+62|議定書|Protokol
+63|客足|Arus pengunjung
+64|急ピッチ|Dengan cepat
+65|急伸|Kenaikan mendadak
+66|急成長|Pertumbuhan pesat
+67|救国|Penyelamatan negara
+68|旧派|Aliran lama
+69|陰り|Bayangan; mulai suram
+70|掘削|Penggalian
+71|普遍的|Universal
+72|酷|Kejam; berat
+73|生鮮|Segar
+74|多角的|Multilateral; beragam sisi
+75|高らか|Nyaring
+76|手薄|Kekurangan tenaga/persediaan
+77|布教|Penyebaran agama
+78|放流|Pelepasan air; pelepasan benih ikan
+79|勘案|Pertimbangan
+80|留任|Tetap menjabat
+81|際会|Bertemu; menghadapi
+82|生還|Pulang dengan selamat
+83|施工|Pelaksanaan konstruksi
+84|退役|Pensiun dari militer
+85|登頂|Mencapai puncak
+86|特設|Pendirian khusus
+87|登載|Pencatatan; pemuatan
+88|預託|Penitipan (uang/barang)
+89|続伸|Naik berlanjut
+90|地球上|Di bumi
+91|現有|Yang ada saat ini
+92|生え抜き|Asli; murni dari dalam
+93|術後|Setelah operasi
+94|無配|Tanpa dividen
+95|清新|Segar dan baru
+96|所要|Yang dibutuhkan
+97|在野|Di luar pemerintahan; oposisi
+98|赤旗|Bendera merah
+99|部局|Departemen; biro
+100|文教|Pendidikan dan kebudayaan
+101|着地|Pendaratan
+102|地表|Permukaan bumi
+103|誓って|Berani bersumpah; sama sekali tidak
+104|調教|Pelatihan hewan
+105|長身|Tubuh tinggi
+106|忠臣|Pengikut setia
+107|第一声|Kata-kata pertama; pidato pertama
+108|男児|Anak laki-laki
+109|脱硫|Desulfurisasi
+110|毒ガス|Gas beracun
+111|浮沈|Pasang surut; naik turun
+112|布陣|Susunan pasukan; formasi
+113|不協和音|Nada sumbang; ketidakselarasan
+114|風味|Rasa; cita rasa
+115|二つ目|Yang kedua
+116|浮遊|Mengambang
+117|八幡|Hachiman (dewa perang)
+118|配本|Distribusi buku
+119|配役|Pembagian peran
+120|白骨|Tulang belulang putih
+121|迫撃|Serangan jarak dekat
+122|白色|Warna putih
+123|初舞台|Debut di panggung
+124|刃渡り|Panjang bilah
+125|被保険者|Tertanggung
+126|飛球|Bola melambung
+127|非鉄金属|Logam non-besi
+128|法医学|Kedokteran forensik
+129|保革|Konservatif dan progresif
+130|崩落|Runtuh
+131|法制局|Biro perundang-undangan
+132|法要|Upacara peringatan Buddha
+133|票田|Basis suara
+134|青葉|Daun muda yang hijau
+135|堀江|-
+136|老婦|Wanita tua
+137|老夫婦|Pasangan lansia
+138|架橋|Pembangunan jembatan; ikatan silang
+139|投げ|Lemparan; bantingan
+140|安芸|-
+141|受取人|Penerima
+142|青柳|-
+143|居場所|Keberadaan; tempat berada
+144|居心地|Kenyamanan
+145|漁民|Nelayan
+146|競り合い|Persaingan ketat
+147|競走馬|Kuda pacu
+148|強権|Kekuasaan keras negara
+149|強行採決|Pemungutan suara paksa
+150|教育者|Pendidik
+151|教頭|Wakil kepala sekolah
+152|狭間|Celah; lembah sempit
+153|脅し|Ancaman
+154|曲がり|Lengkungan
+155|近衛|Pengawal kekaisaran
+156|近作|Karya terbaru
+157|近著|Buku terbaru
+158|金石|Mineral dan batu; prasasti
+159|金品|Uang dan barang
+160|金屏風|Layar lipat emas
+161|空振り|Ayunan meleset; sia-sia
+162|刑事責任|Tanggung jawab pidana
+163|型式|Model; tipe
+164|経済封鎖|Blokade ekonomi
+165|計画的|Terencana
+166|軽自動車|Mobil mini (kei car)
+167|芸術院|Akademi seni
+168|芸術祭|Festival seni
+169|劇画|Komik bergaya dramatis
+170|欠場|Absen
+171|決め|Kesepakatan; aturan
+172|決め球|Lemparan pamungkas
+173|決勝点|Poin kemenangan
+174|決選投票|Pemungutan suara putaran akhir
+175|月産|Produksi bulanan
+176|月内|Dalam bulan ini
+177|健康食品|Makanan kesehatan
+178|健保|Asuransi kesehatan
+179|建築学|Arsitektur
+180|検察庁|Kejaksaan
+181|検事正|Kepala jaksa
+182|献花|Persembahan bunga
+183|研究官|Pejabat peneliti
+184|県外|Luar prefektur
+185|見え隠れ|Timbul tenggelam
+186|見せ場|Adegan sorotan
+187|見切り発車|Berangkat sebelum siap; memulai tanpa kesiapan
+188|見張り|Penjagaan; penjaga
+189|原資|Modal pokok
+190|減員|Pengurangan jumlah personel
+191|減給|Pemotongan gaji
+192|言い渡し|Putusan; vonis
+193|個々人|Individu masing-masing
+194|固定費|Biaya tetap
+195|戸別訪問|Kunjungan dari rumah ke rumah
+196|後進|Junior; mundur
+197|後半戦|Babak kedua
+198|御用邸|Vila kekaisaran
+199|護国|Pembelaan negara
+200|交じり|Campuran
+201|公共放送|Siaran publik
+202|公舎|Rumah dinas
+203|口頭弁論|Sidang lisan
+204|好景気|Ekonomi baik
+205|好守|Pertahanan bagus
+206|好成績|Hasil bagus
+207|好天|Cuaca cerah
+208|工作員|Agen rahasia; pembuat
+209|広葉樹|Pohon berdaun lebar
+210|抗告|Banding; protes
+211|抗戦|Perlawanan
+212|紅潮|Wajah memerah
+213|航空自衛隊|Pasukan Bela Diri Udara
+214|荒らげる|Meninggikan (suara); mengasarkan
+215|行楽地|Tempat wisata
+216|行政機関|Lembaga administrasi
+217|行政処分|Sanksi administratif
+218|行政訴訟|Gugatan tata usaha negara
+219|講ずる|Mengambil langkah; menyusun rencana
+220|鉱区|Wilayah pertambangan
+221|降格|Penurunan pangkat
+222|降板|Keluar dari mound; mundur
+223|受章|Menerima bintang jasa
+224|越し|Melewati; selama
+225|鎌|Sabit
+226|錠|Gembok; tablet
+227|戦地|Medan perang
+228|打ち切り|Penghentian; penutupan
+229|樽|Tong kayu
+230|怒らせる|Membuat marah
+231|逃げ|Pelarian; menghindar
+232|魔|-
+233|目抜き|Utama; terpenting
+234|矢先|Tepat saat; ujung panah
+235|断り|Pemberitahuan; izin; penolakan
+236|焼け跡|Bekas kebakaran
+237|赤信号|Lampu merah
+238|実権|Kekuasaan sebenarnya
+239|自任|Menganggap diri sebagai
+240|陣頭|Garis depan pasukan
+241|地力|Kemampuan sebenarnya
+242|時流|Arus zaman
+243|実相|Kenyataan sebenarnya
+244|実技|Keterampilan praktik
+245|実像|Citra nyata
+246|浄化槽|Tangki septik
+247|囲み|Kotak; kepungan
+248|貸金|Pinjaman uang
+249|通い|Pulang-pergi; komuter
+250|新春|Tahun Baru
+251|創出|Penciptaan
+252|担い手|Penanggung jawab; penyangga
+253|ぬめり|Lendir; licin
+254|人間ドック|Pemeriksaan kesehatan menyeluruh
+255|婚約者|Tunangan
+256|飛び地|Eksklave; wilayah terpisah
+257|配信|Distribusi; penyiaran
+258|小声|Suara pelan
+259|小幅|Kecil; sempit
+260|高炉|Tanur tinggi
+261|草分け|Perintis; pelopor
+262|待ち|Menunggu
+263|満期|Jatuh tempo
+264|待たせる|Membuat menunggu
+265|全うする|Menyelesaikan; menunaikan
+266|迷い|Keraguan; kebingungan
+267|目減り|Penyusutan nilai/jumlah
+268|目頭|Sudut dalam mata
+269|名優|Aktor ternama
+270|面識|Pernah kenal
+271|磨き|Poles; peningkatan
+272|密林|Hutan lebat
+273|深山|Pegunungan dalam
+274|木工|Pertukangan kayu
+275|物言い|Cara bicara; sanggahan
+276|問責|Pertanggungjawaban; teguran
+277|名指し|Menyebut nama
+278|寝|-
+279|練り|Pengulenan; pasta
+280|肉声|Suara asli (tanpa mikrofon)
+281|躍り|-
+282|負い目|Rasa berutang budi
+283|面持ち|Raut wajah
+284|落選|Gagal terpilih
+285|連作|Penanaman berulang; karya berseri
+286|離島|Pulau terpencil
+287|路面|Permukaan jalan
+288|老年|Usia tua
+289|炉心|Inti reaktor
+290|量刑|Penentuan hukuman
+291|緑化|Penghijauan
+292|料理人|Juru masak
+293|領袖|Pemimpin; ketua
+294|聖火|Api suci; obor Olimpiade
+295|生理学|Fisiologi
+296|製紙|Pembuatan kertas
+297|世界観|Pandangan dunia
+298|責任感|Rasa tanggung jawab
+299|戦況|Situasi perang
+300|戦績|Rekor pertandingan
+301|選奨|Rekomendasi penghargaan
+302|遷都|Pemindahan ibu kota
+303|背筋|Tulang punggung; otot punggung
+304|社屋|Gedung perusahaan
+305|私学|Sekolah swasta
+306|私語|Bisik-bisik
+307|支配人|Manajer
+308|新株|Saham baru
+309|新世界|Dunia baru
+310|新装|Dekorasi baru
+311|自然界|Alam
+312|氏族|Klan
+313|遊覧|Tamasya
+314|焼死|Mati terbakar
+315|非常勤|Paruh waktu
+316|奏功|Berhasil
+317|存亡|Hidup matinya
+318|梁|Balok
+319|馬主|Pemilik kuda
+320|石神|-
+321|水辺|Tepi air
+322|遠山|-
+323|水位|Tinggi permukaan air
+324|幕下|Divisi ketiga sumo
+325|闘士|Pejuang
+326|闘志|Semangat juang
+327|中卒|Lulusan SMP
+328|透析|Dialisis
+329|州都|Ibu kota negara bagian
+330|存立|Keberadaan
+331|署長|Kepala kantor/kantor polisi
+332|書き上げる|Menyelesaikan tulisan
+333|書家|Kaligrafer
+334|社会科|Ilmu pengetahuan sosial
+335|党略|Siasat partai
+336|党勢|Kekuatan partai
+337|党籍|Keanggotaan partai
+338|随員|Anggota rombongan
+339|勝ち越す|Unggul dalam kemenangan
+340|登竜門|Gerbang menuju sukses
+341|総本山|Kuil pusat; markas pusat
+342|速攻|Serangan cepat
+343|春季|Musim semi
+344|対価|Imbalan; kompensasi
+345|塾長|Kepala bimbel/sekolah swasta
+346|処方箋|Resep dokter
+347|試験場|Ruang ujian; balai penelitian
+348|宿駅|Stasiun peristirahatan
+349|嫡出|Kelahiran sah
+350|水深|Kedalaman air
+351|高学年|Kelas atas SD
+352|高所|Tempat tinggi
+353|高速度|Kecepatan tinggi
+354|高率|Tarif tinggi
+355|合成洗剤|Deterjen sintetis
+356|合繊|Serat sintetis
+357|国家試験|Ujian negara
+358|国学|Kajian sastra dan budaya Jepang kuno
+359|国権|Kedaulatan negara
+360|国語辞典|Kamus bahasa Jepang
+361|国際協力事業団|JICA (Badan Kerja Sama Internasional Jepang)
+362|国際連合|Perserikatan Bangsa-Bangsa
+363|国情|Kondisi negara
+364|国勢調査|Sensus nasional
+365|国分寺|-
+366|国文学|Sastra Jepang
+367|国柄|Watak bangsa
+368|国民健康保険|Asuransi kesehatan nasional
+369|国民性|Karakter bangsa
+370|国立劇場|Teater nasional
+371|国立博物館|Museum nasional
+372|国論|Opini nasional
+373|混ぜ合わす|Mencampur
+374|座り|Duduk; kestabilan
+375|催涙|Pemicu air mata
+376|最下|Paling bawah
+377|最高級|Kelas tertinggi
+378|最高検|Kejaksaan Agung
+379|最重点|Titik terpenting
+380|最前列|Barisan terdepan
+381|最優遇|Perlakuan paling istimewa
+382|在外公館|Perwakilan diplomatik
+383|在京|Berada di ibu kota
+384|在米|Berada di Amerika
+385|財政投融資|Program investasi dan pinjaman fiskal
+386|作況指数|Indeks hasil panen
+387|作付面積|Luas tanam
+388|昨年来|Sejak tahun lalu
+389|三次|Ketiga; tersier
+390|三種|Tiga jenis
+391|三代|Tiga generasi
+392|三度|Tiga kali
+393|三部|Tiga bagian
+394|三部作|Trilogi
+395|山系|Rangkaian pegunungan
+396|山野|Gunung dan ladang
+397|山陽|Sisi selatan gunung; wilayah Sanyo
+398|産品|Hasil produksi
+399|産量|Jumlah produksi

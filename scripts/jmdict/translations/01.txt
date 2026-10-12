@@ -1,0 +1,400 @@
+0|摘発|Pengungkapan (kejahatan); penggerebekan
+1|撤回|Penarikan kembali; pencabutan
+2|鉄骨|Rangka baja
+3|天下|Seluruh dunia; seluruh negeri
+4|店舗|Toko; gerai
+5|都庁|Kantor Pemerintah Metropolitan Tokyo
+6|都内|Dalam wilayah Tokyo
+7|都立|Milik pemerintah metropolitan Tokyo
+8|度合い|Tingkat; derajat
+9|冬季|Musim dingin
+10|凍結|Pembekuan; pembekuan (harga, aset)
+11|東欧|Eropa Timur
+12|東部|Bagian timur
+13|当局|Pihak berwenang
+14|当事者|Pihak yang bersangkutan
+15|当初|Pada mulanya; awal
+16|当分|Untuk sementara waktu
+17|答申|Laporan jawaban; rekomendasi
+18|答弁|Jawaban; tanggapan
+19|到来|Kedatangan; tibanya (waktu)
+20|闘争|Perjuangan; pertempuran
+21|同期|Periode yang sama; seangkatan
+22|得|Untung; keuntungan
+23|特異|Khas; unik
+24|内側|Sisi dalam
+25|南部|Bagian selatan
+26|難航|Berjalan sulit; terhambat
+27|難民|Pengungsi
+28|難問|Soal sulit; masalah pelik
+29|二階|Lantai dua
+30|２月|Februari
+31|二重|Ganda; berlapis dua
+32|日ごろ|Sehari-hari; biasanya
+33|日米|Jepang dan Amerika Serikat
+34|日本酒|Sake; arak beras Jepang
+35|入国|Masuk ke suatu negara
+36|入札|Tender; penawaran
+37|入試|Ujian masuk
+38|入選|Terpilih (dalam kontes/pameran)
+39|入門|Pengantar; mulai belajar
+40|任意|Sukarela; bebas; sembarang
+41|任期|Masa jabatan
+42|認可|Izin; persetujuan resmi
+43|熱気|Hawa panas; semangat
+44|年始|Awal tahun
+45|年収|Pendapatan tahunan
+46|年配|Setengah baya; berumur
+47|年末|Akhir tahun
+48|念願|Keinginan terdalam
+49|念頭|Dalam pikiran; perhatian
+50|濃厚|Pekat; kental; kemungkinan besar
+51|濃縮|Pemekatan; pengayaan
+52|納税|Pembayaran pajak
+53|脳死|Mati otak
+54|農協|Koperasi pertanian
+55|農林|Pertanian dan kehutanan
+56|派閥|Kelompok; faksi
+57|敗北|Kekalahan
+58|配当|Pembagian; dividen
+59|買収|Akuisisi; penyuapan
+60|売り物|Barang dagangan; andalan
+61|博覧会|Pameran; ekspo
+62|白紙|Kertas kosong; nol
+63|白書|Buku putih
+64|白人|Orang kulit putih
+65|迫力|Daya pukau; kesan kuat
+66|爆撃|Pengeboman
+67|麦|Gandum
+68|８月|Agustus
+69|発覚|Terbongkar; ketahuan
+70|発信|Pengiriman (pesan); penyampaian informasi
+71|発端|Awal mula
+72|発着|Kedatangan dan keberangkatan
+73|発電所|Pembangkit listrik
+74|罰金|Denda
+75|罰則|Sanksi; ketentuan pidana
+76|抜群|Luar biasa; menonjol
+77|半数|Separuh jumlah
+78|半導体|Semikonduktor
+79|半面|Sisi lain; separuh sisi
+80|反戦|Anti perang
+81|反動|Reaksi; hentakan balik
+82|反論|Sanggahan; bantahan
+83|犯行|Tindak kejahatan
+84|晩年|Masa tua
+85|肥満|Obesitas; kegemukan
+86|被告|Terdakwa; tergugat
+87|避妊|Kontrasepsi
+88|飛躍|Lompatan; kemajuan pesat
+89|必着|Harus tiba (paling lambat)
+90|１００億|Sepuluh miliar
+91|百貨店|Toko serba ada
+92|１００万|Satu juta
+93|表記|Penulisan; notasi
+94|表彰|Penghargaan; penganugerahan
+95|表題|Judul
+96|病状|Kondisi penyakit
+97|不自然|Tidak alami; janggal
+98|不十分|Tidak cukup; kurang
+99|不信|Ketidakpercayaan
+100|不透明|Tidak transparan; keruh
+101|不法|Melanggar hukum; ilegal
+102|付加|Penambahan
+103|風速|Kecepatan angin
+104|副作用|Efek samping
+105|復帰|Kembali; pemulihan
+106|幅広い|Luas; beragam
+107|仏教|Agama Buddha
+108|文化的|Bersifat budaya
+109|文庫|Perpustakaan; buku saku
+110|文字通り|Secara harfiah
+111|文部省|Kementerian Pendidikan (dulu)
+112|聞かす|Memperdengarkan; menceritakan
+113|聞き手|Pendengar; pewawancara
+114|平年|Tahun biasa; tahun normal
+115|弊害|Dampak buruk
+116|並び|Barisan; deretan
+117|米価|Harga beras
+118|片手|Satu tangan
+119|編成|Penyusunan; pembentukan
+120|保安|Keamanan; keselamatan
+121|保護者|Wali; pelindung
+122|歩調|Langkah; irama langkah
+123|補正|Koreksi; revisi
+124|包囲|Pengepungan
+125|包丁|Pisau dapur
+126|宝くじ|Lotre
+127|放火|Pembakaran (kriminal)
+128|法規|Peraturan hukum
+129|法人|Badan hukum
+130|法的|Bersifat hukum
+131|法務|Urusan hukum
+132|法令|Undang-undang dan peraturan
+133|邦人|Warga negara Jepang
+134|亡命|Pengasingan; mencari suaka
+135|傍聴|Menghadiri sebagai pendengar (sidang)
+136|房|Rumbai; tandan
+137|暴落|Anjlok; kejatuhan harga
+138|膨張|Pemuaian; pembengkakan
+139|防御|Pertahanan
+140|防災|Pencegahan bencana
+141|北西|Barat laut
+142|北部|Bagian utara
+143|本格的|Sungguhan; skala penuh
+144|本国|Negara asal
+145|本社|Kantor pusat
+146|本店|Toko/kantor pusat
+147|本番|Pertunjukan sesungguhnya; saat penentuan
+148|麻薬|Narkotika
+149|末端|Ujung; tingkat paling bawah
+150|慢性|Kronis
+151|未遂|Percobaan (yang gagal)
+152|未明|Dini hari
+153|密輸|Penyelundupan
+154|民衆|Rakyat; massa
+155|民法|Hukum perdata
+156|無縁|Tidak ada hubungan
+157|無罪|Tidak bersalah
+158|無条件|Tanpa syarat
+159|無職|Menganggur; tanpa pekerjaan
+160|無人|Tanpa awak; tak berpenghuni
+161|無責任|Tidak bertanggung jawab
+162|名義|Nama (atas dokumen/kontrak)
+163|名目|Nama; dalih
+164|名門|Keluarga/sekolah terkemuka
+165|明暗|Terang dan gelap
+166|木造|Terbuat dari kayu
+167|目玉|Bola mata; daya tarik utama
+168|目撃|Menyaksikan
+169|目前|Di depan mata; sudah dekat
+170|油田|Ladang minyak
+171|癒着|Perlekatan; kolusi
+172|有害|Berbahaya; merugikan
+173|有権者|Pemilih
+174|有罪|Bersalah
+175|猶予|Penundaan; masa tenggang
+176|由|Alasan; kabarnya
+177|誘拐|Penculikan
+178|予選|Babak penyisihan
+179|予断|Prediksi; prasangka
+180|予知|Ramalan; pengetahuan sebelumnya
+181|容疑者|Tersangka
+182|洋画|Lukisan Barat; film Barat
+183|用具|Perkakas; peralatan
+184|要項|Poin penting; pedoman
+185|養殖|Budidaya (perikanan)
+186|抑止|Pencegahan
+187|欲|Keinginan; keserakahan
+188|翌日|Keesokan harinya
+189|翌年|Tahun berikutnya
+190|落語|Rakugo; cerita lucu tradisional
+191|落札|Memenangkan tender
+192|乱用|Penyalahgunaan
+193|利率|Suku bunga
+194|理学|Ilmu pengetahuan alam; fisika
+195|理事|Direktur; pengurus
+196|理念|Ide dasar; prinsip
+197|里|Ri (satuan jarak Jepang kuno)
+198|陸軍|Angkatan darat
+199|陸上|Di darat; atletik
+200|立候補|Mencalonkan diri
+201|両者|Kedua belah pihak
+202|両手|Kedua tangan
+203|両面|Kedua sisi
+204|療養|Perawatan; pemulihan
+205|倫理|Etika
+206|例年|Tahun-tahun biasa; setiap tahun
+207|冷戦|Perang dingin
+208|歴史的|Bersifat historis; bersejarah
+209|路地|Gang; lorong
+210|労働者|Pekerja; buruh
+211|老後|Masa tua
+212|６月|Juni
+213|和解|Perdamaian; rekonsiliasi
+214|和平|Perdamaian
+215|河口|Muara sungai
+216|外側|Sisi luar
+217|願望|Keinginan; cita-cita
+218|９０|Sembilan puluh
+219|顧客|Pelanggan
+220|紅|Merah tua
+221|７０|Tujuh puluh
+222|主人|Kepala keluarga; majikan; suami
+223|重傷|Luka berat
+224|出国|Keberangkatan ke luar negeri
+225|信|Kejujuran; kepercayaan
+226|人々|Orang-orang
+227|人数|Jumlah orang
+228|前半|Paruh pertama
+229|代替|Pengganti; alternatif
+230|大河|Sungai besar
+231|弟子|Murid; pengikut
+232|南西|Barat daya
+233|南東|Tenggara
+234|日数|Jumlah hari
+235|年々|Dari tahun ke tahun
+236|半年|Setengah tahun
+237|保育所|Tempat penitipan anak
+238|保健所|Puskesmas; pusat kesehatan masyarakat
+239|北東|Timur laut
+240|足元|Di bawah kaki; langkah
+241|今まで|Sampai sekarang
+242|沖合|Lepas pantai
+243|思い|Pikiran; perasaan
+244|重み|Bobot; beban
+245|卸売|Grosir
+246|肩書き|Jabatan; gelar
+247|画期的|Terobosan; revolusioner
+248|悲しみ|Kesedihan
+249|河原|Dasar sungai yang kering; tepi sungai
+250|奇跡|Keajaiban; mukjizat
+251|国々|Negara-negara
+252|消印|Cap pos
+253|堅実|Mantap; dapat diandalkan
+254|交代|Pergantian
+255|支払い|Pembayaran
+256|出版社|Penerbit
+257|１０代|Usia remaja (10-an tahun)
+258|制御|Pengendalian
+259|対日|Terhadap Jepang
+260|中核|Inti; pusat
+261|兆候|Pertanda; gejala
+262|手当|Tunjangan; perawatan medis
+263|手作り|Buatan tangan
+264|届|Laporan; pemberitahuan
+265|取り決め|Kesepakatan
+266|取り消し|Pembatalan
+267|取り調べ|Pemeriksaan; interogasi
+268|取引|Transaksi
+269|並|Biasa; kelas standar
+270|値上がり|Kenaikan harga
+271|値上げ|Menaikkan harga
+272|値下げ|Penurunan harga
+273|伸び|Pertumbuhan; peregangan
+274|波乱|Gejolak; pasang surut
+275|売春|Prostitusi
+276|引き換え|Penukaran
+277|引き金|Pelatuk; pemicu
+278|引き続き|Terus-menerus; selanjutnya
+279|引っ越し|Pindah rumah
+280|冷ややか|Dingin; acuh tak acuh
+281|不要|Tidak perlu
+282|補佐|Bantuan; asisten
+283|祭り|Festival
+284|見つめる|Menatap
+285|向い|Seberang; berhadapan
+286|持ち主|Pemilik
+287|陽|Positif; yang (dalam filosofi Tiongkok)
+288|擁護|Pembelaan; perlindungan
+289|代々|Turun-temurun
+290|我が|Milikku/kami; milik sendiri
+291|我が国|Negara kita
+292|我が家|Rumah kita; keluarga kita
+293|割り|Rasio; proporsi
+294|叔母|Bibi
+295|戦後|Pascaperang
+296|追っかける|Mengejar
+297|呼びかけ|Seruan; imbauan
+298|一向に|Sama sekali (tidak)
+299|思い切って|Dengan berani; nekat
+300|覚醒剤|Stimulan; sabu
+301|経済的|Ekonomis; secara ekonomi
+302|最大限|Maksimum
+303|週休|Libur mingguan
+304|多角|Banyak sisi; beragam
+305|通産省|Kementerian Perdagangan Internasional dan Industri (dulu)
+306|小売り店|Toko eceran
+307|据え置き|Penundaan; dibiarkan seperti semula
+308|取締役|Direktur perusahaan
+309|何十|Puluhan
+310|日韓|Jepang dan Korea Selatan
+311|府立|Milik prefektur kota (Osaka/Kyoto)
+312|偏差値|Nilai deviasi (skor standar)
+313|明治|Zaman Meiji
+314|路上|Di jalan
+315|引き締め|Pengetatan
+316|小型|Berukuran kecil
+317|８０|Delapan puluh
+318|４０|Empat puluh
+319|２００|Dua ratus
+320|５０|Lima puluh
+321|超伝導|Superkonduktivitas
+322|４０００|Empat ribu
+323|６０|Enam puluh
+324|心から|Dari lubuk hati
+325|３０|Tiga puluh
+326|抑える|Menahan; mengendalikan
+327|お化け|Hantu; monster
+328|お前|Kamu (kasar)
+329|つくづく|Sungguh-sungguh; dalam-dalam
+330|愛しい|Tercinta; menyayangkan
+331|愛読|Membaca dengan gemar
+332|愛用|Menggunakan dengan gemar
+333|悪循環|Lingkaran setan
+334|悪人|Orang jahat
+335|悪夢|Mimpi buruk
+336|にぎり寿司|Sushi nigiri
+337|圧倒|Mengungguli; membuat kewalahan
+338|安否|Keselamatan; kabar baik-buruk
+339|暗闇|Kegelapan
+340|暗黙|Tersirat; tak terucap
+341|囲い|Pagar; pembatas
+342|委任|Penyerahan wewenang
+343|威嚇|Ancaman; intimidasi
+344|威勢|Pengaruh; semangat
+345|異端|Bidah
+346|胃腸|Lambung dan usus
+347|遺言|Wasiat
+348|一握り|Segenggam; sedikit
+349|一口|Satu suap; seteguk
+350|一人前|Satu porsi; dewasa
+351|一人歩き|Berjalan sendiri; berkembang sendiri
+352|１０００|Seribu
+353|１対１|Satu lawan satu
+354|一段落|Selesai satu tahap
+355|一杯|Satu gelas; penuh
+356|印紙|Meterai
+357|引き継ぐ|Mengambil alih; menyerahterimakan
+358|引っかかる|Tersangkut; terjebak
+359|からす|Burung gagak
+360|運行|Pengoperasian; peredaran
+361|営利|Mencari laba
+362|栄光|Kejayaan
+363|駅員|Petugas stasiun
+364|円盤|Cakram; piring terbang
+365|延滞|Tunggakan; keterlambatan
+366|縁起|Pertanda; asal-usul
+367|塩分|Kadar garam
+368|応答|Jawaban; respons
+369|屋内|Dalam ruangan
+370|恩返し|Balas budi
+371|下敷き|Alas tulis; tertindih
+372|下流|Hilir; kelas bawah
+373|仮面|Topeng
+374|何事|Hal apa pun
+375|何千|Ribuan
+376|何百|Ratusan
+377|加害者|Pelaku
+378|家系|Garis keturunan keluarga
+379|歌謡曲|Musik pop Jepang era Showa
+380|火薬|Mesiu
+381|花束|Karangan bunga
+382|華麗|Megah; gemerlap
+383|過渡期|Masa transisi
+384|会食|Makan bersama
+385|会心|Puas; sesuai harapan
+386|回帰|Kembali; regresi
+387|回顧|Menoleh ke masa lalu
+388|回想|Kenangan; mengenang
+389|快楽|Kenikmatan
+390|快速|Kecepatan tinggi; kereta cepat
+391|悔い|Penyesalan
+392|懐|Dada; saku; keadaan keuangan
+393|懐疑|Keraguan; skeptisisme
+394|改築|Renovasi bangunan
+395|海辺|Tepi pantai
+396|海面|Permukaan laut
+397|開店|Pembukaan toko
+398|外れ|Ujung; meleset; kalah undian
+399|外見|Penampilan luar

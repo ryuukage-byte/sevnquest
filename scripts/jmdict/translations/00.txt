@@ -1,0 +1,400 @@
+0|車両|Kendaraan; gerbong (kereta)
+1|１００|Seratus
+2|売り上げ|Hasil penjualan; omzet
+3|貸出|Peminjaman
+4|手がかり|Petunjuk; jejak; pegangan
+5|つばめ|Burung layang-layang
+6|呼びかける|Menyapa; mengimbau
+7|めぐり合う|Bertemu secara kebetulan
+8|無理やり|Dengan paksa; secara paksa
+9|顔ぶれ|Susunan anggota; jajaran pemain
+10|買取|Pembelian; pembelian barang bekas
+11|悪質|Jahat; berkualitas buruk
+12|安売り|Obral; jual murah
+13|委員会|Komite; panitia
+14|移植|Transplantasi; pencangkokan
+15|維新|Restorasi; pembaruan
+16|違法|Melanggar hukum; ilegal
+17|遺憾|Disayangkan; menyesalkan
+18|遺産|Warisan
+19|遺体|Jenazah
+20|医薬品|Obat-obatan; produk farmasi
+21|一員|Anggota
+22|一円|Satu yen; seluruh wilayah
+23|一階|Lantai satu
+24|１月|Januari
+25|一段|Lebih lagi; satu tingkat
+26|１等|Kelas satu; peringkat pertama
+27|右手|Tangan kanan; sisi kanan
+28|右翼|Sayap kanan
+29|駅前|Depan stasiun
+30|円安|Yen melemah
+31|円高|Yen menguat
+32|汚職|Korupsi; suap
+33|奥行き|Kedalaman; panjang ke dalam
+34|王国|Kerajaan
+35|王者|Raja; juara
+36|穏健|Moderat; tenang
+37|音響|Akustik; bunyi
+38|仮に|Seandainya; sementara
+39|何度|Berapa kali; berapa derajat
+40|何ら|Sama sekali (tidak); apa pun
+41|加盟|Bergabung; menjadi anggota
+42|歌舞伎|Kabuki
+43|火力|Tenaga panas; daya tembak
+44|かすみ|Kabut tipis; pandangan kabur
+45|会長|Ketua; presiden (perkumpulan)
+46|会費|Iuran anggota
+47|解雇|Pemecatan
+48|解体|Pembongkaran; pembubaran
+49|解約|Pembatalan kontrak
+50|海軍|Angkatan laut
+51|海上|Di laut; permukaan laut
+52|海水|Air laut
+53|海底|Dasar laut
+54|皆様|Bapak/Ibu sekalian
+55|絵本|Buku bergambar
+56|開設|Pendirian; pembukaan
+57|開幕|Pembukaan (acara); dimulainya musim
+58|外国語|Bahasa asing
+59|外食|Makan di luar
+60|外務|Urusan luar negeri
+61|外務省|Kementerian Luar Negeri
+62|核心|Inti; pokok persoalan
+63|核兵器|Senjata nuklir
+64|閣僚|Para menteri kabinet
+65|学園|Lembaga pendidikan; akademi
+66|学長|Rektor
+67|楽観的|Optimis
+68|株主|Pemegang saham
+69|寒さ|Dinginnya (cuaca)
+70|巻き込む|Menyeret; melibatkan
+71|官邸|Kediaman resmi
+72|幹事|Sekretaris; penyelenggara acara
+73|管轄|Wewenang; yurisdiksi
+74|肝|Hati; keberanian
+75|鑑定|Penilaian; pemeriksaan ahli
+76|間近|Dekat; sudah dekat
+77|既成|Yang sudah mapan; fakta yang ada
+78|機体|Badan pesawat
+79|機長|Kapten pesawat
+80|機動隊|Polisi anti huru-hara
+81|帰国|Pulang ke negara asal
+82|記念日|Hari peringatan
+83|起訴|Penuntutan; dakwaan
+84|飢餓|Kelaparan; paceklik
+85|偽|Palsu; tiruan
+86|疑い|Keraguan; kecurigaan
+87|義父|Ayah mertua; ayah angkat
+88|菊|Krisan
+89|喫煙|Merokok
+90|客観的|Objektif
+91|虐殺|Pembantaian
+92|休日|Hari libur
+93|急性|Akut
+94|急増|Lonjakan; kenaikan pesat
+95|急遽|Mendadak; terburu-buru
+96|求人|Lowongan kerja; perekrutan
+97|究明|Penyelidikan; pengusutan
+98|共産主義|Komunisme
+99|強さ|Kekuatan
+100|強風|Angin kencang
+101|教諭|Guru (berlisensi)
+102|業界|Dunia usaha; industri
+103|極秘|Sangat rahasia
+104|均等|Kesetaraan; keseragaman
+105|緊迫|Ketegangan
+106|金利|Suku bunga; bunga
+107|９月|September
+108|苦しみ|Penderitaan; kesusahan
+109|苦悩|Penderitaan batin
+110|具体的|Konkret; spesifik
+111|空軍|Angkatan udara
+112|空白|Ruang kosong; kekosongan
+113|軍縮|Pengurangan senjata
+114|軍人|Prajurit; personel militer
+115|系列|Rangkaian; kelompok usaha (keiretsu)
+116|経理|Akuntansi; urusan keuangan
+117|警視庁|Kepolisian Metropolitan Tokyo
+118|警報|Alarm; peringatan
+119|軽傷|Luka ringan
+120|劇的|Dramatis
+121|激動|Pergolakan hebat
+122|月刊|Terbitan bulanan
+123|懸念|Kekhawatiran
+124|検察|Kejaksaan; penyelidikan
+125|検証|Verifikasi; pembuktian
+126|検定|Sertifikasi; ujian kualifikasi
+127|県立|Milik prefektur
+128|元日|Hari Tahun Baru (1 Januari)
+129|原稿用紙|Kertas naskah bergaris (genkō yōshi)
+130|原告|Penggugat; penuntut
+131|厳格|Ketat; tegas
+132|幻|Bayangan; ilusi
+133|幻想|Fantasi; khayalan
+134|減速|Perlambatan
+135|現役|Aktif bertugas; pelamar ujian masuk yang baru lulus
+136|言い方|Cara mengatakan; ungkapan
+137|言動|Ucapan dan tindakan
+138|限り|Batas; sejauh
+139|５月|Mei
+140|五分|Imbang; separuh
+141|互いに|Satu sama lain; saling
+142|後援|Dukungan; sponsor
+143|後期|Periode akhir; semester kedua
+144|後半|Paruh kedua; babak kedua
+145|後方|Belakang; arah belakang
+146|交響曲|Simfoni
+147|交通事故|Kecelakaan lalu lintas
+148|公営|Dikelola pemerintah daerah
+149|公明|Keadilan; keterbukaan
+150|公約|Janji publik; janji kampanye
+151|厚さ|Ketebalan
+152|厚生|Kesejahteraan; kesejahteraan masyarakat
+153|好感|Kesan baik; simpati
+154|広大|Luas; besar sekali
+155|恒久|Abadi; permanen
+156|恒例|Kebiasaan tetap; tradisi tahunan
+157|控訴|Banding (ke pengadilan lebih tinggi)
+158|校則|Peraturan sekolah
+159|皇后|Permaisuri
+160|紅白|Merah-putih; dua tim (merah dan putih)
+161|航空機|Pesawat terbang
+162|航路|Rute pelayaran/penerbangan
+163|行使|Penggunaan (hak, kekuasaan)
+164|行方|Keberadaan (seseorang); hasil akhir
+165|高さ|Tinggi; ketinggian
+166|高温|Suhu tinggi
+167|高齢|Usia lanjut
+168|合宿|Kamp pelatihan; menginap bersama
+169|合法|Legal; sah
+170|合理化|Rasionalisasi
+171|合理的|Rasional; masuk akal
+172|告訴|Pengaduan; tuntutan
+173|国営|Dikelola negara
+174|国外|Luar negeri
+175|国旗|Bendera nasional
+176|国際化|Internasionalisasi
+177|国際的|Internasional
+178|国税|Pajak negara
+179|国鉄|Kereta api nasional (dulu)
+180|国道|Jalan nasional
+181|国内|Dalam negeri
+182|国名|Nama negara
+183|黒人|Orang kulit hitam
+184|混迷|Kekacauan; kebingungan
+185|左手|Tangan kiri; sisi kiri
+186|左翼|Sayap kiri
+187|再開|Pembukaan kembali; dimulai lagi
+188|再度|Sekali lagi; untuk kedua kalinya
+189|最悪|Terburuk
+190|最強|Terkuat
+191|最小限|Minimum
+192|最先端|Terdepan; paling mutakhir
+193|最大|Terbesar; maksimum
+194|最適|Paling cocok; optimal
+195|裁判所|Pengadilan
+196|在日|Berdomisili di Jepang
+197|財界|Dunia keuangan/bisnis
+198|財閥|Zaibatsu; konglomerat keuangan
+199|昨年|Tahun lalu
+200|３月|Maret
+201|３０００|Tiga ribu
+202|３００|Tiga ratus
+203|参政権|Hak pilih
+204|賛否|Pro dan kontra
+205|暫定|Sementara; untuk sementara
+206|仕入れ|Pembelian stok; kulakan
+207|使い|Suruhan; utusan
+208|使節|Utusan; delegasi
+209|史上|Dalam sejarah; sepanjang sejarah
+210|４月|April
+211|四方|Empat penjuru; sekeliling
+212|市長|Wali kota
+213|市内|Dalam kota
+214|市販|Dijual di pasaran
+215|市立|Milik kota; kota
+216|思いやり|Perhatian; belas kasih
+217|思惑|Harapan; maksud tersembunyi
+218|支援|Dukungan; bantuan
+219|支局|Kantor cabang
+220|支社|Kantor cabang perusahaan
+221|死去|Kematian; wafat
+222|死者|Orang yang meninggal; korban tewas
+223|紙面|Halaman (surat kabar); permukaan kertas
+224|資本主義|Kapitalisme
+225|歯止め|Rem; pengendali; batas
+226|持ち込む|Membawa masuk; mengajukan
+227|時限|Jam pelajaran; batas waktu
+228|時効|Daluwarsa (hukum)
+229|次回|Dimensi; tingkat
+230|次元|Berikutnya; kali depan
+231|自ら|Diri sendiri; secara pribadi
+232|自衛隊|Pasukan Bela Diri Jepang
+233|自国|Negara sendiri
+234|自主的|Mandiri; sukarela
+235|自白|Pengakuan
+236|辞任|Pengunduran diri (dari jabatan)
+237|７月|Juli
+238|執行|Pelaksanaan; eksekusi
+239|執念|Ketekunan; obsesi
+240|実家|Rumah orang tua
+241|社員|Karyawan perusahaan
+242|社会人|Orang dewasa yang bekerja
+243|謝罪|Permintaan maaf
+244|車内|Dalam kendaraan/kereta
+245|釈放|Pembebasan (tahanan)
+246|若者|Anak muda
+247|取得|Perolehan; pengambilan
+248|手形|Wesel; cap tangan
+249|手足|Tangan dan kaki; anak buah
+250|種目|Cabang (olahraga); nomor lomba
+251|収拾|Penyelesaian; pengendalian
+252|終止符|Titik; akhir
+253|終戦|Berakhirnya perang
+254|週刊|Terbitan mingguan
+255|週末|Akhir pekan
+256|集落|Permukiman; desa
+257|住宅地|Kawasan perumahan
+258|１１月|November
+259|１０月|Oktober
+260|１２月|Desember
+261|１０万|Seratus ribu
+262|重さ|Berat
+263|出現|Kemunculan
+264|出場|Tampil; ikut serta (pertandingan)
+265|出力|Daya keluaran; output
+266|遵守|Kepatuhan (pada aturan)
+267|順位|Peringkat; urutan
+268|初期|Tahap awal; awal
+269|初日|Hari pertama; hari pembukaan
+270|所有|Kepemilikan
+271|暑さ|Panasnya (cuaca)
+272|書記|Sekretaris; pencatat
+273|傷害|Penganiayaan; cedera
+274|商談|Perundingan bisnis
+275|将軍|Jenderal; shogun
+276|小川|Sungai kecil; anak sungai
+277|消費者|Konsumen
+278|消滅|Kepunahan; hilang
+279|証券|Surat berharga; sekuritas
+280|証書|Surat bukti; sertifikat
+281|上映|Penayangan (film)
+282|上流|Hulu sungai; kelas atas
+283|乗組員|Awak (kapal/pesawat)
+284|乗用車|Mobil penumpang
+285|条例|Peraturan; peraturan daerah
+286|職場|Tempat kerja
+287|食い違い|Perbedaan; ketidakcocokan
+288|信念|Keyakinan
+289|心境|Suasana hati; keadaan batin
+290|新規|Baru; pendaftaran baru
+291|新年|Tahun baru
+292|真意|Maksud sebenarnya
+293|親子|Orang tua dan anak
+294|親族|Sanak saudara
+295|身元|Identitas diri; latar belakang
+296|身内|Keluarga; orang dalam
+297|身柄|Diri seseorang; penahanan
+298|人権|Hak asasi manusia
+299|人事|Urusan kepegawaian; SDM
+300|人道的|Berperikemanusiaan
+301|水中|Di dalam air
+302|水面|Permukaan air
+303|数量|Jumlah; kuantitas
+304|性的|Seksual; berkaitan jenis kelamin
+305|政界|Dunia politik
+306|政局|Situasi politik
+307|生涯|Seumur hidup; sepanjang hayat
+308|生前|Semasa hidup
+309|生態|Ekologi; pola hidup
+310|製薬|Pembuatan obat
+311|西欧|Eropa Barat; dunia Barat
+312|西部|Bagian barat; Wild West
+313|誠に|Sungguh; benar-benar
+314|誠意|Ketulusan
+315|青空|Langit biru
+316|席上|Dalam pertemuan
+317|接待|Penjamuan (tamu)
+318|折|Kesempatan; lipatan
+319|絶好|Terbaik; sempurna
+320|先進国|Negara maju
+321|専務|Direktur pelaksana
+322|専門|Spesialisasi; bidang keahlian
+323|専門家|Ahli; spesialis
+324|戦車|Tank; kereta perang
+325|戦場|Medan perang
+326|戦前|Sebelum perang
+327|潜在|Terpendam; laten
+328|潜水艦|Kapal selam
+329|選出|Pemilihan; terpilih
+330|選定|Seleksi; pemilihan
+331|前回|Kali sebelumnya
+332|前期|Semester pertama; periode sebelumnya
+333|前向き|Positif; menghadap ke depan
+334|前年|Tahun sebelumnya
+335|前夜|Malam sebelumnya; malam menjelang (perayaan)
+336|善意|Niat baik
+337|全面的|Menyeluruh; total
+338|全力|Seluruh tenaga; sekuat tenaga
+339|素顔|Wajah tanpa riasan; wajah asli
+340|組閣|Pembentukan kabinet
+341|早期|Tahap awal; dini
+342|早朝|Pagi-pagi benar
+343|総裁|Gubernur; presiden (lembaga)
+344|総数|Jumlah total
+345|総理|Perdana menteri
+346|増税|Kenaikan pajak
+347|速さ|Kecepatan
+348|速やか|Cepat; segera
+349|多数|Banyak; mayoritas
+350|多大|Besar sekali (jumlah)
+351|体型|Bentuk tubuh
+352|体質|Konstitusi tubuh; watak bawaan
+353|体重|Berat badan
+354|代議士|Anggota parlemen
+355|代行|Bertindak sebagai wakil; pelaksana tugas
+356|大雨|Hujan deras
+357|大型|Berukuran besar
+358|大国|Negara besar; adidaya
+359|大手|Perusahaan besar; gerbang depan
+360|大騒ぎ|Keributan besar
+361|大蔵|Departemen Keuangan
+362|大蔵省|Kementerian Keuangan (dulu)
+363|大多数|Mayoritas besar
+364|大地|Tanah; bumi
+365|大量|Dalam jumlah besar; massal
+366|宅地|Tanah perumahan
+367|脱税|Penggelapan pajak
+368|担保|Jaminan; agunan
+369|弾圧|Penindasan; tekanan
+370|断念|Menyerah; melepaskan harapan
+371|だんボール|Kardus
+372|男女|Pria dan wanita
+373|談話|Percakapan; pernyataan
+374|地価|Harga tanah
+375|地上|Di atas tanah; dunia
+376|地面|Permukaan tanah
+377|着実|Mantap; stabil
+378|中華|Masakan Tionghoa; Tiongkok
+379|中学生|Siswa SMP
+380|中堅|Inti; tulang punggung; kelas menengah
+381|中絶|Aborsi; terhenti
+382|中退|Putus sekolah
+383|中道|Jalan tengah; moderat
+384|仲介|Perantaraan; mediasi
+385|懲役|Hukuman kerja paksa
+386|朝刊|Koran pagi
+387|朝日|Matahari pagi
+388|聴衆|Penonton; hadirin
+389|長さ|Panjang
+390|長年|Bertahun-tahun
+391|賃貸|Sewa; penyewaan
+392|追悼|Doa/peringatan duka
+393|通達|Pemberitahuan resmi; instruksi
+394|通話|Percakapan telepon
+395|鶴|Bangau
+396|偵察|Pengintaian
+397|定着|Mapan; menetap
+398|帝国|Kekaisaran
+399|庭園|Taman; kebun

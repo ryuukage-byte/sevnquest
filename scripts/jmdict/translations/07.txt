@@ -1,0 +1,400 @@
+0|評議|Musyawarah; dewan pertimbangan
+1|評論家|Kritikus; komentator
+2|病棟|Bangsal rumah sakit
+3|品目|Jenis barang; daftar barang
+4|不可分|Tak terpisahkan
+5|不均衡|Ketidakseimbangan
+6|不祥事|Skandal; peristiwa memalukan
+7|不信任|Tidak percaya; mosi tidak percaya
+8|不全|Tidak lengkap; gangguan fungsi
+9|不動|Tak bergerak; tetap
+10|富士山|Gunung Fuji
+11|布施|Sedekah; persembahan kepada biksu
+12|普賢|Samantabhadra (bodhisattva)
+13|浮揚|Mengapung; pemulihan (ekonomi)
+14|武道|Seni bela diri
+15|舞踊|Tarian
+16|部員|Anggota (klub)
+17|部数|Jumlah eksemplar
+18|部族|Suku
+19|部隊|Pasukan; unit
+20|部内|Di dalam departemen
+21|風潮|Tren; arus zaman
+22|副社長|Wakil presiden direktur
+23|副賞|Hadiah tambahan
+24|復権|Pemulihan hak
+25|物件|Barang; properti
+26|物理学|Fisika
+27|分かり|Pemahaman
+28|分け|Pembagian; seri
+29|分科会|Sub-komite; sesi kelompok
+30|分譲|Penjualan kavling/properti
+31|文部|Kementerian Pendidikan (dulu)
+32|文民|Warga sipil
+33|併合|Penggabungan; aneksasi
+34|併殺|Double play
+35|併用|Pemakaian bersamaan
+36|兵力|Kekuatan militer
+37|平安|Kedamaian; zaman Heian
+38|並立|Berdiri berdampingan
+39|陛下|Yang Mulia
+40|米国|Amerika Serikat
+41|壁画|Lukisan dinding
+42|別表|Tabel lampiran
+43|変わった|Aneh; tidak biasa
+44|変わらない|Tidak berubah
+45|変わり|Perubahan; perbedaan
+46|変化球|Bola lengkung
+47|編集者|Editor
+48|弁|Pidato; dialek
+49|弁務官|Komisaris
+50|保する|Menjamin
+51|保険金|Uang asuransi
+52|保持|Pemeliharaan; penguasaan
+53|保釈|Jaminan pembebasan
+54|保守党|Partai Konservatif
+55|保全|Pelestarian; perlindungan
+56|保有|Kepemilikan
+57|捕手|Penangkap (catcher)
+58|母国|Tanah air
+59|母子|Ibu dan anak
+60|母体|Tubuh ibu; organisasi induk
+61|包括|Mencakup semuanya
+62|報告書|Laporan tertulis
+63|報道機関|Media massa
+64|報復|Pembalasan
+65|抱負|Cita-cita; rencana
+66|放映|Penayangan (TV)
+67|放射性|Radioaktif
+68|放射線|Radiasi
+69|法制|Sistem perundang-undangan
+70|法定|Ditetapkan hukum
+71|法務省|Kementerian Kehakiman
+72|砲|Meriam
+73|砲撃|Pengeboman artileri
+74|訪日|Kunjungan ke Jepang
+75|訪米|Kunjungan ke Amerika
+76|暴行|Kekerasan; penyerangan
+77|暴走|Ugal-ugalan; lepas kendali
+78|暴力団|Organisasi kriminal (yakuza)
+79|望月|Bulan purnama
+80|北欧|Eropa Utara
+81|北海道|Hokkaido
+82|北京|Beijing
+83|北朝鮮|Korea Utara
+84|北方|Arah utara; wilayah utara
+85|北陸|Wilayah Hokuriku
+86|本位|Standar; berpusat pada
+87|本会議|Sidang paripurna
+88|本格化|Menjadi serius/penuh
+89|本願|Ikrar Buddha Amida; cita-cita lama
+90|本拠|Markas; basis
+91|本業|Pekerjaan utama
+92|本紙|Surat kabar ini
+93|本書|Buku ini; naskah asli
+94|本塁打|Home run
+95|麻布|Kain rami
+96|毎回|Setiap kali
+97|満了|Berakhirnya (masa)
+98|満塁|Bases penuh
+99|密室|Ruang terkunci; ruang rahasia
+100|民|Rakyat
+101|民意|Kehendak rakyat
+102|民営|Dikelola swasta
+103|民家|Rumah penduduk
+104|民事|Perkara perdata
+105|民主主義|Demokrasi
+106|民主的|Demokratis
+107|民主党|Partai Demokrat
+108|民生|Kesejahteraan rakyat
+109|民族主義|Nasionalisme
+110|民兵|Milisi
+111|無償|Cuma-cuma; gratis
+112|名乗り|Memperkenalkan nama
+113|あくる日|Keesokan harinya
+114|明快|Jelas; lugas
+115|銘柄|Merek; jenis saham
+116|免疫|Imunitas; kebal
+117|めんどくさい|Merepotkan
+118|面白|Menarik; lucu
+119|問題点|Pokok masalah
+120|野鳥|Burung liar
+121|役員|Direksi; pengurus
+122|薬物|Obat-obatan; narkoba
+123|躍進|Kemajuan pesat
+124|柳|Pohon dedalu
+125|輸出入|Ekspor dan impor
+126|優遇|Perlakuan istimewa
+127|優良|Unggul; berkualitas
+128|有|Ada; kepemilikan
+129|有価証券|Surat berharga
+130|有志|Relawan; peminat
+131|有識者|Orang berpengetahuan; pakar
+132|有数|Terkemuka
+133|誘致|Menarik; mengundang
+134|遊説|Kampanye keliling
+135|郵政省|Kementerian Pos dan Telekomunikasi (dulu)
+136|かねて|Sejak dahulu
+137|予想外|Di luar dugaan
+138|予防接種|Vaksinasi
+139|与野党|Partai penguasa dan oposisi
+140|容疑|Dugaan; tuduhan
+141|容認|Persetujuan; penerimaan
+142|容量|Kapasitas; volume
+143|擁立|Mendukung pencalonan
+144|用地|Lahan; lokasi
+145|要員|Personel yang dibutuhkan
+146|要件|Hal penting; persyaratan
+147|要綱|Garis besar; pedoman
+148|陽子|Proton
+149|抑留|Penahanan; internir
+150|頼り|Andalan; ketergantungan
+151|落ち|Kelalaian; akhir
+152|落ち着いた|Tenang; stabil
+153|落差|Perbedaan ketinggian
+154|利|Keuntungan; manfaat
+155|利回り|Hasil investasi; bunga
+156|利権|Hak/kepentingan konsesi
+157|履行|Pelaksanaan (kewajiban)
+158|裏金|Uang suap; dana gelap
+159|裏側|Sisi belakang
+160|裏腹|Berlawanan; bertolak belakang
+161|離脱|Keluar; memisahkan diri
+162|陸上競技|Atletik
+163|立ち|Keberangkatan; habis terpakai
+164|立証|Pembuktian
+165|略称|Singkatan
+166|流血|Pertumpahan darah
+167|流出|Kebocoran; arus keluar
+168|流動|Aliran; mengalir
+169|流動的|Cair; belum pasti
+170|流入|Arus masuk
+171|硫黄|Belerang
+172|粒子|Partikel
+173|両院|Kedua majelis
+174|両国|Kedua negara
+175|両氏|Kedua orang tersebut
+176|両党|Kedua partai
+177|両日|Kedua hari
+178|料亭|Restoran tradisional mewah (ryotei)
+179|料理屋|Restoran
+180|療法|Terapi
+181|よかったら|Kalau berkenan
+182|陵|Makam kaisar
+183|領有|Penguasaan wilayah
+184|力士|Pesumo
+185|力説|Penekanan kuat
+186|力量|Kemampuan; tenaga
+187|厘|Rin (seperseratus sun); 0,1 persen
+188|臨床|Klinis
+189|隣接|Bersebelahan
+190|累積|Akumulasi
+191|令|Perintah; tahun Reiwa
+192|冷却|Pendinginan
+193|零時|Pukul dua belas (tengah malam)
+194|霊|Roh; arwah
+195|歴代|Turun-temurun; berturut-turut
+196|歴訪|Kunjungan keliling
+197|連携|Kerja sama; koordinasi
+198|連行|Menggiring (tersangka)
+199|連合会|Federasi; asosiasi
+200|連載|Cerita bersambung
+201|連勝|Kemenangan beruntun
+202|連戦|Pertempuran berturut-turut
+203|連打|Pukulan bertubi-tubi
+204|連覇|Juara berturut-turut
+205|連敗|Kekalahan beruntun
+206|連用|Pemakaian terus-menerus
+207|連立|Koalisi
+208|路線|Rute; garis kebijakan
+209|労使|Buruh dan manajemen
+210|労組|Serikat buruh
+211|労働省|Kementerian Tenaga Kerja (dulu)
+212|労働条件|Kondisi kerja
+213|労働組合|Serikat pekerja
+214|労働党|Partai Buruh
+215|労連|Federasi serikat buruh
+216|老朽|Usang; lapuk
+217|老人ホーム|Panti jompo
+218|六十四分音符|Not seperenam puluh empat
+219|論者|Pendebat; penulis
+220|論説|Tajuk rencana
+221|論戦|Perdebatan sengit
+222|和紙|Kertas Jepang (washi)
+223|枠内|Dalam batas/kerangka
+224|湾岸|Pesisir teluk
+225|くじ引き|Undian
+226|バラ色|Warna merah muda; cerah (masa depan)
+227|一行|Satu baris
+228|一色|Satu warna; seragam
+229|一夜|Satu malam
+230|花園|Taman bunga
+231|興|Minat; hiburan
+232|軍兵|Pasukan tentara
+233|研究所|Lembaga penelitian; laboratorium
+234|紺屋|Pencelup kain
+235|裁定|Putusan; keputusan
+236|枝葉|Cabang dan daun; hal-hal sepele
+237|舎|Pondok; asrama
+238|十四|Empat belas
+239|十七|Tujuh belas
+240|上院|Senat; majelis tinggi
+241|上方|Wilayah Kyoto-Osaka (Kansai)
+242|先行き|Masa depan; prospek
+243|千代|Seribu tahun; selamanya
+244|扇形|Bentuk kipas
+245|良し悪し|Baik buruk
+246|直球|Bola lurus; terus terang
+247|東側|Sisi timur
+248|同人|Orang yang sama; anggota sekelompok
+249|同胞|Saudara sebangsa
+250|内外|Dalam dan luar; dalam dan luar negeri
+251|南側|Sisi selatan
+252|二七日|Peringatan minggu kedua setelah wafat
+253|萩原|Padang rumput alang-alang
+254|博|Doktor; pameran
+255|柏|Pohon ek
+256|不定|Tidak tentu
+257|北側|Sisi utara
+258|万全|Sempurna; menyeluruh
+259|来春|Musim semi tahun depan
+260|卵形|Bentuk telur; oval
+261|隣国|Negara tetangga
+262|老若|Tua dan muda
+263|大和|Yamato; Jepang kuno
+264|相乗り|Naik bersama; kerja sama
+265|朝ご飯|Sarapan
+266|遺棄|Penelantaran; pembuangan
+267|慰謝|Penghiburan; ganti rugi
+268|萎縮|Layu; mengkerut
+269|移譲|Pengalihan wewenang
+270|浮き彫り|Relief; menonjolkan
+271|撃ち止める|Menembak mati
+272|裏付け|Bukti pendukung
+273|絵葉書|Kartu pos bergambar
+274|援護|Perlindungan; dukungan
+275|追い風|Angin searah; situasi menguntungkan
+276|憶測|Dugaan; spekulasi
+277|覚書|Memorandum; catatan
+278|卸|Grosir
+279|買い占め|Memborong
+280|掛け軸|Gulungan lukisan gantung
+281|駆け引き|Tawar-menawar; taktik
+282|過酷|Kejam; berat
+283|火砕流|Awan panas (aliran piroklastik)
+284|数々|Banyak; berbagai
+285|稼働|Beroperasi
+286|監査|Audit; pemeriksaan
+287|気合|Semangat juang
+288|傷つく|Terluka; tersakiti
+289|恐竜|Dinosaurus
+290|切り替え|Pergantian; peralihan
+291|切り札|Kartu truf; senjata rahasia
+292|気をつける|Berhati-hati
+293|決着|Penyelesaian; keputusan akhir
+294|絹糸|Benang sutra
+295|広報|Hubungan masyarakat; humas
+296|子羊|Anak domba
+297|五輪|Olimpiade
+298|探し回る|Mencari ke mana-mana
+299|静める|Menenangkan
+300|七七日|Hari ke-49 setelah wafat
+301|失策|Kesalahan; blunder
+302|首位|Peringkat pertama
+303|主唱|Advokasi; menyuarakan
+304|侵攻|Invasi
+305|早々|Segera setelah; terburu-buru
+306|ため息|Desahan napas
+307|連れて行く|Membawa (seseorang) pergi
+308|出稼ぎ|Bekerja di perantauan
+309|取り組み|Pertandingan; upaya
+310|取次|Perantara; penghubung
+311|縫い目|Jahitan
+312|煩忙|Sibuk sekali
+313|引き締める|Mengencangkan; memperketat
+314|久々|Sudah lama sekali
+315|姫|Putri bangsawan
+316|またがる|Mengangkangi; membentang
+317|まな板|Talenan
+318|見かけ|Penampilan luar
+319|三十日|Hari terakhir bulan (tanggal 30)
+320|申し入れ|Usulan; permohonan
+321|申し立て|Pernyataan; keberatan
+322|雇い主|Majikan
+323|乱獲|Penangkapan berlebihan
+324|露見|Terbongkar
+325|枠組み|Kerangka
+326|割高|Relatif mahal
+327|割安|Relatif murah
+328|自民党|Partai Demokrat Liberal (LDP)
+329|新橋|Shinbashi
+330|激変|Perubahan drastis
+331|強豪|Tim/orang tangguh
+332|追いかける|Mengejar
+333|いじめ|Perundungan
+334|連れてくる|Membawa serta
+335|耳より|Kabar baik
+336|湯のみ|Cangkir teh
+337|にもかかわらず|Meskipun demikian
+338|意気込み|Semangat; antusiasme
+339|慰霊|Penghiburan arwah
+340|一時期|Suatu masa
+341|引き受け|Penerimaan; penanggungan
+342|引き渡し|Penyerahan
+343|院内|Dalam parlemen; dalam rumah sakit
+344|右中間|Antara lapangan kanan dan tengah
+345|営業所|Kantor penjualan
+346|円相場|Kurs yen
+347|演出家|Sutradara
+348|抑え|Pemberat; pengendalian
+349|回戦|Babak (pertandingan)
+350|海上自衛隊|Pasukan Bela Diri Maritim
+351|巻き返し|Serangan balik; bangkit kembali
+352|完投|Melempar sepanjang pertandingan
+353|官民|Pemerintah dan swasta
+354|期待感|Rasa harap
+355|棋聖|Juara agung go/shogi
+356|機関紙|Buletin organisasi
+357|犠飛|Sacrifice fly
+358|脚光|Sorotan lampu panggung
+359|逆転勝ち|Menang setelah tertinggal
+360|牛歩|Langkah lambat
+361|引き上げ|Penarikan; kenaikan
+362|横ばい|Mendatar; merayap menyamping
+363|左腕|Lengan kiri; pelempar kidal
+364|愚|Kebodohan; saya
+365|純|Murni; polos
+366|順当|Wajar; sesuai
+367|退場|Keluar; dikeluarkan
+368|登板|Naik mound (melempar)
+369|投下|Menjatuhkan; investasi
+370|投棄|Pembuangan
+371|投与|Pemberian (obat)
+372|造成|Pembangunan lahan
+373|区立|Milik distrik
+374|適時|Tepat waktu
+375|部会|Rapat seksi
+376|長打|Pukulan jauh
+377|大卒|Lulusan universitas
+378|打席|Kotak pemukul; giliran memukul
+379|土砂|Tanah dan pasir
+380|岐阜|Gifu
+381|派兵|Pengiriman pasukan
+382|廃案|Rancangan yang ditolak
+383|運び|Kemajuan; langkah
+384|報道陣|Rombongan wartawan
+385|本土|Daratan utama
+386|大洋|Samudra
+387|公明党|Partai Komeito
+388|竜|Naga
+389|物流|Logistik
+390|拠出|Sumbangan; iuran
+391|競り合う|Bersaing ketat
+392|競馬場|Arena pacuan kuda
+393|教育委員会|Dewan Pendidikan
+394|禁止法|Undang-undang larangan
+395|金権|Kekuasaan uang
+396|金子|Uang; dana
+397|金融市場|Pasar keuangan
+398|空爆|Pengeboman udara
+399|繰り上げ|Pemajuan

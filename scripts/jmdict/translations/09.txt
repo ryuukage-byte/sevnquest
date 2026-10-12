@@ -1,0 +1,400 @@
+0|ハラハラ|Cemas; berdebar-debar
+1|バーゲン|Obral; barang murah
+2|バレル|Barel
+3|バイト|Kerja sambilan
+4|バイブル|Alkitab; buku pedoman
+5|バザー|Bazar
+6|バスケット|Keranjang; bola basket
+7|バタバタ|Mengepak; kerepotan
+8|バレー|Bola voli
+9|バレエ|Balet
+10|パイナップル|Nanas
+11|パパ|Papa; ayah
+12|パンティー|Celana dalam wanita
+13|パンフレット|Brosur
+14|ヒアリング|Mendengarkan (listening); dengar pendapat
+15|ヒット|Pukulan; sukses besar
+16|ヒンドゥー|Hindu
+17|ビーチ|Pantai
+18|ビジネスマン|Pebisnis
+19|ビスケット|Biskuit
+20|ビデオテープ|Pita video
+21|ビラ|-
+22|ピーク|Puncak
+23|ピリオド|Titik; periode
+24|ピント|Fokus; pokok persoalan
+25|ピンポン|Pingpong; tenis meja
+26|ファースト|Pertama; base pertama
+27|ＦＡＸ|Faks
+28|ファッション|Mode
+29|フィクション|Fiksi
+30|フルーツ|Buah
+31|フレア|Nyala; kembang (rok)
+32|フレンドリー|Ramah
+33|ブル|-
+34|プライド|Harga diri
+35|プリンタ|Pencetak (printer)
+36|プレイヤー|Pemain; pemutar
+37|プロテスタント|Protestan
+38|プロポーズ|Lamaran
+39|ペース|Kecepatan; irama
+40|ボーイフレンド|Pacar pria; teman pria
+41|ボウリング|Boling
+42|ボリューム|Volume; jumlah
+43|マクロ|Makro
+44|マネー|Uang
+45|マネージャー|Manajer
+46|マンホール|Lubang got
+47|ミーティング|Rapat
+48|ミクロ|Mikro
+49|ミサイル|Rudal
+50|ミックス|Campuran
+51|ミニ|Mini; rok mini
+52|メート|-
+53|メイド|Pelayan wanita
+54|メイン|Utama; hidangan utama
+55|メインストリート|Jalan utama
+56|メカニズム|Mekanisme
+57|モノ|-
+58|ラッシュ|Jam sibuk; keramaian
+59|リード|Memimpin; unggul
+60|リクエスト|Permintaan
+61|リスト|Daftar
+62|リメーク|Buat ulang (remake)
+63|ルーム|Ruangan; kamar
+64|レンタル|Penyewaan
+65|ローン|Pinjaman; kredit
+66|ロック|Kunci; musik rock
+67|ロボット|Robot
+68|亜鉛|Seng
+69|亜熱帯|Subtropis
+70|阿弥陀|Buddha Amitabha
+71|哀愁|Kesedihan syahdu
+72|哀悼|Belasungkawa
+73|愛犬|Anjing kesayangan
+74|愛護|Perlindungan penuh kasih
+75|愛人|Kekasih gelap
+76|あおい|Kembang sepatu aneka mallow
+77|悪意|Niat jahat
+78|悪事|Perbuatan jahat
+79|悪臭|Bau busuk
+80|悪女|Wanita jahat
+81|悪性|Ganas (tumor)
+82|悪天候|Cuaca buruk
+83|悪徳|Tak bermoral; korup
+84|悪役|Peran jahat; tokoh antagonis
+85|悪用|Penyalahgunaan
+86|握らす|Membuat menggenggam
+87|握り|Genggaman; segenggam
+88|握り締める|Menggenggam erat
+89|握力|Kekuatan genggaman
+90|圧巻|Bagian terbaik; menakjubkan
+91|圧勝|Kemenangan telak
+92|斡旋|Penengahan; perantaraan
+93|安らか|Tenteram; damai
+94|安らぎ|Ketenteraman
+95|安価|Murah
+96|安楽死|Eutanasia
+97|安住|Hidup tenang; merasa puas
+98|安上がり|Murah; hemat
+99|安泰|Aman; tenteram
+100|安物|Barang murahan
+101|庵|Pondok pertapaan
+102|暗に|Secara tersirat
+103|暗雲|Awan gelap; pertanda buruk
+104|暗号|Kode; sandi
+105|暗礁|Karang tersembunyi; kesulitan tak terduga
+106|位置付け|Penempatan; posisi
+107|偉業|Prestasi besar
+108|偉人|Tokoh besar
+109|囲う|Mengelilingi; melindungi
+110|威信|Wibawa; gengsi
+111|意気|Semangat
+112|意気地|Keberanian; harga diri
+113|意図的|Disengaja
+114|意表|Hal tak terduga
+115|意味合い|Nuansa makna
+116|慰霊祭|Upacara peringatan arwah
+117|異口同音|Serentak; sepakat bulat
+118|異国|Negeri asing
+119|異状|Keadaan tidak normal
+120|異物|Benda asing
+121|異名|Julukan
+122|異様|Aneh; ganjil
+123|移り変わり|Perubahan (musim, dll.)
+124|移管|Pengalihan wewenang
+125|移送|Pemindahan; pengangkutan
+126|遺影|Foto almarhum
+127|遺構|Sisa-sisa bangunan kuno
+128|遺作|Karya terakhir (almarhum)
+129|遺志|Kehendak almarhum
+130|遺児|Anak yatim
+131|遺書|Surat wasiat
+132|遺品|Barang peninggalan
+133|遺物|Peninggalan; relik
+134|医|Kedokteran; dokter
+135|医長|Kepala dokter
+136|医薬|Obat; farmasi
+137|一つ一つ|Satu per satu
+138|一安心|Lega untuk sementara
+139|一過|Lewat sekilas
+140|一介|Hanya seorang; biasa
+141|一回り|Satu putaran; satu ukuran
+142|一貫|Konsistensi; satu kan
+143|一丸|Satu kesatuan
+144|一期|Seumur hidup
+145|一義|Satu makna; prioritas utama
+146|一級|Kelas satu
+147|一局|Satu permainan
+148|一曲|Satu lagu
+149|一撃|Satu pukulan
+150|一件|Satu perkara
+151|一元化|Penyatuan; sentralisasi
+152|一戸建て|Rumah tunggal
+153|一座|Seluruh rombongan; hadirin
+154|一酸化炭素|Karbon monoksida
+155|一字|Satu huruf
+156|一式|Satu set lengkap
+157|一手|Satu langkah; satu-satunya cara
+158|一周年|Satu tahun penuh
+159|一助|Sedikit bantuan
+160|一条|Satu garis; satu pasal
+161|一新|Pembaruan total
+162|一身|Diri sendiri
+163|一人息子|Putra tunggal
+164|一人物|Tokoh penting
+165|一人娘|Putri tunggal
+166|一昔|Dahulu kala; sepuluh tahun lalu
+167|一石|Satu permainan go
+168|一石二鳥|Sekali dayung dua pulau terlampaui
+169|一戦|Satu pertarungan
+170|一掃|Pembersihan total
+171|一足|Sepasang (sepatu/kaus kaki)
+172|一打|Satu pukulan
+173|一代|Satu generasi
+174|一大|Besar sekali
+175|一団|Rombongan
+176|一男|-
+177|一着|Juara pertama; satu setel pakaian
+178|一丁|Satu lembar; satu potong tahu
+179|一直線|Garis lurus
+180|一通|Satu surat/salinan
+181|一堂|Satu ruangan
+182|一任|Menyerahkan sepenuhnya
+183|一派|Aliran; kelompok
+184|一泊|Menginap semalam
+185|一晩|Semalam
+186|一番手|Orang pertama; peringkat teratas
+187|一番乗り|Yang pertama tiba
+188|一品|Satu hidangan; satu barang
+189|一風|Keunikan; kekhasan
+190|一分|Satu persepuluh; satu persen
+191|一文|Sedikit sekali; satu mon
+192|一辺倒|Sepenuhnya condong pada
+193|一方通行|Jalan satu arah
+194|一枚岩|Monolit; kesatuan padu
+195|一幕|Satu babak
+196|一門|Keluarga besar; perguruan
+197|一翼|Satu sayap; satu peran
+198|一覧|Daftar; ikhtisar
+199|一覧表|Tabel daftar
+200|一両|Satu kendaraan/gerbong
+201|一例|Satu contoh
+202|逸脱|Penyimpangan
+203|稲妻|Kilat
+204|芋|Umbi; ubi
+205|員数|Jumlah (orang/barang)
+206|因縁|Takdir; keterkaitan
+207|因果|Sebab-akibat; karma
+208|因子|Faktor
+209|引き戻す|Menarik kembali
+210|引き離す|Memisahkan; meninggalkan jauh
+211|引け目|Rasa rendah diri
+212|引責|Memikul tanggung jawab
+213|飲酒|Minum minuman keras
+214|陰口|Gunjingan
+215|陰謀|Persekongkolan; konspirasi
+216|隠滅|Pemusnahan (bukti); penyembunyian
+217|右折|Belok kanan
+218|宇宙空間|Ruang angkasa
+219|羽織|Haori (mantel Jepang)
+220|羽毛|Bulu unggas
+221|羽目|Papan dinding; kesulitan
+222|雨量|Curah hujan
+223|雨漏り|Atap bocor
+224|丑|Sapi (shio ke-2)
+225|渦巻き|Pusaran
+226|渦中|Pusat pusaran; di tengah kehebohan
+227|運休|Penghentian layanan
+228|運動場|Lapangan olahraga
+229|雲行き|Perkembangan situasi; tanda cuaca
+230|営み|Kegiatan; usaha
+231|営団|-
+232|栄冠|Mahkota kemenangan
+233|栄誉|Kehormatan
+234|栄養失調|Malnutrisi
+235|栄養素|Zat gizi
+236|永続|Keabadian; kelanggengan
+237|永代|Selama-lamanya
+238|英文学|Sastra Inggris
+239|英訳|Terjemahan ke bahasa Inggris
+240|詠む|Menggubah puisi
+241|液化|Pencairan
+242|駅長|Kepala stasiun
+243|越境|Melintasi perbatasan
+244|越冬|Melewati musim dingin
+245|円建て|Dalam denominasi yen
+246|円卓|Meja bundar
+247|円筒|Silinder
+248|園児|Murid taman kanak-kanak
+249|園長|Kepala taman kanak-kanak
+250|延命|Memperpanjang hidup
+251|沿海|Pesisir
+252|沿道|Pinggir jalan; sepanjang rute
+253|演芸|Pertunjukan hiburan
+254|演算|Operasi hitung
+255|演壇|Mimbar
+256|演目|Program pertunjukan
+257|炎症|Radang
+258|炎天|Terik matahari
+259|遠隔|Jauh; terpencil
+260|遠距離|Jarak jauh
+261|塩化|Klorida
+262|塩基|Basa
+263|塩素|Klorin
+264|塩田|Ladang garam
+265|塩味|Rasa asin
+266|汚水|Air kotor
+267|汚濁|Pencemaran
+268|汚名|Nama buruk; aib
+269|奥山|Pegunungan terpencil
+270|奥様|Istri (hormat); nyonya
+271|往生|Wafat; menyerah
+272|往年|Tahun-tahun lalu
+273|往来|Lalu lintas; jalan
+274|応酬|Saling balas; adu
+275|応分|Sesuai kemampuan
+276|押し切る|Menerobos (penolakan)
+277|押し入る|Menyelinap masuk paksa
+278|押し付ける|Menekan; memaksakan
+279|押し問答|Debat kusir
+280|押収|Penyitaan
+281|旺盛|Bersemangat; kuat
+282|横たわる|Berbaring; menghadang
+283|横顔|Wajah dari samping; profil
+284|横行|Merajalela
+285|横取り|Merampas
+286|横書き|Tulisan mendatar
+287|横線|Garis horizontal
+288|横転|Terguling ke samping
+289|横道|Jalan samping; menyimpang
+290|横文字|Tulisan huruf Latin; bahasa asing
+291|横暴|Sewenang-wenang
+292|横目|Lirikan
+293|殴打|Pemukulan
+294|王位|Takhta
+295|王宮|Istana kerajaan
+296|王室|Keluarga kerajaan
+297|王手|Skak (shogi)
+298|王族|Keluarga kerajaan
+299|王朝|Dinasti
+300|王妃|Permaisuri
+301|王立|Kerajaan; berstatus kerajaan
+302|黄金時代|Zaman keemasan
+303|荻|-
+304|屋台|Kios; gerobak makanan
+305|桶|Ember; bak kayu
+306|恩師|Guru yang berjasa
+307|恩人|Dermawan; penolong
+308|温厚|Ramah dan lembut
+309|温床|Sarang; tempat pembiakan
+310|温存|Menyimpan; melestarikan
+311|音質|Kualitas suara
+312|音頭|Pimpinan (nyanyian/seruan)
+313|音量|Volume suara
+314|下す|Memutuskan; menjatuhkan (vonis)
+315|下っ腹|Perut bagian bawah
+316|下り坂|Turunan; menurun
+317|下記|Yang tertera di bawah
+318|下級|Kelas bawah
+319|下見|Pemeriksaan awal
+320|下限|Batas bawah
+321|下山|Turun gunung
+322|下手投げ|Lemparan bawah
+323|下値|Harga terendah
+324|下野|Mundur dari jabatan; menjadi oposisi
+325|化学肥料|Pupuk kimia
+326|化合物|Senyawa
+327|化成|Perubahan; sintesis
+328|仮処分|Putusan sementara
+329|仮想|Bayangan; virtual
+330|なにやら|Entah apa; sesuatu
+331|何者|Siapa; orang macam apa
+332|佳作|Karya bagus; penghargaan harapan
+333|加圧|Penambahan tekanan
+334|加算|Penjumlahan
+335|可燃物|Benda mudah terbakar
+336|可否|Boleh tidaknya; pro dan kontra
+337|可憐|Manis; menggemaskan
+338|夏至|Titik balik matahari musim panas
+339|夏時間|Waktu musim panas
+340|夏場|Musim panas
+341|夏場所|Turnamen sumo musim panas (Mei)
+342|嫁ぐ|Menikah (wanita)
+343|家業|Usaha keluarga
+344|家計簿|Buku catatan keuangan rumah tangga
+345|家元|Kepala perguruan seni tradisional
+346|家財|Harta benda rumah tangga
+347|家人|Anggota keluarga
+348|家政婦|Pembantu rumah tangga
+349|家庭科|Ilmu tata rumah tangga
+350|家庭教師|Guru privat
+351|家柄|Garis keturunan; status keluarga
+352|寡占|Oligopoli
+353|科する|Menjatuhkan (denda/hukuman)
+354|果てしない|Tak berujung
+355|果敢|Berani; tegas
+356|果樹|Pohon buah
+357|果汁|Jus buah
+358|歌唱|Nyanyian
+359|火炎瓶|Bom molotov
+360|火災保険|Asuransi kebakaran
+361|火山灰|Abu vulkanik
+362|火種|Bara api; pemicu
+363|火葬|Kremasi
+364|花形|Bintang; yang paling populer
+365|花盛り|Bunga mekar penuh
+366|花道|Jalan panggung bunga (kabuki)
+367|花粉症|Alergi serbuk sari
+368|花婿|Pengantin pria
+369|花輪|Karangan bunga bundar
+370|荷台|Bak muatan; rak bagasi
+371|華僑|Tionghoa perantauan
+372|課する|Mengenakan (pajak/tugas)
+373|課員|Staf seksi
+374|課徴金|Pungutan; denda administratif
+375|貨車|Gerbong barang
+376|過言|Berlebihan (ucapan)
+377|過小評価|Meremehkan
+378|過大|Berlebihan; terlalu besar
+379|過渡|Peralihan
+380|過当|Berlebihan; melampaui batas
+381|過熱|Terlalu panas
+382|過敏|Terlalu sensitif
+383|我|Aku; diri sendiri
+384|画する|Menarik garis; membatasi
+385|画商|Pedagang lukisan
+386|画数|Jumlah goresan
+387|画用紙|Kertas gambar
+388|介在|Berada di antara; campur tangan
+389|会計年度|Tahun fiskal
+390|会釈|Anggukan salam
+391|会堂|Gedung pertemuan; gereja
+392|会報|Buletin perkumpulan
+393|解読|Pemecahan sandi
+394|回忌|Peringatan wafat
+395|回生|Kebangkitan; mahasiswa tahun ke-
+396|回廊|Koridor
+397|壊滅|Kehancuran total
+398|快感|Perasaan nyaman
+399|快挙|Prestasi gemilang

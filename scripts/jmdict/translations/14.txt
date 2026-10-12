@@ -1,0 +1,400 @@
+0|全長|Panjang keseluruhan
+1|全日制|Sistem sekolah sehari penuh
+2|全貌|Gambaran utuh
+3|禅寺|Kuil Zen
+4|疎遠|Renggang; jarang berhubungan
+5|疎開|Evakuasi; penyebaran
+6|疎外|Pengucilan; keterasingan
+7|疎通|Saling pengertian; komunikasi lancar
+8|礎|Batu fondasi
+9|祖父母|Kakek dan nenek
+10|租税|Pajak
+11|粗大|Kasar; besar dan kasar
+12|素子|Elemen (elektronik)
+13|組み替え|Penyusunan ulang
+14|組曲|Suite (musik)
+15|訴追|Penuntutan; pemakzulan
+16|阻害|Penghambatan
+17|僧侶|Biksu
+18|創意|Gagasan orisinal
+19|創始|Pendirian; perintisan
+20|創造的|Kreatif
+21|創造力|Daya kreativitas
+22|倉敷|Biaya penyimpanan
+23|壮行|Melepas keberangkatan dengan semangat
+24|壮年|Usia dewasa produktif
+25|爽快|Menyegarkan
+26|惣菜|Lauk-pauk
+27|掃討|Pembersihan; penumpasan
+28|挿入|Penyisipan
+29|操|Kesetiaan; kehormatan
+30|早まる|Dimajukan; bertindak gegabah
+31|早起き|Bangun pagi
+32|早熟|Matang dini
+33|早瀬|Arus deras
+34|槍|Tombak
+35|争奪|Perebutan
+36|相関|Korelasi
+37|相互銀行|Bank tabungan bersama
+38|相殺|Saling menghapus; kompensasi
+39|相手方|Pihak lawan
+40|相乗|Perkalian; sinergi
+41|相槌|Tanggapan singkat saat mendengarkan
+42|窓際|Dekat jendela
+43|総意|Kehendak bersama
+44|総監|Inspektur jenderal; komisaris
+45|総決算|Perhitungan akhir; rekapitulasi
+46|総帥|Pemimpin tertinggi; ketua grup
+47|総勢|Seluruh anggota
+48|総体|Keseluruhan; pada umumnya
+49|総督|Gubernur jenderal
+50|総力|Seluruh kekuatan
+51|葬送|Pemakaman; mengantar jenazah
+52|藻|Alga; ganggang
+53|装着|Pemasangan
+54|走り高跳び|Lompat tinggi
+55|走り出す|Mulai berlari
+56|走り幅跳び|Lompat jauh
+57|送り込む|Mengirim masuk
+58|送り先|Alamat tujuan kirim
+59|送還|Pemulangan; deportasi
+60|送迎|Antar-jemput
+61|送検|Pelimpahan perkara ke jaksa
+62|送電|Penyaluran listrik
+63|騒然|Gaduh; heboh
+64|騒乱|Kerusuhan
+65|増員|Penambahan personel
+66|蔵書|Koleksi buku
+67|贈呈|Penyerahan (hadiah)
+68|贈答|Saling memberi hadiah
+69|造語|Kata bentukan baru
+70|即位|Naik takhta
+71|即興|Improvisasi
+72|即効|Efek instan
+73|即刻|Segera
+74|即死|Mati seketika
+75|即売|Penjualan di tempat
+76|息吹|Napas; tanda kehidupan baru
+77|息切れ|Sesak napas; kehabisan tenaga
+78|測候所|Stasiun cuaca
+79|足腰|Kaki dan pinggang
+80|足取り|Langkah; jejak
+81|足早|Bergegas; cepat
+82|俗語|Bahasa gaul
+83|続行|Kelanjutan; melanjutkan
+84|続編|Sekuel
+85|存分|Sepuasnya
+86|損ねる|Merusak; gagal melakukan
+87|損害保険|Asuransi kerugian
+88|損傷|Kerusakan; cedera
+89|村人|Penduduk desa
+90|村民|Warga desa
+91|他派|Kelompok lain
+92|多岐|Bercabang banyak
+93|多湿|Kelembapan tinggi
+94|多重|Berlapis; ganda
+95|多難|Penuh kesulitan
+96|多面|Banyak sisi
+97|多目的|Serbaguna
+98|多用|Sibuk; sering dipakai
+99|太っ腹|Murah hati
+100|堕落|Kemerosotan moral
+101|打ち込み|Menancapkan; asyik menekuni
+102|打ち上げる|Meluncurkan; menembakkan ke atas
+103|打診|Perkusi; menjajaki
+104|体温計|Termometer badan
+105|体外受精|Bayi tabung (IVF)
+106|体感|Sensasi tubuh
+107|体得|Menguasai lewat pengalaman
+108|堆積|Penumpukan; sedimentasi
+109|堆肥|Kompos
+110|対案|Usulan tandingan
+111|対岸|Seberang
+112|対向|Berhadapan
+113|対称|Simetri
+114|対峙|Berhadapan; berdiri berlawanan
+115|待ち伏せ|Penyergapan
+116|怠惰|Malas
+117|こけ|Lumut
+118|貸し出す|Meminjamkan
+119|貸借|Pinjam-meminjam; debit-kredit
+120|貸与|Peminjaman
+121|退き時|Saat yang tepat untuk mundur
+122|退官|Pensiun dari jabatan
+123|退去|Pergi; keluar; pengosongan
+124|退社|Berhenti kerja; pulang kerja
+125|退避|Mengungsi; cadangan data
+126|代官|Pejabat daerah zaman Edo
+127|代謝|Metabolisme
+128|代人|Pengganti; wakil
+129|代役|Pemeran pengganti
+130|台車|Troli; kereta dorong
+131|台地|Dataran tinggi
+132|台帳|Buku besar; register
+133|大々的|Besar-besaran
+134|大まか|Kasar; garis besar; longgar
+135|大尉|Kapten (militer)
+136|大家族|Keluarga besar
+137|大火|Kebakaran besar
+138|大掛かり|Berskala besar
+139|大義名分|Alasan sah; dalih
+140|大嫌い|Sangat benci
+141|大黒柱|Tiang utama; tulang punggung keluarga
+142|大佐|Kolonel
+143|大社|Kuil besar
+144|大勝|Kemenangan besar
+145|大盛り|Porsi besar
+146|大腸|Usus besar
+147|大脳|Otak besar
+148|大麦|Jelai
+149|大文字|Huruf kapital
+150|大名|Daimyo; penguasa feodal
+151|大理石|Marmer
+152|滝川|Jeram
+153|卓越|Keunggulan
+154|択一|Pilihan ganda
+155|濁す|Mengeruhkan; berbicara samar
+156|達人|Ahli; master
+157|奪回|Perebutan kembali
+158|奪還|Perebutan kembali
+159|奪取|Perampasan
+160|脱却|Melepaskan diri
+161|棚上げ|Menunda tanpa batas waktu
+162|谷間|Lembah; belahan dada
+163|丹|Merah cinnabar
+164|丹念|Teliti; tekun
+165|探求|Pencarian; penelusuran
+166|探究|Penyelidikan
+167|探査|Eksplorasi; penyelidikan
+168|探偵|Detektif
+169|炭酸|Karbonat; soda
+170|短距離|Jarak pendek
+171|短銃|Pistol
+172|短調|Nada minor
+173|短命|Berumur pendek
+174|短絡|Korsleting; kesimpulan gegabah
+175|端緒|Awal; permulaan
+176|胆石|Batu empedu
+177|弾劾|Pemakzulan; pengecaman
+178|弾丸|Peluru
+179|断行|Pelaksanaan tegas
+180|断食|Puasa
+181|断層|Patahan; kesenjangan
+182|暖冬|Musim dingin hangat
+183|男らしい|Jantan; gagah
+184|男優|Aktor
+185|値切る|Menawar
+186|知覚|Persepsi
+187|地下室|Ruang bawah tanah
+188|地殻変動|Pergerakan kerak bumi; perubahan besar
+189|地層|Lapisan tanah
+190|地蔵|Jizo; bodhisattva pelindung anak
+191|痴漢|Pelaku pelecehan
+192|稚魚|Anak ikan
+193|置き換える|Mengganti; memindahkan
+194|置き場|Tempat menaruh
+195|致死|Mematikan
+196|致命傷|Luka fatal
+197|遅延|Keterlambatan
+198|築き上げる|Membangun; membina
+199|蓄財|Menimbun harta
+200|茶屋|Kedai teh
+201|着衣|Pakaian yang dikenakan
+202|着替える|Berganti pakaian
+203|着用|Mengenakan
+204|中尉|Letnan satu
+205|中越|Melewati lapangan tengah
+206|中央集権|Sentralisasi kekuasaan
+207|中欧|Eropa Tengah
+208|中型|Ukuran sedang
+209|中元|Hadiah pertengahan tahun; festival Bon
+210|中古車|Mobil bekas
+211|中佐|Letnan kolonel
+212|中産階級|Kelas menengah
+213|中軸|Poros; tokoh sentral
+214|中将|Letnan jenderal
+215|中性子|Neutron
+216|中隊|Kompi
+217|中途半端|Setengah-setengah
+218|中等|Tingkat menengah
+219|中略|Penghilangan bagian tengah
+220|仲間入り|Bergabung dalam kelompok
+221|仲買|Pialang; perantara
+222|忠誠|Kesetiaan
+223|抽出|Ekstraksi; pengambilan sampel
+224|昼下がり|Siang menjelang sore
+225|注意報|Peringatan dini
+226|注入|Penuangan; penyuntikan
+227|駐屯|Penempatan pasukan
+228|貯水|Penampungan air
+229|丁重|Sopan; hormat
+230|帳消し|Penghapusan utang; impas
+231|帳簿|Buku catatan keuangan
+232|弔辞|Pidato belasungkawa
+233|弔問|Melayat
+234|張り出す|Menonjol keluar; menempel pengumuman
+235|懲罰|Hukuman disiplin
+236|挑発|Provokasi
+237|朝顔|Bunga morning glory
+238|朝方|Pagi hari
+239|朝夕|Pagi dan sore; senantiasa
+240|朝礼|Apel pagi
+241|町外れ|Pinggiran kota
+242|超越|Transendensi; melampaui
+243|超特急|Kereta ekspres super
+244|銚子|Poci sake
+245|長者|Orang kaya; orang yang lebih tua
+246|長続き|Bertahan lama
+247|長調|Nada mayor
+248|頂戴|Menerima; meminta
+249|鳥類|Burung-burungan
+250|直営|Dikelola langsung
+251|直下|Tepat di bawah
+252|直轄|Dikuasai langsung
+253|直系|Garis keturunan langsung
+254|直行|Langsung; tanpa transit
+255|直視|Menatap langsung
+256|直進|Maju lurus
+257|直接税|Pajak langsung
+258|直接的|Langsung
+259|直属|Bawahan langsung
+260|直列|Seri
+261|沈下|Penurunan permukaan; amblas
+262|沈着|Tenang; pengendapan
+263|珍|Langka; aneh
+264|鎮圧|Penumpasan
+265|鎮魂|Penenangan arwah
+266|陳謝|Permintaan maaf
+267|陳腐|Basi; klise
+268|追い込み|Tahap akhir; usaha terakhir
+269|追い打ち|Serangan lanjutan
+270|追究|Penyelidikan mendalam
+271|追撃|Pengejaran
+272|追随|Mengikuti; menyusul
+273|追突|Tabrakan dari belakang
+274|痛恨|Penyesalan mendalam
+275|痛手|Luka parah; pukulan berat
+276|通院|Berobat jalan
+277|通関|Pengurusan bea cukai
+278|通信販売|Penjualan lewat pos/online
+279|通念|Anggapan umum
+280|通例|Kebiasaan; biasanya
+281|綴る|Mengeja; menulis
+282|坪|Tsubo (satuan luas)
+283|低学年|Kelas bawah SD
+284|低減|Penurunan; pengurangan
+285|低水準|Tingkat rendah
+286|低調|Lesu; sepi
+287|低落|Penurunan; kemerosotan
+288|低利|Bunga rendah
+289|停学|Skorsing sekolah
+290|停泊|Berlabuh
+291|定か|Pasti; jelas
+292|定刻|Waktu yang ditentukan
+293|定時制|Sekolah paruh waktu
+294|定説|Teori mapan
+295|定量|Jumlah tetap
+296|帝国主義|Imperialisme
+297|底値|Harga dasar
+298|底力|Kekuatan tersembunyi
+299|庭木|Pohon taman
+300|弟子入り|Menjadi murid/magang
+301|抵触|Bertentangan; melanggar
+302|抵当権|Hak hipotek
+303|提唱|Menganjurkan; mengusulkan
+304|逓信|Komunikasi pos dan telegraf
+305|摘出|Pengangkatan (operasi); pengungkapan
+306|敵意|Permusuhan
+307|滴|Tetesan
+308|適格|Memenuhi syarat
+309|適合|Kesesuaian
+310|適法|Sah menurut hukum
+311|適量|Takaran yang pas
+312|鉄製|Terbuat dari besi
+313|鉄板|Pelat besi; pasti menang
+314|天狗|Tengu; orang sombong
+315|天皇制|Sistem kekaisaran
+316|天使|Malaikat
+317|天然記念物|Monumen alam; spesies dilindungi
+318|天文|Astronomi
+319|天文学|Ilmu astronomi
+320|天文台|Observatorium
+321|展示会|Pameran
+322|店先|Depan toko
+323|添加|Penambahan
+324|添加物|Bahan tambahan
+325|添削|Koreksi (tulisan)
+326|転嫁|Pengalihan (tanggung jawab)
+327|転向|Beralih haluan
+328|転出|Pindah keluar
+329|転身|Alih profesi/haluan
+330|転売|Penjualan kembali
+331|転用|Pengalihan fungsi
+332|点在|Tersebar di sana-sini
+333|点滅|Berkedip (lampu)
+334|伝う|Menyusuri; merambat
+335|伝承|Tradisi turun-temurun; legenda
+336|伝染病|Penyakit menular
+337|伝送|Transmisi
+338|伝道|Penyebaran agama
+339|伝票|Slip; nota
+340|殿堂|Istana; balai kehormatan
+341|電化|Elektrifikasi
+342|電気製品|Produk elektronik
+343|電極|Elektroda
+344|電撃|Sengatan listrik; serangan kilat
+345|電光|Kilat; cahaya listrik
+346|電信|Telegraf
+347|電動|Bertenaga listrik
+348|電話機|Pesawat telepon
+349|吐露|Mengungkapkan isi hati
+350|塗り替える|Mengecat ulang; memecahkan (rekor)
+351|塗料|Cat
+352|斗|To (satuan volume kuno)
+353|渡り|Penyeberangan; impor
+354|途方|Arah; akal
+355|都度|Setiap kali
+356|度胸|Keberanian
+357|度数|Frekuensi; derajat
+358|土間|Lantai tanah
+359|土器|Gerabah
+360|土建屋|Kontraktor konstruksi
+361|土星|Planet Saturnus
+362|土石|Tanah dan batu
+363|土足|Memakai sepatu; kaki kotor
+364|土地柄|Karakter daerah
+365|奴隷|Budak
+366|逆しま|Terbalik; tidak masuk akal
+367|倒れ|Roboh; kerugian
+368|倒閣|Penggulingan kabinet
+369|党利|Kepentingan partai
+370|唐突|Mendadak
+371|島内|Di dalam pulau
+372|悼む|Berduka; berkabung
+373|投げ込む|Melemparkan ke dalam
+374|投影|Proyeksi
+375|投降|Menyerah
+376|投石|Pelemparan batu
+377|投薬|Pemberian obat
+378|東宮|Putra mahkota
+379|東経|Bujur timur
+380|東口|Pintu timur
+381|東都|Ibu kota timur (Tokyo)
+382|東邦|Negeri-negeri Timur
+383|盗賊|Pencuri; perampok
+384|盗聴|Penyadapan
+385|当の|Yang bersangkutan
+386|当期|Periode ini
+387|当事|Masalah yang dihadapi
+388|当方|Saya; pihak kami
+389|当惑|Kebingungan
+390|等価|Setara nilai
+391|等身|Seukuran badan
+392|統括|Penyatuan; pengawasan
+393|豆乳|Susu kedelai
+394|踏み切る|Melompat; memberanikan diri memutuskan
+395|逃避|Pelarian; menghindar
+396|陶磁器|Porselen; keramik
+397|陶酔|Terbuai; mabuk kepayang
+398|頭角|Puncak kepala
+399|頭金|Uang muka
