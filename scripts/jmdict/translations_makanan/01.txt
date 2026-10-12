@@ -1,0 +1,400 @@
+0|コンキリエ|-
+1|バーミセリ|-
+2|カッペリーニ|-
+3|カペッリダンジェロ|-
+4|ケバブ|Kebab
+5|ポーターハウスステーキ|-
+6|ブリスケット|-
+7|ブリスケ|-
+8|ドラジェー|-
+9|エンチラーダ|-
+10|ガスパチョ|-
+11|クランベリーソース|-
+12|クルーラー|-
+13|ハムサンド|-
+14|ガルバンゾ|-
+15|ブーケガルニ|-
+16|バターミルク|-
+17|バターロール|-
+18|チャパティ|Chapati
+19|チーズトースト|Roti panggang keju
+20|チョリソ|Chorizo
+21|チャツネ|Chutney
+22|グラッセ|-
+23|ハードソース|-
+24|パティス|-
+25|プルケ|-
+26|ガランティーヌ|-
+27|汚し|-
+28|紅梅焼|Kobaiyaki; senbei berbentuk bunga
+29|鱫鱜|-
+30|シビレ|-
+31|ミノ|-
+32|ガツ|-
+33|飴湯|Ameyu; minuman sirup malt hangat
+34|しもつかれ|-
+35|酢憤り|-
+36|口子|-
+37|海鼠子|-
+38|三枚肉|Daging iga tanpa tulang (sanmainiku)
+39|鴨南蛮|Kamo nanban; soba/udon bebek
+40|おぼろ|-
+41|小料理|Hidangan sederhana ala Jepang
+42|はったい|-
+43|タンメン|Tanmen; mi sayur tumis kuah
+44|ナッチョ|-
+45|ブリート|Burrito
+46|ケサディーヤ|-
+47|フリホーレス|-
+48|パニーニ|Panini
+49|パニーノ|-
+50|ギアラ|-
+51|千枚|-
+52|赤センマイ|-
+53|砂ずり|-
+54|子袋|-
+55|チャーシュー麺|Mi chashu
+56|蕎麦がき|Sobagaki; bola adonan soba
+57|胚芽米|Beras germ (haigamai)
+58|向付け|-
+59|だし巻き卵|Dashimaki tamago; telur gulung Jepang
+60|他人丼|Tanin donburi; nasi dengan daging dan telur
+61|ずんだ|Zunda; pasta edamame
+62|ぶつ切り|Potongan tebal
+63|箱寿司|Hakozushi; sushi cetak kotak
+64|踊り食い|Odorigui; makan hidangan laut hidup
+65|おこわ|Okowa; nasi ketan kukus
+66|アイスバイン|-
+67|胡麻和え|Gomaae; sayur dengan saus wijen
+68|龍須糖|-
+69|せせり|-
+70|いぶり漬け|-
+71|鱶の鰭|Sirip hiu
+72|魚翅|-
+73|排翅|-
+74|鱶潤目|-
+75|柚香焼|-
+76|プロフィトロール|-
+77|ウルテ|-
+78|ラグー|-
+79|卵とじ|Tamagotoji; kuah dengan telur kocok
+80|サルサベルデ|-
+81|ケソブランコ|-
+82|ケソフレスコ|-
+83|肩バラ|-
+84|アマトリチャーナ|-
+85|コロッケパン|Roti isi kroket
+86|カツサンド|Katsu sando; sandwich katsu
+87|ソーキ|Soki; iga babi rebus Okinawa
+88|ミラノ風カツレツ|-
+89|ネオテーム|-
+90|辣白菜|-
+91|ライブレッド|-
+92|うなべ|Unabe; sup belut
+93|マカニ|-
+94|加薬ご飯|Kayaku gohan; nasi campur lauk
+95|ミックスフライ|Aneka gorengan campur
+96|糟酢|-
+97|生春巻き|Lumpia segar
+98|テッポウ|-
+99|テッチャン|-
+100|ハチノス|-
+101|コプチャン|-
+102|淡味|Rasa ringan
+103|とんちゃん|-
+104|餢飳|-
+105|シュマルツ|-
+106|環餅|-
+107|ラフテー|Rafute; babi rebus Okinawa
+108|バーニャカウダ|-
+109|温麺|-
+110|生パスタ|Pasta segar
+111|赤酢|-
+112|青酢|-
+113|洗い酢|-
+114|塩梅酢|-
+115|加減酢|-
+116|生酢|-
+117|穀物酢|Cuka biji-bijian
+118|胡麻酢|Cuka wijen
+119|しょうが酢|-
+120|白酢|-
+121|橙酢|-
+122|煮返し酢|-
+123|塩昆布|Shio konbu; rumput laut asin
+124|酢洗い|-
+125|木酢|-
+126|ポンテギ|-
+127|ポンデケージョ|Pao de queijo; roti keju
+128|ドゥルセデレチェ|-
+129|シャワルマ|-
+130|シベ|-
+131|アヒージョ|Ajillo; masakan minyak bawang putih
+132|背脂|Lemak punggung babi
+133|海鮮鍋|Panci hidangan laut
+134|ドネルケバブ|Doner kebab
+135|ロコモコ|Loco moco
+136|どぼ漬け|-
+137|餡ころ|Anko mochi; mochi isi kacang merah
+138|餡ころ餅|Anko mochi; mochi isi kacang merah
+139|カオヤーツ|-
+140|トライプ|-
+141|抱身|-
+142|プルダック|-
+143|テビチ|-
+144|足てびち|-
+145|カレールー|Roux kari
+146|油淋鶏|-
+147|湯切り|Meniriskan air mendidih (mi)
+148|糸こんにゃく|Ito konnyaku; mi konnyaku
+149|蓼酢|-
+150|ひやしあめ|-
+151|色出し|-
+152|豚しゃぶ|Buta shabu; shabu-shabu babi
+153|飯蒸し|-
+154|スーチカー|-
+155|人参しりしり|-
+156|抹茶塩|-
+157|蓮餅|-
+158|琥珀糖|-
+159|素揚げ|Suage; goreng tanpa tepung
+160|ルイベ|-
+161|キーマ|-
+162|ジャーマンポテト|-
+163|豆苗|Tunas kacang polong
+164|菊酒|-
+165|讃岐うどん|Sanuki udon
+166|割り下地|-
+167|パブロバ|-
+168|ボンブ|-
+169|シブースト|-
+170|乾き物|Camilan kering (untuk teman minum)
+171|西京味噌|Miso Saikyo; miso putih manis Kyoto
+172|西京焼き|Saikyo yaki; ikan panggang miso Kyoto
+173|炒め飯|Nasi goreng
+174|シナモンロール|Cinnamon roll
+175|チュロス|Churros
+176|切り餅|Kirimochi; mochi potong
+177|ランチドレッシング|-
+178|グラブラックス|-
+179|焼き麩|Yakifu; gluten gandum panggang
+180|ババガヌーシュ|-
+181|叉焼包|Char siu bao; bakpao babi panggang
+182|サムギョプサル|Samgyeopsal; perut babi panggang
+183|ポットパイ|-
+184|トウチジャン|-
+185|ハッシュパピー|-
+186|塩豚|Babi asin
+187|子牛肉|Daging anak sapi
+188|ドレンチェリー|-
+189|ムサカ|-
+190|猪鍋|-
+191|雲白肉|-
+192|雲白肉片|-
+193|人形焼|Ningyoyaki; kue boneka isi kacang merah
+194|えびマヨ|Udang mayones
+195|シュトーレン|Stollen
+196|おかず味噌|-
+197|ヨークシャープディング|-
+198|だし巻き|Dashimaki; telur gulung Jepang
+199|箸洗い|Hashi arai; sup pembersih lidah
+200|味噌炒め|Tumisan miso
+201|炒め|Tumisan
+202|バター炒め|Tumisan mentega
+203|バター醤油|Mentega kecap
+204|醤油炒め|Tumisan kecap
+205|炒めご飯|Nasi goreng
+206|キャベツ炒め|Tumis kubis
+207|中華炒め|Tumisan ala Tionghoa
+208|タパス|Tapas
+209|マンチェゴ|-
+210|いかフライ|Cumi goreng tepung
+211|バカラオ|-
+212|カルツォーネ|Calzone
+213|フォカッチャ|Focaccia
+214|クロスティーニ|-
+215|コートレット|-
+216|カポナータ|-
+217|ディップソース|Saus celup
+218|煮卵|Telur rebus kecap
+219|いとこ煮|-
+220|鮟鱇鍋|Panci ikan pemancing
+221|兎汁|-
+222|牡蠣飯|Kakimeshi; nasi tiram
+223|蕪鮨|-
+224|紅葉鍋|-
+225|望粥|-
+226|べったら漬|-
+227|浅漬大根|-
+228|氷頭膾|-
+229|菊花膾|-
+230|菊膾|-
+231|薯蕷汁|-
+232|茸飯|Kinokomeshi; nasi jamur
+233|木の芽漬け|-
+234|蜆汁|Sup kerang shijimi
+235|青饅|-
+236|お麩|Fu; gluten gandum
+237|ポン菓子|Sereal pop (pon gashi)
+238|チャーメン|Chow mein
+239|たぬき丼|Tanuki don; nasi dengan tenkasu
+240|ケークサレ|-
+241|ラングドシャ|-
+242|鰹だし|Kaldu bonito
+243|熱盛りそば|-
+244|熱盛|-
+245|わさび菜|Daun wasabi
+246|ナシゴレン|Nasi goreng
+247|豆腐花|Puding tahu (tofu hua)
+248|東坡肉|Dongpo rou; babi rebus Tiongkok
+249|小柱|-
+250|クロックムッシュ|-
+251|固形ブイヨン|Kaldu padat (bouillon cube)
+252|クネル|-
+253|カッサータ|-
+254|トウチ|-
+255|カプリチョーザ|-
+256|サルティンボッカ|-
+257|冷やし麺|Mi dingin
+258|鳥飯|Nasi ayam
+259|揚げ麩|Fu goreng
+260|主菓子|-
+261|朝鮮漬け|Kimchi
+262|ファッションドーナツ|-
+263|氷頭|-
+264|クイニーアマン|-
+265|白粥|Bubur nasi putih
+266|ガレット|Galette
+267|揚げパン|Roti goreng
+268|アーモンドプードル|-
+269|すり流し|-
+270|万能ネギ|Daun bawang tipis
+271|衣かつぎ|-
+272|かぶと焼き|Kabutoyaki; kepala ikan panggang
+273|有職料理|-
+274|揚げ煮|-
+275|ホットサンド|Sandwich panggang
+276|オーブン焼き|Masakan panggang oven
+277|酸辣湯|Suanlatang; sup asam pedas
+278|魯肉飯|Lu rou fan; nasi babi cincang
+279|かつ重|Katsu ju; nasi katsu dalam kotak
+280|アクアパッツア|-
+281|牛すじ|Urat sapi
+282|サガリ|-
+283|クレマカタラーナ|-
+284|味をつける|Membumbui
+285|金ざる|-
+286|キンパ|Gimbap
+287|カヌレ|-
+288|揚げ餃子|Gyoza goreng
+289|焼き餃子|Gyoza panggang
+290|蒸し餃子|Gyoza kukus
+291|手羽餃子|-
+292|まめぶ汁|-
+293|ストロープワッフル|-
+294|炭火焼肉|Yakiniku arang
+295|鶏唐揚げ|Ayam goreng (karaage)
+296|セイタン|-
+297|酢もみ|Su momi; mengurut dengan cuka
+298|塩もみ|Shio momi; mengurut dengan garam
+299|蒸し鶏|Ayam kukus
+300|鶏がらスープ|Kaldu ayam
+301|ハムカツ|Hamukatsu; ham goreng tepung
+302|ハムカツサンド|Sandwich hamukatsu
+303|せいろ蒸し|Mengukus dengan keranjang bambu
+304|銀あん|-
+305|紙鍋|-
+306|はさみ焼き|-
+307|焼き鮭|Salmon bakar
+308|味付け玉子|Telur bumbu setengah matang
+309|ガトーショコラ|Kue cokelat
+310|田舎パン|-
+311|あじフライ|Aji furai; ikan goreng tepung
+312|マカロニサラダ|Salad makaroni
+313|粉吹き芋|Kentang rebus tumbuk goreng
+314|がめ煮|-
+315|強塩|-
+316|パーポーツァイ|-
+317|ウィンナーコーヒー|-
+318|クールブイヨン|-
+319|シュークルート|-
+320|ゼクト|-
+321|細切り|Irisan tipis memanjang
+322|バインミー|Banh mi
+323|ピーチメルバ|-
+324|ざく|-
+325|ハルーミ|-
+326|ホットク|-
+327|あら汁|Sup tulang ikan (arajiru)
+328|磯巻き鮨|-
+329|磯巻き卵|-
+330|チヂミ|Jeon/Buchimgae; pancake Korea
+331|プルドポーク|Pulled pork
+332|ブリ大根|Buri daikon; ikan buri dan lobak rebus
+333|大根餅|Kue lobak
+334|当座煮|-
+335|フィッシュカツ|Fish katsu
+336|裏巻き|Uramaki; sushi gulung terbalik
+337|めんつゆ|Mentsuyu; kuah dasar mi
+338|みぞれ和え|Mizore ae; lobak parut
+339|金玉糖|-
+340|ドーサ|-
+341|蛇スープ|-
+342|ゆかりご飯|Nasi yukari; nasi taburan shiso merah
+343|ガルガネッリ|-
+344|卵入り|Mengandung telur
+345|くぎ煮|-
+346|べっ甲あん|-
+347|塩釜焼き|Shiogama yaki; ikan panggang kerak garam
+348|冷菜|Hidangan dingin ala Tionghoa
+349|中濃ソース|Saus chuno
+350|やや辛口|-
+351|エッグスラット|-
+352|スラット|-
+353|かにしゃぶ|Kani shabu; shabu-shabu kepiting
+354|ラビゴットソース|-
+355|フランジパン|-
+356|オートキュイジーヌ|-
+357|ヌーベルキュイジーヌ|-
+358|アミューズブーシュ|-
+359|リュスティック|-
+360|リエット|-
+361|モルネーソース|-
+362|ムールフリット|-
+363|ベイクドアラスカ|-
+364|ベアルネーズソース|-
+365|ピサラディエール|-
+366|パンオショコラ|-
+367|ショコラティーヌ|-
+368|ナヴァラン|-
+369|タルトフランベ|-
+370|タプナード|-
+371|ソースグリビッシュ|-
+372|ショーソンオポム|-
+373|シュー皮|-
+374|シェーブルチーズ|-
+375|シヴェ|-
+376|サルミ|-
+377|コルドンブルー|-
+378|コックオーヴァン|-
+379|クレームフレッシュ|-
+380|グラニテ|-
+381|エルブドプロバンス|-
+382|ヴェリーヌ|-
+383|ヴィエノワズリー|-
+384|グリビッシュソース|-
+385|アミューズグール|-
+386|パサータ|-
+387|味噌おでん|Miso oden
+388|小吃|Xiaochi; jajanan Tionghoa
+389|湯円|Tangyuan
+390|牛すね|Betis sapi
+391|八丁味噌|Hatcho miso
+392|ベイクドポテト|Kentang panggang
+393|手酢|-
+394|コブサラダ|Salad Cobb
+395|チョップサラダ|-
+396|もみ海苔|Nori remuk
+397|磯辺餅|Isobe mochi; mochi nori kecap
+398|カレーシチュー|Kari kuah dengan nasi
+399|蒸し煮|Rebus kukus

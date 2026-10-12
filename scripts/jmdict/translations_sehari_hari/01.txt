@@ -1,0 +1,295 @@
+0|侮蔑|Penghinaan; cemoohan
+1|風呂屋|Pemandian umum (sento)
+2|風呂場|Kamar mandi
+3|伏せる|Menelungkupkan; menunduk
+4|物陰|Tempat terlindung; di balik sesuatu
+5|奮発|Berusaha keras; royal (boros)
+6|紛らす|Mengalihkan (pikiran); menghilangkan
+7|文系|Rumpun humaniora
+8|ひがむ|Berpikiran picik; iri
+9|蔑む|Meremehkan; memandang rendah
+10|変移|Perubahan; peralihan
+11|わきまえる|Memahami; membedakan
+12|保育園|Tempat penitipan anak (hoikuen)
+13|歩行者|Pejalan kaki
+14|母国語|Bahasa ibu
+15|あっけ|Terkejut hingga ternganga
+16|抱っこ|Menggendong (bayi)
+17|亡骸|Jenazah
+18|脇見|Melihat ke samping; tidak fokus
+19|本箱|Rak buku
+20|さする|Mengusap; mengelus
+21|ごとに|Setiap; tiap-tiap
+22|巳|Ular (shio ke-6)
+23|名残惜しい|Berat untuk berpisah
+24|明晩|Besok malam
+25|免許証|Surat izin (SIM)
+26|面子|Muka (harga diri); orang yang hadir
+27|模擬試験|Ujian percobaan
+28|めど|Sasaran; prospek
+29|もっともらしい|Masuk akal; tampak serius
+30|野暮|Kampungan; tidak berselera
+31|やたら|Sembarangan; berlebihan
+32|なだめる|Menenangkan; membujuk
+33|ありふれた|Biasa saja; lumrah
+34|予備校|Bimbel persiapan ujian masuk
+35|よそ見|Melihat ke arah lain
+36|用心深い|Hati-hati; waspada
+37|養老院|Panti jompo
+38|頼りない|Tidak bisa diandalkan
+39|落ち合う|Bertemu; bertemu di suatu tempat
+40|理学部|Fakultas sains
+41|理系|Rumpun sains
+42|裏門|Gerbang belakang
+43|立ち退く|Pindah keluar; mengungsi
+44|立ち読み|Membaca sambil berdiri (di toko buku)
+45|略|Singkatan; garis besar
+46|流暢|Fasih
+47|力一杯|Sekuat tenaga
+48|力試し|Menguji kemampuan
+49|例題|Soal contoh
+50|和語|Kata asli Jepang (wago)
+51|もぐ|Memetik (buah)
+52|わんぱく|Nakal; bandel
+53|ほのめかす|Menyiratkan; mengisyaratkan
+54|たたずむ|Berdiri diam; berdiam diri
+55|うつむく|Menunduk
+56|とっさに|Spontan; seketika
+57|嘲る|Mengejek; mencemooh
+58|おごる|Mentraktir; hidup mewah
+59|さまよう|Berkeliaran
+60|旁|Radikal sisi kanan (kanji)
+61|ぼかす|Mengaburkan; membuat samar
+62|こんろ|Kompor
+63|やつれる|Kurus kering; tampak lelah
+64|くじ|Undian
+65|すね|Tulang kering
+66|ござ|Tikar jerami
+67|褪せる|Memudar; luntur
+68|なまり|Logat; dialek
+69|むさぼる|Menikmati dengan rakus; mengeruk
+70|もたらす|Membawa; mendatangkan
+71|贔屓|Pilih kasih; dukungan; langganan
+72|ひざまずく|Berlutut
+73|うずくまる|Berjongkok; meringkuk
+74|えくぼ|Lesung pipi
+75|ぶらんこ|Ayunan
+76|頷く|Mengangguk; setuju
+77|きりん|Jerapah; qilin
+78|なびく|Melambai; tunduk pada
+79|かび|Jamur; lumut
+80|ばい菌|Kuman
+81|下唇|Bibir bawah
+82|捨て子|Anak yang ditelantarkan
+83|鬼神|Dewa yang menakutkan
+84|給油所|Pom bensin
+85|傾げる|Memiringkan (kepala)
+86|碁会所|Tempat bermain go
+87|行き止まり|Jalan buntu
+88|寂然|Sepi; sunyi
+89|醜女|Wanita berwajah biasa saja
+90|渋面|Wajah cemberut
+91|上唇|Bibir atas
+92|先頃|Belum lama ini
+93|選り分ける|Memilah; menyortir
+94|天の川|Bimasakti
+95|灯す|Menyalakan (lampu/lilin)
+96|二人前|Porsi untuk dua orang
+97|鼻紙|Tisu
+98|富者|Orang kaya
+99|侮る|Meremehkan
+100|保養所|Tempat peristirahatan
+101|妄信|Percaya buta
+102|よそ行き|Pakaian terbaik; untuk bepergian
+103|預かり所|Tempat penitipan barang
+104|療養所|Sanatorium
+105|まま|Apa adanya; keadaan
+106|とんぼ|Capung
+107|あざ|Tanda lahir; memar
+108|温める|Menghangatkan
+109|宛先|Alamat tujuan
+110|あほ|Bodoh; tolol
+111|雨垂れ|Tetesan air hujan
+112|塩梅|Bumbu; keadaan
+113|生き方|Cara hidup
+114|閏年|Tahun kabisat
+115|お神輿|Tandu kuil; pantat
+116|顔なじみ|Kenalan; muka lama
+117|関わる|Berkaitan dengan; terlibat
+118|書き初め|Kaligrafi pertama tahun baru
+119|仮説|Hipotesis
+120|口々に|Serentak; ramai-ramai
+121|さらう|Menyapu bersih; mengeruk
+122|晒す|Memaparkan; menjemur
+123|暑中見舞|Kartu ucapan musim panas
+124|潤色|Hiasan retorika
+125|順々に|Berurutan
+126|凄まじい|Dahsyat; mengerikan
+127|立ち入り禁止|Dilarang masuk
+128|立て込む|Ramai sesak; menumpuk (pekerjaan)
+129|次々に|Satu per satu; berturut-turut
+130|包み紙|Kertas pembungkus
+131|つやつや|Mengilap
+132|釣り合い|Keseimbangan
+133|とびきり|Terbaik; luar biasa
+134|共々|Bersama-sama
+135|取扱注意|Perhatian: tangani dengan hati-hati
+136|貪欲|Serakah
+137|なぞなぞ|Teka-teki
+138|ねばねば|Lengket
+139|乗り越し|Kebablasan naik kendaraan
+140|はかない|Fana; sia-sia
+141|育む|Memelihara; membesarkan
+142|はみ出す|Menonjol keluar; melampaui batas
+143|歯向かう|Melawan; membangkang
+144|僻み|Prasangka; iri hati
+145|引き算|Pengurangan (matematika)
+146|引きつる|Kram; kejang
+147|必至|Tak terelakkan
+148|一重|Selapis; kelopak tunggal
+149|人差し指|Jari telunjuk
+150|ひばり|Burung lark
+151|吹き出物|Bisul; jerawat
+152|不幸せ|Kemalangan
+153|ほのか|Samar; remang
+154|前売り券|Tiket pesanan di muka
+155|巻尺|Pita ukur
+156|真ん丸|Bulat sempurna
+157|見覚え|Ingatan pernah melihat
+158|みなす|Menganggap sebagai
+159|向こう側|Sisi seberang
+160|めちゃめちゃ|Berantakan; keterlaluan
+161|やきもち|Rasa cemburu; mochi panggang
+162|やり直し|Mengulang dari awal
+163|やり直す|Mengulang lagi; memulai ulang
+164|ゆりかご|Ayunan bayi
+165|つかえる|Tersangkut; sibuk
+166|浅はか|Dangkal; picik
+167|錨|Jangkar
+168|幾度|Berapa kali
+169|いっぺんに|Sekaligus
+170|いろんな|Berbagai macam
+171|うたう|Menyanyikan; menyatakan
+172|白粉|Bedak
+173|恐るべき|Mengerikan; luar biasa
+174|かつら|Wig
+175|虚栄心|Kesombongan
+176|禁欲的|Bersifat pertapa; menahan diri
+177|工学部|Fakultas teknik
+178|刻一刻と|Detik demi detik
+179|自営業|Usaha mandiri
+180|順路|Rute yang ditentukan
+181|知らず知らず|Tanpa disadari
+182|すがる|Berpegangan; bergantung
+183|絶対に|Mutlak; sekali-kali (tidak)
+184|速達便|Pos kilat khusus
+185|蕎麦屋|Kedai soba
+186|損する|Rugi
+187|橙色|Warna oranye
+188|退廃的|Dekaden; merosot moral
+189|楕円形|Bentuk elips
+190|ただす|Memastikan; meminta kejelasan
+191|達筆|Tulisan tangan indah
+192|近寄せる|Mendekatkan
+193|ちぎれる|Terobek; putus
+194|注意深い|Penuh perhatian; berhati-hati
+195|ちんぷんかんぷん|Tidak masuk akal (bahasa tak dimengerti)
+196|手際良く|Dengan cekatan
+197|冬期|Musim dingin
+198|得する|Beruntung; untung
+199|都市ガス|Gas kota
+200|あんこ|Pasta kacang merah; isian
+201|いささか|Sedikit; agak
+202|お気に入り|Kesayangan; favorit
+203|口げんか|Adu mulut
+204|診療所|Klinik
+205|楯突く|Membangkang; melawan
+206|爪切り|Gunting kuku
+207|アイスコーヒー|Kopi es
+208|イスラム教|Agama Islam
+209|ガラス戸|Pintu kaca
+210|セ氏|Celsius
+211|セロテープ|Selotip
+212|年取った|Sudah tua
+213|どの辺|Sekitar mana
+214|とぼける|Pura-pura tidak tahu
+215|内向的|Introver
+216|泣き顔|Wajah berlinang air mata
+217|なぜか|Entah kenapa
+218|夏ばて|Lemas karena panas musim panas
+219|逃げ足|Kecepatan lari kabur
+220|寝過ごす|Tidur kebablasan
+221|寝相|Gaya tidur
+222|寝冷え|Masuk angin karena tidur kedinginan
+223|ばあさん|Nenek; wanita tua
+224|排他主義|Eksklusivisme
+225|恥さらし|Aib; memalukan
+226|恥知らず|Tak tahu malu
+227|はしたない|Tidak sopan; memalukan
+228|ばってん|Tanda silang
+229|はねる|Menabrak; menolak
+230|腹一杯|Kenyang; sepuasnya
+231|はらむ|Mengandung; hamil
+232|日替わり|Berganti tiap hari
+233|筆記用具|Alat tulis
+234|引っ付く|Menempel; menempel erat
+235|一晩中|Semalaman
+236|不意に|Tiba-tiba
+237|吹き溜まり|Tumpukan (salju/daun); tempat berkumpul orang terbuang
+238|不燃物|Sampah tak terbakar
+239|プロ野球|Bisbol profesional
+240|法学部|Fakultas hukum
+241|封建主義|Feodalisme
+242|歩行者天国|Jalan khusus pejalan kaki
+243|小火|Kebakaran kecil
+244|本当に|Sungguh-sungguh
+245|末期的|Tahap akhir; parah
+246|まんざら|Tidak sepenuhnya
+247|水臭い|Dingin (tidak akrab); encer
+248|見た目|Penampilan luar
+249|道草|Mampir di jalan; rumput pinggir jalan
+250|認め印|Stempel pribadi
+251|みるみる|Dalam sekejap
+252|無機物|Zat anorganik
+253|無生物|Benda tak hidup
+254|無恥|Tak tahu malu
+255|申し分無い|Tanpa cela
+256|もつれる|Kusut; terjalin
+257|物覚え|Daya ingat
+258|要注意|Perlu waspada
+259|欲深|Serakah
+260|よくも|Beraninya (mengejek)
+261|選る|Memilih
+262|老眼|Rabun dekat (presbiopi)
+263|和式|Gaya Jepang (toilet jongkok)
+264|とめどなく|Tanpa henti
+265|難なく|Dengan mudah
+266|寝ぼける|Setengah sadar
+267|間に合わせ|Sementara; darurat
+268|よどむ|Mengendap; macet
+269|あながち|Belum tentu
+270|あのね|Hei; begini lho
+271|うやむや|Samar; tidak jelas
+272|お歳暮|Hadiah akhir tahun
+273|そのもの|Itu sendiri; sungguh
+274|ちり紙|Tisu; kertas toilet
+275|どうもありがとう|Terima kasih banyak
+276|やり過ごす|Membiarkan lewat
+277|あの世|Dunia lain; akhirat
+278|いけません|Tidak boleh; payah
+279|お医者さん|Dokter
+280|おかしな|Aneh; lucu
+281|お坊さん|Biksu
+282|がらん|Kosong; lengang
+283|どよめく|Bergemuruh; gempar
+284|びしょ濡れ|Basah kuyup
+285|やりきれない|Tidak tertahankan; tak sanggup
+286|指切り|Janji kelingking
+287|おまけ|Bonus; gratisan
+288|丸まる|Menggulung; membulat
+289|さよなら|Selamat tinggal
+290|じいさん|Kakek; pria tua
+291|むっと|Pengap; kesal
+292|よし|Baiklah
+293|眼|Mata; biji mata
+294|空地|Tanah kosong
