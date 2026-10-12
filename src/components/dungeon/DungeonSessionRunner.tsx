@@ -7,6 +7,7 @@ import {
   Volume2,
   Trophy,
   RotateCcw,
+  Shuffle,
   CheckCircle2,
   XCircle,
   ChevronRight,
@@ -24,6 +25,7 @@ import {
 } from 'lucide-react';
 import { DungeonPayload, DungeonConfig } from '../../utils/dungeonGenerator';
 import { playSound, speakJapanese } from '../../utils/audio';
+import { fisherYatesShuffle } from '../../utils/smartRandomizer';
 import { UniversalFlashcard } from '../learning/UniversalFlashcard';
 import { UniversalWritingCard } from '../learning/UniversalWritingCard';
 import { SentenceTile, validateSentenceSubmission, validateSentenceTextSubmission, ValidationFeedback } from '../../engine';
@@ -167,6 +169,20 @@ export const DungeonSessionRunner: React.FC<DungeonSessionRunnerProps> = ({
   // Sub-exercise state for Flashcard
   const [isFlashcardFlipped, setIsFlashcardFlipped] = useState(false);
   const [flashcardExpPopup, setFlashcardExpPopup] = useState<number | null>(null);
+  // Urutan lantai flashcard setelah di-shuffle; null = pakai urutan dari generator
+  const [flashcardOrderOverride, setFlashcardOrderOverride] = useState<ResolvedDeckItem[] | null>(null);
+  const flashcardItems = flashcardOrderOverride ?? payload.flashcardItems;
+  const flashcardRemainingCount = flashcardItems ? flashcardItems.length - currentFloorIndex - 1 : 0;
+
+  // Hanya mengacak lantai yang belum dilewati; lantai aktif dan yang sudah lewat tetap
+  const handleFlashcardShuffle = () => {
+    if (!flashcardItems) return;
+    playSound('click', soundEnabled);
+    setFlashcardOrderOverride([
+      ...flashcardItems.slice(0, currentFloorIndex + 1),
+      ...fisherYatesShuffle(flashcardItems.slice(currentFloorIndex + 1)),
+    ]);
+  };
 
   const handleFlashcardFlip = (it: ResolvedDeckItem) => {
     playSound('click', soundEnabled);
@@ -629,9 +645,9 @@ export const DungeonSessionRunner: React.FC<DungeonSessionRunnerProps> = ({
               )}
 
               {/* TYPE 2: FLASHCARD DUNGEON */}
-              {config.type === 'flashcard' && payload.flashcardItems && (
+              {config.type === 'flashcard' && flashcardItems && (
                 (() => {
-                  const it = payload.flashcardItems[currentFloorIndex];
+                  const it = flashcardItems[currentFloorIndex];
                   if (!it) return renderFallbackMissingItem();
 
                   const jp = it.kotoba?.word || it.kanji?.character || it.bunpou?.title || it.displayTitle || '';
@@ -679,11 +695,12 @@ export const DungeonSessionRunner: React.FC<DungeonSessionRunnerProps> = ({
 
                         <button
                           type="button"
-                          onClick={() => handleFlashcardFlip(it)}
-                          className="btn-physical-secondary flex-1 py-3 px-4 rounded-2xl font-heading font-bold text-xs flex items-center justify-center gap-2 transition-all cursor-pointer"
+                          onClick={handleFlashcardShuffle}
+                          disabled={flashcardRemainingCount < 2}
+                          className="btn-physical-secondary flex-1 py-3 px-4 rounded-2xl font-heading font-bold text-xs flex items-center justify-center gap-2 transition-all cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed"
                         >
-                          <RotateCcw className="w-4 h-4 text-gold" />
-                          <span>{isFlashcardFlipped ? 'Tutup Arti' : 'Balik Kartu'}</span>
+                          <Shuffle className="w-4 h-4 text-gold" />
+                          <span>Shuffle</span>
                         </button>
 
                         <button

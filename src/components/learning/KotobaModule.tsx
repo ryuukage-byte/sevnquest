@@ -1,7 +1,7 @@
 import { getWordTypeLabel } from '../../utils/wordType';
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Volume2, ArrowRight, ArrowLeft, Edit3 } from 'lucide-react';
+import { Volume2, ArrowRight, ArrowLeft, Edit3, Shuffle } from 'lucide-react';
 import { BookIcon } from '../ui/EngravingIcons';
 import { KotobaItem, Question } from '../../types/content';
 import { KOTOBA_DATABASE } from '../../data/kotoba';
@@ -69,7 +69,14 @@ export const KotobaModule: React.FC<KotobaModuleProps> = ({
     return validItems;
   }, [kotobaIds]);
 
-  const currentItem = items[currentCardIndex] || items[0] || fallbackKotobaItem;
+  // Urutan kartu flashcard setelah di-shuffle; null = urutan asli. Hanya memengaruhi tab Flashcard.
+  const [shuffledCards, setShuffledCards] = useState<KotobaItem[] | null>(null);
+  useEffect(() => {
+    setShuffledCards(null);
+  }, [items]);
+
+  const cards = shuffledCards ?? items;
+  const currentItem = cards[currentCardIndex] || cards[0] || fallbackKotobaItem;
   const currentWritingItem = items[selectedWritingIndex] || items[0] || fallbackKotobaItem;
 
   // Detect if any bunpou in this stage teaches verb/adjective conjugation patterns
@@ -271,9 +278,16 @@ export const KotobaModule: React.FC<KotobaModuleProps> = ({
     playSound('click', soundEnabled);
   };
 
+  const handleShuffleCards = () => {
+    playSound('click', soundEnabled);
+    setShuffledCards(fisherYatesShuffle(cards));
+    setCurrentCardIndex(0);
+    setIsFlipped(false);
+  };
+
   const handleNextCard = () => {
     setIsFlipped(false);
-    if (currentCardIndex < items.length - 1) {
+    if (currentCardIndex < cards.length - 1) {
       setCurrentCardIndex(prev => prev + 1);
       playSound('click', soundEnabled);
     }
@@ -441,8 +455,8 @@ export const KotobaModule: React.FC<KotobaModuleProps> = ({
         <div className="space-y-4">
           {/* Card Progress */}
           <div className="flex items-center justify-between text-xs text-text-muted">
-            <span>Kata <strong className="text-indigo font-bold">{currentCardIndex + 1}</strong> dari {items.length}</span>
-            <span className="font-mono text-gold font-bold">Total: {items.length}</span>
+            <span>Kata <strong className="text-indigo font-bold">{currentCardIndex + 1}</strong> dari {cards.length}</span>
+            <span className="font-mono text-gold font-bold">Total: {cards.length}</span>
           </div>
 
           {/* Interactive 3D Flip Card */}
@@ -481,8 +495,17 @@ export const KotobaModule: React.FC<KotobaModuleProps> = ({
             </button>
 
             <button
+              onClick={handleShuffleCards}
+              disabled={cards.length < 2}
+              className="rpg-btn rpg-btn-secondary flex-1 py-3 text-sm font-bold gap-2 disabled:opacity-40 disabled:cursor-not-allowed"
+            >
+              <Shuffle className="w-5 h-5" />
+              <span>Shuffle</span>
+            </button>
+
+            <button
               onClick={handleNextCard}
-              disabled={currentCardIndex === items.length - 1}
+              disabled={currentCardIndex === cards.length - 1}
               className="rpg-btn rpg-btn-primary flex-1 py-3 text-sm font-bold gap-2 disabled:opacity-40 disabled:cursor-not-allowed"
             >
               <span>Selanjutnya</span>
