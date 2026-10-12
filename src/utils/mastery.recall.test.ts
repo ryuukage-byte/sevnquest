@@ -149,3 +149,22 @@ test('record lama dari menulis (bestScore 1/1 palsu, status LEARNING) tidak lagi
   assert.equal(queue[0].priorityTier, 'PRACTICE');
   assert.equal(queue[0].trueMasteryScore, undefined);
 });
+
+test('satu jawaban kuis benar lewat interaksi konsisten: COMPLETED, tidak masuk Recall sebagai WEAK 90%', () => {
+  const rec = recordItemInteraction(undefined, kotobaId, 'kotoba', 'quiz', true);
+
+  assert.equal(getLearningStage(rec), 'PRACTICED');
+  assert.equal(rec.status, 'COMPLETED');
+  assert.equal(rec.gradedAttemptCount, 1);
+  assert.equal(buildSmartRecallQueue(toMastery(rec)).length, 0);
+});
+
+test('satu jawaban kuis salah lewat interaksi tetap WEAK dengan True Mastery di bawah 70', () => {
+  const rec = recordItemInteraction(undefined, kotobaId, 'kotoba', 'quiz', false);
+
+  assert.equal(rec.status, 'LEARNING');
+  assert.equal(rec.mistakeCount, 1);
+  const queue = buildSmartRecallQueue(toMastery(rec));
+  assert.equal(queue[0].priorityTier, 'WEAK');
+  assert.ok((queue[0].trueMasteryScore ?? 100) < 70);
+});

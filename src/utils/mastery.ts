@@ -43,14 +43,6 @@ export type ItemLearningStage = 'VIEWED' | 'STUDIED' | 'PRACTICED';
  */
 export const RECALL_INCLUDE_VIEW_ONLY = false;
 
-/**
- * Interaksi yang menghasilkan penilaian benar/salah. Flashcard dan menulis (interaksi ringan) tidak
- * menghasilkan skor. Satu jawaban menulis hanya berarti "≥60", bukan skor kuis; kalau dihitung sebagai
- * bestScore 1/1, Recognition langsung 100% dan True Mastery melompat ke ~90% padahal status masih LEARNING.
- * Menulis yang dinilai tetap lewat recordItemAttempt.
- */
-const GRADED_INTERACTIONS: ReadonlySet<'writing' | 'flashcard' | 'quiz'> = new Set(['quiz']);
-
 /** Tanggal "belum pernah ditinjau". Record yang baru dibuka tidak boleh menang saat merge cloud. */
 const NEVER_REVIEWED_AT = new Date(0).toISOString();
 
@@ -383,23 +375,24 @@ export function recordItemInteraction(
   interactionType: 'writing' | 'flashcard' | 'quiz',
   success: boolean = true
 ): ItemMasteryRecord {
+  // Jawaban kuis yang dinilai memakai jalur yang sama dengan jawaban kuis lain (recordItemAttempt).
+  // Jalur interaksi terpisah membuat satu jawaban benar berstatus LEARNING tetapi True Mastery ~90%.
+  if (interactionType === 'quiz') {
+    return recordItemAttempt(existingRecord, itemId, category, success ? 1 : 0, 1, undefined, false, 'quiz');
+  }
+
+  // Menulis dan flashcard adalah interaksi ringan: tidak ada skor, tidak mengisi bestScore.
   const now = new Date();
   const dateStr = now.toISOString();
 
-  const graded = GRADED_INTERACTIONS.has(interactionType);
-
   const prevWriting = existingRecord?.writingCount || 0;
   const prevFlashcard = existingRecord?.flashcardCount || 0;
-  const prevQuiz = existingRecord?.quizCount || 0;
-  const prevAttempts = existingRecord?.attemptsCount || 0;
-
   const newWriting = prevWriting + (interactionType === 'writing' ? 1 : 0);
   const newFlashcard = prevFlashcard + (interactionType === 'flashcard' ? 1 : 0);
-  const newQuiz = prevQuiz + (interactionType === 'quiz' ? 1 : 0);
-  const newAttempts = prevAttempts + 1;
+  const newAttempts = (existingRecord?.attemptsCount || 0) + 1;
 
   if (!existingRecord) {
-    const initialMastery = interactionType === 'flashcard' ? 25 : (interactionType === 'writing' ? 45 : 35);
+    const initialMastery = interactionType === 'flashcard' ? 25 : 45;
     const initialLvl: MasteryDifficultyLevel = interactionType === 'writing' ? 2 : 1;
     const interval = 1;
     const nextDue = new Date(now.getTime() + interval * 24 * 60 * 60 * 1000).toISOString();
@@ -410,34 +403,34 @@ export function recordItemInteraction(
       status: 'LEARNING',
       masteryPercentage: initialMastery,
       masteryLevel: initialLvl,
-      // Flashcard/buka halaman tidak punya skor: bestScore 1/1 palsu dulu membuat Recognition 100%.
-      bestScore: graded ? { score: success ? 1 : 0, total: 1 } : { score: 0, total: 0 },
+      // Tanpa skor: bestScore 1/1 palsu dulu membuat Recognition 100%.
+      bestScore: { score: 0, total: 0 },
       bestScoreAchievedAt: dateStr,
       attemptsCount: newAttempts,
       writingCount: newWriting,
       flashcardCount: newFlashcard,
-      quizCount: newQuiz,
-      consecutivePerfects: graded && success ? 1 : 0,
-      mistakeCount: graded && !success ? 1 : 0,
+      quizCount: 0,
+      consecutivePerfects: 0,
+      mistakeCount: success ? 0 : 1,
       lastReviewedAt: dateStr,
       nextReviewDue: nextDue,
       reviewIntervalDays: interval,
       decayFactor: 1.0,
       contextualSuccessCount: 0,
-      gradedAttemptCount: graded ? 1 : 0
+      gradedAttemptCount: 0
     };
   }
 
   // Update existing record
   const currentPct = existingRecord.masteryPercentage || 0;
   // Gradual mastery boost on active interaction:
-  // Writing gives up to +5%, Flashcard +2%, Quiz +4%
-  const boost = interactionType === 'writing' ? 5 : (interactionType === 'quiz' ? 4 : 2);
+  // Writing gives up to +5%, Flashcard +2%
+  const boost = interactionType === 'writing' ? 5 : 2;
   // Interaksi ringan (membuka kartu, menggambar tanpa penilaian) dibatasi di INTERACTION_MASTERY_CAP:
   // status MASTERED/PERFECTED hanya bisa dicapai lewat recordItemAttempt (jawaban yang dinilai + SRS).
   const boosted = success ? Math.min(INTERACTION_MASTERY_CAP, currentPct + boost) : currentPct;
   const updatedPct = Math.min(100, Math.max(currentPct, boosted));
-  
+
   let newLevel = existingRecord.masteryLevel;
   if (updatedPct >= 90) newLevel = 5;
   else if (updatedPct >= 75) newLevel = 4;
@@ -453,31 +446,14 @@ export function recordItemInteraction(
   // Jangan menurunkan status yang sudah diraih lewat jawaban terinci hanya karena interaksi ringan.
   if (STATUS_RANK[existingRecord.status] > STATUS_RANK[newStatus]) newStatus = existingRecord.status;
 
-  // bestScore hanya diperbarui oleh jawaban yang dinilai, dan bestScore lama tanpa bukti dinilai diabaikan.
-  let bestScore = existingRecord.bestScore;
-  let bestScoreAchievedAt = existingRecord.bestScoreAchievedAt;
-  if (graded) {
-    const priorRatio = hasGradedEvidence(existingRecord) && bestScore.total > 0 ? bestScore.score / bestScore.total : -1;
-    const newRatio = success ? 1 : 0;
-    if (newRatio > priorRatio) {
-      bestScore = { score: success ? 1 : 0, total: 1 };
-      bestScoreAchievedAt = dateStr;
-    }
-  }
-
   return {
     ...existingRecord,
     status: newStatus,
     masteryPercentage: updatedPct,
     masteryLevel: newLevel,
-    bestScore,
-    bestScoreAchievedAt,
-    gradedAttemptCount: (existingRecord.gradedAttemptCount ?? ((existingRecord.quizCount || 0) + (existingRecord.writingCount || 0)))
-      + (graded ? 1 : 0),
     attemptsCount: newAttempts,
     writingCount: newWriting,
     flashcardCount: newFlashcard,
-    quizCount: newQuiz,
     // Kegagalan interaksi dicatat: sebelumnya success=false hanya menambah attemptsCount.
     mistakeCount: success ? existingRecord.mistakeCount : (existingRecord.mistakeCount || 0) + 1,
     consecutivePerfects: success ? existingRecord.consecutivePerfects : 0,
