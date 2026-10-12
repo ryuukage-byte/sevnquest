@@ -14,6 +14,7 @@ import { parseReadingVariations } from '../../utils/readingHighlightUtils';
 import { fisherYatesShuffle } from '../../utils/smartRandomizer';
 import { useBackButton } from '../../hooks/useBackButton';
 import { KanjiDetailModal } from './KanjiDetailModal';
+import { recordKanjiWriting } from '../../utils/kanjiWritingRecord';
 
 import { UserDeck } from '../../types/rpg';
 import { DeckBookmarkPicker } from '../deck/DeckBookmarkPicker';
@@ -630,6 +631,9 @@ export const KotobaDetailModal: React.FC<KotobaDetailModalProps> = ({
             userDecks={userDecks}
             onToggleDeckItem={onToggleDeckItem}
             onUpdateDecks={onUpdateDecks}
+            onCompleteSheet={(_sheet, score, reward) =>
+              recordKanjiWriting(getKanjiItemForChar(selectedKanjiChar), score, reward, { onCompleteStudyItem, onRewardPlayer })
+            }
           />
         )}
       </motion.div>,
