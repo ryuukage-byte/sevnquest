@@ -43,8 +43,13 @@ export type ItemLearningStage = 'VIEWED' | 'STUDIED' | 'PRACTICED';
  */
 export const RECALL_INCLUDE_VIEW_ONLY = false;
 
-/** Interaksi yang menghasilkan penilaian benar/salah. Flashcard hanya interaksi ringan (tanpa nilai). */
-const GRADED_INTERACTIONS: ReadonlySet<'writing' | 'flashcard' | 'quiz'> = new Set(['writing', 'quiz']);
+/**
+ * Interaksi yang menghasilkan penilaian benar/salah. Flashcard dan menulis (interaksi ringan) tidak
+ * menghasilkan skor. Satu jawaban menulis hanya berarti "≥60", bukan skor kuis; kalau dihitung sebagai
+ * bestScore 1/1, Recognition langsung 100% dan True Mastery melompat ke ~90% padahal status masih LEARNING.
+ * Menulis yang dinilai tetap lewat recordItemAttempt.
+ */
+const GRADED_INTERACTIONS: ReadonlySet<'writing' | 'flashcard' | 'quiz'> = new Set(['quiz']);
 
 /** Tanggal "belum pernah ditinjau". Record yang baru dibuka tidak boleh menang saat merge cloud. */
 const NEVER_REVIEWED_AT = new Date(0).toISOString();
@@ -56,13 +61,12 @@ const NEVER_REVIEWED_AT = new Date(0).toISOString();
 export function hasGradedEvidence(record: ItemMasteryRecord): boolean {
   return (record.gradedAttemptCount ?? 0) > 0
     || Boolean(record.firstAttemptScore)
-    || (record.quizCount ?? 0) > 0
-    || (record.writingCount ?? 0) > 0;
+    || (record.quizCount ?? 0) > 0;
 }
 
 export function getLearningStage(record: ItemMasteryRecord): ItemLearningStage {
   if (hasGradedEvidence(record)) return 'PRACTICED';
-  if ((record.flashcardCount ?? 0) > 0) return 'STUDIED';
+  if ((record.flashcardCount ?? 0) > 0 || (record.writingCount ?? 0) > 0) return 'STUDIED';
   return 'VIEWED';
 }
 

@@ -125,3 +125,27 @@ test('jawaban kuis yang dilabeli flashcard (modul Kotoba) tetap dihitung sebagai
   assert.equal(getLearningStage(graded), 'PRACTICED');
   assert.equal(graded.gradedAttemptCount, 1);
 });
+
+test('menulis tanpa penilaian (interaksi ringan) tidak menjadi True Mastery 90% (regresi latihan menulis)', () => {
+  const rec = recordItemInteraction(undefined, kotobaId, 'kotoba', 'writing', true);
+
+  assert.equal(getLearningStage(rec), 'STUDIED');
+  assert.equal(rec.bestScore.total, 0);
+  const queue = buildSmartRecallQueue(toMastery(rec));
+  assert.equal(queue[0].priorityTier, 'PRACTICE');
+  assert.equal(queue[0].trueMasteryScore, undefined);
+});
+
+test('record lama dari menulis (bestScore 1/1 palsu, status LEARNING) tidak lagi tampil WEAK 90%', () => {
+  const legacy: ItemMasteryRecord = {
+    ...recordItemInteraction(undefined, kotobaId, 'kotoba', 'writing', true),
+    bestScore: { score: 1, total: 1 },
+    masteryPercentage: 45,
+    status: 'LEARNING',
+  };
+  const queue = buildSmartRecallQueue(toMastery(legacy));
+
+  assert.equal(hasGradedEvidence(legacy), false);
+  assert.equal(queue[0].priorityTier, 'PRACTICE');
+  assert.equal(queue[0].trueMasteryScore, undefined);
+});
