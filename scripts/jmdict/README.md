@@ -16,3 +16,10 @@ Alur:
 
 Catatan: JMdict tidak memuat level JLPT. Entri impor diberi `jlpt` perkiraan (N2 untuk kata sangat umum,
 selain itu N1) dan tag `jlpt-estimasi`; belum memiliki kalimat contoh.
+
+## Batch tematik
+
+- `extract_theme.py` memilih kata menurut tag bidang JMdict (mis. `"food, cooking"`) atau daftar kata (`@curated_makanan.txt`).
+- `translations_makanan/` : kata makanan/dapur/peralatan makan (tag `makanan`).
+- `translations_sehari_hari/` : kata sehari-hari berstatus `ichi1` yang sebelumnya di bawah ambang (tag `sehari-hari`).
+- Merge: `python3 -I merge_jmdict.py <cands.json> <translations_dir> <kotoba.json> <tag_tema>`.

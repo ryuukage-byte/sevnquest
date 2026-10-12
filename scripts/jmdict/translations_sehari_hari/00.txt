@@ -1,0 +1,400 @@
+0|アベック|Sepasang kekasih
+1|イントネーション|Intonasi
+2|いやいや|Tidak, tidak; sama sekali tidak
+3|いざこざ|Perselisihan; keributan kecil
+4|いそいそ|Dengan riang bergegas
+5|うずうず|Tak sabar ingin melakukan
+6|うとうと|Mengantuk; tertidur ringan
+7|うねり|Gelombang; liku-liku
+8|うろうろ|Mondar-mandir tak tentu arah
+9|オドオド|Gugup; ketakutan
+10|おなら|Kentut
+11|おろおろ|Bingung dan gelisah
+12|お帰りなさい|Selamat datang kembali
+13|おやすみなさい|Selamat tidur
+14|おしぼり|Handuk basah untuk tangan
+15|おしまい|Selesai; tamat
+16|おふくろ|Ibu (kasual)
+17|おでこ|Dahi
+18|かちかち|Bunyi tik-tok; keras sekali
+19|カッと|Tiba-tiba menyala; naik darah
+20|かなわない|Tidak sebanding; tak tertahankan
+21|からり|Bunyi gemeretak; cerah
+22|か弱い|Lemah lembut; rapuh
+23|がさがさ|Bergemerisik; kasar dan kering
+24|がぶがぶ|Meneguk rakus
+25|がやがや|Riuh rendah
+26|きらきら|Berkilauan
+27|ぎこちない|Kaku; canggung
+28|ぎざぎざ|Bergerigi
+29|ぎゅうぎゅう|Berdesakan; berderit
+30|ぎょっと|Terkejut
+31|くしゃくしゃ|Kusut; remuk
+32|くすぐる|Menggelitik
+33|くどくど|Berbelit-belit; bertele-tele
+34|くまなく|Ke seluruh pelosok
+35|くよくよ|Merisaukan; murung
+36|くるくる|Berputar-putar
+37|ぐずぐず|Lamban; mengeluh
+38|ぐったり|Lemas; lunglai
+39|グラグラ|Goyang; bergoyang
+40|ぐるぐる|Berputar-putar
+41|けじめ|Pembedaan tegas (benar/salah)
+42|こそこそ|Diam-diam; sembunyi-sembunyi
+43|ころころ|Menggelinding
+44|さっさ|Cepat-cepat
+45|さらさら|Gemerisik; mengalir lancar
+46|ざわざわ|Ramai berbisik; bergemerisik
+47|しとしと|Rintik-rintik pelan
+48|しょんぼり|Murung; lesu
+49|じめじめ|Lembap; murung
+50|じゃぶじゃぶ|Cipak-cipuk; percikan air
+51|すやすや|Tidur nyenyak
+52|すれすれ|Nyaris menyentuh; tipis
+53|ずきずき|Berdenyut nyeri
+54|せかせか|Terburu-buru gelisah
+55|せがむ|Merengek; mendesak
+56|せっかち|Tidak sabaran
+57|そわそわ|Gelisah tak tenang
+58|ぞろぞろ|Berbondong-bondong
+59|たらたら|Menetes; terus mengeluh
+60|ちぐはぐ|Tidak cocok; kacau
+61|ちょっぴり|Sedikit sekali
+62|ちらちら|Berkelip; beterbangan
+63|つい|Tanpa sadar; baru saja
+64|ついでに|Sekalian; sambil lalu
+65|つるつる|Licin mengilap
+66|てくてく|Berjalan dengan langkah mantap
+67|とんとん|Tok-tok; berjalan lancar
+68|ドキッと|Terkejut berdebar
+69|どしどし|Terus-menerus; tanpa ragu
+70|どたばた|Gaduh; kalang kabut
+71|なおざり|Pengabaian; sembarangan
+72|なぜならば|Sebab; karena
+73|はびこる|Merajalela; tumbuh lebat
+74|ばてる|Kehabisan tenaga
+75|バラバラ|Berserakan; tercerai-berai
+76|ひしひし|Terasa sangat kuat
+77|ひたすら|Dengan sepenuh hati; semata-mata
+78|ひっそり|Sunyi senyap; diam-diam
+79|ひび|Retakan; keretakan hubungan
+80|ひらひら|Berkibar; melambai
+81|びくびく|Ketakutan; gemetar
+82|びしょびしょ|Basah kuyup
+83|びっしり|Rapat penuh
+84|ぴょんぴょん|Melompat-lompat
+85|ぴりぴり|Perih; tegang
+86|ぴんぴん|Sehat segar bugar
+87|ふらふら|Sempoyongan; limbung
+88|ふわり|Lembut dan ringan
+89|ぶっきらぼう|Ketus; kasar
+90|ぶら下がる|Bergelantungan
+91|ぶるぶる|Gemetar
+92|ヘトヘト|Capek sekali
+93|ぺらぺら|Fasih; cerewet
+94|ほら|Lihat!; nah!
+95|ぼけ|Bodoh; pikun
+96|ぼろぼろ|Compang-camping; rapuh
+97|ぽかぽか|Hangat nyaman
+98|ぽかん|Bengong; melongo
+99|みすみす|Dengan sia-sia di depan mata
+100|ムカムカ|Mual; kesal
+101|むっつり|Cemberut; pendiam
+102|メキメキ|Pesat; berderak
+103|めく|Tampak seperti; menyerupai
+104|もしもし|Halo (telepon); permisi
+105|もてなし|Keramahan; jamuan
+106|やくざ|Yakuza; tidak berguna
+107|やってくる|Datang; tiba
+108|やりくり|Mengatur dengan susah payah
+109|やりとり|Pertukaran; saling berbalas
+110|やり方|Cara melakukan
+111|やれやれ|Ya ampun; haduh
+112|ゆらゆら|Bergoyang pelan
+113|ようこそ|Selamat datang
+114|よだれ|Air liur
+115|よちよち|Tertatih-tatih
+116|よろめく|Terhuyung; tergoda
+117|よろよろ|Sempoyongan
+118|らしい|Tampaknya; khas
+119|わいわい|Riuh ramai
+120|アンダーライン|Garis bawah
+121|インチキ|Curang; palsu
+122|カサカサ|Kering kasar; bergemerisik
+123|カセットテープ|Kaset
+124|ガールフレンド|Pacar perempuan
+125|ガンガン|Berdentang keras; berdenyut sakit
+126|キリスト教|Agama Kristen
+127|スーパーマーケット|Supermarket
+128|センチメートル|Sentimeter
+129|ドット|Titik; motif polkadot
+130|ノーベル賞|Hadiah Nobel
+131|ハット|Topi
+132|プンプン|Tercium kuat; marah-marah
+133|ミリメートル|Milimeter
+134|哀れむ|Mengasihani
+135|あしからず|Mohon maaf; jangan salah paham
+136|悪気|Niat jahat
+137|悪賢い|Licik; cerdik jahat
+138|いろは|Dasar-dasar; abjad kana kuno
+139|委ねる|Menyerahkan; mempercayakan
+140|しおれる|Layu; lesu
+141|遺失物|Barang hilang
+142|一気に|Sekaligus; dalam sekali tarikan
+143|一緒に|Bersama-sama
+144|一心に|Dengan sepenuh hati
+145|一人で|Sendirian
+146|一日中|Seharian
+147|一年中|Sepanjang tahun
+148|一般に|Pada umumnya
+149|引き抜く|Mencabut; membajak (karyawan)
+150|引き裂く|Merobek; memisahkan
+151|飲食店|Restoran; tempat makan
+152|雨宿り|Berteduh dari hujan
+153|運良く|Untungnya
+154|運転士|Masinis; pengemudi profesional
+155|英気|Semangat; tenaga
+156|横着|Malas; tak tahu malu
+157|恩知らず|Tidak tahu terima kasih
+158|ぬくもり|Kehangatan
+159|音読|Membaca nyaring; bacaan on
+160|音読み|Bacaan on (kanji)
+161|下等|Rendah; hina
+162|どれどれ|Yang mana; coba lihat
+163|何かと|Dalam berbagai hal
+164|何遍|Berapa kali
+165|こたつ|Kotatsu; meja penghangat
+166|荷札|Label barang
+167|改札口|Gerbang tiket
+168|骸骨|Kerangka
+169|各国|Setiap negara
+170|学割|Diskon pelajar
+171|割り引く|Memberi diskon
+172|あたかも|Seolah-olah
+173|くくる|Mengikat; menggantung diri
+174|滑走路|Landasan pacu
+175|噛み付く|Menggigit; menyalak
+176|寒暖計|Termometer
+177|わめく|Berteriak
+178|くつろぐ|Bersantai
+179|感化|Pengaruh; pembinaan
+180|看る|Merawat
+181|間抜け|Bodoh; orang bodoh
+182|丸め込む|Membujuk; merayu
+183|眼差し|Tatapan
+184|願わくは|Semoga; kiranya
+185|企み|Rencana licik
+186|たくらむ|Merencanakan (muslihat)
+187|寄り集まる|Berkumpul
+188|幾|Beberapa; berapa
+189|幾日|Berapa hari
+190|気まま|Semaunya; bebas
+191|戯れる|Bermain-main
+192|どもる|Gagap
+193|のぼせる|Pusing; naik darah
+194|急用|Urusan mendesak
+195|汲み取る|Menimba; memahami perasaan
+196|巨視的|Makroskopis; menyeluruh
+197|漁る|Mencari-cari; memancing
+198|共和国|Republik
+199|襟巻き|Syal
+200|謹賀新年|Selamat Tahun Baru
+201|近日|Dalam waktu dekat
+202|金儲け|Mencari uang
+203|銀紙|Kertas perak; aluminium foil
+204|苦味|Rasa pahit
+205|訓読み|Bacaan kun (kanji)
+206|掲示板|Papan pengumuman
+207|つぎはぎ|Tambalan; tempelan
+208|芸能人|Selebritas; artis
+209|かけら|Serpihan; secuil
+210|結う|Menyanggul; mengikat
+211|健気|Gigih dan terpuji
+212|げんこつ|Kepalan tangan
+213|見出す|Menemukan; memilih
+214|みすぼらしい|Compang-camping; lusuh
+215|見せ掛け|Pura-pura; tampak luar
+216|見晴らす|Memandang luas
+217|見損なう|Salah menilai; melewatkan
+218|もとより|Dari awal; tentu saja
+219|元旦|Pagi Tahun Baru
+220|言い表す|Mengungkapkan dengan kata
+221|あぐら|Duduk bersila
+222|互い違い|Selang-seling
+223|後天的|Didapat (bukan bawaan)
+224|ご主人|Suami (Anda/dia)
+225|おせっかい|Ikut campur
+226|お中元|Hadiah pertengahan tahun
+227|お釣り|Uang kembalian
+228|厚意|Kebaikan hati
+229|厚着|Berpakaian tebal
+230|口答え|Membantah
+231|口ごもる|Bicara tersendat
+232|航空券|Tiket pesawat
+233|行き届く|Teliti dan penuh perhatian
+234|ほくろ|Tahi lalat
+235|ぼける|Pikun; buram
+236|ぼける|-
+237|惚れる|Jatuh cinta; terpikat
+238|根掘り葉掘り|Mengorek sampai ke akar
+239|そそのかす|Menghasut; menggoda
+240|さしあたり|Untuk saat ini
+241|裁つ|Memotong (kain)
+242|作り笑い|Senyum dipaksakan
+243|作り話|Cerita karangan
+244|殺気|Aura membunuh
+245|参考書|Buku referensi
+246|思いとどまる|Mengurungkan niat
+247|思い当たる|Teringat; menyadari
+248|ことによる|Tergantung keadaan
+249|似顔絵|Sketsa wajah
+250|字画|Jumlah goresan huruf
+251|持ち堪える|Bertahan
+252|時には|Kadang-kadang
+253|やけ|Putus asa; nekat
+254|うぬぼれる|Sombong; besar kepala
+255|社交的|Mudah bergaul
+256|わかめ|Wakame; rumput laut
+257|主|Utama
+258|主|Tuan; Tuhan
+259|主|Kepala; pemilik
+260|取り柄|Kelebihan; nilai positif
+261|手応え|Respons terasa; efek nyata
+262|受動的|Pasif
+263|呪い|Kutukan
+264|呪う|Mengutuk
+265|秋分|Ekuinoks musim gugur
+266|週刊誌|Majalah mingguan
+267|従える|Membawa serta; menundukkan
+268|しとやか|Anggun; sopan
+269|術語|Istilah teknis
+270|瞬く|Berkedip; berkelip
+271|準える|Menyamakan dengan; meniru
+272|書き言葉|Bahasa tulis
+273|諸国|Berbagai negara
+274|消防車|Mobil pemadam kebakaran
+275|焼き芋|Ubi panggang
+276|照れる|Malu-malu
+277|賞罰|Ganjaran dan hukuman
+278|上せる|Mengangkat; mencatat
+279|乗ずる|Memanfaatkan; mengalikan
+280|乗り越す|Kebablasan; melewati
+281|場違い|Tidak pada tempatnya
+282|常用漢字|Kanji untuk penggunaan umum
+283|蒸かす|Mengukus
+284|拭う|Mengusap; menghapus
+285|職歴|Riwayat pekerjaan
+286|蝕む|Menggerogoti
+287|寝言|Mengigau; omong kosong
+288|寝息|Napas orang tidur
+289|寝付く|Tertidur; jatuh sakit
+290|寝返る|Berkhianat; membelot
+291|振り向く|Menoleh
+292|新学期|Semester baru
+293|深さ|Kedalaman
+294|真|Kebenaran; keaslian
+295|真四角|Persegi sempurna
+296|神業|Kemampuan luar biasa
+297|親不孝|Tidak berbakti kepada orang tua
+298|親睦|Keakraban; persahabatan
+299|身投げ|Bunuh diri dengan terjun
+300|ちり取り|Pengki
+301|図示|Penjelasan dengan gambar
+302|図書室|Ruang perpustakaan
+303|推量|Dugaan
+304|推敲|Penyempurnaan tulisan
+305|みずみずしい|Segar dan muda
+306|うねる|Berkelok; bergelombang
+307|生き甲斐|Alasan hidup; makna hidup
+308|精一杯|Sekuat tenaga
+309|製図|Pembuatan gambar teknik
+310|石頭|Keras kepala
+311|赤面|Muka memerah; malu
+312|摂氏|Celsius
+313|絶え間なく|Tanpa henti
+314|せんべい|Senbei; kerupuk beras
+315|煽る|Mengipasi; memanas-manasi
+316|ひらめく|Berkelebat; terlintas ide
+317|前借り|Pinjaman gaji di muka
+318|前書き|Kata pengantar
+319|前略|Tanpa basa-basi (pembuka surat)
+320|まばら|Jarang-jarang
+321|早く|Cepat; lekas
+322|早引け|Pulang lebih awal
+323|はしゃぐ|Bersenang-senang riang
+324|送別会|Pesta perpisahan
+325|ざわめく|Riuh; bergemuruh
+326|促成|Percepatan pertumbuhan
+327|それなら|Kalau begitu
+328|他者|Orang lain
+329|他面|Sisi lain
+330|多|-
+331|打算的|Penuh perhitungan
+332|待ち兼ねる|Menanti dengan tak sabar
+333|大きさ|Ukuran
+334|大晦日|Malam Tahun Baru
+335|大急ぎ|Sangat tergesa-gesa
+336|大声|Suara keras
+337|たち|-
+338|ふける|Tenggelam dalam; larut
+339|のれん|Tirai pendek di depan toko
+340|段落|Paragraf; jeda
+341|知れる|Diketahui; terungkap
+342|長袖|Lengan panjang
+343|長話|Obrolan panjang
+344|追い抜く|Menyalip; melampaui
+345|追伸|Catatan tambahan (PS)
+346|ほどなく|Tak lama kemudian
+347|適齢期|Usia yang cocok (menikah)
+348|徹底的|Menyeluruh
+349|電話帳|Buku telepon
+350|ずさん|Ceroboh; asal-asalan
+351|倒置|Pembalikan; inversi
+352|冬至|Titik balik musim dingin
+353|騰貴|Kenaikan harga
+354|ややもすれば|Cenderung; mudah
+355|同音|Bunyi sama; homofon
+356|銅貨|Koin tembaga
+357|禿|Botak
+358|はげる|Botak; mengelupas
+359|こま|Gasing
+360|突き抜ける|Menembus
+361|トン|Ton
+362|とんカツ|Tonkatsu; katsu babi
+363|のろま|Lamban; bodoh
+364|日ソ|-
+365|如し|Seperti; bagaikan
+366|猫舌|Tidak tahan makanan panas
+367|猫背|Punggung bungkuk
+368|念力|Kekuatan pikiran; telekinesis
+369|捻挫|Terkilir
+370|能動的|Aktif
+371|排気ガス|Gas buang
+372|排日|-
+373|敗れる|Kalah
+374|剥ける|Terkelupas
+375|博学|Berpengetahuan luas
+376|発展途上国|Negara berkembang
+377|半袖|Lengan pendek
+378|反日|Anti-Jepang
+379|反面|Di sisi lain
+380|かばう|Melindungi; membela
+381|あいつ|Orang itu (kasar); dia
+382|悲観的|Pesimis
+383|披露宴|Resepsi pernikahan
+384|備考|Catatan; keterangan
+385|眉毛|Alis
+386|必読|Wajib baca
+387|筆記試験|Ujian tertulis
+388|筆順|Urutan goresan
+389|表彰状|Piagam penghargaan
+390|品詞|Jenis kata (kelas kata)
+391|貧乏人|Orang miskin
+392|不孝|Tidak berbakti
+393|不動産屋|Agen properti
+394|付け|Tagihan; utang
+395|付け足す|Menambahkan
+396|浮かれる|Bersuka ria
+397|うきうき|Riang gembira
+398|父兄|Orang tua/wali murid
+399|おんぶ|Menggendong di punggung

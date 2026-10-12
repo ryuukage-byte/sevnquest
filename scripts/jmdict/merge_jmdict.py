@@ -2,7 +2,7 @@
 """Gabungkan kandidat JMdict (hasil extract_jmdict.py) + terjemahan Indonesia ke src/data/db/kotoba.json.
 
 Pemakaian:
-  python3 -I scripts/jmdict/merge_jmdict.py <cands.json> <translations_dir> <kotoba.json>
+  python3 -I scripts/jmdict/merge_jmdict.py <cands.json> <translations_dir> <kotoba.json> [tag_tema]
 
 - Setiap file translations/NN.txt berisi baris `indeks|kata|arti Indonesia` untuk kandidat ke-(NN*400 + indeks)
   pada cands.json. Arti `-` berarti kandidat dilewati (nama diri, fragmen, dsb.).
@@ -13,6 +13,7 @@ import json, re, sys, glob, os
 
 CH = 400
 cands_path, tr_dir, out_path = sys.argv[1:4]
+THEME = sys.argv[4] if len(sys.argv) > 4 else None
 cands = json.load(open(cands_path, encoding='utf-8'))
 db = json.load(open(out_path, encoding='utf-8'))
 have = {(v['word'], v['reading']) for v in db.values()}
@@ -48,7 +49,7 @@ for path in sorted(glob.glob(os.path.join(tr_dir, '*.txt'))):
             'jlpt': 'N2' if c['score'] >= 8 else 'N1',
             'wordType': c['pos'],
             'kanjiComponents': list(dict.fromkeys(KANJI.findall(c['word']))),
-            'tags': ['jmdict', 'jlpt-estimasi'],
+            'tags': ['jmdict', 'jlpt-estimasi'] + ([THEME] if THEME else []),
         }
         db[eid] = entry
         have.add((c['word'], c['reading'])); haveW.add(c['word'])

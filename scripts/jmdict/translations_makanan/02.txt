@@ -1,0 +1,147 @@
+0|モーレ|-
+1|ラクサ|Laksa
+2|水団|Suiton; sup bola tepung
+3|グルテンミート|-
+4|磯辺巻き|Isobemaki; gulungan nori
+5|焼きちくわ|Chikuwa panggang
+6|準チョコレート|-
+7|ロティ|-
+8|ダフ|-
+9|つぶれ梅|-
+10|赤梅酢|-
+11|間引き菜|-
+12|御根葉|-
+13|おねば|-
+14|よく焼き|-
+15|炸|-
+16|ピンチョス|-
+17|サイミン|-
+18|うぐいす餡|-
+19|カツとじ|Katsutoji; katsu dengan telur
+20|無脂乳固形分|-
+21|クリームパウダー|-
+22|カツカレー|Katsu kare; kari dengan katsu
+23|薬念|-
+24|フェ|-
+25|芋がら|Imogara; batang talas kering
+26|ピザトースト|Roti panggang pizza
+27|フライドオニオン|Bawang goreng
+28|麻辣|Mala; rasa pedas kebas
+29|タルトタタン|-
+30|松風焼き|-
+31|ジェノベーゼ|-
+32|タッカンマリ|-
+33|ビャンビャン麺|-
+34|パラック|-
+35|パラックパニール|-
+36|パルミジャーノ|-
+37|豆花|Douhua; puding tahu
+38|豆腐脳|-
+39|ミントチョコ|-
+40|ジャンドゥーヤ|-
+41|スモア|-
+42|カンノーリ|-
+43|干しナマコ|Teripang kering
+44|ボッコンチーニ|-
+45|ポテサラ|Salad kentang
+46|海南鶏飯|Nasi ayam Hainan
+47|オイルフォンデュ|-
+48|位置皿|-
+49|サービスプレート|-
+50|バターライス|Nasi mentega
+51|フォンドボー|-
+52|酒寿司|-
+53|赤ずし|-
+54|干葉飯|-
+55|過橋米線|-
+56|腸粉|-
+57|芝麻球|-
+58|フリークシェイク|-
+59|ポイ|-
+60|ヴィネーグル|-
+61|ファラフェル|Falafel
+62|カトルカール|-
+63|ルムトプフ|-
+64|黄身鮨|-
+65|そばつゆ|Kuah soba
+66|腐乳|Tahu fermentasi
+67|ペスト|Pesto
+68|芋田楽|-
+69|アフォガート|-
+70|土手鍋|Panci tiram miso
+71|白肉|-
+72|おやき|Oyaki; kue isi gulung
+73|トリッパ|-
+74|オーロラソース|-
+75|ストロガノフ|-
+76|モツ煮|Rebusan jeroan
+77|アチャール|-
+78|キッベ|-
+79|タブレ|-
+80|酸辣粉|-
+81|火鍋|Hot pot ala Tionghoa
+82|ジョン|-
+83|羅漢斎|-
+84|ブッダボウル|-
+85|精進うなぎ|-
+86|サンド|Sandwich
+87|わら納豆|Natto bungkus jerami
+88|マルゲリータ|Pizza margherita
+89|台湾素食|-
+90|ニュートリショナルイースト|-
+91|栄養酵母|-
+92|エスフィーハ|-
+93|スフィーハ|-
+94|いりごま|Wijen sangrai
+95|カトゥピリ|-
+96|コフタ|Kofta
+97|キョフテ|Kofta
+98|京野菜|Sayuran khas Kyoto
+99|カカオニブ|-
+100|サイドメニュー|Menu pendamping
+101|オニオンフライ|Cincin bawang goreng
+102|オレキエッテ|-
+103|酵素玄米|Nasi merah fermentasi
+104|ミルクフランス|-
+105|梅水晶|-
+106|油条|Youtiao; cakwe
+107|グラニータ|-
+108|焼きナス|Terong bakar
+109|花見団子|Hanami dango; dango tiga warna
+110|しゃぶ|Shabu-shabu
+111|冷しゃぶ|Shabu-shabu dingin
+112|冷製スープ|Sup dingin
+113|辛子明太子|Mentaiko pedas; telur cod berbumbu cabai
+114|熊鍋|Panci daging beruang
+115|トーラン|-
+116|ライスミルク|Susu beras
+117|坊ちゃん団子|-
+118|ルヴァン|-
+119|食べるラー油|Minyak cabai berisi bawang (taberu rayu)
+120|蜜漬け|Direndam madu/sirup
+121|アプフェルシュトルーデル|-
+122|シュトゥルーデル|Strudel
+123|雲子|-
+124|カラナマック|-
+125|調布巻|-
+126|マコロン|-
+127|加熱食肉製品|-
+128|ソースせんべい|-
+129|酢醤油|Kecap cuka (su-joyu)
+130|タヒニ|Tahini
+131|タヒーナ|-
+132|おだまき蒸し|-
+133|セミドレス|-
+134|韓国海苔|Nori Korea
+135|ビビン麺|-
+136|熟酥|-
+137|生酥|-
+138|大判焼き|Obanyaki; kue isi kacang merah
+139|ブッラータ|-
+140|麻婆茄子|Terong mapo
+141|魚香|-
+142|仙草ゼリー|Jeli rumput (sensou jelly)
+143|鶏南蛮|Nanban ayam
+144|チャバタ|-
+145|フラン|Flan
+146|卵スープ|Sup telur
