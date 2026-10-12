@@ -39,7 +39,7 @@ interface BunpouDetailModalProps {
   onRecordInteraction?: (
     itemId: string,
     category: 'bunpou' | 'kotoba' | 'kanji' | 'dokkai' | 'choukai',
-    interactionType: 'writing' | 'flashcard' | 'quiz',
+    interactionType: 'writing' | 'flashcard' | 'quiz' | 'view',
     success?: boolean
   ) => void;
   onCompleteStudyItem?: (
@@ -146,6 +146,12 @@ export const BunpouDetailModal: React.FC<BunpouDetailModalProps> = ({
   onRecordInteraction,
   onCompleteStudyItem,
 }) => {
+  // Modal ini hanya di-mount saat dibuka. Membuka detail hanya menandai "pernah disentuh".
+  useEffect(() => {
+    onRecordInteraction?.(item.id, 'bunpou', 'view');
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [item.id]);
+
   // Hardware & Mobile Back Button Support
   useBackButton(true, () => {
     onClose();

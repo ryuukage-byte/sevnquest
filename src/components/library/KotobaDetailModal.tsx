@@ -39,7 +39,7 @@ interface KotobaDetailModalProps {
   onRecordInteraction?: (
     itemId: string,
     category: 'bunpou' | 'kotoba' | 'kanji' | 'dokkai' | 'choukai',
-    interactionType: 'writing' | 'flashcard' | 'quiz',
+    interactionType: 'writing' | 'flashcard' | 'quiz' | 'view',
     success?: boolean
   ) => void;
   onCompleteStudyItem?: (
@@ -171,7 +171,8 @@ export const KotobaDetailModal: React.FC<KotobaDetailModalProps> = ({
     } else if (effectiveItem?.id) {
       setSelectedReadingIndex(-1);
       hasRecordedWritingRef.current = false;
-      onRecordInteraction?.(effectiveItem.id, 'kotoba', 'flashcard', true);
+      // Membuka detail hanya menandai "pernah disentuh". Bukan flashcard dan bukan bukti penguasaan.
+      onRecordInteraction?.(effectiveItem.id, 'kotoba', 'view');
     }
   }, [isOpen, effectiveItem?.id]);
 

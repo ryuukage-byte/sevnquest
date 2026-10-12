@@ -11,7 +11,8 @@ import {
   ErrorType,
   ErrorPatternRecord,
   LanguageProfile,
-  SubSkillRating
+  SubSkillRating,
+  KotobaItem
 } from '../types/content';
 import { BUNPOU_DATABASE } from '../data/bunpou';
 import { KOTOBA_DATABASE } from '../data/kotoba';
@@ -26,6 +27,44 @@ const SRS_INTERVALS_DAYS = [1, 2, 4, 7, 14, 30];
 
 // Batas mastery (%) yang bisa diraih hanya lewat interaksi ringan (flashcard flip, latihan tanpa nilai).
 const INTERACTION_MASTERY_CAP = 70;
+
+/**
+ * Tahap pembelajaran yang diturunkan dari riwayat record (single source: itemMastery).
+ * - VIEWED   : detail materi pernah dibuka. Belum ada bukti belajar.
+ * - STUDIED  : sudah dipelajari (flashcard), tetapi belum pernah dinilai.
+ * - PRACTICED: pernah dinilai lewat jawaban kuis/menulis.
+ */
+export type ItemLearningStage = 'VIEWED' | 'STUDIED' | 'PRACTICED';
+
+/**
+ * Recall memuat materi yang sudah dipelajari atau dilatih. Materi yang hanya dibuka tidak punya
+ * apa pun yang perlu diingat kembali, jadi dikeluarkan. Ubah ke `true` bila ingin materi terbuka ikut
+ * masuk antrean dengan prioritas paling rendah.
+ */
+export const RECALL_INCLUDE_VIEW_ONLY = false;
+
+/** Interaksi yang menghasilkan penilaian benar/salah. Flashcard hanya interaksi ringan (tanpa nilai). */
+const GRADED_INTERACTIONS: ReadonlySet<'writing' | 'flashcard' | 'quiz'> = new Set(['writing', 'quiz']);
+
+/** Tanggal "belum pernah ditinjau". Record yang baru dibuka tidak boleh menang saat merge cloud. */
+const NEVER_REVIEWED_AT = new Date(0).toISOString();
+
+/**
+ * Bukti bahwa materi pernah DINILAI (benar/salah). Tanpa ini, bestScore dan recognition tidak boleh dipakai:
+ * record lama dari flashcard/buka halaman menyimpan bestScore 1/1 palsu.
+ */
+export function hasGradedEvidence(record: ItemMasteryRecord): boolean {
+  return (record.gradedAttemptCount ?? 0) > 0
+    || Boolean(record.firstAttemptScore)
+    || (record.quizCount ?? 0) > 0
+    || (record.writingCount ?? 0) > 0;
+}
+
+export function getLearningStage(record: ItemMasteryRecord): ItemLearningStage {
+  if (hasGradedEvidence(record)) return 'PRACTICED';
+  if ((record.flashcardCount ?? 0) > 0) return 'STUDIED';
+  return 'VIEWED';
+}
 
 const STATUS_RANK: Record<MasteryStatus, number> = {
   LOCKED: 0,
@@ -179,7 +218,9 @@ export function recordItemAttempt(
       reviewIntervalDays: interval,
       decayFactor: 1.0,
       errorPatterns: existingErrors,
-      contextualSuccessCount: isContextualApplication && isPerfect ? 1 : 0
+      contextualSuccessCount: isContextualApplication && isPerfect ? 1 : 0,
+      // recordItemAttempt selalu merupakan jawaban yang dinilai, terlepas dari label interaksinya.
+      gradedAttemptCount: 1
     };
   }
 
@@ -191,8 +232,13 @@ export function recordItemAttempt(
   const mistakeCount = existingRecord.mistakeCount + mistakesInThisAttempt;
   const consecutivePerfects = isPerfect ? existingRecord.consecutivePerfects + 1 : 0;
   const contextualSuccessCount = (existingRecord.contextualSuccessCount || 0) + (isContextualApplication && ratio >= 0.8 ? 1 : 0);
+  // Legacy: sebelum gradedAttemptCount ada, jawaban dinilai = kuis + menulis.
+  const gradedAttemptCount = (existingRecord.gradedAttemptCount ?? ((existingRecord.quizCount || 0) + (existingRecord.writingCount || 0))) + 1;
 
-  const oldBestRatio = existingRecord.bestScore.total ? existingRecord.bestScore.score / existingRecord.bestScore.total : 0;
+  // bestScore hanya dianggap nyata bila record punya bukti dinilai; bestScore 1/1 dari flashcard lama diabaikan.
+  const oldBestRatio = hasGradedEvidence(existingRecord) && existingRecord.bestScore.total
+    ? existingRecord.bestScore.score / existingRecord.bestScore.total
+    : -1;
   const isNewBest = ratio > oldBestRatio;
   
   const bestScoreVal = Math.max(oldBestRatio, ratio);
@@ -316,7 +362,8 @@ export function recordItemAttempt(
     decayFactor: 1.0,
     weaknessFlags,
     errorPatterns: existingErrors,
-    contextualSuccessCount
+    contextualSuccessCount,
+    gradedAttemptCount
   };
 }
 
@@ -334,6 +381,8 @@ export function recordItemInteraction(
 ): ItemMasteryRecord {
   const now = new Date();
   const dateStr = now.toISOString();
+
+  const graded = GRADED_INTERACTIONS.has(interactionType);
 
   const prevWriting = existingRecord?.writingCount || 0;
   const prevFlashcard = existingRecord?.flashcardCount || 0;
@@ -357,19 +406,21 @@ export function recordItemInteraction(
       status: 'LEARNING',
       masteryPercentage: initialMastery,
       masteryLevel: initialLvl,
-      bestScore: { score: success ? 1 : 0, total: 1 },
+      // Flashcard/buka halaman tidak punya skor: bestScore 1/1 palsu dulu membuat Recognition 100%.
+      bestScore: graded ? { score: success ? 1 : 0, total: 1 } : { score: 0, total: 0 },
       bestScoreAchievedAt: dateStr,
       attemptsCount: newAttempts,
       writingCount: newWriting,
       flashcardCount: newFlashcard,
       quizCount: newQuiz,
-      consecutivePerfects: success ? 1 : 0,
-      mistakeCount: success ? 0 : 1,
+      consecutivePerfects: graded && success ? 1 : 0,
+      mistakeCount: graded && !success ? 1 : 0,
       lastReviewedAt: dateStr,
       nextReviewDue: nextDue,
       reviewIntervalDays: interval,
       decayFactor: 1.0,
-      contextualSuccessCount: 0
+      contextualSuccessCount: 0,
+      gradedAttemptCount: graded ? 1 : 0
     };
   }
 
@@ -398,11 +449,27 @@ export function recordItemInteraction(
   // Jangan menurunkan status yang sudah diraih lewat jawaban terinci hanya karena interaksi ringan.
   if (STATUS_RANK[existingRecord.status] > STATUS_RANK[newStatus]) newStatus = existingRecord.status;
 
+  // bestScore hanya diperbarui oleh jawaban yang dinilai, dan bestScore lama tanpa bukti dinilai diabaikan.
+  let bestScore = existingRecord.bestScore;
+  let bestScoreAchievedAt = existingRecord.bestScoreAchievedAt;
+  if (graded) {
+    const priorRatio = hasGradedEvidence(existingRecord) && bestScore.total > 0 ? bestScore.score / bestScore.total : -1;
+    const newRatio = success ? 1 : 0;
+    if (newRatio > priorRatio) {
+      bestScore = { score: success ? 1 : 0, total: 1 };
+      bestScoreAchievedAt = dateStr;
+    }
+  }
+
   return {
     ...existingRecord,
     status: newStatus,
     masteryPercentage: updatedPct,
     masteryLevel: newLevel,
+    bestScore,
+    bestScoreAchievedAt,
+    gradedAttemptCount: (existingRecord.gradedAttemptCount ?? ((existingRecord.quizCount || 0) + (existingRecord.writingCount || 0)))
+      + (graded ? 1 : 0),
     attemptsCount: newAttempts,
     writingCount: newWriting,
     flashcardCount: newFlashcard,
@@ -416,13 +483,53 @@ export function recordItemInteraction(
 }
 
 /**
+ * Catat bahwa detail materi dibuka. Ini hanya bukti "pernah disentuh": tidak mengubah skor, mastery,
+ * status, maupun jadwal SRS. Record baru diberi lastReviewedAt epoch agar tidak menang saat merge cloud.
+ */
+export function recordItemView(
+  existingRecord: ItemMasteryRecord | undefined,
+  itemId: string,
+  category: 'bunpou' | 'kotoba' | 'kanji' | 'dokkai' | 'choukai',
+  now: Date = new Date()
+): ItemMasteryRecord {
+  const nowIso = now.toISOString();
+  if (existingRecord) {
+    return { ...existingRecord, viewCount: (existingRecord.viewCount || 0) + 1, lastViewedAt: nowIso };
+  }
+  return {
+    itemId,
+    category,
+    status: 'LEARNING',
+    masteryPercentage: 0,
+    masteryLevel: 1,
+    bestScore: { score: 0, total: 0 },
+    bestScoreAchievedAt: NEVER_REVIEWED_AT,
+    attemptsCount: 0,
+    writingCount: 0,
+    flashcardCount: 0,
+    quizCount: 0,
+    gradedAttemptCount: 0,
+    consecutivePerfects: 0,
+    mistakeCount: 0,
+    lastReviewedAt: NEVER_REVIEWED_AT,
+    nextReviewDue: NEVER_REVIEWED_AT,
+    reviewIntervalDays: 1,
+    decayFactor: 1.0,
+    contextualSuccessCount: 0,
+    viewCount: 1,
+    lastViewedAt: nowIso
+  };
+}
+
+/**
  * Intelligent Language Profile & Weakness Analyzer ("Your Language Profile")
  * Breaks down capabilities into 5 Pillars and granular sub-skills
  */
 export function calculateLanguageProfile(
   itemMastery: Record<string, ItemMasteryRecord> = {}
 ): LanguageProfile {
-  const records = Object.values(itemMastery);
+  // Materi yang hanya dibuka tidak ikut dinilai (akan menarik rata-rata turun tanpa dasar).
+  const records = Object.values(itemMastery).filter(r => getLearningStage(r) !== 'VIEWED');
 
   if (records.length === 0) {
     return {
@@ -680,7 +787,8 @@ export function calculateOverallMastery(records: Record<string, ItemMasteryRecor
   totalPerfected: number;
   totalStudied: number;
 } {
-  const vals = Object.values(records);
+  // "Dipelajari" = sudah ada interaksi belajar/latihan. Materi yang hanya dibuka tidak dihitung.
+  const vals = Object.values(records).filter(v => getLearningStage(v) !== 'VIEWED');
   const totalMastered = vals.filter(v => v.status === 'MASTERED' || v.status === 'PERFECTED').length;
   const totalPerfected = vals.filter(v => v.status === 'PERFECTED').length;
   const totalStudied = vals.length;
@@ -698,7 +806,7 @@ export function calculateOverallMastery(records: Record<string, ItemMasteryRecor
  * Distinguishes Skill Acquisition (Bunpou/Kotoba/Kanji) vs Skill Application (Dokkai/Choukai)
  * Formula: Knowledge (20%) + Recognition (25%) + Application (35%) + Retention (20%)
  */
-function calculateItemTrueMastery(
+export function calculateItemTrueMastery(
   record: ItemMasteryRecord,
   _allRecords: Record<string, ItemMasteryRecord> = {}
 ): TrueMasteryBreakdown {
@@ -713,15 +821,21 @@ function calculateItemTrueMastery(
     title = DOKKAI_DATABASE[record.itemId].title;
   }
 
+  // Tanpa jawaban yang dinilai (hanya dibuka / flashcard), tidak ada bukti Knowledge, Recognition, atau Application.
+  // Sebelumnya nilai dasar 60/70 diberikan begitu record ada, sehingga satu flashcard sudah tampil 90%.
+  const graded = hasGradedEvidence(record);
+
   // 1. Knowledge (Teori & Formula Familiarity): 0 - 100%
-  const knowledge = Math.min(100, (record.attemptsCount > 0 ? 60 : 20) + (record.bestScore.total > 0 ? 30 : 0) + 10);
+  const knowledge = graded
+    ? Math.min(100, 60 + (record.bestScore.total > 0 ? 30 : 0) + 10)
+    : 20;
 
   // 2. Recognition (Multiple Choice Quiz Accuracy): 0 - 100%
-  const recognitionRatio = record.bestScore.total > 0 ? record.bestScore.score / record.bestScore.total : 0;
+  const recognitionRatio = graded && record.bestScore.total > 0 ? record.bestScore.score / record.bestScore.total : 0;
   const recognition = Math.round(recognitionRatio * 100);
 
   // 3. Application (Evidence from Dokkai Context & Boss Battles): 0 - 100%
-  let application = 70;
+  let application = graded ? 70 : 0;
   if (record.weaknessFlags?.includes('dokkai_context_fail')) {
     application = Math.max(30, 50 - record.mistakeCount * 10);
   } else if (record.contextualSuccessCount && record.contextualSuccessCount > 0) {
@@ -788,6 +902,44 @@ function calculateItemTrueMastery(
   };
 }
 
+// Kumpulan kosakata untuk pengecoh: per jenis kata, dengan cadangan seluruh kosakata.
+const ALL_KOTOBA_POOL = '*';
+let kotobaPoolCache: Map<string, KotobaItem[]> | null = null;
+
+function getKotobaPool(key: string): KotobaItem[] {
+  if (!kotobaPoolCache) {
+    kotobaPoolCache = new Map();
+    for (const k of Object.values(KOTOBA_DATABASE)) {
+      const byType = kotobaPoolCache.get(k.wordType) ?? [];
+      byType.push(k);
+      kotobaPoolCache.set(k.wordType, byType);
+      const all = kotobaPoolCache.get(ALL_KOTOBA_POOL) ?? [];
+      all.push(k);
+      kotobaPoolCache.set(ALL_KOTOBA_POOL, all);
+    }
+  }
+  return kotobaPoolCache.get(key) ?? [];
+}
+
+/**
+ * Ambil pengecoh NYATA dari kosakata lain (bukan kalimat meta). Diutamakan jenis kata yang sama
+ * agar pilihan sepadan. Mengembalikan kurang dari `count` bila database tidak cukup.
+ */
+function pickKotobaDistractors(target: KotobaItem, count: number, valueOf: (k: KotobaItem) => string): string[] {
+  const used = new Set([valueOf(target), target.word]);
+  const picked: string[] = [];
+  for (const pool of [getKotobaPool(target.wordType), getKotobaPool(ALL_KOTOBA_POOL)]) {
+    for (let tries = 0; pool.length > 0 && picked.length < count && tries < 80; tries++) {
+      const candidate = pool[Math.floor(Math.random() * pool.length)];
+      const value = valueOf(candidate);
+      if (!value || used.has(value) || candidate.id === target.id) continue;
+      used.add(value);
+      picked.push(value);
+    }
+  }
+  return picked;
+}
+
 /**
  * 5-TIER ADAPTIVE QUESTION GENERATOR:
  * Level 1: Pattern / Meaning Recognition
@@ -796,10 +948,14 @@ function calculateItemTrueMastery(
  * Level 4: Context Selection / Nuance Distractors
  * Level 5: Interactive Sentence Production (Arrange Word Scramble)
  */
+/**
+ * Membuat soal Recall dengan engine yang kompatibel dengan jenis materi.
+ * Mengembalikan null bila tidak ada engine yang cocok atau data soal tidak lengkap; materi itu dilewati.
+ */
 function generateAdaptiveQuestion(
   item: RecallQueueItem,
   level: MasteryDifficultyLevel
-): Question {
+): Question | null {
   const itemId = item.itemId;
 
   // 1. Bunpou Adaptive Questions
@@ -808,11 +964,8 @@ function generateAdaptiveQuestion(
     if (bp) {
       if (level === 5) {
         // Level 5: Sentence Production
-        const ex = bp.examples[0] || {
-          japanese: '私は先生に褒められた。',
-          reading: 'わたしは せんせいに ほめられた。',
-          meaningId: 'Saya dipuji oleh guru.'
-        };
+        const ex = bp.examples?.[0];
+        if (!ex) return null;
         const words = ex.japanese.endsWith('。')
           ? ex.japanese.slice(0, -1).split(/(?<=[はにをでが]|ました|られた|ておく|てしまう)/)
           : ex.japanese.split(/(?<=[はにをでが])/);
@@ -903,8 +1056,10 @@ function generateAdaptiveQuestion(
   if (item.category === 'kotoba') {
     const kt = KOTOBA_DATABASE[itemId];
     if (kt) {
-      if (level >= 4 && kt.exampleSentence) {
-        const distractors = ['別の言葉', '関係ない名詞', '反対の意味の語'];
+      // Titik kosong hanya bisa dibuat bila kalimat contoh memuat kata persis (bukan bentuk konjugasi).
+      if (level >= 4 && kt.exampleSentence && kt.exampleSentence.japanese.includes(kt.word)) {
+        const distractors = pickKotobaDistractors(kt, 3, k => k.word);
+        if (distractors.length < 3) return null;
         const options = fisherYatesShuffle([kt.word, ...distractors]);
         const correctIndex = options.indexOf(kt.word);
         return {
@@ -917,11 +1072,8 @@ function generateAdaptiveQuestion(
         };
       }
 
-      const distractors = [
-        'Melakukan perjalanan dinas ke luar kota',
-        'Menyimpan barang untuk persiapan masa depan',
-        'Menolak tawaran secara halus'
-      ];
+      const distractors = pickKotobaDistractors(kt, 3, k => k.meaningId);
+      if (distractors.length < 3) return null;
       const options = fisherYatesShuffle([kt.meaningId, ...distractors]);
       const correctIndex = options.indexOf(kt.meaningId);
       return {
@@ -948,20 +1100,9 @@ function generateAdaptiveQuestion(
     }
   }
 
-  // Fallback default question
-  return {
-    id: `rc_gen_${itemId}`,
-    prompt: `【Level ${level}】 Manakah penggunaan yang tepat untuk materi 「${item.title}」?`,
-    options: [
-      item.subtitle || 'Pilihan arti yang tepat',
-      'Bukan pola yang sesuai konteks ini',
-      'Bentuk tata bahasa lampau yang salah',
-      'Bentuk kebalikan dari kalimat utama'
-    ],
-    correctIndex: 0,
-    difficultyLevel: level,
-    explanation: `${item.title}: ${item.subtitle}`
-  };
+  // Tidak ada engine yang kompatibel (mis. dokkai/choukai, atau data soal kosong). Recall melewatinya
+  // daripada menyusun soal palsu dari subtitle.
+  return null;
 }
 
 /**
@@ -991,8 +1132,20 @@ export function buildSmartRecallQueue(
       let reasonText = '';
       let tutorInsight = '';
 
+      const stage = getLearningStage(r);
+      // Materi yang hanya dibuka belum punya apa pun untuk diingat kembali (lihat RECALL_INCLUDE_VIEW_ONLY).
+      if (stage === 'VIEWED' && !RECALL_INCLUDE_VIEW_ONLY) continue;
+
+      // ⚪ 0. PRACTICE: sudah dipelajari (flashcard), belum pernah dinilai. Tidak ada skor yang bisa dibaca.
+      if (stage === 'STUDIED') {
+        priorityTier = 'PRACTICE';
+        urgencyScore = 130 + Math.min(10, r.flashcardCount ?? 0);
+        reason = 'NOT_PRACTICED';
+        reasonText = `Sudah dipelajari, belum pernah dinilai lewat kuis`;
+        tutorInsight = `Tutor: Kamu sudah mengenalnya. Jawab kuis untuk memastikan kamu bisa mengingatnya saat dibutuhkan.`;
+      }
       // 🔴 1. CRITICAL PRIORITY: Consecutive mistakes or Dokkai Contextual failure
-      if (r.weaknessFlags?.includes('dokkai_context_fail') || r.mistakeCount >= 3 || tm < 45) {
+      else if (r.weaknessFlags?.includes('dokkai_context_fail') || r.mistakeCount >= 3 || tm < 45) {
         priorityTier = 'CRITICAL';
         urgencyScore = 150 + r.mistakeCount * 10 + (100 - tm);
         reason = r.weaknessFlags?.includes('dokkai_context_fail') ? 'DOKKAI_WEAKNESS' : 'HIGH_MISTAKES';
@@ -1028,7 +1181,9 @@ export function buildSmartRecallQueue(
 
       if (urgencyScore > 0) {
         let title = r.itemId;
-        let subtitle = `${r.category.toUpperCase()} • True Mastery: ${tm}%`;
+        let subtitle = stage === 'PRACTICED'
+          ? `${r.category.toUpperCase()} • True Mastery: ${tm}%`
+          : `${r.category.toUpperCase()} • Belum dinilai`;
 
         if (r.category === 'bunpou') {
           const bp = BUNPOU_DATABASE[r.itemId];
@@ -1067,12 +1222,15 @@ export function buildSmartRecallQueue(
           urgencyScore,
           priorityTier,
           difficultyLevel: trueMasteryBreakdown.levelTier,
-          trueMasteryScore: tm,
+          trueMasteryScore: stage === 'PRACTICED' ? tm : undefined,
           tutorInsight,
           masteryRecord: r
         };
 
-        queueItem.sampleQuestion = generateAdaptiveQuestion(queueItem, trueMasteryBreakdown.levelTier);
+        // Engine kompatibel untuk jenis materi ini. Bila tidak ada, materi dilewati, bukan dipaksa.
+        const sampleQuestion = generateAdaptiveQuestion(queueItem, trueMasteryBreakdown.levelTier);
+        if (!sampleQuestion) continue;
+        queueItem.sampleQuestion = sampleQuestion;
         queue.push(queueItem);
       }
     } catch (err) {

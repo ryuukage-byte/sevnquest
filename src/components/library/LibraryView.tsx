@@ -15,7 +15,7 @@ interface LibraryViewProps {
   onRecordInteraction?: (
     itemId: string,
     category: 'bunpou' | 'kotoba' | 'kanji' | 'dokkai' | 'choukai',
-    interactionType: 'writing' | 'flashcard' | 'quiz',
+    interactionType: 'writing' | 'flashcard' | 'quiz' | 'view',
     success?: boolean
   ) => void;
   onCompleteStudyItem?: (

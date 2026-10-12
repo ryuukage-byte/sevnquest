@@ -51,7 +51,8 @@ export interface LanguageProfile {
   tutorSummary: string;
 }
 
-export type RecallPriorityTier = 'CRITICAL' | 'WEAK' | 'REVIEW' | 'MAINTAIN';
+/** PRACTICE = sudah dipelajari (flashcard/menulis) tetapi belum pernah dinilai lewat kuis. */
+export type RecallPriorityTier = 'CRITICAL' | 'WEAK' | 'REVIEW' | 'MAINTAIN' | 'PRACTICE';
 
 export interface TrueMasteryBreakdown {
   itemId: string;
@@ -317,6 +318,9 @@ export interface ItemMasteryRecord {
   weaknessFlags?: string[]; // E.g. ["conjugation", "ukemi_passive", "dokkai_context_fail"]
   errorPatterns?: ErrorPatternRecord[];
   contextualSuccessCount?: number; // Count of successful uses in Dokkai / Boss
+  viewCount?: number; // Berapa kali detail materi dibuka (hanya membuktikan "pernah disentuh", bukan penguasaan)
+  lastViewedAt?: string; // ISO String, terakhir kali detail materi dibuka
+  gradedAttemptCount?: number; // Jumlah jawaban yang dinilai (kuis/menulis). Dasar bukti "pernah dilatih".
 }
 
 export interface RecallQueueItem {
@@ -325,10 +329,10 @@ export interface RecallQueueItem {
   category: 'bunpou' | 'kotoba' | 'kanji' | 'dokkai' | 'choukai';
   title: string;
   subtitle: string;
-  reason: 'HIGH_MISTAKES' | 'SRS_DUE' | 'DOKKAI_WEAKNESS' | 'LOW_MASTERY' | 'DECAYED';
+  reason: 'HIGH_MISTAKES' | 'SRS_DUE' | 'DOKKAI_WEAKNESS' | 'LOW_MASTERY' | 'DECAYED' | 'NOT_PRACTICED';
   reasonText: string;
   urgencyScore: number; // Higher = more urgent to review
-  priorityTier: RecallPriorityTier; // 'CRITICAL' | 'WEAK' | 'REVIEW' | 'MAINTAIN'
+  priorityTier: RecallPriorityTier; // 'CRITICAL' | 'WEAK' | 'REVIEW' | 'MAINTAIN' | 'PRACTICE'
   difficultyLevel: MasteryDifficultyLevel; // 1 to 5
   trueMasteryScore?: number;
   tutorInsight?: string; // e.g. "Kamu sering salah ketika pola ini digunakan dalam konteks passive voice."

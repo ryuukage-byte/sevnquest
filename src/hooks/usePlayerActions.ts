@@ -7,7 +7,7 @@ import { getEffectiveTier, getJlptLevelForTierIndex } from '../utils/ascension';
 import { INITIAL_DAILY_MISSIONS, INITIAL_WEEKLY_MISSIONS } from '../data/missions';
 import { createDefaultBookmarkDeck, toggleBookmarkItem, toggleItemInDeck, DEFAULT_BOOKMARK_DECK_ID } from '../utils/decks';
 import { playSound } from '../utils/audio';
-import { recordItemAttempt, recordItemInteraction, buildSmartRecallQueue } from '../utils/mastery';
+import { recordItemAttempt, recordItemInteraction, recordItemView, buildSmartRecallQueue } from '../utils/mastery';
 import { recordStudyActivity } from '../utils/activity';
 import { safeSetItem } from '../utils/storage';
 import { getTodayLocalDate } from '../utils/time';
@@ -176,20 +176,25 @@ export function usePlayerActions({
       let updatedMastery = prev.itemMastery || {};
       let updatedRecallQueue = prev.recallQueue || [];
 
-      if (itemId && !isSessionAggregate && score !== undefined && total !== undefined) {
+      // Flip flashcard (Dungeon / Buku Saku) adalah interaksi ringan: tidak dinilai, tidak mengisi skor.
+      // Sebelumnya dicatat sebagai jawaban 1/1 sehingga langsung menaikkan Recognition dan SRS.
+      const isFlashcardFlip = interactionTypeOverride === 'flashcard';
+      if (itemId && !isSessionAggregate && (isFlashcardFlip || (score !== undefined && total !== undefined))) {
         const cat = moduleId === 'boss' ? 'bunpou' : moduleId;
         const currentItem = prev.itemMastery ? prev.itemMastery[itemId] : undefined;
         const isContextual = moduleId === 'dokkai' || moduleId === 'boss';
-        const updatedRecord = recordItemAttempt(
-          currentItem,
-          itemId,
-          cat,
-          score,
-          total,
-          detectedErrors.length > 0 ? detectedErrors : undefined,
-          isContextual,
-          effectiveInteraction
-        );
+        const updatedRecord = isFlashcardFlip
+          ? recordItemInteraction(currentItem, itemId, cat, 'flashcard', true)
+          : recordItemAttempt(
+              currentItem,
+              itemId,
+              cat,
+              score as number,
+              total as number,
+              detectedErrors.length > 0 ? detectedErrors : undefined,
+              isContextual,
+              effectiveInteraction
+            );
         updatedMastery = {
           ...updatedMastery,
           [itemId]: updatedRecord
@@ -229,12 +234,19 @@ export function usePlayerActions({
   const handleRecordItemInteraction = useCallback((
     itemId: string,
     category: 'bunpou' | 'kotoba' | 'kanji' | 'dokkai' | 'choukai',
-    interactionType: 'writing' | 'flashcard' | 'quiz',
+    interactionType: 'writing' | 'flashcard' | 'quiz' | 'view',
     success: boolean = true
   ) => {
     itemId = canonicalEntityId(itemId);
     setStats(prev => {
       const currentItem = prev.itemMastery ? prev.itemMastery[itemId] : undefined;
+      // 'view' = detail dibuka. Hanya menandai "pernah disentuh": tanpa skor, tanpa aktivitas belajar.
+      if (interactionType === 'view') {
+        return {
+          ...prev,
+          itemMastery: { ...(prev.itemMastery || {}), [itemId]: recordItemView(currentItem, itemId, category) }
+        };
+      }
       const updatedRecord = recordItemInteraction(
         currentItem,
         itemId,
@@ -246,9 +258,11 @@ export function usePlayerActions({
         ...(prev.itemMastery || {}),
         [itemId]: updatedRecord
       };
+      // Kandidat Recall ikut berubah (mis. flashcard pertama membuat materi "sudah dipelajari").
       let newStats: PlayerStats = {
         ...prev,
-        itemMastery: updatedMastery
+        itemMastery: updatedMastery,
+        recallQueue: buildSmartRecallQueue(updatedMastery)
       };
 
       if (interactionType === 'writing') {
@@ -297,12 +311,16 @@ export function usePlayerActions({
     setStats(prev => {
       const currentMastery = { ...(prev.itemMastery || {}) };
       const existing = currentMastery[itemId];
+      // Hasil asli jawaban Recall (1 soal, benar/salah). Sebelumnya dikirim sebagai 7/7 atau 4/7 palsu.
       const updated = recordItemAttempt(
         existing,
         itemId,
         category,
-        isCorrect ? 7 : 4,
-        7
+        isCorrect ? 1 : 0,
+        1,
+        undefined,
+        false,
+        'quiz'
       );
       currentMastery[itemId] = updated;
       return {

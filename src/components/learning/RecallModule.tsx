@@ -290,6 +290,7 @@ export const RecallModule: React.FC<RecallModuleProps> = ({
   const countWeak = recallQueue.filter(q => q.priorityTier === 'WEAK').length;
   const countReview = recallQueue.filter(q => q.priorityTier === 'REVIEW').length;
   const countMaintain = recallQueue.filter(q => q.priorityTier === 'MAINTAIN').length;
+  const countPractice = recallQueue.filter(q => q.priorityTier === 'PRACTICE').length;
 
   return (
     <div className="w-full max-w-2xl mx-auto space-y-4 pb-6">
@@ -329,6 +330,19 @@ export const RecallModule: React.FC<RecallModuleProps> = ({
           >
             <span>Lemah</span>
             <span className="font-mono">({countWeak})</span>
+          </button>
+        )}
+        {countPractice > 0 && (
+          <button
+            onClick={() => { setActiveFilter('PRACTICE'); setCurrentIndex(0); }}
+            className={`px-3 py-1.5 rounded-xl font-bold transition-all shrink-0 flex items-center gap-1 ${
+              activeFilter === 'PRACTICE'
+                ? 'seg-active text-gold font-mono'
+                : 'bg-surface-inset text-text-secondary hover:text-text-primary border border-border-subtle hover:border-border-primary'
+            }`}
+          >
+            <span>Belum Dilatih</span>
+            <span className="font-mono">({countPractice})</span>
           </button>
         )}
         {countReview > 0 && (
@@ -373,7 +387,9 @@ export const RecallModule: React.FC<RecallModuleProps> = ({
 
           <div className="flex items-center gap-2">
             <span className="text-[11px] px-2.5 py-0.5 rounded-full bg-surface-inset border border-border-subtle text-gold font-mono font-bold">
-              True Mastery: {currentItem.trueMasteryScore || 65}%
+              {currentItem.trueMasteryScore !== undefined
+                ? `True Mastery: ${currentItem.trueMasteryScore}%`
+                : 'Belum dinilai'}
             </span>
             <span className="text-xs font-mono font-bold text-text-secondary">
               Skor: {correctCount}/{currentIndex}

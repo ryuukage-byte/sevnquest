@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useDeferredValue } from 'react';
+import React, { useState, useMemo, useDeferredValue, useEffect } from 'react';
 import type { DeckItemCategory } from '../../types/rpg';
 import { Filter, ChevronDown, BookOpen, Bookmark, Trash2, LayoutGrid, Table } from 'lucide-react';
 import { KANJI_DATABASE } from '../../data/kanji';
@@ -174,7 +174,7 @@ interface KanjiLibraryViewProps {
   onRecordInteraction?: (
     itemId: string,
     category: 'bunpou' | 'kotoba' | 'kanji' | 'dokkai' | 'choukai',
-    interactionType: 'writing' | 'flashcard' | 'quiz',
+    interactionType: 'writing' | 'flashcard' | 'quiz' | 'view',
     success?: boolean
   ) => void;
   onCompleteStudyItem?: (
@@ -243,6 +243,11 @@ export const KanjiLibraryView: React.FC<KanjiLibraryViewProps> = ({
   >('all');
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [selectedKanji, setSelectedKanji] = useState<KanjiItem | null>(null);
+  // Membuka detail kanji hanya menandai "pernah disentuh". Bukan latihan menulis.
+  useEffect(() => {
+    if (selectedKanji) onRecordInteraction?.(selectedKanji.id || selectedKanji.character, 'kanji', 'view');
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [selectedKanji?.id, selectedKanji?.character]);
 
   // De-duplicate kanji database (since it has both id and character keys)
   const allKanji = useMemo(() => {

@@ -28,7 +28,10 @@ export function mergeItemMastery(
       ts(localRec.lastReviewedAt) > ts(cloudRec.lastReviewedAt) ||
       (ts(localRec.lastReviewedAt) === ts(cloudRec.lastReviewedAt) &&
         (localRec.attemptsCount || 0) > (cloudRec.attemptsCount || 0));
-    merged[id] = localNewer ? localRec : cloudRec;
+    const winner = localNewer ? localRec : cloudRec;
+    // Jumlah buka halaman tidak boleh hilang hanya karena record yang kalah punya angka lebih besar.
+    const viewCount = Math.max(localRec.viewCount || 0, cloudRec.viewCount || 0);
+    merged[id] = viewCount > 0 ? { ...winner, viewCount } : winner;
   }
   return merged;
 }
