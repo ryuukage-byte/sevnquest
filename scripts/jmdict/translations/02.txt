@@ -1,0 +1,400 @@
+0|外車|Mobil buatan luar negeri
+1|害虫|Serangga hama
+2|格子|Kisi-kisi; terali
+3|格闘|Perkelahian; pergulatan
+4|学位|Gelar akademik
+5|学界|Dunia akademik
+6|学費|Biaya sekolah
+7|割り出す|Menghitung; menyimpulkan
+8|冠婚葬祭|Upacara penting keluarga (pernikahan, pemakaman, dll.)
+9|寛大|Murah hati; toleran
+10|感受性|Kepekaan
+11|感銘|Kesan mendalam
+12|漢方薬|Obat herbal Tiongkok
+13|監禁|Pengurungan; penahanan
+14|観賞|Mengagumi; menikmati keindahan
+15|間際|Menjelang; tepat sebelum
+16|関門|Pintu masuk; rintangan
+17|丸み|Kebulatan; kematangan
+18|岸辺|Tepi (sungai/danau)
+19|頑張る|Berusaha keras; bertahan
+20|顔色|Warna wajah; raut muka
+21|顔つき|Raut wajah
+22|危うく|Nyaris; hampir saja
+23|棄却|Penolakan (gugatan)
+24|機敏|Gesit; cekatan
+25|帰化|Naturalisasi
+26|帰省|Pulang kampung
+27|気がかり|Kekhawatiran
+28|気力|Tenaga batin; semangat
+29|祈願|Doa permohonan
+30|季語|Kata musim (dalam haiku)
+31|輝かしい|Gemilang; cemerlang
+32|儀礼|Tata krama; upacara
+33|疑わしい|Meragukan; mencurigakan
+34|義母|Ibu mertua; ibu angkat
+35|客室|Kamar tamu; kabin penumpang
+36|逆効果|Efek sebaliknya
+37|吸い込む|Menghirup; menyerap
+38|旧式|Model lama
+39|居酒屋|Izakaya; kedai minum Jepang
+40|虚構|Rekaan; fiksi
+41|共用|Pemakaian bersama
+42|境内|Pelataran kuil/kuil
+43|強要|Pemaksaan
+44|恐慌|Kepanikan; krisis
+45|曲がり角|Tikungan; titik balik
+46|極限|Batas terakhir; ekstrem
+47|均一|Seragam; rata
+48|禁錮|Hukuman penjara (tanpa kerja paksa)
+49|近づく|Mendekati
+50|近距離|Jarak dekat
+51|近世|Zaman modern awal
+52|近づける|Mendekatkan
+53|銀河|Galaksi; Bima Sakti
+54|空き地|Tanah kosong
+55|空手|Karate; tangan kosong
+56|軍拡|Perlombaan senjata
+57|軍国主義|Militerisme
+58|形式的|Formal; bersifat formalitas
+59|憩い|Istirahat; relaksasi
+60|敬遠|Menjauhi dengan sopan
+61|経る|Berlalu; melewati
+62|軽視|Meremehkan
+63|欠如|Kekurangan; ketiadaan
+64|潔白|Tidak bersalah; bersih
+65|結びつき|Hubungan; keterkaitan
+66|結末|Akhir; kesimpulan
+67|血縁|Hubungan darah
+68|嫌悪|Rasa jijik; kebencian
+69|検閲|Sensor; pemeriksaan
+70|献血|Donor darah
+71|見極める|Memastikan; menilai dengan cermat
+72|険悪|Gawat; bermusuhan
+73|言い回し|Ungkapan; cara mengutarakan
+74|固形|Padat
+75|姑|Ibu mertua
+76|故意|Kesengajaan
+77|後ろ向き|Menghadap ke belakang; negatif
+78|後始末|Pembereskan; penyelesaian akhir
+79|お年玉|Uang/hadiah Tahun Baru
+80|交通費|Biaya transportasi
+81|公言|Pernyataan terbuka
+82|公使|Duta (di bawah duta besar)
+83|公定|Resmi (harga/kurs)
+84|公布|Pengumuman resmi (undang-undang)
+85|公民館|Balai warga
+86|口先|Omongan belaka; mulut
+87|口癖|Kata-kata andalan
+88|口論|Pertengkaran mulut
+89|好奇心|Rasa ingin tahu
+90|好転|Membaik
+91|好物|Makanan kesukaan
+92|工程|Proses; tahapan pengerjaan
+93|綱渡り|Berjalan di atas tali; tindakan berisiko
+94|航空便|Pos udara
+95|荒れる|Bergolak; kasar (kulit)
+96|行楽|Wisata; piknik
+97|行程|Perjalanan; jadwal perjalanan
+98|高気圧|Tekanan udara tinggi
+99|高地|Dataran tinggi
+100|高低|Tinggi rendah
+101|克明|Teliti; rinci
+102|国費|Anggaran negara
+103|国宝|Harta nasional
+104|困惑|Kebingungan; keresahan
+105|根性|Tekad; mental baja
+106|砂浜|Pantai berpasir
+107|鎖国|Isolasi negara
+108|再起|Bangkit kembali
+109|最期|Saat terakhir; ajal
+110|最小|Terkecil; minimum
+111|妻子|Istri dan anak
+112|採取|Pengambilan; pengumpulan
+113|歳月|Waktu; tahun-tahun
+114|歳暮|Hadiah akhir tahun
+115|災い|Bencana; malapetaka
+116|裁決|Putusan; keputusan
+117|際限|Batas; ujung
+118|際立つ|Menonjol
+119|在籍|Terdaftar (di sekolah/tim)
+120|作動|Bekerja; beroperasi (mesin)
+121|雑草|Gulma; rumput liar
+122|散らし|Menyebar; selebaran
+123|残暑|Sisa panas musim panas
+124|仕送り|Kiriman uang
+125|市外|Luar kota
+126|指紋|Sidik jari
+127|私たち|Kami; kita
+128|視力|Daya penglihatan
+129|試行錯誤|Coba-coba
+130|事務員|Pegawai kantor
+131|慈善|Amal; filantropi
+132|示唆|Saran halus; petunjuk
+133|自営|Wiraswasta; usaha sendiri
+134|自発的|Atas kemauan sendiri
+135|識別|Pengenalan; pembedaan
+136|質量|Massa
+137|実況|Keadaan nyata; siaran langsung
+138|実在|Keberadaan nyata
+139|実名|Nama asli
+140|車道|Jalan kendaraan
+141|釈迦|Buddha Gautama
+142|弱気|Penakut; pesimis
+143|主として|Terutama
+144|取り込む|Memasukkan; mengimpor
+145|手探り|Meraba-raba
+146|酒屋|Toko minuman keras
+147|受取り|Penerimaan; tanda terima
+148|授与|Penganugerahan
+149|ぐるり|Sekeliling
+150|十字架|Salib
+151|重症|Penyakit berat
+152|重心|Titik berat
+153|祝福|Berkat; ucapan selamat
+154|出願|Pendaftaran; permohonan
+155|出前|Pesan antar (makanan)
+156|出納|Penerimaan dan pengeluaran uang
+157|潤い|Kelembapan; kehangatan
+158|処刑|Hukuman mati; eksekusi
+159|処女|Perawan; gadis
+160|初夏|Awal musim panas
+161|初心|Niat awal; pemula
+162|初任給|Gaji pertama
+163|初歩|Dasar-dasar
+164|渚|Tepi pantai
+165|書き方|Cara menulis
+166|傷つける|Melukai; menyakiti hati
+167|勝手|Semaunya; keadaan sekitar
+168|小雨|Hujan gerimis
+169|小豆|Kacang merah (azuki)
+170|消火|Pemadaman api
+171|照会|Pertanyaan; permintaan informasi
+172|笑い声|Suara tawa
+173|衝動|Dorongan hati
+174|乗り越える|Melewati; mengatasi
+175|乗り気|Antusias; berminat
+176|常用|Pemakaian tetap
+177|食い込む|Menggigit masuk; menyusup
+178|食費|Biaya makan
+179|のびのび|Bebas lepas; santai
+180|寝室|Kamar tidur
+181|心がける|Berusaha mengingat; berupaya
+182|振り返る|Menoleh; menengok ke belakang
+183|新刊|Buku terbitan baru
+184|新米|Beras baru; pemula
+185|深み|Kedalaman
+186|真っ最中|Tepat di tengah-tengah
+187|真価|Nilai sebenarnya
+188|真夏|Puncak musim panas
+189|真偽|Benar atau salah
+190|真夜中|Tengah malam
+191|神道|Shinto
+192|神父|Pastor
+193|親日|Pro-Jepang
+194|親密|Akrab; erat
+195|身の回り|Barang pribadi; keseharian
+196|進入|Masuk; memasuki
+197|震度|Skala intensitas gempa
+198|人間性|Kemanusiaan; sifat manusia
+199|人出|Keramaian; jumlah pengunjung
+200|人前|Di depan orang banyak
+201|人名|Nama orang
+202|水害|Bencana banjir
+203|水増し|Mengencerkan; menggelembungkan angka
+204|水力|Tenaga air
+205|遂行|Pelaksanaan; penyelesaian
+206|世相|Kondisi masyarakat; tanda zaman
+207|性急|Tergesa-gesa
+208|正体|Identitas asli; wujud sebenarnya
+209|生い立ち|Latar belakang; masa tumbuh
+210|生み出す|Menciptakan; menghasilkan
+211|生誕|Kelahiran
+212|精通|Mahir; ahli
+213|請願|Petisi
+214|昔話|Dongeng; cerita lama
+215|積立|Tabungan; penyisihan
+216|積雪|Salju yang menumpuk
+217|説教|Khotbah; omelan
+218|雪解け|Pencairan salju
+219|先決|Hal yang harus diputuskan lebih dulu
+220|先入観|Prasangka; anggapan awal
+221|先例|Preseden
+222|占い|Ramalan
+223|宣告|Vonis; pernyataan resmi
+224|川岸|Tepi sungai
+225|戦死|Gugur dalam perang
+226|染色|Pewarnaan
+227|潜む|Bersembunyi; mengintai
+228|旋律|Melodi
+229|繊細|Halus; peka
+230|銭湯|Pemandian umum
+231|前方|Depan; arah depan
+232|喪失|Kehilangan
+233|想定|Pengandaian; asumsi
+234|争議|Sengketa; pemogokan
+235|相対的|Relatif
+236|草花|Bunga-bunga; tanaman berbunga
+237|草原|Padang rumput
+238|装う|Berdandan; berpura-pura
+239|送付|Pengiriman
+240|憎悪|Kebencian
+241|贈与|Pemberian; donasi
+242|即座|Seketika
+243|即席|Dadakan; spontan
+244|足音|Suara langkah kaki
+245|足踏み|Melangkah di tempat; stagnasi
+246|続出|Muncul berturut-turut
+247|損益|Untung rugi
+248|他殺|Pembunuhan
+249|打破|Menghancurkan; mendobrak
+250|舵|Kemudi
+251|体長|Panjang tubuh
+252|待ち構える|Menunggu dengan siaga
+253|待ち受ける|Menanti; menunggu
+254|待機|Siaga; menunggu
+255|代償|Kompensasi; ganti rugi
+256|大喜び|Sangat gembira
+257|大雪|Salju lebat
+258|大豆|Kedelai
+259|大仏|Patung Buddha besar
+260|大別|Pengelompokan besar
+261|大砲|Meriam
+262|脱落|Tersingkir; gugur
+263|単行本|Buku terbitan tunggal; volume komik
+264|嘆き|Ratapan; kesedihan
+265|炭|Arang
+266|短期大学|Akademi dua/tiga tahun
+267|端的|Terus terang; langsung
+268|タンパク質|Protein
+269|断じて|Sama sekali; pasti
+270|断絶|Terputus; pemutusan hubungan
+271|断片|Serpihan; fragmen
+272|段取り|Persiapan; rencana pelaksanaan
+273|男前|Pria tampan
+274|知り合う|Berkenalan
+275|地下道|Terowongan bawah tanah
+276|致命的|Fatal; mematikan
+277|茶道|Upacara minum teh
+278|中級|Tingkat menengah
+279|中継ぎ|Penyambungan; perantara
+280|中庭|Halaman dalam
+281|中流|Aliran tengah; kelas menengah
+282|仲裁|Arbitrase; penengahan
+283|仲良く|Akrab; rukun
+284|抽象的|Abstrak
+285|昼過ぎ|Lewat tengah hari
+286|昼前|Menjelang siang
+287|昼夜|Siang dan malam
+288|徴兵|Wajib militer
+289|跳躍|Lompatan
+290|長持ち|Awet; tahan lama
+291|値下がり|Penurunan harga
+292|直撃|Hantaman langsung
+293|追求|Pengejaran (tujuan); pencarian
+294|痛烈|Pedas; tajam
+295|通行止め|Jalan ditutup
+296|通夜|Malam berjaga (di hadapan jenazah)
+297|亭主|Kepala rumah tangga; suami
+298|低気圧|Tekanan udara rendah; suasana hati buruk
+299|提起|Mengajukan (masalah/gugatan)
+300|敵対|Permusuhan
+301|的中|Tepat sasaran; terbukti benar
+302|典型的|Tipikal; khas
+303|転覆|Terbalik; penggulingan
+304|田畑|Sawah dan ladang
+305|電圧|Tegangan listrik
+306|電卓|Kalkulator
+307|登記|Pendaftaran (hukum)
+308|投じる|Melempar; menyumbang
+309|踏ん張る|Bertahan kuat; menahan
+310|働きかける|Mendekati/mempengaruhi seseorang
+311|動脈|Arteri
+312|動乱|Kekacauan; pergolakan
+313|同姓|Nama keluarga sama
+314|同性|Jenis kelamin sama
+315|同窓会|Reuni alumni
+316|同伴|Menemani; ditemani
+317|胴上げ|Melempar seseorang ke udara (perayaan)
+318|胴体|Badan; torso
+319|道端|Pinggir jalan
+320|道理|Nalar; kewajaran
+321|銅像|Patung perunggu
+322|匿名|Anonim
+323|特訓|Latihan khusus intensif
+324|特質|Ciri khas
+325|独断|Keputusan sepihak
+326|読み書き|Membaca dan menulis
+327|読み方|Cara baca
+328|内心|Dalam hati
+329|内面|Sisi dalam; batin
+330|柔らか|Lembut; empuk
+331|軟化|Melunak
+332|難解|Sulit dipahami
+333|難関|Rintangan berat
+334|難点|Kelemahan; kekurangan
+335|日刊|Terbitan harian
+336|日誌|Buku harian; catatan harian
+337|日食|Gerhana matahari
+338|乳児|Bayi
+339|入荷|Kedatangan barang
+340|入金|Setoran; uang masuk
+341|入場券|Tiket masuk
+342|入念|Teliti; cermat
+343|入力|Input; memasukkan data
+344|忍耐|Kesabaran; ketahanan
+345|熱烈|Penuh semangat
+346|年下|Lebih muda
+347|年賀|Ucapan Tahun Baru
+348|年賀状|Kartu ucapan Tahun Baru
+349|年月日|Tanggal
+350|年上|Lebih tua
+351|燃費|Konsumsi bahan bakar
+352|粘土|Tanah liat
+353|波長|Panjang gelombang
+354|破局|Bencana; putus hubungan
+355|破滅|Kehancuran
+356|廃絶|Penghapusan; pemusnahan
+357|排斥|Penolakan; pengucilan
+358|背骨|Tulang punggung
+359|倍増|Berlipat dua
+360|媒体|Media
+361|白衣|Jas putih
+362|白鳥|Angsa
+363|発する|Mengeluarkan; menerbitkan
+364|発火|Terbakar; penyulutan
+365|発声|Bersuara; memimpin seruan
+366|発送|Pengiriman barang
+367|鳩|Merpati
+368|判明|Terungkap; menjadi jelas
+369|判例|Yurisprudensi
+370|半減|Berkurang separuh
+371|半身|Separuh badan
+372|反則|Pelanggaran (olahraga)
+373|否認|Penyangkalan
+374|彼岸|Pekan ekuinoks (ibadah Buddha)
+375|美女|Wanita cantik
+376|必須|Wajib; esensial
+377|必然的|Tak terelakkan
+378|氷山|Gunung es
+379|表裏|Depan-belakang; sikap bermuka dua
+380|評|Ulasan; kritik
+381|病死|Meninggal karena sakit
+382|病室|Kamar pasien
+383|病弱|Lemah; sakit-sakitan
+384|病人|Orang sakit; pasien
+385|秒読み|Hitung mundur
+386|貧血|Anemia
+387|貧富|Kaya dan miskin
+388|不可避|Tak terhindarkan
+389|不完全|Tidak sempurna
+390|不気味|Menyeramkan; aneh
+391|不公平|Ketidakadilan
+392|不合理|Tidak masuk akal
+393|不作|Gagal panen
+394|不断|Terus-menerus; ragu-ragu
+395|不能|Tidak mampu; mustahil
+396|不備|Kekurangan; cacat
+397|不必要|Tidak perlu
+398|不平等|Ketidaksetaraan
+399|不変|Tetap; tak berubah

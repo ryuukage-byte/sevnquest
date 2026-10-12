@@ -1,0 +1,400 @@
+0|在任|Sedang menjabat
+1|在来|Yang sudah ada; konvensional
+2|財団|Yayasan
+3|財団法人|Yayasan berbadan hukum
+4|財務|Urusan keuangan
+5|阪神|Osaka-Kobe; Hanshin
+6|崎|Tanjung
+7|作詞|Menulis lirik lagu
+8|昨今|Akhir-akhir ini
+9|昨春|Musim semi tahun lalu
+10|策定|Perumusan (rencana/kebijakan)
+11|刷新|Pembaruan; reformasi
+12|殺し|Pembunuhan
+13|殺害|Pembunuhan
+14|さつまいも|Ubi jalar
+15|三時|Jam tiga; camilan sore
+16|三十八度線|Paralel ke-38
+17|三振|Strikeout (bisbol)
+18|三人|Tiga orang
+19|三男|Putra ketiga
+20|三本|Tiga batang
+21|三役|Tiga jabatan teratas
+22|三塁|Base ketiga
+23|三塁打|Pukulan tiga base
+24|傘下|Di bawah naungan
+25|参院|Majelis Dewan Penasihat (majelis tinggi)
+26|参加者|Peserta
+27|参事官|Dewan penasihat
+28|参入|Masuk ke pasar
+29|参拝|Ziarah ke kuil
+30|参謀|Staf militer; penasihat
+31|山間|Di antara pegunungan
+32|山頂|Puncak gunung
+33|産卵|Bertelur
+34|算定|Perhitungan
+35|賛歌|Lagu pujian
+36|残留|Tetap tinggal; sisa
+37|仕手|Pelaku; pemeran utama (noh)
+38|使い方|Cara pakai
+39|使途|Tujuan penggunaan (dana)
+40|使用済み|Sudah dipakai
+41|司令官|Komandan
+42|司令部|Markas komando
+43|四球|Base on balls (jalan)
+44|四半期|Kuartal
+45|初めに|Pertama-tama; pendahuluan
+46|子会社|Anak perusahaan
+47|市街地|Kawasan perkotaan
+48|市議|Anggota dewan kota
+49|市況|Kondisi pasar
+50|市中|Dalam kota
+51|市町村|Kota, kota kecil, dan desa
+52|市部|Wilayah kota
+53|師匠|Guru; master
+54|師団|Divisi (militer)
+55|志願|Mendaftar sukarela
+56|思いつき|Ide spontan
+57|指揮者|Konduktor; pemimpin
+58|指針|Jarum penunjuk; pedoman
+59|指数|Indeks; eksponen
+60|指標|Indikator
+61|指名|Penunjukan; pencalonan
+62|支障|Hambatan
+63|支部|Cabang
+64|施策|Kebijakan; langkah
+65|死因|Penyebab kematian
+66|死球|Bola mengenai pemukul
+67|死後|Setelah mati
+68|死傷者|Korban tewas dan luka
+69|死亡率|Angka kematian
+70|獅子|Singa
+71|私邸|Kediaman pribadi
+72|私的|Pribadi
+73|糸口|Titik awal; petunjuk
+74|紫外線|Sinar ultraviolet
+75|至上|Keutamaan; supremasi
+76|視線|Garis pandang; tatapan
+77|視聴者|Pemirsa
+78|視聴率|Rating tayangan
+79|詩集|Kumpulan puisi
+80|試案|Rancangan sementara
+81|試算|Perhitungan percobaan
+82|試練|Ujian; cobaan
+83|誌|Majalah
+84|諮問|Konsultasi; permintaan pendapat
+85|資金繰り|Pengelolaan arus dana
+86|資材|Bahan baku
+87|資本金|Modal saham
+88|事業所|Tempat usaha; kantor
+89|事後|Setelah kejadian
+90|事実上|Pada kenyataannya
+91|事典|Ensiklopedia
+92|事務局|Sekretariat
+93|事務次官|Wakil menteri
+94|事例|Contoh; kasus
+95|似顔|Potret wajah
+96|持ち越す|Menunda; membawa ke periode berikutnya
+97|持っていく|Membawa pergi
+98|時価|Harga pasar
+99|時代劇|Drama sejarah
+100|時点|Titik waktu
+101|次官|Wakil menteri
+102|次期|Periode berikutnya
+103|次長|Wakil kepala
+104|自給|Swasembada
+105|自治省|Kementerian Dalam Negeri (dulu)
+106|自治体|Pemerintah daerah
+107|自社|Perusahaan sendiri
+108|自粛|Menahan diri secara sukarela
+109|自前|Biaya sendiri; mandiri
+110|自動的|Otomatis
+111|自分自身|Diri sendiri
+112|自由化|Liberalisasi
+113|辞意|Niat mengundurkan diri
+114|辞表|Surat pengunduran diri
+115|式典|Upacara
+116|執行猶予|Hukuman percobaan
+117|執務|Pelaksanaan tugas
+118|失点|Kehilangan poin; kebobolan
+119|室長|Kepala ruang/seksi
+120|湿地|Lahan basah
+121|疾患|Penyakit
+122|実業|Dunia usaha
+123|実効|Efek nyata
+124|実質的|Pada hakikatnya; nyata
+125|実体|Substansi; hakikat
+126|実務|Pekerjaan praktik
+127|射程|Jangkauan tembak
+128|社会学|Sosiologi
+129|社会主義|Sosialisme
+130|社会党|Partai Sosialis
+131|社会福祉|Kesejahteraan sosial
+132|社会面|Halaman berita sosial
+133|社債|Obligasi perusahaan
+134|社団法人|Badan hukum perkumpulan
+135|社内|Di dalam perusahaan
+136|社名|Nama perusahaan
+137|謝礼|Honorarium; tanda terima kasih
+138|車種|Model mobil
+139|借り入れ|Pinjaman; utang
+140|借款|Pinjaman internasional
+141|借地|Tanah sewaan
+142|借入金|Dana pinjaman
+143|若さ|Keremajaan
+144|若手|Orang muda; generasi muda
+145|弱者|Orang lemah; kaum rentan
+146|主義者|Penganut paham; -is
+147|主宰|Pemimpin; pengelola
+148|主軸|Poros utama; tulang punggung
+149|主将|Kapten tim
+150|主席|Ketua; gubernur
+151|主導権|Inisiatif; kepemimpinan
+152|主流|Arus utama
+153|主力|Kekuatan utama
+154|取締役会|Dewan direksi
+155|守り|Menjaga anak; penjaga
+156|守り|Perlindungan; pertahanan
+157|手がける|Menangani; mengurus
+158|手口|Modus operandi
+159|手腕|Kemampuan; keterampilan
+160|朱|Merah tua; vermilion
+161|種子|Biji
+162|首長|Kepala; pemimpin daerah
+163|首都圏|Wilayah ibu kota
+164|受け皿|Lepek; wadah penampung
+165|受講|Mengikuti kuliah/kursus
+166|受賞|Menerima penghargaan
+167|受託|Menerima amanat
+168|受諾|Penerimaan (tawaran)
+169|受注|Menerima pesanan
+170|受領|Penerimaan
+171|寿|Selamat; umur panjang
+172|授受|Pemberian dan penerimaan
+173|樹脂|Resin
+174|需給|Penawaran dan permintaan
+175|収容所|Kamp penampungan
+176|収録|Perekaman; kompilasi
+177|収賄|Menerima suap
+178|周知|Diketahui umum
+179|周年|Hari jadi tahunan
+180|就労|Bekerja; dipekerjakan
+181|修復|Restorasi; perbaikan
+182|終結|Berakhirnya; penutup
+183|終身|Seumur hidup
+184|終値|Harga penutupan
+185|終盤|Tahap akhir
+186|衆院|Majelis Rendah (DPR Jepang)
+187|集い|Pertemuan; kumpul-kumpul
+188|集積|Penumpukan; akumulasi
+189|住み心地|Kenyamanan tempat tinggal
+190|住職|Kepala biksu kuil
+191|住宅街|Kawasan permukiman
+192|住民税|Pajak penduduk
+193|十一|Sebelas
+194|十億|Satu miliar
+195|十九|Sembilan belas
+196|十五|Lima belas
+197|十三|Tiga belas
+198|十字|Salib; silang
+199|十二|Dua belas
+200|十八|Delapan belas
+201|十両|Divisi kedua sumo
+202|十六|Enam belas
+203|従軍|Ikut berperang
+204|銃弾|Peluru senapan
+205|宿舎|Penginapan; asrama
+206|出火|Terjadi kebakaran
+207|出向|Dipindahtugaskan sementara
+208|出資|Penanaman modal
+209|出身者|Lulusan; alumni
+210|出足|Jumlah kehadiran; awal start
+211|出店|Kios makanan; toko cabang
+212|出馬|Mencalonkan diri
+213|出番|Giliran tampil
+214|出方|Sikap; langkah
+215|出来|Kejadian; penyelesaian
+216|出来高|Hasil panen; volume produksi
+217|春秋|Musim semi dan gugur; tahun-tahun
+218|春闘|Perundingan upah musim semi
+219|準決勝|Semifinal
+220|順次|Berurutan
+221|処遇|Perlakuan terhadap seseorang
+222|初演|Pertunjukan perdana
+223|初場所|Turnamen sumo Januari
+224|初代|Generasi pertama; pendiri
+225|初頭|Awal (abad/tahun)
+226|所管|Wewenang; yurisdiksi
+227|所信|Keyakinan; pendirian
+228|所長|Kepala kantor/lembaga
+229|所得税|Pajak penghasilan
+230|所有権|Hak milik
+231|曙|Fajar; permulaan
+232|緒|Tali; awal
+233|書簡|Surat
+234|書房|Ruang baca; toko buku
+235|助成|Bantuan; subsidi
+236|助役|Wakil kepala; asisten
+237|女子大|Universitas putri
+238|女児|Bayi perempuan; siswi SD
+239|女流|Wanita (penulis/seniman)
+240|序盤|Babak awal
+241|除いて|Kecuali
+242|除去|Penghapusan; penyingkiran
+243|除名|Pengeluaran dari keanggotaan
+244|傷者|Orang terluka
+245|償還|Pelunasan
+246|償却|Amortisasi; penyusutan
+247|勝ち越し|Menang lebih banyak daripada kalah
+248|召集|Pemanggilan (sidang/wajib militer)
+249|商工|Perdagangan dan industri
+250|商工会議所|Kamar Dagang dan Industri
+251|商事|Urusan dagang
+252|商法|Cara berdagang; hukum dagang
+253|商務|Urusan perdagangan
+254|将校|Perwira
+255|小学|Sekolah dasar
+256|小規模|Skala kecil
+257|小国|Negara kecil
+258|小山|Bukit kecil
+259|小児|Anak kecil
+260|小銃|Senapan
+261|小人|Anak kecil; orang kerdil
+262|小島|Pulau kecil
+263|招致|Mengundang; mengajukan tawaran tuan rumah
+264|昇格|Kenaikan pangkat/status
+265|消極|Pasif; negatif
+266|消息筋|Sumber yang mengetahui
+267|消費税|Pajak konsumsi
+268|症候群|Sindrom
+269|省庁|Kementerian dan lembaga pemerintah
+270|笑み|Senyuman
+271|肖像|Potret
+272|賞状|Piagam penghargaan
+273|障壁|Tembok; penghalang
+274|上がったり|Bangkrut; macet
+275|上げ|Kenaikan; lipatan pakaian
+276|上っ調子|Ceplas-ceplos; dangkal
+277|上越|Wilayah Joetsu (Niigata)
+278|上限|Batas atas
+279|上告|Kasasi
+280|上場|Pencatatan saham di bursa
+281|上申|Laporan kepada atasan
+282|上田|Sawah subur
+283|上半期|Semester pertama
+284|上部|Bagian atas
+285|乗り|Menunggang; daya rekat cat
+286|乗員|Awak
+287|常時|Selalu; setiap saat
+288|常設|Permanen; tetap
+289|常任|Tetap; permanen
+290|常務|Direktur eksekutif
+291|常連|Pelanggan tetap
+292|条件付き|Bersyarat
+293|条項|Pasal; klausul
+294|浄化|Pemurnian; pembersihan
+295|譲渡|Pengalihan
+296|食管法|Undang-undang pengendalian pangan
+297|食生活|Pola makan
+298|食用|Untuk dimakan
+299|伸し|Peregangan; renang gaya samping
+300|伸び率|Laju pertumbuhan
+301|信託|Kepercayaan; trust
+302|侵害|Pelanggaran; invasi
+303|審理|Pemeriksaan perkara
+304|心がけ|Sikap mental; perhatian
+305|心不全|Gagal jantung
+306|心理学|Psikologi
+307|新鋭|Muda dan berenergi
+308|新旧|Baru dan lama
+309|新型|Model baru
+310|新作|Karya baru
+311|新車|Mobil baru
+312|新生|Kelahiran baru
+313|新設|Pendirian baru
+314|新党|Partai baru
+315|新入|Baru masuk
+316|新聞紙|Kertas koran
+317|浸透|Penetrasi; peresapan
+318|申し出|Usulan; permintaan
+319|真っ向|Tepat berhadapan
+320|神宮|Kuil Shinto besar
+321|親方|Bos; pelatih sumo
+322|進退|Maju-mundur; sikap
+323|震源|Pusat gempa
+324|人員|Jumlah personel
+325|人間関係|Hubungan antarmanusia
+326|人件費|Biaya tenaga kerja
+327|人ごみ|Kerumunan orang
+328|人事院|Otoritas Kepegawaian Nasional
+329|人選|Seleksi personel
+330|人的|Bersifat manusia
+331|人道|Kemanusiaan; trotoar
+332|人脈|Jaringan relasi
+333|仁|Kebajikan (Konfusianisme)
+334|刃物|Benda tajam
+335|尋問|Pemeriksaan; interogasi
+336|陣営|Kubu; perkemahan
+337|推移|Perubahan; perkembangan
+338|推計|Perkiraan
+339|水上|Di atas air
+340|数多く|Dalam jumlah banyak
+341|数日|Beberapa hari
+342|数百|Beberapa ratus
+343|寸前|Sesaat sebelum; di ambang
+344|世界一|Terbaik di dunia
+345|世界的|Mendunia
+346|世話人|Pengurus; perantara
+347|瀬|Dangkalan; arus deras
+348|制球|Kontrol lemparan
+349|制覇|Penaklukan; juara
+350|政|Pemerintahan
+351|政治的|Politis
+352|政変|Perubahan politik; pergantian pemerintahan
+353|政令|Peraturan pemerintah
+354|整合|Penyesuaian; keselarasan
+355|生協|Koperasi konsumen
+356|生後|Setelah lahir
+357|生産性|Produktivitas
+358|生息|Mendiami (habitat)
+359|生体|Organisme hidup
+360|生態系|Ekosistem
+361|生物学|Biologi
+362|生保|Asuransi jiwa; bantuan sosial
+363|生命保険|Asuransi jiwa
+364|盛り込む|Memasukkan; mencantumkan
+365|精|Roh; tenaga
+366|精子|Sperma
+367|声援|Sorak dukungan
+368|声楽|Musik vokal
+369|製鋼|Pembuatan baja
+370|西口|Pintu barat
+371|西側|Sisi barat
+372|税額|Jumlah pajak
+373|税収|Penerimaan pajak
+374|税制|Sistem pajak
+375|税務|Urusan perpajakan
+376|税率|Tarif pajak
+377|石橋|Jembatan batu
+378|積極|Aktif; positif
+379|責任者|Penanggung jawab
+380|切らす|Kehabisan
+381|接戦|Pertarungan ketat
+382|接点|Titik singgung; kontak
+383|折りたたみ|Lipat
+384|折衝|Negosiasi
+385|窃盗|Pencurian
+386|先手|Langkah pertama; mendahului
+387|先進|Maju; senior
+388|先制|Serangan pertama
+389|先ほど|Barusan
+390|先発|Berangkat lebih dulu; pemain inti
+391|先物|Kontrak berjangka
+392|千里|Seribu ri; jarak jauh
+393|専業|Pekerjaan utama
+394|専門店|Toko spesialis
+395|戦火|Api peperangan; perang
+396|戦時|Masa perang
+397|戦線|Front pertempuran
+398|戦没|Gugur dalam perang
+399|戦略|Strategi

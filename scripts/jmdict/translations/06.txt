@@ -1,0 +1,400 @@
+0|扇|Kipas lipat
+1|選挙戦|Kampanye pemilu
+2|選手権|Kejuaraan
+3|選択肢|Pilihan; opsi
+4|選抜|Seleksi; pemilihan
+5|銭|Sen (seperseratus yen); uang receh
+6|鮮明|Jelas; tajam
+7|前衛|Barisan depan; avant-garde
+8|前身|Pendahulu; asal mula
+9|前線|Front; garis depan
+10|前日|Hari sebelumnya
+11|前年度|Tahun anggaran sebelumnya
+12|前面|Bagian depan; fasad
+13|全域|Seluruh wilayah
+14|全額|Jumlah penuh
+15|全勝|Menang semua
+16|全人|Orang yang seimbang lahir batin
+17|全世界|Seluruh dunia
+18|全土|Seluruh negeri
+19|全日|Sepanjang hari
+20|全廃|Penghapusan total
+21|全文|Teks lengkap
+22|全米|Seluruh Amerika
+23|全面|Menyeluruh
+24|全容|Gambaran lengkap
+25|祖国|Tanah air
+26|組織的|Terorganisasi; sistematis
+27|組長|Bos (yakuza); mandor
+28|訴状|Surat gugatan
+29|創価学会|Soka Gakkai
+30|創業|Pendirian usaha
+31|創設|Pendirian; pembentukan
+32|双|Pasangan; sepasang
+33|双方|Kedua belah pihak
+34|喪主|Pemimpin keluarga berduka
+35|奏者|Pemain (alat musik)
+36|掃海|Penyapuan ranjau laut
+37|操業|Pengoperasian (pabrik/kapal ikan)
+38|争点|Pokok perselisihan
+39|相次ぐ|Terjadi berturut-turut
+40|総会屋|Pemeras rapat pemegang saham
+41|総額|Jumlah keseluruhan
+42|総括|Rangkuman; evaluasi menyeluruh
+43|総合的|Menyeluruh; komprehensif
+44|総辞職|Pengunduran diri massal
+45|総選挙|Pemilihan umum
+46|総長|Rektor; sekretaris jenderal
+47|総統|Presiden (Taiwan); pemimpin tertinggi
+48|総評|Komentar umum
+49|総務|Urusan umum; manajer
+50|総理府|Kantor Perdana Menteri
+51|総量|Jumlah total
+52|総領事|Konsul jenderal
+53|草の根|Akar rumput
+54|草案|Rancangan; draf
+55|葬儀|Upacara pemakaman
+56|装甲|Lapis baja
+57|走り|Berlari; permulaan musim
+58|走者|Pelari
+59|送り|Mengantar; pelepasan
+60|増産|Peningkatan produksi
+61|増資|Penambahan modal
+62|増収|Peningkatan pendapatan
+63|増殖|Perbanyakan; proliferasi
+64|増設|Penambahan fasilitas
+65|臓器|Organ dalam
+66|贈賄|Penyuapan
+67|造形|Pembentukan; seni rupa
+68|側近|Orang kepercayaan; ajudan
+69|即時|Seketika
+70|即日|Hari itu juga
+71|つかの間|Sekejap
+72|足並み|Langkah; keselarasan
+73|速報|Berita kilat
+74|族|Suku; klan
+75|尊厳|Martabat; kehormatan
+76|村長|Kepala desa
+77|他国|Negara lain
+78|他社|Perusahaan lain
+79|多額|Jumlah besar (uang)
+80|多彩|Beraneka warna
+81|多様化|Diversifikasi
+82|太平洋|Samudra Pasifik
+83|打ち出す|Mengemukakan; mencetak
+84|打ち上げ|Peluncuran; pesta penutup
+85|打者|Pemukul
+86|打数|Jumlah at-bat
+87|打線|Barisan pemukul
+88|打倒|Menjatuhkan; mengalahkan
+89|打率|Rata-rata pukulan
+90|体内|Dalam tubuh
+91|体罰|Hukuman fisik
+92|体つき|Postur tubuh
+93|対外|Luar negeri; eksternal
+94|対戦|Bertanding melawan
+95|耐久|Ketahanan
+96|替え|Pengganti; cadangan
+97|替え玉|Pengganti orang; tambah mi
+98|胎児|Janin
+99|貸付|Pinjaman
+100|退陣|Pengunduran diri (pemimpin)
+101|退任|Pensiun dari jabatan
+102|隊員|Anggota pasukan/tim
+103|隊長|Komandan regu
+104|代議|Mewakili orang lain
+105|代打|Pemukul pengganti
+106|代表作|Karya andalan
+107|代表的|Representatif
+108|代理店|Agen; agensi
+109|台頭|Kemunculan; bangkit
+110|台湾|Taiwan
+111|大企業|Perusahaan besar
+112|大規模|Skala besar
+113|大差|Selisih besar
+114|大作|Karya besar
+115|大賞|Hadiah utama
+116|大西洋|Samudra Atlantik
+117|大相撲|Sumo profesional
+118|大隊|Batalion
+119|大物|Tokoh besar; tangkapan besar
+120|大麻|Rami; ganja
+121|第一人者|Tokoh terkemuka
+122|第一歩|Langkah pertama
+123|第三者|Pihak ketiga
+124|題材|Tema; pokok bahasan
+125|たか|Elang
+126|卓|Meja
+127|卓球|Tenis meja
+128|宅配|Pengantaran ke rumah
+129|沢|Sungai gunung; rawa
+130|辰|Naga (shio ke-5)
+131|脱皮|Berganti kulit; melepaskan diri
+132|谷川|Sungai lembah
+133|丹精|Kesungguhan; kerja tekun
+134|単価|Harga satuan
+135|単身|Sendirian
+136|担当者|Penanggung jawab
+137|短時間|Waktu singkat
+138|端末|Terminal; perangkat
+139|団員|Anggota kelompok
+140|団長|Ketua rombongan
+141|弾み|Pantulan; momentum
+142|弾頭|Hulu ledak
+143|弾道|Lintasan peluru; balistik
+144|弾薬|Amunisi
+145|断固|Tegas; teguh
+146|断続|Terputus-putus
+147|談合|Perundingan; kolusi tender
+148|知らん顔|Pura-pura tidak tahu
+149|知名|Terkenal
+150|地検|Kejaksaan negeri
+151|地裁|Pengadilan negeri
+152|地道|Tekun; bersahaja
+153|地雷|Ranjau darat
+154|窒素|Nitrogen
+155|中期|Jangka menengah
+156|中京|Nagoya
+157|中原|Tengah ladang; medan perebutan
+158|中国|Tiongkok; wilayah Chugoku
+159|中国人|Orang Tionghoa
+160|中小|Kecil dan menengah
+161|中小企業|Usaha kecil dan menengah (UKM)
+162|中前|Depan lapangan tengah
+163|中島|Pulau di tengah kolam/sungai
+164|中東|Timur Tengah
+165|中南米|Amerika Tengah dan Selatan
+166|中日|Tiongkok dan Jepang; hari tengah
+167|中盤|Tahap tengah
+168|中部|Bagian tengah; wilayah Chubu
+169|駐在|Bertugas di tempat; polisi pos
+170|駐日|Bertugas di Jepang
+171|駐留|Penempatan (pasukan)
+172|いのしし|Babi hutan
+173|著作|Karya tulis; buku
+174|著作権|Hak cipta
+175|庁舎|Gedung kantor pemerintah
+176|懲戒|Disiplin; sanksi
+177|朝鮮|Korea
+178|朝鮮半島|Semenanjung Korea
+179|朝鮮民主主義人民共和国|Republik Rakyat Demokratik Korea (Korea Utara)
+180|潮流|Arus pasang; tren
+181|町村|Kota kecil dan desa
+182|町長|Wali kota kecil
+183|町内|Lingkungan; rukun tetangga
+184|町民|Warga kota kecil
+185|聴取|Pemeriksaan; mendengar keterangan
+186|調書|Berita acara
+187|調達|Pengadaan
+188|跳び上がる|Melompat ke atas
+189|長期的|Jangka panjang
+190|長距離|Jarak jauh
+191|長時間|Waktu lama
+192|長寿|Umur panjang
+193|長老|Sesepuh; biksu senior
+194|直し|Perbaikan; koreksi
+195|賃上げ|Kenaikan upah
+196|陳述|Pernyataan; keterangan
+197|陳情|Petisi; permohonan
+198|追徴|Penagihan tambahan
+199|通告|Pemberitahuan resmi
+200|通算|Total keseluruhan
+201|通商|Perdagangan
+202|通称|Nama populer
+203|通信衛星|Satelit komunikasi
+204|通信網|Jaringan komunikasi
+205|通報|Laporan; pemberitahuan
+206|塚|Gundukan; makam
+207|浸かる|Terendam; terasinkan
+208|辻|Persimpangan jalan
+209|つばき|Kamelia
+210|壺|Guci; pot
+211|低める|Merendahkan
+212|低価格|Harga murah
+213|低迷|Lesu; stagnan
+214|停戦|Gencatan senjata
+215|堤|Tanggul
+216|定額|Jumlah tetap
+217|定住|Menetap
+218|定数|Jumlah tetap; kuorum; konstanta
+219|定評|Reputasi mapan
+220|定例|Rutin; reguler
+221|帝|Kaisar
+222|帝京|Ibu kota kekaisaran
+223|提言|Usulan; rekomendasi
+224|提訴|Mengajukan gugatan
+225|締結|Penandatanganan (kontrak/perjanjian)
+226|締約|Penutupan perjanjian
+227|泥沼|Rawa lumpur; kesulitan tak berujung
+228|適正|Wajar; tepat
+229|撤去|Pembongkaran; penyingkiran
+230|撤収|Pembongkaran; penarikan mundur
+231|撤退|Penarikan mundur
+232|撤廃|Penghapusan
+233|天下り|Pejabat pensiun masuk perusahaan swasta
+234|天皇陛下|Yang Mulia Kaisar
+235|天理|Hukum alam; kehendak langit
+236|店主|Pemilik toko
+237|店頭|Depan toko
+238|店内|Dalam toko
+239|転機|Titik balik
+240|点字|Huruf Braille
+241|伝統的|Tradisional
+242|殿下|Yang Mulia (pangeran)
+243|電器|Barang elektronik
+244|電機|Mesin listrik
+245|電通大|Universitas Elektro-Komunikasi
+246|電鉄|Kereta listrik
+247|渡航|Perjalanan ke luar negeri
+248|途上国|Negara berkembang
+249|都道府県|Prefektur (seluruh Jepang)
+250|都民|Warga Tokyo
+251|土壌|Tanah; lahan subur (bagi perkembangan)
+252|土壇場|Saat-saat terakhir
+253|党員|Anggota partai
+254|党首|Ketua partai
+255|党内|Di dalam partai
+256|党派|Faksi; partai
+257|島根|Shimane
+258|投機|Spekulasi
+259|投球|Lemparan (bola)
+260|投手|Pelempar (pitcher)
+261|搭載|Memuat; dilengkapi
+262|東海|Wilayah Tokai
+263|東京|Tokyo
+264|東独|Jerman Timur
+265|東南|Tenggara
+266|東方|Arah timur; Timur
+267|東北|Timur laut; wilayah Tohoku
+268|盗塁|Mencuri base
+269|当社|Perusahaan kami; kuil ini
+270|当面|Saat ini; menghadapi
+271|糖|Gula
+272|糖尿病|Diabetes
+273|藤|Wisteria
+274|陶芸|Seni keramik
+275|頭取|Presiden bank
+276|動|Gerak
+277|動議|Mosi
+278|動植物|Flora dan fauna
+279|同局|Biro yang sama
+280|同月|Bulan yang sama
+281|同県|Prefektur yang sama
+282|同校|Sekolah yang sama
+283|同行|Menyertai; bepergian bersama
+284|同国|Negara yang sama
+285|同氏|Orang tersebut
+286|同社|Perusahaan yang sama
+287|同種|Jenis yang sama
+288|同省|Kementerian yang sama
+289|同性愛|Cinta sesama jenis
+290|同席|Duduk bersama; hadir
+291|同地|Tempat yang sama
+292|同町|Kota kecil yang sama
+293|同店|Toko yang sama
+294|同点|Skor sama
+295|同党|Partai yang sama
+296|同日|Hari yang sama
+297|同年|Tahun yang sama
+298|同夜|Malam yang sama
+299|童謡|Lagu anak-anak
+300|道筋|Jalur; rute
+301|得票|Perolehan suara
+302|特使|Utusan khusus
+303|特殊法人|Badan hukum semipemerintah
+304|特性|Sifat khas
+305|特派員|Koresponden
+306|特例|Kasus khusus; pengecualian
+307|独禁法|Undang-undang antimonopoli
+308|突入|Menerobos masuk
+309|届け出|Laporan; pemberitahuan
+310|内角|Sudut dalam
+311|内需|Permintaan domestik
+312|内申|Laporan rahasia
+313|内政|Urusan dalam negeri
+314|内戦|Perang saudara
+315|内定|Keputusan tidak resmi; tawaran kerja
+316|内務|Urusan dalam negeri
+317|内野|Lapangan dalam
+318|内野手|Pemain lapangan dalam
+319|縄文|Zaman Jomon
+320|南アフリカ|Afrika Selatan
+321|南方|Arah selatan; negeri-negeri selatan
+322|難色|Ketidaksetujuan
+323|難病|Penyakit sulit disembuhkan
+324|二死|Dua out
+325|二次|Kedua; sekunder
+326|２０|Dua puluh
+327|二十四時間制|Sistem 24 jam
+328|二十世紀|Abad ke-20
+329|二世|Generasi kedua (keturunan Jepang)
+330|二度|Dua kali
+331|二番|Nomor dua
+332|二部|Dua bagian; dua eksemplar
+333|二塁|Base kedua
+334|二塁打|Pukulan dua base
+335|日系|Keturunan Jepang
+336|日経|Nikkei
+337|日産|Produksi harian; Nissan
+338|日報|Laporan harian
+339|日本海|Laut Jepang
+340|日本人|Orang Jepang
+341|入り|Masuk; terbenamnya matahari
+342|入閣|Masuk kabinet
+343|入居|Pindah menghuni
+344|入植|Pemukiman; migrasi
+345|入団|Bergabung (grup/tim)
+346|認定|Pengakuan; sertifikasi
+347|年産|Produksi tahunan
+348|年次|Tahunan; angkatan
+349|年内|Dalam tahun ini
+350|年俸|Gaji tahunan
+351|年明け|Awal tahun baru
+352|年来|Selama bertahun-tahun
+353|能楽|Teater noh
+354|農|Pertanian
+355|波及|Penyebaran; dampak
+356|波紋|Riak; dampak
+357|俳人|Penyair haiku
+358|廃墟|Reruntuhan
+359|排出|Pembuangan; emisi
+360|背任|Penyalahgunaan kepercayaan
+361|配備|Penempatan; pengerahan
+362|売り込み|Promosi penjualan
+363|売却|Penjualan
+364|陪審|Juri
+365|はえ|Lalat
+366|拍車|Taji; pemacu
+367|白血病|Leukemia
+368|発効|Berlaku efektif
+369|発注|Pemesanan
+370|発動|Pemberlakuan; pengaktifan
+371|発砲|Penembakan
+372|伐採|Penebangan pohon
+373|抜本的|Radikal; drastis
+374|半額|Setengah harga
+375|反体制|Anti kemapanan
+376|繁華街|Kawasan ramai
+377|番付|Daftar peringkat
+378|悲願|Cita-cita terdalam
+379|批准|Ratifikasi
+380|批判的|Kritis
+381|披露|Pengumuman; pertunjukan
+382|皮切り|Pembuka; awal
+383|被害者|Korban
+384|被告人|Terdakwa
+385|被災|Terkena bencana
+386|被爆|Terkena bom/radiasi
+387|非公開|Tertutup; tidak terbuka untuk umum
+388|非公式|Tidak resmi
+389|非合法|Ilegal
+390|備蓄|Persediaan; cadangan
+391|琵琶|Biwa (kecapi Jepang)
+392|必要性|Kebutuhan; keperluan
+393|筆頭|Yang pertama dalam daftar
+394|百合|Lili
+395|標高|Ketinggian dari permukaan laut
+396|標的|Sasaran
+397|表向き|Secara resmi; di permukaan
+398|表示|Tampilan; penunjukan
+399|表明|Pernyataan; penegasan
