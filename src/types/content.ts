@@ -319,6 +319,8 @@ export interface ItemMasteryRecord {
   contextualSuccessCount?: number; // Count of successful uses in Dokkai / Boss
   /** Berapa kali materi hanya DIBUKA/dilihat (paparan). Bukan latihan: tidak mengubah skor, mastery, maupun jadwal SRS. */
   viewCount?: number;
+  /** Berapa kali materi dijawab/diuji di sesi Recall (apa pun enginenya: pilihan ganda, canvas, flashcard). */
+  recallCount?: number;
   /** Interaksi terakhir (jenis, asal modul, waktu) — dasar dedupe event ganda & jejak "di mana dipelajari". */
   lastInteraction?: { type: 'view' | 'writing' | 'flashcard' | 'quiz'; source?: string; at: string };
 }
@@ -336,8 +338,8 @@ export interface RecallQueueItem {
   difficultyLevel: MasteryDifficultyLevel; // 1 to 5
   /** Hanya ada bila materi sudah punya hasil nilai nyata; materi yang baru dilatih (belum diuji) tidak diberi angka. */
   trueMasteryScore?: number;
-  /** Format soal yang dipilih: writing_recall (menulis), meaning, context, atau format materi lain. */
-  exerciseFormat?: 'writing_recall' | 'meaning' | 'context' | 'curated';
+  /** Engine/format latihan: canvas (menulis), flashcard (ingat/lupa), atau soal pilihan ganda (writing_recall, meaning, context, curated). */
+  exerciseFormat?: 'canvas' | 'flashcard' | 'writing_recall' | 'meaning' | 'context' | 'curated';
   tutorInsight?: string; // e.g. "Kamu sering salah ketika pola ini digunakan dalam konteks passive voice."
   masteryRecord?: ItemMasteryRecord;
   sampleQuestion?: Question;

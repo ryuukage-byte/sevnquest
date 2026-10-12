@@ -41,3 +41,22 @@ test('item tanpa angka mastery tidak menampilkan "True Mastery" rekaan', () => {
   assert.doesNotMatch(html, /True Mastery/);
   assert.match(html, /Baru dipelajari/);
 });
+
+import { buildSmartRecallQueue, recordItemInteraction } from '../../utils/mastery';
+import { KOTOBA_DATABASE } from '../../data/kotoba';
+
+test('Recall merender engine flashcard & canvas (bukan hanya pilihan ganda)', () => {
+  const k = Object.values(KOTOBA_DATABASE).find(x => x.word === '黒')!;
+  const flash = buildSmartRecallQueue({ [k.id]: recordItemInteraction(undefined, k.id, 'kotoba', 'flashcard', true) });
+  assert.equal(flash[0].exerciseFormat, 'flashcard');
+  const htmlFlash = render({ recallQueue: flash });
+  assert.match(htmlFlash, /Ingat/);
+  assert.match(htmlFlash, /Lupa/);
+  assert.doesNotMatch(htmlFlash, /50\/50/);
+
+  const canvas = buildSmartRecallQueue({ [k.id]: recordItemInteraction(undefined, k.id, 'kotoba', 'writing', true) });
+  assert.equal(canvas[0].exerciseFormat, 'canvas');
+  const htmlCanvas = render({ recallQueue: canvas });
+  assert.match(htmlCanvas, /dari ingatan/);
+  assert.doesNotMatch(htmlCanvas, /50\/50/);
+});

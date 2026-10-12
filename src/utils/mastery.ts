@@ -174,6 +174,7 @@ export function recordItemAttempt(
       writingCount: effectiveInteraction === 'writing' ? 1 : 0,
       flashcardCount: effectiveInteraction === 'flashcard' ? 1 : 0,
       quizCount: effectiveInteraction === 'quiz' ? 1 : 0,
+      recallCount: source === 'recall' ? 1 : 0,
       consecutivePerfects: isPerfect ? 1 : 0,
       mistakeCount: mistakesInThisAttempt,
       lastReviewedAt: dateStr,
@@ -311,6 +312,7 @@ export function recordItemAttempt(
     writingCount,
     flashcardCount,
     quizCount,
+    recallCount: (existingRecord.recallCount || 0) + (source === 'recall' ? 1 : 0),
     consecutivePerfects,
     mistakeCount,
     lastReviewedAt: dateStr,
@@ -416,11 +418,11 @@ export function hasPracticed(r: ItemMasteryRecord): boolean {
 }
 
 /**
- * Sudah pernah DIUJI lewat format soal (kuis / Recall)? Record lama tanpa penghitung `quizCount` dianggap sudah
+ * Sudah pernah DIUJI (kuis atau sesi Recall dengan engine apa pun)? Record lama tanpa penghitung `quizCount` dianggap sudah
  * diuji supaya tidak membanjiri antrean; record baru selalu punya `quizCount` (0 = belum diuji).
  */
 export function hasBeenRecallTested(r: ItemMasteryRecord): boolean {
-  return r.quizCount === undefined || r.quizCount > 0;
+  return r.quizCount === undefined || r.quizCount > 0 || (r.recallCount || 0) > 0;
 }
 
 /**
@@ -1041,6 +1043,32 @@ function generateAdaptiveQuestion(
   };
 }
 
+/**
+ * Pilih ENGINE latihan Recall yang sesuai cara materi itu dipelajari, bukan selalu pilihan ganda:
+ *  - canvas    : kotoba/kanji yang pernah ditulis -> kanvas menulis (KanjiWritingCanvas / KotobaWritingPractice)
+ *  - flashcard : materi yang dipelajari lewat flashcard -> balik kartu + penilaian diri (ingat / lupa)
+ *  - lainnya   : soal pilihan ganda / susun kalimat (null = pakai format soal hasil generateAdaptiveQuestion)
+ * Belum diuji -> mengikuti cara berlatihnya; sudah diuji -> bergantian engine tiap sesi (attemptsCount genap/ganjil)
+ * supaya ingatan diuji dari beberapa sisi. Level >= 4 (konteks/produksi kalimat) tetap soal.
+ */
+export function selectRecallEngine(item: Pick<RecallQueueItem, 'category' | 'itemId' | 'difficultyLevel' | 'masteryRecord'>): 'canvas' | 'flashcard' | null {
+  const r = item.masteryRecord;
+  if (!r || item.difficultyLevel >= 4) return null;
+  const canWrite = (item.category === 'kotoba' && !!KOTOBA_DATABASE[item.itemId]) ||
+    (item.category === 'kanji' && !!KANJI_DATABASE[item.itemId]);
+  const canFlash = (item.category === 'kotoba' && !!KOTOBA_DATABASE[item.itemId]) ||
+    (item.category === 'kanji' && !!KANJI_DATABASE[item.itemId]) ||
+    (item.category === 'bunpou' && !!BUNPOU_DATABASE[item.itemId]);
+  const wrote = (r.writingCount || 0) > 0 && canWrite;
+  const flipped = (r.flashcardCount || 0) > 0 && canFlash;
+  if (!hasBeenRecallTested(r)) return wrote ? 'canvas' : flipped ? 'flashcard' : null;
+  const turn = r.attemptsCount || 0;
+  if (wrote && flipped) return turn % 3 === 0 ? 'canvas' : turn % 3 === 1 ? 'flashcard' : null;
+  if (wrote) return turn % 2 === 0 ? 'canvas' : null;
+  if (flipped) return turn % 2 === 0 ? 'flashcard' : null;
+  return null;
+}
+
 /** Urutan stabil saat urgensi sama: yang paling lama tidak disentuh dulu, lalu ID. Tidak bergantung urutan penyisipan. */
 function compareRecallPriority(a: RecallQueueItem, b: RecallQueueItem): number {
   if (b.urgencyScore !== a.urgencyScore) return b.urgencyScore - a.urgencyScore;
@@ -1183,10 +1211,10 @@ export function buildSmartRecallQueue(
   for (const item of top) {
     try {
       item.sampleQuestion = generateAdaptiveQuestion(item, item.difficultyLevel);
-      item.exerciseFormat = item.sampleQuestion.id.startsWith('rc_wr_') ? 'writing_recall'
+      item.exerciseFormat = selectRecallEngine(item) || (item.sampleQuestion.id.startsWith('rc_wr_') ? 'writing_recall'
         : item.sampleQuestion.id.startsWith('rc_lv4_') ? 'context'
         : item.sampleQuestion.id.startsWith('rc_lv1_') ? 'meaning'
-        : 'curated';
+        : 'curated');
     } catch (err) {
       console.warn('[SmartRecall] Failed to generate question for:', item.itemId, err);
     }

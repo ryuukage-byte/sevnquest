@@ -6,13 +6,19 @@ import { RecallQueueItem, RecallPriorityTier } from '../../types/content';
 import { playSound, speakJapanese } from '../../utils/audio';
 import { calcEngineExp, getEntityBaseExp } from '../../utils/rewards';
 import { RubyText } from './RubyText';
+import { KanjiWritingCanvas } from './KanjiWritingCanvas';
+import { KotobaWritingPractice } from './KotobaWritingPractice';
+import { UniversalFlashcard } from './UniversalFlashcard';
+import { KOTOBA_DATABASE } from '../../data/kotoba';
+import { KANJI_DATABASE } from '../../data/kanji';
+import { BUNPOU_DATABASE } from '../../data/bunpou';
 
 interface RecallModuleProps {
   recallQueue: RecallQueueItem[];
   playerMp: number;
   playerInt: number;
   onUseMp?: (amount: number) => boolean;
-  onItemReviewed: (itemId: string, category: 'bunpou' | 'kotoba' | 'kanji' | 'dokkai' | 'choukai', isCorrect: boolean) => void;
+  onItemReviewed: (itemId: string, category: 'bunpou' | 'kotoba' | 'kanji' | 'dokkai' | 'choukai', isCorrect: boolean, interactionType?: 'writing' | 'flashcard' | 'quiz') => void;
   onCompleteRecallSession: (totalReviewed: number, correctCount: number, expGained: number, goldGained: number) => void;
   onExit: () => void;
   soundEnabled?: boolean;
@@ -57,6 +63,8 @@ export const RecallModule: React.FC<RecallModuleProps> = ({
   const [sessionExp, setSessionExp] = useState(0);
   const [hiddenOptions, setHiddenOptions] = useState<number[]>([]);
   const [isFinished, setIsFinished] = useState(false);
+  // Engine flashcard: kartu dibalik dulu sebelum penilaian diri (ingat / lupa).
+  const [isCardFlipped, setIsCardFlipped] = useState(false);
 
   // Level 5 Sentence Construction State
   const [selectedWords, setSelectedWords] = useState<string[]>([]);
@@ -153,22 +161,35 @@ export const RecallModule: React.FC<RecallModuleProps> = ({
   };
 
   const totalItems = filteredQueue.length;
+  // Engine latihan non-pilihan-ganda yang dipilih untuk item ini (lihat selectRecallEngine di utils/mastery).
+  const rawEngine = currentItem.exerciseFormat === 'canvas' || currentItem.exerciseFormat === 'flashcard' ? currentItem.exerciseFormat : null;
+  const kotobaForCanvas = currentItem.category === 'kotoba' ? KOTOBA_DATABASE[currentItem.itemId] : undefined;
+  const kanjiForCanvas = currentItem.category === 'kanji' ? KANJI_DATABASE[currentItem.itemId] : undefined;
+  const flashcardSource = currentItem.category === 'kotoba' ? KOTOBA_DATABASE[currentItem.itemId]
+    : currentItem.category === 'kanji' ? KANJI_DATABASE[currentItem.itemId]
+    : currentItem.category === 'bunpou' ? BUNPOU_DATABASE[currentItem.itemId] : undefined;
+  // Jatuh kembali ke soal bila data engine tidak tersedia (mis. materi kustom).
+  const engine = rawEngine === 'canvas' && (kotobaForCanvas || kanjiForCanvas) ? 'canvas'
+    : rawEngine === 'flashcard' && flashcardSource ? 'flashcard' : null;
 
-  const handleSelectOption = (idx: number) => {
+  // Satu jalur pencatatan hasil untuk SEMUA engine (pilihan ganda, canvas, flashcard).
+  const submitResult = (isCorrect: boolean, interaction: 'writing' | 'flashcard' | 'quiz', expKind: 'recall' | 'sentence' = 'recall') => {
     if (isAnswered) return;
-    setSelectedOption(idx);
     setIsAnswered(true);
-
-    const isCorrect = idx === currentQ.correctIndex;
     if (isCorrect) {
       setCorrectCount(prev => prev + 1);
-      setSessionExp(prev => prev + calcEngineExp(getEntityBaseExp(currentItem.category, currentItem.itemId) ?? 25, 'recall'));
+      setSessionExp(prev => prev + calcEngineExp(getEntityBaseExp(currentItem.category, currentItem.itemId) ?? 25, expKind));
       playSound('correct', soundEnabled);
     } else {
       playSound('wrong', soundEnabled);
     }
+    onItemReviewed(currentItem.itemId, currentItem.category, isCorrect, interaction);
+  };
 
-    onItemReviewed(currentItem.itemId, currentItem.category, isCorrect);
+  const handleSelectOption = (idx: number) => {
+    if (isAnswered) return;
+    setSelectedOption(idx);
+    submitResult(idx === currentQ.correctIndex, 'quiz');
   };
 
   // Handle word selection for Level 5 sentence production
@@ -186,22 +207,11 @@ export const RecallModule: React.FC<RecallModuleProps> = ({
 
   const handleSubmitSentenceProduction = () => {
     if (isAnswered) return;
-    setIsAnswered(true);
     const constructed = selectedWords.join('');
     const targetString = currentQ.orderedTarget ? currentQ.orderedTarget.join('') : (currentQ.options[0] || '');
-    
     // Check if constructed matches target or contains all key components
     const isCorrect = constructed === targetString || constructed.replace(/\s+/g, '') === targetString.replace(/\s+/g, '');
-    
-    if (isCorrect) {
-      setCorrectCount(prev => prev + 1);
-      setSessionExp(prev => prev + calcEngineExp(getEntityBaseExp(currentItem.category, currentItem.itemId) ?? 25, 'sentence'));
-      playSound('correct', soundEnabled);
-    } else {
-      playSound('wrong', soundEnabled);
-    }
-
-    onItemReviewed(currentItem.itemId, currentItem.category, isCorrect);
+    submitResult(isCorrect, 'quiz', 'sentence');
   };
 
   const handleNext = () => {
@@ -209,6 +219,7 @@ export const RecallModule: React.FC<RecallModuleProps> = ({
       setCurrentIndex(prev => prev + 1);
       setSelectedOption(null);
       setIsAnswered(false);
+      setIsCardFlipped(false);
       setHiddenOptions([]);
     } else {
       setIsFinished(true);
@@ -430,7 +441,7 @@ export const RecallModule: React.FC<RecallModuleProps> = ({
           </div>
 
           <div className="flex items-center gap-2">
-            {currentQ.difficultyLevel !== 5 && (
+            {currentQ.difficultyLevel !== 5 && !engine && (
               <button
                 onClick={handleUse5050}
                 disabled={isAnswered || hiddenOptions.length > 0}
@@ -449,6 +460,7 @@ export const RecallModule: React.FC<RecallModuleProps> = ({
           </div>
         </div>
 
+        {!engine && (
         <p className="text-sm sm:text-base text-text-primary font-medium whitespace-pre-line leading-relaxed">
           {currentQ.ruby ? (
             <RubyText
@@ -460,9 +472,75 @@ export const RecallModule: React.FC<RecallModuleProps> = ({
             currentQ.prompt
           )}
         </p>
+        )}
 
-        {/* LEVEL 5: INTERACTIVE SENTENCE PRODUCTION BUILDER */}
-        {currentQ.difficultyLevel === 5 ? (
+        {/* ENGINE CANVAS: menulis ulang dari ingatan memakai kanvas goresan yang sama dengan Library */}
+        {engine === 'canvas' ? (
+          <div className="space-y-3 pt-2" key={`canvas_${currentItem.itemId}`}>
+            <p className="text-xs text-text-secondary text-center">
+              {kotobaForCanvas
+                ? <>Tulis kosakata <strong className="text-text-primary">{kotobaForCanvas.reading}</strong> ({kotobaForCanvas.meaningId}) dari ingatan.</>
+                : <>Tulis kanji <strong className="text-text-primary">{kanjiForCanvas?.meaningId}</strong> dari ingatan.</>}
+            </p>
+            {kotobaForCanvas ? (
+              <KotobaWritingPractice
+                kotoba={kotobaForCanvas}
+                soundEnabled={soundEnabled}
+                nextButtonLabel={currentIndex < totalItems - 1 ? 'Materi Berikutnya' : 'Selesai'}
+                onCompleteWord={(score) => submitResult(score >= 60, 'writing')}
+                onFinishWord={handleNext}
+              />
+            ) : (
+              <KanjiWritingCanvas
+                kanjiChar={kanjiForCanvas!.character}
+                level={kanjiForCanvas!.jlpt}
+                totalSheets={1}
+                soundEnabled={soundEnabled}
+                autoAdvance={true}
+                showPromptHeader={false}
+                onCompleteSheet={(_sheet, score) => submitResult(score >= 60, 'writing')}
+                onFinish={handleNext}
+              />
+            )}
+          </div>
+        ) : engine === 'flashcard' ? (
+          /* ENGINE FLASHCARD: balik kartu lalu nilai diri sendiri (ingat / lupa) */
+          <div className="space-y-3 pt-2" key={`flash_${currentItem.itemId}`}>
+            <p className="text-xs text-text-secondary text-center">
+              Ingat-ingat artinya dulu, lalu balik kartu dan nilai dirimu dengan jujur.
+            </p>
+            <UniversalFlashcard
+              item={flashcardSource as any}
+              isFlipped={isCardFlipped}
+              onFlip={() => setIsCardFlipped(f => !f)}
+              soundEnabled={soundEnabled}
+              furiganaEnabled={furiganaEnabled}
+            />
+            {!isAnswered ? (
+              <div className="grid grid-cols-2 gap-2.5">
+                <button
+                  disabled={!isCardFlipped}
+                  onClick={() => submitResult(false, 'flashcard')}
+                  className="p-3 rounded-2xl border border-border-subtle bg-surface-inset text-text-secondary text-xs sm:text-sm font-bold disabled:opacity-40 flex items-center justify-center gap-1.5"
+                >
+                  <XCircle className="w-4 h-4" /> Lupa
+                </button>
+                <button
+                  disabled={!isCardFlipped}
+                  onClick={() => submitResult(true, 'flashcard')}
+                  className="p-3 rounded-2xl border border-border-subtle bg-gold/15 text-gold text-xs sm:text-sm font-bold disabled:opacity-40 flex items-center justify-center gap-1.5"
+                >
+                  <CheckCircle2 className="w-4 h-4" /> Ingat
+                </button>
+              </div>
+            ) : (
+              <button onClick={handleNext} className="rpg-btn rpg-btn-primary w-full py-3 text-xs sm:text-sm gap-2">
+                <span>{currentIndex < totalItems - 1 ? 'Materi Berikutnya' : 'Selesai'}</span>
+                <ArrowRight className="w-4 h-4" />
+              </button>
+            )}
+          </div>
+        ) : currentQ.difficultyLevel === 5 ? (
           <div className="space-y-4 pt-2">
             {/* Target Assembly Box */}
             <div className="p-4 rounded-2xl bg-surface-inset border-2 border-dashed border-border-primary min-h-[64px] flex flex-wrap items-center gap-2">
@@ -569,7 +647,7 @@ export const RecallModule: React.FC<RecallModuleProps> = ({
         )}
 
         {/* Feedback / Explanation */}
-        {isAnswered && (
+        {isAnswered && !engine && (
           <motion.div
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}

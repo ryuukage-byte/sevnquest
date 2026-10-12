@@ -303,7 +303,12 @@ export function usePlayerActions({
   };
 
   // Recall handlers
-  const handleItemReviewed = (itemId: string, category: 'bunpou' | 'kotoba' | 'kanji' | 'dokkai' | 'choukai', isCorrect: boolean) => {
+  const handleItemReviewed = (
+    itemId: string,
+    category: 'bunpou' | 'kotoba' | 'kanji' | 'dokkai' | 'choukai',
+    isCorrect: boolean,
+    interactionType: 'writing' | 'flashcard' | 'quiz' = 'quiz'
+  ) => {
     itemId = canonicalEntityId(itemId);
     setStats(prev => {
       const currentMastery = { ...(prev.itemMastery || {}) };
@@ -316,7 +321,7 @@ export function usePlayerActions({
         7,
         undefined,
         false,
-        'quiz',
+        interactionType,
         'recall'
       );
       currentMastery[itemId] = updated;

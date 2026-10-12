@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { recordItemAttempt, recordItemInteraction, buildSmartRecallQueue } from './mastery';
+import { recordItemAttempt, recordItemInteraction, buildSmartRecallQueue, selectRecallEngine } from './mastery';
 import { KOTOBA_DATABASE } from '../data/kotoba';
 import { KANJI_DATABASE } from '../data/kanji';
 import { BUNPOU_DATABASE } from '../data/bunpou';
@@ -57,7 +57,7 @@ test('1. menulis 黒 di Library tercatat dengan ID stabil, kategori, jenis aktiv
   assert.ok(Date.parse(rec.lastInteraction!.at) > 0);
 });
 
-test('2. setelah refresh, Recall mengambil 黒 dari riwayat yang tersimpan (format writing-recall)', () => {
+test('2. setelah refresh, Recall mengambil 黒 dari riwayat yang tersimpan (engine canvas menulis)', () => {
   let m: Mastery = {};
   m = interact(m, KURO.id, 'kotoba', 'view'); // dibuka dulu di Library
   m = writeWithScore(m, KURO.id, 'kotoba');   // lalu latihan menulis
@@ -66,7 +66,8 @@ test('2. setelah refresh, Recall mengambil 黒 dari riwayat yang tersimpan (form
   const item = q.find(i => i.itemId === KURO.id);
   assert.ok(item, '黒 harus ada di antrean Recall setelah refresh');
   assert.equal(item!.category, 'kotoba');
-  assert.equal(item!.exerciseFormat, 'writing_recall');
+  assert.equal(item!.exerciseFormat, 'canvas');
+  // soal pilihan ganda writing-recall tetap tersedia sebagai cadangan
   assert.ok(item!.sampleQuestion!.options[item!.sampleQuestion!.correctIndex] === KURO.word);
   assert.ok(item!.sampleQuestion!.prompt.includes(KURO.reading));
 });
@@ -78,7 +79,7 @@ test('3. belajar kotoba lewat flashcard -> Recall memilihnya dengan format soal 
   assert.ok(item);
   assert.equal(item!.category, 'kotoba');
   assert.ok(item!.sampleQuestion);
-  assert.ok(['meaning', 'context'].includes(item!.exerciseFormat!));
+  assert.equal(item!.exerciseFormat, 'flashcard');
   const q = item!.sampleQuestion!;
   assert.equal(new Set(q.options).size, q.options.length, 'opsi tidak boleh ganda');
 });
@@ -243,4 +244,34 @@ test('regresi: 台所 yang hanya dibuka tidak membuat Recall macet di soal itu',
   m = writeWithScore(m, KURO.id, 'kotoba');
   const q = buildSmartRecallQueue(refresh(m));
   assert.deepEqual(ids(q), [KURO.id]);
+});
+
+test('engine Recall mengikuti cara belajar: canvas, flashcard, soal; hasil Recall (engine apa pun) menandai sudah diuji', () => {
+  const k = kotobaByWord('黒');
+  const bunpouFlash = interact({}, BUNPOU.id, 'bunpou', 'flashcard');
+  assert.equal(buildSmartRecallQueue(bunpouFlash)[0].exerciseFormat, 'flashcard');
+
+  // kanji yang ditulis -> canvas
+  const kanjiWritten = writeWithScore({}, KANJI.id, 'kanji');
+  assert.equal(buildSmartRecallQueue(kanjiWritten).find(i => i.itemId === KANJI.id)!.exerciseFormat, 'canvas');
+
+  // dijawab di Recall lewat canvas ('writing') -> recallCount naik, tidak muncul lagi sebagai "belum diuji"
+  let m: Mastery = writeWithScore({}, k.id, 'kotoba');
+  m = { ...m, [k.id]: recordItemAttempt(m[k.id], k.id, 'kotoba', 7, 7, undefined, false, 'writing', 'recall') };
+  assert.equal(m[k.id].recallCount, 1);
+  const after = buildSmartRecallQueue(m).find(i => i.itemId === k.id);
+  assert.ok(!after || after.reason !== 'NEW_UNTESTED', 'sudah diuji lewat canvas: tidak diulang sebagai baru');
+
+  // item yang sudah diuji bergantian engine antar sesi
+  const engines = new Set<string | null>();
+  let t: Mastery = writeWithScore({}, k.id, 'kotoba');
+  for (let i = 0; i < 4; i++) {
+    t = { ...t, [k.id]: recordItemAttempt(t[k.id], k.id, 'kotoba', 4, 7, undefined, false, 'quiz', 'recall') };
+    engines.add(selectRecallEngine({ category: 'kotoba', itemId: k.id, difficultyLevel: 1, masteryRecord: t[k.id] }));
+  }
+  assert.ok(engines.has('canvas') && engines.has(null), 'bergantian canvas / soal');
+
+  // level konteks (>=4) tetap soal, dan data engine tak ada -> null
+  assert.equal(selectRecallEngine({ category: 'kotoba', itemId: k.id, difficultyLevel: 4, masteryRecord: t[k.id] }), null);
+  assert.equal(selectRecallEngine({ category: 'kotoba', itemId: 'tidak_ada', difficultyLevel: 1, masteryRecord: t[k.id] }), null);
 });
