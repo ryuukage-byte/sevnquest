@@ -1,0 +1,62 @@
+{
+  "introSec": 3.0,
+  "outroSec": 5.2,
+  "intro": {
+    "name": "SevnQuest",
+    "sub": "Cara mulai belajar bahasa Jepang",
+    "pill": "PANDUAN PEMULA · 6 LANGKAH"
+  },
+  "outro": {
+    "title": "Ringkasan",
+    "items": [
+      "Ikuti tur singkat",
+      "Baca Panduan SevnQuest",
+      "Buka Library, pilih Kanji",
+      "Latih menulis di kanvas",
+      "Cek EXP, Misi & Buku Saku"
+    ],
+    "closing": "Selamat belajar!"
+  },
+  "scenes": [
+    { "id": "s1", "title": "Tur pertama",          "start": "marker:s1_tour",     "end": "marker:s1_end" },
+    { "id": "s2", "title": "Panduan SevnQuest",    "start": "marker:s2_guide",    "end": "marker:s2_end" },
+    { "id": "s3", "title": "Buka Library & Kanji", "start": "marker:s3_library",  "end": "marker:s3_end" },
+    { "id": "s4", "title": "Latihan Menulis",      "start": "marker:s4_writing",  "end": "marker:s4_end" },
+    { "id": "s5", "title": "Pantau progresmu",     "start": "marker:s5_progress", "end": "marker:s5_end" },
+    { "id": "s6", "title": "Buku Saku",            "start": "marker:s6_deck",     "end": "marker:s6_end" }
+  ],
+  "cues": [
+    { "at": "marker:s1_tour", "from": 0.3, "to": 2.4, "text": "Saat pertama dibuka, tur singkat menyambutmu." },
+    { "at": "down:tour_lanjut", "from": -2.0, "to": 0.9, "text": "Ketuk <em>Lanjut</em> untuk fitur berikutnya.", "hl": "tour_lanjut" },
+    { "at": "down:tour_lewati", "from": -2.0, "to": 0.9, "text": "Mau langsung mulai? Ketuk <em>Lewati</em>.", "hl": "tour_lewati" },
+
+    { "at": "down:home_guide", "from": -2.0, "to": 0.9, "text": "Mulai dari sini: ketuk <em>Kenali SevnQuest</em>.", "hl": "home_guide" },
+    { "at": "verify:home_guide", "from": 0.2, "to": 2.6, "text": "Panduan singkat menjelaskan apa itu SevnQuest." },
+    { "at": "down:guide_next", "from": -1.8, "to": 0.9, "text": "Ketuk <em>Lanjut</em> ke slide berikutnya.", "hl": "guide_next" },
+    { "at": "verify:guide_next", "from": 0.3, "to": 3.5, "text": "Tiga pilar: <em>Kotoba</em>, <em>Kanji</em>, dan <em>Pola Kalimat</em>." },
+    { "at": "down:guide_close", "from": -1.5, "to": 0.9, "text": "Tutup panduan lewat tombol <em>X</em>.", "hl": "guide_close" },
+
+    { "at": "down:nav_library", "from": -2.0, "to": 0.9, "text": "Buka tab <em>Library</em> di bawah.", "hl": "nav_library", "spot": true },
+    { "at": "verify:nav_library", "from": 0.2, "to": 2.1, "text": "Isinya: Kosakata, Kanji, Tata Bahasa, Bank Soal." },
+    { "at": "down:lib_kanji", "from": -1.9, "to": 0.9, "text": "Pilih <em>Kanji</em>.", "hl": "lib_kanji", "spot": true },
+    { "at": "down:lib_n5", "from": -1.9, "to": 0.9, "text": "Saring menurut level, misalnya <em>N5</em>.", "hl": "lib_n5" },
+    { "at": "down:lib_tile_ni", "from": -2.2, "to": 0.9, "text": "Ketuk kanji yang ingin dipelajari.", "hl": "lib_tile_ni", "spot": true },
+
+    { "at": "down:open_writing", "from": -1.9, "to": 0.9, "text": "Ketuk <em>Latihan Menulis</em>.", "hl": "open_writing" },
+    { "at": "target:writing_canvas", "from": 0.2, "to": 3.6, "text": "Ini kanvas menulis. Ikuti urutan goresan.", "hl": "writing_canvas" },
+    { "at": "down:stroke_1", "from": -0.2, "to": 4.6, "text": "Tarik tiap goresan langsung di kanvas." },
+    { "at": "verify:menulis_selesai_exp", "from": 0.1, "to": 3.6, "text": "Selesai! Urutan benar dan <em>EXP</em> bertambah." },
+
+    { "at": "down:close_modal", "from": -1.4, "to": 0.9, "text": "Tutup jendela kanji.", "hl": "close_modal" },
+    { "at": "down:nav_home", "from": -1.7, "to": 0.9, "text": "Kembali ke <em>Castle</em>.", "hl": "nav_home" },
+    { "at": "verify:nav_home", "from": 0.2, "to": 2.4, "text": "EXP hasil latihanmu tercatat di sini." },
+    { "at": "down:nav_daily", "from": -1.7, "to": 0.9, "text": "Buka <em>Misi</em> untuk target harian.", "hl": "nav_daily" },
+    { "at": "verify:nav_daily", "from": 0.2, "to": 2.7, "text": "Misi Harian menjaga ritme belajarmu." },
+
+    { "at": "down:nav_deck", "from": -1.7, "to": 0.9, "text": "Terakhir, buka <em>Buku Saku</em>.", "hl": "nav_deck", "spot": true },
+    { "at": "verify:nav_deck", "from": 0.2, "to": 3.4, "text": "Kumpulkan materi dan buat deck sendiri." }
+  ],
+  "zooms": [
+    { "label": "writing_canvas", "start": "target:writing_canvas", "startOffset": -0.2, "end": "marker:s4_end", "endOffset": -0.6, "z": 1.3 }
+  ]
+}
