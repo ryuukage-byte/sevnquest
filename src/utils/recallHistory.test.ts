@@ -275,3 +275,44 @@ test('engine Recall mengikuti cara belajar: canvas, flashcard, soal; hasil Recal
   assert.equal(selectRecallEngine({ category: 'kotoba', itemId: k.id, difficultyLevel: 4, masteryRecord: t[k.id] }), null);
   assert.equal(selectRecallEngine({ category: 'kotoba', itemId: 'tidak_ada', difficultyLevel: 1, masteryRecord: t[k.id] }), null);
 });
+
+import { getFusionPatternForBunpou } from '../engine/recall/bunpouEngines';
+import { conjugateVerb } from '../engine/morphology/inflectionEngine';
+
+const PATTERN_BUNPOU = Object.values(BUNPOU_DATABASE).find(b => {
+  const p = getFusionPatternForBunpou(b.id);
+  return p && p.requiredConjugation !== 'jisho';
+})!;
+const PLAIN_BUNPOU = Object.values(BUNPOU_DATABASE).find(b => !getFusionPatternForBunpou(b.id))!;
+
+test('engine bunpou: Grammar Fusion untuk pola V+akhiran, konjugasi dari conjugateVerb, bunpou lain tetap soal', () => {
+  const pattern = getFusionPatternForBunpou(PATTERN_BUNPOU.id)!;
+  // baru dilatih (kuis salah) -> sudah diuji; paksa belum diuji lewat latihan menulis tanpa kuis
+  let m: Mastery = { [PATTERN_BUNPOU.id]: recordItemInteraction(undefined, PATTERN_BUNPOU.id, 'bunpou', 'writing', true, 'library') };
+  const first = buildSmartRecallQueue(m)[0];
+  assert.equal(first.exerciseFormat, 'fusion');
+  assert.equal(first.fusion?.patternId, pattern.id);
+  assert.ok(first.fusion!.verb.japanese);
+
+  // item yang sudah diuji bergantian: fusion -> konjugasi -> soal kurasi
+  const formats = new Set<string>();
+  for (let n = 0; n < 4; n++) {
+    m = { ...m, [PATTERN_BUNPOU.id]: recordItemAttempt(m[PATTERN_BUNPOU.id], PATTERN_BUNPOU.id, 'bunpou', 4, 7, undefined, false, 'quiz', 'recall') };
+    const it = buildSmartRecallQueue(m).find(i => i.itemId === PATTERN_BUNPOU.id)!;
+    formats.add(it.exerciseFormat!);
+    if (it.exerciseFormat === 'conjugation') {
+      const q = it.sampleQuestion!;
+      const v = it.fusion!.verb;
+      const expected = conjugateVerb(v.japanese, v.reading).forms[pattern.requiredConjugation as import('../engine/types').ConjugationForm].japanese;
+      assert.equal(q.options[q.correctIndex], expected, 'jawaban = hasil conjugateVerb');
+      assert.equal(new Set(q.options).size, 4);
+      assert.ok(q.difficultyLevel !== 5, 'soal konjugasi bukan mode susun kalimat');
+    }
+  }
+  assert.ok(formats.has('fusion') && formats.has('conjugation'), `format: ${[...formats]}`);
+
+  // bunpou tanpa pola Fusion: tidak ada engine fusion
+  const plain = buildSmartRecallQueue({ [PLAIN_BUNPOU.id]: recordItemAttempt(undefined, PLAIN_BUNPOU.id, 'bunpou', 0, 1, undefined, false, 'quiz', 'bunpou') })[0];
+  assert.ok(plain.exerciseFormat !== 'fusion' && plain.exerciseFormat !== 'conjugation');
+  assert.equal(plain.fusion, undefined);
+});

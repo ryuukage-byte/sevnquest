@@ -339,10 +339,12 @@ export interface RecallQueueItem {
   /** Hanya ada bila materi sudah punya hasil nilai nyata; materi yang baru dilatih (belum diuji) tidak diberi angka. */
   trueMasteryScore?: number;
   /** Engine/format latihan: canvas (menulis), flashcard (ingat/lupa), atau soal pilihan ganda (writing_recall, meaning, context, curated). */
-  exerciseFormat?: 'canvas' | 'flashcard' | 'writing_recall' | 'meaning' | 'context' | 'curated';
+  exerciseFormat?: 'fusion' | 'conjugation' | 'canvas' | 'flashcard' | 'writing_recall' | 'meaning' | 'context' | 'curated';
   tutorInsight?: string; // e.g. "Kamu sering salah ketika pola ini digunakan dalam konteks passive voice."
   masteryRecord?: ItemMasteryRecord;
   sampleQuestion?: Question;
+  /** Engine Grammar Fusion (bunpou): pola dan kata kerja dasar yang dipilih saat antrean dibangun (stabil selama sesi). */
+  fusion?: { patternId: string; verb: { id: string; japanese: string; reading: string; meaning: string; level: string } };
 }
 
 export interface DokkaiItem {

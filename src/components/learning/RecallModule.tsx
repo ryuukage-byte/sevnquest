@@ -12,6 +12,9 @@ import { UniversalFlashcard } from './UniversalFlashcard';
 import { KOTOBA_DATABASE } from '../../data/kotoba';
 import { KANJI_DATABASE } from '../../data/kanji';
 import { BUNPOU_DATABASE } from '../../data/bunpou';
+import { FusionPlayer, readReduceMotion } from '../dungeon/fusion/GrammarFusionModal';
+import { buildFreeStage } from '../../engine/fusion/freeStage';
+import { getFusionPatterns } from '../../data/fusion/verbPool';
 
 interface RecallModuleProps {
   recallQueue: RecallQueueItem[];
@@ -162,7 +165,16 @@ export const RecallModule: React.FC<RecallModuleProps> = ({
 
   const totalItems = filteredQueue.length;
   // Engine latihan non-pilihan-ganda yang dipilih untuk item ini (lihat selectRecallEngine di utils/mastery).
-  const rawEngine = currentItem.exerciseFormat === 'canvas' || currentItem.exerciseFormat === 'flashcard' ? currentItem.exerciseFormat : null;
+  const rawEngine = currentItem.exerciseFormat === 'canvas' || currentItem.exerciseFormat === 'flashcard' || currentItem.exerciseFormat === 'fusion'
+    ? currentItem.exerciseFormat : null;
+  // Grammar Fusion: stage dibangun dari pola bunpou + kata kerja yang dipilih saat antrean dibangun.
+  // (tanpa useMemo: berada setelah early-return; FusionPlayer hanya membaca `stage` sekali lewat key per item)
+  const fusionStage = (() => {
+    if (rawEngine !== 'fusion' || !currentItem.fusion) return null;
+    const allPatterns = getFusionPatterns();
+    const pattern = allPatterns.find(p => p.id === currentItem.fusion!.patternId);
+    return pattern ? buildFreeStage(pattern, currentItem.fusion.verb, { allPatterns }) : null;
+  })();
   const kotobaForCanvas = currentItem.category === 'kotoba' ? KOTOBA_DATABASE[currentItem.itemId] : undefined;
   const kanjiForCanvas = currentItem.category === 'kanji' ? KANJI_DATABASE[currentItem.itemId] : undefined;
   const flashcardSource = currentItem.category === 'kotoba' ? KOTOBA_DATABASE[currentItem.itemId]
@@ -170,7 +182,8 @@ export const RecallModule: React.FC<RecallModuleProps> = ({
     : currentItem.category === 'bunpou' ? BUNPOU_DATABASE[currentItem.itemId] : undefined;
   // Jatuh kembali ke soal bila data engine tidak tersedia (mis. materi kustom).
   const engine = rawEngine === 'canvas' && (kotobaForCanvas || kanjiForCanvas) ? 'canvas'
-    : rawEngine === 'flashcard' && flashcardSource ? 'flashcard' : null;
+    : rawEngine === 'flashcard' && flashcardSource ? 'flashcard'
+    : rawEngine === 'fusion' && fusionStage ? 'fusion' : null;
 
   // Satu jalur pencatatan hasil untuk SEMUA engine (pilihan ganda, canvas, flashcard).
   const submitResult = (isCorrect: boolean, interaction: 'writing' | 'flashcard' | 'quiz', expKind: 'recall' | 'sentence' = 'recall') => {
@@ -502,6 +515,26 @@ export const RecallModule: React.FC<RecallModuleProps> = ({
                 onFinish={handleNext}
               />
             )}
+          </div>
+        ) : engine === 'fusion' && fusionStage && currentItem.fusion ? (
+          /* ENGINE GRAMMAR FUSION: rakit pola bunpou dari kata kerja dasar (konjugasi + sufiks) */
+          <div className="space-y-3 pt-2" key={`fusion_${currentItem.itemId}`}>
+            <p className="text-xs text-text-secondary text-center">
+              Rakit pola <strong className="text-text-primary">{fusionStage.target.pattern}</strong> dari kata kerja dasar. Tanpa petunjuk dan paling banyak 1 salah dihitung berhasil.
+            </p>
+            <FusionPlayer
+              stage={fusionStage}
+              baseWord={currentItem.fusion.verb}
+              soundEnabled={soundEnabled}
+              reduceMotion={readReduceMotion()}
+              onFinished={(mistakes, hints) => {
+                const ok = mistakes <= 1 && hints === 0;
+                submitResult(ok, 'quiz', 'sentence');
+                const exp = ok ? calcEngineExp(getEntityBaseExp(currentItem.category, currentItem.itemId) ?? 25, 'sentence') : 0;
+                return { exp, gold: 0, note: ok ? 'Hadiah Recall (dihitung di akhir sesi)' : 'Belum berhasil: mistake/petunjuk terlalu banyak' };
+              }}
+              endActions={[{ label: currentIndex < totalItems - 1 ? 'Materi Berikutnya' : 'Selesai', primary: true, onClick: handleNext }]}
+            />
           </div>
         ) : engine === 'flashcard' ? (
           /* ENGINE FLASHCARD: balik kartu lalu nilai diri sendiri (ingat / lupa) */

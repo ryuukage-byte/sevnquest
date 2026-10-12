@@ -21,6 +21,7 @@ import { DOKKAI_DATABASE } from '../data/dokkai';
 import { CHOUKAI_DATABASE } from '../data/choukai';
 import { PlayerStats } from '../types/rpg';
 import { fisherYatesShuffle } from './smartRandomizer';
+import { getFusionPatternForBunpou, pickRecallVerb, buildConjugationQuestion } from '../engine/recall/bunpouEngines';
 
 // SRS Interval progression (in days)
 const SRS_INTERVALS_DAYS = [1, 2, 4, 7, 14, 30];
@@ -1051,9 +1052,27 @@ function generateAdaptiveQuestion(
  * Belum diuji -> mengikuti cara berlatihnya; sudah diuji -> bergantian engine tiap sesi (attemptsCount genap/ganjil)
  * supaya ingatan diuji dari beberapa sisi. Level >= 4 (konteks/produksi kalimat) tetap soal.
  */
-export function selectRecallEngine(item: Pick<RecallQueueItem, 'category' | 'itemId' | 'difficultyLevel' | 'masteryRecord'>): 'canvas' | 'flashcard' | null {
+export function selectRecallEngine(item: Pick<RecallQueueItem, 'category' | 'itemId' | 'difficultyLevel' | 'masteryRecord'>): 'fusion' | 'conjugation' | 'canvas' | 'flashcard' | null {
   const r = item.masteryRecord;
-  if (!r || item.difficultyLevel >= 4) return null;
+  if (!r) return null;
+
+  // Bunpou dengan pola "V<bentuk> ＋ akhiran": Grammar Fusion (produksi) dan konjugasi (bentuk yang dituntut pola).
+  if (item.category === 'bunpou' && BUNPOU_DATABASE[item.itemId]) {
+    const pattern = getFusionPatternForBunpou(item.itemId);
+    if (pattern) {
+      const turn = r.attemptsCount || 0;
+      const canConj = pattern.requiredConjugation !== 'jisho';
+      const flipped = (r.flashcardCount || 0) > 0;
+      // Urutan bergantian per sesi; 'null' = soal pilihan ganda kurasi bunpou.
+      const seq: Array<'fusion' | 'conjugation' | 'flashcard' | null> = ['fusion'];
+      if (canConj) seq.push('conjugation');
+      if (flipped) seq.push('flashcard');
+      seq.push(null);
+      if (!hasBeenRecallTested(r)) return flipped && (r.quizCount || 0) === 0 && (r.writingCount || 0) === 0 && turn <= 1 ? 'flashcard' : 'fusion';
+      return seq[turn % seq.length];
+    }
+  }
+  if (item.difficultyLevel >= 4) return null;
   const canWrite = (item.category === 'kotoba' && !!KOTOBA_DATABASE[item.itemId]) ||
     (item.category === 'kanji' && !!KANJI_DATABASE[item.itemId]);
   const canFlash = (item.category === 'kotoba' && !!KOTOBA_DATABASE[item.itemId]) ||
@@ -1210,8 +1229,24 @@ export function buildSmartRecallQueue(
   // Soal hanya dibuat untuk item yang benar-benar terpilih (bukan seluruh riwayat).
   for (const item of top) {
     try {
-      item.sampleQuestion = generateAdaptiveQuestion(item, item.difficultyLevel);
-      item.exerciseFormat = selectRecallEngine(item) || (item.sampleQuestion.id.startsWith('rc_wr_') ? 'writing_recall'
+      let engine = selectRecallEngine(item);
+
+      if (engine === 'fusion' || engine === 'conjugation') {
+        const pattern = getFusionPatternForBunpou(item.itemId);
+        const verb = pattern ? pickRecallVerb(pattern) : null;
+        if (pattern && verb) {
+          item.fusion = { patternId: pattern.id, verb };
+          if (engine === 'conjugation') {
+            const q = buildConjugationQuestion(pattern, verb, fisherYatesShuffle, Math.min(item.difficultyLevel, 3) as MasteryDifficultyLevel);
+            if (q) item.sampleQuestion = q; else engine = null;
+          }
+        } else {
+          engine = null;
+        }
+      }
+
+      if (!item.sampleQuestion) item.sampleQuestion = generateAdaptiveQuestion(item, item.difficultyLevel);
+      item.exerciseFormat = engine || (item.sampleQuestion.id.startsWith('rc_wr_') ? 'writing_recall'
         : item.sampleQuestion.id.startsWith('rc_lv4_') ? 'context'
         : item.sampleQuestion.id.startsWith('rc_lv1_') ? 'meaning'
         : 'curated');

@@ -60,3 +60,15 @@ test('Recall merender engine flashcard & canvas (bukan hanya pilihan ganda)', ()
   assert.match(htmlCanvas, /dari ingatan/);
   assert.doesNotMatch(htmlCanvas, /50\/50/);
 });
+
+import { BUNPOU_DATABASE } from '../../data/bunpou';
+import { getFusionPatternForBunpou } from '../../engine/recall/bunpouEngines';
+
+test('Recall merender engine Grammar Fusion untuk bunpou berpola', () => {
+  const b = Object.values(BUNPOU_DATABASE).find(x => getFusionPatternForBunpou(x.id))!;
+  const q = buildSmartRecallQueue({ [b.id]: recordItemInteraction(undefined, b.id, 'bunpou', 'writing', true) });
+  assert.equal(q[0].exerciseFormat, 'fusion');
+  const html = render({ recallQueue: q });
+  assert.match(html, /Rakit pola/);
+  assert.doesNotMatch(html, /50\/50/);
+});
