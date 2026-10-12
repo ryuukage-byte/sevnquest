@@ -841,9 +841,12 @@ function pickKotobaDistractors(target: KotobaItem, count: number): KotobaItem[] 
  */
 function generateAdaptiveQuestion(
   item: RecallQueueItem,
-  level: MasteryDifficultyLevel
+  level: MasteryDifficultyLevel,
+  engine?: 'listening' | null
 ): Question {
   const itemId = item.itemId;
+  // Mode pilihan ganda/engine non-susun-kalimat: tidak boleh memakai tampilan Level 5 (susun kalimat).
+  const mcqLevel = (Math.min(level, 4)) as MasteryDifficultyLevel;
 
   // 1. Bunpou Adaptive Questions
   if (item.category === 'bunpou') {
@@ -949,6 +952,21 @@ function generateAdaptiveQuestion(
       const wrongWords = pickKotobaDistractors(kt, 3);
       const rec = item.masteryRecord;
 
+      // Engine LISTENING: dengar bacaan kata (tanpa melihat tulisannya), pilih artinya.
+      if (engine === 'listening' && kt.reading && wrongWords.length === 3) {
+        const spoken = kt.reading.split(/[/／、,]/)[0].trim();
+        const options = fisherYatesShuffle([kt.meaningId, ...wrongWords.map(w => w.meaningId)]);
+        return {
+          id: `rc_ls_${kt.id}`,
+          prompt: `【Listening】\nDengarkan kosakata berikut, lalu pilih artinya yang tepat. (Tekan ikon speaker untuk memutar ulang.)`,
+          audioPrompt: spoken,
+          options,
+          correctIndex: options.indexOf(kt.meaningId),
+          difficultyLevel: mcqLevel,
+          explanation: `Yang diucapkan: 「${kt.word}」 (${kt.reading}) = ${kt.meaningId}.`
+        };
+      }
+
       // Dilatih lewat menulis (dan belum naik ke level konteks): uji ingatan penulisannya.
       if (level < 4 && (rec?.writingCount || 0) > 0 && kt.reading && wrongWords.length === 3) {
         const options = fisherYatesShuffle([kt.word, ...wrongWords.map(w => w.word)]);
@@ -1002,7 +1020,7 @@ function generateAdaptiveQuestion(
       return {
         ...q,
         prompt: `【Level ${level}: Kanji】\n${q.prompt}`,
-        difficultyLevel: level
+        difficultyLevel: mcqLevel
       };
     }
     if (kj && kj.meaningId) {
@@ -1025,6 +1043,24 @@ function generateAdaptiveQuestion(
           explanation: `Kanji 「${kj.character}」 bermakna: ${kj.meaningId}.`
         };
       }
+    }
+  }
+
+  // 4. Dokkai (bacaan): satu soal kurasi dari wacana; wacana ditampilkan UI, soal bergilir tiap giliran.
+  if (item.category === 'dokkai') {
+    const dk = DOKKAI_DATABASE[itemId];
+    if (dk && dk.questions?.length) {
+      const q = dk.questions[(item.masteryRecord?.attemptsCount || 0) % dk.questions.length];
+      return { ...q, prompt: `【Dokkai: ${dk.title}】\n${q.prompt}`, difficultyLevel: mcqLevel };
+    }
+  }
+
+  // 5. Choukai (mendengar): audio diputar UI, transkrip disembunyikan sampai dijawab.
+  if (item.category === 'choukai') {
+    const ck = CHOUKAI_DATABASE[itemId];
+    if (ck && ck.questions?.length) {
+      const q = ck.questions[(item.masteryRecord?.attemptsCount || 0) % ck.questions.length];
+      return { ...q, prompt: `【Choukai】\n${q.prompt}`, audioPrompt: ck.audioText, difficultyLevel: mcqLevel };
     }
   }
 
@@ -1052,7 +1088,7 @@ function generateAdaptiveQuestion(
  * Belum diuji -> mengikuti cara berlatihnya; sudah diuji -> bergantian engine tiap sesi (attemptsCount genap/ganjil)
  * supaya ingatan diuji dari beberapa sisi. Level >= 4 (konteks/produksi kalimat) tetap soal.
  */
-export function selectRecallEngine(item: Pick<RecallQueueItem, 'category' | 'itemId' | 'difficultyLevel' | 'masteryRecord'>): 'fusion' | 'conjugation' | 'canvas' | 'flashcard' | null {
+export function selectRecallEngine(item: Pick<RecallQueueItem, 'category' | 'itemId' | 'difficultyLevel' | 'masteryRecord'>): 'fusion' | 'conjugation' | 'canvas' | 'flashcard' | 'listening' | null {
   const r = item.masteryRecord;
   if (!r) return null;
 
@@ -1081,11 +1117,15 @@ export function selectRecallEngine(item: Pick<RecallQueueItem, 'category' | 'ite
   const wrote = (r.writingCount || 0) > 0 && canWrite;
   const flipped = (r.flashcardCount || 0) > 0 && canFlash;
   if (!hasBeenRecallTested(r)) return wrote ? 'canvas' : flipped ? 'flashcard' : null;
-  const turn = r.attemptsCount || 0;
-  if (wrote && flipped) return turn % 3 === 0 ? 'canvas' : turn % 3 === 1 ? 'flashcard' : null;
-  if (wrote) return turn % 2 === 0 ? 'canvas' : null;
-  if (flipped) return turn % 2 === 0 ? 'flashcard' : null;
-  return null;
+  // Sudah diuji: bergantian antar engine yang cocok; null = soal pilihan ganda/konteks.
+  const rotation: Array<'canvas' | 'flashcard' | 'listening' | null> = [];
+  if (wrote) rotation.push('canvas');
+  if (flipped) rotation.push('flashcard');
+  const kt = item.category === 'kotoba' ? KOTOBA_DATABASE[item.itemId] : undefined;
+  if (kt?.reading) rotation.push('listening');
+  if (rotation.length === 0) return null;
+  rotation.push(null);
+  return rotation[(r.attemptsCount || 0) % rotation.length];
 }
 
 /** Urutan stabil saat urgensi sama: yang paling lama tidak disentuh dulu, lalu ID. Tidak bergantung urutan penyisipan. */
@@ -1128,7 +1168,7 @@ function resolveRecallLabels(r: ItemMasteryRecord, tm?: number): { title: string
  */
 export function buildSmartRecallQueue(
   itemMastery: Record<string, ItemMasteryRecord> = {},
-  maxItems: number = 10
+  maxItems: number = 30
 ): RecallQueueItem[] {
   const records = Object.values(itemMastery);
   const now = new Date().getTime();
@@ -1245,11 +1285,14 @@ export function buildSmartRecallQueue(
         }
       }
 
-      if (!item.sampleQuestion) item.sampleQuestion = generateAdaptiveQuestion(item, item.difficultyLevel);
-      item.exerciseFormat = engine || (item.sampleQuestion.id.startsWith('rc_wr_') ? 'writing_recall'
-        : item.sampleQuestion.id.startsWith('rc_lv4_') ? 'context'
-        : item.sampleQuestion.id.startsWith('rc_lv1_') ? 'meaning'
-        : 'curated');
+      if (!item.sampleQuestion) item.sampleQuestion = generateAdaptiveQuestion(item, item.difficultyLevel, engine === 'listening' ? 'listening' : null);
+      if (engine === 'listening' && !item.sampleQuestion.id.startsWith('rc_ls_')) engine = null;
+      const sid = item.sampleQuestion.id;
+      const readingEngine = item.category === 'dokkai' && DOKKAI_DATABASE[item.itemId] && item.sampleQuestion.prompt.startsWith('【Dokkai')
+        ? 'dokkai'
+        : item.category === 'choukai' && CHOUKAI_DATABASE[item.itemId] && item.sampleQuestion.prompt.startsWith('【Choukai')
+          ? 'choukai' : null;
+      item.exerciseFormat = engine || readingEngine || (sid.startsWith('rc_wr_') ? 'writing_recall' : sid.startsWith('rc_lv4_') ? 'context' : sid.startsWith('rc_lv1_') ? 'meaning' : 'curated');
     } catch (err) {
       console.warn('[SmartRecall] Failed to generate question for:', item.itemId, err);
     }

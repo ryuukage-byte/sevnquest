@@ -316,3 +316,46 @@ test('engine bunpou: Grammar Fusion untuk pola V+akhiran, konjugasi dari conjuga
   assert.ok(plain.exerciseFormat !== 'fusion' && plain.exerciseFormat !== 'conjugation');
   assert.equal(plain.fusion, undefined);
 });
+
+import { DOKKAI_DATABASE } from '../data/dokkai';
+import { CHOUKAI_DATABASE } from '../data/choukai';
+
+test('engine lain: listening (kotoba), dokkai, choukai', () => {
+  // listening muncul dalam rotasi kotoba yang sudah diuji, dengan audioPrompt dan tanpa menampilkan kata di soal
+  const k = kotobaByWord('黒');
+  let m: Mastery = writeWithScore({}, k.id, 'kotoba');
+  let sawListening = false;
+  for (let n = 0; n < 6 && !sawListening; n++) {
+    m = { ...m, [k.id]: recordItemAttempt(m[k.id], k.id, 'kotoba', 4, 7, undefined, false, 'quiz', 'recall') };
+    const it = buildSmartRecallQueue(m).find(i => i.itemId === k.id)!;
+    if (it.exerciseFormat === 'listening') {
+      sawListening = true;
+      const q = it.sampleQuestion!;
+      assert.ok(q.audioPrompt && q.audioPrompt.length > 0);
+      assert.ok(!q.prompt.includes(k.word), 'kata tidak boleh bocor di teks soal listening');
+      assert.equal(q.options[q.correctIndex], k.meaningId);
+      assert.ok(q.difficultyLevel !== 5);
+    }
+  }
+  assert.ok(sawListening, 'listening masuk rotasi');
+
+  // dokkai: soal kurasi dari wacana
+  const dk = Object.values(DOKKAI_DATABASE)[0];
+  const dkItem = buildSmartRecallQueue({ [dk.id]: recordItemAttempt(undefined, dk.id, 'dokkai' as any, 0, 3, undefined, true, 'quiz', 'dokkai') }).find(i => i.itemId === dk.id)!;
+  assert.equal(dkItem.exerciseFormat, 'dokkai');
+  assert.ok(dkItem.sampleQuestion!.prompt.startsWith('【Dokkai'));
+  assert.ok(dk.questions.some(q => dkItem.sampleQuestion!.prompt.includes(q.prompt)));
+
+  // choukai: audio dialog + soal
+  const ck = Object.values(CHOUKAI_DATABASE)[0];
+  const ckItem = buildSmartRecallQueue({ [ck.id]: recordItemAttempt(undefined, ck.id, 'choukai' as any, 0, 3, undefined, false, 'quiz', 'choukai') }).find(i => i.itemId === ck.id)!;
+  assert.equal(ckItem.exerciseFormat, 'choukai');
+  assert.equal(ckItem.sampleQuestion!.audioPrompt, ck.audioText);
+});
+
+test('soal kurasi level 5 (kanji/dokkai) tidak pernah memakai mode susun-kalimat tanpa kata acak', () => {
+  const kj = Object.values(KANJI_DATABASE).find(k => k.questions?.length)!;
+  const rec = { ...recordItemAttempt(undefined, kj.id, 'kanji', 3, 3, undefined, false, 'quiz', 'x'), masteryLevel: 5 as const };
+  const q = buildSmartRecallQueue({ [kj.id]: { ...rec, consecutivePerfects: 9, decayFactor: 1, mistakeCount: 3 } }).find(i => i.itemId === kj.id);
+  if (q?.sampleQuestion) assert.ok(q.sampleQuestion.difficultyLevel !== 5 || (q.sampleQuestion.scrambleWords?.length ?? 0) > 0);
+});

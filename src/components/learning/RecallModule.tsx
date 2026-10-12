@@ -6,6 +6,10 @@ import { RecallQueueItem, RecallPriorityTier } from '../../types/content';
 import { playSound, speakJapanese } from '../../utils/audio';
 import { calcEngineExp, getEntityBaseExp } from '../../utils/rewards';
 import { RubyText } from './RubyText';
+import { planRecallSession, normalizeRecallDaily, RECALL_LIMITS, type RecallDaily } from '../../engine/recall/session';
+import { getTodayLocalDate } from '../../utils/time';
+import { DOKKAI_DATABASE } from '../../data/dokkai';
+import { CHOUKAI_DATABASE } from '../../data/choukai';
 import { KanjiWritingCanvas } from './KanjiWritingCanvas';
 import { KotobaWritingPractice } from './KotobaWritingPractice';
 import { UniversalFlashcard } from './UniversalFlashcard';
@@ -30,6 +34,8 @@ interface RecallModuleProps {
   syncStatus?: 'idle' | 'syncing' | 'synced' | 'error';
   /** true bila pemain sudah punya catatan mastery (pernah belajar sesuatu). */
   hasProgress?: boolean;
+  /** Kuota Recall hari ini (jawaban / materi baru / sesi); menentukan ukuran sesi dan keadaan "target tercapai". */
+  recallDaily?: RecallDaily;
 }
 
 export const RecallModule: React.FC<RecallModuleProps> = ({
@@ -44,18 +50,33 @@ export const RecallModule: React.FC<RecallModuleProps> = ({
   furiganaEnabled = true,
   syncStatus = 'idle',
   hasProgress = true,
+  recallDaily,
 }) => {
   // Antrean DIBEKUKAN selama sesi. handleItemReviewed membangun ulang `recallQueue` di stats tepat saat
   // pemain mengklik jawaban; kalau layar membaca antrean hidup itu, item yang baru dijawab turun/bergeser,
   // soal dikocok ulang, dan yang tampil jadi soal lain padahal skornya sudah dihitung dari soal sebelumnya.
   // Pengecualian: bila saat dibuka antrean masih kosong (progres sedang dimuat), ikuti antrean hidup
   // sampai terisi sekali.
-  const [recallQueue, setSessionQueue] = useState<RecallQueueItem[]>(liveRecallQueue || []);
+  // Sesi = potongan antrean sesuai kuota (ukuran sesi, jatah harian, jatah materi baru), bukan seluruh antrean.
+  const today = getTodayLocalDate();
+  const daily = normalizeRecallDaily(recallDaily, today);
+  const livePlan = planRecallSession(liveRecallQueue || [], recallDaily, today);
+  const extraPlan = planRecallSession(liveRecallQueue || [], recallDaily, today, { extra: true });
+  const [recallQueue, setSessionQueue] = useState<RecallQueueItem[]>(() => livePlan.items);
   useEffect(() => {
-    if (recallQueue.length === 0 && liveRecallQueue && liveRecallQueue.length > 0) {
-      setSessionQueue(liveRecallQueue);
+    if (recallQueue.length === 0 && livePlan.items.length > 0) {
+      setSessionQueue(livePlan.items);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [liveRecallQueue, recallQueue.length]);
+  // Latihan ekstra setelah target harian / kuota materi baru tercapai: sesi kecil, tetap berurut prioritas.
+  const [isExtraSession, setIsExtraSession] = useState(false);
+  const startExtraSession = () => {
+    setIsExtraSession(true);
+    setSessionQueue(extraPlan.items);
+    setCurrentIndex(0);
+    setActiveFilter('ALL');
+  };
 
   const [activeFilter, setActiveFilter] = useState<'ALL' | RecallPriorityTier>('ALL');
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -68,6 +89,8 @@ export const RecallModule: React.FC<RecallModuleProps> = ({
   const [isFinished, setIsFinished] = useState(false);
   // Engine flashcard: kartu dibalik dulu sebelum penilaian diri (ingat / lupa).
   const [isCardFlipped, setIsCardFlipped] = useState(false);
+  // Hasil nyata sesi (sama dengan yang diberikan ke pemain), untuk layar ringkasan.
+  const [sessionReward, setSessionReward] = useState<{ exp: number; gold: number } | null>(null);
 
   // Level 5 Sentence Construction State
   const [selectedWords, setSelectedWords] = useState<string[]>([]);
@@ -85,7 +108,7 @@ export const RecallModule: React.FC<RecallModuleProps> = ({
 
   // Initialize word bank if current question is Level 5 Sentence Production
   useEffect(() => {
-    if (currentItem?.sampleQuestion?.difficultyLevel === 5 && currentItem.sampleQuestion.scrambleWords) {
+    if (currentItem?.sampleQuestion?.difficultyLevel === 5 && currentItem.sampleQuestion.scrambleWords?.length) {
       setAvailableWords(
         currentItem.sampleQuestion.scrambleWords.map((w, idx) => ({
           id: `${w}_${idx}`,
@@ -104,17 +127,32 @@ export const RecallModule: React.FC<RecallModuleProps> = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentIndex, currentItem?.itemId, currentItem?.sampleQuestion?.id]);
 
+  // Engine audio (listening / choukai): putar otomatis saat soal tampil; ikon speaker memutar ulang.
+  const audioFormat = currentItem?.exerciseFormat === 'listening' || currentItem?.exerciseFormat === 'choukai';
+  useEffect(() => {
+    if (!audioFormat || !currentItem?.sampleQuestion?.audioPrompt) return;
+    const rate = currentItem.exerciseFormat === 'choukai' ? CHOUKAI_DATABASE[currentItem.itemId]?.speechRate : undefined;
+    speakJapanese(currentItem.sampleQuestion.audioPrompt, rate);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [currentItem?.itemId, currentItem?.sampleQuestion?.id, audioFormat]);
+
   if (!recallQueue || recallQueue.length === 0) {
     // Antrean kosong punya tiga penyebab berbeda; pesannya harus dibedakan supaya pemain tidak mengira
     // progresnya hilang padahal hanya belum termuat dari cloud.
-    const emptyState =
-      syncStatus === 'syncing'
+    const hasPending = (liveRecallQueue || []).length > 0;
+    const quotaState = hasPending && livePlan.items.length === 0
+      ? livePlan.capReached
+        ? { icon: <Award className="w-10 h-10" />, title: 'TARGET RECALL HARI INI TERCAPAI', body: `Kamu sudah menjawab ${daily.answered}/${RECALL_LIMITS.dailyCap} soal hari ini. ${livePlan.deferred} materi lain menunggu besok sesuai jadwal SRS; istirahat juga bagian dari mengingat.` }
+        : { icon: <Award className="w-10 h-10" />, title: 'KUOTA MATERI BARU HARI INI HABIS', body: `Sudah ${daily.newTested}/${RECALL_LIMITS.newPerDay} materi baru diuji hari ini. ${livePlan.deferred} materi lain akan masuk di hari berikutnya.` }
+      : null;
+    const emptyState = quotaState ??
+      (syncStatus === 'syncing'
         ? { icon: <ShieldAlert className="w-10 h-10" />, title: 'MEMUAT PROGRESMU…', body: 'Sedang mengambil progres dari cloud. Materi Recall akan muncul setelah selesai.' }
         : syncStatus === 'error'
           ? { icon: <ShieldAlert className="w-10 h-10" />, title: 'PROGRES BELUM TERMUAT', body: 'Sinkronisasi dengan cloud gagal, jadi materi Recall belum bisa dihitung. Progresmu tidak hilang. Periksa koneksi lalu buka Recall lagi.' }
           : !hasProgress
             ? { icon: <BookOpen className="w-10 h-10" />, title: 'BELUM ADA MATERI DIULANG', body: 'Recall mengulang materi yang sudah kamu pelajari. Selesaikan beberapa lantai di Menara atau latihan dulu, lalu kembali ke sini.' }
-            : { icon: <CheckCircle2 className="w-10 h-10" />, title: 'SEMUA MATERI TELAH SEGAR!', body: 'Tidak ada materi dalam antrean Recall yang perlu direview saat ini. Ingatanmu masih dalam kondisi prima.' };
+            : { icon: <CheckCircle2 className="w-10 h-10" />, title: 'SEMUA MATERI TELAH SEGAR!', body: 'Tidak ada materi dalam antrean Recall yang perlu direview saat ini. Ingatanmu masih dalam kondisi prima.' });
     return (
       <div className="w-full max-w-lg mx-auto p-6 sm:p-8 rounded-3xl panel panel-stitched border border-border-subtle text-center space-y-5 shadow-xl">
         <div className="p-4 inline-flex rounded-full bg-gold/15 border border-border-subtle text-gold shadow-md">
@@ -128,6 +166,14 @@ export const RecallModule: React.FC<RecallModuleProps> = ({
             {emptyState.body}
           </p>
         </div>
+        {quotaState && extraPlan.items.length > 0 && (
+          <button
+            onClick={startExtraSession}
+            className="rpg-btn rpg-btn-primary w-full py-3.5 text-xs sm:text-sm font-heading"
+          >
+            Latihan Ekstra ({extraPlan.items.length} soal)
+          </button>
+        )}
         <button
           onClick={onExit}
           className="rpg-btn rpg-btn-secondary w-full py-3.5 text-xs sm:text-sm font-heading"
@@ -164,6 +210,7 @@ export const RecallModule: React.FC<RecallModuleProps> = ({
   };
 
   const totalItems = filteredQueue.length;
+  const isSentenceBuilder = currentQ.difficultyLevel === 5 && !!currentQ.scrambleWords?.length;
   // Engine latihan non-pilihan-ganda yang dipilih untuk item ini (lihat selectRecallEngine di utils/mastery).
   const rawEngine = currentItem.exerciseFormat === 'canvas' || currentItem.exerciseFormat === 'flashcard' || currentItem.exerciseFormat === 'fusion'
     ? currentItem.exerciseFormat : null;
@@ -248,12 +295,13 @@ export const RecallModule: React.FC<RecallModuleProps> = ({
         });
       }
 
+      setSessionReward({ exp: expGained, gold: goldGained });
       onCompleteRecallSession(totalItems, correctCount, expGained, goldGained);
     }
   };
 
   const handleUse5050 = () => {
-    if (hiddenOptions.length > 0 || isAnswered || currentQ.difficultyLevel === 5) return;
+    if (hiddenOptions.length > 0 || isAnswered || isSentenceBuilder) return;
     const mpCost = 10;
     if (onUseMp && !onUseMp(mpCost)) {
       alert('MP tidak cukup untuk Mantra 50/50!');
@@ -290,15 +338,20 @@ export const RecallModule: React.FC<RecallModuleProps> = ({
 
         <div className="grid grid-cols-2 gap-3 p-4 rounded-2xl bg-surface-inset border border-border-subtle">
           <div>
-            <span className="text-[11px] text-text-muted">EXP Diperoleh</span>
-            <p className="text-lg font-bold text-gold font-mono">+{correctCount * 25} EXP</p>
+            <span className="text-[11px] text-text-muted">Hadiah Sesi</span>
+            <p className="text-lg font-bold text-gold font-mono">+{sessionReward?.exp ?? 0} EXP · +{sessionReward?.gold ?? 0} Gold</p>
           </div>
           <div>
-            <span className="text-[11px] text-text-muted">Peningkatan True Mastery</span>
-            <p className="text-lg font-bold text-gold font-mono">+{Math.round(accuracy * 0.15)}%</p>
+            <span className="text-[11px] text-text-muted">Target Hari Ini</span>
+            <p className="text-lg font-bold text-gold font-mono">{daily.answered}/{RECALL_LIMITS.dailyCap}</p>
           </div>
         </div>
 
+        {!isExtraSession && livePlan.items.length > 0 && (
+          <p className="text-[11px] text-text-muted">
+            Masih ada {livePlan.items.length} materi untuk dicicil hari ini (sisa jatah {livePlan.remainingToday}). Buka Recall lagi untuk sesi berikutnya.
+          </p>
+        )}
         <button
           onClick={onExit}
           className="rpg-btn rpg-btn-primary w-full py-3.5 text-sm"
@@ -391,7 +444,7 @@ export const RecallModule: React.FC<RecallModuleProps> = ({
               <Flame className="w-4 h-4" />
             </span>
             <span className="text-xs font-bold text-text-primary font-heading">
-              RECALL ADAPTIF • {currentIndex + 1} / {totalItems}
+              RECALL ADAPTIF{isExtraSession ? ' (EKSTRA)' : ''} • {currentIndex + 1} / {totalItems}
             </span>
           </div>
 
@@ -403,6 +456,9 @@ export const RecallModule: React.FC<RecallModuleProps> = ({
             )}
             <span className="text-xs font-mono font-bold text-text-secondary">
               Skor: {correctCount}/{currentIndex}
+            </span>
+            <span className="hidden sm:inline text-[11px] font-mono text-text-muted" title="Jawaban Recall hari ini / target harian">
+              Hari ini {daily.answered}/{RECALL_LIMITS.dailyCap}
             </span>
           </div>
         </div>
@@ -454,7 +510,7 @@ export const RecallModule: React.FC<RecallModuleProps> = ({
           </div>
 
           <div className="flex items-center gap-2">
-            {currentQ.difficultyLevel !== 5 && !engine && (
+            {!isSentenceBuilder && !engine && (
               <button
                 onClick={handleUse5050}
                 disabled={isAnswered || hiddenOptions.length > 0}
@@ -465,7 +521,7 @@ export const RecallModule: React.FC<RecallModuleProps> = ({
             )}
 
             <button
-              onClick={() => speakJapanese(currentQ.prompt)}
+              onClick={() => speakJapanese(currentQ.audioPrompt ?? currentQ.prompt, currentItem.exerciseFormat === 'choukai' ? CHOUKAI_DATABASE[currentItem.itemId]?.speechRate : undefined)}
               className="btn-physical-secondary p-1.5 rounded-lg transition-colors"
             >
               <Volume2 className="w-3.5 h-3.5 text-gold" />
@@ -485,6 +541,19 @@ export const RecallModule: React.FC<RecallModuleProps> = ({
             currentQ.prompt
           )}
         </p>
+        )}
+
+        {/* ENGINE DOKKAI: wacana ditampilkan, soal membaca di bawahnya */}
+        {currentItem.exerciseFormat === 'dokkai' && DOKKAI_DATABASE[currentItem.itemId] && (
+          <div className="p-4 rounded-2xl bg-surface-inset border border-border-subtle max-h-64 overflow-y-auto text-xs sm:text-sm text-text-primary leading-relaxed whitespace-pre-line font-jp">
+            {DOKKAI_DATABASE[currentItem.itemId].text}
+          </div>
+        )}
+        {/* ENGINE CHOUKAI: audio diputar otomatis; transkrip baru terbuka setelah menjawab */}
+        {currentItem.exerciseFormat === 'choukai' && (
+          <div className="p-3 rounded-2xl bg-surface-inset border border-border-subtle text-center text-xs text-text-secondary">
+            Dengarkan percakapan, lalu jawab. Tekan ikon speaker untuk memutar ulang.
+          </div>
         )}
 
         {/* ENGINE CANVAS: menulis ulang dari ingatan memakai kanvas goresan yang sama dengan Library */}
@@ -573,7 +642,7 @@ export const RecallModule: React.FC<RecallModuleProps> = ({
               </button>
             )}
           </div>
-        ) : currentQ.difficultyLevel === 5 ? (
+        ) : isSentenceBuilder ? (
           <div className="space-y-4 pt-2">
             {/* Target Assembly Box */}
             <div className="p-4 rounded-2xl bg-surface-inset border-2 border-dashed border-border-primary min-h-[64px] flex flex-wrap items-center gap-2">
@@ -689,6 +758,9 @@ export const RecallModule: React.FC<RecallModuleProps> = ({
             <div className="text-xs text-text-secondary leading-relaxed">
               <strong className="text-gold block mb-1 font-heading">Pengingat Memori:</strong>
               {currentQ.explanation}
+              {currentItem.exerciseFormat === 'choukai' && CHOUKAI_DATABASE[currentItem.itemId] && (
+                <span className="block mt-2 whitespace-pre-line font-jp text-text-primary">{CHOUKAI_DATABASE[currentItem.itemId].transcript}</span>
+              )}
             </div>
 
             <button

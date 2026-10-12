@@ -72,3 +72,40 @@ test('Recall merender engine Grammar Fusion untuk bunpou berpola', () => {
   assert.match(html, /Rakit pola/);
   assert.doesNotMatch(html, /50\/50/);
 });
+
+import { DOKKAI_DATABASE } from '../../data/dokkai';
+import { recordItemAttempt } from '../../utils/mastery';
+import { getTodayLocalDate } from '../../utils/time';
+
+test('target harian tercapai: tampil pesan kuota + Latihan Ekstra, bukan soal / "semua segar"', () => {
+  const kotoba = Object.values(KOTOBA_DATABASE).slice(40, 60);
+  const mastery: Record<string, any> = {};
+  for (const k of kotoba) mastery[k.id] = recordItemInteraction(undefined, k.id, 'kotoba', 'flashcard', true);
+  const queue = buildSmartRecallQueue(mastery);
+  assert.ok(queue.length > 0);
+  const html = render({
+    recallQueue: queue,
+    recallDaily: { date: getTodayLocalDate(), answered: 40, newTested: 0, sessions: 4 },
+    hasProgress: true,
+  });
+  assert.match(html, /TARGET RECALL HARI INI TERCAPAI/);
+  assert.match(html, /Latihan Ekstra/);
+  assert.doesNotMatch(html, /SEMUA MATERI TELAH SEGAR/);
+});
+
+test('sesi memakai kuota: maksimal 10 soal per sesi dari antrean yang lebih panjang', () => {
+  const kotoba = Object.values(KOTOBA_DATABASE).slice(70, 100);
+  const mastery: Record<string, any> = {};
+  for (const k of kotoba) mastery[k.id] = recordItemAttempt(undefined, k.id, 'kotoba', 0, 1, undefined, false, 'quiz', 'x');
+  const queue = buildSmartRecallQueue(mastery);
+  assert.ok(queue.length > 10);
+  const html = render({ recallQueue: queue });
+  assert.match(html, /RECALL ADAPTIF[^<]*1 \/ 10/);
+});
+
+test('engine dokkai menampilkan wacana', () => {
+  const dk = Object.values(DOKKAI_DATABASE)[0];
+  const q = buildSmartRecallQueue({ [dk.id]: recordItemAttempt(undefined, dk.id, 'dokkai' as any, 0, 3, undefined, true, 'quiz', 'dokkai') });
+  const html = render({ recallQueue: q });
+  assert.ok(html.includes(dk.text.slice(0, 12)));
+});

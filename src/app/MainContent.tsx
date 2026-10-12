@@ -73,6 +73,7 @@ export function MainContent(props: MainContentProps) {
               furiganaEnabled={stats.furiganaEnabled ?? true}
               syncStatus={cloudSyncStatus}
               hasProgress={Object.values(stats.itemMastery || {}).some(hasPracticed)}
+              recallDaily={stats.recallDaily}
             />
             </ModuleBoundary>
           )}

@@ -1,3 +1,5 @@
+import { planRecallSession } from '../../engine/recall/session';
+import { getTodayLocalDate } from '../../utils/time';
 import React, { useState, useCallback } from 'react';
 import { motion } from 'motion/react';
 import { Play, Flame, ChevronRight, Compass, HelpCircle, Castle } from 'lucide-react';
@@ -32,7 +34,10 @@ export const HomeView: React.FC<HomeViewProps> = ({
 
   const isNewcomer = stats.totalExp === 0;
 
-  const recallCount = stats.recallQueue ? stats.recallQueue.length : 0;
+  // "Due" = jatah Recall hari ini (dibatasi kuota sesi/harian/materi baru), bukan seluruh antrean.
+  const recallPlan = planRecallSession(stats.recallQueue || [], stats.recallDaily, getTodayLocalDate());
+  const recallCount = recallPlan.items.length;
+  const recallPending = (stats.recallQueue?.length || 0) - recallCount; // menunggu: kuota habis / jadwal berikutnya
 
   const completedMissionsCount = dailyMissions.filter(m => m.completed).length;
   const totalMissionsCount = dailyMissions.length || 4;
@@ -218,13 +223,13 @@ export const HomeView: React.FC<HomeViewProps> = ({
         {(!(stats.level === 1 && stats.totalExp === 0) || recallCount > 0) && (
           <div
             onClick={() => {
-              if (onStartRecall && recallCount > 0) {
+              if (onStartRecall && (recallCount > 0 || recallPending > 0)) {
                 playSound('click', stats.soundEnabled);
                 onStartRecall();
               }
             }}
             className={`p-4 flex items-center justify-between gap-3 transition-all group ${
-              recallCount > 0 ? 'hover:bg-surface-elevated/40 cursor-pointer' : 'cursor-default'
+              recallCount > 0 || recallPending > 0 ? 'hover:bg-surface-elevated/40 cursor-pointer' : 'cursor-default'
             }`}
           >
             <div className="flex items-center gap-3">
@@ -247,6 +252,10 @@ export const HomeView: React.FC<HomeViewProps> = ({
               {recallCount > 0 ? (
                 <span className="badge-wine animate-pulse">
                   {recallCount} due
+                </span>
+              ) : recallPending > 0 ? (
+                <span className="text-xs font-bold text-state-success font-mono">
+                  ✓ Jatah hari ini selesai
                 </span>
               ) : (
                 <span className="text-xs font-bold text-state-success font-mono">

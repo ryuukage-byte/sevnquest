@@ -7,7 +7,8 @@ import { getEffectiveTier, getJlptLevelForTierIndex } from '../utils/ascension';
 import { INITIAL_DAILY_MISSIONS, INITIAL_WEEKLY_MISSIONS } from '../data/missions';
 import { createDefaultBookmarkDeck, toggleBookmarkItem, toggleItemInDeck, DEFAULT_BOOKMARK_DECK_ID } from '../utils/decks';
 import { playSound } from '../utils/audio';
-import { recordItemAttempt, recordItemInteraction, buildSmartRecallQueue } from '../utils/mastery';
+import { recordItemAttempt, recordItemInteraction, buildSmartRecallQueue, hasBeenRecallTested } from '../utils/mastery';
+import { recordRecallAnswer, recordRecallSession } from '../engine/recall/session';
 import { recordStudyActivity } from '../utils/activity';
 import { safeSetItem } from '../utils/storage';
 import { getTodayLocalDate } from '../utils/time';
@@ -328,7 +329,9 @@ export function usePlayerActions({
       return {
         ...prev,
         itemMastery: currentMastery,
-        recallQueue: buildSmartRecallQueue(currentMastery)
+        recallQueue: buildSmartRecallQueue(currentMastery),
+        // Kuota harian: jawaban ini + apakah materinya baru pertama kali diuji (dihitung dari record SEBELUM dijawab).
+        recallDaily: recordRecallAnswer(prev.recallDaily, getTodayLocalDate(), !existing || !hasBeenRecallTested(existing))
       };
     });
   };
@@ -341,7 +344,8 @@ export function usePlayerActions({
       advanceMissions('quiz', correctCount);
     }
 
-    setIsRecallActive(false);
+    setStats(prev => ({ ...prev, recallDaily: recordRecallSession(prev.recallDaily, getTodayLocalDate()) }));
+    // Layar ringkasan sesi (RecallModule) ditutup lewat tombolnya (onExit); menutup di sini membuatnya tak pernah terlihat.
   };
 
   // Mana usage helper (e.g. for quiz hints)
