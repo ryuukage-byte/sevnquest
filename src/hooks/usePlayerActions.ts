@@ -188,7 +188,8 @@ export function usePlayerActions({
           total,
           detectedErrors.length > 0 ? detectedErrors : undefined,
           isContextual,
-          effectiveInteraction
+          effectiveInteraction,
+          moduleId
         );
         updatedMastery = {
           ...updatedMastery,
@@ -229,7 +230,7 @@ export function usePlayerActions({
   const handleRecordItemInteraction = useCallback((
     itemId: string,
     category: 'bunpou' | 'kotoba' | 'kanji' | 'dokkai' | 'choukai',
-    interactionType: 'writing' | 'flashcard' | 'quiz',
+    interactionType: 'view' | 'writing' | 'flashcard' | 'quiz',
     success: boolean = true
   ) => {
     itemId = canonicalEntityId(itemId);
@@ -240,18 +241,28 @@ export function usePlayerActions({
         itemId,
         category,
         interactionType,
-        success
+        success,
+        'library'
       );
+      // Event ganda (re-render / StrictMode) mengembalikan record yang sama: tidak ada perubahan state.
+      if (updatedRecord === currentItem) return prev;
       const updatedMastery = {
         ...(prev.itemMastery || {}),
         [itemId]: updatedRecord
       };
+      // Antrean Recall adalah turunan itemMastery: harus dihitung ulang di sini juga, kalau tidak
+      // interaksi Library baru muncul di Recall setelah refresh.
+      let recallQueue = prev.recallQueue || [];
+      try { recallQueue = buildSmartRecallQueue(updatedMastery); } catch (e) { console.warn('Failed to update recall queue', e); }
       let newStats: PlayerStats = {
         ...prev,
-        itemMastery: updatedMastery
+        itemMastery: updatedMastery,
+        recallQueue
       };
 
-      if (interactionType === 'writing') {
+      if (interactionType === 'view') {
+        // Paparan bukan aktivitas belajar: tidak masuk statistik studi.
+      } else if (interactionType === 'writing') {
         newStats = recordStudyActivity(newStats, 'kanjiWriting', itemId, 1);
       } else if (interactionType === 'flashcard') {
         newStats = recordStudyActivity(newStats, 'flashcards', itemId, 1);
@@ -302,7 +313,11 @@ export function usePlayerActions({
         itemId,
         category,
         isCorrect ? 7 : 4,
-        7
+        7,
+        undefined,
+        false,
+        'quiz',
+        'recall'
       );
       currentMastery[itemId] = updated;
       return {

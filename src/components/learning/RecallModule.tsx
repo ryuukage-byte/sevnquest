@@ -372,9 +372,11 @@ export const RecallModule: React.FC<RecallModuleProps> = ({
           </div>
 
           <div className="flex items-center gap-2">
-            <span className="text-[11px] px-2.5 py-0.5 rounded-full bg-surface-inset border border-border-subtle text-gold font-mono font-bold">
-              True Mastery: {currentItem.trueMasteryScore || 65}%
-            </span>
+            {currentItem.trueMasteryScore !== undefined && (
+              <span className="text-[11px] px-2.5 py-0.5 rounded-full bg-surface-inset border border-border-subtle text-gold font-mono font-bold">
+                True Mastery: {currentItem.trueMasteryScore}%
+              </span>
+            )}
             <span className="text-xs font-mono font-bold text-text-secondary">
               Skor: {correctCount}/{currentIndex}
             </span>

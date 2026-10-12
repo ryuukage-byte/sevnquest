@@ -8,6 +8,7 @@ import {
   AdaptiveRecommendation,
   DokkaiItem,
   Question,
+  KotobaItem,
   ErrorType,
   ErrorPatternRecord,
   LanguageProfile,
@@ -103,7 +104,8 @@ export function recordItemAttempt(
   totalQuestions: number,
   detectedErrorTypes?: ErrorType[],
   isContextualApplication: boolean = false,
-  interactionType?: 'writing' | 'flashcard' | 'quiz'
+  interactionType?: 'writing' | 'flashcard' | 'quiz',
+  source?: string
 ): ItemMasteryRecord {
   const now = new Date();
   const dateStr = now.toISOString();
@@ -179,7 +181,8 @@ export function recordItemAttempt(
       reviewIntervalDays: interval,
       decayFactor: 1.0,
       errorPatterns: existingErrors,
-      contextualSuccessCount: isContextualApplication && isPerfect ? 1 : 0
+      contextualSuccessCount: isContextualApplication && isPerfect ? 1 : 0,
+      lastInteraction: { type: effectiveInteraction, source, at: dateStr }
     };
   }
 
@@ -316,103 +319,108 @@ export function recordItemAttempt(
     decayFactor: 1.0,
     weaknessFlags,
     errorPatterns: existingErrors,
-    contextualSuccessCount
+    contextualSuccessCount,
+    lastInteraction: { type: effectiveInteraction, source, at: dateStr }
   };
 }
 
+/** Dua event identik (jenis + asal sama) dalam jendela ini dianggap satu: re-render / StrictMode / klik ganda. */
+const INTERACTION_DEDUPE_MS = 3000;
+
 /**
- * Lightweight Item Interaction Recorder:
- * Useful for non-scoring or single-action interactions like flipping a flashcard,
- * completing a kanji sheet, or viewing/reading with recall.
+ * Lightweight Item Interaction Recorder.
+ *
+ * Memisahkan TIGA hal yang dulu tercampur:
+ *  - paparan   ('view')      : materi hanya dibuka. Hanya menambah viewCount; tidak ada skor, mastery, atau SRS.
+ *  - latihan   ('writing' / 'flashcard'): dicatat di penghitung masing-masing + waktu terakhir, tetapi TANPA
+ *                skor fiktif: bukan percobaan bernilai (attemptsCount tetap), mastery tidak berubah.
+ *  - performa  ('quiz')      : jawaban benar/salah yang nyata -> dinilai lewat recordItemAttempt (SRS penuh).
+ * Record baru dari paparan/latihan memiliki bestScore 0/0 dan mastery 0: "belum ada hasil", bukan "sudah 90%".
  */
 export function recordItemInteraction(
   existingRecord: ItemMasteryRecord | undefined,
   itemId: string,
   category: 'bunpou' | 'kotoba' | 'kanji' | 'dokkai' | 'choukai',
-  interactionType: 'writing' | 'flashcard' | 'quiz',
-  success: boolean = true
+  interactionType: 'view' | 'writing' | 'flashcard' | 'quiz',
+  success: boolean = true,
+  source?: string
 ): ItemMasteryRecord {
   const now = new Date();
   const dateStr = now.toISOString();
 
-  const prevWriting = existingRecord?.writingCount || 0;
-  const prevFlashcard = existingRecord?.flashcardCount || 0;
-  const prevQuiz = existingRecord?.quizCount || 0;
-  const prevAttempts = existingRecord?.attemptsCount || 0;
+  const last = existingRecord?.lastInteraction;
+  // Jawaban kuis adalah hasil nyata (tidak di-dedupe); hanya paparan/latihan ringan yang rawan event ganda.
+  if (
+    interactionType !== 'quiz' &&
+    last &&
+    last.type === interactionType &&
+    last.source === source &&
+    now.getTime() - Date.parse(last.at) >= 0 &&
+    now.getTime() - Date.parse(last.at) < INTERACTION_DEDUPE_MS
+  ) {
+    return existingRecord as ItemMasteryRecord;
+  }
 
-  const newWriting = prevWriting + (interactionType === 'writing' ? 1 : 0);
-  const newFlashcard = prevFlashcard + (interactionType === 'flashcard' ? 1 : 0);
-  const newQuiz = prevQuiz + (interactionType === 'quiz' ? 1 : 0);
-  const newAttempts = prevAttempts + 1;
+  if (interactionType === 'quiz') {
+    return recordItemAttempt(existingRecord, itemId, category, success ? 1 : 0, 1, undefined, false, 'quiz', source);
+  }
+
+  const lastInteraction = { type: interactionType, source, at: dateStr } as const;
+  const isPractice = interactionType !== 'view';
 
   if (!existingRecord) {
-    const initialMastery = interactionType === 'flashcard' ? 25 : (interactionType === 'writing' ? 45 : 35);
-    const initialLvl: MasteryDifficultyLevel = interactionType === 'writing' ? 2 : 1;
     const interval = 1;
-    const nextDue = new Date(now.getTime() + interval * 24 * 60 * 60 * 1000).toISOString();
-
     return {
       itemId,
       category,
       status: 'LEARNING',
-      masteryPercentage: initialMastery,
-      masteryLevel: initialLvl,
-      bestScore: { score: success ? 1 : 0, total: 1 },
+      masteryPercentage: 0,
+      masteryLevel: 1,
+      bestScore: { score: 0, total: 0 },
       bestScoreAchievedAt: dateStr,
-      attemptsCount: newAttempts,
-      writingCount: newWriting,
-      flashcardCount: newFlashcard,
-      quizCount: newQuiz,
-      consecutivePerfects: success ? 1 : 0,
-      mistakeCount: success ? 0 : 1,
+      attemptsCount: 0,
+      writingCount: interactionType === 'writing' ? 1 : 0,
+      flashcardCount: interactionType === 'flashcard' ? 1 : 0,
+      quizCount: 0,
+      viewCount: interactionType === 'view' ? 1 : 0,
+      consecutivePerfects: 0,
+      mistakeCount: isPractice && !success ? 1 : 0,
       lastReviewedAt: dateStr,
-      nextReviewDue: nextDue,
+      nextReviewDue: new Date(now.getTime() + interval * 24 * 60 * 60 * 1000).toISOString(),
       reviewIntervalDays: interval,
       decayFactor: 1.0,
-      contextualSuccessCount: 0
+      contextualSuccessCount: 0,
+      lastInteraction
     };
   }
 
-  // Update existing record
-  const currentPct = existingRecord.masteryPercentage || 0;
-  // Gradual mastery boost on active interaction:
-  // Writing gives up to +5%, Flashcard +2%, Quiz +4%
-  const boost = interactionType === 'writing' ? 5 : (interactionType === 'quiz' ? 4 : 2);
-  // Interaksi ringan (membuka kartu, menggambar tanpa penilaian) dibatasi di INTERACTION_MASTERY_CAP:
-  // status MASTERED/PERFECTED hanya bisa dicapai lewat recordItemAttempt (jawaban yang dinilai + SRS).
-  const boosted = success ? Math.min(INTERACTION_MASTERY_CAP, currentPct + boost) : currentPct;
-  const updatedPct = Math.min(100, Math.max(currentPct, boosted));
-  
-  let newLevel = existingRecord.masteryLevel;
-  if (updatedPct >= 90) newLevel = 5;
-  else if (updatedPct >= 75) newLevel = 4;
-  else if (updatedPct >= 60) newLevel = 3;
-  else if (updatedPct >= 40) newLevel = 2;
-  else newLevel = 1;
-
-  let newStatus: MasteryStatus = existingRecord.status;
-  if (updatedPct >= 95) newStatus = 'PERFECTED';
-  else if (updatedPct >= 80) newStatus = 'MASTERED';
-  else if (updatedPct >= 50) newStatus = 'COMPLETED';
-  else newStatus = 'LEARNING';
-  // Jangan menurunkan status yang sudah diraih lewat jawaban terinci hanya karena interaksi ringan.
-  if (STATUS_RANK[existingRecord.status] > STATUS_RANK[newStatus]) newStatus = existingRecord.status;
+  if (!isPractice) {
+    // Paparan murni: jangan sentuh jadwal SRS / skor / waktu review.
+    return { ...existingRecord, viewCount: (existingRecord.viewCount || 0) + 1, lastInteraction };
+  }
 
   return {
     ...existingRecord,
-    status: newStatus,
-    masteryPercentage: updatedPct,
-    masteryLevel: newLevel,
-    attemptsCount: newAttempts,
-    writingCount: newWriting,
-    flashcardCount: newFlashcard,
-    quizCount: newQuiz,
-    // Kegagalan interaksi dicatat: sebelumnya success=false hanya menambah attemptsCount.
+    writingCount: (existingRecord.writingCount || 0) + (interactionType === 'writing' ? 1 : 0),
+    flashcardCount: (existingRecord.flashcardCount || 0) + (interactionType === 'flashcard' ? 1 : 0),
     mistakeCount: success ? existingRecord.mistakeCount : (existingRecord.mistakeCount || 0) + 1,
     consecutivePerfects: success ? existingRecord.consecutivePerfects : 0,
     lastReviewedAt: dateStr,
-    decayFactor: 1.0
+    lastInteraction
   };
+}
+
+/** Pernah berlatih sungguhan (menulis / flashcard / kuis / jawaban bernilai), bukan sekadar membuka materi. */
+export function hasPracticed(r: ItemMasteryRecord): boolean {
+  return (r.writingCount || 0) + (r.flashcardCount || 0) + (r.quizCount || 0) + (r.attemptsCount || 0) > 0;
+}
+
+/**
+ * Sudah pernah DIUJI lewat format soal (kuis / Recall)? Record lama tanpa penghitung `quizCount` dianggap sudah
+ * diuji supaya tidak membanjiri antrean; record baru selalu punya `quizCount` (0 = belum diuji).
+ */
+export function hasBeenRecallTested(r: ItemMasteryRecord): boolean {
+  return r.quizCount === undefined || r.quizCount > 0;
 }
 
 /**
@@ -788,6 +796,38 @@ function calculateItemTrueMastery(
   };
 }
 
+// Kolam pengecoh per (JLPT, jenis kata), dibangun sekali; antrean Recall dihitung ulang tiap stats berubah.
+let kotobaPools: Map<string, KotobaItem[]> | null = null;
+function getKotobaPool(key: string): KotobaItem[] {
+  if (!kotobaPools) {
+    kotobaPools = new Map();
+    for (const k of Object.values(KOTOBA_DATABASE)) {
+      if (!k || !k.word || !k.meaningId) continue;
+      const poolKey = `${k.jlpt}|${k.wordType}`;
+      const list = kotobaPools.get(poolKey);
+      if (list) list.push(k); else kotobaPools.set(poolKey, [k]);
+    }
+  }
+  return kotobaPools.get(key) || [];
+}
+
+/** Pengecoh nyata: kosakata lain yang sejenis (JLPT + jenis kata sama), bukan teks statis tak terkait. */
+function pickKotobaDistractors(target: KotobaItem, count: number): KotobaItem[] {
+  const pool = getKotobaPool(`${target.jlpt}|${target.wordType}`);
+  const picked: KotobaItem[] = [];
+  const seenWords = new Set([target.word]);
+  const seenMeanings = new Set([target.meaningId]);
+  const maxTries = Math.min(pool.length, 60);
+  for (let i = 0; i < maxTries && picked.length < count; i++) {
+    const cand = pool[Math.floor(Math.random() * pool.length)];
+    if (seenWords.has(cand.word) || seenMeanings.has(cand.meaningId)) continue;
+    seenWords.add(cand.word);
+    seenMeanings.add(cand.meaningId);
+    picked.push(cand);
+  }
+  return picked;
+}
+
 /**
  * 5-TIER ADAPTIVE QUESTION GENERATOR:
  * Level 1: Pattern / Meaning Recognition
@@ -903,9 +943,24 @@ function generateAdaptiveQuestion(
   if (item.category === 'kotoba') {
     const kt = KOTOBA_DATABASE[itemId];
     if (kt) {
-      if (level >= 4 && kt.exampleSentence) {
-        const distractors = ['別の言葉', '関係ない名詞', '反対の意味の語'];
-        const options = fisherYatesShuffle([kt.word, ...distractors]);
+      const wrongWords = pickKotobaDistractors(kt, 3);
+      const rec = item.masteryRecord;
+
+      // Dilatih lewat menulis (dan belum naik ke level konteks): uji ingatan penulisannya.
+      if (level < 4 && (rec?.writingCount || 0) > 0 && kt.reading && wrongWords.length === 3) {
+        const options = fisherYatesShuffle([kt.word, ...wrongWords.map(w => w.word)]);
+        return {
+          id: `rc_wr_${kt.id}`,
+          prompt: `【Level ${level}: Writing Recall】\nBagaimana cara menulis kosakata 「${kt.reading}」 (${kt.meaningId}) dengan benar?`,
+          options,
+          correctIndex: options.indexOf(kt.word),
+          difficultyLevel: level,
+          explanation: `Penulisan yang benar: 「${kt.word}」 (${kt.reading}) = ${kt.meaningId}.`
+        };
+      }
+
+      if (level >= 4 && kt.exampleSentence && kt.exampleSentence.japanese.includes(kt.word) && wrongWords.length === 3) {
+        const options = fisherYatesShuffle([kt.word, ...wrongWords.map(w => w.word)]);
         const correctIndex = options.indexOf(kt.word);
         return {
           id: `rc_lv4_${kt.id}`,
@@ -917,12 +972,13 @@ function generateAdaptiveQuestion(
         };
       }
 
-      const distractors = [
+      const fallbackMeanings = [
         'Melakukan perjalanan dinas ke luar kota',
         'Menyimpan barang untuk persiapan masa depan',
         'Menolak tawaran secara halus'
       ];
-      const options = fisherYatesShuffle([kt.meaningId, ...distractors]);
+      const wrongMeanings = wrongWords.length === 3 ? wrongWords.map(w => w.meaningId) : fallbackMeanings;
+      const options = fisherYatesShuffle([kt.meaningId, ...wrongMeanings]);
       const correctIndex = options.indexOf(kt.meaningId);
       return {
         id: `rc_lv1_${kt.id}`,
@@ -938,13 +994,34 @@ function generateAdaptiveQuestion(
   // 3. Kanji Adaptive Questions
   if (item.category === 'kanji') {
     const kj = KANJI_DATABASE[itemId];
-    if (kj && kj.questions.length > 0) {
+    if (kj && kj.questions && kj.questions.length > 0) {
       const q = kj.questions[0];
       return {
         ...q,
         prompt: `【Level ${level}: Kanji】\n${q.prompt}`,
         difficultyLevel: level
       };
+    }
+    if (kj && kj.meaningId) {
+      // Kanji tanpa soal kurasi: uji arti dengan pengecoh dari kanji lain, bukan teks statis.
+      const others = Object.values(KANJI_DATABASE)
+        .filter(k => k && k.character !== kj.character && k.meaningId && k.meaningId !== kj.meaningId);
+      const wrong: string[] = [];
+      for (let i = 0; i < 40 && wrong.length < 3 && others.length > 0; i++) {
+        const m = others[Math.floor(Math.random() * others.length)].meaningId;
+        if (!wrong.includes(m)) wrong.push(m);
+      }
+      if (wrong.length === 3) {
+        const options = fisherYatesShuffle([kj.meaningId, ...wrong]);
+        return {
+          id: `rc_kj_${kj.id}`,
+          prompt: `【Level ${level}: Kanji】\nApa arti kanji 「${kj.character}」?`,
+          options,
+          correctIndex: options.indexOf(kj.meaningId),
+          difficultyLevel: level,
+          explanation: `Kanji 「${kj.character}」 bermakna: ${kj.meaningId}.`
+        };
+      }
     }
   }
 
@@ -964,9 +1041,43 @@ function generateAdaptiveQuestion(
   };
 }
 
+/** Urutan stabil saat urgensi sama: yang paling lama tidak disentuh dulu, lalu ID. Tidak bergantung urutan penyisipan. */
+function compareRecallPriority(a: RecallQueueItem, b: RecallQueueItem): number {
+  if (b.urgencyScore !== a.urgencyScore) return b.urgencyScore - a.urgencyScore;
+  const ta = Date.parse(a.masteryRecord?.lastReviewedAt || '') || 0;
+  const tb = Date.parse(b.masteryRecord?.lastReviewedAt || '') || 0;
+  if (ta !== tb) return ta - tb;
+  return a.itemId < b.itemId ? -1 : a.itemId > b.itemId ? 1 : 0;
+}
+
+function resolveRecallLabels(r: ItemMasteryRecord, tm?: number): { title: string; subtitle: string } {
+  let title = r.itemId;
+  let subtitle = tm === undefined ? r.category.toUpperCase() : `${r.category.toUpperCase()} • True Mastery: ${tm}%`;
+  if (r.category === 'bunpou') {
+    const bp = BUNPOU_DATABASE[r.itemId];
+    if (bp) { title = bp.title; subtitle = bp.meaningId; }
+  } else if (r.category === 'kotoba') {
+    const kt = KOTOBA_DATABASE[r.itemId];
+    if (kt) { title = `${kt.word} (${kt.reading})`; subtitle = kt.meaningId; }
+  } else if (r.category === 'kanji') {
+    const kj = KANJI_DATABASE[r.itemId];
+    if (kj) { title = `${kj.character} 【${kj.onyomi.join(', ')}】`; subtitle = kj.meaningId; }
+  } else if (r.category === 'dokkai') {
+    const dk = DOKKAI_DATABASE[r.itemId];
+    if (dk) { title = dk.title; subtitle = dk.category; }
+  }
+  return { title, subtitle };
+}
+
 /**
  * Intelligent Recall Queue builder that prioritizes weak, decayed, and due items
- * Generates clear, personalized Tutor Insights and 4-tier Priority Badges
+ * Generates clear, personalized Tutor Insights and 4-tier Priority Badges.
+ *
+ * Sumber data HANYA `itemMastery` (riwayat belajar pemain). Dua kelompok kelayakan:
+ *  - SUDAH DIUJI (quizCount > 0 / record lama): aturan mastery + SRS yang ada (CRITICAL/WEAK/REVIEW/MAINTAIN).
+ *  - BARU DILATIH, BELUM DIUJI (menulis/flashcard tanpa kuis): masuk antrean sekali sebagai REVIEW tanpa angka
+ *    mastery rekaan; setelah dijawab di Recall ia mengikuti jadwal SRS biasa.
+ * Materi yang hanya dibuka (paparan) tidak masuk antrean.
  */
 export function buildSmartRecallQueue(
   itemMastery: Record<string, ItemMasteryRecord> = {},
@@ -978,85 +1089,73 @@ export function buildSmartRecallQueue(
 
   for (const r of records) {
     try {
+      if (!r || !r.itemId || !hasPracticed(r)) continue;
+
       const dueDate = new Date(r.nextReviewDue).getTime();
       const isDue = dueDate <= now;
       const daysSinceLastReview = (now - new Date(r.lastReviewedAt).getTime()) / (1000 * 60 * 60 * 24);
-
-      const trueMasteryBreakdown = calculateItemTrueMastery(r, itemMastery);
-      const tm = trueMasteryBreakdown.trueMastery;
 
       let urgencyScore = 0;
       let priorityTier: RecallPriorityTier = 'REVIEW';
       let reason: RecallQueueItem['reason'] = 'SRS_DUE';
       let reasonText = '';
       let tutorInsight = '';
+      let tm: number | undefined;
+      let levelTier: MasteryDifficultyLevel = 1;
 
-      // 🔴 1. CRITICAL PRIORITY: Consecutive mistakes or Dokkai Contextual failure
-      if (r.weaknessFlags?.includes('dokkai_context_fail') || r.mistakeCount >= 3 || tm < 45) {
-        priorityTier = 'CRITICAL';
-        urgencyScore = 150 + r.mistakeCount * 10 + (100 - tm);
-        reason = r.weaknessFlags?.includes('dokkai_context_fail') ? 'DOKKAI_WEAKNESS' : 'HIGH_MISTAKES';
-        reasonText = r.weaknessFlags?.includes('dokkai_context_fail')
-          ? `Gagal dalam konteks Dokkai wacana panjang`
-          : `Sering keliru (${r.mistakeCount}x salah berturut-turut)`;
-        tutorInsight = `Tutor: Titik lemah kritis terdeteksi! Kamu menguasai rumus dasarnya, namun keliru ketika diuji dalam variasi konteks kalimat.`;
-      }
-      // 🟠 2. WEAK PRIORITY: Low True Mastery (< 70%)
-      else if (tm < 70 || r.status === 'LEARNING') {
-        priorityTier = 'WEAK';
-        urgencyScore = 100 + (100 - tm) + (r.mistakeCount * 5);
-        reason = 'LOW_MASTERY';
-        reasonText = `True Mastery baru ${tm}% - butuh penguatan`;
-        tutorInsight = `Tutor: Masih dalam tahap penguasaan awal. Latih variasi bentuk konjugasi dan partikelnya.`;
-      }
-      // 🟡 3. REVIEW PRIORITY: SRS Schedule Due Today
-      else if (isDue) {
+      if (!hasBeenRecallTested(r)) {
+        // Belum ada hasil nilai: jangan mengarang mastery/"lemah". Cukup tandai perlu diuji pertama kali.
         priorityTier = 'REVIEW';
-        urgencyScore = 75 + Math.min(25, Math.floor(daysSinceLastReview) * 2);
-        reason = 'SRS_DUE';
-        reasonText = `Jadwal tinjau berkala (SRS) untuk mengunci memori`;
-        tutorInsight = `Tutor: Waktu tepat mengulang agar materi berpindah ke memori jangka panjang permanen.`;
-      }
-      // 🟢 4. MAINTAIN PRIORITY: Mastered items checked for retention
-      else if (daysSinceLastReview > 5 && r.status !== 'PERFECTED') {
-        priorityTier = 'MAINTAIN';
-        urgencyScore = 40 + Math.min(30, Math.floor(daysSinceLastReview));
-        reason = 'DECAYED';
-        reasonText = `Sudah ${Math.floor(daysSinceLastReview)} hari tidak dilatih`;
-        tutorInsight = `Tutor: Materi ini sudah kamu kuasai (${tm}%), ulangi sejenak untuk menjaga retensi.`;
+        reason = 'NEW_UNTESTED';
+        urgencyScore = 85 + Math.min(10, (r.writingCount || 0) * 2 + (r.flashcardCount || 0));
+        reasonText = (r.writingCount || 0) > 0
+          ? 'Baru berlatih menulis - belum pernah diuji ingatannya'
+          : 'Baru dipelajari - belum pernah diuji ingatannya';
+        tutorInsight = 'Tutor: Materi ini baru kamu pelajari. Uji ingatanmu sekarang agar jadwal ulangnya (SRS) bisa dihitung dari hasil nyata.';
+      } else {
+        const trueMasteryBreakdown = calculateItemTrueMastery(r, itemMastery);
+        tm = trueMasteryBreakdown.trueMastery;
+        levelTier = trueMasteryBreakdown.levelTier;
+
+        // 🔴 1. CRITICAL PRIORITY: Consecutive mistakes or Dokkai Contextual failure
+        if (r.weaknessFlags?.includes('dokkai_context_fail') || r.mistakeCount >= 3 || tm < 45) {
+          priorityTier = 'CRITICAL';
+          urgencyScore = 150 + r.mistakeCount * 10 + (100 - tm);
+          reason = r.weaknessFlags?.includes('dokkai_context_fail') ? 'DOKKAI_WEAKNESS' : 'HIGH_MISTAKES';
+          reasonText = r.weaknessFlags?.includes('dokkai_context_fail')
+            ? `Gagal dalam konteks Dokkai wacana panjang`
+            : `Sering keliru (${r.mistakeCount}x salah berturut-turut)`;
+          tutorInsight = `Tutor: Titik lemah kritis terdeteksi! Kamu menguasai rumus dasarnya, namun keliru ketika diuji dalam variasi konteks kalimat.`;
+        }
+        // 🟠 2. WEAK PRIORITY: Low True Mastery (< 70%)
+        else if (tm < 70 || r.status === 'LEARNING') {
+          priorityTier = 'WEAK';
+          urgencyScore = 100 + (100 - tm) + (r.mistakeCount * 5);
+          reason = 'LOW_MASTERY';
+          reasonText = `True Mastery baru ${tm}% - butuh penguatan`;
+          tutorInsight = `Tutor: Masih dalam tahap penguasaan awal. Latih variasi bentuk konjugasi dan partikelnya.`;
+        }
+        // 🟡 3. REVIEW PRIORITY: SRS Schedule Due Today
+        else if (isDue) {
+          priorityTier = 'REVIEW';
+          urgencyScore = 75 + Math.min(25, Math.floor(daysSinceLastReview) * 2);
+          reason = 'SRS_DUE';
+          reasonText = `Jadwal tinjau berkala (SRS) untuk mengunci memori`;
+          tutorInsight = `Tutor: Waktu tepat mengulang agar materi berpindah ke memori jangka panjang permanen.`;
+        }
+        // 🟢 4. MAINTAIN PRIORITY: Mastered items checked for retention
+        else if (daysSinceLastReview > 5 && r.status !== 'PERFECTED') {
+          priorityTier = 'MAINTAIN';
+          urgencyScore = 40 + Math.min(30, Math.floor(daysSinceLastReview));
+          reason = 'DECAYED';
+          reasonText = `Sudah ${Math.floor(daysSinceLastReview)} hari tidak dilatih`;
+          tutorInsight = `Tutor: Materi ini sudah kamu kuasai (${tm}%), ulangi sejenak untuk menjaga retensi.`;
+        }
       }
 
       if (urgencyScore > 0) {
-        let title = r.itemId;
-        let subtitle = `${r.category.toUpperCase()} • True Mastery: ${tm}%`;
-
-        if (r.category === 'bunpou') {
-          const bp = BUNPOU_DATABASE[r.itemId];
-          if (bp) {
-            title = bp.title;
-            subtitle = bp.meaningId;
-          }
-        } else if (r.category === 'kotoba') {
-          const kt = KOTOBA_DATABASE[r.itemId];
-          if (kt) {
-            title = `${kt.word} (${kt.reading})`;
-            subtitle = kt.meaningId;
-          }
-        } else if (r.category === 'kanji') {
-          const kj = KANJI_DATABASE[r.itemId];
-          if (kj) {
-            title = `${kj.character} 【${kj.onyomi.join(', ')}】`;
-            subtitle = kj.meaningId;
-          }
-        } else if (r.category === 'dokkai') {
-          const dk = DOKKAI_DATABASE[r.itemId];
-          if (dk) {
-            title = dk.title;
-            subtitle = dk.category;
-          }
-        }
-
-        const queueItem: RecallQueueItem = {
+        const { title, subtitle } = resolveRecallLabels(r, tm);
+        queue.push({
           id: `recall_${r.itemId}`,
           itemId: r.itemId,
           category: r.category,
@@ -1066,23 +1165,33 @@ export function buildSmartRecallQueue(
           reasonText,
           urgencyScore,
           priorityTier,
-          difficultyLevel: trueMasteryBreakdown.levelTier,
+          difficultyLevel: levelTier,
           trueMasteryScore: tm,
           tutorInsight,
           masteryRecord: r
-        };
-
-        queueItem.sampleQuestion = generateAdaptiveQuestion(queueItem, trueMasteryBreakdown.levelTier);
-        queue.push(queueItem);
+        });
       }
     } catch (err) {
       console.warn('[SmartRecall] Failed to build recall item for record:', r?.itemId, err);
     }
   }
 
-  // Sort descending by urgency
-  queue.sort((a, b) => b.urgencyScore - a.urgencyScore);
-  return queue.slice(0, maxItems);
+  queue.sort(compareRecallPriority);
+  const top = queue.slice(0, maxItems);
+
+  // Soal hanya dibuat untuk item yang benar-benar terpilih (bukan seluruh riwayat).
+  for (const item of top) {
+    try {
+      item.sampleQuestion = generateAdaptiveQuestion(item, item.difficultyLevel);
+      item.exerciseFormat = item.sampleQuestion.id.startsWith('rc_wr_') ? 'writing_recall'
+        : item.sampleQuestion.id.startsWith('rc_lv4_') ? 'context'
+        : item.sampleQuestion.id.startsWith('rc_lv1_') ? 'meaning'
+        : 'curated';
+    } catch (err) {
+      console.warn('[SmartRecall] Failed to generate question for:', item.itemId, err);
+    }
+  }
+  return top;
 }
 
 /**
