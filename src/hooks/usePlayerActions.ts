@@ -7,7 +7,8 @@ import { getEffectiveTier, getJlptLevelForTierIndex } from '../utils/ascension';
 import { INITIAL_DAILY_MISSIONS, INITIAL_WEEKLY_MISSIONS } from '../data/missions';
 import { createDefaultBookmarkDeck, toggleBookmarkItem, toggleItemInDeck, DEFAULT_BOOKMARK_DECK_ID } from '../utils/decks';
 import { playSound } from '../utils/audio';
-import { recordItemAttempt, recordItemInteraction, buildSmartRecallQueue } from '../utils/mastery';
+import { recordItemAttempt, recordItemInteraction, buildSmartRecallQueue, hasBeenRecallTested } from '../utils/mastery';
+import { recordRecallAnswer, recordRecallSession } from '../engine/recall/session';
 import { recordStudyActivity } from '../utils/activity';
 import { safeSetItem } from '../utils/storage';
 import { getTodayLocalDate } from '../utils/time';
@@ -188,7 +189,8 @@ export function usePlayerActions({
           total,
           detectedErrors.length > 0 ? detectedErrors : undefined,
           isContextual,
-          effectiveInteraction
+          effectiveInteraction,
+          moduleId
         );
         updatedMastery = {
           ...updatedMastery,
@@ -229,7 +231,7 @@ export function usePlayerActions({
   const handleRecordItemInteraction = useCallback((
     itemId: string,
     category: 'bunpou' | 'kotoba' | 'kanji' | 'dokkai' | 'choukai',
-    interactionType: 'writing' | 'flashcard' | 'quiz',
+    interactionType: 'view' | 'writing' | 'flashcard' | 'quiz',
     success: boolean = true
   ) => {
     itemId = canonicalEntityId(itemId);
@@ -240,18 +242,28 @@ export function usePlayerActions({
         itemId,
         category,
         interactionType,
-        success
+        success,
+        'library'
       );
+      // Event ganda (re-render / StrictMode) mengembalikan record yang sama: tidak ada perubahan state.
+      if (updatedRecord === currentItem) return prev;
       const updatedMastery = {
         ...(prev.itemMastery || {}),
         [itemId]: updatedRecord
       };
+      // Antrean Recall adalah turunan itemMastery: harus dihitung ulang di sini juga, kalau tidak
+      // interaksi Library baru muncul di Recall setelah refresh.
+      let recallQueue = prev.recallQueue || [];
+      try { recallQueue = buildSmartRecallQueue(updatedMastery); } catch (e) { console.warn('Failed to update recall queue', e); }
       let newStats: PlayerStats = {
         ...prev,
-        itemMastery: updatedMastery
+        itemMastery: updatedMastery,
+        recallQueue
       };
 
-      if (interactionType === 'writing') {
+      if (interactionType === 'view') {
+        // Paparan bukan aktivitas belajar: tidak masuk statistik studi.
+      } else if (interactionType === 'writing') {
         newStats = recordStudyActivity(newStats, 'kanjiWriting', itemId, 1);
       } else if (interactionType === 'flashcard') {
         newStats = recordStudyActivity(newStats, 'flashcards', itemId, 1);
@@ -292,7 +304,12 @@ export function usePlayerActions({
   };
 
   // Recall handlers
-  const handleItemReviewed = (itemId: string, category: 'bunpou' | 'kotoba' | 'kanji' | 'dokkai' | 'choukai', isCorrect: boolean) => {
+  const handleItemReviewed = (
+    itemId: string,
+    category: 'bunpou' | 'kotoba' | 'kanji' | 'dokkai' | 'choukai',
+    isCorrect: boolean,
+    interactionType: 'writing' | 'flashcard' | 'quiz' = 'quiz'
+  ) => {
     itemId = canonicalEntityId(itemId);
     setStats(prev => {
       const currentMastery = { ...(prev.itemMastery || {}) };
@@ -302,13 +319,19 @@ export function usePlayerActions({
         itemId,
         category,
         isCorrect ? 7 : 4,
-        7
+        7,
+        undefined,
+        false,
+        interactionType,
+        'recall'
       );
       currentMastery[itemId] = updated;
       return {
         ...prev,
         itemMastery: currentMastery,
-        recallQueue: buildSmartRecallQueue(currentMastery)
+        recallQueue: buildSmartRecallQueue(currentMastery),
+        // Kuota harian: jawaban ini + apakah materinya baru pertama kali diuji (dihitung dari record SEBELUM dijawab).
+        recallDaily: recordRecallAnswer(prev.recallDaily, getTodayLocalDate(), !existing || !hasBeenRecallTested(existing))
       };
     });
   };
@@ -321,7 +344,8 @@ export function usePlayerActions({
       advanceMissions('quiz', correctCount);
     }
 
-    setIsRecallActive(false);
+    setStats(prev => ({ ...prev, recallDaily: recordRecallSession(prev.recallDaily, getTodayLocalDate()) }));
+    // Layar ringkasan sesi (RecallModule) ditutup lewat tombolnya (onExit); menutup di sini membuatnya tak pernah terlihat.
   };
 
   // Mana usage helper (e.g. for quiz hints)

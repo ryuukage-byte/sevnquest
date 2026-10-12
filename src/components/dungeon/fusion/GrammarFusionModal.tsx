@@ -30,7 +30,7 @@ const PHASES: { phase: FusionAnimationPhase; ms: number }[] = [
 const REPEAT_REWARD_RATIO = 0.4;
 const MOTION_KEY = 'nq_fusion_reduce_motion';
 
-function readReduceMotion(): boolean {
+export function readReduceMotion(): boolean {
   try {
     const saved = window.localStorage.getItem(MOTION_KEY);
     if (saved === '1') return true;
@@ -41,7 +41,7 @@ function readReduceMotion(): boolean {
 
 const card = 'p-3 rounded-2xl bg-surface-inset border border-border-subtle';
 
-interface RewardOut { exp: number; gold: number; note?: string }
+export interface RewardOut { exp: number; gold: number; note?: string }
 
 export interface EndAction { label: string; onClick: () => void; primary?: boolean }
 
@@ -54,7 +54,7 @@ interface PlayerProps {
   endActions: EndAction[];
 }
 
-const FusionPlayer: React.FC<PlayerProps> = ({ stage, baseWord, soundEnabled, reduceMotion, onFinished, endActions }) => {
+export const FusionPlayer: React.FC<PlayerProps> = ({ stage, baseWord, soundEnabled, reduceMotion, onFinished, endActions }) => {
   const [state, dispatch] = useReducer(fusionReducer, undefined, () => createFusionState(stage, baseWord));
   const [flight, setFlight] = useState<{ dx: number; dy: number; label: string } | null>(null);
   const [reward, setReward] = useState<RewardOut | null>(null);

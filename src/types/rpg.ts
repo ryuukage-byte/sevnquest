@@ -78,6 +78,8 @@ export interface PlayerStats {
 
   // Mastery Tracking & SRS
   itemMastery?: Record<string, import('./content').ItemMasteryRecord>;
+  /** Penghitung kuota Recall harian (jawaban, materi baru, sesi); reset otomatis saat tanggal berganti. */
+  recallDaily?: import('../engine/recall/session').RecallDaily;
   overallMasteryPercentage?: number; // True Japanese mastery (0-100%)
   languageProfile?: import('./content').LanguageProfile;
   errorHistory?: import('./content').ErrorPatternRecord[];

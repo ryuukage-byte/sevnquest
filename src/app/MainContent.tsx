@@ -8,6 +8,7 @@ import { AuthModal } from '../components/auth/AuthModal';
 import { ModuleBoundary } from '../components/common/ModuleBoundary';
 import { FreezeWhenHidden } from '../components/common/FreezeWhenHidden';
 import { recordStudyActivity } from '../utils/activity';
+import { hasPracticed } from '../utils/mastery';
 import type { useAppNavigation } from '../hooks/useAppNavigation';
 import type { usePlayerActions } from '../hooks/usePlayerActions';
 import type { CloudSyncStatus } from '../hooks/useCloudSync';
@@ -71,7 +72,8 @@ export function MainContent(props: MainContentProps) {
               soundEnabled={stats.soundEnabled}
               furiganaEnabled={stats.furiganaEnabled ?? true}
               syncStatus={cloudSyncStatus}
-              hasProgress={Object.keys(stats.itemMastery || {}).length > 0}
+              hasProgress={Object.values(stats.itemMastery || {}).some(hasPracticed)}
+              recallDaily={stats.recallDaily}
             />
             </ModuleBoundary>
           )}

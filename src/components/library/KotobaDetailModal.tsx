@@ -39,7 +39,7 @@ interface KotobaDetailModalProps {
   onRecordInteraction?: (
     itemId: string,
     category: 'bunpou' | 'kotoba' | 'kanji' | 'dokkai' | 'choukai',
-    interactionType: 'writing' | 'flashcard' | 'quiz',
+    interactionType: 'view' | 'writing' | 'flashcard' | 'quiz',
     success?: boolean
   ) => void;
   onCompleteStudyItem?: (
@@ -171,7 +171,8 @@ export const KotobaDetailModal: React.FC<KotobaDetailModalProps> = ({
     } else if (effectiveItem?.id) {
       setSelectedReadingIndex(-1);
       hasRecordedWritingRef.current = false;
-      onRecordInteraction?.(effectiveItem.id, 'kotoba', 'flashcard', true);
+      // Membuka kartu hanyalah paparan (bukan latihan / hasil): dicatat sebagai 'view'.
+      onRecordInteraction?.(effectiveItem.id, 'kotoba', 'view', true);
     }
   }, [isOpen, effectiveItem?.id]);
 
