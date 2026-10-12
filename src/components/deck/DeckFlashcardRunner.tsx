@@ -1,11 +1,12 @@
 import React, { useState, useMemo, useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import { motion, AnimatePresence } from 'motion/react';
-import { X, RotateCcw, RotateCw, ArrowRight, ArrowLeft, Trophy, Check } from 'lucide-react';
+import { X, RotateCcw, Shuffle, ArrowRight, ArrowLeft, Trophy, Check } from 'lucide-react';
 import confetti from 'canvas-confetti';
 import { UserDeck } from '../../types/rpg';
 import { ResolvedDeckItem, resolveDeckItem } from '../../utils/decks';
 import { playSound } from '../../utils/audio';
+import { fisherYatesShuffle } from '../../utils/smartRandomizer';
 import { UniversalFlashcard } from '../learning/UniversalFlashcard';
 import { ENGINE_EXP_MULTIPLIER, getKanjiBaseExp, getKotobaBaseExp, getBunpouBaseExp, calculateFlashcardReward } from '../../utils/rewards';
 
@@ -178,6 +179,14 @@ export const DeckFlashcardRunner: React.FC<DeckFlashcardRunnerProps> = ({
       setIsFlipped(false);
       setCurrentIndex(prev => prev - 1);
     }
+  };
+
+  const handleShuffle = () => {
+    playSound('click', soundEnabled);
+    setQueue(fisherYatesShuffle(queue));
+    setCurrentIndex(0);
+    setIsFlipped(false);
+    setFlashcardExpPopup(null);
   };
 
   if (resolvedItems.length === 0) {
@@ -372,11 +381,12 @@ export const DeckFlashcardRunner: React.FC<DeckFlashcardRunnerProps> = ({
                 </button>
 
                 <button
-                  onClick={handleCardFlip}
-                  className="btn-physical-secondary flex-1 py-3 px-3 sm:px-4 rounded-2xl font-heading font-bold text-xs flex items-center justify-center gap-1.5 sm:gap-2 transition-all"
+                  onClick={handleShuffle}
+                  disabled={queue.length < 2}
+                  className="btn-physical-secondary flex-1 py-3 px-3 sm:px-4 rounded-2xl font-heading font-bold text-xs flex items-center justify-center gap-1.5 sm:gap-2 transition-all disabled:opacity-40 disabled:cursor-not-allowed"
                 >
-                  <RotateCw className="w-3.5 h-3.5 text-gold" />
-                  <span>{isFlipped ? 'Tutup Arti' : 'Balik Kartu'}</span>
+                  <Shuffle className="w-3.5 h-3.5 text-gold" />
+                  <span>Shuffle</span>
                 </button>
 
                 <button
