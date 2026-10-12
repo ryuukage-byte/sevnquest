@@ -4,9 +4,9 @@
 // kata kerja mana pun. Tidak ada aturan baru: konjugasi tetap lewat conjugateVerb().
 // ==============================================================================
 
-import type { ConjugationForm, GrammarPatternSchema } from '../types';
-import { CONJ_COMPONENTS, FUSION_FORM_LABEL, formLabel, makeAppendRule, makeConjugationRule } from './rules';
-import type { FusionBaseWord, FusionRule, FusionStage } from './types';
+import type { AdjectiveForm, ConjugationForm, GrammarPatternSchema } from '../types';
+import { ADJ_COMPONENTS, CONJ_COMPONENTS, FUSION_FORM_LABEL, formLabel, makeAdjectiveRule, makeAppendRule, makeConjugationRule } from './rules';
+import type { FusionBaseWord, FusionRule, FusionStage, FusionWordKind } from './types';
 
 /** Bacaan sufiks pola yang memuat kanji (sufiks lain sudah kana, bacaannya sama). */
 const SUFFIX_READINGS: Record<string, string> = {
@@ -28,6 +28,14 @@ const pickSome = <T,>(items: T[], n: number, rand: () => number): T[] => {
   return a.slice(0, n);
 };
 
+/** Jenis kata yang dibutuhkan sebuah pola (kata kerja / kata benda / kata sifat-i / kata sifat-na). */
+export function patternWordKind(pattern: Pick<GrammarPatternSchema, 'predicateType'>): FusionWordKind {
+  return pattern.predicateType;
+}
+
+const PARTICLE_DECOYS = ['の', 'に', 'で', 'と', 'を', 'が', 'は'];
+const ADJ_DECOY_FORMS = Object.keys(ADJ_COMPONENTS) as AdjectiveForm[];
+
 /** Kata dasar untuk pola: bentuk kamus + arti. */
 export interface FreeStageOptions {
   /** Pola lain untuk dijadikan sufiks pengecoh. */
@@ -41,14 +49,14 @@ export function buildFreeStage(
   opts: FreeStageOptions = {}
 ): FusionStage {
   const rand = opts.rand ?? Math.random;
-  const conj = pattern.requiredConjugation as ConjugationForm;
-  const needsConj = conj !== 'jisho';
+  const kind = patternWordKind(pattern);
   const suffix = pattern.fixedSuffix;
   const suffixReading = SUFFIX_READINGS[suffix] ?? suffix;
   const doneForm = 'pattern_done';
   const rules: Record<string, FusionRule> = {};
   const steps: FusionStage['steps'] = [];
   const components: string[] = [];
+  const formLabels: Record<string, string> = { [doneForm]: pattern.pattern, decoy_done: '—' };
 
   const meaningText = pattern.meaningTemplateId
     .replace('{predicate}', '...')
@@ -57,61 +65,114 @@ export function buildFreeStage(
     .replace(/\s+/g, ' ')
     .trim();
 
-  // 1. Konjugasi (bila pola butuh bentuk selain kamus)
-  if (needsConj && CONJ_COMPONENTS[conj]) {
-    const rule = makeConjugationRule(conj);
-    rules[rule.id] = rule;
-    components.push(rule.id);
-    steps.push({
-      ruleId: rule.id,
-      instruction: `Pola ${pattern.pattern} memakai ${FUSION_FORM_LABEL[conj]?.toLowerCase() ?? conj}. Ubah kata ke bentuk itu.`,
-      resultMeaning: `${FUSION_FORM_LABEL[conj] ?? conj} dari ${verb.meaning}`,
-    });
+  const addRule = (r: FusionRule) => {
+    if (!rules[r.id]) {
+      rules[r.id] = r;
+      components.push(r.id);
+    }
+    return r;
+  };
+
+  // Bentuk awal di papan, bentuk sebelum sufiks, dan pengecoh "langkah kiri" (sebelum sufiks).
+  let initialForm = 'jisho';
+  let beforeSuffix = 'jisho';
+  let beforeLabel = (FUSION_FORM_LABEL.jisho ?? 'jisho').toLowerCase();
+  const leftDecoys: FusionRule[] = [];
+
+  if (kind === 'verb') {
+    const conj = pattern.requiredConjugation as ConjugationForm;
+    if (conj !== 'jisho' && CONJ_COMPONENTS[conj]) {
+      const rule = addRule(makeConjugationRule(conj));
+      steps.push({
+        ruleId: rule.id,
+        instruction: `Pola ${pattern.pattern} memakai ${FUSION_FORM_LABEL[conj]?.toLowerCase() ?? conj}. Ubah kata ke bentuk itu.`,
+        resultMeaning: `${FUSION_FORM_LABEL[conj] ?? conj} dari ${verb.meaning}`,
+      });
+      beforeSuffix = conj;
+      beforeLabel = (FUSION_FORM_LABEL[conj] ?? conj).toLowerCase();
+    }
+    for (const f of pickSome(FREE_FORMS.filter(f => f !== conj), 2, rand)) leftDecoys.push(makeConjugationRule(f));
+  } else if (kind === 'noun') {
+    initialForm = 'noun';
+    beforeSuffix = 'noun';
+    beforeLabel = 'kata benda';
+    const p = pattern.leftParticle;
+    if (p) {
+      beforeSuffix = 'noun_particle';
+      beforeLabel = `kata benda + ${p}`;
+      formLabels.noun_particle = `Kata benda + ${p}`;
+      const rule = addRule(makeAppendRule({
+        id: 'add_particle', suffix: p, requires: 'noun', produces: beforeSuffix, hint: `〜${p}`,
+        whyNot: `${p} ditempelkan langsung pada kata benda.`,
+        explain: before => `${before.japanese} + ${p} → ${before.japanese}${p}. Partikel ${p} menyambung kata benda ke ${suffix}.`,
+      }));
+      steps.push({
+        ruleId: rule.id,
+        instruction: `Pola ${pattern.pattern} memakai kata benda + ${p}. Tempelkan ${p} dulu.`,
+        resultMeaning: `${verb.meaning} + ${p}`,
+      });
+    }
+    for (const p2 of pickSome(PARTICLE_DECOYS.filter(x => x !== p), 2, rand)) {
+      leftDecoys.push(makeAppendRule({
+        id: `decoy_particle_${p2}`, suffix: p2, requires: 'noun', produces: 'decoy_done', hint: `〜${p2}`,
+        whyNot: `${p2} bukan partikel yang dipakai pola ini.`, explain: before => `${before.japanese}${p2}`,
+      }));
+    }
+  } else {
+    const type = kind === 'adjective-i' ? 'i' : 'na';
+    const needsAttr = kind === 'adjective-na' && pattern.requiredConjugation === 'attributive';
+    initialForm = kind === 'adjective-i' ? 'adj_i' : 'adj_na';
+    beforeSuffix = initialForm;
+    beforeLabel = (FUSION_FORM_LABEL[initialForm] ?? initialForm).toLowerCase();
+    if (needsAttr) {
+      const rule = addRule(makeAdjectiveRule('attributive', type, initialForm, 'adj_na_attr'));
+      steps.push({
+        ruleId: rule.id,
+        instruction: `Pola ${pattern.pattern} memakai kata sifat-na + な. Tambahkan な dulu.`,
+        resultMeaning: `${verb.meaning} + な`,
+      });
+      beforeSuffix = 'adj_na_attr';
+      beforeLabel = (FUSION_FORM_LABEL.adj_na_attr ?? '').toLowerCase();
+    }
+    for (const f of pickSome(ADJ_DECOY_FORMS.filter(f => !(needsAttr && f === 'attributive') && !(type === 'i' && f === 'attributive')), 2, rand)) {
+      leftDecoys.push(makeAdjectiveRule(f, type, initialForm, 'decoy_done'));
+    }
   }
 
-  // 2. Sufiks pola
+  // Sufiks pola
   const suffixRule = makeAppendRule({
     id: 'add_suffix',
     suffix,
     suffixReading,
-    requires: needsConj ? conj : 'jisho',
+    requires: beforeSuffix,
     produces: doneForm,
     hint: `〜${suffix}`,
-    whyNot: `${suffix} hanya disambung setelah ${(FUSION_FORM_LABEL[conj] ?? conj).toLowerCase()}.`,
-    explain: (before, after) =>
-      `${before.japanese} + ${suffix} → ${after.japanese}. ${pattern.nuanceExplanation}`,
+    whyNot: `${suffix} hanya disambung setelah ${beforeLabel}.`,
+    explain: (before, after) => `${before.japanese} + ${suffix} → ${after.japanese}. ${pattern.nuanceExplanation}`,
   });
-  rules[suffixRule.id] = suffixRule;
-  components.push(suffixRule.id);
+  addRule(suffixRule);
   steps.push({
     ruleId: suffixRule.id,
-    instruction: needsConj
+    instruction: steps.length > 0
       ? `Tambahkan ${suffix} untuk membentuk ${pattern.pattern}.`
-      : `Pola ini memakai bentuk kamus apa adanya. Tambahkan ${suffix}.`,
+      : `Pola ini memakai ${beforeLabel} apa adanya. Tambahkan ${suffix}.`,
     resultMeaning: meaningText.replace('...', verb.meaning),
   });
 
-  // 3. Pengecoh: bentuk konjugasi lain + sufiks pola lain
-  const wrongForms = FREE_FORMS.filter(f => f !== conj);
-  for (const f of pickSome(wrongForms, needsConj ? 2 : 2, rand)) {
-    const r = makeConjugationRule(f);
-    rules[r.id] = r;
-    components.push(r.id);
-  }
+  // Pengecoh: langkah kiri yang salah + sufiks pola lain
+  for (const r of leftDecoys) addRule(r);
   const otherSuffixes = [...new Set((opts.allPatterns ?? []).map(p => p.fixedSuffix))].filter(s => s && s !== suffix);
   pickSome(otherSuffixes, 2, rand).forEach((s, i) => {
-    const r = makeAppendRule({
+    addRule(makeAppendRule({
       id: `add_suffix_decoy_${i}`,
       suffix: s,
       suffixReading: SUFFIX_READINGS[s] ?? s,
-      requires: needsConj ? conj : 'jisho',
+      requires: beforeSuffix,
       produces: 'decoy_done',
       hint: `〜${s}`,
-      whyNot: `${s} hanya disambung setelah ${(FUSION_FORM_LABEL[conj] ?? conj).toLowerCase()}.`,
+      whyNot: `${s} hanya disambung setelah ${beforeLabel}.`,
       explain: before => `${before.japanese}${s}`,
-    });
-    rules[r.id] = r;
-    components.push(r.id);
+    }));
   });
 
   return {
@@ -119,12 +180,13 @@ export function buildFreeStage(
     title: pattern.title,
     jlpt: pattern.jlpt,
     difficulty: DIFFICULTY[pattern.jlpt] ?? 3,
+    initialForm,
     words: [verb],
     target: { pattern: pattern.pattern, meaning: meaningText, explanation: pattern.nuanceExplanation },
     steps,
     components,
     rules,
-    formLabels: { [doneForm]: pattern.pattern, decoy_done: '—' },
+    formLabels,
     reward: FREE_REWARD,
   };
 }

@@ -4,8 +4,8 @@
 // bukan penggabungan string. Hanya sufiks pola (で, ください, ほうがいい, ...) yang ditempel langsung.
 // ==============================================================================
 
-import { conjugateVerb, explainVerbConjugation } from '../morphology/inflectionEngine';
-import type { ConjugationForm, VerbGroup } from '../types';
+import { conjugateAdjective, conjugateVerb, explainVerbConjugation } from '../morphology/inflectionEngine';
+import type { AdjectiveForm, ConjugationForm, VerbGroup } from '../types';
 import type { FusionFormId, FusionRule, FusionRuleContext, FusionRuleId, FusionRuleResult, FusionStage, FusionWord } from './types';
 
 export const FUSION_FORM_LABEL: Record<FusionFormId, string> = {
@@ -18,6 +18,19 @@ export const FUSION_FORM_LABEL: Record<FusionFormId, string> = {
   masu: 'Bentuk masu',
   masu_stem: 'Akar masu (連用形)',
   volitional: 'Bentuk volisional (意向形)',
+  noun: 'Kata benda',
+  adj_i: 'Kata sifat-i (bentuk kamus)',
+  adj_na: 'Kata sifat-na (tanpa な)',
+  adj_na_attr: 'Kata sifat-na + な',
+};
+
+/** Komponen "ubah bentuk" untuk kata sifat. */
+export const ADJ_COMPONENTS: Partial<Record<AdjectiveForm, { label: string; hint: string }>> = {
+  negative: { label: 'ない形', hint: '高くない／静かじゃない' },
+  past: { label: 'た形', hint: '高かった／静かだった' },
+  te: { label: 'て形', hint: '高くて／静かで' },
+  adverbial: { label: '副詞形', hint: '高く／静かに' },
+  attributive: { label: '連体形', hint: '静かな' },
 };
 
 /** Bentuk konjugasi yang tersedia sebagai komponen "ubah bentuk". */
@@ -72,6 +85,34 @@ export function makeConjugationRule(form: ConjugationForm): FusionRule {
         explanation:
           `Bentuk kamus ${base.japanese} berubah menjadi ${formLabel(form).toLowerCase()} ${out.japanese}. ` +
           `Kata kerja ${base.japanese} termasuk ${GROUP_LABEL[res.group]}, sehingga ${change}.`,
+      };
+    },
+  };
+}
+
+/** Rule "ubah kata sifat ke bentuk X" — hasil dari conjugateAdjective(). */
+export function makeAdjectiveRule(form: AdjectiveForm, type: 'i' | 'na', requires: FusionFormId, produces: FusionFormId = `adj_${form}`): FusionRule {
+  const info = ADJ_COMPONENTS[form];
+  const label = info?.label ?? form;
+  return {
+    id: `adjective_${form}`,
+    label,
+    hint: info?.hint ?? '',
+    requires,
+    produces,
+    whyNot: `${label} dibentuk dari bentuk dasar kata sifat, bukan dari kata yang sudah berubah.`,
+    apply: ({ base }): FusionRuleResult => {
+      const out = conjugateAdjective(base.japanese, base.reading, type).forms[form];
+      const note =
+        form === 'attributive'
+          ? 'Kata sifat-na diberi な agar bisa menyambung ke kata benda atau pola berikutnya'
+          : type === 'i'
+            ? 'Akhiran い diganti mengikuti bentuk yang dituju'
+            : 'Kata sifat-na ditambah akhiran sesuai bentuk yang dituju';
+      return {
+        word: { japanese: out.japanese, reading: out.reading },
+        form: produces,
+        explanation: `${base.japanese} berubah menjadi ${out.japanese}. ${note}.`,
       };
     },
   };

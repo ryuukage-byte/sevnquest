@@ -71,9 +71,11 @@ export interface GrammarPatternSchema {
   pattern: string;             // e.g. "〜てはいけない"
   title: string;               // e.g. "Larangan Formal: 〜てはいけない"
   jlpt: 'N5' | 'N4' | 'N3' | 'N2' | 'N1';
-  predicateType: 'verb' | 'adjective-i' | 'adjective-na';
+  predicateType: 'noun' | 'verb' | 'adjective-i' | 'adjective-na';
   requiredConjugation: ConjugationForm | AdjectiveForm;
   fixedSuffix: string;         // e.g. "はいけない", "もいい", "ほうがいい"
+  /** Pola kata benda: partikel yang menempel di antara kata benda dan fixedSuffix (Nに＋関して → に). */
+  leftParticle?: string;
   slots: SentenceSlot[];
   meaningTemplateId: string;   // e.g. "{subject} tidak boleh {predicate} {object} di {location}"
   meaningTemplateEn: string;

@@ -101,8 +101,8 @@ test('data stage konsisten: tiap langkah valid berurutan & ada komponen', () => 
 // ---------------------------------------------------------------------------
 // Latihan Bebas: semua pola × semua kata kerja
 // ---------------------------------------------------------------------------
-import { buildFreeStage } from './freeStage';
-import { getFusionPatterns, getFusionVerbs } from '../../data/fusion/verbPool';
+import { buildFreeStage, patternWordKind } from './freeStage';
+import { getFusionPatterns, getFusionVerbs, getFusionWords } from '../../data/fusion/verbPool';
 
 const verbs = getFusionVerbs();
 const patterns = getFusionPatterns();
@@ -119,7 +119,7 @@ function playFree(patternId: string, japanese: string) {
 test('Latihan Bebas: seluruh kombinasi pola × kata kerja bisa diselesaikan', () => {
   assert.ok(verbs.length > 1000 && patterns.length >= 60);
   const failures: string[] = [];
-  for (const p of patterns) {
+  for (const p of patterns.filter(p => p.predicateType === 'verb')) {
     for (const v of verbs) {
       const st = buildFreeStage(p, v, { allPatterns: patterns, rand: () => 0.5 });
       let s = createFusionState(st, v, () => 0.5);
@@ -165,4 +165,71 @@ test('pola library "Vます＋上げる/切る" memakai akar ます', () => {
   })();
   assert.equal(s.japanese, '書き上げる');
   assert.equal(s.reading, 'かきあげる');
+});
+
+test('DROP benar langsung bertransformasi; DROP salah ditolak dan dihitung', () => {
+  const ok = fusionReducer(start(), { type: 'DROP', ruleId: stage.steps[0].ruleId });
+  assert.equal(ok.currentStep, 1);
+  assert.equal(ok.animationState, 'approach');
+  const bad = fusionReducer(start(), { type: 'DROP', ruleId: stage.steps[1].ruleId });
+  assert.equal(bad.currentStep, 0);
+  assert.equal(bad.mistakes, 1);
+  assert.equal(bad.currentWord.japanese, start().currentWord.japanese);
+  assert.equal(fusionReducer(ok, { type: 'DROP', ruleId: stage.steps[1].ruleId }), ok);
+});
+
+// ---------------------------------------------------------------------------
+// Pola kata benda & kata sifat
+// ---------------------------------------------------------------------------
+const playWord = (patternId: string, japanese: string) => {
+  const pattern = patterns.find(p => p.id === patternId)!;
+  const word = getFusionWords(patternWordKind(pattern)).find(w => w.japanese === japanese)!;
+  assert.ok(pattern && word, `${patternId}/${japanese}`);
+  const st = buildFreeStage(pattern, word, { allPatterns: patterns, rand: () => 0.5 });
+  let s = createFusionState(st, word, () => 0.5);
+  for (const step of st.steps) s = settle(pick(s, step.ruleId));
+  return s;
+};
+
+test('pola kata benda & kata sifat: tiap pola selesai dengan kata dasar jenisnya', () => {
+  const nonVerb = patterns.filter(p => p.predicateType !== 'verb');
+  assert.ok(nonVerb.length >= 50);
+  const failures: string[] = [];
+  for (const p of nonVerb) {
+    const words = getFusionWords(patternWordKind(p));
+    assert.ok(words.length > 50, p.id);
+    for (const w of words.slice(0, 30)) {
+      const st = buildFreeStage(p, w, { allPatterns: patterns, rand: () => 0.5 });
+      let s = createFusionState(st, w, () => 0.5);
+      for (const step of st.steps) s = settle(pick(s, step.ruleId));
+      const expected = `${w.japanese}${p.leftParticle ?? ''}${p.fixedSuffix}`;
+      const na = p.requiredConjugation === 'attributive' ? 'な' : '';
+      if (!s.completed || !(s.currentWord.japanese === expected || (na && s.currentWord.japanese === `${w.japanese}${na}${p.fixedSuffix}`)) || !s.currentWord.reading) {
+        if (failures.length < 5) failures.push(`${p.id}/${w.japanese} -> ${s.currentWord.japanese}`);
+      }
+    }
+  }
+  assert.deepEqual(failures, []);
+});
+
+test('pola kata benda: partikel lalu sufiks; kata sifat-i langsung; kata sifat-na + な', () => {
+  assert.equal(playWord('lib_w2d2g1_noun_に', '学校').currentWord.japanese, '学校に関して');
+  assert.equal(playWord('lib_w1d3g2_noun', '学校').currentWord.japanese, '学校らしい');
+  assert.equal(playWord('lib_w4d3g2_adj_i', '暑い').currentWord.japanese, '暑いほど');
+  assert.equal(playWord('lib_w4d3g2_adj_na_attr', '静か').currentWord.japanese, '静かなほど');
+  assert.equal(playWord('lib_w4d3g2_adj_na_attr', '静か').currentWord.reading, 'しずかなほど');
+  assert.equal(playWord('lib_bp_n5_019_adj_na', '静か').currentWord.japanese, '静かで');
+});
+
+test('pola kata benda: pengecoh partikel ditolak dengan alasan', () => {
+  const pattern = patterns.find(p => p.id === 'lib_w2d2g1_noun_に')!;
+  const word = getFusionWords('noun').find(w => w.japanese === '学校')!;
+  const st = buildFreeStage(pattern, word, { allPatterns: patterns, rand: () => 0.5 });
+  assert.equal(st.initialForm, 'noun');
+  assert.equal(st.steps.length, 2);
+  const decoy = st.components.find(c => c.startsWith('decoy_particle_'))!;
+  const s = pick(createFusionState(st, word, () => 0.5), decoy);
+  assert.equal(s.mistakes, 1);
+  assert.equal(s.currentWord.japanese, '学校');
+  assert.ok(s.feedbackState!.message.length > 10);
 });
