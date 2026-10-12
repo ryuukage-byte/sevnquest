@@ -1,0 +1,400 @@
+0|頭上|Di atas kepala
+1|頭髪|Rambut kepala
+2|頭文字|Huruf pertama; inisial
+3|働き盛り|Masa puncak produktivitas kerja
+4|動じる|Goyah; gelisah
+5|動態|Keadaan dinamis; pergerakan
+6|動脈硬化|Pengerasan pembuluh arteri
+7|同じく|Sama halnya; begitu juga
+8|同化|Asimilasi
+9|同郷|Sekampung halaman
+10|同業|Sama profesi
+11|同好|Selera/hobi yang sama
+12|同時代|Zaman yang sama
+13|同室|Satu ruangan
+14|同上|Sama seperti di atas
+15|同乗|Menumpang bersama
+16|同数|Jumlah yang sama
+17|同棲|Hidup bersama (tanpa menikah)
+18|同船|Satu kapal
+19|同然|Sama saja dengan
+20|同窓|Alumni sekolah yang sama
+21|同病|Penyakit yang sama
+22|同類|Sejenis; sekomplotan
+23|同列|Satu baris; sederajat
+24|堂|Kuil kecil; aula
+25|洞|Gua; rongga
+26|洞察|Wawasan; pengamatan tajam
+27|道のり|Jarak tempuh; proses menuju tujuan
+28|道義|Moralitas
+29|得意先|Pelanggan tetap
+30|得策|Siasat yang menguntungkan
+31|特効薬|Obat mujarab
+32|特攻隊|Pasukan serangan khusus (kamikaze)
+33|特製|Buatan khusus
+34|特大|Ukuran ekstra besar
+35|特段|Khusus; istimewa
+36|特典|Hak istimewa; bonus
+37|特筆|Pencatatan khusus
+38|特約|Perjanjian khusus
+39|督促|Desakan; penagihan
+40|毒性|Daya racun
+41|毒薬|Racun
+42|独学|Belajar sendiri
+43|独創的|Orisinal
+44|独走|Memimpin jauh di depan
+45|突き|Tusukan; tikaman
+46|突き刺す|Menusuk
+47|突き上げる|Mendorong ke atas; menekan atasan
+48|突起|Tonjolan
+49|突出|Menonjol; mencuat
+50|突進|Menyerbu; menyeruduk
+51|突風|Angin kencang mendadak
+52|寅|Macan (shio ke-3)
+53|酉|Ayam (shio ke-10)
+54|鈍化|Menjadi tumpul; melambat
+55|内気|Pemalu
+56|内規|Peraturan internal
+57|内向|Introversi
+58|内実|Kenyataan sebenarnya
+59|内職|Pekerjaan sampingan
+60|内装|Interior; dekorasi dalam
+61|内蔵|Bawaan; tertanam
+62|内包|Konotasi; mengandung
+63|内輪|Lingkaran dalam; keluarga
+64|南海|Laut selatan
+65|南口|Pintu selatan
+66|軟式|Gaya lunak (bola lunak)
+67|軟派|Perayu; menggoda wanita
+68|難易|Tingkat kesulitan
+69|難局|Situasi sulit
+70|難題|Masalah sulit
+71|難聴|Gangguan pendengaran
+72|二の次|Nomor dua; kurang penting
+73|二院|Dua majelis legislatif
+74|二宮|Dua kuil Ise
+75|二軍|Tim cadangan
+76|二見|Bercabang dua
+77|二号|Nomor dua; selir
+78|二者択一|Memilih satu dari dua
+79|二人三脚|Lomba tiga kaki; kerja sama erat
+80|二百十日|Hari ke-210 (musim badai)
+81|二百二十日|Hari ke-220 (akhir musim badai)
+82|二分|Pembagian dua; dua ekuinoks
+83|二本立て|Film dua judul sekaligus
+84|二枚目|Pria tampan; peran kekasih
+85|二流|Kelas dua
+86|二輪車|Kendaraan roda dua
+87|二塁手|Penjaga base kedua
+88|肉眼|Mata telanjang
+89|肉食|Makan daging; karnivora
+90|肉薄|Mendekati ketat
+91|日照|Sinar matahari
+92|日暮れ|Senja
+93|日没|Matahari terbenam
+94|日本画|Lukisan gaya Jepang
+95|日本式|Gaya Jepang
+96|日和|Cuaca; hari cerah
+97|乳製品|Produk susu
+98|乳幼児|Bayi dan balita
+99|入り込み|Masuk bersama; tempat duduk umum
+100|入り込む|Masuk ke dalam; menjadi rumit
+101|入園|Masuk taman kanak-kanak/taman
+102|入港|Memasuki pelabuhan
+103|入国管理局|Kantor imigrasi
+104|入室|Masuk ruangan
+105|入籍|Pendaftaran dalam kartu keluarga
+106|入党|Masuk partai
+107|梅雨入り|Mulainya musim hujan
+108|入幕|Naik ke divisi atas sumo
+109|如実|Apa adanya; nyata
+110|任|Tugas; kewajiban
+111|妊婦|Ibu hamil
+112|忍ぶ|Bersembunyi; menahan
+113|認証|Sertifikasi; autentikasi
+114|認知|Pengakuan; kognisi
+115|熱狂|Kegilaan; antusiasme liar
+116|熱帯魚|Ikan tropis
+117|熱弁|Pidato berapi-api
+118|年会|Konferensi tahunan
+119|年額|Jumlah tahunan
+120|年刊|Terbitan tahunan
+121|年功序列|Sistem senioritas
+122|年初|Awal tahun
+123|年数|Jumlah tahun
+124|年男|Pria yang lahir pada shio tahun ini
+125|年齢層|Kelompok usia
+126|念書|Surat pernyataan
+127|念入り|Teliti
+128|粘り強い|Gigih; ulet
+129|粘着|Perekatan; lengket
+130|粘膜|Selaput lendir
+131|濃淡|Gelap terang; tingkat kepekatan
+132|納付|Pembayaran
+133|能動|Aktif
+134|脳出血|Pendarahan otak
+135|脳卒中|Stroke
+136|脳波|Gelombang otak
+137|脳裏|Dalam benak
+138|農園|Perkebunan
+139|農作業|Pekerjaan bertani
+140|農産|Hasil pertanian
+141|巴|Tomoe (motif lambang pusaran)
+142|覇権|Hegemoni
+143|覇者|Penguasa; juara
+144|派生|Derivasi
+145|破り|Melanggar; lolos
+146|破格|Luar biasa; di luar kebiasaan
+147|破綻|Kegagalan; kebangkrutan
+148|馬車|Kereta kuda
+149|廃業|Menutup usaha
+150|廃材|Kayu bekas; limbah
+151|排気|Gas buang; pembuangan udara
+152|排他|Eksklusif; pengucilan
+153|敗因|Penyebab kekalahan
+154|敗者|Pihak yang kalah
+155|敗訴|Kalah perkara
+156|敗退|Tersingkir; kalah
+157|背泳ぎ|Gaya punggung
+158|背信|Pengkhianatan
+159|背番号|Nomor punggung
+160|輩出|Melahirkan banyak tokoh
+161|配線|Pengkabelan
+162|配送|Pengiriman
+163|配属|Penempatan (di unit)
+164|配電|Distribusi listrik
+165|培養|Pembiakan; kultur
+166|梅干し|Umeboshi; asinan prem
+167|買い出し|Belanja kebutuhan
+168|売り込む|Mempromosikan; menjual
+169|賠償金|Uang ganti rugi
+170|はぎ|Semanggi semak
+171|伯爵|Pangeran; count
+172|博愛|Cinta kasih universal
+173|博物|Sejarah alam; pengetahuan luas
+174|柏木|Pohon ek
+175|白バイ|Motor polisi
+176|白羽|Bulu putih
+177|白樺|Pohon birch putih
+178|白血球|Sel darah putih
+179|白黒|Hitam putih; benar salah
+180|白線|Garis putih
+181|白熱|Memanas; sengit
+182|薄れる|Memudar
+183|薄着|Berpakaian tipis
+184|迫撃砲|Mortir
+185|爆笑|Tawa meledak
+186|爆竹|Petasan
+187|縛り首|Hukuman gantung
+188|肌色|Warna kulit
+189|八つ当たり|Melampiaskan amarah pada orang lain
+190|八千代|Selama-lamanya
+191|八分音符|Not seperdelapan
+192|八方|Segala penjuru
+193|鉢植え|Tanaman pot
+194|発刊|Menerbitkan (terbitan baru)
+195|発光|Pemancaran cahaya
+196|発酵|Fermentasi
+197|発散|Pancaran; pelampiasan
+198|発祥|Asal mula
+199|発電機|Generator listrik
+200|発泡スチロール|Styrofoam
+201|発令|Pengumuman resmi
+202|はやぶさ|Burung alap-alap
+203|伴奏|Iringan musik
+204|半期|Setengah tahun
+205|半生|Setengah kehidupan
+206|半値|Setengah harga
+207|反共|Anti-komunis
+208|反作用|Reaksi
+209|反射的|Refleks
+210|反転|Pembalikan
+211|反米|Anti-Amerika
+212|反落|Penurunan kembali
+213|帆|Layar
+214|搬送|Pengangkutan; pengantaran ke rumah sakit
+215|搬入|Memasukkan barang
+216|汎用|Serba guna
+217|版権|Hak cipta
+218|藩|Han; wilayah feodal
+219|藩主|Penguasa han
+220|煩雑|Rumit
+221|晩婚|Menikah di usia lanjut
+222|盤|Piringan; cakram
+223|卑劣|Licik; hina
+224|悲哀|Kesedihan
+225|悲壮|Tragis namun gagah
+226|悲痛|Duka mendalam
+227|比|Perbandingan; rasio
+228|疲弊|Kelelahan; kemerosotan
+229|皮革|Kulit samak
+230|皮膚科|Dermatologi
+231|碑文|Prasasti
+232|秘める|Menyembunyikan; menyimpan
+233|秘訣|Rahasia; kunci sukses
+234|秘話|Kisah rahasia
+235|罷免|Pemberhentian
+236|肥|Pupuk kandang
+237|肥える|Menggemuk; subur
+238|肥大|Pembengkakan; hipertrofi
+239|誹謗|Fitnah; hinaan
+240|避暑|Menghindari panas musim panas
+241|非常識|Tidak masuk akal; kurang ajar
+242|飛び交う|Beterbangan ke sana-sini
+243|飛行士|Penerbang
+244|飛行船|Kapal udara
+245|備え|Persiapan
+246|尾根|Punggung gunung
+247|微細|Sangat halus
+248|微小|Mikroskopis
+249|微震|Gempa kecil
+250|微生物|Mikroba
+251|美化|Pemperindah; pengagungan
+252|美学|Estetika
+253|美貌|Wajah cantik
+254|美容院|Salon kecantikan
+255|鼻水|Ingus
+256|必需|Perlu; mutlak
+257|必勝|Pasti menang
+258|筆跡|Tulisan tangan
+259|氷河|Gletser
+260|漂流|Terombang-ambing
+261|表する|Menyatakan
+262|表決|Pemungutan suara
+263|表通り|Jalan utama
+264|表立って|Secara terbuka
+265|表立つ|Menjadi terbuka; tampil di depan
+266|評議員|Anggota dewan
+267|評決|Putusan; vonis
+268|病床|Ranjang sakit
+269|病名|Nama penyakit
+270|秒速|Per detik
+271|苗木|Bibit pohon
+272|品格|Martabat; kelas
+273|品性|Karakter; budi pekerti
+274|品切れ|Stok habis
+275|品名|Nama barang
+276|頻度|Frekuensi
+277|頻発|Sering terjadi
+278|瓶詰め|Dikemas dalam botol
+279|不穏|Mengkhawatirkan; bergolak
+280|不可解|Tidak dapat dipahami
+281|不可侵|Tidak boleh dilanggar
+282|不確か|Tidak pasti
+283|不確実|Tidak pasti; tidak dapat diandalkan
+284|不慣れ|Belum terbiasa
+285|不器用|Canggung; tidak terampil
+286|不機嫌|Murung; kesal
+287|不起訴|Tidak dituntut
+288|不時着|Pendaratan darurat
+289|不純|Tidak murni
+290|不詳|Tidak diketahui
+291|不条理|Tidak masuk akal; absurd
+292|不親切|Tidak ramah
+293|不人気|Tidak populer
+294|不成立|Gagal terwujud
+295|不整脈|Aritmia
+296|不戦|Tidak berperang; menang walkover
+297|不相応|Tidak pantas
+298|不退転|Tekad bulat
+299|不仲|Hubungan buruk
+300|不注意|Ketidakhati-hatian
+301|不適当|Tidak sesuai
+302|不渡り|Cek/wesel kosong
+303|不都合|Tidak menyenangkan; tidak patut
+304|不得意|Kelemahan; tidak mahir
+305|不発|Tidak meledak
+306|不払い|Tidak membayar
+307|不毛|Tandus; sia-sia
+308|不問|Tidak mempermasalahkan
+309|不用意|Tidak siap; ceroboh
+310|不慮|Tak terduga
+311|不倫|Perselingkuhan
+312|付け込む|Memanfaatkan kelemahan
+313|付け根|Pangkal
+314|付帯|Pelengkap; tambahan
+315|付着|Menempel
+316|付与|Pemberian
+317|婦女|Kaum wanita
+318|婦人科|Ginekologi
+319|富裕|Kaya raya
+320|布石|Penempatan awal (go); persiapan
+321|府県|Prefektur
+322|府知事|Gubernur prefektur kota
+323|府庁|Kantor prefektur kota
+324|怖がる|Takut
+325|敷居|Ambang pintu
+326|敷設|Pemasangan (rel/pipa)
+327|普通預金|Tabungan biasa
+328|浮かび上がる|Muncul ke permukaan
+329|浮き|Pelampung
+330|浮上|Muncul ke permukaan; naik daun
+331|浮世絵|Ukiyo-e
+332|浮浪者|Gelandangan
+333|父子|Ayah dan anak
+334|腐心|Bersusah payah
+335|負|Negatif; minus
+336|負け越し|Lebih banyak kalah
+337|負荷|Beban
+338|武者|Prajurit
+339|武将|Panglima perang
+340|舞台裏|Belakang panggung
+341|部位|Bagian (tubuh)
+342|部分的|Sebagian
+343|封書|Surat bersegel
+344|風下|Arah angin
+345|風格|Karakter; gaya
+346|風情|Pesona; suasana
+347|風通し|Ventilasi; keterbukaan komunikasi
+348|風流|Keanggunan; selera halus
+349|風鈴|Lonceng angin
+350|伏線|Petunjuk awal (alur cerita)
+351|伏兵|Pasukan penyergap; hambatan tak terduga
+352|副題|Subjudul
+353|復元|Pemulihan; rekonstruksi
+354|復刻|Cetak ulang
+355|復讐|Balas dendam
+356|復調|Demodulasi; pulih kembali
+357|服従|Ketaatan
+358|服役|Menjalani hukuman; dinas militer
+359|腹心|Orang kepercayaan
+360|腹部|Perut
+361|複雑さ|Kerumitan
+362|複製|Reproduksi
+363|複利|Bunga majemuk
+364|淵|Palung; jurang
+365|払拭|Menghapus; menyingkirkan
+366|仏語|Bahasa Prancis
+367|仏壇|Altar Buddha rumah
+368|仏文|Sastra Prancis
+369|物産|Hasil produksi
+370|物証|Barang bukti
+371|物心|Kesadaran akan sekitar
+372|物的|Material
+373|物品|Barang
+374|分かつ|Membagi; berbagi
+375|分からず屋|Orang keras kepala
+376|分かれ目|Persimpangan; titik penentu
+377|分化|Diferensiasi; spesialisasi
+378|分岐|Percabangan
+379|分岐点|Titik percabangan
+380|分権|Desentralisasi
+381|分校|Sekolah cabang
+382|分乗|Naik terpisah
+383|分身|Alter ego; jelmaan
+384|噴射|Semburan
+385|奮う|Mengerahkan (keberanian)
+386|奮起|Bangkit semangat
+387|粉ミルク|Susu bubuk
+388|紛糾|Kekacauan; kerumitan
+389|文楽|Teater boneka Bunraku
+390|文壇|Dunia sastra
+391|文中|Di dalam kalimat
+392|文通|Surat-menyurat
+393|文面|Isi surat
+394|併設|Pendirian bersama
+395|強者|Orang kuat
+396|兵員|Jumlah pasukan
+397|兵舎|Barak
+398|平泳ぎ|Gaya dada
+399|平均点|Nilai rata-rata

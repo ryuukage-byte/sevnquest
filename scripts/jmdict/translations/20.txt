@@ -1,0 +1,182 @@
+0|竜王|Raja Naga; gelar tertinggi shogi
+1|陸海|Darat dan laut
+2|全学|Seluruh universitas
+3|選手村|Desa atlet
+4|選挙人|Pemilih; elektor
+5|福助|Patung kepala besar pembawa keberuntungan
+6|福利厚生|Tunjangan kesejahteraan karyawan
+7|遊歩|Jalan-jalan santai
+8|農地改革|Reformasi agraria
+9|農作物|Hasil pertanian
+10|農法|Metode bertani
+11|農業協同組合|Koperasi pertanian
+12|肉体的|Jasmani; fisik
+13|復員|Demobilisasi
+14|復党|Bergabung kembali ke partai
+15|報奨金|Uang hadiah
+16|生命力|Daya hidup; vitalitas
+17|生き埋め|Dikubur hidup-hidup
+18|休館|Tutup (perpustakaan/museum)
+19|要職|Jabatan penting
+20|立体的|Tiga dimensi
+21|立ち往生|Terjebak; mati kutu
+22|立国|Pendirian negara
+23|立ち退き|Penggusuran
+24|立ち消え|Padam di tengah jalan; batal begitu saja
+25|林野|Hutan dan ladang
+26|林野庁|Badan Kehutanan
+27|食べ歩き|Wisata kuliner
+28|留置場|Sel tahanan
+29|老女|Wanita lanjut usia
+30|白内障|Katarak
+31|白地|Latar putih; kosong
+32|白星|Bintang putih; tanda kemenangan
+33|白馬|Kuda putih
+34|軟禁|Tahanan rumah
+35|染色体|Kromosom
+36|風物詩|Ciri khas musim
+37|早乙女|Gadis penanam padi
+38|琢磨|Pengasahan; pembinaan diri
+39|枠外|Di luar batas
+40|見入る|Menatap terpaku
+41|追い上げる|Mengejar; menekan lawan
+42|怒鳴り込む|Menerobos masuk sambil membentak
+43|洗い上げる|Mencuci bersih; menyelidiki tuntas
+44|逃げ切る|Berhasil lolos; unggul sampai akhir
+45|収まり|Penyelesaian; kesesuaian
+46|衰え|Kemunduran; melemah
+47|訪れ|Kunjungan; kedatangan (musim)
+48|締め|Pengikatan; total
+49|示し|Teladan; disiplin
+50|染め|Pewarnaan
+51|体勢|Posisi tubuh; sikap
+52|定休|Libur tetap
+53|渡し|Penyeberangan; feri
+54|装い|Busana; dandanan
+55|揺さぶり|Guncangan; tekanan
+56|湧水|Mata air
+57|等々|Dan seterusnya
+58|荒れ|Cuaca buruk; kulit pecah-pecah
+59|意気盛ん|Bersemangat tinggi
+60|憤り|Kemarahan; kekesalan
+61|大商い|Perdagangan besar
+62|大店|Toko besar
+63|買い戻し|Pembelian kembali
+64|担ぎ|Pengangkut; pembawa
+65|省エネルギー|Hemat energi
+66|身障者|Penyandang disabilitas fisik
+67|世銀|Bank Dunia
+68|千九百年代|Tahun 1900-an
+69|総務局|Biro urusan umum
+70|中執|Komite eksekutif pusat
+71|定期便|Layanan reguler
+72|通し|Dari awal sampai akhir; hidangan pembuka
+73|泊まり|Menginap; penginapan
+74|怒涛|Gelombang ganas
+75|鳴り|Bunyi; dering
+76|日出|Matahari terbit
+77|払い戻し|Pengembalian uang
+78|飛車|Benteng (shogi)
+79|品位|Martabat; mutu
+80|広まり|Penyebaran
+81|見当たらない|Tidak ditemukan
+82|蒸し|Pengukusan
+83|役に立たない|Tidak berguna
+84|輸銀|Bank ekspor-impor
+85|要は|Singkatnya
+86|脆弱|Rapuh; lemah
+87|連係プレー|Kerja sama tim yang baik
+88|織り|Tenunan
+89|公安委員会|Komisi keamanan publik
+90|少数意見|Pendapat minoritas
+91|新聞記事|Artikel surat kabar
+92|社民党|Partai Sosial Demokrat
+93|生息地|Habitat
+94|聖職者|Rohaniwan
+95|製作費|Biaya produksi
+96|地方公共団体|Pemerintah daerah
+97|投手戦|Duel pitcher
+98|道義的責任|Tanggung jawab moral
+99|日本学術会議|Dewan Ilmu Pengetahuan Jepang
+100|入館料|Biaya masuk
+101|農学部|Fakultas pertanian
+102|美術展|Pameran seni rupa
+103|文化遺産|Warisan budaya
+104|法律事務所|Kantor hukum
+105|量販店|Toko ritel besar
+106|労働基準法|Undang-undang standar ketenagakerjaan
+107|引き延ばし|Penguluran; pembesaran
+108|街宣車|Mobil propaganda
+109|好んで|Dengan sengaja memilih; senang hati
+110|産油国|Negara penghasil minyak
+111|重し|Pemberat; batu penindih
+112|助け合い|Tolong-menolong
+113|振る舞い|Tingkah laku; jamuan
+114|酔い|Mabuk; mabuk perjalanan
+115|送り出し|Mendorong lawan keluar dari belakang
+116|多め|Agak banyak
+117|対極|Kutub berlawanan
+118|単産|Serikat industri tunggal
+119|短め|Agak pendek
+120|年商|Omzet tahunan
+121|髪形|Model rambut
+122|板ガラス|Kaca lembaran
+123|冷暖房|Pendingin dan pemanas ruangan
+124|磯|Pantai berbatu
+125|応札|Mengajukan penawaran
+126|棺|Peti jenazah
+127|貫|Kan (satuan berat kuno)
+128|決|Keputusan; pemungutan suara
+129|壕|Parit; bunker
+130|笹|Bambu kecil
+131|賛|Pujian; tulisan pada lukisan
+132|痔|Wasir
+133|柴|Ranting kayu bakar
+134|集|Kumpulan
+135|祖|Leluhur; pelopor
+136|早|Sudah; cepat
+137|対地|Darat ke darat
+138|途|Jalan; rute
+139|汎|Pan-; seluruh
+140|妃|Putri; permaisuri
+141|宝飾|Perhiasan
+142|紋|Lambang keluarga; motif
+143|野山|Bukit dan ladang
+144|素案|Rancangan kasar
+145|内閣官房|Sekretariat Kabinet
+146|封じる|Menyegel; menghalangi
+147|村議会|Dewan desa
+148|損壊|Kerusakan
+149|題する|Berjudul
+150|通年|Sepanjang tahun
+151|米人|Orang Amerika
+152|通販|Belanja jarak jauh
+153|中高|Sekolah menengah pertama dan atas
+154|良き|Baik
+155|健常者|Orang tanpa disabilitas
+156|底打ち|Menyentuh titik terendah
+157|不在者投票|Pemungutan suara bagi yang absen
+158|婦女暴行|Pemerkosaan
+159|文具|Alat tulis
+160|無党派層|Pemilih tak berafiliasi
+161|待たす|Membuat menunggu
+162|四本|Empat batang
+163|利かせる|Menggunakan; membumbui dengan pas
+164|散骨|Penaburan abu jenazah
+165|解きほぐす|Mengurai; meredakan
+166|間違いない|Pasti; tak diragukan
+167|最年少|Termuda
+168|働かせる|Mempekerjakan; menggunakan
+169|ネイチャー|Alam
+170|コレラ|Kolera
+171|高麗|Goryeo; Korea
+172|兄ちゃん|Kakak; anak muda
+173|デー|Hari
+174|空砲|Tembakan kosong
+175|重点的|Terfokus pada prioritas
+176|即戦力|Tenaga siap pakai
+177|いまひとつ|Kurang sedikit; satu lagi
+178|報われる|Mendapat balasan setimpal
+179|才|Bakat; usia
+180|０|Nol
+181|ロック|Rock; kunci

@@ -1,0 +1,400 @@
+0|露店|Kios jalanan; lapak
+1|労|Kerja keras; jerih payah
+2|労作|Karya hasil kerja keras
+3|労働運動|Gerakan buruh
+4|労務|Urusan tenaga kerja
+5|朗報|Kabar baik
+6|楼閣|Bangunan bertingkat; menara
+7|老人性|Bersifat pikun/usia lanjut
+8|老齢|Usia lanjut
+9|論外|Di luar pembicaraan; mustahil
+10|論客|Pendebat ulung
+11|論拠|Dasar argumen
+12|論調|Nada argumen
+13|論点|Pokok perdebatan
+14|論評|Ulasan; kritik
+15|和む|Menjadi tenang; mereda
+16|和らぐ|Melunak; mereda
+17|和菓子|Kue tradisional Jepang
+18|和牛|Sapi wagyu
+19|話し込む|Asyik mengobrol
+20|話し方|Cara bicara
+21|賄賂|Suap
+22|脇役|Peran pendukung
+23|わし|Elang
+24|腕力|Kekuatan fisik
+25|傲慢|Sombong
+26|喘息|Asma
+27|毀損|Perusakan; pencemaran nama
+28|屏風|Layar lipat
+29|掟|Hukum; aturan
+30|楷書|Gaya tulisan kai (kotak)
+31|琥珀|Ambar
+32|こぶ|Benjolan
+33|絆|Ikatan batin
+34|緻密|Teliti dan rapat
+35|罠|Jerat; perangkap
+36|翔る|Terbang melayang; berlari kencang
+37|舅|Ayah mertua
+38|ばら|Mawar
+39|躊躇|Keraguan
+40|鍼灸|Akupunktur dan moksibusi
+41|一世|Satu generasi; zaman
+42|一節|Satu ayat/bait
+43|雨水|Air hujan
+44|益|Manfaat; keuntungan
+45|塩水|Air asin
+46|奥地|Pedalaman
+47|翁|Kakek; orang tua terhormat
+48|黄昏|Senja; masa tua
+49|下半期|Semester kedua
+50|加重|Pemberatan; pembobotan
+51|角界|Dunia sumo
+52|乾物|Makanan kering
+53|がん|Angsa liar
+54|気難しい|Sulit dipuaskan
+55|軽やか|Ringan; lincah
+56|嫌気|Rasa muak
+57|元凶|Biang kerok
+58|弦|Tali busur; dawai
+59|古文書|Dokumen kuno
+60|固執|Bersikeras
+61|口数|Jumlah kata yang diucapkan; jumlah tanggungan
+62|行き詰まり|Kebuntuan
+63|高名|Terkenal
+64|黒衣|Pakaian hitam
+65|黒煙|Asap hitam
+66|三方|Tiga sisi; baki persembahan
+67|磁場|Medan magnet; atmosfer
+68|借家|Rumah sewaan
+69|十八番|Andalan; keahlian utama
+70|重荷|Beban berat
+71|重厚|Berwibawa; mendalam
+72|出所|Asal-usul; sumber
+73|女形|Aktor pemeran wanita (kabuki)
+74|上向き|Menghadap ke atas; membaik
+75|人心|Hati manusia; perasaan rakyat
+76|人文|Humaniora; peradaban
+77|水鳥|Burung air
+78|正道|Jalan yang benar
+79|西方|Arah barat
+80|全治|Sembuh total
+81|束ねる|Mengikat; menyatukan
+82|大将|Jenderal/laksamana; kepala
+83|注ぎ込む|Menuang ke dalam
+84|注ぎ込む|Menanamkan modal
+85|佃|-
+86|天神|Dewa langit; Tenjin
+87|島国|Negara kepulauan
+88|頭打ち|Mencapai puncak; mandek
+89|内々|Pribadi; rahasia
+90|内海|Teluk; laut pedalaman
+91|内示|Pengumuman tidak resmi
+92|南氷洋|Samudra Selatan
+93|乳首|Puting
+94|乳房|Payudara
+95|売春婦|Pekerja seks
+96|帆船|Kapal layar
+97|鼻息|Embusan napas dari hidung
+98|俵|Karung jerami
+99|風穴|Lubang angin
+100|平地|Tanah datar
+101|別人|Orang lain
+102|編者|Penyunting
+103|墓石|Batu nisan
+104|北国|Negeri utara
+105|北風|Angin utara
+106|凡人|Orang biasa
+107|味気ない|Hambar; membosankan
+108|余人|Orang lain
+109|螺旋|Spiral; ulir
+110|両足|Kedua kaki
+111|涼風|Angin sejuk
+112|老舗|Toko lama yang mapan
+113|合言葉|Kata sandi; semboyan
+114|相性|Kecocokan
+115|足掛かり|Pijakan
+116|編み物|Rajutan
+117|雨降り|Hujan; turun hujan
+118|あゆ|Ikan ayu
+119|荒々しい|Kasar; liar
+120|荒野|Tanah tandus
+121|暗黒|Kegelapan
+122|あんず|Aprikot
+123|行き渡る|Tersebar merata
+124|委嘱|Penugasan; permintaan resmi
+125|位置付ける|Menempatkan; memosisikan
+126|一騎打ち|Duel satu lawan satu
+127|異文|Varian teks
+128|入れ墨|Tato
+129|入れ歯|Gigi palsu
+130|印象付ける|Memberi kesan
+131|受け持ち|Tanggung jawab; bagian tugas
+132|受け渡し|Serah terima
+133|歌合|Kontes puisi
+134|打ち明ける|Mengungkapkan rahasia
+135|生む|Melahirkan; menghasilkan
+136|埋め立て地|Tanah reklamasi
+137|売り手|Penjual
+138|憂える|Mengkhawatirkan
+139|英知|Kebijaksanaan; kecerdasan
+140|延々|Tak berkesudahan
+141|大さじ|Sendok makan
+142|置物|Hiasan; pajangan
+143|押し売り|Penjualan paksa
+144|押し出し|Mendorong keluar; penampilan berwibawa
+145|落とし物|Barang hilang
+146|思いつく|Terpikir; mendapat ide
+147|折々|Sesekali
+148|卸売物価|Harga grosir
+149|飼い主|Pemilik hewan peliharaan
+150|返り咲き|Kembali berjaya
+151|顔合わせ|Pertemuan perkenalan; tampil bersama
+152|香る|Berbau harum
+153|係員|Petugas
+154|書き換える|Menulis ulang; memperbarui
+155|書き込み|Tulisan; isian
+156|画一|Keseragaman
+157|拡声機|Pengeras suara
+158|掛け金|Cicilan; premi
+159|掛け声|Seruan semangat
+160|駆けつける|Bergegas datang
+161|貸し切り|Dipesan khusus; carter
+162|仮設|Sementara
+163|風当たり|Terpaan angin; kritik keras
+164|加担|Ikut mendukung; terlibat
+165|蚊帳|Kelambu
+166|軽々|Dengan ringan; dengan mudah
+167|枯れ木|Pohon mati
+168|替わる|Menggantikan
+169|乾季|Musim kemarau
+170|木々|Pepohonan
+171|傷跡|Bekas luka
+172|希薄|Tipis; kurang
+173|凶悪|Kejam; bengis
+174|凶器|Senjata pembunuh
+175|強固|Kokoh
+176|興味津々|Sangat tertarik
+177|切り捨てる|Membuang; membulatkan ke bawah
+178|切り抜き|Kliping
+179|切れ味|Ketajaman
+180|布地|Kain
+181|極まる|Mencapai puncak; sangat
+182|極める|Menguasai sepenuhnya
+183|疑似|Semu; tiruan
+184|口々|Serentak banyak orang
+185|隅々|Setiap sudut
+186|決起|Bangkit bertindak
+187|検視|Pemeriksaan jenazah
+188|激論|Debat sengit
+189|原価|Harga pokok
+190|木枯らし|Angin dingin awal musim dingin
+191|子猫|Anak kucing
+192|衣替え|Ganti pakaian musiman
+193|強情|Keras kepala
+194|先駆け|Perintis; yang terdepan
+195|作付け|Penanaman
+196|挿絵|Ilustrasi
+197|差出人|Pengirim
+198|散々|Habis-habisan; parah
+199|雑踏|Keramaian
+200|史跡|Situs bersejarah
+201|下請け|Subkontrak
+202|失態|Kesalahan memalukan
+203|島々|Pulau-pulau
+204|締め出す|Mengucilkan; mengunci di luar
+205|締め付け|Tekanan; pengetatan
+206|首領|Pemimpin; bos
+207|招請|Undangan
+208|娼婦|Pelacur
+209|若年|Usia muda
+210|上々|Sangat baik
+211|叙情|Lirisisme
+212|正座|Duduk berlutut (seiza)
+213|席巻|Menyapu bersih; menguasai
+214|税込み|Termasuk pajak
+215|全線|Seluruh jalur
+216|前兆|Pertanda
+217|装丁|Penjilidan; desain sampul buku
+218|率先|Mengambil inisiatif
+219|退廃|Kemerosotan moral
+220|垂れ幕|Spanduk gantung
+221|淡々|Datar; tenang
+222|淡泊|Ringan; polos
+223|近づき|Perkenalan
+224|遅々|Lambat
+225|月々|Setiap bulan
+226|突っ張り|Penyangga; kekakuan
+227|帝政|Pemerintahan kekaisaran
+228|手落ち|Kelalaian
+229|東亜|Asia Timur
+230|貴ぶ|Menghargai; menjunjung
+231|途切れる|Terputus
+232|隣り合う|Berdampingan
+233|飛び下りる|Melompat turun
+234|飛び込み|Lompatan; datang tanpa janji
+235|飛び火|Percikan api; penyebaran
+236|捕らわれる|Tertangkap; terperangkap
+237|取り込み|Memasukkan; menarik (pelanggan)
+238|とりわけ|Terutama
+239|執る|Melakukan; memimpin
+240|同名|Nama yang sama
+241|内情|Keadaan dalam
+242|長らく|Lama sekali
+243|情けない|Menyedihkan; memalukan
+244|生々しい|Sangat nyata; segar
+245|寝転ぶ|Berbaring santai
+246|乗り場|Tempat naik kendaraan
+247|履物|Alas kaki
+248|はちまき|Ikat kepala
+249|八丁|Keahlian
+250|反旗|Panji pemberontakan
+251|半々|Fifty-fifty
+252|化け物|Hantu; monster
+253|抜粋|Kutipan
+254|引き合い|Rujukan; permintaan harga
+255|引き延ばす|Memperpanjang; memperbesar
+256|引き渡す|Menyerahkan; mengekstradisi
+257|人並み|Rata-rata orang
+258|独り占め|Memonopoli sendiri
+259|冷や汗|Keringat dingin
+260|比喩|Perumpamaan; kiasan
+261|不始末|Kecerobohan; kesalahan
+262|双葉|Daun lembaga; masa awal
+263|不釣合い|Tidak seimbang
+264|不妊|Ketidaksuburan
+265|振替|Pemindahan; transfer
+266|振り子|Bandul
+267|振る舞う|Bersikap; menjamu
+268|部署|Posisi tugas; departemen
+269|無精|Malas
+270|萌芽|Tunas; benih
+271|保守的|Konservatif
+272|没後|Setelah wafat
+273|前々|Jauh sebelumnya
+274|漫才|Manzai; lawakan duet
+275|満々|Penuh
+276|見かける|Kebetulan melihat
+277|見比べる|Membandingkan
+278|巫女|Miko; gadis kuil
+279|見届ける|Memastikan dengan mata sendiri
+280|見習い|Magang
+281|苗字|Nama keluarga
+282|目覚ましい|Mengagumkan
+283|目覚まし時計|Jam weker
+284|目白押し|Berjubel; padat acara
+285|目盛り|Skala
+286|面々|Masing-masing orang
+287|儲け|Keuntungan
+288|申し合わせ|Kesepakatan bersama
+289|持ち込み|Membawa sendiri
+290|持ち物|Barang bawaan
+291|山々|Pegunungan; sangat ingin
+292|寡婦|Janda
+293|勇退|Mundur dengan sukarela
+294|ゆず|Yuzu (jeruk)
+295|要約|Ringkasan
+296|呼び出し|Panggilan; pemanggil sumo
+297|読み取り|Pembacaan (pemindai)
+298|読み物|Bahan bacaan
+299|分かち|Pembedaan
+300|割り込み|Menyerobot antrean; interupsi
+301|割に|Relatif; di luar dugaan
+302|割り箸|Sumpit sekali pakai
+303|割れ目|Celah; retakan
+304|我ら|Kami; kita
+305|低音|Nada rendah; bas
+306|把|Penghitung untuk ikatan
+307|長唄|Nyanyian panjang dengan shamisen
+308|幕末|Akhir keshogunan Tokugawa
+309|映し出す|Menampilkan; menggambarkan
+310|源氏|Genji; klan Minamoto
+311|室町|Zaman Muromachi
+312|難波|-
+313|飽き|Kebosanan
+314|洗い物|Cucian
+315|行き過ぎる|Terlewat; keterlaluan
+316|痛ましい|Menyayat hati
+317|戒め|Peringatan; larangan
+318|薄まる|Menjadi encer
+319|衛生的|Higienis
+320|恐る恐る|Dengan takut-takut
+321|落ちこぼれ|Siswa tertinggal; sisa
+322|思う存分|Sepuas-puasnya
+323|風上|Arah datangnya angin
+324|風邪薬|Obat flu
+325|軽はずみ|Ceroboh
+326|食い下がる|Bergantung kuat; mendesak
+327|下がり|Penurunan; rumbai
+328|山積|Menumpuk tinggi
+329|資本家|Kapitalis
+330|湿っぽい|Lembap; murung
+331|自問|Bertanya pada diri sendiri
+332|女性的|Feminin
+333|成算|Harapan berhasil
+334|節句|Festival musiman
+335|早春|Awal musim semi
+336|草食|Herbivora
+337|脱衣|Melepas pakaian
+338|立て続け|Berturut-turut
+339|男性的|Maskulin
+340|縮み|Penyusutan; krep katun
+341|張本人|Dalang; pelaku utama
+342|通俗的|Populer; awam
+343|父さん|Ayah
+344|投射|Proyeksi
+345|言い換える|Mengatakan dengan kata lain
+346|言いなり|Menurut saja
+347|思いがけない|Tak terduga
+348|立て直す|Menegakkan kembali; memulihkan
+349|立て札|Papan pengumuman
+350|シャンソン|Chanson (lagu Prancis)
+351|長生き|Umur panjang
+352|日給|Upah harian
+353|寝返り|Berguling saat tidur; berkhianat
+354|葉っぱ|Daun; ganja
+355|話し声|Suara orang bicara
+356|話し言葉|Bahasa lisan
+357|早寝|Tidur lebih awal
+358|日に日に|Hari demi hari
+359|封建的|Feodal
+360|まぐれ|Kebetulan; untung-untungan
+361|見限る|Meninggalkan; tak lagi berharap
+362|身軽|Gesit; ringan
+363|水入らず|Hanya orang dalam; tanpa orang luar
+364|見ず知らず|Tidak dikenal; orang asing
+365|店開き|Membuka toko/usaha
+366|見とれる|Terpesona memandang
+367|耳元|Dekat telinga
+368|明年|Tahun depan
+369|見分け|Pembedaan
+370|無害|Tidak berbahaya
+371|無性に|Sangat; tak tertahankan
+372|無心|Polos; tanpa pamrih
+373|無神経|Tidak peka
+374|名月|Bulan purnama panen
+375|目玉商品|Barang obral andalan
+376|利己主義|Egoisme
+377|陸橋|Jembatan layang
+378|留年|Tinggal kelas
+379|歴然|Jelas; nyata
+380|隣り合わせ|Berdampingan
+381|逃げ道|Jalan keluar; jalan melarikan diri
+382|見過ごす|Melewatkan; membiarkan
+383|こなす|Mencerna; menguasai
+384|安らぐ|Merasa tenteram
+385|安心感|Rasa aman
+386|医科学|-
+387|一校|-
+388|一女|-
+389|一人暮らし|Hidup sendiri
+390|一問|-
+391|稲田|Sawah padi
+392|引き取り|Pengambilan; penerimaan
+393|宇宙開発|Pengembangan antariksa
+394|宇宙開発事業団|Badan Pengembangan Antariksa Nasional
+395|営農|Usaha tani
+396|影の内閣|Kabinet bayangan
+397|栄養学|Ilmu gizi
+398|英明|Cerdas dan bijaksana
+399|越後|-
