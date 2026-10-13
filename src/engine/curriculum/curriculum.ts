@@ -48,8 +48,10 @@ export const EVALUATION_QUESTIONS = 10;
 
 export const PROFILE_LIMITS = {
   durationDays: { min: 7, max: 730 },
-  minutesPerDay: { min: 10, max: 180 },
+  minutesPerDay: { min: 10, max: 480 },
 } as const;
+/** Di atas ini beban harian dianggap berat (peringatan, bukan larangan). */
+export const COMFORT_MINUTES_PER_DAY = 180;
 
 const FOCUS_WEIGHTS: Readonly<Record<GuidedFocus, DailyQuota>> = {
   balanced: { kotoba: 0.5, kanji: 0.25, bunpou: 0.25 },
@@ -73,7 +75,7 @@ export function normalizeProfile(p: GuidedProfile): GuidedProfile {
   const num = (v: number, fallback: number) => (Number.isFinite(v) ? Math.round(v) : fallback);
   return {
     // Program lama (sebelum ada mode) adalah program berbasis waktu.
-    mode: p.mode === 'target' ? 'target' : 'time',
+    mode: p.mode === 'target' || p.mode === 'deadline' ? p.mode : 'time',
     currentLevel: p.currentLevel,
     targetLevel: p.targetLevel,
     durationDays: clamp(num(p.durationDays, 60), PROFILE_LIMITS.durationDays.min, PROFILE_LIMITS.durationDays.max),
@@ -303,7 +305,6 @@ function allocate(budgetMinutes: number, gap: CategoryCount, cost: CategoryCount
  */
 export function analyzePlan(profileInput: GuidedProfile, curriculum: Curriculum, mastery: Mastery): PlanAnalysis {
   const profile = normalizeProfile(profileInput);
-  const minutes = profile.minutesPerDay;
   const { learned, gap } = gapOf(curriculum, mastery);
 
   const costFor = (days: number): CategoryCount => {
@@ -318,6 +319,11 @@ export function analyzePlan(profileInput: GuidedProfile, curriculum: Curriculum,
     const cost = costFor(days);
     return GUIDED_CATEGORIES.reduce((sum, c) => sum + gap[c] * cost[c], 0);
   };
+
+  // Mode tenggat: waktu harian adalah HASIL hitung (beban ÷ tenggat), bukan masukan.
+  const minutes = profile.mode === 'deadline'
+    ? clamp(Math.ceil(workloadFor(profile.durationDays) / profile.durationDays), PROFILE_LIMITS.minutesPerDay.min, PROFILE_LIMITS.minutesPerDay.max)
+    : profile.minutesPerDay;
 
   // Durasi yang dibutuhkan bergantung pada jumlah pengulangan, yang bergantung pada durasi -> beberapa iterasi cukup.
   let requiredDays = 60;
@@ -387,7 +393,8 @@ export function dayIndexOf(plan: Pick<GuidedPlan, 'startDate'>, today: string): 
 // ------------------------------------------------------------------------------
 
 /**
- * Buat program. Mode 'target': durasi = durasi yang dibutuhkan untuk menuntaskan gap. Titik awal (`baseline`)
+ * Buat program. Mode 'target': durasi = durasi yang dibutuhkan untuk menuntaskan gap; mode 'deadline': menit/hari =
+ * menit yang dibutuhkan untuk menuntaskan gap sebelum tenggat. Titik awal (`baseline`)
  * dan sasaran (`goal`) dicatat agar laju belajar bisa diukur tanpa menyimpan seluruh daftar materi.
  */
 export function createPlan(
@@ -398,7 +405,7 @@ export function createPlan(
   nowIso: string = new Date().toISOString()
 ): GuidedPlan {
   const analysis = analyzePlan(profileInput, curriculum, mastery);
-  const profile = { ...normalizeProfile(profileInput), durationDays: analysis.days };
+  const profile = { ...normalizeProfile(profileInput), durationDays: analysis.days, minutesPerDay: analysis.minutesPerDay };
   const pick = (f: (a: CategoryAnalysis) => number): CategoryCount => ({
     kotoba: f(analysis.categories.kotoba), kanji: f(analysis.categories.kanji), bunpou: f(analysis.categories.bunpou),
   });
@@ -450,7 +457,6 @@ export function planDay(
   ctx: DayContext = {}
 ): GuidedDay {
   const profile = normalizeProfile(plan.profile);
-  const minutes = profile.minutesPerDay;
   const dayIndex = dayIndexOf(plan, today);
   const daysLeft = Math.max(1, profile.durationDays - dayIndex + 1);
 
@@ -468,6 +474,14 @@ export function planDay(
     kanji: curriculum.learnMinutes.kanji + review,
     bunpou: curriculum.learnMinutes.bunpou + review,
   };
+  // Mode tenggat: anggaran hari ini = sisa beban ÷ sisa hari (naik bila tertinggal, turun bila lebih cepat),
+  // supaya tenggatnya yang dipertahankan, bukan menit hariannya.
+  const minutes = profile.mode === 'deadline'
+    ? clamp(
+        Math.ceil(GUIDED_CATEGORIES.reduce((n, c) => n + gap[c] * cost[c], 0) / daysLeft),
+        PROFILE_LIMITS.minutesPerDay.min, PROFILE_LIMITS.minutesPerDay.max
+      )
+    : profile.minutesPerDay;
   const planned = allocate(minutes * daysLeft, gap, cost, FOCUS_WEIGHTS[profile.focus]);
   const base: CategoryCount = { kotoba: 0, kanji: 0, bunpou: 0 };
   let plannedNewMinutes = 0;
@@ -538,6 +552,7 @@ export function planDay(
     bunpou,
     carried: [...kotoba, ...kanji, ...bunpou].filter(id => previous.has(id)),
     recallTarget,
+    minutes,
     recallMinutes: Math.round(recallTarget * MINUTES_PER_RECALL),
     notes,
     claimed: {},

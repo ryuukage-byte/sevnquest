@@ -3,9 +3,9 @@ import assert from 'node:assert/strict';
 import { BUNPOU_LEARNING_STAGES, bunpouLearningRank, sortBunpouForLearning } from './bunpouOrder';
 import { getCurriculum, getCurriculumSources } from './sources';
 
-test('setiap pola N5/N4 terdaftar tepat sekali dalam urutan belajar', () => {
+test('setiap pola N5/N4/N2/N1 terdaftar tepat sekali dalam urutan belajar', () => {
   const all = getCurriculumSources().bunpou;
-  for (const level of ['N5', 'N4'] as const) {
+  for (const level of ['N5', 'N4', 'N2', 'N1'] as const) {
     const ids = all.filter(b => b.level === level).map(b => b.id);
     const listed = BUNPOU_LEARNING_STAGES[level].flatMap(([, nums]) => nums);
     assert.equal(new Set(listed).size, listed.length, `${level}: ada nomor ganda`);
@@ -42,6 +42,27 @@ test('kurikulum memakai urutan belajar: pemula mulai dari kopula, N3 tetap uruta
   assert.deepEqual(n5.bunpou.slice(0, 3), ['bp_n5_036', 'bp_n5_096', 'bp_n5_030']);
   const n3 = getCurriculum({ mode: 'time', currentLevel: 'N4', targetLevel: 'N3', durationDays: 60, minutesPerDay: 45, focus: 'balanced' });
   assert.equal(n3.bunpou[0], 'w1d1g1');
+});
+
+test('N2/N1: dikelompokkan per fungsi — pola mirip berdekatan, yang umum sebelum yang sastra', () => {
+  const rank = (id: string) => bunpouLearningRank(id)!;
+  const near = (a: string, b: string, max = 3) =>
+    assert.ok(Math.abs(rank(a) - rank(b)) <= max, `${a} dan ${b} seharusnya berdekatan`);
+  near('bp_n2_199', 'bp_n2_200'); // よりしかたがない / よりほかない
+  near('bp_n2_145', 'bp_n2_146'); // にしても〜にしても / にしろ〜にしろ
+  near('bp_n2_084', 'bp_n2_088'); // てたまらない / てならない
+  near('bp_n2_203', 'bp_n2_204'); // をきっかけに / を契機に
+  near('bp_n1_027', 'bp_n1_234'); // が早いか / や否や
+  near('bp_n1_194', 'bp_n1_195'); // の至り / の極み
+  near('bp_n1_263', 'bp_n1_264'); // を余儀なくさせる / を余儀なくされる
+  near('bp_n1_021', 'bp_n1_024'); // かたがた / がてら
+  // kata keterangan & penghubung yang umum di depan; bentuk klasik / ragam khusus di belakang
+  assert.ok(rank('bp_n2_004') < rank('bp_n2_048')); // いきなり < 〜ざる
+  assert.ok(rank('bp_n2_051') < rank('bp_n2_159')); // しかも < 〜ぬ
+  assert.ok(rank('bp_n1_005') < rank('bp_n1_042')); // 案の定 < 〜如く
+  const n1 = getCurriculum({ mode: 'time', currentLevel: 'N2', targetLevel: 'N1', durationDays: 90, minutesPerDay: 45, focus: 'balanced' });
+  assert.equal(n1.bunpou[0], 'bp_n1_001');
+  assert.equal(n1.bunpou.indexOf('bp_n1_003') > 50, true, '〜あっての tidak lagi di urutan ke-3 (abjad)');
 });
 
 test('pola tanpa peringkat tetap di urutan asalnya, setelah yang berperingkat', () => {

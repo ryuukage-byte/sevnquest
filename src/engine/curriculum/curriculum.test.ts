@@ -139,6 +139,53 @@ test('mode target: sistem menghitung durasi yang dibutuhkan, lalu seluruh gap te
   assert.deepEqual(plan.baseline, { kotoba: 0, kanji: 0, bunpou: 0 });
 });
 
+test('mode tenggat: pengguna menyebut hari, sistem menghitung materi & menit per hari', () => {
+  const c = curr();
+  const p = (durationDays: number) => profile({ mode: 'deadline', durationDays, minutesPerDay: 999 });
+  const a = analyzePlan(p(12), c, {});
+  // waktu harian adalah hasil hitung, bukan masukan (999 diabaikan)
+  assert.equal(a.minutesPerDay, Math.max(10, a.requiredMinutesPerDay));
+  assert.equal(a.feasible, true);
+  assert.equal(a.days, 12);
+  assert.deepEqual([a.categories.kotoba.planned, a.categories.kanji.planned, a.categories.bunpou.planned], [20, 10, 6]);
+  // tenggat lebih pendek -> lebih banyak materi dan menit per hari
+  const tight = analyzePlan(p(7), c, {});
+  assert.ok(tight.minutesPerDay > a.minutesPerDay);
+  assert.ok(tight.categories.kotoba.quota >= a.categories.kotoba.quota);
+  assert.ok(tight.categories.kotoba.quota * 7 >= 20, 'jatah harian cukup untuk menuntaskan kotoba sebelum tenggat');
+  // yang sudah dipelajari mengurangi beban harian
+  assert.ok(analyzePlan(p(7), c, learned(c.kotoba)).minutesPerDay < tight.minutesPerDay);
+
+  const plan = createPlan(p(12), '2026-10-13', c, {}, 't');
+  assert.equal(plan.profile.minutesPerDay, a.minutesPerDay);
+  assert.deepEqual(plan.goal, { kotoba: 20, kanji: 10, bunpou: 6 });
+  // tertinggal -> anggaran harian NAIK supaya tenggat tetap terkejar (bukan tenggatnya yang mundur)
+  const onTime = planDay(plan, c, {}, '2026-10-13', { dueCount: 0 });
+  const late = planDay(plan, c, {}, '2026-10-21', { dueCount: 0 });
+  assert.ok(late.minutes! > onTime.minutes!);
+  assert.ok(late.kotoba.length >= onTime.kotoba.length);
+  // lebih cepat dari jadwal -> anggaran harian turun
+  const ahead = planDay(plan, c, learned([...c.kotoba.slice(0, 15), ...c.kanji.slice(0, 8)]), '2026-10-14', { dueCount: 0 });
+  assert.ok(ahead.minutes! < onTime.minutes!);
+});
+
+test('mode tenggat pada basis data asli: N3 → N2 dalam 50 hari dinyatakan apa adanya', () => {
+  const p = profile({ mode: 'deadline', currentLevel: 'N3', targetLevel: 'N2', durationDays: 50 });
+  const c = getCurriculum(p);
+  const a = analyzePlan(p, c, {});
+  assert.equal(a.days, 50);
+  assert.equal(a.feasible, true);
+  assert.ok(a.minutesPerDay > 180 && a.minutesPerDay <= 480, `menit/hari = ${a.minutesPerDay}`);
+  assert.ok(a.categories.kotoba.quota >= Math.floor(c.kotoba.length / 50));
+  assert.ok(a.categories.kotoba.quota > analyzePlan({ ...p, durationDays: 150 }, c, {}).categories.kotoba.quota);
+  // tenggat mustahil: menit dijepit di batas atas dan cakupan dilaporkan sebagian
+  const n1 = profile({ mode: 'deadline', currentLevel: 'N2', targetLevel: 'N1', durationDays: 30 });
+  const impossible = analyzePlan(n1, getCurriculum(n1), {});
+  assert.equal(impossible.minutesPerDay, 480);
+  assert.equal(impossible.feasible, false);
+  assert.ok(impossible.requiredMinutesPerDay > 480);
+});
+
 test('preferensi menentukan prioritas saat waktu tidak cukup; sisa jatah dialihkan ke kategori lain', () => {
   const c = curr();
   const p = (focus: GuidedProfile['focus']) => analyzePlan(profile({ durationDays: 7, minutesPerDay: 15, focus }), c, {});

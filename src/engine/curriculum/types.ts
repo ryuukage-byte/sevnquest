@@ -13,11 +13,12 @@ export type GuidedFocus = 'balanced' | GuidedCategory;
 export type GuidedMissionKey = GuidedCategory | 'recall' | 'evaluasi';
 
 /**
- * Dua jenis program yang TIDAK sama:
+ * Tiga jenis program yang TIDAK sama:
+ *  - 'deadline': pengguna memilih target + tenggat (hari) -> sistem menghitung materi & menit per hari yang dibutuhkan.
  *  - 'target' : pengguna memilih target + menit/hari -> sistem menghitung durasi yang dibutuhkan untuk menuntaskan gap.
  *  - 'time'   : pengguna memilih durasi + menit/hari -> sistem menyatakan seberapa banyak materi prioritas yang realistis.
  */
-export type GuidedMode = 'target' | 'time';
+export type GuidedMode = 'deadline' | 'target' | 'time';
 
 export interface GuidedProfile {
   mode: GuidedMode;
@@ -25,7 +26,7 @@ export interface GuidedProfile {
   targetLevel: JlptLevel;
   /** Lama program (hari). Pada mode 'target' diisi sistem saat program dibuat. */
   durationDays: number;
-  /** Waktu belajar per hari (menit). */
+  /** Waktu belajar per hari (menit). Pada mode 'deadline' diisi sistem saat program dibuat. */
   minutesPerDay: number;
   /** Prioritas bila waktu tidak cukup untuk semua kategori. */
   focus: GuidedFocus;
@@ -44,6 +45,8 @@ export interface GuidedDay {
   carried: string[];
   /** Target jawaban Recall hari ini — mengikuti jumlah materi yang jatuh tempo, bukan porsi waktu tetap. */
   recallTarget: number;
+  /** Anggaran menit hari ini (mode 'deadline': dihitung ulang dari sisa materi ÷ sisa hari). */
+  minutes?: number;
   /** Menit yang dipakai Recall hari ini (sisanya untuk materi baru). */
   recallMinutes?: number;
   /** Alasan jatah materi baru hari ini berbeda dari jatah dasar. */
@@ -114,6 +117,7 @@ export interface PlanAnalysis {
   mode: GuidedMode;
   /** Durasi yang dipakai program (mode 'target' = durasi yang dibutuhkan). */
   days: number;
+  /** Menit/hari yang dipakai program (mode 'deadline' = menit yang dibutuhkan, dibatasi PROFILE_LIMITS). */
   minutesPerDay: number;
   categories: Record<GuidedCategory, CategoryAnalysis>;
   /** Total menit untuk menuntaskan seluruh gap (belajar + pengulangan). */

@@ -240,6 +240,8 @@ export const GuidedMissionsPanel: React.FC<GuidedMissionsPanelProps> = ({
         <p className="text-[11px] text-text-muted mt-2 relative z-10">
           {overview.pace === 'finished'
             ? 'Semua materi inti sudah dipelajari. Pertahankan lewat Recall sampai retensi dan penguasaannya naik.'
+            : plan.profile.mode === 'deadline' && goalIsFull
+              ? `Tenggat ${overview.daysLeft} hari lagi. Anggaran hari ini ±${day?.minutes ?? plan.profile.minutesPerDay} menit, dihitung dari sisa materi ÷ sisa hari: naik bila tertinggal, turun bila lebih cepat.`
             : goalIsFull
               ? `Sasaran: seluruh materi inti tuntas dalam ${overview.durationDays} hari. Sisa materi butuh ±${overview.daysToComplete} hari belajar dengan ${plan.profile.minutesPerDay} menit/hari.`
               : `Sasaran program: ${overview.goal} materi prioritas dalam ${overview.durationDays} hari (tercapai ${overview.progressed}). Menuntaskan seluruh materi inti butuh ±${overview.daysToComplete} hari dengan ${plan.profile.minutesPerDay} menit/hari.`}
