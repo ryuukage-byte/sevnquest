@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { useCallback, type Dispatch, type SetStateAction } from 'react';
+import { useCallback, useEffect, useRef, type Dispatch, type SetStateAction } from 'react';
 import confetti from 'canvas-confetti';
 import type { PlayerStats, StageClearData, Mission, DeckItemCategory, UserDeck } from '../types/rpg';
 import { calculateMaxHp, calculateMaxMp } from '../data/tiers';
@@ -11,12 +11,20 @@ import { recordItemAttempt, recordItemInteraction, buildSmartRecallQueue, hasBee
 import { recordRecallAnswer, recordRecallSession } from '../engine/recall/session';
 import { recordStudyActivity } from '../utils/activity';
 import { safeSetItem } from '../utils/storage';
-import { getTodayLocalDate } from '../utils/time';
+import { getTodayLocalDate, getLocalIsoWeekId } from '../utils/time';
+import { advanceDailyMissions, advanceWeeklyMissions, syncStreakMission, type MissionCategory } from '../state/missions';
+import { touchActiveDay } from '../state/streak';
+import { awardExp, LEGACY_META } from '../engine/reward/awardExp';
+import { REWARD_POLICY } from '../engine/reward/policy';
+import { sendScoreEvent } from '../lib/supabase';
+import type { RewardDecision, RewardMeta, StudyCompleteResult } from '../engine/reward/types';
 import { getGameOverHp, HP_POTION_ID } from '../utils/recovery';
 import { DEFAULT_STATS } from '../state/defaultStats';
 import { canonicalEntityId } from '../state/canonicalizeStats';
 import { STORAGE_KEY_SIGNATURE } from '../state/storageKeys';
-import { applyLevelFromExp } from '../state/derivedState';
+import {
+  applyStudyToStats, getStudyMissionAdvances, resolveStudyInteraction, inferStudyRewardMeta, isSessionAggregateId,
+} from '../state/playerProgress';
 import { consumePendingErrors } from '../utils/errorClassifier';
 import { KOTOBA_DATABASE } from '../data/kotoba';
 import { KANJI_DATABASE } from '../data/kanji';
@@ -42,90 +50,42 @@ export function usePlayerActions({
   showToast,
 }: Params) {
 // Give EXP & Gold reward directly (pure base EXP, respects JLPT Ascension gates)
-  const handleRewardPlayer = (expGained: number, goldGained: number = 0) => {
-    const preview = applyLevelFromExp({ ...stats, totalExp: Math.round(Math.max(0, (stats.totalExp || 0) + expGained)) });
-    if (preview.levelsGained > 0) {
+  const capNotified = useRef(new Set<string>());
+
+  const handleRewardPlayer = (expGained: number, goldGained: number = 0, meta: RewardMeta = LEGACY_META): RewardDecision => {
+    const req = { ...meta, exp: expGained, gold: goldGained };
+    // Pratinjau terhadap snapshot render: untuk toast level-up dan nilai kembalian ke UI. Keputusan RESMI
+    // (idempotency/batas/ledger) diambil di dalam updater di bawah terhadap state terbaru.
+    const preview = awardExp(stats, req);
+    if (preview.decision.granted && preview.stats.level > stats.level) {
       playSound('levelup', stats.soundEnabled);
       showToast(`Naik ke Level ${preview.stats.level}! +${preview.stats.unallocatedPoints - (stats.unallocatedPoints || 0)} poin atribut`, 4000);
     }
-    setStats(prev => {
-      const newTotalExp = Math.round(Math.max(0, (prev.totalExp || 0) + expGained));
-      const { effectiveTierIndex, isGated, gatedReason } = getEffectiveTier({
-        ...prev,
-        totalExp: newTotalExp,
-      });
-
-      // Level adalah fungsi dari totalExp: naik level memberi poin atribut dan menambah HP/MP maksimum.
-      const { stats: leveled } = applyLevelFromExp({
-        ...prev,
-        totalExp: newTotalExp,
-        tierIndex: Math.max(0, effectiveTierIndex),
-        tierPromotionGated: isGated,
-        gatedReason: gatedReason,
-        gold: Math.round(Math.max(0, (prev.gold || 0) + goldGained)),
-      });
-      return leveled;
-    });
+    setStats(prev => awardExp(prev, req).stats);
+    // Beri tahu sekali per keluarga per sesi halaman saat batas EXP harian tercapai (latihan tetap tercatat).
+    const family = REWARD_POLICY[req.source]?.family;
+    const d = preview.decision;
+    if (family && (d.capped || d.reason === 'daily_cap') && !capNotified.current.has(family)) {
+      capNotified.current.add(family);
+      showToast(`Batas EXP harian untuk mode ini tercapai. Latihan tetap tercatat; EXP lanjut besok.`, 5000);
+    }
+    return preview.decision;
   };
 
   const advanceMissions = (
-    category: 'bunpou' | 'kotoba' | 'kanji' | 'dokkai' | 'choukai' | 'streak' | 'stage_clear' | 'boss' | 'quiz',
+    category: MissionCategory,
     amount: number = 1,
     extra?: { isPerfect?: boolean; streakCount?: number }
   ) => {
-    setDailyMissions(prev =>
-      prev.map(m => {
-        let shouldIncrement = false;
-        let incAmount = amount;
-
-        if (m.id === 'dm_01' && category === 'bunpou') shouldIncrement = true;
-        else if (m.id === 'dm_02' && category === 'kotoba') shouldIncrement = true;
-        else if (m.id === 'dm_03' && category === 'kanji') shouldIncrement = true;
-        else if (m.id === 'dm_04' && category === 'choukai') shouldIncrement = true;
-        else if (m.id === 'dm_05' && (category === 'quiz' || category === 'bunpou' || category === 'kotoba' || category === 'choukai')) shouldIncrement = true;
-
-        if (shouldIncrement) {
-          const newProgress = Math.min(m.target, m.progress + incAmount);
-          return {
-            ...m,
-            progress: newProgress,
-            completed: newProgress >= m.target,
-          };
-        }
-        return m;
-      })
-    );
-
-    setWeeklyMissions(prev =>
-      prev.map(m => {
-        let shouldIncrement = false;
-        let incAmount = amount;
-
-        if (m.id === 'wm_01' && category === 'stage_clear') shouldIncrement = true;
-        else if (m.id === 'wm_02' && category === 'streak') {
-          const currentStreak = extra?.streakCount ?? stats.streakDays;
-          const newProgress = Math.min(m.target, Math.max(m.progress, currentStreak));
-          return {
-            ...m,
-            progress: newProgress,
-            completed: newProgress >= m.target,
-          };
-        }
-        else if (m.id === 'wm_03' && category === 'dokkai' && extra?.isPerfect) shouldIncrement = true;
-        else if (m.id === 'wm_04' && (category === 'boss' || category === 'stage_clear')) shouldIncrement = true;
-
-        if (shouldIncrement) {
-          const newProgress = Math.min(m.target, m.progress + incAmount);
-          return {
-            ...m,
-            progress: newProgress,
-            completed: newProgress >= m.target,
-          };
-        }
-        return m;
-      })
-    );
+    setDailyMissions(prev => advanceDailyMissions(prev, category, amount));
+    setWeeklyMissions(prev => advanceWeeklyMissions(prev, category, amount, extra));
   };
+
+  // Misi streak mingguan mengikuti streak belajar (state/streak.ts); dihitung ulang saat streak berubah.
+  useEffect(() => {
+    const now = new Date();
+    setWeeklyMissions(prev => syncStreakMission(prev, stats, getTodayLocalDate(), now));
+  }, [stats.streakDays, stats.lastActiveDate]);
 
   // Universal Study Activity Completion Handler (Works across Stages, Library, Decks, & Practice)
   const handleStudyComplete = (
@@ -135,96 +95,34 @@ export function usePlayerActions({
     itemId?: string,
     score?: number,
     total?: number,
-    interactionTypeOverride?: 'writing' | 'flashcard' | 'quiz'
-  ) => {
+    interactionTypeOverride?: 'writing' | 'flashcard' | 'quiz',
+    rewardMeta?: RewardMeta
+  ): StudyCompleteResult => {
     // ID kanonik: alias lama / karakter kanji tidak boleh membuat record mastery ganda.
     if (itemId) itemId = canonicalEntityId(itemId);
     // Jenis kesalahan dari sesi kuis yang baru selesai (sekali pakai; kosong untuk mode tanpa kuis)
     const detectedErrors = consumePendingErrors();
+    const interaction = resolveStudyInteraction(moduleId, interactionTypeOverride);
+    let rewardDecision: RewardDecision | undefined;
     if (expGained > 0 || goldGained > 0) {
-      handleRewardPlayer(expGained, goldGained);
+      // Pemanggil boleh menyebut sumber; bila tidak, dikenali dari ID/interaksi (dungeon_/drill_/menulis).
+      const meta: RewardMeta = rewardMeta ?? inferStudyRewardMeta(moduleId, interaction, itemId);
+      rewardDecision = handleRewardPlayer(expGained, goldGained, meta);
     }
 
-    const effectiveInteraction: 'writing' | 'flashcard' | 'quiz' =
-      interactionTypeOverride || (moduleId === 'kanji' ? 'writing' : (moduleId === 'kotoba' ? 'flashcard' : 'quiz'));
-
-    // ID agregat sesi (drill/tryout/dungeon/star_rush) bukan item materi: jangan dibuat record mastery,
-    // kalau tidak itemMastery membengkak (ID dungeon unik per sesi) dan antrean recall berisi item hantu.
-    const isSessionAggregate =
-      moduleId === 'questions' ||
-      moduleId === 'tryOuts' ||
-      (itemId !== undefined && /^(dungeon_|drill_|tryout_|star_rush)/.test(itemId));
-
-    // Advance mission progress based on completed module
-    if (effectiveInteraction === 'writing' || moduleId === 'kanji') advanceMissions('kanji', 1);
-    if (moduleId === 'bunpou') advanceMissions('bunpou', 1);
-    else if (moduleId === 'kotoba' && effectiveInteraction !== 'writing') advanceMissions('kotoba', 1);
-    else if (moduleId === 'choukai') advanceMissions('choukai', 1);
-    else if (moduleId === 'dokkai') {
-      const isPerfect = score !== undefined && total !== undefined && total > 0 && score === total;
-      advanceMissions('dokkai', 1, { isPerfect });
-    }
-    else if (moduleId === 'boss') {
-      advanceMissions('boss', 1);
+    for (const adv of getStudyMissionAdvances({ moduleId, interaction, score, total })) {
+      advanceMissions(adv.category, adv.amount, adv.extra);
     }
 
-    if (score && score > 0) {
-      advanceMissions('quiz', score);
+    // score/total undefined = tidak ada penilaian (mis. flashcard): dicatat sebagai latihan, bukan attempt.
+    setStats(prev => applyStudyToStats(prev, { moduleId, itemId, score, total, interaction, detectedErrors }));
+
+    // Skor arena mingguan: satu jawaban bernilai (bukan menulis; kanvas mengirim 'kanji_write' sendiri) = satu event.
+    // Server membatasi 40 event/menit dan mengabaikan duplikat 10 dtk; tamu diabaikan di sendScoreEvent.
+    if (itemId && !isSessionAggregateId(moduleId, itemId) && score !== undefined && total === 1 && interaction !== 'writing') {
+      void sendScoreEvent('quiz_answer', itemId, score >= 1);
     }
-
-    // Update Item Mastery, Recall Queue & Study Statistics
-    setStats(prev => {
-      let updatedMastery = prev.itemMastery || {};
-      let updatedRecallQueue = prev.recallQueue || [];
-
-      if (itemId && !isSessionAggregate && score !== undefined && total !== undefined) {
-        const cat = moduleId === 'boss' ? 'bunpou' : moduleId;
-        const currentItem = prev.itemMastery ? prev.itemMastery[itemId] : undefined;
-        const isContextual = moduleId === 'dokkai' || moduleId === 'boss';
-        const updatedRecord = recordItemAttempt(
-          currentItem,
-          itemId,
-          cat,
-          score,
-          total,
-          detectedErrors.length > 0 ? detectedErrors : undefined,
-          isContextual,
-          effectiveInteraction,
-          moduleId
-        );
-        updatedMastery = {
-          ...updatedMastery,
-          [itemId]: updatedRecord
-        };
-        try {
-          updatedRecallQueue = buildSmartRecallQueue(updatedMastery);
-        } catch (e) {
-          console.warn('Failed to update recall queue', e);
-        }
-      }
-
-      let newStats: PlayerStats = {
-        ...prev,
-        itemMastery: updatedMastery,
-        recallQueue: updatedRecallQueue,
-      };
-
-      // Record Activity for Stats Profile (the specific module)
-      const effectiveId = itemId || `study_${moduleId}_${Date.now()}`;
-      if (effectiveInteraction === 'writing' || moduleId === 'kanji') newStats = recordStudyActivity(newStats, 'kanjiWriting', effectiveId);
-      else if (moduleId === 'kotoba') newStats = recordStudyActivity(newStats, 'flashcards', effectiveId);
-      else if (moduleId === 'boss') newStats = recordStudyActivity(newStats, 'bossBattles', effectiveId);
-      else if (moduleId === 'questions') newStats = recordStudyActivity(newStats, 'questions', effectiveId, total || 1);
-      else if (moduleId === 'tryOuts') newStats = recordStudyActivity(newStats, 'tryOuts', effectiveId, 1);
-      else newStats = recordStudyActivity(newStats, moduleId as any, effectiveId);
-
-      // Record total questions answered if it was a quiz
-      if (total && total > 1 && moduleId !== 'kanji' && moduleId !== 'kotoba' && effectiveInteraction !== 'writing') {
-        newStats = recordStudyActivity(newStats, 'questions', effectiveId, total);
-      }
-
-      return newStats;
-    });
+    return rewardDecision;
   };
 
   // Lightweight Item Interaction Handler (Flashcard flip, Quick Kanji draw, Bunpou practice)
@@ -311,6 +209,7 @@ export function usePlayerActions({
     interactionType: 'writing' | 'flashcard' | 'quiz' = 'quiz'
   ) => {
     itemId = canonicalEntityId(itemId);
+    void sendScoreEvent('quiz_answer', itemId, isCorrect);
     setStats(prev => {
       const currentMastery = { ...(prev.itemMastery || {}) };
       const existing = currentMastery[itemId];
@@ -326,25 +225,35 @@ export function usePlayerActions({
         'recall'
       );
       currentMastery[itemId] = updated;
-      return {
+      return touchActiveDay({
         ...prev,
         itemMastery: currentMastery,
         recallQueue: buildSmartRecallQueue(currentMastery),
         // Kuota harian: jawaban ini + apakah materinya baru pertama kali diuji (dihitung dari record SEBELUM dijawab).
         recallDaily: recordRecallAnswer(prev.recallDaily, getTodayLocalDate(), !existing || !hasBeenRecallTested(existing))
-      };
+      }, getTodayLocalDate());
     });
   };
 
-  const handleCompleteRecallSession = (totalReviewed: number, correctCount: number, expGained: number, goldGained: number) => {
-    handleRewardPlayer(expGained, goldGained);
+  const handleCompleteRecallSession = (
+    totalReviewed: number, correctCount: number, expGained: number, goldGained: number,
+    opts?: { sessionKey?: string; partial?: boolean; extra?: boolean }
+  ) => {
+    handleRewardPlayer(expGained, goldGained, {
+      source: opts?.extra ? 'recall_extra' : 'recall_session',
+      ...(opts?.sessionKey ? { eventKey: opts.sessionKey } : {}),
+      note: `${correctCount}/${totalReviewed} benar${opts?.partial ? ' (sesi ditinggalkan)' : ''}`,
+    });
 
     advanceMissions('kotoba', Math.min(5, totalReviewed));
     if (correctCount > 0) {
       advanceMissions('quiz', correctCount);
     }
 
-    setStats(prev => ({ ...prev, recallDaily: recordRecallSession(prev.recallDaily, getTodayLocalDate()) }));
+    // Sesi yang ditinggalkan di tengah tidak dihitung sebagai sesi selesai.
+    if (!opts?.partial) {
+      setStats(prev => ({ ...prev, recallDaily: recordRecallSession(prev.recallDaily, getTodayLocalDate()) }));
+    }
     // Layar ringkasan sesi (RecallModule) ditutup lewat tombolnya (onExit); menutup di sini membuatnya tak pernah terlihat.
   };
 
@@ -414,8 +323,15 @@ export function usePlayerActions({
     if (mission.claimed) return;
     if (!mission.completed && (mission.progress || 0) < mission.target) return;
 
-    handleRewardPlayer(mission.rewardExp, mission.rewardGold);
-    if (mission.rewardGems) {
+    // Identitas klaim = misi + periode (hari / minggu ISO): klik ganda atau klaim ulang tidak dibayar dua kali.
+    const period = mission.type === 'daily' ? getTodayLocalDate() : getLocalIsoWeekId();
+    const decision = handleRewardPlayer(mission.rewardExp, mission.rewardGold, {
+      source: 'mission_claim',
+      ref: `${mission.id}:${period}`,
+      note: mission.title,
+    });
+    const alreadyPaid = !decision.granted && decision.reason !== 'empty';
+    if (mission.rewardGems && !alreadyPaid) {
       setStats(prev => ({ ...prev, gems: prev.gems + (mission.rewardGems || 0) }));
     }
 

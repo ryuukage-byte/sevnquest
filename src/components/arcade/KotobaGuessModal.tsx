@@ -1,3 +1,4 @@
+import type { RewardHandler, RewardMeta } from '../../engine/reward/types';
 import React, { useState, useEffect, useMemo, useCallback } from 'react';
 import { createPortal } from 'react-dom';
 import { motion, AnimatePresence } from 'motion/react';
@@ -31,14 +32,16 @@ interface KotobaGuessModalProps {
   userDecks?: UserDeck[];
   playerLevel?: number;
   playerTierIndex?: number;
-  onRewardPlayer?: (exp: number, gold: number) => void;
+  onRewardPlayer?: RewardHandler;
   onCompleteStudyItem?: (
     moduleId: 'bunpou' | 'kotoba' | 'kanji' | 'dokkai' | 'choukai' | 'boss' | 'questions' | 'tryOuts',
     expGained: number,
     goldGained: number,
     itemId?: string,
     score?: number,
-    total?: number
+    total?: number,
+    interactionType?: 'writing' | 'flashcard' | 'quiz',
+    rewardMeta?: RewardMeta
   ) => void;
 }
 
@@ -262,7 +265,7 @@ export const KotobaGuessModal: React.FC<KotobaGuessModalProps> = ({
       const goldGain = 5;
       // Satu jalur reward saja (lihat catatan di SuddenDeathStreakModal).
       if (onCompleteStudyItem) {
-        onCompleteStudyItem('kotoba', expGain, goldGain, currentWord.id, 1, 1);
+        onCompleteStudyItem('kotoba', expGain, goldGain, currentWord.id, 1, 1, undefined, { source: 'arcade_kotoba_guess', ref: currentWord.id });
       } else {
         onRewardPlayer?.(expGain, goldGain);
       }

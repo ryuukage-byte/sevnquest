@@ -26,7 +26,7 @@ export const DEFAULT_STATS: PlayerStats = {
   gold: 0,
   gems: 0,
   streakDays: 0,
-  lastActiveDate: new Date().toISOString().split('T')[0],
+  lastActiveDate: getTodayLocalDate(),
   todayStudySeconds: 0,
   totalStudySeconds: 0,
   lastStudyDate: getTodayLocalDate(),

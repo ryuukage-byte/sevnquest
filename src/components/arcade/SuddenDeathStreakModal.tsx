@@ -1,3 +1,4 @@
+import type { RewardHandler, RewardMeta } from '../../engine/reward/types';
 import React, { useState, useEffect, useMemo, useCallback } from 'react';
 import { createPortal } from 'react-dom';
 import { motion, AnimatePresence } from 'motion/react';
@@ -31,14 +32,16 @@ interface SuddenDeathStreakModalProps {
   userDecks?: UserDeck[];
   playerLevel?: number;
   playerTierIndex?: number;
-  onRewardPlayer?: (exp: number, gold: number) => void;
+  onRewardPlayer?: RewardHandler;
   onCompleteStudyItem?: (
     moduleId: 'bunpou' | 'kotoba' | 'kanji' | 'dokkai' | 'choukai' | 'boss' | 'questions' | 'tryOuts',
     expGained: number,
     goldGained: number,
     itemId?: string,
     score?: number,
-    total?: number
+    total?: number,
+    interactionType?: 'writing' | 'flashcard' | 'quiz',
+    rewardMeta?: RewardMeta
   ) => void;
 }
 
@@ -244,7 +247,7 @@ export const SuddenDeathStreakModal: React.FC<SuddenDeathStreakModalProps> = ({
       const goldGain = 5 + Math.floor(newStreak / 2);
       // Satu jalur reward saja: onCompleteStudyItem sudah memberi EXP/Gold di App.handleStudyComplete.
       if (onCompleteStudyItem) {
-        onCompleteStudyItem('kotoba', expGain, goldGain, currentQ.id, 1, 1);
+        onCompleteStudyItem('kotoba', expGain, goldGain, currentQ.id, 1, 1, undefined, { source: 'arcade_sudden_death', ref: currentQ.id });
       } else {
         onRewardPlayer?.(expGain, goldGain);
       }

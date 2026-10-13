@@ -1,6 +1,10 @@
 import type { PlayerStats, StageClearData, UserDeck } from '../types/rpg';
 import type { ItemMasteryRecord } from '../types/content';
 import { mergeRecallDaily } from '../engine/recall/session';
+import { mergeRewardState } from '../engine/reward/ledger';
+import { REWARD_LEDGER_MAX } from '../engine/reward/policy';
+import type { RewardState } from '../engine/reward/types';
+import { applyRewardToStats } from '../state/playerProgress';
 
 /**
  * Penggabungan data lokal ↔ cloud tanpa menghapus progres yang hanya ada di salah satu sisi.
@@ -85,5 +89,49 @@ export function mergeStatsCollections(
     itemMastery: mergeItemMastery(local.itemMastery, cloud.itemMastery),
     userDecks: mergeUserDecks(local.userDecks, cloud.userDecks),
     recallDaily: mergeRecallDaily(local.recallDaily, cloud.recallDaily),
+    // Penanda & riwayat reward di-union supaya klaim di satu perangkat tidak bisa diulang di perangkat lain.
+    ...mergeRewardState(local, cloud),
   };
+}
+
+/**
+ * EXP/gold yang hanya ada di riwayat reward sisi LAIN (belum ada di sisi pemenang).
+ * Sisi pemenang menyumbang skalar (EXP lebih tinggi menang), sehingga reward yang hanya diperoleh di sisi kalah
+ * akan hilang; riwayat reward (id entri unik) memungkinkan menjumlahkannya kembali.
+ *
+ * Anchor: entri bersama paling baru = titik percabangan; hanya entri `other` yang lebih baru dari anchor dan
+ * tidak ada di `base` yang dihitung. Tanpa entri bersama, riwayat hanya dipercaya bila kedua sisi belum
+ * terpangkas (< REWARD_LEDGER_MAX); bila ragu mengembalikan null (perilaku lama: tidak menambah apa pun).
+ */
+export function ledgerDelta(base: RewardState, other: RewardState): { exp: number; gold: number; entries: number } | null {
+  const baseLedger = base.rewardLedger || [];
+  const otherLedger = other.rewardLedger || [];
+  if (otherLedger.length === 0) return { exp: 0, gold: 0, entries: 0 };
+
+  const baseIds = new Set(baseLedger.map(e => e.id));
+  const shared = otherLedger.filter(e => baseIds.has(e.id));
+  let anchorAt = '';
+  if (shared.length > 0) {
+    anchorAt = shared.reduce((m, e) => (e.at > m ? e.at : m), '');
+  } else if (baseLedger.length >= REWARD_LEDGER_MAX || otherLedger.length >= REWARD_LEDGER_MAX) {
+    return null;
+  }
+
+  let exp = 0;
+  let gold = 0;
+  let entries = 0;
+  for (const e of otherLedger) {
+    if (baseIds.has(e.id) || e.at <= anchorAt) continue;
+    exp += e.exp;
+    gold += e.gold;
+    entries++;
+  }
+  return { exp: Math.round(exp * 10000) / 10000, gold, entries };
+}
+
+/** Tambahkan reward yang hanya ada di `other` ke hasil gabungan, lalu hitung ulang level & tier. */
+export function reconcileRewardsFromLedger(merged: PlayerStats, base: RewardState, other: RewardState): PlayerStats {
+  const delta = ledgerDelta(base, other);
+  if (!delta || (delta.exp <= 0 && delta.gold <= 0)) return merged;
+  return applyRewardToStats(merged, delta.exp, delta.gold);
 }

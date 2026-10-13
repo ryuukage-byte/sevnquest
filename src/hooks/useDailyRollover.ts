@@ -4,6 +4,7 @@ import { INITIAL_DAILY_MISSIONS, INITIAL_WEEKLY_MISSIONS } from '../data/mission
 import { getTodayLocalDate, getLocalIsoWeekId } from '../utils/time';
 import { safeGetItem, safeSetItem } from '../utils/storage';
 import { STORAGE_KEY_LAST_DAILY_RESET, STORAGE_KEY_LAST_WEEKLY_RESET } from '../state/storageKeys';
+import { expireStreak } from '../state/streak';
 
 interface Params {
   setStats: Dispatch<SetStateAction<PlayerStats>>;
@@ -12,9 +13,11 @@ interface Params {
 }
 
 export function useDailyRollover({ setStats, setDailyMissions, setWeeklyMissions }: Params) {
-// Rollover harian (misi harian + streak) & mingguan (misi mingguan, ISO week, Senin 00:00 lokal).
+// Rollover harian (misi harian) & mingguan (misi mingguan, ISO week, Senin 00:00 lokal).
   // Dijalankan saat mount, saat tab kembali terlihat, dan tiap menit supaya aplikasi yang dibiarkan
   // terbuka melewati tengah malam tetap ter-reset.
+  // Streak TIDAK naik di sini: streak dihitung dari aktivitas belajar (state/streak.ts -> touchActiveDay).
+  // Rollover hanya memutus streak yang sudah lewat dari kemarin dan mereset penghitung waktu belajar harian.
   const applyRollover = useCallback(() => {
     const today = getTodayLocalDate();
     if (safeGetItem(STORAGE_KEY_LAST_DAILY_RESET) !== today) {
@@ -29,36 +32,9 @@ export function useDailyRollover({ setStats, setDailyMissions, setWeeklyMissions
     }
 
     setStats(prev => {
-      const lastActive = prev.lastActiveDate;
-      if (lastActive === today) return prev;
-
-      let newStreak = prev.streakDays || 0;
-      if (!lastActive) {
-        newStreak = 1;
-      } else {
-        const lastDate = new Date(lastActive + 'T00:00:00');
-        const currentDate = new Date(today + 'T00:00:00');
-        const diffMs = currentDate.getTime() - lastDate.getTime();
-        const diffDays = Math.round(diffMs / (1000 * 60 * 60 * 24));
-        if (diffDays === 1) {
-          newStreak += 1;
-        } else if (diffDays > 1) {
-          newStreak = 1;
-        } else if (diffDays <= 0) {
-          // Same day or clock manipulation backwards - do not increment streak
-          return prev;
-        }
-      }
-
-      return {
-        ...prev,
-        streakDays: newStreak,
-        longestStreak: Math.max(prev.longestStreak || 0, newStreak),
-        totalActiveDays: (prev.totalActiveDays || 0) + 1,
-        lastActiveDate: today,
-        todayStudySeconds: 0,
-        lastStudyDate: today,
-      };
+      let next = expireStreak(prev, today);
+      if (next.lastStudyDate !== today) next = { ...next, todayStudySeconds: 0, lastStudyDate: today };
+      return next === prev ? prev : next;
     });
   }, []);
 

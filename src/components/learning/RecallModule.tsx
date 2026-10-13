@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion } from 'motion/react';
 import { Flame, CheckCircle2, XCircle, Volume2, ArrowRight, Award, ShieldAlert, BookOpen, Check } from 'lucide-react';
 import confetti from 'canvas-confetti';
@@ -26,7 +26,11 @@ interface RecallModuleProps {
   playerInt: number;
   onUseMp?: (amount: number) => boolean;
   onItemReviewed: (itemId: string, category: 'bunpou' | 'kotoba' | 'kanji' | 'dokkai' | 'choukai', isCorrect: boolean, interactionType?: 'writing' | 'flashcard' | 'quiz') => void;
-  onCompleteRecallSession: (totalReviewed: number, correctCount: number, expGained: number, goldGained: number) => void;
+  /** `opts.sessionKey` = identitas sesi (cegah bayar dua kali); `opts.partial` = sesi ditinggalkan di tengah. */
+  onCompleteRecallSession: (
+    totalReviewed: number, correctCount: number, expGained: number, goldGained: number,
+    opts?: { sessionKey?: string; partial?: boolean; extra?: boolean }
+  ) => void;
   onExit: () => void;
   soundEnabled?: boolean;
   furiganaEnabled?: boolean;
@@ -72,6 +76,10 @@ export const RecallModule: React.FC<RecallModuleProps> = ({
   // Latihan ekstra setelah target harian / kuota materi baru tercapai: sesi kecil, tetap berurut prioritas.
   const [isExtraSession, setIsExtraSession] = useState(false);
   const startExtraSession = () => {
+    // Sesi baru: identitas, penghitung, dan penanda ekstra direset (jangan bentrok dengan sesi sebelumnya).
+    sessionKeyRef.current = `${Date.now().toString(36)}${Math.random().toString(36).slice(2, 8)}`;
+    progressRef.current = { answered: 0, correct: 0, exp: 0, finished: false };
+    extraRef.current = true;
     setIsExtraSession(true);
     setSessionQueue(extraPlan.items);
     setCurrentIndex(0);
@@ -87,6 +95,19 @@ export const RecallModule: React.FC<RecallModuleProps> = ({
   const [sessionExp, setSessionExp] = useState(0);
   const [hiddenOptions, setHiddenOptions] = useState<number[]>([]);
   const [isFinished, setIsFinished] = useState(false);
+  // Identitas sesi + ringkasan terkini (untuk membayar sesi yang ditinggalkan di tengah jalan).
+  const sessionKeyRef = useRef(`${Date.now().toString(36)}${Math.random().toString(36).slice(2, 8)}`);
+  const progressRef = useRef({ answered: 0, correct: 0, exp: 0, finished: false });
+  const extraRef = useRef(false);
+  const onCompleteRef = useRef(onCompleteRecallSession);
+  onCompleteRef.current = onCompleteRecallSession;
+  useEffect(() => () => {
+    // Keluar/berpindah tab di tengah sesi: jawaban sudah tercatat di mastery, jadi EXP-nya juga dibayar (tanpa bonus INT).
+    const p = progressRef.current;
+    if (!p.finished && p.answered > 0 && p.exp > 0) {
+      onCompleteRef.current(p.answered, p.correct, p.exp, p.correct * 15, { sessionKey: sessionKeyRef.current, partial: true, extra: extraRef.current });
+    }
+  }, []);
   // Engine flashcard: kartu dibalik dulu sebelum penilaian diri (ingat / lupa).
   const [isCardFlipped, setIsCardFlipped] = useState(false);
   // Hasil nyata sesi (sama dengan yang diberikan ke pemain), untuk layar ringkasan.
@@ -236,9 +257,13 @@ export const RecallModule: React.FC<RecallModuleProps> = ({
   const submitResult = (isCorrect: boolean, interaction: 'writing' | 'flashcard' | 'quiz', expKind: 'recall' | 'sentence' = 'recall') => {
     if (isAnswered) return;
     setIsAnswered(true);
+    progressRef.current.answered += 1;
     if (isCorrect) {
+      const gain = calcEngineExp(getEntityBaseExp(currentItem.category, currentItem.itemId) ?? 25, expKind);
+      progressRef.current.correct += 1;
+      progressRef.current.exp += gain;
       setCorrectCount(prev => prev + 1);
-      setSessionExp(prev => prev + calcEngineExp(getEntityBaseExp(currentItem.category, currentItem.itemId) ?? 25, expKind));
+      setSessionExp(prev => prev + gain);
       playSound('correct', soundEnabled);
     } else {
       playSound('wrong', soundEnabled);
@@ -296,7 +321,8 @@ export const RecallModule: React.FC<RecallModuleProps> = ({
       }
 
       setSessionReward({ exp: expGained, gold: goldGained });
-      onCompleteRecallSession(totalItems, correctCount, expGained, goldGained);
+      progressRef.current.finished = true;
+      onCompleteRecallSession(totalItems, correctCount, expGained, goldGained, { sessionKey: sessionKeyRef.current, extra: isExtraSession });
     }
   };
 

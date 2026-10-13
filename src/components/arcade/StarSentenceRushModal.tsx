@@ -1,3 +1,4 @@
+import type { RewardHandler, RewardMeta } from '../../engine/reward/types';
 import React, { useState, useEffect, useMemo, useRef, useCallback } from 'react';
 import { createPortal } from 'react-dom';
 import { motion, AnimatePresence } from 'motion/react';
@@ -33,14 +34,16 @@ interface StarSentenceRushModalProps {
   soundEnabled?: boolean;
   playerLevel?: number;
   playerTierIndex?: number;
-  onRewardPlayer?: (exp: number, gold: number) => void;
+  onRewardPlayer?: RewardHandler;
   onCompleteStudyItem?: (
     moduleId: 'bunpou' | 'kotoba' | 'kanji' | 'dokkai' | 'choukai' | 'boss' | 'questions' | 'tryOuts',
     expGained: number,
     goldGained: number,
     itemId?: string,
     score?: number,
-    total?: number
+    total?: number,
+    interactionType?: 'writing' | 'flashcard' | 'quiz',
+    rewardMeta?: RewardMeta
   ) => void;
 }
 
@@ -153,6 +156,7 @@ export const StarSentenceRushModal: React.FC<StarSentenceRushModalProps> = ({
     setWrongCount(0);
     setClearedList([]);
     setScoreFeedback(null);
+    runKeyRef.current = `${Date.now().toString(36)}${Math.random().toString(36).slice(2, 6)}`;
     setGameState('playing');
   };
 
@@ -312,6 +316,8 @@ export const StarSentenceRushModal: React.FC<StarSentenceRushModalProps> = ({
   }, [correctCount]);
 
   // Claim Rewards
+  // Identitas satu putaran permainan (mencegah klaim ganda lewat ledger reward).
+  const runKeyRef = useRef<string>(`${Date.now().toString(36)}${Math.random().toString(36).slice(2, 6)}`);
   const [hasClaimedReward, setHasClaimedReward] = useState(false);
   const handleClaimReward = () => {
     if (hasClaimedReward) return;
@@ -321,7 +327,7 @@ export const StarSentenceRushModal: React.FC<StarSentenceRushModalProps> = ({
     // Satu jalur reward saja. score/total = jawaban benar / total dijawab (bukan poin permainan),
     // supaya misi kuis & statistik pertanyaan tidak membengkak oleh poin.
     if (onCompleteStudyItem) {
-      onCompleteStudyItem('tryOuts', achievementRank.exp, achievementRank.gold, 'star_rush', correctCount, correctCount + wrongCount);
+      onCompleteStudyItem('tryOuts', achievementRank.exp, achievementRank.gold, 'star_rush', correctCount, correctCount + wrongCount, undefined, { source: 'arcade_star_sentence', ref: 'star_rush', eventKey: `star_rush:${runKeyRef.current}` });
     } else {
       onRewardPlayer?.(achievementRank.exp, achievementRank.gold);
     }

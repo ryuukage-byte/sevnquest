@@ -5,7 +5,7 @@ import { calculateMaxHp, calculateMaxMp, calculateLevelFromExp } from '../data/t
 import { getEffectiveTier } from '../utils/ascension';
 import { getLocalIsoWeekId } from '../utils/time';
 import { safeSetItem } from '../utils/storage';
-import { mergeStatsCollections, mergeStageProgress } from '../utils/cloudMerge';
+import { mergeStatsCollections, mergeStageProgress, reconcileRewardsFromLedger } from '../utils/cloudMerge';
 import { supabase, getSession, saveGameToCloud, loadGameFromCloud, upsertLeaderboard, type CloudSavePayload } from '../lib/supabase';
 import { collectTowerState, applyTowerState, mergeTowerState } from '../engine/tower/world/towerCloudState';
 import { DEFAULT_STATS } from '../state/defaultStats';
@@ -152,6 +152,12 @@ const [cloudSyncStatus, setCloudSyncStatus] = useState<CloudSyncStatus>('idle');
           cloudStats
         );
       }
+
+      // Reward yang hanya diperoleh di sisi yang kalah (mis. belajar offline di perangkat lain) dijumlahkan kembali
+      // lewat riwayat reward (entri unik), bukan dibuang. Tanpa anchor riwayat yang jelas: tidak menambah apa pun.
+      mergedStats = cloudWins
+        ? reconcileRewardsFromLedger(mergedStats, cloudStats, currentStats)
+        : reconcileRewardsFromLedger(mergedStats, currentStats, cloudStats);
 
       // recallQueue (turunan) tidak ikut tersimpan/terkirim; hitung ulang dari itemMastery gabungan.
       mergedStats = withDerivedStats(canonicalizeStats(mergedStats));

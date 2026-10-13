@@ -1,3 +1,4 @@
+import type { RewardHandler, RewardMeta } from '../../engine/reward/types';
 import React, { useState, useEffect, useMemo, useRef, useCallback } from 'react';
 import { createPortal } from 'react-dom';
 import { motion, AnimatePresence } from 'motion/react';
@@ -33,14 +34,16 @@ interface KanjiSpeedRushModalProps {
   userDecks?: UserDeck[];
   playerLevel?: number;
   playerTierIndex?: number;
-  onRewardPlayer?: (exp: number, gold: number) => void;
+  onRewardPlayer?: RewardHandler;
   onCompleteStudyItem?: (
     moduleId: 'bunpou' | 'kotoba' | 'kanji' | 'dokkai' | 'choukai' | 'boss' | 'questions' | 'tryOuts',
     expGained: number,
     goldGained: number,
     itemId?: string,
     score?: number,
-    total?: number
+    total?: number,
+    interactionType?: 'writing' | 'flashcard' | 'quiz',
+    rewardMeta?: RewardMeta
   ) => void;
 }
 
@@ -206,7 +209,7 @@ export const KanjiSpeedRushModal: React.FC<KanjiSpeedRushModalProps> = ({
     const goldGain = 10;
     // Satu jalur reward saja (lihat catatan di SuddenDeathStreakModal).
     if (onCompleteStudyItem) {
-      onCompleteStudyItem('kanji', expGain, goldGain, currentItem.id || currentItem.character, 1, 1);
+      onCompleteStudyItem('kanji', expGain, goldGain, currentItem.id || currentItem.character, 1, 1, undefined, { source: 'arcade_kanji_speed', ref: currentItem.id || currentItem.character });
     } else {
       onRewardPlayer?.(expGain, goldGain);
     }

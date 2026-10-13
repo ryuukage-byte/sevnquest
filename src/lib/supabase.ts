@@ -6,12 +6,13 @@ import { getTierForExp, calculateLevelFromExp } from '../data/tiers';
 import type { TowerCloudState } from '../engine/tower/world/towerCloudState';
 
 /**
- * true => tulis leaderboard/skor lewat RPC aman berbasis auth.uid()
- * (lihat supabase/migrations/20261001_secure_leaderboard_and_saves.sql). Default false agar
- * klien tetap kompatibel dengan skema lama sampai migrasi dijalankan.
+ * true => tulis leaderboard/skor lewat RPC aman berbasis auth.uid() (submit_score_event_v2, upsert_leaderboard_entry).
+ * Default TRUE: di proyek live, jalur lama sudah dikunci (migrasi sec03_*: submit_score_event tidak dapat dieksekusi
+ * anon/authenticated dan tabel leaderboard tanpa policy INSERT/UPDATE), jadi jalur lama pasti gagal.
+ * Set VITE_SECURE_LEADERBOARD=false hanya untuk proyek lama yang belum dimigrasi.
  */
 const SECURE_LEADERBOARD =
-  (import.meta as unknown as { env?: Record<string, string | undefined> }).env?.VITE_SECURE_LEADERBOARD === 'true';
+  (import.meta as unknown as { env?: Record<string, string | undefined> }).env?.VITE_SECURE_LEADERBOARD !== 'false';
 
 /** Tabel/fungsi belum ada di proyek (migrasi belum dijalankan) -> fallback ke jalur lama. */
 function isMissingRelation(err: { code?: string; message?: string } | null | undefined): boolean {

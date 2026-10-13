@@ -4,6 +4,7 @@
 // Arsitektur: docs/TOWER1_ARCHITECTURE.md · docs/TOWER2_ARCHITECTURE.md
 // ==============================================================================
 
+import type { RewardHandler } from '../../engine/reward/types';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { ArrowRight, Loader2 } from 'lucide-react';
 import { TOWER1_ROOMS, TOWER1_SKILL_HINT, TOWER1_SKILL_LABEL, TOWER1_SKILL_ORDER } from '../../data/tower1';
@@ -19,7 +20,7 @@ import { FinishInfo, FloorRunner } from './FloorRunner';
 
 interface Props {
   soundEnabled?: boolean;
-  onRewardPlayer?: (exp: number, gold: number) => void;
+  onRewardPlayer?: RewardHandler;
 }
 
 const TOWER_INFO = {
@@ -125,7 +126,7 @@ export const Tower1View: React.FC<Props> = ({ soundEnabled = true, onRewardPlaye
       const nextId = getRecommendedFloor(ALL_FLOORS, res.progress);
       const nextSpec = nextId ? ALL_FLOOR_MAP[nextId] : null;
       const stars = starsForAccuracy(accuracy);
-      if (res.firstClear) onRewardPlayer?.(spec.reward.exp, spec.reward.gold);
+      if (res.firstClear) onRewardPlayer?.(spec.reward.exp, spec.reward.gold, { source: 'tower_floor', ref: String(floorId), note: spec.name });
       return { stars, accuracy, firstClear: res.firstClear, exp: spec.reward.exp, gold: spec.reward.gold, unlocked, next: nextSpec ? { id: nextSpec.id, code: nextSpec.code, name: nextSpec.name } : null };
     },
     [progress, onRewardPlayer]
