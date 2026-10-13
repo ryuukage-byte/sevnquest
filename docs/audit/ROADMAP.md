@@ -7,7 +7,7 @@ Kompleksitas: L rendah · M sedang · H tinggi. Setiap item memuat kriteria suks
 |---|---|---|
 | K1 | Nilai `REWARD_POLICY` (flashcard 3×/hari, dst.) | setuju / ubah angka (satu file: `engine/reward/policy.ts`) |
 | K2 | Misi tanpa pemicu: `dm_04` (Choukai off), `wm_01` (Stage), `wm_03` (Dokkai sempurna), `wm_04` (Boss) | (a) sambungkan ke fitur hidup — mis. `wm_01` ← clear lantai Tower, `wm_04` ← lantai Penjaga Tower, `wm_03` ← drill Dokkai sempurna di Library; (b) ganti misi; (c) sembunyikan |
-| K3 | Terapkan `supabase/migrations/20261013_user_saves.sql` ke proyek live? | ya (via MCP/dashboard) / tidak |
+| K3 | Terapkan `supabase/migrations/20261013_user_saves.sql` ke proyek live? | **SELESAI** — disetujui & diterapkan 2026-10-13 |
 | K4 | Dungeon membayar jawaban salah/waktu habis | pertahankan / bayar hanya benar |
 | K5 | Tier leaderboard (murni EXP) vs tier in-app (digerbang) | samakan (kirim tier efektif) / biarkan |
 
@@ -18,7 +18,7 @@ Kompleksitas: L rendah · M sedang · H tinggi. Setiap item memuat kriteria suks
 | 2 | Batas EXP harian per keluarga sumber (mis. tryout, arcade) | ledger `rewardClaims` | `policy.ts`, `ledger.ts` | UI "+X EXP" harus mengikuti keputusan | M | main 40 tryout berturut ⇒ EXP harian ≤ cap |
 | 3 | Rekonsiliasi EXP multi-perangkat dengan ledger | `mergeRewardState` | `useCloudSync`, `cloudMerge` | tinggi (data pemain) | H | dua perangkat offline → login ⇒ EXP = dasar + entri unik dari kedua sisi |
 | 4 | Skor mingguan: kirim `quiz_answer` dari Library/Arcade/Recall atau turunkan dari ledger | `sendScoreEvent`/RPC v2 | `lib/supabase`, `RecallModule` | rate-limit 40/menit | M | benar di Library menambah `weekly_scores` +10 |
-| 5 | Terapkan `user_saves` (K3) + lazy migration | kode sudah mendukung | `supabase/migrations`, `lib/supabase` | rendah (fallback ada) | L | `user_metadata.cloud_save` kosong setelah simpan berikutnya; reload memulihkan dari tabel |
+| 5 | ~~Terapkan `user_saves`~~ **SELESAI**; tersisa: verifikasi lazy migration & login perangkat kedua di preview/produksi | kode sudah mendukung | `lib/supabase` | rendah (fallback ada) | L | `user_metadata.cloud_save` kosong setelah simpan berikutnya; reload memulihkan dari tabel |
 | 6 | `nq_fusion_progress` → cloud atau klaim lifetime `fusion_stage` | `towerCloudState` pola | `engine/fusion/progress` | rendah | L | clear di perangkat A tak membayar penuh di B |
 | 7 | Tes celah (rewards.ts, mastery, cloudMerge, ascension, kontrak SQL↔TS) + CI GitHub Actions (`npm test`, `tsc`, `vite build`) | `tsx --test` | `.github/workflows` | rendah | M | PR merah bila tes/typecheck gagal |
 

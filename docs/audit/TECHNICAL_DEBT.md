@@ -35,7 +35,7 @@ Risiko: T tinggi · S sedang · R rendah.
 ## C. Cloud, data & keamanan
 | ID | R | Temuan | Status |
 |---|---|---|---|
-| C-01 | T | `user_saves` tidak ada ⇒ save penuh di `user_metadata.cloud_save` (ikut JWT) | OPEN — SQL diusulkan di `supabase/migrations/20261013_user_saves.sql`, **belum diterapkan** (menunggu persetujuan) |
+| C-01 | T | `user_saves` tidak ada ⇒ save penuh di `user_metadata.cloud_save` (ikut JWT) | **FIXED** tabel dibuat 2026-10-13 (RLS own-row; `anon` tanpa akses; `authenticated` select/insert/update saja); klien memigrasikan save lama saat simpan berikutnya (lazy). Sisa: pantau ukuran `user_metadata` lama & uji login perangkat kedua |
 | C-02 | T | Jalur leaderboard lama pasti gagal di DB ini bila env `VITE_SECURE_LEADERBOARD` tak `'true'` | **FIXED** default true |
 | C-03 | S | Event `quiz_answer` (skor mingguan) tak dikirim siapa pun (pengirim `QuizEngine` sudah mati sebelumnya) ⇒ arena mingguan hanya bertambah dari menulis kanji | OPEN |
 | C-04 | S | Konflik multi-perangkat: EXP lebih besar menang, tidak dijumlah | OPEN — ledger memungkinkan rekonsiliasi |

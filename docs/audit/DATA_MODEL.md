@@ -57,8 +57,9 @@ Penulisan lewat `safeSetItem` (tangani QuotaExceeded dengan toast). Debounce 1 d
 | `user_mastery` (unik `user_id,entity_type,entity_id`) | 224 | ON | ALL `auth.uid()=user_id` | klien (`syncUserMasteryRelational`) |
 | `user_activity` | 14.996 | ON | ALL `auth.uid()=user_id` | klien (`logUserActivityEvent` dari `sendScoreEvent`) |
 | `app_visitors` | 1.837 | ON | tanpa policy | RPC `register_visit` |
+| **`user_saves`** (PK `user_id` uuid → `auth.users` ON DELETE CASCADE; `payload` jsonb; `updated_at`) | baru | ON | select/insert/update `authenticated` where `auth.uid()=user_id`; tanpa delete; `anon` tanpa hak | klien (`saveGameToCloud`) — **dibuat 2026-10-13** |
 ### 4b. Tabel ada tetapi tidak dibaca aplikasi
-`kanji` (2.306), `vocabulary` (8.635), `grammar` (915), serta `question, sentence(+_vocabulary,_grammar), reading, listening, vocabulary_(audio|writing|relation), kanji_writing, tag, entity_tag, curriculum, map, stage, stage_content, relation, content_version, source, entity_source, user_srs` (0 baris). Konten aplikasi dibaca dari JSON bundel; tabel konten adalah salinan/rencana. **`user_saves` tidak ada** ✅.
+`kanji` (2.306), `vocabulary` (8.635), `grammar` (915), serta `question, sentence(+_vocabulary,_grammar), reading, listening, vocabulary_(audio|writing|relation), kanji_writing, tag, entity_tag, curriculum, map, stage, stage_content, relation, content_version, source, entity_source, user_srs` (0 baris). Konten aplikasi dibaca dari JSON bundel; tabel konten adalah salinan/rencana.
 ### 4c. RPC (semua `SECURITY DEFINER`, `search_path=public` kecuali v1)
 | Fungsi | Eksekusi | Perilaku |
 |---|---|---|
@@ -69,7 +70,7 @@ Penulisan lewat `safeSetItem` (tangani QuotaExceeded dengan toast). Debounce 1 d
 | `register_visit(uuid)` | anon+authenticated | hitung kunjungan (≥30 menit antar-hitungan) |
 | `nq_level_for_exp`, `nq_tier_for_exp` | — | identik dengan TS |
 ### 4d. Migrasi remote vs repo
-Remote: `sec03_1a_prep, sec03_1b_functions, sec03_1c_grants, sec03_purge_guest_leaderboard, app_visitors_counter, sec03_2_lock, sec03_2b_revoke_leftover_grants`. Repo sebelumnya **tanpa** folder migrasi (kode merujuk file yang tidak ada). Kini ada `supabase/migrations/20261013_user_saves.sql` (**usulan, belum diterapkan**).
+Remote: `sec03_1a_prep, sec03_1b_functions, sec03_1c_grants, sec03_purge_guest_leaderboard, app_visitors_counter, sec03_2_lock, sec03_2b_revoke_leftover_grants`. Repo sebelumnya **tanpa** folder migrasi (kode merujuk file yang tidak ada). Kini ada `supabase/migrations/20261013_user_saves.sql` (**diterapkan 2026-10-13**, tercatat versi `20261013`).
 Dampak penting: jalur lama klien (`SECURE_LEADERBOARD=false`) pasti gagal di DB ini → default klien diubah ke `true`.
 
 ## 5. Alur sinkron ✅
@@ -92,7 +93,7 @@ sequenceDiagram
     App->>SB: saveGameToCloud → upsert_leaderboard_entry (+ user_mastery background)
   end
 ```
-Penyimpanan save penuh: **`user_metadata.cloud_save`** (karena `user_saves` belum ada) → ikut JWT; `loadGameFromCloud` membaca dual (tabel + metadata). Kegagalan baca dilempar agar cloud tidak tertimpa.
+Penyimpanan save penuh: tabel **`user_saves`** (sejak 2026-10-13); `user_metadata.cloud_save` hanya warisan dan dikosongkan klien setelah simpan berhasil (lazy migration). `loadGameFromCloud` membaca dual (tabel + metadata, yang `updatedAt` lebih baru menang). Kegagalan baca dilempar agar cloud tidak tertimpa.
 
 ### Konflik & risiko
 | # | Kasus | Hasil |
