@@ -1,5 +1,6 @@
 import type { RewardMeta } from '../../engine/reward/types';
-import React, { useState, useMemo, lazy, Suspense } from 'react';
+import React, { useState, useMemo, Suspense } from 'react';
+import { lazyWithRetry as lazy } from '../../utils/lazyWithRetry';
 import { 
   Search, Volume2, CheckCircle2, XCircle, HelpCircle, 
   Feather, BookOpen, Headphones, FileText, Check, 

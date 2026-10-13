@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { lazy } from 'react';
+import { lazyWithRetry as lazy } from '../utils/lazyWithRetry';
 import type { PlayerStats, StageClearData, Mission } from '../types/rpg';
 import type { TabType } from '../components/layout/BottomNavigation';
 import { HomeView } from '../components/home/HomeView';
