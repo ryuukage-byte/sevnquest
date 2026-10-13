@@ -1,4 +1,5 @@
 import React, { Component, ErrorInfo, ReactNode } from 'react';
+import { resetFailedLazyModules } from '../utils/lazyWithRetry';
 
 interface Props {
   children: ReactNode;
@@ -47,6 +48,7 @@ export class ErrorBoundary extends React.Component<Props, State> {
   }
 
   private reset = () => {
+    resetFailedLazyModules();
     this.setState({ hasError: false, error: null, errorInfo: null });
     this.props.onReset?.();
   };
