@@ -14,6 +14,8 @@ export type RewardSource =
   | 'mission_claim'
   | 'fusion_free'
   | 'fusion_stage'
+  | 'tryout_exam'
+  | 'text_study_entity'
   | 'recall_session'
   | 'study_unclassified'
   | 'legacy_unclassified';

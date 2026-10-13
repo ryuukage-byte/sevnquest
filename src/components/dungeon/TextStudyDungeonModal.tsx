@@ -1,3 +1,4 @@
+import type { RewardHandler } from '../../engine/reward/types';
 import React, { useMemo, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { motion } from 'motion/react';
@@ -12,7 +13,7 @@ import { playSound } from '../../utils/audio';
 interface Props {
   onClose: () => void;
   soundEnabled?: boolean;
-  onRewardPlayer?: (exp: number, gold: number) => void;
+  onRewardPlayer?: RewardHandler;
 }
 
 type Phase = 'input' | 'result' | 'understand' | 'quiz' | 'summary';
@@ -22,9 +23,6 @@ const SAMPLES = [
   { label: 'Contoh kalimat', text: '昨日、友達と映画を見に行きました。' },
   { label: 'Contoh paragraf', text: '私は毎朝六時に起きます。顔を洗ってから、朝ご飯を食べなければなりません。学校まで歩いて二十分ぐらいかかりますが、天気がいい日は気持ちがいいです。' },
 ];
-
-// Entitas yang sudah pernah memberi EXP dari dungeon ini (per sesi halaman) — mencegah farming dengan teks yang sama.
-const rewardedEntities = new Set<string>();
 
 function pickDokkai(): string {
   const pool = Object.values(DOKKAI_DATABASE).filter(d => d.text && d.text.length <= 600);
@@ -100,16 +98,17 @@ export const TextStudyDungeonModal: React.FC<Props> = ({ onClose, soundEnabled =
   };
 
   const finishQuiz = (rightIds: string[]) => {
+    // Satu reward per entitas (kata/pola) per hari, dijaga ledger (bertahan setelah refresh & ikut cloud).
     let exp = 0;
+    let gold = 0;
     for (const q of quiz.filter(x => rightIds.includes(x.id))) {
-      if (rewardedEntities.has(q.entityId)) continue;
-      rewardedEntities.add(q.entityId);
       const category = q.kind === 'grammar' ? 'bunpou' : 'kotoba';
-      exp += calcEngineExp(getEntityBaseExp(category, q.entityId) ?? 15, 'quiz');
+      const e = calcEngineExp(getEntityBaseExp(category, q.entityId) ?? 15, 'quiz');
+      const g = Math.round(e / 2);
+      const decision = onRewardPlayer?.(e, g, { source: 'text_study_entity', ref: `${category}:${q.entityId}` });
+      if (!decision || decision.granted) { exp += e; gold += g; }
     }
-    const gold = Math.round(exp / 2);
     setReward({ exp, gold });
-    if (exp > 0) onRewardPlayer?.(exp, gold);
     setPhase('summary');
   };
 

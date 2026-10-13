@@ -88,6 +88,18 @@ test('R6. klaim misi: sekali per misi per periode; penanda dibersihkan setelah t
   assert.deepEqual(Object.keys(pruned), [], 'penanda kedaluwarsa dibersihkan');
 });
 
+test('R6b. tryout: sekali per ujian per hari (1.200+ EXP per ujian); text study: sekali per entitas per hari', () => {
+  const t = req({ source: 'tryout_exam', ref: 'n3_001', exp: 1200, gold: 600 });
+  const a = commitReward({}, t, T0);
+  assert.equal(a.decision.granted, true);
+  assert.equal(commitReward(a.state, t, at(0, 2)).decision.granted, false);
+  assert.equal(commitReward(a.state, { ...t, ref: 'n3_002' }, at(0, 2)).decision.granted, true, 'ujian lain tetap dibayar');
+  assert.equal(commitReward(a.state, t, at(1)).decision.granted, true, 'besok boleh lagi');
+  const e = req({ source: 'text_study_entity', ref: 'kotoba:x', exp: 20, gold: 10 });
+  const b = commitReward({}, e, T0);
+  assert.equal(commitReward(b.state, e, at(0, 1)).decision.granted, false);
+});
+
 test('R7. scope none: tidak dibatasi per ref (perilaku lama), tapi tetap dicatat di ledger', () => {
   let st = {} as Parameters<typeof commitReward>[0];
   for (let i = 0; i < 10; i++) st = commitReward(st, req({ source: 'recall_session', ref: undefined }), at(0, i)).state;

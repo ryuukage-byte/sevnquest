@@ -34,6 +34,11 @@ export const REWARD_POLICY: Readonly<Record<RewardSource, RewardPolicy>> = {
   mission_claim: { scope: 'lifetime', limit: 1, ttlDays: 8 },
   // Grammar Fusion latihan bebas: sekali per kombinasi pola|verb per hari (sebelumnya Set in-memory yang hilang saat refresh).
   fusion_free: { scope: 'day', limit: 1 },
+  // Simulasi ujian: 10 EXP × skor skala (maks 120–180) = hingga ±1.200 EXP per ujian dan sebelumnya bisa diulang tanpa batas.
+  // Sekali per ujian per hari.
+  tryout_exam: { scope: 'day', limit: 1 },
+  // Text Study: sekali per entitas (kata/pola) per hari; menggantikan Set modul-level yang hilang saat refresh.
+  text_study_entity: { scope: 'day', limit: 1 },
   // Belum diatur batasnya; dicatat.
   fusion_stage: { scope: 'none' },
   recall_session: { scope: 'none' },
