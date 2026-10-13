@@ -39,7 +39,7 @@ interface BunpouLibraryViewProps {
   onRecordInteraction?: (
     itemId: string,
     category: 'bunpou' | 'kotoba' | 'kanji' | 'dokkai' | 'choukai',
-    interactionType: 'writing' | 'flashcard' | 'quiz',
+    interactionType: 'view' | 'writing' | 'flashcard' | 'quiz',
     success?: boolean
   ) => void;
   onCompleteStudyItem?: (

@@ -1,3 +1,4 @@
+import type { RewardMeta } from '../../engine/reward/types';
 import React, { useState, useMemo, lazy, Suspense } from 'react';
 import { 
   Search, Volume2, CheckCircle2, XCircle, HelpCircle, 
@@ -299,7 +300,9 @@ interface QuestionLibraryViewProps {
     goldGained: number,
     itemId?: string,
     score?: number,
-    total?: number
+    total?: number,
+    interactionType?: 'writing' | 'flashcard' | 'quiz',
+    rewardMeta?: RewardMeta
   ) => void;
 }
 
@@ -733,7 +736,7 @@ export const QuestionLibraryView: React.FC<QuestionLibraryViewProps> = ({
             tryOutData={activeDungeonTryout}
             onComplete={(score, total, exp, gold, tryoutId) => {
               if (onCompleteStudyItem) {
-                onCompleteStudyItem('tryOuts', exp, gold, tryoutId || 'tryout_exam', score, total);
+                onCompleteStudyItem('tryOuts', exp, gold, tryoutId || 'tryout_exam', score, total, undefined, { source: 'tryout_exam', ref: tryoutId || 'tryout_exam' });
               } else {
                 onRewardPlayer?.(exp, gold);
                 onRecordStudy?.('tryOuts', tryoutId || 'tryout_exam', total);

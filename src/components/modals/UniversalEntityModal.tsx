@@ -3,6 +3,7 @@
 // Inspect any entity (Kanji, Kotoba, Bunpou) with dynamic capability tabs
 // ==============================================================================
 
+import type { RewardHandler } from '../../engine/reward/types';
 import React, { useState, useEffect, useMemo } from 'react';
 import { createPortal } from 'react-dom';
 import { motion, AnimatePresence } from 'motion/react';
@@ -53,7 +54,7 @@ export interface UniversalEntityModalProps {
   userDecks?: UserDeck[];
   onToggleBookmark?: (id: string, category: DeckItemCategory, notes?: string) => void;
   onToggleDeckItem?: (deckId: string) => void;
-  onRewardPlayer?: (exp: number, gold: number) => void;
+  onRewardPlayer?: RewardHandler;
   onCompleteStudyItem?: (
     moduleId: 'bunpou' | 'kotoba' | 'kanji' | 'dokkai' | 'choukai' | 'boss' | 'questions' | 'tryOuts',
     expGained: number,
@@ -768,7 +769,7 @@ export const UniversalEntityModal: React.FC<UniversalEntityModalProps> = ({
                           if (isCorrect) {
                             playSound('correct', soundEnabled);
                             if (!quizScoreRecorded && onRewardPlayer) {
-                              onRewardPlayer(15, 5);
+                              onRewardPlayer(15, 5, { source: 'entity_quiz', ref: unified.id });
                               setQuizScoreRecorded(true);
                             }
                           } else {

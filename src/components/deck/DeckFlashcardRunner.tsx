@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useEffect } from 'react';
+import React, { useState, useMemo, useEffect, useRef } from 'react';
 import { createPortal } from 'react-dom';
 import { motion, AnimatePresence } from 'motion/react';
 import { X, RotateCcw, Shuffle, ArrowRight, ArrowLeft, Trophy, Check } from 'lucide-react';
@@ -8,15 +8,15 @@ import { ResolvedDeckItem, resolveDeckItem } from '../../utils/decks';
 import { playSound } from '../../utils/audio';
 import { fisherYatesShuffle } from '../../utils/smartRandomizer';
 import { UniversalFlashcard } from '../learning/UniversalFlashcard';
-import { ENGINE_EXP_MULTIPLIER, getKanjiBaseExp, getKotobaBaseExp, getBunpouBaseExp, calculateFlashcardReward } from '../../utils/rewards';
-
-// Dynamic micro-multiplier for flashcard flips: Base EXP * 0.005
-const FLASHCARD_FLIP_MULTIPLIER = ENGINE_EXP_MULTIPLIER.flashcard_flip;
+import { getKanjiBaseExp, getKotobaBaseExp, getBunpouBaseExp, calculateFlashcardReward } from '../../utils/rewards';
+import { flipExpFor, claimFlipReward } from '../../utils/flashcardSession';
+import { formatExp } from '../../utils/expAward';
+import type { RewardHandler, RewardMeta, StudyCompleteResult } from '../../engine/reward/types';
 
 interface DeckFlashcardRunnerProps {
   deck: UserDeck;
   onClose: () => void;
-  onReward?: (exp: number, gold: number) => void;
+  onReward?: RewardHandler;
   onCompleteStudyItem?: (
     moduleId: 'bunpou' | 'kotoba' | 'kanji' | 'dokkai' | 'choukai' | 'boss' | 'questions' | 'tryOuts',
     expGained: number,
@@ -24,8 +24,9 @@ interface DeckFlashcardRunnerProps {
     itemId?: string,
     score?: number,
     total?: number,
-    interactionType?: 'writing' | 'flashcard' | 'quiz'
-  ) => void;
+    interactionType?: 'writing' | 'flashcard' | 'quiz',
+    rewardMeta?: RewardMeta
+  ) => StudyCompleteResult;
   soundEnabled?: boolean;
 }
 
@@ -63,6 +64,11 @@ export const DeckFlashcardRunner: React.FC<DeckFlashcardRunnerProps> = ({
   const [accumulatedExp, setAccumulatedExp] = useState(0);
   const [accumulatedGold, setAccumulatedGold] = useState(0);
   const [finalRewards, setFinalRewards] = useState<{ exp: number; gold: number } | null>(null);
+  // Kartu yang mikro-EXP flip-nya sudah dibayar pada sesi ini (flip ulang tidak membayar lagi).
+  const paidFlipsRef = useRef<Set<string>>(new Set());
+  // Identitas satu putaran sesi + apakah kartu aktif sudah dibalik (Next hanya dibayar bila kartu benar-benar dilihat).
+  const runIdRef = useRef<string>(`${Date.now().toString(36)}${Math.random().toString(36).slice(2, 6)}`);
+  const hasFlippedRef = useRef(false);
 
   // Sync queue when category filters change
   useEffect(() => {
@@ -90,6 +96,7 @@ export const DeckFlashcardRunner: React.FC<DeckFlashcardRunnerProps> = ({
     setIsFlipped(prev => !prev);
 
     if (willFlipToBack && currentItem) {
+      hasFlippedRef.current = true;
       let baseExp = 15;
       if (currentItem.category === 'kanji' && currentItem.kanji) {
         baseExp = getKanjiBaseExp(currentItem.kanji);
@@ -98,13 +105,20 @@ export const DeckFlashcardRunner: React.FC<DeckFlashcardRunnerProps> = ({
       } else if (currentItem.category === 'bunpou' && currentItem.bunpou) {
         baseExp = getBunpouBaseExp(currentItem.bunpou);
       }
-      const flipExp = Math.max(0.01, Number((baseExp * FLASHCARD_FLIP_MULTIPLIER).toFixed(2)));
-      setAccumulatedExp(prev => Number((prev + flipExp).toFixed(2)));
-      setFlashcardExpPopup(flipExp);
-
-      if (onCompleteStudyItem) {
-        const mod = currentItem.category === 'kanji' ? 'kanji' : (currentItem.category === 'bunpou' ? 'bunpou' : 'kotoba');
-        onCompleteStudyItem(mod, flipExp, 0, currentItem.ref.id, 1, 1, 'flashcard');
+      // Membalik kartu hanyalah paparan jawaban: bukan jawaban, tidak membuat attempt/skor/SRS.
+      // Hanya mikro-EXP (sekali per kartu per sesi) yang diberikan, langsung dan tanpa efek mastery.
+      if (claimFlipReward(paidFlipsRef.current, `${currentItem.category}:${currentItem.ref.id}`, true)) {
+        const flipExp = flipExpFor(baseExp);
+        // Dengan onCompleteStudyItem, EXP dibayar per kartu; tanpa itu, akumulasi dibayar sekali di akhir sesi.
+        // Nilai yang ditampilkan = keputusan ledger (bisa 0 bila kartu ini sudah dibayar hari ini).
+        const decision = onCompleteStudyItem
+          ? onReward?.(flipExp, 0, { source: 'flashcard_flip', ref: `${currentItem.category}:${currentItem.ref.id}` })
+          : undefined;
+        const shownExp = decision && !decision.granted ? 0 : flipExp;
+        if (shownExp > 0) {
+          setAccumulatedExp(prev => Number((prev + shownExp).toFixed(2)));
+          setFlashcardExpPopup(shownExp);
+        }
       }
 
       setTimeout(() => {
@@ -128,15 +142,29 @@ export const DeckFlashcardRunner: React.FC<DeckFlashcardRunnerProps> = ({
       baseExp = getBunpouBaseExp(currentItem.bunpou);
     }
     const reward = calculateFlashcardReward(baseExp, true);
-    const newExp = accumulatedExp + reward.expGained;
-    const newGold = accumulatedGold + reward.goldGained;
+    let gotExp = reward.expGained;
+    let gotGold = reward.goldGained;
+
+    if (!hasFlippedRef.current) {
+      // Next tanpa pernah membalik kartu = melewati kartu, bukan belajar: tidak ada hadiah / latihan.
+      gotExp = 0;
+      gotGold = 0;
+    } else if (currentItem && onCompleteStudyItem) {
+      const mod = currentItem.category === 'kanji' ? 'kanji' : (currentItem.category === 'bunpou' ? 'bunpou' : 'kotoba');
+      // Tanpa skor/total: Next bukan jawaban. Dicatat sebagai latihan flashcard (bukan attempt sempurna).
+      // eventKey = putaran sesi + posisi kartu: klik ganda tidak dibayar dua kali.
+      const decision = onCompleteStudyItem(mod, reward.expGained, reward.goldGained, currentItem.ref.id, undefined, undefined, 'flashcard', {
+        source: 'flashcard_complete',
+        ref: `${currentItem.category}:${currentItem.ref.id}`,
+        eventKey: `${runIdRef.current}:${currentIndex}:${currentItem.ref.id}`,
+      });
+      if (decision && !decision.granted) { gotExp = 0; gotGold = 0; }
+    }
+    hasFlippedRef.current = false;
+    const newExp = accumulatedExp + gotExp;
+    const newGold = accumulatedGold + gotGold;
     setAccumulatedExp(newExp);
     setAccumulatedGold(newGold);
-
-    if (currentItem && onCompleteStudyItem) {
-      const mod = currentItem.category === 'kanji' ? 'kanji' : (currentItem.category === 'bunpou' ? 'bunpou' : 'kotoba');
-      onCompleteStudyItem(mod, reward.expGained, reward.goldGained, currentItem.ref.id, 1, 1);
-    }
 
     if (currentIndex + 1 >= queue.length) {
       // Completed drill!
@@ -151,11 +179,14 @@ export const DeckFlashcardRunner: React.FC<DeckFlashcardRunnerProps> = ({
       } catch {}
 
       // Reward dynamic EXP and Gold
-      const earnedExp = Math.max(15, newExp);
-      const earnedGold = Math.max(5, newGold);
-      setFinalRewards({ exp: earnedExp, gold: earnedGold });
-      if (onReward && !onCompleteStudyItem) {
-        onReward(earnedExp, earnedGold);
+      if (onCompleteStudyItem) {
+        // EXP/gold sudah diterapkan per kartu: tampilkan jumlah yang benar-benar diterima.
+        setFinalRewards({ exp: newExp, gold: newGold });
+      } else {
+        const earnedExp = Math.max(15, newExp);
+        const earnedGold = Math.max(5, newGold);
+        setFinalRewards({ exp: earnedExp, gold: earnedGold });
+        onReward?.(earnedExp, earnedGold);
       }
     } else {
       setCurrentIndex(prev => prev + 1);
@@ -171,12 +202,16 @@ export const DeckFlashcardRunner: React.FC<DeckFlashcardRunnerProps> = ({
     setAccumulatedGold(0);
     setFinalRewards(null);
     setIsCompleted(false);
+    paidFlipsRef.current = new Set();
+    runIdRef.current = `${Date.now().toString(36)}${Math.random().toString(36).slice(2, 6)}`;
+    hasFlippedRef.current = false;
   };
 
   const handlePrev = () => {
     if (currentIndex > 0) {
       playSound('click', soundEnabled);
       setIsFlipped(false);
+      hasFlippedRef.current = false;
       setCurrentIndex(prev => prev - 1);
     }
   };
@@ -303,7 +338,7 @@ export const DeckFlashcardRunner: React.FC<DeckFlashcardRunnerProps> = ({
             {finalRewards && (
               <div className="flex items-center justify-center gap-3 py-2 px-4 rounded-2xl bg-surface-inset border border-border-subtle">
                 <span className="font-bold text-wine-accent font-mono text-sm">
-                  +{finalRewards.exp} EXP
+                  +{formatExp(finalRewards.exp)} EXP
                 </span>
                 <span className="text-xs text-gold font-mono font-bold">
                   +{finalRewards.gold} Gold
@@ -354,7 +389,7 @@ export const DeckFlashcardRunner: React.FC<DeckFlashcardRunnerProps> = ({
                       transition={{ duration: 0.5, ease: 'easeOut' }}
                       className="absolute top-3 right-3 sm:top-6 sm:right-6 z-50 text-emerald-400 font-mono font-black text-sm sm:text-base drop-shadow-md pointer-events-none flex items-center gap-1 bg-surface-card/90 px-2.5 py-1 rounded-full border border-border-subtle shadow-lg"
                     >
-                      +{flashcardExpPopup} EXP
+                      +{formatExp(flashcardExpPopup)} EXP
                     </motion.div>
                   )}
                 </AnimatePresence>

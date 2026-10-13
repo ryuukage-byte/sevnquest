@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { createPortal } from 'react-dom';
 import { motion, AnimatePresence } from 'motion/react';
 import confetti from 'canvas-confetti';
@@ -31,7 +31,9 @@ import { UniversalWritingCard } from '../learning/UniversalWritingCard';
 import { SentenceTile, validateSentenceSubmission, validateSentenceTextSubmission, ValidationFeedback } from '../../engine';
 import { JapaneseImeInput } from '../common/JapaneseImeInput';
 import { RubyText } from '../learning/RubyText';
-import { ENGINE_EXP_MULTIPLIER, getKanjiBaseExp, getKotobaBaseExp, getBunpouBaseExp } from '../../utils/rewards';
+import { getKanjiBaseExp, getKotobaBaseExp, getBunpouBaseExp } from '../../utils/rewards';
+import { flipExpFor, claimFlipReward } from '../../utils/flashcardSession';
+import { formatExp } from '../../utils/expAward';
 import { ResolvedDeckItem, toggleBookmarkItem } from '../../utils/decks';
 import { getTargetFormDisplay, getConjugatedMeaningId } from '../../data/conjugationRules';
 import { BunpouItem } from '../../types/content';
@@ -39,7 +41,6 @@ import { BlackboardPlaygroundModule } from './BlackboardPlaygroundModule';
 import { UserDeck } from '../../types/rpg';
 
 // Dynamic micro-multiplier for flashcard flips: Base EXP * 0.005
-const FLASHCARD_FLIP_MULTIPLIER = ENGINE_EXP_MULTIPLIER.flashcard_flip;
 
 function cleanPatternToken(s: string): string {
   return s
@@ -184,24 +185,24 @@ export const DungeonSessionRunner: React.FC<DungeonSessionRunnerProps> = ({
     ]);
   };
 
+  // Lantai flashcard yang mikro-EXP flip-nya sudah dibayar (flip ulang / balik ke depan tidak membayar lagi).
+  const paidFlipsRef = useRef<Set<string>>(new Set());
+
   const handleFlashcardFlip = (it: ResolvedDeckItem) => {
     playSound('click', soundEnabled);
-    setIsFlashcardFlipped(prev => !prev);
+    const willFlipToBack = !isFlashcardFlipped;
+    setIsFlashcardFlipped(willFlipToBack);
 
-    const baseExp = getResolvedItemBaseExp(it);
-    const flipExp = Math.max(0.01, Number((baseExp * FLASHCARD_FLIP_MULTIPLIER).toFixed(2)));
-
-    setAccumulatedExp(prev => Number((prev + flipExp).toFixed(2)));
-    setFlashcardExpPopup(flipExp);
-
-    if (onCompleteStudyItem) {
-      const mod = it.category === 'kanji' ? 'kanji' : (it.category === 'bunpou' ? 'bunpou' : 'kotoba');
-      onCompleteStudyItem(mod, flipExp, 0, it.ref.id, 1, 1, 'flashcard');
+    // Flip hanyalah paparan jawaban: tidak membuat attempt/skor/SRS. Mikro-EXP sekali per kartu,
+    // diakumulasi di accumulatedExp dan dibayar SATU kali saat dungeon selesai (bukan juga per flip).
+    if (claimFlipReward(paidFlipsRef.current, `${it.category}:${it.ref.id}`, willFlipToBack)) {
+      const flipExp = flipExpFor(getResolvedItemBaseExp(it));
+      setAccumulatedExp(prev => Number((prev + flipExp).toFixed(2)));
+      setFlashcardExpPopup(flipExp);
+      setTimeout(() => {
+        setFlashcardExpPopup(null);
+      }, 800);
     }
-
-    setTimeout(() => {
-      setFlashcardExpPopup(null);
-    }, 800);
   };
 
   // Sub-exercise state for Quiz / Conjugation
@@ -666,7 +667,7 @@ export const DungeonSessionRunner: React.FC<DungeonSessionRunnerProps> = ({
                               transition={{ duration: 0.5, ease: 'easeOut' }}
                               className="absolute top-3 right-3 sm:top-6 sm:right-6 z-50 text-emerald-400 font-mono font-black text-sm sm:text-base drop-shadow-md pointer-events-none flex items-center gap-1 bg-surface-card/90 px-2.5 py-1 rounded-full border border-emerald-500/40"
                             >
-                              +{flashcardExpPopup} EXP
+                              +{formatExp(flashcardExpPopup)} EXP
                             </motion.div>
                           )}
                         </AnimatePresence>
@@ -707,6 +708,11 @@ export const DungeonSessionRunner: React.FC<DungeonSessionRunnerProps> = ({
                           type="button"
                           onClick={() => {
                             playSound('click', soundEnabled);
+                            // Tanpa skor/total: melewati kartu bukan jawaban. Dicatat sebagai latihan flashcard saja.
+                            onCompleteStudyItem?.(
+                              it.category === 'kanji' ? 'kanji' : (it.category === 'bunpou' ? 'bunpou' : 'kotoba'),
+                              0, 0, it.ref.id, undefined, undefined, 'flashcard'
+                            );
                             advanceToNextFloor(true, 0, 1);
                           }}
                           className="flex-1 btn-skeuo-indigo py-3 px-4 text-xs font-heading font-bold transition-all flex items-center justify-center gap-2 cursor-pointer"

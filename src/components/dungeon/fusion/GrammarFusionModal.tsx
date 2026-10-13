@@ -1,3 +1,4 @@
+import type { RewardHandler } from '../../../engine/reward/types';
 import React, { useCallback, useEffect, useReducer, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { X, Sparkles, Lightbulb, RotateCcw, Check, Wind, Trophy, ArrowRight } from 'lucide-react';
@@ -16,7 +17,7 @@ import { FusionWordBoard } from './FusionWordBoard';
 interface Props {
   onClose: () => void;
   soundEnabled?: boolean;
-  onRewardPlayer?: (exp: number, gold: number) => void;
+  onRewardPlayer?: RewardHandler;
 }
 
 /** Durasi tiap fase (ms); total ±1000 ms. */
@@ -30,7 +31,7 @@ const PHASES: { phase: FusionAnimationPhase; ms: number }[] = [
 const REPEAT_REWARD_RATIO = 0.4;
 const MOTION_KEY = 'nq_fusion_reduce_motion';
 
-function readReduceMotion(): boolean {
+export function readReduceMotion(): boolean {
   try {
     const saved = window.localStorage.getItem(MOTION_KEY);
     if (saved === '1') return true;
@@ -41,7 +42,7 @@ function readReduceMotion(): boolean {
 
 const card = 'p-3 rounded-2xl bg-surface-inset border border-border-subtle';
 
-interface RewardOut { exp: number; gold: number; note?: string }
+export interface RewardOut { exp: number; gold: number; note?: string }
 
 export interface EndAction { label: string; onClick: () => void; primary?: boolean }
 
@@ -54,7 +55,7 @@ interface PlayerProps {
   endActions: EndAction[];
 }
 
-const FusionPlayer: React.FC<PlayerProps> = ({ stage, baseWord, soundEnabled, reduceMotion, onFinished, endActions }) => {
+export const FusionPlayer: React.FC<PlayerProps> = ({ stage, baseWord, soundEnabled, reduceMotion, onFinished, endActions }) => {
   const [state, dispatch] = useReducer(fusionReducer, undefined, () => createFusionState(stage, baseWord));
   const [flight, setFlight] = useState<{ dx: number; dy: number; label: string } | null>(null);
   const [reward, setReward] = useState<RewardOut | null>(null);
@@ -334,8 +335,6 @@ const FusionPlayer: React.FC<PlayerProps> = ({ stage, baseWord, soundEnabled, re
   );
 };
 
-// Kombinasi (pola × kata) Latihan Bebas yang sudah memberi hadiah pada sesi halaman ini — mencegah farming.
-const freeRewarded = new Set<string>();
 const FREE_TABS = [
   { id: 'stage', label: 'Stage' },
   { id: 'free', label: 'Latihan Bebas' },
@@ -366,22 +365,35 @@ export const GrammarFusionModal: React.FC<Props> = ({ onClose, soundEnabled = tr
     const { progress: next, firstClear } = recordFusionClear(progress, stage.id, mistakes, hints);
     setProgress(next);
     saveFusionProgress(next);
-    const ratio = firstClear ? 1 : REPEAT_REWARD_RATIO;
-    const out: RewardOut = {
-      exp: Math.round(exp * ratio),
-      gold: Math.round(gold * ratio),
-      note: firstClear ? undefined : `Ulangan: hadiah ${Math.round(REPEAT_REWARD_RATIO * 100)}%`,
-    };
-    onRewardPlayer?.(out.exp, out.gold);
-    return out;
+
+    // Clear pertama: hadiah penuh, sekali SELAMANYA menurut ledger (berlaku lintas perangkat, tidak bergantung localStorage).
+    let treatAsFirst = firstClear;
+    if (firstClear) {
+      const d = onRewardPlayer?.(exp, gold, { source: 'fusion_stage_first', ref: stage.id, note: 'clear pertama' });
+      if (!d || d.granted) {
+        return { exp: d?.exp ?? exp, gold: d?.gold ?? gold, note: d?.capped ? 'Batas EXP Fusion harian tercapai: sebagian hadiah' : undefined };
+      }
+      // Sudah diklaim di perangkat lain -> diperlakukan sebagai ulangan. Batas harian: tidak ada hadiah.
+      if (d.reason === 'daily_cap') return { exp: 0, gold: 0, note: 'Batas EXP Fusion harian tercapai' };
+      treatAsFirst = false;
+    }
+
+    const ratio = treatAsFirst ? 1 : REPEAT_REWARD_RATIO;
+    const e = Math.round(exp * ratio);
+    const g = Math.round(gold * ratio);
+    const d = onRewardPlayer?.(e, g, { source: 'fusion_stage_repeat', ref: stage.id, note: 'ulangan' });
+    if (d && !d.granted) {
+      return { exp: 0, gold: 0, note: d.reason === 'daily_cap' ? 'Batas EXP Fusion harian tercapai' : 'Batas ulangan hari ini tercapai' };
+    }
+    return { exp: d?.exp ?? e, gold: d?.gold ?? g, note: `Ulangan: hadiah ${Math.round(REPEAT_REWARD_RATIO * 100)}%` };
   }, [progress, stage.id, onRewardPlayer]);
 
   const handleFreeFinished = useCallback((_m: number, _h: number, exp: number, gold: number): RewardOut => {
     if (!freePick) return { exp: 0, gold: 0 };
     const key = `${freePick.pattern.id}|${freePick.verb.japanese}`;
-    if (freeRewarded.has(key)) return { exp: 0, gold: 0, note: 'Latihan bebas: kombinasi ini sudah memberi hadiah di sesi ini.' };
-    freeRewarded.add(key);
-    onRewardPlayer?.(exp, gold);
+    // Sekali per kombinasi per hari, dijaga ledger (bertahan setelah refresh & ikut cloud).
+    const decision = onRewardPlayer?.(exp, gold, { source: 'fusion_free', ref: key });
+    if (decision && !decision.granted) return { exp: 0, gold: 0, note: 'Latihan bebas: kombinasi ini sudah memberi hadiah hari ini.' };
     return { exp, gold, note: 'Latihan bebas: hadiah kombinasi baru.' };
   }, [freePick, onRewardPlayer]);
 

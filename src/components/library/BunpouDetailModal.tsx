@@ -1,3 +1,4 @@
+import type { RewardHandler, RewardMeta } from '../../engine/reward/types';
 import React, { useState, useRef, useEffect, useCallback } from 'react';
 import { createPortal } from 'react-dom';
 import { motion, AnimatePresence } from 'motion/react';
@@ -35,11 +36,11 @@ interface BunpouDetailModalProps {
   userDecks?: UserDeck[];
   onToggleDeckItem?: (deckId: string) => void;
   onUpdateDecks?: (decks: UserDeck[]) => void;
-  onRewardPlayer?: (exp: number, gold: number) => void;
+  onRewardPlayer?: RewardHandler;
   onRecordInteraction?: (
     itemId: string,
     category: 'bunpou' | 'kotoba' | 'kanji' | 'dokkai' | 'choukai',
-    interactionType: 'writing' | 'flashcard' | 'quiz',
+    interactionType: 'view' | 'writing' | 'flashcard' | 'quiz',
     success?: boolean
   ) => void;
   onCompleteStudyItem?: (
@@ -48,7 +49,9 @@ interface BunpouDetailModalProps {
     goldGained: number,
     itemId?: string,
     score?: number,
-    total?: number
+    total?: number,
+    interactionType?: 'writing' | 'flashcard' | 'quiz',
+    rewardMeta?: RewardMeta
   ) => void;
 }
 
@@ -324,9 +327,9 @@ export const BunpouDetailModal: React.FC<BunpouDetailModalProps> = ({
       if (!rewardClaimed) {
         setRewardClaimed(true);
         if (onCompleteStudyItem) {
-          onCompleteStudyItem('bunpou', 15, 10, item.id, 1, 1);
+          onCompleteStudyItem('bunpou', 15, 10, item.id, 1, 1, undefined, { source: 'bunpou_detail_quiz', ref: item.id });
         } else {
-          onRewardPlayer?.(15, 10);
+          onRewardPlayer?.(15, 10, { source: 'bunpou_detail_quiz', ref: item.id });
         }
       }
     } else {

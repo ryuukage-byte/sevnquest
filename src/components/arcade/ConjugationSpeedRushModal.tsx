@@ -1,3 +1,4 @@
+import type { RewardHandler, RewardMeta } from '../../engine/reward/types';
 import React, { useState, useEffect, useMemo, useRef, useCallback } from 'react';
 import { createPortal } from 'react-dom';
 import { motion, AnimatePresence } from 'motion/react';
@@ -42,14 +43,16 @@ interface ConjugationSpeedRushModalProps {
   userDecks?: UserDeck[];
   playerLevel?: number;
   playerTierIndex?: number;
-  onRewardPlayer?: (exp: number, gold: number) => void;
+  onRewardPlayer?: RewardHandler;
   onCompleteStudyItem?: (
     moduleId: 'bunpou' | 'kotoba' | 'kanji' | 'dokkai' | 'choukai' | 'boss' | 'questions' | 'tryOuts',
     expGained: number,
     goldGained: number,
     itemId?: string,
     score?: number,
-    total?: number
+    total?: number,
+    interactionType?: 'writing' | 'flashcard' | 'quiz',
+    rewardMeta?: RewardMeta
   ) => void;
 }
 
@@ -192,6 +195,7 @@ export const ConjugationSpeedRushModal: React.FC<ConjugationSpeedRushModalProps>
     setSelectedOption(null);
     setIsAnswerChecked(false);
     setScoreFeedback(null);
+    runKeyRef.current = `${Date.now().toString(36)}${Math.random().toString(36).slice(2, 6)}`;
     setGameState('playing');
   };
 
@@ -215,6 +219,8 @@ export const ConjugationSpeedRushModal: React.FC<ConjugationSpeedRushModalProps>
   }, [gameState, soundEnabled]);
 
   // Handle game finish rewards
+  // Identitas satu putaran permainan (cegah bayar ganda saat efek dijalankan dua kali).
+  const runKeyRef = useRef<string>(`${Date.now().toString(36)}${Math.random().toString(36).slice(2, 6)}`);
   useEffect(() => {
     if (gameState === 'finished' && correctCount > 0) {
       const expReward = Math.max(30, correctCount * 30 + maxCombo * 10);
@@ -226,7 +232,9 @@ export const ConjugationSpeedRushModal: React.FC<ConjugationSpeedRushModalProps>
           goldReward,
           undefined,
           correctCount,
-          correctCount + wrongCount
+          correctCount + wrongCount,
+          undefined,
+          { source: 'arcade_conjugation_rush', ref: 'conjugation_rush', eventKey: `conj_rush:${runKeyRef.current}` }
         );
       } else {
         onRewardPlayer?.(expReward, goldReward);

@@ -27,6 +27,11 @@ export interface PlayerStats {
   currentExp?: number;
   maxExp?: number;
   totalExp: number;
+  /** Sisa EXP pecahan (0 ≤ x < 1) yang belum genap 1 EXP; dibawa ke reward berikutnya (lihat utils/expAward.ts). */
+  expFraction?: number;
+  /** Riwayat reward (terbaru terakhir, dibatasi) dan penanda idempotency/batas — lihat engine/reward. */
+  rewardLedger?: import('../engine/reward/types').RewardLedgerEntry[];
+  rewardClaims?: Record<string, import('../engine/reward/types').RewardClaim>;
   tierIndex: number; // 0 to 9 (Tier 1 to Tier 10)
   
   // Base Attributes
@@ -78,6 +83,8 @@ export interface PlayerStats {
 
   // Mastery Tracking & SRS
   itemMastery?: Record<string, import('./content').ItemMasteryRecord>;
+  /** Penghitung kuota Recall harian (jawaban, materi baru, sesi); reset otomatis saat tanggal berganti. */
+  recallDaily?: import('../engine/recall/session').RecallDaily;
   overallMasteryPercentage?: number; // True Japanese mastery (0-100%)
   languageProfile?: import('./content').LanguageProfile;
   errorHistory?: import('./content').ErrorPatternRecord[];

@@ -51,7 +51,8 @@ export const DeckWritingRunner: React.FC<DeckWritingRunnerProps> = ({
 
   const handleNextItem = (itemExp?: number, itemGold?: number) => {
     playSound('click', soundEnabled);
-    if (!completedItems.includes(currentIndex)) {
+    const isFirstCompletion = !completedItems.includes(currentIndex);
+    if (isFirstCompletion) {
       setCompletedItems(prev => [...prev, currentIndex]);
       if (currentItem && onCompleteStudyItem) {
         onCompleteStudyItem(
@@ -66,8 +67,9 @@ export const DeckWritingRunner: React.FC<DeckWritingRunnerProps> = ({
       }
     }
 
-    const nextExp = accumulatedExp + (itemExp ?? 15);
-    const nextGold = accumulatedGold + (itemGold ?? 5);
+    // Hanya penyelesaian pertama yang dibayar (lihat atas); kunjungan ulang tidak menambah tampilan reward.
+    const nextExp = accumulatedExp + (isFirstCompletion ? (itemExp ?? 15) : 0);
+    const nextGold = accumulatedGold + (isFirstCompletion ? (itemGold ?? 5) : 0);
     setAccumulatedExp(nextExp);
     setAccumulatedGold(nextGold);
 
@@ -82,11 +84,14 @@ export const DeckWritingRunner: React.FC<DeckWritingRunnerProps> = ({
         });
       } catch {}
 
-      const earnedExp = Math.max(30, nextExp);
-      const earnedGold = Math.max(15, nextGold);
-      setFinalRewards({ exp: earnedExp, gold: earnedGold });
-      if (onReward && !onCompleteStudyItem) {
-        onReward(earnedExp, earnedGold);
+      if (onCompleteStudyItem) {
+        // Sudah diterapkan per item: tampilkan jumlah yang benar-benar diterima (tanpa lantai fiktif).
+        setFinalRewards({ exp: nextExp, gold: nextGold });
+      } else {
+        const earnedExp = Math.max(30, nextExp);
+        const earnedGold = Math.max(15, nextGold);
+        setFinalRewards({ exp: earnedExp, gold: earnedGold });
+        onReward?.(earnedExp, earnedGold);
       }
     } else {
       setCurrentIndex(prev => prev + 1);
