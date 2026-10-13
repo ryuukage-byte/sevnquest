@@ -1,5 +1,5 @@
-// SevnQuest Service Worker for PWA Support (v2.5)
-const CACHE_NAME = 'sevnquest-v2.7';
+// SevnQuest Service Worker for PWA Support (v2.8)
+const CACHE_NAME = 'sevnquest-v2.8';
 // Path relatif terhadap scope SW supaya benar di root (Vercel/standalone) maupun sub-path (GitHub Pages).
 const STATIC_ASSETS = [
   'manifest.webmanifest',
@@ -106,30 +106,47 @@ self.addEventListener('fetch', (event) => {
     return;
   }
 
+  // Host SPA membalas chunk yang tidak ada dengan index.html (200 + cache immutable). HTML untuk
+  // permintaan skrip/gaya berarti chunk basi: jangan pernah disimpan atau dipakai dari cache.
+  const mustNotBeHtml =
+    url.origin === self.location.origin &&
+    (url.pathname.includes('/assets/') || /\.(?:js|mjs|css)$/.test(url.pathname));
+  const isHtmlFallback = (response) =>
+    mustNotBeHtml && !!response && (response.headers.get('content-type') || '').includes('text/html');
+
   // B. Static Assets: Cache-first with network fallback
   event.respondWith(
     caches.match(request).then((cachedResponse) => {
-      if (cachedResponse) {
+      if (cachedResponse && !isHtmlFallback(cachedResponse)) {
         return cachedResponse;
       }
 
-      return fetch(request).then((networkResponse) => {
-        // Only cache valid 200 responses
-        if (
-          networkResponse &&
-          networkResponse.status === 200 &&
-          (networkResponse.type === 'basic' || networkResponse.type === 'cors')
-        ) {
-          const responseClone = networkResponse.clone();
-          caches.open(CACHE_NAME).then((cache) => {
-            cache.put(request, responseClone);
-          });
-        }
-        return networkResponse;
-      }).catch((err) => {
-        console.warn('[PWA] Asset fetch failed, falling back to 404 response:', request.url, err);
-        return new Response(null, { status: 404, statusText: 'Not Found' });
-      });
+      return fetch(request)
+        .then((networkResponse) => {
+          if (!isHtmlFallback(networkResponse)) return networkResponse;
+          // Cache HTTP browser bisa menyimpan HTML itu setahun: ambil ulang langsung dari jaringan.
+          return fetch(request.url, { cache: 'reload', credentials: 'same-origin' }).then((fresh) =>
+            isHtmlFallback(fresh) ? new Response(null, { status: 404, statusText: 'Not Found' }) : fresh
+          );
+        })
+        .then((networkResponse) => {
+          // Only cache valid 200 responses
+          if (
+            networkResponse &&
+            networkResponse.status === 200 &&
+            (networkResponse.type === 'basic' || networkResponse.type === 'cors')
+          ) {
+            const responseClone = networkResponse.clone();
+            caches.open(CACHE_NAME).then((cache) => {
+              cache.put(request, responseClone);
+            });
+          }
+          return networkResponse;
+        })
+        .catch((err) => {
+          console.warn('[PWA] Asset fetch failed:', request.url, err);
+          return Response.error();
+        });
     })
   );
 });
