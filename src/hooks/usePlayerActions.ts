@@ -30,6 +30,9 @@ import { KOTOBA_DATABASE } from '../data/kotoba';
 import { KANJI_DATABASE } from '../data/kanji';
 import { BUNPOU_DATABASE } from '../data/bunpou';
 import type { TabType } from '../components/layout/BottomNavigation';
+import { createPlan, ensureToday, markClaimed, dayProgress, GUIDED_REWARDS } from '../engine/curriculum/curriculum';
+import { getCurriculum } from '../engine/curriculum/sources';
+import type { GuidedMissionKey, GuidedProfile } from '../engine/curriculum/types';
 
 interface Params {
   stats: PlayerStats;
@@ -346,6 +349,40 @@ export function usePlayerActions({
     }
   };
 
+  // Guided Learning: mulai / ganti program. Kurikulum diturunkan dari profil; yang disimpan hanya profil + misi hari ini.
+  const handleStartGuidedPlan = useCallback((profile: GuidedProfile) => {
+    setStats(prev => {
+      const today = getTodayLocalDate();
+      const plan = createPlan(profile, today);
+      return {
+        ...prev,
+        guidedPlan: ensureToday(plan, getCurriculum(plan.profile), prev.itemMastery, today, prev.recallQueue?.length || 0),
+      };
+    });
+  }, []);
+
+  // Dihentikan = disimpan sebagai penanda (bukan dihapus) supaya sinkronisasi cloud tidak menghidupkannya lagi.
+  const handleStopGuidedPlan = useCallback(() => {
+    setStats(prev => (prev.guidedPlan
+      ? { ...prev, guidedPlan: { ...prev.guidedPlan, status: 'stopped', updatedAt: new Date().toISOString() } }
+      : prev));
+  }, []);
+
+  // Klaim misi kurikulum: sekali per misi per hari (dijaga ledger `mission_claim`, berlaku lintas perangkat).
+  const handleClaimGuidedMission = (key: GuidedMissionKey) => {
+    const day = stats.guidedPlan?.today;
+    if (!day || day.date !== getTodayLocalDate() || day.claimed[key]) return;
+    const mission = dayProgress(day, stats.itemMastery, stats.recallDaily).missions.find(m => m.key === key);
+    if (!mission?.complete) return;
+    const reward = GUIDED_REWARDS[key];
+    handleRewardPlayer(reward.exp, reward.gold, {
+      source: 'mission_claim',
+      ref: `guided_${key}:${day.date}`,
+      note: `Misi kurikulum: ${key}`,
+    });
+    setStats(prev => (prev.guidedPlan ? { ...prev, guidedPlan: markClaimed(prev.guidedPlan, key, day.date) } : prev));
+  };
+
   // Reset Progress
   const handleGameOver = () => {
     playSound('wrong', stats.soundEnabled);
@@ -416,5 +453,6 @@ export function usePlayerActions({
     handleUseMp, handleAllocateStat, handleAscendTier, handleClaimMission, handleGameOver, handleHpDamage,
     handleResetData, handleUpdateName, handleUpdateSignature, handleToggleBookmark,
     handleUpdateDecks,
+    handleStartGuidedPlan, handleStopGuidedPlan, handleClaimGuidedMission,
   };
 }

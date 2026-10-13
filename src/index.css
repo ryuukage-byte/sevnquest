@@ -282,6 +282,8 @@ html.theme-light,
   --font-jp: 'Noto Sans JP', 'Noto Serif JP', sans-serif;
 
   --color-bg-page: var(--bg-page);
+  /* Latar overlay layar penuh (runner flashcard/menulis, modal deck): dipakai sebagai bg-surface-ground/NN. */
+  --color-surface-ground: var(--bg-page);
   --color-leather-hi: var(--leather-hi);
   --color-leather-mid: var(--leather-mid);
   --color-leather-low: var(--leather-low);

@@ -5,6 +5,8 @@ import { getTodayLocalDate, getLocalIsoWeekId } from '../utils/time';
 import { safeGetItem, safeSetItem } from '../utils/storage';
 import { STORAGE_KEY_LAST_DAILY_RESET, STORAGE_KEY_LAST_WEEKLY_RESET } from '../state/storageKeys';
 import { expireStreak } from '../state/streak';
+import { ensureToday } from '../engine/curriculum/curriculum';
+import { getCurriculum } from '../engine/curriculum/sources';
 
 interface Params {
   setStats: Dispatch<SetStateAction<PlayerStats>>;
@@ -34,6 +36,12 @@ export function useDailyRollover({ setStats, setDailyMissions, setWeeklyMissions
     setStats(prev => {
       let next = expireStreak(prev, today);
       if (next.lastStudyDate !== today) next = { ...next, todayStudySeconds: 0, lastStudyDate: today };
+      // Misi kurikulum hari ini: disusun sekali per hari dari sisa materi (yang tertunda didahulukan).
+      const plan = next.guidedPlan;
+      if (plan?.status === 'active' && plan.today?.date !== today) {
+        const guidedPlan = ensureToday(plan, getCurriculum(plan.profile), next.itemMastery, today, next.recallQueue?.length || 0);
+        if (guidedPlan && guidedPlan !== plan) next = { ...next, guidedPlan };
+      }
       return next === prev ? prev : next;
     });
   }, []);

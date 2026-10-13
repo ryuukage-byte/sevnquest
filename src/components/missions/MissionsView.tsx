@@ -5,23 +5,25 @@ import confetti from 'canvas-confetti';
 import { ScrollIcon } from '../ui/EngravingIcons';
 import { Mission } from '../../types/rpg';
 import { playSound } from '../../utils/audio';
+import { GuidedMissionsPanel, type GuidedMissionsPanelProps } from './GuidedMissionsPanel';
 
 interface MissionsViewProps {
-  dailyMissions: Mission[];
   weeklyMissions: Mission[];
   onClaimReward: (mission: Mission) => void;
   soundEnabled?: boolean;
+  /** Misi harian = misi kurikulum personal (Guided Learning). */
+  guided: GuidedMissionsPanelProps;
 }
 
 export const MissionsView: React.FC<MissionsViewProps> = ({
-  dailyMissions,
   weeklyMissions,
   onClaimReward,
   soundEnabled = true,
+  guided,
 }) => {
   const [activeTab, setActiveTab] = useState<'daily' | 'weekly'>('daily');
 
-  const currentList = activeTab === 'daily' ? dailyMissions : weeklyMissions;
+  const currentList = weeklyMissions;
 
   const handleClaim = (mission: Mission) => {
     playSound('coin', soundEnabled);
@@ -39,11 +41,11 @@ export const MissionsView: React.FC<MissionsViewProps> = ({
       <div className="panel panel-stitched p-4 sm:p-5 mb-3 shadow-md border border-border-subtle">
         <div>
           <h2 className="text-base sm:text-lg font-bold font-heading tracking-wide text-text-primary flex items-center gap-2">
-            {activeTab === 'daily' ? <><ScrollIcon className="w-5 h-5 text-gold" /> Papan Sayembara Harian</> : <><Calendar className="w-5 h-5 text-gold" /> Mandat Ekspedisi Mingguan</>}
+            {activeTab === 'daily' ? <><ScrollIcon className="w-5 h-5 text-gold" /> Misi Kurikulum Harian</> : <><Calendar className="w-5 h-5 text-gold" /> Mandat Ekspedisi Mingguan</>}
           </h2>
           <p className="text-xs text-text-secondary mt-0.5">
             {activeTab === 'daily'
-              ? 'Reset otomatis setiap jam 00:00 malam untuk farming EXP & Gold rutin.'
+              ? 'Jalur belajar personal: materi baru hari ini + Recall. Berganti setiap jam 00:00.'
               : 'Tantangan mingguan dengan hadiah EXP & Gold berlipat ganda!'}
           </p>
         </div>
@@ -73,6 +75,9 @@ export const MissionsView: React.FC<MissionsViewProps> = ({
         </button>
       </div>
 
+      {activeTab === 'daily' && <GuidedMissionsPanel {...guided} />}
+
+      {activeTab === 'weekly' && <>
       {/* Info Status Strip */}
       <div className="p-3 sm:p-3.5 rounded-2xl bg-surface-inset border border-border-subtle flex items-center justify-between text-xs text-text-secondary shadow-inner mb-3">
         <div className="flex items-center gap-1.5 relative z-10">
@@ -167,6 +172,7 @@ export const MissionsView: React.FC<MissionsViewProps> = ({
           );
         })}
       </div>
+      </>}
     </div>
   );
 };

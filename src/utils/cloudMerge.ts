@@ -5,6 +5,7 @@ import { mergeRewardState } from '../engine/reward/ledger';
 import { REWARD_LEDGER_MAX } from '../engine/reward/policy';
 import type { RewardState } from '../engine/reward/types';
 import { applyRewardToStats } from '../state/playerProgress';
+import { mergeGuidedPlan } from '../engine/curriculum/curriculum';
 
 /**
  * Penggabungan data lokal ↔ cloud tanpa menghapus progres yang hanya ada di salah satu sisi.
@@ -89,6 +90,8 @@ export function mergeStatsCollections(
     itemMastery: mergeItemMastery(local.itemMastery, cloud.itemMastery),
     userDecks: mergeUserDecks(local.userDecks, cloud.userDecks),
     recallDaily: mergeRecallDaily(local.recallDaily, cloud.recallDaily),
+    // Kurikulum: versi yang terakhir diubah menang (termasuk penanda "dihentikan"); klaim hari yang sama di-union.
+    guidedPlan: mergeGuidedPlan(local.guidedPlan, cloud.guidedPlan),
     // Penanda & riwayat reward di-union supaya klaim di satu perangkat tidak bisa diulang di perangkat lain.
     ...mergeRewardState(local, cloud),
   };

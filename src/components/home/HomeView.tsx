@@ -5,7 +5,8 @@ import { motion } from 'motion/react';
 import { Play, Flame, ChevronRight, Compass, HelpCircle, Castle } from 'lucide-react';
 import { TOWER_ENABLED } from '../../data/featureFlags';
 import { ScrollIcon } from '../ui/EngravingIcons';
-import { PlayerStats, Mission } from '../../types/rpg';
+import { PlayerStats } from '../../types/rpg';
+import { dayProgress } from '../../engine/curriculum/curriculum';
 import { getEffectiveTier } from '../../utils/ascension';
 import { TierAvatar } from '../avatar/TierAvatar';
 import { playSound } from '../../utils/audio';
@@ -15,7 +16,6 @@ import { FeatureSearch, FeatureTarget } from './FeatureSearch';
 
 export interface HomeViewProps {
   stats: PlayerStats;
-  dailyMissions?: Mission[];
   onOpenStatusModal: () => void;
   onNavigateTab: (tab: 'maps' | 'daily' | 'weekly' | 'leaderboard' | 'settings' | 'library' | 'deck') => void;
   onStartRecall?: () => void;
@@ -24,7 +24,6 @@ export interface HomeViewProps {
 
 export const HomeView: React.FC<HomeViewProps> = ({
   stats,
-  dailyMissions = [],
   onOpenStatusModal,
   onNavigateTab,
   onStartRecall,
@@ -39,9 +38,10 @@ export const HomeView: React.FC<HomeViewProps> = ({
   const recallCount = recallPlan.items.length;
   const recallPending = (stats.recallQueue?.length || 0) - recallCount; // menunggu: kuota habis / jadwal berikutnya
 
-  const completedMissionsCount = dailyMissions.filter(m => m.completed).length;
-  const totalMissionsCount = dailyMissions.length || 4;
-  const hasClaimableReward = dailyMissions.some(m => m.completed && !m.claimed);
+  // Misi harian = misi kurikulum (Guided Learning); tanpa program aktif, baris ini mengajak menyusunnya.
+  const guidedDay = stats.guidedPlan?.status === 'active' ? stats.guidedPlan.today : undefined;
+  const guidedProgress = guidedDay ? dayProgress(guidedDay, stats.itemMastery, stats.recallDaily) : undefined;
+  const hasClaimableReward = (guidedProgress?.claimable || 0) > 0;
 
   const [guideSeen, setGuideSeen] = useState<boolean>(() => {
     try {
@@ -304,7 +304,9 @@ export const HomeView: React.FC<HomeViewProps> = ({
               <span className="text-sm font-bold text-text-primary font-heading group-hover:text-gold transition-colors">
                 Misi Harian
               </span>
-              <p className="text-[10px] text-text-secondary font-mono">Hadiah EXP & Koin</p>
+              <p className="text-[10px] text-text-secondary font-mono">
+                {guidedProgress ? 'Kurikulum personal + Recall' : 'Susun kurikulum belajarmu'}
+              </p>
             </div>
           </div>
 
@@ -312,7 +314,9 @@ export const HomeView: React.FC<HomeViewProps> = ({
             <span className={`text-xs font-bold font-mono ${
               hasClaimableReward ? 'text-gold font-black animate-pulse' : 'text-text-secondary'
             }`}>
-              {completedMissionsCount}/{totalMissionsCount} {hasClaimableReward ? '· Klaim Hadiah!' : 'selesai'}
+              {guidedProgress
+                ? `${guidedProgress.doneCount}/${guidedProgress.totalCount} ${hasClaimableReward ? '· Klaim Hadiah!' : 'selesai'}`
+                : 'Mulai'}
             </span>
             <ChevronRight className="w-4 h-4 text-text-secondary group-hover:text-gold group-hover:translate-x-0.5 transition-all" />
           </div>
