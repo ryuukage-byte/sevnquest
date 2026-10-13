@@ -353,10 +353,11 @@ export function usePlayerActions({
   const handleStartGuidedPlan = useCallback((profile: GuidedProfile) => {
     setStats(prev => {
       const today = getTodayLocalDate();
-      const plan = createPlan(profile, today);
+      const curriculum = getCurriculum(profile);
+      const plan = createPlan(profile, today, curriculum, prev.itemMastery);
       return {
         ...prev,
-        guidedPlan: ensureToday(plan, getCurriculum(plan.profile), prev.itemMastery, today, prev.recallQueue?.length || 0),
+        guidedPlan: ensureToday(plan, curriculum, prev.itemMastery, today, { studyStats: prev.studyStats }),
       };
     });
   }, []);
@@ -372,7 +373,7 @@ export function usePlayerActions({
   const handleClaimGuidedMission = (key: GuidedMissionKey) => {
     const day = stats.guidedPlan?.today;
     if (!day || day.date !== getTodayLocalDate() || day.claimed[key]) return;
-    const mission = dayProgress(day, stats.itemMastery, stats.recallDaily).missions.find(m => m.key === key);
+    const mission = dayProgress(day, stats.itemMastery, stats.recallDaily, stats.studyStats).missions.find(m => m.key === key);
     if (!mission?.complete) return;
     const reward = GUIDED_REWARDS[key];
     handleRewardPlayer(reward.exp, reward.gold, {

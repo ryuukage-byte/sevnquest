@@ -3,14 +3,14 @@ import { lazyWithRetry as lazy } from '../../utils/lazyWithRetry';
 import { motion } from 'motion/react';
 import confetti from 'canvas-confetti';
 import {
-  BookOpen, PenTool, Layers, Brain, CheckCircle2, Trophy, Clock, Settings2, Play, AlertTriangle, Compass,
+  BookOpen, PenTool, Layers, Brain, CheckCircle2, Trophy, Clock, Settings2, Play, AlertTriangle, Compass, ClipboardCheck, Info,
 } from 'lucide-react';
 import type { PlayerStats, UserDeck, DeckItemCategory } from '../../types/rpg';
 import type { BunpouItem } from '../../types/content';
 import type { RewardHandler, RewardMeta, StudyCompleteResult } from '../../engine/reward/types';
-import type { GuidedCategory, GuidedItemState, GuidedMissionKey, GuidedProfile } from '../../engine/curriculum/types';
+import type { DayNote, GuidedCategory, GuidedItemState, GuidedMissionKey, GuidedProfile } from '../../engine/curriculum/types';
 import {
-  dayProgress, planOverview, itemState, isLearned, GUIDED_REWARDS, type MissionProgress,
+  dayProgress, planOverview, itemState, isLearned, GUIDED_REWARDS, EVALUATION_EVERY_DAYS, type MissionProgress,
 } from '../../engine/curriculum/curriculum';
 import { getCurriculum } from '../../engine/curriculum/sources';
 import { KOTOBA_DATABASE } from '../../data/kotoba';
@@ -37,6 +37,8 @@ export interface GuidedMissionsPanelProps {
   onClaim: (key: GuidedMissionKey) => void;
   onStartRecall: () => void;
   onExplore: () => void;
+  /** Buka bank soal (Library → Soal) untuk evaluasi berkala. */
+  onOpenQuestions: () => void;
   onRewardPlayer: RewardHandler;
   onCompleteStudyItem: (
     moduleId: StudyModule, expGained: number, goldGained: number, itemId?: string, score?: number, total?: number,
@@ -55,6 +57,15 @@ const MISSION_META: Record<GuidedMissionKey, { title: string; unit: string; colo
   kanji: { title: 'Kanji Baru', unit: 'kanji', color: 'var(--color-kanji)', Icon: PenTool },
   bunpou: { title: 'Bunpou Baru', unit: 'pola kalimat', color: 'var(--color-bunpou)', Icon: Layers },
   recall: { title: 'Recall', unit: 'jawaban', color: 'var(--color-choukai)', Icon: Brain },
+  evaluasi: { title: 'Evaluasi Mingguan', unit: 'soal', color: 'var(--color-dokkai)', Icon: ClipboardCheck },
+};
+
+const isCategory = (key: GuidedMissionKey): key is GuidedCategory => key === 'kotoba' || key === 'kanji' || key === 'bunpou';
+
+const NOTE_TEXT: Record<DayNote, string> = {
+  recall_heavy: 'Banyak materi jatuh tempo diulang hari ini, jadi materi baru dikurangi supaya Recall tidak menumpuk.',
+  recall_light: 'Belum banyak yang perlu diulang, jadi hari ini ada sedikit lebih banyak materi baru.',
+  retention_low: 'Hasil Recall menunjukkan banyak materi belum bertahan. Materi baru dikurangi dulu sampai ingatanmu menguat.',
 };
 
 const STATE_LABEL: Record<GuidedItemState, string> = {
@@ -95,7 +106,7 @@ function virtualDeck(category: GuidedCategory, ids: string[], date: string): Use
 type Runner = { mode: 'flashcard' | 'writing'; deck: UserDeck } | null;
 
 export const GuidedMissionsPanel: React.FC<GuidedMissionsPanelProps> = ({
-  stats, soundEnabled = true, onStartPlan, onStopPlan, onClaim, onStartRecall, onExplore,
+  stats, soundEnabled = true, onStartPlan, onStopPlan, onClaim, onStartRecall, onExplore, onOpenQuestions,
   onRewardPlayer, onCompleteStudyItem, onRecordInteraction, onToggleBookmark, onUpdateDecks,
 }) => {
   const plan = stats.guidedPlan?.status === 'active' ? stats.guidedPlan : undefined;
@@ -105,7 +116,10 @@ export const GuidedMissionsPanel: React.FC<GuidedMissionsPanelProps> = ({
   const [inspect, setInspect] = useState<{ id: string; category: 'kotoba' | 'kanji' } | null>(null);
   const [bunpouItem, setBunpouItem] = useState<BunpouItem | null>(null);
 
-  const curriculum = useMemo(() => (plan ? getCurriculum(plan.profile) : undefined), [plan?.profile]);
+  const curriculum = useMemo(
+    () => (plan ? getCurriculum(plan.profile) : undefined),
+    [plan?.profile.currentLevel, plan?.profile.targetLevel]
+  );
   const mastery = stats.itemMastery;
   const day = plan?.today;
   const today = getTodayLocalDate();
@@ -115,6 +129,7 @@ export const GuidedMissionsPanel: React.FC<GuidedMissionsPanelProps> = ({
       <GuidedSetupWizard
         initial={stats.guidedPlan?.profile}
         hasActivePlan={Boolean(plan)}
+        mastery={mastery}
         soundEnabled={soundEnabled}
         onCancel={plan ? () => setIsEditing(false) : undefined}
         onSubmit={(profile) => {
@@ -126,7 +141,13 @@ export const GuidedMissionsPanel: React.FC<GuidedMissionsPanelProps> = ({
   }
 
   const overview = planOverview(plan, curriculum, mastery, today);
-  const progress = day ? dayProgress(day, mastery, stats.recallDaily) : undefined;
+  const progress = day ? dayProgress(day, mastery, stats.recallDaily, stats.studyStats, curriculum.learnMinutes) : undefined;
+  // "Sampai tuntas" = sasaran program mencakup seluruh materi inti yang belum dipelajari saat program dibuat.
+  const goalIsFull = overview.goal + (plan.baseline ? plan.baseline.kotoba + plan.baseline.kanji + plan.baseline.bunpou : 0) >= overview.planned;
+  const levelsLabel = curriculum.levels.length > 1
+    ? `${curriculum.levels[0]}–${curriculum.levels[curriculum.levels.length - 1]}`
+    : curriculum.levels[0];
+  const dueNow = Math.max(0, (day?.recallTarget || 0) - Math.min(10, (day?.kotoba.length || 0) + (day?.kanji.length || 0) + (day?.bunpou.length || 0)));
   const levelFrom = plan.profile.currentLevel === 'PEMULA' ? 'Pemula' : plan.profile.currentLevel;
 
   const handleClaim = (key: GuidedMissionKey) => {
@@ -137,7 +158,7 @@ export const GuidedMissionsPanel: React.FC<GuidedMissionsPanelProps> = ({
 
   // Sesi latihan memuat materi yang BELUM dipelajari; bila semua sudah, seluruh materi misi (untuk mengulang).
   const openRunner = (m: MissionProgress, mode: 'flashcard' | 'writing') => {
-    if (!day || m.key === 'recall') return;
+    if (!day || !isCategory(m.key)) return;
     const pending = m.ids.filter(id => !isLearned(mastery, id));
     playSound('click', soundEnabled);
     setRunner({ mode, deck: virtualDeck(m.key, pending.length > 0 ? pending : m.ids, day.date) });
@@ -161,8 +182,8 @@ export const GuidedMissionsPanel: React.FC<GuidedMissionsPanelProps> = ({
   const paceBadge = {
     on_track: { text: 'Sesuai jadwal', color: 'var(--color-state-success)' },
     ahead: { text: 'Lebih cepat dari jadwal', color: 'var(--color-state-success)' },
-    behind: { text: `Tertinggal ${overview.behindBy} materi`, color: 'var(--color-state-danger)' },
-    finished: { text: 'Kurikulum selesai', color: 'var(--color-gold-base)' },
+    behind: { text: `Tertinggal ${overview.behindBy} materi dari sasaran`, color: 'var(--color-state-danger)' },
+    finished: { text: 'Materi inti target tuntas', color: 'var(--color-gold-base)' },
   }[overview.pace];
 
   return (
@@ -171,7 +192,9 @@ export const GuidedMissionsPanel: React.FC<GuidedMissionsPanelProps> = ({
       <div className="panel panel-stitched p-4 sm:p-5 shadow-md border border-border-subtle">
         <div className="flex items-start justify-between gap-3 relative z-10">
           <div className="min-w-0">
-            <p className="text-[10px] font-mono tracking-widest text-text-muted uppercase">Kurikulum {levelFrom} → {plan.profile.targetLevel}</p>
+            <p className="text-[10px] font-mono tracking-widest text-text-muted uppercase">
+              {levelFrom} → {plan.profile.targetLevel} · {goalIsFull ? 'Program sampai tuntas' : 'Program prioritas'}
+            </p>
             <h3 className="text-lg sm:text-xl font-bold font-heading text-text-primary">
               Day {String(overview.dayIndex).padStart(2, '0')}
               <span className="text-xs font-mono font-normal text-text-secondary"> / {overview.durationDays} hari</span>
@@ -189,13 +212,38 @@ export const GuidedMissionsPanel: React.FC<GuidedMissionsPanelProps> = ({
 
         <div className="space-y-1 mt-3 relative z-10">
           <div className="flex justify-between text-[11px] font-mono text-text-muted">
-            <span>Dipelajari {overview.learned} / {overview.planned} materi</span>
+            <span>Cakupan: {overview.learned} / {overview.planned} materi inti {levelsLabel}</span>
             <span>{overview.percent}%</span>
           </div>
           <div className="skeuo-progress-track">
             <div className={`skeuo-progress-bar ${overview.pace === 'finished' ? 'completed' : ''}`} style={{ width: `${overview.percent}%`, transition: 'width 0.4s ease' }} />
           </div>
         </div>
+
+        <div className="grid grid-cols-3 gap-2 mt-3 relative z-10">
+          <div className="rounded-xl bg-surface-inset border border-border-subtle px-2.5 py-2 shadow-inner">
+            <p className="text-[10px] font-mono uppercase tracking-wider text-text-muted">Cakupan</p>
+            <p className="text-sm font-bold font-mono text-text-primary">{overview.percent}%</p>
+            <p className="text-[10px] text-text-muted">sudah dipelajari</p>
+          </div>
+          <div className="rounded-xl bg-surface-inset border border-border-subtle px-2.5 py-2 shadow-inner">
+            <p className="text-[10px] font-mono uppercase tracking-wider text-text-muted">Retensi</p>
+            <p className="text-sm font-bold font-mono text-text-primary">{overview.retentionPercent === null ? '—' : `${overview.retentionPercent}%`}</p>
+            <p className="text-[10px] text-text-muted">{overview.tested > 0 ? `dari ${overview.tested} yang diuji` : 'belum ada yang diuji'}</p>
+          </div>
+          <div className="rounded-xl bg-surface-inset border border-border-subtle px-2.5 py-2 shadow-inner">
+            <p className="text-[10px] font-mono uppercase tracking-wider text-text-muted">Dikuasai</p>
+            <p className="text-sm font-bold font-mono text-text-primary">{overview.masteredPercent}%</p>
+            <p className="text-[10px] text-text-muted">{overview.mastered} materi</p>
+          </div>
+        </div>
+        <p className="text-[11px] text-text-muted mt-2 relative z-10">
+          {overview.pace === 'finished'
+            ? 'Semua materi inti sudah dipelajari. Pertahankan lewat Recall sampai retensi dan penguasaannya naik.'
+            : goalIsFull
+              ? `Sasaran: seluruh materi inti tuntas dalam ${overview.durationDays} hari. Sisa materi butuh ±${overview.daysToComplete} hari belajar dengan ${plan.profile.minutesPerDay} menit/hari.`
+              : `Sasaran program: ${overview.goal} materi prioritas dalam ${overview.durationDays} hari (tercapai ${overview.progressed}). Menuntaskan seluruh materi inti butuh ±${overview.daysToComplete} hari dengan ${plan.profile.minutesPerDay} menit/hari.`}
+        </p>
 
         <div className="grid grid-cols-3 gap-2 mt-3 relative z-10">
           {(['kotoba', 'kanji', 'bunpou'] as const).map(c => (
@@ -220,6 +268,13 @@ export const GuidedMissionsPanel: React.FC<GuidedMissionsPanelProps> = ({
           <span className="text-gold font-mono font-bold">{progress.doneCount} / {progress.totalCount} misi</span>
         </div>
       )}
+
+      {(day?.notes || []).map(note => (
+        <div key={note} className="p-3 rounded-2xl border border-border-subtle bg-surface-card flex items-start gap-2 text-xs text-text-secondary">
+          <Info className="w-4 h-4 shrink-0 mt-0.5 text-gold" />
+          <span>{NOTE_TEXT[note]}</span>
+        </div>
+      ))}
 
       {progress && progress.carriedCount > 0 && (
         <div className="p-3 rounded-2xl border border-border-subtle bg-surface-card flex items-start gap-2 text-xs text-text-secondary">
@@ -271,8 +326,10 @@ export const GuidedMissionsPanel: React.FC<GuidedMissionsPanelProps> = ({
                   <h3 className="text-sm font-bold text-text-primary font-heading">{meta.title}</h3>
                   <p className="text-xs text-text-secondary">
                     {m.key === 'recall'
-                      ? `Ingat kembali ${m.total} materi yang sudah masuk jadwal ulang.`
-                      : `${m.total} ${meta.unit} pilihan kurikulum.`}
+                      ? `${m.total} jawaban: ${dueNow} materi jatuh tempo diulang + materi baru hari ini.`
+                      : m.key === 'evaluasi'
+                        ? `Uji kemampuanmu di soal level ${plan.profile.targetLevel}: kosakata, kanji, tata bahasa, dan bacaan.`
+                        : `${m.total} ${meta.unit} dari materi inti ${levelsLabel}.`}
                   </p>
                 </div>
               </div>
@@ -282,14 +339,16 @@ export const GuidedMissionsPanel: React.FC<GuidedMissionsPanelProps> = ({
             <div className="space-y-1 relative z-10">
               <div className="flex justify-between text-[11px] font-mono text-text-muted">
                 <span>{m.done} / {m.total} {meta.unit}</span>
-                <span className={m.complete ? 'text-gold font-bold' : ''}>{m.complete ? 'Selesai' : `±${m.minutesLeft} menit lagi`}</span>
+                <span className={m.complete ? 'text-gold font-bold' : ''}>
+                  {m.complete ? 'Selesai' : m.key === 'evaluasi' ? `${m.total - m.done} soal lagi` : `±${m.minutesLeft} menit lagi`}
+                </span>
               </div>
               <div className="skeuo-progress-track">
                 <div className={`skeuo-progress-bar ${m.complete ? 'completed' : ''}`} style={{ width: `${percent}%`, transition: 'width 0.4s ease' }} />
               </div>
             </div>
 
-            {m.key !== 'recall' && (
+            {isCategory(m.key) && (
               <div className="flex flex-wrap gap-1.5 relative z-10">
                 {m.ids.map(id => {
                   const s = itemState(mastery?.[id]);
@@ -313,10 +372,17 @@ export const GuidedMissionsPanel: React.FC<GuidedMissionsPanelProps> = ({
               </div>
             )}
 
+            {m.key === 'evaluasi' && (
+              <p className="text-[11px] text-text-muted relative z-10">
+                Muncul tiap {EVALUATION_EVERY_DAYS} hari. Selesai setelah {m.total} soal latihan atau satu simulasi ujian di Library → Soal.
+                Hasilnya menunjukkan apakah materi yang kamu pelajari sudah bisa dipakai menjawab soal, bukan hanya dihafal.
+              </p>
+            )}
+
             {m.key === 'recall' && (
               <p className="text-[11px] text-text-muted relative z-10">
-                {stats.recallQueue?.length || 0} materi di antrean. Materi yang kamu pelajari hari ini langsung memenuhi syarat Recall,
-                dan diuji dengan mode yang sesuai (kanvas menulis, pilihan pola, konjugasi).
+                Target Recall mengikuti jumlah materi yang jatuh tempo, bukan jatah waktu tetap. Setiap jawaban dinilai sistem
+                (soal arti/konteks, kanvas menulis, konjugasi, susun pola) dan hasilnya menentukan jadwal ulang berikutnya.
               </p>
             )}
 
@@ -350,6 +416,11 @@ export const GuidedMissionsPanel: React.FC<GuidedMissionsPanelProps> = ({
                     <BookOpen className="w-3.5 h-3.5" /> Kartu Pola
                   </button>
                 </>
+              )}
+              {m.key === 'evaluasi' && (
+                <button onClick={onOpenQuestions} className="btn-physical-primary px-3.5 py-2 rounded-xl text-xs font-bold flex items-center gap-1.5">
+                  <ClipboardCheck className="w-3.5 h-3.5" /> Kerjakan Soal
+                </button>
               )}
               {m.key === 'recall' && (
                 <button onClick={onStartRecall} className="btn-physical-primary px-3.5 py-2 rounded-xl text-xs font-bold flex items-center gap-1.5">

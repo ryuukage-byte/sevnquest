@@ -30,6 +30,8 @@ export function useAppNavigation() {
   const [deckResetCount, setDeckResetCount] = useState(0);
   const [deckInitialSubTab, setDeckInitialSubTab] = useState<'my_pocket' | 'official_books'>('my_pocket');
   const [tabHistory, setTabHistory] = useState<TabType[]>([]);
+  // Permintaan membuka tab tertentu di Library (mis. misi evaluasi kurikulum -> Soal).
+  const [libraryTabRequest, setLibraryTabRequest] = useState<{ tab: 'kotoba' | 'kanji' | 'bunpou' | 'soal'; n: number } | undefined>();
 
   // Hardware / System Back Button Handlers
   useBackButton(isRecallActive, () => {
@@ -109,6 +111,11 @@ export function useAppNavigation() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }, [activeTab]);
 
+  const handleOpenLibraryTab = useCallback((tab: 'kotoba' | 'kanji' | 'bunpou' | 'soal') => {
+    setLibraryTabRequest(prev => ({ tab, n: (prev?.n || 0) + 1 }));
+    handleTabChange('library');
+  }, [handleTabChange]);
+
   const handleNavigateToOfficialBooks = useCallback(() => {
     setDeckInitialSubTab('official_books');
     handleTabChange('deck');
@@ -149,6 +156,7 @@ export function useAppNavigation() {
     worldNavView, setWorldNavView, worldResetCount,
     deckResetCount, deckInitialSubTab, setDeckInitialSubTab,
     handleTabChange, handleOpenTower, handleNavigateToOfficialBooks,
+    libraryTabRequest, handleOpenLibraryTab,
     isOnboardingActive, handleCompleteOnboarding, handleOpenAuthFromOnboarding, handleReplayOnboarding,
   };
 }

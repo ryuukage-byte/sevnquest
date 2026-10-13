@@ -36,7 +36,7 @@ export const MissionsView: React.FC<MissionsViewProps> = ({
   };
 
   return (
-    <div className="w-full max-w-2xl mx-auto space-y-4 pb-6">
+    <div className="w-full max-w-2xl lg:max-w-4xl mx-auto space-y-4 pb-6">
       {/* Header */}
       <div className="panel panel-stitched p-4 sm:p-5 mb-3 shadow-md border border-border-subtle">
         <div>

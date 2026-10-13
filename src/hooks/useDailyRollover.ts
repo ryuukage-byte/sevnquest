@@ -39,7 +39,7 @@ export function useDailyRollover({ setStats, setDailyMissions, setWeeklyMissions
       // Misi kurikulum hari ini: disusun sekali per hari dari sisa materi (yang tertunda didahulukan).
       const plan = next.guidedPlan;
       if (plan?.status === 'active' && plan.today?.date !== today) {
-        const guidedPlan = ensureToday(plan, getCurriculum(plan.profile), next.itemMastery, today, next.recallQueue?.length || 0);
+        const guidedPlan = ensureToday(plan, getCurriculum(plan.profile), next.itemMastery, today, { studyStats: next.studyStats });
         if (guidedPlan && guidedPlan !== plan) next = { ...next, guidedPlan };
       }
       return next === prev ? prev : next;

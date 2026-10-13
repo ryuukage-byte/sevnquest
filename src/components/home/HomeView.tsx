@@ -40,7 +40,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
 
   // Misi harian = misi kurikulum (Guided Learning); tanpa program aktif, baris ini mengajak menyusunnya.
   const guidedDay = stats.guidedPlan?.status === 'active' ? stats.guidedPlan.today : undefined;
-  const guidedProgress = guidedDay ? dayProgress(guidedDay, stats.itemMastery, stats.recallDaily) : undefined;
+  const guidedProgress = guidedDay ? dayProgress(guidedDay, stats.itemMastery, stats.recallDaily, stats.studyStats) : undefined;
   const hasClaimableReward = (guidedProgress?.claimable || 0) > 0;
 
   const [guideSeen, setGuideSeen] = useState<boolean>(() => {

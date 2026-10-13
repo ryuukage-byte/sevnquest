@@ -36,11 +36,15 @@ Bukti: ✅ kode/eksekusi · 🔶 pembacaan struktur (belum dijalankan di browser
 
 ## 4. Misi
 ### 4a. Misi harian = Guided Learning (kurikulum personal)
-`engine/curriculum/*` (murni, tes `curriculum.test.ts`), `missions/GuidedMissionsPanel`, `missions/GuidedSetupWizard`, state `PlayerStats.guidedPlan`.
-Profil (level saat ini, target, durasi, menit/hari, preferensi) → urutan materi dari DB (tanpa LLM) → misi harian Kotoba/Kanji/Bunpou/Recall.
-"Selesai" diturunkan dari `itemMastery` (`hasPracticed`), jadi belajar lewat Library/Buku Saku/Recall ikut terhitung; Tower/Arcade tidak.
-Materi tertunda didahulukan esok hari; jatah dihitung ulang dari sisa materi ÷ sisa hari (maks ×1,5) dan dikurangi saat antrean Recall menumpuk.
-Klaim lewat ledger `mission_claim` (ref `guided_<misi>:<tanggal>`). Tabel `dm_*` di bawah **tidak lagi ditampilkan**; state-nya masih ada (payload cloud) → kandidat pembersihan.
+`engine/curriculum/*` (murni; tes `curriculum.test.ts`, `bunpouOrder.test.ts`), `missions/GuidedMissionsPanel`, `missions/GuidedSetupWizard`, state `PlayerStats.guidedPlan`.
+Definisi sukses: menuntaskan **materi inti** level target dan mempertahankannya (teruji di Recall), bukan menghabiskan jatah harian.
+- **Target kompetensi**: kurikulum = seluruh materi inti level program (kotoba ber-tag `jlpt-estimasi` adalah perluasan Library, bukan syarat target; N1: 3.483 inti dari 11.369). Urutan: kanji → kotoba yang memakainya; bunpou N5/N4 menurut tahap belajar kurasi (`bunpouOrder.ts`), N3 urutan buku ajar, N2/N1 belum dikurasi.
+- **Analisis gap & kelayakan** (`analyzePlan`): inti − sudah dipelajari = gap; beban = menit belajar (dikali tingkat kesulitan level) + menit pengulangan SRS; hasil: layak/tidak, durasi & menit yang dibutuhkan. Dua mode: *Capai Target* (sistem menghitung durasi) dan *Atur Waktu* (sistem menyatakan cakupan realistis).
+- **Misi harian adaptif** (`planDay`): jatah = sisa gap ÷ sisa hari; Recall mengikuti jumlah materi jatuh tempo (bukan porsi waktu tetap); retensi < 60% → materi baru dikurangi; materi baru + Recall tidak melebihi waktu harian; yang tertunda didahulukan.
+- **Evaluasi**: tiap 7 hari misi 10 soal level target (Library → Soal; satu simulasi ujian juga memenuhi). Ringkasan program menampilkan cakupan / retensi / penguasaan.
+- "Selesai" diturunkan dari `itemMastery` (`hasPracticed`), jadi belajar lewat Library/Buku Saku/Recall ikut terhitung; Tower/Arcade tidak. Klaim lewat ledger `mission_claim` (ref `guided_<misi>:<tanggal>`).
+- Belum ada: Choukai (fitur nonaktif) dan misi Dokkai tersendiri — bacaan baru tercakup lewat bank soal Bunpou-Dokkai pada evaluasi. Angka menit per materi masih heuristik.
+- Tabel `dm_*` di bawah **tidak lagi ditampilkan**; state-nya masih ada (payload cloud) → kandidat pembersihan.
 
 ### 4b. Misi lama (dm_* tersembunyi) & mingguan
 | Misi | Pemicu hidup | St |
@@ -99,7 +103,7 @@ Menulis aksara · Gerbang Ingatan (flashcard) · Kuil Tata Bahasa (sakubun) · A
 - "Nihongo Tower" lama (HP, boss gate, skill tree, rewardEngine, round engine): UI dihapus; sisa `engine/tower/*` masih diekspor lewat `engine/index.ts` dan state-nya (`nq_tower_*`) masih dikumpulkan ke cloud (`towerCloudState`) 🔶 → candidate cleanup.
 
 ## 8. Recall (SRS)
-`learning/RecallModule`, `engine/recall/{session,bunpouEngines}`, `utils/mastery.buildSmartRecallQueue`. Antrean ≤30 (CRITICAL/WEAK/REVIEW/MAINTAIN + NEW_UNTESTED), sesi 10 soal, 40 jawaban/hari, 10 materi baru/hari, Latihan Ekstra 5 soal tanpa batas putaran. Engine soal: pilihan ganda kurasi, konteks, canvas menulis, flashcard (penilaian diri), Grammar Fusion, konjugasi, listening (kotoba), Dokkai/Choukai bila ada. Hasil → `handleItemReviewed` (mastery) & `handleCompleteRecallSession` (EXP, misi). C ✅ (tes: `recallHistory.test`, `session.test`, `RecallModule.empty.test`).
+`learning/RecallModule`, `engine/recall/{session,bunpouEngines}`, `utils/mastery.buildSmartRecallQueue`. Antrean ≤30 (CRITICAL/WEAK/REVIEW/MAINTAIN + NEW_UNTESTED), sesi 10 soal, 40 jawaban/hari, 10 materi baru/hari, Latihan Ekstra 5 soal tanpa batas putaran. Engine soal: pilihan ganda kurasi, konteks, canvas menulis, Grammar Fusion (engine flashcard "Lupa/Ingat" dihapus: hasil Recall harus dari jawaban yang dinilai sistem, bukan penilaian diri), konjugasi, listening (kotoba), Dokkai/Choukai bila ada. Hasil → `handleItemReviewed` (mastery) & `handleCompleteRecallSession` (EXP, misi). C ✅ (tes: `recallHistory.test`, `session.test`, `RecallModule.empty.test`).
 
 ## 9. Leaderboard
 `leaderboard/LeaderboardView`, `PlayerProfileModal`, `lib/supabase`. Tab all-time (top 100 + rank sendiri) & mingguan (`weekly_scores`, minggu ISO UTC). Cache lokal bila jaringan gagal. Skor mingguan hanya bertambah dari event `kanji_write` (event `quiz_answer` tak lagi dikirim siapa pun: pengirim satu-satunya, `QuizEngine`, sudah mati sebelum PR ini) ✅. C 🔶.

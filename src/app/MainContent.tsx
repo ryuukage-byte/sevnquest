@@ -47,7 +47,7 @@ export function MainContent(props: MainContentProps) {
     setIsStatusModalOpen, isRecallActive, setIsRecallActive,
     isAuthModalOpen, setIsAuthModalOpen,
     worldNavView, setWorldNavView, worldResetCount, deckResetCount, deckInitialSubTab, setDeckInitialSubTab,
-    handleTabChange, handleOpenTower,
+    handleTabChange, handleOpenTower, libraryTabRequest, handleOpenLibraryTab,
     handleRewardPlayer, handleStudyComplete, handleRecordItemInteraction, handleTowerMastery,
     handleStartRemediationRecall, handleItemReviewed, handleCompleteRecallSession, handleUseMp,
     handleClaimMission, handleGameOver, handleHpDamage, handleResetData,
@@ -150,6 +150,7 @@ export function MainContent(props: MainContentProps) {
                       onClaim: handleClaimGuidedMission,
                       onStartRecall: () => setIsRecallActive(true),
                       onExplore: () => handleTabChange('library'),
+                      onOpenQuestions: () => handleOpenLibraryTab('soal'),
                       onRewardPlayer: handleRewardPlayer,
                       onCompleteStudyItem: handleStudyComplete,
                       onRecordInteraction: handleRecordItemInteraction,
@@ -192,6 +193,7 @@ export function MainContent(props: MainContentProps) {
                 {visitedTabs.has('library') && (
                   <ModuleBoundary label="Perpustakaan">
                   <LibraryView
+                    tabRequest={libraryTabRequest}
                     soundEnabled={stats.soundEnabled}
                     itemMastery={stats.itemMastery}
                     onRewardPlayer={handleRewardPlayer}

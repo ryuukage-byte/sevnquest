@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { KotobaLibraryView } from './KotobaLibraryView';
 import { KanjiLibraryView } from './KanjiLibraryView';
 import { BunpouLibraryView } from './BunpouLibraryView';
@@ -6,6 +6,8 @@ import { QuestionLibraryView } from './QuestionLibraryView';
 import { playSound } from '../../utils/audio';
 import { UserDeck, DeckItemCategory } from '../../types/rpg';
 import { ItemMasteryRecord } from '../../types/content';
+
+export type LibraryTab = 'kotoba' | 'kanji' | 'bunpou' | 'soal';
 
 interface LibraryViewProps {
   soundEnabled?: boolean;
@@ -30,9 +32,10 @@ interface LibraryViewProps {
   userDecks?: UserDeck[];
   onToggleBookmark?: (id: string, category: DeckItemCategory, notes?: string, targetDeckId?: string) => void;
   onUpdateDecks?: (decks: UserDeck[]) => void;
+  /** Permintaan membuka tab tertentu dari luar (mis. misi evaluasi kurikulum -> Soal). `n` berubah tiap permintaan. */
+  tabRequest?: { tab: LibraryTab; n: number };
 }
 
-export type LibraryTab = 'kotoba' | 'kanji' | 'bunpou' | 'soal';
 
 export const LibraryView: React.FC<LibraryViewProps> = ({
   soundEnabled = true,
@@ -44,14 +47,21 @@ export const LibraryView: React.FC<LibraryViewProps> = ({
   userDecks,
   onToggleBookmark,
   onUpdateDecks,
+  tabRequest,
 }) => {
-  const [libraryTab, setLibraryTab] = useState<LibraryTab>('kotoba');
+  const [libraryTab, setLibraryTab] = useState<LibraryTab>(tabRequest?.tab ?? 'kotoba');
   const [visitedTabs, setVisitedTabs] = useState<Record<LibraryTab, boolean>>({
     kotoba: true,
     kanji: false,
     bunpou: false,
     soal: false,
   });
+
+  useEffect(() => {
+    if (!tabRequest) return;
+    setLibraryTab(tabRequest.tab);
+    setVisitedTabs(prev => (prev[tabRequest.tab] ? prev : { ...prev, [tabRequest.tab]: true }));
+  }, [tabRequest?.n]);
 
   const handleTabChange = (tab: LibraryTab) => {
     setLibraryTab(tab);
