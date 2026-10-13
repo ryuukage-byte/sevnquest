@@ -1,3 +1,5 @@
+> **DIGANTIKAN** oleh [`docs/audit/`](audit/README.md) (audit lengkap & mutakhir, 2026-10-13). File ini adalah snapshot awal di commit `8ae7fc1` dan dipertahankan sebagai riwayat; beberapa temuan di bawah sudah diperbaiki di PR #14.
+
 # SevnQuest — System Audit (read-only)
 
 Tanggal audit: 2026-10-13 · Branch: `ccr-45fec575-9x86pe` · HEAD `8ae7fc1`
