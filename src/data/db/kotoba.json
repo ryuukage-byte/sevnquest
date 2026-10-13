@@ -590,7 +590,7 @@
     ],
     "exampleSentence": {
       "japanese": "日本に、一月ほど滞在する予定です。",
-      "reading": "にっぽんに、いちがつほどたいざいするよていです。",
+      "reading": "にほんに、ひとつきほどたいざいするよていです。",
       "meaningId": "Saya berencana tinggal di Jepang sekitar satu bulan."
     },
     "definitionId": "Waktu untuk jangka waktu satu bulan.",
@@ -1526,7 +1526,7 @@
     ],
     "exampleSentence": {
       "japanese": "毎月、貯金をしています。",
-      "reading": "まいつき、ちょうきんをしています。",
+      "reading": "まいつき、ちょきんをしています。",
       "meaningId": "Saya menabung uang setiap bulannya."
     },
     "definitionId": "Bulanan. Setiap bulan.",
@@ -2121,7 +2121,7 @@
     ],
     "exampleSentence": {
       "japanese": "「日本での新しい生活はどうですか。」",
-      "reading": "「にっぽんでのあたらしいせいかつはどうですか。」",
+      "reading": "「にほんでのあたらしいせいかつはどうですか。」",
       "meaningId": "Bagaimana kehidupan barumu di Jepang?"
     },
     "definitionId": "Kata-kata yang digunakan ketika menanyakan tentang kondisi, metode, pendapat, dll.",
@@ -5535,7 +5535,7 @@
     ],
     "exampleSentence": {
       "japanese": "おじいさんは八十歳ですが、とても元気です。",
-      "reading": "おじいさんははちじゅうさいですが、とてもげんきです。",
+      "reading": "おじいさんははちじゅっさいですが、とてもげんきです。",
       "meaningId": "Kakek berumur delapan puluh tahun, tetapi sangat sehat."
     },
     "collocations": [
@@ -5778,7 +5778,7 @@
     "kanjiComponents": [],
     "exampleSentence": {
       "japanese": "「このレストランの日本料理はとても美味しくて感動しました。」",
-      "reading": "「このレストランのにっぽんりょうりはとてもおいしくてかんどうしました。」",
+      "reading": "「このレストランのにほんりょうりはとてもおいしくてかんどうしました。」",
       "meaningId": "Masakan Jepang di restoran ini sangat lezat dan membuat saya terkesan."
     },
     "collocations": [
@@ -5805,7 +5805,7 @@
     ],
     "exampleSentence": {
       "japanese": "一昨年、私は初めて日本へ行きました。",
-      "reading": "いっさくねん、わたしははじめてにっぽんへいきました。",
+      "reading": "おととし、わたしははじめてにほんへいきました。",
       "meaningId": "Dua tahun lalu, saya pertama kali pergi ke Jepang."
     },
     "collocations": [
@@ -6330,7 +6330,7 @@
     ],
     "exampleSentence": {
       "japanese": "五日は、友達の誕生日です。",
-      "reading": "ごにちは、ともだちのたんじょうびです。",
+      "reading": "いつかは、ともだちのたんじょうびです。",
       "meaningId": "Tanggal lima adalah hari ulang tahun teman saya."
     },
     "collocations": [
@@ -6500,7 +6500,7 @@
     ],
     "exampleSentence": {
       "japanese": "来月、日本へ旅行に行きます。",
-      "reading": "らいげつ、にっぽんへりょこうにいきます。",
+      "reading": "らいげつ、にほんへりょこうにいきます。",
       "meaningId": "Bulan depan saya akan bepergian ke Jepang."
     },
     "collocations": [
@@ -6652,7 +6652,7 @@
     ],
     "exampleSentence": {
       "japanese": "「日本の夏はとても蒸し暑いので水分をよく取ります。」",
-      "reading": "「にっぽんのなつはとてもむしあついのですいぶんをよくとります。」",
+      "reading": "「にほんのなつはとてもむしあついのですいぶんをよくとります。」",
       "meaningId": "Musim panas di Jepang sangat gerah, jadi kami banyak minum air."
     },
     "collocations": [
@@ -7127,7 +7127,7 @@
     ],
     "exampleSentence": {
       "japanese": "二日は、学校が休みです。",
-      "reading": "ににちは、がっこうがやすみです。",
+      "reading": "ふつかは、がっこうがやすみです。",
       "meaningId": "Tanggal dua sekolah libur."
     },
     "collocations": [
@@ -7433,7 +7433,7 @@
     ],
     "exampleSentence": {
       "japanese": "二十日は、日曜日です。",
-      "reading": "にじゅうにちは、にちようびです。",
+      "reading": "はつかは、にちようびです。",
       "meaningId": "Tanggal dua puluh adalah hari Minggu."
     },
     "collocations": [
@@ -7559,7 +7559,7 @@
     ],
     "exampleSentence": {
       "japanese": "日本の食べ物は、おいしいです。",
-      "reading": "にっぽんのたべものは、おいしいです。",
+      "reading": "にほんのたべものは、おいしいです。",
       "meaningId": "Makanan Jepang itu enak."
     },
     "collocations": [
@@ -7737,7 +7737,7 @@
     ],
     "exampleSentence": {
       "japanese": "十日は、友達と会う予定です。",
-      "reading": "じゅうにちは、ともだちとあうよていです。",
+      "reading": "とおかは、ともだちとあうよていです。",
       "meaningId": "Tanggal sepuluh saya berencana bertemu teman."
     },
     "collocations": [
@@ -7987,7 +7987,7 @@
     ],
     "exampleSentence": {
       "japanese": "一人で旅行に行きました。",
-      "reading": "いちにんでりょこうにいきました。",
+      "reading": "ひとりでりょこうにいきました。",
       "meaningId": "Saya pergi bepergian sendirian."
     },
     "collocations": [
@@ -8266,7 +8266,7 @@
     ],
     "exampleSentence": {
       "japanese": "この学校の学生は三百人です。",
-      "reading": "このがっこうのがくせいはさんひゃくにんです。",
+      "reading": "このがっこうのがくせいはさんびゃくにんです。",
       "meaningId": "Siswa di sekolah ini berjumlah tiga ratus orang."
     },
     "collocations": [
@@ -8823,7 +8823,7 @@
     ],
     "exampleSentence": {
       "japanese": "姉は、来月、二十歳になります。",
-      "reading": "あねは、らいげつ、にじゅうさいになります。",
+      "reading": "あねは、らいげつ、はたちになります。",
       "meaningId": "Kakak perempuan saya akan berusia dua puluh tahun bulan depan."
     },
     "collocations": [
@@ -8849,7 +8849,7 @@
     ],
     "exampleSentence": {
       "japanese": "三日に、日本へ行きます。",
-      "reading": "さんにちに、にっぽんへいきます。",
+      "reading": "みっかに、にほんへいきます。",
       "meaningId": "Tanggal tiga saya akan pergi ke Jepang."
     },
     "collocations": [
@@ -9987,7 +9987,7 @@
     "kanjiComponents": [],
     "exampleSentence": {
       "japanese": "家から駅まで二十分かかります。",
-      "reading": "いえからえきまでにじゅうふんかかります。",
+      "reading": "いえからえきまでにじゅっぷんかかります。",
       "meaningId": "Dari rumah ke stasiun memakan waktu dua puluh menit."
     },
     "collocations": [
@@ -10133,7 +10133,7 @@
     ],
     "exampleSentence": {
       "japanese": "店は十時に開きます。",
-      "reading": "みせはじゅうじにひらきます。",
+      "reading": "みせはじゅうじにあきます。",
       "meaningId": "Toko buka pukul sepuluh."
     },
     "collocations": [
@@ -10281,7 +10281,7 @@
     ],
     "exampleSentence": {
       "japanese": "駅に大勢の人がいました。",
-      "reading": "えきにたいせいのひとがいました。",
+      "reading": "えきにおおぜいのひとがいました。",
       "meaningId": "Di stasiun ada banyak sekali orang."
     },
     "collocations": [
@@ -11125,7 +11125,7 @@
     ],
     "exampleSentence": {
       "japanese": "七日に、病院へ行きます。",
-      "reading": "ななにちに、びょういんへいきます。",
+      "reading": "なのかに、びょういんへいきます。",
       "meaningId": "Tanggal tujuh saya akan pergi ke rumah sakit."
     },
     "collocations": [
@@ -11397,7 +11397,7 @@
     ],
     "exampleSentence": {
       "japanese": "八日は、雨が降るでしょう。",
-      "reading": "はちにちは、あめがふるでしょう。",
+      "reading": "ようかは、あめがふるでしょう。",
       "meaningId": "Tanggal delapan mungkin akan hujan."
     },
     "collocations": [
@@ -11471,7 +11471,7 @@
     ],
     "exampleSentence": {
       "japanese": "九日は、会議があります。",
-      "reading": "きゅうにちは、かいぎがあります。",
+      "reading": "ここのかは、かいぎがあります。",
       "meaningId": "Tanggal sembilan ada rapat."
     },
     "collocations": [
@@ -11737,7 +11737,7 @@
     ],
     "exampleSentence": {
       "japanese": "「駅の改札口で友達を一人待っています。」",
-      "reading": "「えきのかいさつぐちでともだちをいちにんまっています。」",
+      "reading": "「えきのかいさつぐちでともだちをひとりまっています。」",
       "meaningId": "Saya menunggu seorang teman di gerbang tiket stasiun."
     },
     "collocations": [
@@ -12677,7 +12677,7 @@
     ],
     "exampleSentence": {
       "japanese": "姉はピアノを弾きます。",
-      "reading": "あねはぴあのをはじきます。",
+      "reading": "あねはぴあのをひきます。",
       "meaningId": "Kakak perempuan saya bermain piano."
     },
     "collocations": [
@@ -13726,7 +13726,7 @@
     ],
     "exampleSentence": {
       "japanese": "このカレーはとても辛いです。",
-      "reading": "このかれーはとてもつらいです。",
+      "reading": "このかれーはとてもからいです。",
       "meaningId": "Kari ini sangat pedas."
     },
     "collocations": [
@@ -13972,7 +13972,7 @@
     ],
     "exampleSentence": {
       "japanese": "半年前に日本へ来ました。",
-      "reading": "はんとしまえににっぽんへきました。",
+      "reading": "はんとしまえににほんへきました。",
       "meaningId": "Setengah tahun yang lalu saya datang ke Jepang."
     },
     "collocations": [
@@ -14048,7 +14048,7 @@
     ],
     "exampleSentence": {
       "japanese": "四日は、学校で試験があります。",
-      "reading": "よんにちは、がっこうでしけんがあります。",
+      "reading": "よっかは、がっこうでしけんがあります。",
       "meaningId": "Tanggal empat ada ujian di sekolah."
     },
     "collocations": [
@@ -14220,7 +14220,7 @@
     ],
     "exampleSentence": {
       "japanese": "あの方は日本語の先生です。",
-      "reading": "あのほうはにほんごのせんせいです。",
+      "reading": "あのかたはにほんごのせんせいです。",
       "meaningId": "Beliau itu guru bahasa Jepang."
     },
     "collocations": [
@@ -14439,7 +14439,7 @@
     ],
     "exampleSentence": {
       "japanese": "あの角を、右に曲がってください。",
-      "reading": "あのかくを、みぎにまがってください。",
+      "reading": "あのかどを、みぎにまがってください。",
       "meaningId": "Tolong belok kanan di sudut itu."
     },
     "collocations": [
@@ -14537,7 +14537,7 @@
     ],
     "exampleSentence": {
       "japanese": "公園を、毎朝三十分走ります。",
-      "reading": "こうえんを、まいあささんじゅうふんはしります。",
+      "reading": "こうえんを、まいあささんじゅっぷんはしります。",
       "meaningId": "Saya berlari di taman selama tiga puluh menit setiap pagi."
     },
     "collocations": [
@@ -15459,7 +15459,7 @@
     ],
     "exampleSentence": {
       "japanese": "私たちは二人で旅行しました。",
-      "reading": "わたしたちはににんでりょこうしました。",
+      "reading": "わたしたちはふたりでりょこうしました。",
       "meaningId": "Kami bepergian berdua."
     },
     "collocations": [
@@ -15629,7 +15629,7 @@
     ],
     "exampleSentence": {
       "japanese": "私はカラオケで日本の歌を歌います。",
-      "reading": "わたしはからおけでにっぽんのうたをうたいます。",
+      "reading": "わたしはからおけでにほんのうたをうたいます。",
       "meaningId": "Saya menyanyikan lagu Jepang di karaoke."
     },
     "collocations": [
@@ -15876,7 +15876,7 @@
     ],
     "exampleSentence": {
       "japanese": "雨が降りそうですが、出かけます。",
-      "reading": "あめがおりそうですが、でかけます。",
+      "reading": "あめがふりそうですが、でかけます。",
       "meaningId": "Sepertinya akan hujan, tetapi saya tetap pergi."
     },
     "collocations": [
@@ -16183,7 +16183,7 @@
     ],
     "exampleSentence": {
       "japanese": "昨夜は、よく眠れませんでした。",
-      "reading": "さくやは、よくねむれませんでした。",
+      "reading": "ゆうべは、よくねむれませんでした。",
       "meaningId": "Tadi malam saya tidak bisa tidur nyenyak."
     },
     "collocations": [
@@ -16407,7 +16407,7 @@
     ],
     "exampleSentence": {
       "japanese": "昨日は、一日中雨でした。",
-      "reading": "きのうは、いちにちちゅうあめでした。",
+      "reading": "きのうは、いちにちじゅうあめでした。",
       "meaningId": "Kemarin hujan seharian."
     },
     "collocations": [
@@ -17206,7 +17206,7 @@
     ],
     "exampleSentence": {
       "japanese": "日本には一度行ったことがあります。",
-      "reading": "にっぽんにはいちどいったことがあります。",
+      "reading": "にほんにはいちどいったことがあります。",
       "meaningId": "Saya pernah pergi ke Jepang satu kali."
     },
     "collocations": [
@@ -17667,7 +17667,7 @@
     ],
     "exampleSentence": {
       "japanese": "日本の経済について勉強しています。",
-      "reading": "にっぽんのけいざいについてべんきょうしています。",
+      "reading": "にほんのけいざいについてべんきょうしています。",
       "meaningId": "Saya sedang mempelajari ekonomi Jepang."
     },
     "collocations": [
@@ -17693,7 +17693,7 @@
     ],
     "exampleSentence": {
       "japanese": "二十歳以上の人はお酒を飲めます。",
-      "reading": "にじゅうさいいじょうのひとはおさけをのめます。",
+      "reading": "にじゅっさいいじょうのひとはおさけをのめます。",
       "meaningId": "Orang yang berusia dua puluh tahun ke atas boleh minum alkohol."
     },
     "collocations": [
@@ -17853,7 +17853,7 @@
     ],
     "exampleSentence": {
       "japanese": "私は日本の文学に興味があります。",
-      "reading": "わたしはにっぽんのぶんがくにきょうみがあります。",
+      "reading": "わたしはにほんのぶんがくにきょうみがあります。",
       "meaningId": "Saya tertarik pada sastra Jepang."
     },
     "collocations": [
@@ -18172,7 +18172,7 @@
     ],
     "exampleSentence": {
       "japanese": "日本人と日本語で会話をしました。",
-      "reading": "にっぽんじんとにほんごでかいわをしました。",
+      "reading": "にほんじんとにほんごでかいわをしました。",
       "meaningId": "Saya bercakap-cakap dalam bahasa Jepang dengan orang Jepang."
     },
     "collocations": [
@@ -18297,7 +18297,7 @@
     ],
     "exampleSentence": {
       "japanese": "日本には四つの季節があります。",
-      "reading": "にっぽんにはよっつのきせつがあります。",
+      "reading": "にほんにはよっつのきせつがあります。",
       "meaningId": "Jepang memiliki empat musim."
     },
     "collocations": [
@@ -18831,7 +18831,7 @@
     ],
     "exampleSentence": {
       "japanese": "日本へ行く機会がありました。",
-      "reading": "にっぽんへいくきかいがありました。",
+      "reading": "にほんへいくきかいがありました。",
       "meaningId": "Saya mendapat kesempatan pergi ke Jepang."
     },
     "collocations": [
@@ -18931,7 +18931,7 @@
     ],
     "exampleSentence": {
       "japanese": "洗濯物はすぐ乾きます。",
-      "reading": "せんたくぶつはすぐかわきます。",
+      "reading": "せんたくものはすぐかわきます。",
       "meaningId": "Cucian cepat kering."
     },
     "collocations": [
@@ -19405,7 +19405,7 @@
     ],
     "exampleSentence": {
       "japanese": "駅の前に大勢の人が集まっています。",
-      "reading": "えきのまえにたいせいのひとがあつまっています。",
+      "reading": "えきのまえにおおぜいのひとがあつまっています。",
       "meaningId": "Banyak orang berkumpul di depan stasiun."
     },
     "collocations": [
@@ -20668,7 +20668,7 @@
     "kanjiComponents": [],
     "exampleSentence": {
       "japanese": "明日は雨が降りそうです。",
-      "reading": "あしたはあめがおりそうです。",
+      "reading": "あしたはあめがふりそうです。",
       "meaningId": "Sepertinya besok akan turun hujan."
     },
     "collocations": [
@@ -20920,7 +20920,7 @@
     ],
     "exampleSentence": {
       "japanese": "私は日本の歴史に興味があります。",
-      "reading": "わたしはにっぽんのれきしにきょうみがあります。",
+      "reading": "わたしはにほんのれきしにきょうみがあります。",
       "meaningId": "Saya tertarik pada sejarah Jepang."
     },
     "collocations": [
@@ -21101,7 +21101,7 @@
     ],
     "exampleSentence": {
       "japanese": "京都のホテルに二日泊まりました。",
-      "reading": "きょうとのほてるにににちとまりました。",
+      "reading": "きょうとのほてるにふつかとまりました。",
       "meaningId": "Saya menginap dua hari di hotel di Kyoto."
     },
     "collocations": [
@@ -21274,7 +21274,7 @@
     ],
     "exampleSentence": {
       "japanese": "私は日本の小説を読むのが好きです。",
-      "reading": "わたしはにっぽんのしょうせつをよむのがすきです。",
+      "reading": "わたしはにほんのしょうせつをよむのがすきです。",
       "meaningId": "Saya suka membaca novel Jepang."
     },
     "collocations": [
@@ -22178,7 +22178,7 @@
     "kanjiComponents": [],
     "exampleSentence": {
       "japanese": "三日ほど旅行に行きます。",
-      "reading": "さんにちほどりょこうにいきます。",
+      "reading": "みっかほどりょこうにいきます。",
       "meaningId": "Saya akan pergi bepergian selama kira-kira tiga hari."
     },
     "collocations": [
@@ -22495,7 +22495,7 @@
     ],
     "exampleSentence": {
       "japanese": "紙の表に名前を書いてください。",
-      "reading": "かみのひょうになまえをかいてください。",
+      "reading": "かみのおもてになまえをかいてください。",
       "meaningId": "Tolong tulis nama di bagian depan kertas."
     },
     "collocations": [
@@ -24273,7 +24273,7 @@
     ],
     "exampleSentence": {
       "japanese": "明日は、会議があります。",
-      "reading": "あしたは、かいぎがあります。",
+      "reading": "あすは、かいぎがあります。",
       "meaningId": "Besok ada rapat."
     },
     "collocations": [
@@ -24826,7 +24826,7 @@
     ],
     "exampleSentence": {
       "japanese": "私は日本の歴史に興味があります。",
-      "reading": "わたしはにっぽんのれきしにきょうみがあります。",
+      "reading": "わたしはにほんのれきしにきょうみがあります。",
       "meaningId": "Saya tertarik pada sejarah Jepang."
     },
     "collocations": [
@@ -24944,7 +24944,7 @@
     ],
     "exampleSentence": {
       "japanese": "私は日本の漫画が好きです。",
-      "reading": "わたしはにっぽんのまんががすきです。",
+      "reading": "わたしはにほんのまんががすきです。",
       "meaningId": "Saya suka manga Jepang."
     },
     "collocations": [
@@ -25097,7 +25097,7 @@
     ],
     "exampleSentence": {
       "japanese": "家と駅の間に、コンビニがあります。",
-      "reading": "いえとえきのまに、こんびにがあります。",
+      "reading": "いえとえきのあいだに、こんびにがあります。",
       "meaningId": "Di antara rumah dan stasiun ada minimarket."
     },
     "collocations": [
@@ -25896,7 +25896,7 @@
     "kanjiComponents": [],
     "exampleSentence": {
       "japanese": "来年、日本へ留学するつもりです。",
-      "reading": "らいねん、にっぽんへりゅうがくするつもりです。",
+      "reading": "らいねん、にほんへりゅうがくするつもりです。",
       "meaningId": "Tahun depan saya berencana belajar ke Jepang."
     },
     "collocations": [
@@ -26643,7 +26643,7 @@
     "kanjiComponents": [],
     "exampleSentence": {
       "japanese": "日本はアジアの国です。",
-      "reading": "にっぽんはあじあのくにです。",
+      "reading": "にほんはあじあのくにです。",
       "meaningId": "Jepang adalah negara di Asia."
     },
     "collocations": [
@@ -27759,7 +27759,7 @@
     ],
     "exampleSentence": {
       "japanese": "東京都は日本の首都です。",
-      "reading": "とうきょうとはにっぽんのしゅとです。",
+      "reading": "とうきょうとはにほんのしゅとです。",
       "meaningId": "Metropolitan Tokyo adalah ibu kota Jepang."
     },
     "collocations": [
@@ -28119,7 +28119,7 @@
     ],
     "exampleSentence": {
       "japanese": "日本の古い家には畳の部屋があります。",
-      "reading": "にっぽんのふるいいえにはたたみのへやがあります。",
+      "reading": "にほんのふるいいえにはたたみのへやがあります。",
       "meaningId": "Di rumah tradisional Jepang ada ruangan beralas tatami."
     },
     "collocations": [
@@ -29047,7 +29047,7 @@
     ],
     "exampleSentence": {
       "japanese": "日本人は、毎日米を食べます。",
-      "reading": "にっぽんじんは、まいにちまいをたべます。",
+      "reading": "にほんじんは、まいにちこめをたべます。",
       "meaningId": "Orang Jepang makan nasi (beras) setiap hari."
     },
     "collocations": [
@@ -29665,7 +29665,7 @@
     ],
     "exampleSentence": {
       "japanese": "私は日本の文化に興味があります。",
-      "reading": "わたしはにっぽんのぶんかにきょうみがあります。",
+      "reading": "わたしはにほんのぶんかにきょうみがあります。",
       "meaningId": "Saya tertarik pada budaya Jepang."
     },
     "collocations": [
@@ -30618,7 +30618,7 @@
     ],
     "exampleSentence": {
       "japanese": "急行に乗れば、三十分で着きます。",
-      "reading": "きゅうこうにのれば、さんじゅうふんでつきます。",
+      "reading": "きゅうこうにのれば、さんじゅっぷんでつきます。",
       "meaningId": "Kalau naik kereta ekspres, sampai dalam tiga puluh menit."
     },
     "collocations": [
@@ -30745,7 +30745,7 @@
     ],
     "exampleSentence": {
       "japanese": "日本での生活にはもう慣れました。",
-      "reading": "にっぽんでのせいかつにはもうなれました。",
+      "reading": "にほんでのせいかつにはもうなれました。",
       "meaningId": "Saya sudah terbiasa dengan kehidupan di Jepang."
     },
     "tags": [
@@ -31196,7 +31196,7 @@
     ],
     "exampleSentence": {
       "japanese": "日本の人口は一億人以上です。",
-      "reading": "にっぽんのじんこうはいちおくにんいじょうです。",
+      "reading": "にほんのじんこうはいちおくにんいじょうです。",
       "meaningId": "Penduduk Jepang lebih dari seratus juta orang."
     },
     "collocations": [
@@ -32751,7 +32751,7 @@
     ],
     "exampleSentence": {
       "japanese": "日本では礼儀を大切にします。",
-      "reading": "にっぽんではれいぎをたいせつにします。",
+      "reading": "にほんではれいぎをたいせつにします。",
       "meaningId": "Di Jepang, sopan santun dihargai."
     },
     "collocations": [
@@ -32777,7 +32777,7 @@
     ],
     "exampleSentence": {
       "japanese": "私は自分の意思で日本へ来ました。",
-      "reading": "わたしはじぶんのいしでにっぽんへきました。",
+      "reading": "わたしはじぶんのいしでにほんへきました。",
       "meaningId": "Saya datang ke Jepang atas kemauan saya sendiri."
     },
     "collocations": [
@@ -32880,7 +32880,7 @@
     ],
     "exampleSentence": {
       "japanese": "日本から多くの車を輸出しています。",
-      "reading": "にっぽんからおおくのくるまをゆしゅつしています。",
+      "reading": "にほんからおおくのくるまをゆしゅつしています。",
       "meaningId": "Banyak mobil diekspor dari Jepang."
     },
     "collocations": [
@@ -34022,7 +34022,7 @@
     ],
     "exampleSentence": {
       "japanese": "水は管を通って流れます。",
-      "reading": "みずはかんをとおってながれます。",
+      "reading": "みずはくだをとおってながれます。",
       "meaningId": "Air mengalir melalui pipa."
     },
     "collocations": [
@@ -34250,7 +34250,7 @@
     ],
     "exampleSentence": {
       "japanese": "私は日本の文化に関心があります。",
-      "reading": "わたしはにっぽんのぶんかにかんしんがあります。",
+      "reading": "わたしはにほんのぶんかにかんしんがあります。",
       "meaningId": "Saya berminat pada budaya Jepang."
     },
     "collocations": [
@@ -34405,7 +34405,7 @@
     ],
     "exampleSentence": {
       "japanese": "直に雨が降るでしょう。",
-      "reading": "じかにあめがふるでしょう。",
+      "reading": "じきにあめがふるでしょう。",
       "meaningId": "Sebentar lagi mungkin akan turun hujan."
     },
     "collocations": [
@@ -34481,7 +34481,7 @@
     ],
     "exampleSentence": {
       "japanese": "寒くて、頬が赤くなりました。",
-      "reading": "さむくて、ほおがあかくなりました。",
+      "reading": "さむくて、ほほがあかくなりました。",
       "meaningId": "Karena dingin, pipi saya memerah."
     },
     "collocations": [
@@ -34579,7 +34579,7 @@
     "kanjiComponents": [],
     "exampleSentence": {
       "japanese": "これがいわゆる日本の伝統文化です。",
-      "reading": "これがいわゆるにっぽんのでんとうぶんかです。",
+      "reading": "これがいわゆるにほんのでんとうぶんかです。",
       "meaningId": "Inilah yang disebut budaya tradisional Jepang."
     },
     "collocations": [
@@ -35668,7 +35668,7 @@
     ],
     "exampleSentence": {
       "japanese": "三人のうち、二人は学生です。",
-      "reading": "さんにんのうち、ににんはがくせいです。",
+      "reading": "さんにんのうち、ふたりはがくせいです。",
       "meaningId": "Dari tiga orang, dua adalah mahasiswa."
     },
     "collocations": [
@@ -37535,7 +37535,7 @@
     ],
     "exampleSentence": {
       "japanese": "夜中の騒ぎで、眠れませんでした。",
-      "reading": "やちゅうのさわぎで、ねむれませんでした。",
+      "reading": "よなかのさわぎで、ねむれませんでした。",
       "meaningId": "Karena keributan di tengah malam, saya tidak bisa tidur."
     },
     "collocations": [
@@ -38077,7 +38077,7 @@
     ],
     "exampleSentence": {
       "japanese": "来月、再び日本へ行きます。",
-      "reading": "らいげつ、ふたたびにっぽんへいきます。",
+      "reading": "らいげつ、ふたたびにほんへいきます。",
       "meaningId": "Bulan depan saya akan pergi ke Jepang lagi."
     },
     "collocations": [
@@ -38518,7 +38518,7 @@
     ],
     "exampleSentence": {
       "japanese": "日本へ来た目的は勉強です。",
-      "reading": "にっぽんへきたもくてきはべんきょうです。",
+      "reading": "にほんへきたもくてきはべんきょうです。",
       "meaningId": "Tujuan saya datang ke Jepang adalah belajar."
     },
     "collocations": [
@@ -38721,7 +38721,7 @@
     ],
     "exampleSentence": {
       "japanese": "今日の若者は、スマートフォンをよく使います。",
-      "reading": "きょうのわかものは、すまーとふぉんをよくつかいます。",
+      "reading": "こんにちのわかものは、すまーとふぉんをよくつかいます。",
       "meaningId": "Anak muda dewasa ini sering memakai ponsel pintar."
     },
     "collocations": [
@@ -39714,7 +39714,7 @@
     ],
     "exampleSentence": {
       "japanese": "祖父は小さい工場を経営しています。",
-      "reading": "そふはちいさいこうじょうをけいえいしています。",
+      "reading": "そふはちいさいこうばをけいえいしています。",
       "meaningId": "Kakek saya mengelola sebuah bengkel kecil."
     },
     "collocations": [
@@ -39889,7 +39889,7 @@
     ],
     "exampleSentence": {
       "japanese": "日本人は電池の発明に大きく関わりました。",
-      "reading": "にっぽんじんはでんちのはつめいにおおきくかかわりました。",
+      "reading": "にほんじんはでんちのはつめいにおおきくかかわりました。",
       "meaningId": "Orang Jepang berperan besar dalam penemuan baterai."
     },
     "collocations": [
@@ -40014,7 +40014,7 @@
     ],
     "exampleSentence": {
       "japanese": "日本の諺を一つ覚えました。",
-      "reading": "にっぽんのことわざをひとつおぼえました。",
+      "reading": "にほんのことわざをひとつおぼえました。",
       "meaningId": "Saya menghafal satu peribahasa Jepang."
     },
     "collocations": [
@@ -40090,7 +40090,7 @@
     ],
     "exampleSentence": {
       "japanese": "雨が降りましたが、幸いに傘を持っていました。",
-      "reading": "あめがおりましたが、さいわいにかさをもっていました。",
+      "reading": "あめがふりましたが、さいわいにかさをもっていました。",
       "meaningId": "Hujan turun, tetapi untungnya saya membawa payung."
     },
     "collocations": [
@@ -40552,7 +40552,7 @@
     ],
     "exampleSentence": {
       "japanese": "人の悪口を言ってはいけません。",
-      "reading": "ひとのわるぐちをいってはいけません。",
+      "reading": "ひとのわるくちをいってはいけません。",
       "meaningId": "Tidak boleh menjelek-jelekkan orang lain."
     },
     "collocations": [
@@ -40725,7 +40725,7 @@
     ],
     "exampleSentence": {
       "japanese": "台の上に、花を置きました。",
-      "reading": "たいのうえに、はなをおきました。",
+      "reading": "だいのうえに、はなをおきました。",
       "meaningId": "Saya menaruh bunga di atas dudukan."
     },
     "collocations": [
@@ -41416,7 +41416,7 @@
     ],
     "exampleSentence": {
       "japanese": "時には、一人になりたいです。",
-      "reading": "ときには、いちにんになりたいです。",
+      "reading": "ときには、ひとりになりたいです。",
       "meaningId": "Kadang-kadang, saya ingin sendirian."
     },
     "collocations": [
@@ -41442,7 +41442,7 @@
     ],
     "exampleSentence": {
       "japanese": "夜中に、電話が鳴りました。",
-      "reading": "やちゅうに、でんわがなりました。",
+      "reading": "よなかに、でんわがなりました。",
       "meaningId": "Tengah malam, telepon berdering."
     },
     "collocations": [
@@ -41646,7 +41646,7 @@
     ],
     "exampleSentence": {
       "japanese": "来年、日本へ行きます。",
-      "reading": "らいねん、にっぽんへいきます。",
+      "reading": "らいねん、にほんへいきます。",
       "meaningId": "Tahun depan saya akan pergi ke Jepang."
     },
     "collocations": [
@@ -41723,7 +41723,7 @@
     ],
     "exampleSentence": {
       "japanese": "池に、小さい魚がいます。",
-      "reading": "いけに、ちいさいさかながいます。",
+      "reading": "いけに、ちいさいうおがいます。",
       "meaningId": "Di kolam ada ikan kecil."
     },
     "collocations": [
@@ -41946,7 +41946,7 @@
     ],
     "exampleSentence": {
       "japanese": "庭の土に花の種をまきました。",
-      "reading": "にわのどにはなのたねをまきました。",
+      "reading": "にわのつちにはなのたねをまきました。",
       "meaningId": "Saya menabur biji bunga di tanah halaman."
     },
     "collocations": [
@@ -42225,7 +42225,7 @@
     ],
     "exampleSentence": {
       "japanese": "日本では、六月に梅雨が始まります。",
-      "reading": "にっぽんでは、ろくがつにつゆがはじまります。",
+      "reading": "にほんでは、ろくがつにつゆがはじまります。",
       "meaningId": "Di Jepang, musim hujan dimulai pada bulan Juni."
     },
     "collocations": [
@@ -42629,7 +42629,7 @@
     ],
     "exampleSentence": {
       "japanese": "寒いので、帽子を被ります。",
-      "reading": "さむいので、ぼうしをこうむります。",
+      "reading": "さむいので、ぼうしをかぶります。",
       "meaningId": "Karena dingin, saya memakai topi."
     },
     "collocations": [
@@ -43969,7 +43969,7 @@
     ],
     "exampleSentence": {
       "japanese": "来月、二十になります。",
-      "reading": "らいげつ、にじゅうになります。",
+      "reading": "らいげつ、はたちになります。",
       "meaningId": "Bulan depan saya akan berusia dua puluh tahun."
     },
     "collocations": [
@@ -44389,7 +44389,7 @@
     ],
     "exampleSentence": {
       "japanese": "私は友達と二人連れで旅行しました。",
-      "reading": "わたしはともだちとににんづれでりょこうしました。",
+      "reading": "わたしはともだちとふたりづれでりょこうしました。",
       "meaningId": "Saya bepergian berdua dengan teman."
     },
     "collocations": [
@@ -44957,7 +44957,7 @@
     ],
     "exampleSentence": {
       "japanese": "日本の文化に興味があります。",
-      "reading": "にっぽんのぶんかにきょうみがあります。",
+      "reading": "にほんのぶんかにきょうみがあります。",
       "meaningId": "Saya tertarik pada budaya Jepang."
     },
     "collocations": [
@@ -45084,7 +45084,7 @@
     ],
     "exampleSentence": {
       "japanese": "道の端を歩いてください。",
-      "reading": "みちのはじをあるいてください。",
+      "reading": "みちのはしをあるいてください。",
       "meaningId": "Tolong berjalan di pinggir jalan."
     },
     "collocations": [
@@ -45288,7 +45288,7 @@
     ],
     "exampleSentence": {
       "japanese": "この仕事は一人では不可能です。",
-      "reading": "このしごとはいちにんではふかのうです。",
+      "reading": "このしごとはひとりではふかのうです。",
       "meaningId": "Pekerjaan ini tidak mungkin dilakukan sendirian."
     },
     "tags": [
@@ -45342,7 +45342,7 @@
     ],
     "exampleSentence": {
       "japanese": "日中は、暑いです。",
-      "reading": "にちちゅうは、あついです。",
+      "reading": "にっちゅうは、あついです。",
       "meaningId": "Pada siang hari, udaranya panas."
     },
     "tags": [
@@ -45630,7 +45630,7 @@
     ],
     "exampleSentence": {
       "japanese": "部屋の角にいすがあります。",
-      "reading": "へやのかくにいすがあります。",
+      "reading": "へやのすみにいすがあります。",
       "meaningId": "Di sudut ruangan ada kursi."
     },
     "collocations": [
@@ -45782,7 +45782,7 @@
     ],
     "exampleSentence": {
       "japanese": "夜中に大きい音を出して、近所に迷惑をかけました。",
-      "reading": "やちゅうにおおきいおとをだして、きんじょにめいわくをかけました。",
+      "reading": "よなかにおおきいおとをだして、きんじょにめいわくをかけました。",
       "meaningId": "Saya membuat suara keras di tengah malam dan mengganggu tetangga."
     },
     "collocations": [
@@ -46009,7 +46009,7 @@
     ],
     "exampleSentence": {
       "japanese": "朝の市場は、とても活気があります。",
-      "reading": "あさのしじょうは、とてもかっきがあります。",
+      "reading": "あさのいちばは、とてもかっきがあります。",
       "meaningId": "Pasar di pagi hari sangat ramai."
     },
     "collocations": [
@@ -46083,7 +46083,7 @@
     ],
     "exampleSentence": {
       "japanese": "私は日本に一年間滞在しました。",
-      "reading": "わたしはにっぽんにいちねんかんたいざいしました。",
+      "reading": "わたしはにほんにいちねんかんたいざいしました。",
       "meaningId": "Saya tinggal di Jepang selama satu tahun."
     },
     "collocations": [
@@ -46530,7 +46530,7 @@
     "kanjiComponents": [],
     "exampleSentence": {
       "japanese": "いつか、日本で働きたいです。",
-      "reading": "いつか、にっぽんではたらきたいです。",
+      "reading": "いつか、にほんではたらきたいです。",
       "meaningId": "Suatu hari nanti, saya ingin bekerja di Jepang."
     },
     "collocations": [
@@ -48154,7 +48154,7 @@
     ],
     "exampleSentence": {
       "japanese": "彼女は悩みを一人で抱えています。",
-      "reading": "かのじょはなやみをいちにんでかかえています。",
+      "reading": "かのじょはなやみをひとりでかかえています。",
       "meaningId": "Dia memikul masalahnya sendirian."
     },
     "collocations": [
@@ -48482,7 +48482,7 @@
     ],
     "exampleSentence": {
       "japanese": "コップの縁に水がたまっています。",
-      "reading": "こっぷのえんにみずがたまっています。",
+      "reading": "こっぷのふちにみずがたまっています。",
       "meaningId": "Air menggenang di tepi gelas."
     },
     "collocations": [
@@ -48559,7 +48559,7 @@
     ],
     "exampleSentence": {
       "japanese": "私は日本で働こうと決心しました。",
-      "reading": "わたしはにっぽんではたらこうとけっしんしました。",
+      "reading": "わたしはにほんではたらこうとけっしんしました。",
       "meaningId": "Saya bertekad untuk bekerja di Jepang."
     },
     "collocations": [
@@ -48836,7 +48836,7 @@
     ],
     "exampleSentence": {
       "japanese": "あの二人は、とても仲がいいです。",
-      "reading": "あのににんは、とてもなかがいいです。",
+      "reading": "あのふたりは、とてもなかがいいです。",
       "meaningId": "Kedua orang itu sangat akrab."
     },
     "collocations": [
@@ -48887,7 +48887,7 @@
     ],
     "exampleSentence": {
       "japanese": "駅まで約十分かかります。",
-      "reading": "えきまでやくじゅうふんかかります。",
+      "reading": "えきまでやくじゅっぷんかかります。",
       "meaningId": "Ke stasiun memakan waktu sekitar sepuluh menit."
     },
     "collocations": [
@@ -49193,7 +49193,7 @@
     ],
     "exampleSentence": {
       "japanese": "山道を登るのは苦しいです。",
-      "reading": "さんどうをのぼるのはくるしいです。",
+      "reading": "やまみちをのぼるのはくるしいです。",
       "meaningId": "Mendaki jalan gunung itu menyiksa."
     },
     "collocations": [
@@ -49320,7 +49320,7 @@
     ],
     "exampleSentence": {
       "japanese": "桜は今が盛りです。",
-      "reading": "さくらはいまがもりです。",
+      "reading": "さくらはいまがさかりです。",
       "meaningId": "Bunga sakura sedang pada masa puncaknya."
     },
     "collocations": [
@@ -49527,7 +49527,7 @@
     ],
     "exampleSentence": {
       "japanese": "日本に来てから、三年が経ちました。",
-      "reading": "にっぽんにきてから、さんねんがたちました。",
+      "reading": "にほんにきてから、さんねんがたちました。",
       "meaningId": "Sudah tiga tahun berlalu sejak saya datang ke Jepang."
     },
     "collocations": [
@@ -49629,7 +49629,7 @@
     ],
     "exampleSentence": {
       "japanese": "部屋の塵を掃除しました。",
-      "reading": "へやのちりをそうじしました。",
+      "reading": "へやのごみをそうじしました。",
       "meaningId": "Saya membersihkan debu di kamar."
     },
     "collocations": [
@@ -51233,7 +51233,7 @@
     ],
     "exampleSentence": {
       "japanese": "ボールは球の形をしています。",
-      "reading": "ぼーるはたまのかたちをしています。",
+      "reading": "ぼーるはきゅうのかたちをしています。",
       "meaningId": "Bola berbentuk bulat."
     },
     "collocations": [
@@ -51562,7 +51562,7 @@
     ],
     "exampleSentence": {
       "japanese": "机の上には本や紙等があります。",
-      "reading": "つくえのうえにはほんやかみとうがあります。",
+      "reading": "つくえのうえにはほんやかみなどがあります。",
       "meaningId": "Di atas meja ada buku, kertas, dan lain-lain."
     },
     "collocations": [
@@ -52224,7 +52224,7 @@
     ],
     "exampleSentence": {
       "japanese": "お寺には仏の像があります。",
-      "reading": "おてらにはふつのぞうがあります。",
+      "reading": "おてらにはほとけのぞうがあります。",
       "meaningId": "Di kuil ada patung Buddha."
     },
     "collocations": [
@@ -53400,7 +53400,7 @@
     ],
     "exampleSentence": {
       "japanese": "一人の少女が公園で歌っています。",
-      "reading": "いちにんのしょうじょがこうえんでうたっています。",
+      "reading": "ひとりのしょうじょがこうえんでうたっています。",
       "meaningId": "Seorang gadis remaja sedang bernyanyi di taman."
     },
     "collocations": [
@@ -54123,7 +54123,7 @@
     ],
     "exampleSentence": {
       "japanese": "私は金がなくて、旅行に行けません。",
-      "reading": "わたしはきんがなくて、りょこうにいけません。",
+      "reading": "わたしはかねがなくて、りょこうにいけません。",
       "meaningId": "Saya tidak punya uang jadi tidak bisa bepergian."
     },
     "collocations": [
@@ -54631,7 +54631,7 @@
     ],
     "exampleSentence": {
       "japanese": "今月の末に、日本へ行きます。",
-      "reading": "こんげつのすえに、にっぽんへいきます。",
+      "reading": "こんげつのすえに、にほんへいきます。",
       "meaningId": "Akhir bulan ini, saya akan pergi ke Jepang."
     },
     "collocations": [
@@ -54764,7 +54764,7 @@
     ],
     "exampleSentence": {
       "japanese": "私は一人旅が好きです。",
-      "reading": "わたしはいちにんたびがすきです。",
+      "reading": "わたしはひとりたびがすきです。",
       "meaningId": "Saya suka bepergian sendirian."
     },
     "collocations": [
@@ -55316,7 +55316,7 @@
     ],
     "exampleSentence": {
       "japanese": "私は、大きな夢を抱いています。",
-      "reading": "わたしは、おおきなゆめをだいています。",
+      "reading": "わたしは、おおきなゆめをいだいています。",
       "meaningId": "Saya memiliki impian besar di hati."
     },
     "collocations": [
@@ -55417,7 +55417,7 @@
     ],
     "exampleSentence": {
       "japanese": "日本の首都は、東京です。",
-      "reading": "にっぽんのしゅとは、とうきょうです。",
+      "reading": "にほんのしゅとは、とうきょうです。",
       "meaningId": "Ibu kota Jepang adalah Tokyo."
     },
     "collocations": [
@@ -56248,7 +56248,7 @@
     ],
     "exampleSentence": {
       "japanese": "二人は密に連絡を取っています。",
-      "reading": "ににんはみつにれんらくをとっています。",
+      "reading": "ふたりはみつにれんらくをとっています。",
       "meaningId": "Keduanya menjaga kontak yang erat."
     },
     "collocations": [
@@ -56931,7 +56931,7 @@
     ],
     "exampleSentence": {
       "japanese": "日本では、食事の作法を大切にします。",
-      "reading": "にっぽんでは、しょくじのさほうをたいせつにします。",
+      "reading": "にほんでは、しょくじのさほうをたいせつにします。",
       "meaningId": "Di Jepang, tata krama makan dihargai."
     },
     "collocations": [
@@ -56957,7 +56957,7 @@
     ],
     "exampleSentence": {
       "japanese": "あの二人は双子です。",
-      "reading": "あのににんはふたごです。",
+      "reading": "あのふたりはふたごです。",
       "meaningId": "Kedua orang itu kembar."
     },
     "collocations": [
@@ -57661,7 +57661,7 @@
     ],
     "exampleSentence": {
       "japanese": "今日は、五月五日です。",
-      "reading": "きょうは、ごがつごにちです。",
+      "reading": "きょうは、ごがついつかです。",
       "meaningId": "Hari ini tanggal lima Mei."
     },
     "collocations": [
@@ -57765,7 +57765,7 @@
     ],
     "exampleSentence": {
       "japanese": "日本の伝統を大切にしたいです。",
-      "reading": "にっぽんのでんとうをたいせつにしたいです。",
+      "reading": "にほんのでんとうをたいせつにしたいです。",
       "meaningId": "Saya ingin menghargai tradisi Jepang."
     },
     "collocations": [
@@ -57839,7 +57839,7 @@
     ],
     "exampleSentence": {
       "japanese": "何でも質問してください。",
-      "reading": "なにでもしつもんしてください。",
+      "reading": "なんでもしつもんしてください。",
       "meaningId": "Silakan tanyakan apa saja."
     },
     "collocations": [
@@ -58041,7 +58041,7 @@
     ],
     "exampleSentence": {
       "japanese": "空が暗くなって、今にも雨が降りそうです。",
-      "reading": "そらがくらくなって、いまにもあめがおりそうです。",
+      "reading": "そらがくらくなって、いまにもあめがふりそうです。",
       "meaningId": "Langit gelap dan hujan sepertinya akan segera turun."
     },
     "collocations": [
@@ -58169,7 +58169,7 @@
     ],
     "exampleSentence": {
       "japanese": "駅まで二十分掛かります。",
-      "reading": "えきまでにじゅうふんかかります。",
+      "reading": "えきまでにじゅっぷんかかります。",
       "meaningId": "Sampai ke stasiun memakan waktu dua puluh menit."
     },
     "collocations": [
@@ -58855,7 +58855,7 @@
     ],
     "exampleSentence": {
       "japanese": "失敗したのを、人の所為にしてはいけません。",
-      "reading": "しっぱいしたのを、ひとのしょいにしてはいけません。",
+      "reading": "しっぱいしたのを、ひとのせいにしてはいけません。",
       "meaningId": "Tidak boleh menyalahkan orang lain atas kegagalan."
     },
     "collocations": [
@@ -58958,7 +58958,7 @@
     ],
     "exampleSentence": {
       "japanese": "この語の意味を教えてください。",
-      "reading": "このかたりのいみをおしえてください。",
+      "reading": "このごのいみをおしえてください。",
       "meaningId": "Tolong beri tahu saya arti kata ini."
     },
     "collocations": [
@@ -59255,7 +59255,7 @@
     ],
     "exampleSentence": {
       "japanese": "この雑誌は毎月、十日に発行されます。",
-      "reading": "このざっしはまいつき、じゅうにちにはっこうされます。",
+      "reading": "このざっしはまいつき、とおかにはっこうされます。",
       "meaningId": "Majalah ini diterbitkan setiap tanggal sepuluh."
     },
     "collocations": [
@@ -59680,7 +59680,7 @@
     ],
     "exampleSentence": {
       "japanese": "今週は三日連続で雨が降りました。",
-      "reading": "こんしゅうはさんにちれんぞくであめがおりました。",
+      "reading": "こんしゅうはみっかれんぞくであめがふりました。",
       "meaningId": "Minggu ini hujan turun tiga hari berturut-turut."
     },
     "collocations": [
@@ -60609,7 +60609,7 @@
     ],
     "exampleSentence": {
       "japanese": "日本に来て以来、毎日、日本語を勉強しています。",
-      "reading": "にっぽんにきていらい、まいにち、にほんごをべんきょうしています。",
+      "reading": "にほんにきていらい、まいにち、にほんごをべんきょうしています。",
       "meaningId": "Sejak datang ke Jepang, saya belajar bahasa Jepang setiap hari."
     },
     "collocations": [
@@ -61064,7 +61064,7 @@
     ],
     "exampleSentence": {
       "japanese": "京都は、昔の都でした。",
-      "reading": "きょうとは、むかしのとでした。",
+      "reading": "きょうとは、むかしのみやこでした。",
       "meaningId": "Kyoto dulunya adalah ibu kota."
     },
     "collocations": [
@@ -61215,7 +61215,7 @@
     ],
     "exampleSentence": {
       "japanese": "空の箱を、捨てました。",
-      "reading": "そらのはこを、すてました。",
+      "reading": "からのはこを、すてました。",
       "meaningId": "Saya membuang kotak kosong."
     },
     "collocations": [
@@ -61341,7 +61341,7 @@
     ],
     "exampleSentence": {
       "japanese": "皆で、一緒に歌いましょう。",
-      "reading": "みなで、いっしょにうたいましょう。",
+      "reading": "みんなで、いっしょにうたいましょう。",
       "meaningId": "Mari kita semua menyanyi bersama."
     },
     "collocations": [
@@ -61464,7 +61464,7 @@
     ],
     "exampleSentence": {
       "japanese": "現在、日本に住んでいます。",
-      "reading": "げんざい、にっぽんにすんでいます。",
+      "reading": "げんざい、にほんにすんでいます。",
       "meaningId": "Saat ini, saya tinggal di Jepang."
     },
     "collocations": [
@@ -61767,7 +61767,7 @@
     ],
     "exampleSentence": {
       "japanese": "大使は、昨日日本に着きました。",
-      "reading": "たいしは、きのうにっぽんにつきました。",
+      "reading": "たいしは、きのうにほんにつきました。",
       "meaningId": "Duta besar tiba di Jepang kemarin."
     },
     "collocations": [
@@ -61919,7 +61919,7 @@
     ],
     "exampleSentence": {
       "japanese": "二人の間に、友情が生まれました。",
-      "reading": "ににんのまに、ゆうじょうがうまれました。",
+      "reading": "ふたりのまに、ゆうじょうがうまれました。",
       "meaningId": "Persahabatan tumbuh di antara mereka berdua."
     },
     "collocations": [
@@ -62203,7 +62203,7 @@
     ],
     "exampleSentence": {
       "japanese": "二人は三年間、交際しています。",
-      "reading": "ににんはさんねんかん、こうさいしています。",
+      "reading": "ふたりはさんねんかん、こうさいしています。",
       "meaningId": "Keduanya sudah berpacaran selama tiga tahun."
     },
     "collocations": [
@@ -62357,7 +62357,7 @@
     ],
     "exampleSentence": {
       "japanese": "納豆は、日本の食べ物の一種です。",
-      "reading": "なっとうは、にっぽんのたべもののいちしゅです。",
+      "reading": "なっとうは、にほんのたべもののいっしゅです。",
       "meaningId": "Natto adalah salah satu jenis makanan Jepang."
     },
     "collocations": [
@@ -63963,7 +63963,7 @@
     ],
     "exampleSentence": {
       "japanese": "「大学で日本語と日本文化を専攻しています。」",
-      "reading": "「だいがくでにほんごとにっぽんぶんかをせんこうしています。」",
+      "reading": "「だいがくでにほんごとにほんぶんかをせんこうしています。」",
       "meaningId": "Saya mengambil jurusan bahasa dan budaya Jepang di universitas."
     },
     "collocations": [
@@ -64217,7 +64217,7 @@
     ],
     "exampleSentence": {
       "japanese": "駅まで、十分位かかります。",
-      "reading": "えきまで、じゅうぶんいかかります。",
+      "reading": "えきまで、じゅっぷんくらいかかります。",
       "meaningId": "Ke stasiun memakan waktu sekitar sepuluh menit."
     },
     "collocations": [
@@ -64693,7 +64693,7 @@
     ],
     "exampleSentence": {
       "japanese": "この製品は、日本で作られています。",
-      "reading": "このせいひんは、にっぽんでつくられています。",
+      "reading": "このせいひんは、にほんでつくられています。",
       "meaningId": "Produk ini dibuat di Jepang."
     },
     "collocations": [
@@ -64843,7 +64843,7 @@
     ],
     "exampleSentence": {
       "japanese": "二人の意見が一致しました。",
-      "reading": "ににんのいけんがいっちしました。",
+      "reading": "ふたりのいけんがいっちしました。",
       "meaningId": "Pendapat kedua orang itu sama."
     },
     "collocations": [
@@ -65093,7 +65093,7 @@
     ],
     "exampleSentence": {
       "japanese": "この漢字の音は、「さん」です。",
-      "reading": "このかんじのおとは、「さん」です。",
+      "reading": "このかんじのおんは、「さん」です。",
       "meaningId": "Bacaan on kanji ini adalah \"san\"."
     },
     "collocations": [
@@ -65350,7 +65350,7 @@
     ],
     "exampleSentence": {
       "japanese": "二人は、先月婚約しました。",
-      "reading": "ににんは、せんげつこんやくしました。",
+      "reading": "ふたりは、せんげつこんやくしました。",
       "meaningId": "Mereka berdua bertunangan bulan lalu."
     },
     "collocations": [
@@ -66533,7 +66533,7 @@
     ],
     "exampleSentence": {
       "japanese": "二人は、去年離婚しました。",
-      "reading": "ににんは、きょねんりこんしました。",
+      "reading": "ふたりは、きょねんりこんしました。",
       "meaningId": "Mereka berdua bercerai tahun lalu."
     },
     "collocations": [
@@ -66714,7 +66714,7 @@
     ],
     "exampleSentence": {
       "japanese": "夜中に、台所から物音がしました。",
-      "reading": "やちゅうに、だいどころからものおとがしました。",
+      "reading": "よなかに、だいどころからものおとがしました。",
       "meaningId": "Tengah malam terdengar suara dari dapur."
     },
     "collocations": [
@@ -67450,7 +67450,7 @@
     ],
     "exampleSentence": {
       "japanese": "「来週は一週間の有給休暇を取って旅行に行きます。」",
-      "reading": "「らいしゅうはいちしゅうかんのゆうきゅうきゅうかをとってりょこうにいきます。」",
+      "reading": "「らいしゅうはいっしゅうかんのゆうきゅうきゅうかをとってりょこうにいきます。」",
       "meaningId": "Minggu depan saya mengambil cuti berbayar selama seminggu untuk berlibur."
     },
     "collocations": [
@@ -67884,7 +67884,7 @@
     ],
     "exampleSentence": {
       "japanese": "近代の日本の歴史を、勉強しています。",
-      "reading": "きんだいのにっぽんのれきしを、べんきょうしています。",
+      "reading": "きんだいのにほんのれきしを、べんきょうしています。",
       "meaningId": "Saya mempelajari sejarah Jepang zaman modern."
     },
     "collocations": [
@@ -68267,7 +68267,7 @@
     ],
     "exampleSentence": {
       "japanese": "新しい単語を、毎日十個覚えます。",
-      "reading": "あたらしいたんごを、まいにちじゅうこおぼえます。",
+      "reading": "あたらしいたんごを、まいにちじゅっこおぼえます。",
       "meaningId": "Setiap hari saya menghafal sepuluh kosakata baru."
     },
     "collocations": [
@@ -68546,7 +68546,7 @@
     ],
     "exampleSentence": {
       "japanese": "二人は、永遠の愛を誓いました。",
-      "reading": "ににんは、えいえんのあいをちかいました。",
+      "reading": "ふたりは、えいえんのあいをちかいました。",
       "meaningId": "Keduanya bersumpah akan cinta yang abadi."
     },
     "collocations": [
@@ -68747,7 +68747,7 @@
     ],
     "exampleSentence": {
       "japanese": "弟は、背が高いです。",
-      "reading": "おとうとは、せがたかいです。",
+      "reading": "おとうとは、せいがたかいです。",
       "meaningId": "Adik laki-laki saya tubuhnya tinggi."
     },
     "collocations": [
@@ -70186,7 +70186,7 @@
     ],
     "exampleSentence": {
       "japanese": "二人は、環境問題について論争しました。",
-      "reading": "ににんは、かんきょうもんだいについてろんそうしました。",
+      "reading": "ふたりは、かんきょうもんだいについてろんそうしました。",
       "meaningId": "Keduanya berdebat tentang masalah lingkungan."
     },
     "collocations": [
@@ -70211,7 +70211,7 @@
     ],
     "exampleSentence": {
       "japanese": "暗い道に、街の灯が見えます。",
-      "reading": "くらいみちに、まちのあかりがみえます。",
+      "reading": "くらいみちに、まちのひがみえます。",
       "meaningId": "Di jalan yang gelap, terlihat lampu kota."
     },
     "collocations": [
@@ -70393,7 +70393,7 @@
     ],
     "exampleSentence": {
       "japanese": "この外にも、質問があります。",
-      "reading": "このそとにも、しつもんがあります。",
+      "reading": "このほかにも、しつもんがあります。",
       "meaningId": "Selain ini, saya juga punya pertanyaan."
     },
     "collocations": [
@@ -70570,7 +70570,7 @@
     ],
     "exampleSentence": {
       "japanese": "この試合は、勝つ見込みが五分五分です。",
-      "reading": "このしあいは、かつみこみがごふんごふんです。",
+      "reading": "このしあいは、かつみこみがごぶごぶです。",
       "meaningId": "Peluang menang dalam pertandingan ini fifty-fifty."
     },
     "collocations": [
@@ -70674,7 +70674,7 @@
     ],
     "exampleSentence": {
       "japanese": "京都のホテルに、二日宿泊しました。",
-      "reading": "きょうとのほてるに、ににちしゅくはくしました。",
+      "reading": "きょうとのほてるに、ふつかしゅくはくしました。",
       "meaningId": "Saya menginap dua hari di hotel di Kyoto."
     },
     "collocations": [
@@ -70825,7 +70825,7 @@
     ],
     "exampleSentence": {
       "japanese": "父は、日本の酒が好きです。",
-      "reading": "ちちは、にっぽんのさけがすきです。",
+      "reading": "ちちは、にほんのさけがすきです。",
       "meaningId": "Ayah saya suka sake Jepang."
     },
     "collocations": [
@@ -71284,7 +71284,7 @@
     ],
     "exampleSentence": {
       "japanese": "彼は、典型的な日本人です。",
-      "reading": "かれは、てんけいてきなにっぽんじんです。",
+      "reading": "かれは、てんけいてきなにほんじんです。",
       "meaningId": "Dia adalah orang Jepang yang khas."
     },
     "collocations": [
@@ -71358,7 +71358,7 @@
     ],
     "exampleSentence": {
       "japanese": "これは、二人だけの秘密です。",
-      "reading": "これは、ににんだけのひみつです。",
+      "reading": "これは、ふたりだけのひみつです。",
       "meaningId": "Ini adalah rahasia kita berdua saja."
     },
     "collocations": [
@@ -71461,7 +71461,7 @@
     ],
     "exampleSentence": {
       "japanese": "二人は、同時に笑いました。",
-      "reading": "ににんは、どうじにわらいました。",
+      "reading": "ふたりは、どうじにわらいました。",
       "meaningId": "Keduanya tertawa bersamaan."
     },
     "collocations": [
@@ -72330,7 +72330,7 @@
     ],
     "exampleSentence": {
       "japanese": "能は、日本の古い劇です。",
-      "reading": "のうは、にっぽんのふるいげきです。",
+      "reading": "のうは、にほんのふるいげきです。",
       "meaningId": "Noh adalah drama klasik tua Jepang."
     },
     "collocations": [
@@ -72821,7 +72821,7 @@
     ],
     "exampleSentence": {
       "japanese": "二週間、日本を旅行しました。",
-      "reading": "にしゅうかん、にっぽんをりょこうしました。",
+      "reading": "にしゅうかん、にほんをりょこうしました。",
       "meaningId": "Saya bepergian di Jepang selama dua minggu."
     },
     "collocations": [
@@ -73812,7 +73812,7 @@
     ],
     "exampleSentence": {
       "japanese": "あの方は、田中さんの夫人です。",
-      "reading": "あのほうは、たなかさんのふじんです。",
+      "reading": "あのかたは、たなかさんのふじんです。",
       "meaningId": "Beliau adalah istri Pak Tanaka."
     },
     "collocations": [
@@ -75882,7 +75882,7 @@
     ],
     "exampleSentence": {
       "japanese": "毎日、運動を為ることにしました。",
-      "reading": "まいにち、うんどうをなることにしました。",
+      "reading": "まいにち、うんどうをすることにしました。",
       "meaningId": "Saya memutuskan untuk berolahraga setiap hari."
     },
     "collocations": [
@@ -76062,7 +76062,7 @@
     ],
     "exampleSentence": {
       "japanese": "来年、日本へ留学します。",
-      "reading": "らいねん、にっぽんへりゅうがくします。",
+      "reading": "らいねん、にほんへりゅうがくします。",
       "meaningId": "Tahun depan saya akan belajar di Jepang."
     },
     "collocations": [
@@ -76898,7 +76898,7 @@
     "kanjiComponents": [],
     "exampleSentence": {
       "japanese": "「日本での新しい生活はどうですか。」",
-      "reading": "「にっぽんでのあたらしいせいかつはどうですか。」",
+      "reading": "「にほんでのあたらしいせいかつはどうですか。」",
       "meaningId": "Bagaimana kehidupan barumu di Jepang?"
     },
     "collocations": [
@@ -77481,7 +77481,7 @@
     ],
     "exampleSentence": {
       "japanese": "一人一人の意見を、聞きました。",
-      "reading": "いちにんいちにんのいけんを、ききました。",
+      "reading": "ひとりひとりのいけんを、ききました。",
       "meaningId": "Saya mendengar pendapat satu per satu."
     },
     "collocations": [
@@ -78690,7 +78690,7 @@
   "kotoba_n2_0032": {
     "id": "kotoba_n2_0032",
     "word": "彷徨く",
-    "reading": "うろうろ",
+    "reading": "うろつく",
     "meaningId": "Berkeliaran; mengembara tanpa tujuan",
     "meaningEn": "loiteringly; aimless wandering",
     "meaningJa": "目的もなくあちこち歩き回る。",
@@ -78867,7 +78867,7 @@
     ],
     "exampleSentence": {
       "japanese": "おおざっぱに言うと、英国の季節も日本のものとほとんど同じだ。",
-      "reading": "おおざっぱにいうと、えいこくのきせつもにっぽんのものとほとんどおなじだ。",
+      "reading": "おおざっぱにいうと、えいこくのきせつもにほんのものとほとんどおなじだ。",
       "meaningId": "Secara kasar musim di Inggris hampir sama dengan di Jepang."
     },
     "collocations": [
@@ -79104,7 +79104,7 @@
     "kanjiComponents": [],
     "exampleSentence": {
       "japanese": "おととし、日本に来ました。",
-      "reading": "おととし、にっぽんにきました。",
+      "reading": "おととし、にほんにきました。",
       "meaningId": "Dua tahun lalu, saya datang ke Jepang."
     },
     "collocations": [
@@ -79600,7 +79600,7 @@
     "kanjiComponents": [],
     "exampleSentence": {
       "japanese": "カラーフィルムを一本ください。",
-      "reading": "からーふぃるむをいちほんください。",
+      "reading": "からーふぃるむをいっぽんください。",
       "meaningId": "Tolong beri saya gulungan film berwarna."
     },
     "collocations": [
@@ -79859,7 +79859,7 @@
     ],
     "exampleSentence": {
       "japanese": "一日中歩いて、くたびれました。",
-      "reading": "いちにちちゅうあるいて、くたびれました。",
+      "reading": "いちにちじゅうあるいて、くたびれました。",
       "meaningId": "Setelah berjalan seharian, saya kelelahan."
     },
     "collocations": [
@@ -81177,7 +81177,7 @@
     "kanjiComponents": [],
     "exampleSentence": {
       "japanese": "この仕事は、すくなくとも三日かかります。",
-      "reading": "このしごとは、すくなくともさんにちかかります。",
+      "reading": "このしごとは、すくなくともみっかかかります。",
       "meaningId": "Pekerjaan ini setidaknya memakan waktu tiga hari."
     },
     "collocations": [
@@ -82105,7 +82105,7 @@
     "kanjiComponents": [],
     "exampleSentence": {
       "japanese": "チョークを一本下さい。",
-      "reading": "ちょーくをいちほんください。",
+      "reading": "ちょーくをいっぽんください。",
       "meaningId": "Tolong beri saya sepotong kapur."
     },
     "collocations": [
@@ -82935,7 +82935,7 @@
     "kanjiComponents": [],
     "exampleSentence": {
       "japanese": "日本車は右ハンドルです。",
-      "reading": "にっぽんしゃはみぎはんどるです。",
+      "reading": "にほんしゃはみぎはんどるです。",
       "meaningId": "Mobil Jepang adalah penggerak kanan."
     },
     "collocations": [
@@ -83418,7 +83418,7 @@
     "kanjiComponents": [],
     "exampleSentence": {
       "japanese": "二人ともフリーだよ。",
-      "reading": "ににんともふりーだよ。",
+      "reading": "ふたりともふりーだよ。",
       "meaningId": "Kami berdua sedang bebas (tidak ada acara)."
     },
     "collocations": [
@@ -85484,7 +85484,7 @@
     ],
     "exampleSentence": {
       "japanese": "一昨日風が吹いた。",
-      "reading": "おとといふうがふいた。",
+      "reading": "おとといかぜがふいた。",
       "meaningId": "Kemarin lusa angin bertiup."
     },
     "collocations": [
@@ -85615,7 +85615,7 @@
     ],
     "exampleSentence": {
       "japanese": "私は生け花を一通りは習いました。",
-      "reading": "わたしはいけばなをいちとおりはならいました。",
+      "reading": "わたしはいけばなをひととおりはならいました。",
       "meaningId": "Saya telah mempelajari semua tentang ikebana."
     },
     "collocations": [
@@ -86620,7 +86620,7 @@
     ],
     "exampleSentence": {
       "japanese": "いくつかの工場は環境を汚す。",
-      "reading": "いくつかのこうじょうはかんきょうをけがす。",
+      "reading": "いくつかのこうじょうはかんきょうをよごす。",
       "meaningId": "Beberapa pabrik mencemari lingkungan."
     },
     "collocations": [
@@ -87368,7 +87368,7 @@
     ],
     "exampleSentence": {
       "japanese": "振り仮名はどうやって付けますか？",
-      "reading": "ふりかめいはどうやってつけますか？",
+      "reading": "ふりがなはどうやってつけますか？",
       "meaningId": "Bagaimana cara menambahkan furigana?"
     },
     "collocations": [
@@ -88627,7 +88627,7 @@
     ],
     "exampleSentence": {
       "japanese": "お供します。",
-      "reading": "おきょうします。",
+      "reading": "おともします。",
       "meaningId": "Aku akan menemanimu."
     },
     "collocations": [
@@ -88985,7 +88985,7 @@
     ],
     "exampleSentence": {
       "japanese": "ご結婚、お目出度うございます。",
-      "reading": "ごけっこん、おめでたうございます。",
+      "reading": "ごけっこん、おめでとうございます。",
       "meaningId": "Selamat atas pernikahan Anda."
     },
     "collocations": [
@@ -89944,7 +89944,7 @@
     ],
     "exampleSentence": {
       "japanese": "この間彼に会った。",
-      "reading": "このかんかれにあった。",
+      "reading": "このあいだかれにあった。",
       "meaningId": "Saya bertemu dengannya beberapa hari yang lalu."
     },
     "collocations": [
@@ -89969,7 +89969,7 @@
     ],
     "exampleSentence": {
       "japanese": "この頃あなたらしくない。",
-      "reading": "このころあなたらしくない。",
+      "reading": "このごろあなたらしくない。",
       "meaningId": "Akhir-akhir ini kamu tidak seperti biasanya."
     },
     "collocations": [
@@ -91610,7 +91610,7 @@
     ],
     "exampleSentence": {
       "japanese": "その外にも、まだ質問があります。",
-      "reading": "そのそとにも、まだしつもんがあります。",
+      "reading": "そのほかにも、まだしつもんがあります。",
       "meaningId": "Selain itu, masih ada pertanyaan lagi."
     },
     "collocations": [
@@ -93717,7 +93717,7 @@
     "kanjiComponents": [],
     "exampleSentence": {
       "japanese": "一日中ブルーだった。",
-      "reading": "いちにちちゅうぶるーだった。",
+      "reading": "いちにちじゅうぶるーだった。",
       "meaningId": "Sepanjang hari saya merasa murung."
     },
     "collocations": [
@@ -93786,7 +93786,7 @@
     "kanjiComponents": [],
     "exampleSentence": {
       "japanese": "二人でペアを組んで、練習します。",
-      "reading": "ににんでぺあをくんで、れんしゅうします。",
+      "reading": "ふたりでぺあをくんで、れんしゅうします。",
       "meaningId": "Kami berlatih berpasangan berdua."
     },
     "collocations": [
@@ -94315,7 +94315,7 @@
     "kanjiComponents": [],
     "exampleSentence": {
       "japanese": "あの方は、田中ミセスです。",
-      "reading": "あのほうは、たなかみせすです。",
+      "reading": "あのかたは、たなかみせすです。",
       "meaningId": "Beliau adalah Nyonya Tanaka."
     },
     "collocations": [
@@ -94407,7 +94407,7 @@
     "kanjiComponents": [],
     "exampleSentence": {
       "japanese": "この車のメーカーは、日本の会社です。",
-      "reading": "このくるまのめーかーは、にっぽんのかいしゃです。",
+      "reading": "このくるまのめーかーは、にほんのかいしゃです。",
       "meaningId": "Pembuat mobil ini adalah perusahaan Jepang."
     },
     "collocations": [
@@ -96289,7 +96289,7 @@
     ],
     "exampleSentence": {
       "japanese": "この村の為来りを、守ります。",
-      "reading": "このむらのためきたりを、まもります。",
+      "reading": "このむらのしきたりを、まもります。",
       "meaningId": "Saya menaati adat istiadat desa ini."
     },
     "collocations": [
@@ -96808,7 +96808,7 @@
     ],
     "exampleSentence": {
       "japanese": "一まず、休憩しましょう。",
-      "reading": "いちまず、きゅうけいしましょう。",
+      "reading": "ひとまず、きゅうけいしましょう。",
       "meaningId": "Untuk sementara, mari kita istirahat."
     },
     "collocations": [
@@ -97319,7 +97319,7 @@
     ],
     "exampleSentence": {
       "japanese": "私の国は、日本ではありません。",
-      "reading": "わたしのくには、にっぽんではありません。",
+      "reading": "わたしのくには、にほんではありません。",
       "meaningId": "Negara saya bukan Jepang."
     },
     "meaningJa": "アジアの東にある島国。私たちの住む国。",
@@ -97383,7 +97383,7 @@
     ],
     "exampleSentence": {
       "japanese": "オーブンで何分？",
-      "reading": "おーぶんでなんふん？",
+      "reading": "おーぶんでなんぷん？",
       "meaningId": "Berapa menit di dalam oven?"
     },
     "collocations": [
@@ -97721,7 +97721,7 @@
     ],
     "exampleSentence": {
       "japanese": "火傷しなかった？",
-      "reading": "かしょうしなかった？",
+      "reading": "やけどしなかった？",
       "meaningId": "Apakah kamu tidak terbakar?"
     },
     "collocations": [
@@ -99321,7 +99321,7 @@
     ],
     "exampleSentence": {
       "japanese": "日本では新学年は４月に始まる。",
-      "reading": "にっぽんではしんがくねんはしがつにはじまる。",
+      "reading": "にほんではしんがくねんはしがつにはじまる。",
       "meaningId": "Di Jepang, tahun ajaran baru dimulai pada bulan April."
     },
     "collocations": [
@@ -99711,7 +99711,7 @@
     ],
     "exampleSentence": {
       "japanese": "洗濯物を乾かす時間だ。",
-      "reading": "せんたくぶつをかわかすじかんだ。",
+      "reading": "せんたくものをかわかすじかんだ。",
       "meaningId": "Saatnya mengeringkan cucian."
     },
     "collocations": [
@@ -99943,7 +99943,7 @@
     ],
     "exampleSentence": {
       "japanese": "洗濯物を干すには最高の天気だ。",
-      "reading": "せんたくぶつをほすにはさいこうのてんきだ。",
+      "reading": "せんたくものをほすにはさいこうのてんきだ。",
       "meaningId": "Cuacanya sempurna untuk mengeringkan cucian."
     },
     "collocations": [
@@ -101365,7 +101365,7 @@
     ],
     "exampleSentence": {
       "japanese": "私は一ヶ月後に結婚式を挙げる。",
-      "reading": "わたしはいちかげつごにけっこんしきをあげる。",
+      "reading": "わたしはいっかげつごにけっこんしきをあげる。",
       "meaningId": "Aku akan menikah sebulan lagi."
     },
     "collocations": [
@@ -101700,7 +101700,7 @@
     ],
     "exampleSentence": {
       "japanese": "日本では大晦日に蕎麦を食べる習慣があります。",
-      "reading": "にっぽんではおおみそかにそばをたべるしゅうかんがあります。",
+      "reading": "にほんではおおみそかにそばをたべるしゅうかんがあります。",
       "meaningId": "Di Jepang, ada kebiasaan makan soba pada malam tahun baru."
     },
     "collocations": [
@@ -101851,7 +101851,7 @@
     ],
     "exampleSentence": {
       "japanese": "祖母は、琴を弾くのが上手です。",
-      "reading": "そぼは、きんをひくのがじょうずです。",
+      "reading": "そぼは、ことをひくのがじょうずです。",
       "meaningId": "Nenek saya pandai memainkan koto."
     },
     "collocations": [
@@ -103825,7 +103825,7 @@
     ],
     "exampleSentence": {
       "japanese": "日本はいろんな原料に乏しい。",
-      "reading": "にっぽんはいろんなげんりょうにとぼしい。",
+      "reading": "にほんはいろんなげんりょうにとぼしい。",
       "meaningId": "Jepang kekurangan berbagai bahan mentah."
     },
     "collocations": [
@@ -103954,7 +103954,7 @@
     ],
     "exampleSentence": {
       "japanese": "友達に、先生への伝言を言付けました。",
-      "reading": "ともだちに、せんせいへのでんごんをいいつけました。",
+      "reading": "ともだちに、せんせいへのでんごんをことづけました。",
       "meaningId": "Saya menitipkan pesan untuk guru kepada teman."
     },
     "collocations": [
@@ -104395,7 +104395,7 @@
     ],
     "exampleSentence": {
       "japanese": "日本では、会ったときに御辞儀をします。",
-      "reading": "にっぽんでは、あったときにごじぎをします。",
+      "reading": "にほんでは、あったときにおじぎをします。",
       "meaningId": "Di Jepang, orang membungkuk saat bertemu."
     },
     "collocations": [
@@ -105174,7 +105174,7 @@
     ],
     "exampleSentence": {
       "japanese": "蓼食う虫も好き好き。",
-      "reading": "たでくうむしもすきすき。",
+      "reading": "たでくうむしもすきずき。",
       "meaningId": "Ada pepatah: ada serangga yang suka makan rumput pahit (selera orang berbeda-beda)."
     },
     "collocations": [
@@ -107745,7 +107745,7 @@
     ],
     "exampleSentence": {
       "japanese": "算盤とは日本のアバカスのことだ。",
-      "reading": "そろばんとはにっぽんのアバカスのことだ。",
+      "reading": "そろばんとはにほんのアバカスのことだ。",
       "meaningId": "Abacus adalah kata dalam bahasa Jepang untuk sempoa."
     },
     "collocations": [
@@ -108001,7 +108001,7 @@
     ],
     "exampleSentence": {
       "japanese": "箱の形は普通四角です。",
-      "reading": "はこのかたちはふつうよんかくです。",
+      "reading": "はこのかたちはふつうしかくです。",
       "meaningId": "Bentuk kotaknya biasanya persegi."
     },
     "collocations": [
@@ -108210,7 +108210,7 @@
     ],
     "exampleSentence": {
       "japanese": "思い掛けない人から、手紙が届きました。",
-      "reading": "おもいかけないひとから、てがみがとどきました。",
+      "reading": "おもいがけないひとから、てがみがとどきました。",
       "meaningId": "Surat datang dari orang yang tak terduga."
     },
     "collocations": [
@@ -108499,7 +108499,7 @@
     ],
     "exampleSentence": {
       "japanese": "あたし、低脂肪乳ね。",
-      "reading": "あたし、ていしぼうちちね。",
+      "reading": "あたし、ていしぼうにゅうね。",
       "meaningId": "Saya punya susu rendah lemak."
     },
     "collocations": [
@@ -108809,7 +108809,7 @@
     ],
     "exampleSentence": {
       "japanese": "彼は自分の家族すら取りしきれないのに、まして一国を治めるなんて！",
-      "reading": "かれはじぶんのかぞくすらとりしきれないのに、ましていちこくをおさめるなんて！",
+      "reading": "かれはじぶんのかぞくすらとりしきれないのに、ましていっこくをおさめるなんて！",
       "meaningId": "Dia bahkan tidak bisa mengurus keluarganya sendiri, apalagi memerintah suatu negara!"
     },
     "collocations": [
@@ -109043,7 +109043,7 @@
     ],
     "exampleSentence": {
       "japanese": "雨で、洗濯物が湿っています。",
-      "reading": "あめで、せんたくぶつがしめっています。",
+      "reading": "あめで、せんたくものがしめっています。",
       "meaningId": "Cucian lembap karena hujan."
     },
     "collocations": [
@@ -109095,7 +109095,7 @@
     ],
     "exampleSentence": {
       "japanese": "日本は湿度が高い。",
-      "reading": "にっぽんはしつどがたかい。",
+      "reading": "にほんはしつどがたかい。",
       "meaningId": "Jepang mempunyai kelembapan yang tinggi."
     },
     "collocations": [
@@ -109842,7 +109842,7 @@
     ],
     "exampleSentence": {
       "japanese": "日本人は新しい思想を非常に良く取り入れる。",
-      "reading": "にっぽんじんはあたらしいしそうをひじょうによくとりいれる。",
+      "reading": "にほんじんはあたらしいしそうをひじょうによくとりいれる。",
       "meaningId": "Orang Jepang sangat pandai mengadopsi ide-ide baru."
     },
     "collocations": [
@@ -113279,7 +113279,7 @@
     ],
     "exampleSentence": {
       "japanese": "あそこに寝台車が見える。",
-      "reading": "あそこにねだいしゃがみえる。",
+      "reading": "あそこにしんだいしゃがみえる。",
       "meaningId": "Saya melihat mobil tidur di sana."
     },
     "collocations": [
@@ -113384,7 +113384,7 @@
     ],
     "exampleSentence": {
       "japanese": "振り仮名はどうやって付けますか？",
-      "reading": "ふりかめいはどうやってつけますか？",
+      "reading": "ふりがなはどうやってつけますか？",
       "meaningId": "Bagaimana cara menambahkan furigana?"
     },
     "collocations": [
@@ -114323,7 +114323,7 @@
     ],
     "exampleSentence": {
       "japanese": "この線を軸にして図形を回転してください。",
-      "reading": "このせんをじくにしてづけいをかいてんしてください。",
+      "reading": "このせんをじくにしてずけいをかいてんしてください。",
       "meaningId": "Putar bentuk di sekitar garis ini."
     },
     "collocations": [
@@ -115967,7 +115967,7 @@
     ],
     "exampleSentence": {
       "japanese": "台風が日本に接近中です。",
-      "reading": "たいふうがにっぽんにせっきんちゅうです。",
+      "reading": "たいふうがにほんにせっきんちゅうです。",
       "meaningId": "Topan sedang mendekati Jepang."
     },
     "collocations": [
@@ -116070,7 +116070,7 @@
     ],
     "exampleSentence": {
       "japanese": "先々月、日本に来ました。",
-      "reading": "さきざきつき、にっぽんにきました。",
+      "reading": "せんせんげつ、にほんにきました。",
       "meaningId": "Dua bulan lalu, saya datang ke Jepang."
     },
     "collocations": [
@@ -117407,7 +117407,7 @@
     ],
     "exampleSentence": {
       "japanese": "この漢字、送り仮名が間違ってるよ。",
-      "reading": "このかんじ、おくりかめいがまちがってるよ。",
+      "reading": "このかんじ、おくりがながまちがってるよ。",
       "meaningId": "Kanji dan okurigana ini salah."
     },
     "collocations": [
@@ -118908,7 +118908,7 @@
     ],
     "exampleSentence": {
       "japanese": "駅まで、大凡十分かかります。",
-      "reading": "えきまで、おおよそじゅうふんかかります。",
+      "reading": "えきまで、おおよそじゅっぷんかかります。",
       "meaningId": "Ke stasiun memakan waktu kira-kira sepuluh menit."
     },
     "collocations": [
@@ -120246,7 +120246,7 @@
     ],
     "exampleSentence": {
       "japanese": "彼は、日本の歴史に関する本を著しました。",
-      "reading": "かれは、にっぽんのれきしにかんするほんをあらわしました。",
+      "reading": "かれは、にほんのれきしにかんするほんをあらわしました。",
       "meaningId": "Dia menulis buku tentang sejarah Jepang."
     },
     "collocations": [
@@ -121059,7 +121059,7 @@
     ],
     "exampleSentence": {
       "japanese": "日本の円は安定した通貨だ。",
-      "reading": "にっぽんのえんはあんていしたつうかだ。",
+      "reading": "にほんのえんはあんていしたつうかだ。",
       "meaningId": "Yen Jepang adalah mata uang yang stabil."
     },
     "collocations": [
@@ -121137,7 +121137,7 @@
     ],
     "exampleSentence": {
       "japanese": "貯金通帳に残っていた金で利子がついた。",
-      "reading": "ちょきんかよいちょうにのこっていたきんでりしがついた。",
+      "reading": "ちょきんつうちょうにのこっていたかねでりしがついた。",
       "meaningId": "Uang yang tersisa di buku tabungan saya menghasilkan bunga."
     },
     "collocations": [
@@ -121315,7 +121315,7 @@
     ],
     "exampleSentence": {
       "japanese": "洗濯物を、庭に吊しました。",
-      "reading": "せんたくぶつを、にわにつるしました。",
+      "reading": "せんたくものを、にわにつるしました。",
       "meaningId": "Saya menjemur cucian di halaman."
     },
     "collocations": [
@@ -122738,7 +122738,7 @@
     ],
     "exampleSentence": {
       "japanese": "灯台下暗し。",
-      "reading": "あかりだいかくらし。",
+      "reading": "とうだいもとくらし。",
       "meaningId": "Gelap di bawah mercusuar."
     },
     "collocations": [
@@ -123773,7 +123773,7 @@
     ],
     "exampleSentence": {
       "japanese": "日本は南北に長い国です。",
-      "reading": "にっぽんはなんぼくにながいくにです。",
+      "reading": "にほんはなんぼくにながいくにです。",
       "meaningId": "Jepang adalah negara yang panjang dari utara ke selatan."
     },
     "collocations": [
@@ -124518,7 +124518,7 @@
     ],
     "exampleSentence": {
       "japanese": "そんなに引っ張らないで、服が破れるでしょ！",
-      "reading": "そんなにひっぱらないで、ふくがわれるでしょ！",
+      "reading": "そんなにひっぱらないで、ふくがやぶれるでしょ！",
       "meaningId": "Jangan menariknya terlalu keras, itu akan merobek pakaianmu!"
     },
     "collocations": [
@@ -124858,7 +124858,7 @@
     ],
     "exampleSentence": {
       "japanese": "我々は山道をまるでアリが這うように進んだ。",
-      "reading": "われわれはさんどうをまるでありがはうようにすすんだ。",
+      "reading": "われわれはやまみちをまるでありがはうようにすすんだ。",
       "meaningId": "Kami bergerak di sepanjang jalur pegunungan seperti semut."
     },
     "collocations": [
@@ -125036,7 +125036,7 @@
     ],
     "exampleSentence": {
       "japanese": "白髪があるの。",
-      "reading": "はくはつがあるの。",
+      "reading": "しらががあるの。",
       "meaningId": "Saya memiliki rambut beruban."
     },
     "collocations": [
@@ -125938,7 +125938,7 @@
     ],
     "exampleSentence": {
       "japanese": "これが、日本の標準的な料金です。",
-      "reading": "これが、にっぽんのひょうじゅんてきなりょうきんです。",
+      "reading": "これが、にほんのひょうじゅんてきなりょうきんです。",
       "meaningId": "Ini adalah tarif standar di Jepang."
     },
     "collocations": [
@@ -126408,7 +126408,7 @@
     ],
     "exampleSentence": {
       "japanese": "父母の仕事は、毎日とても忙しいです。",
-      "reading": "ちちははのしごとは、まいにちとてもいそがしいです。",
+      "reading": "ふぼのしごとは、まいにちとてもいそがしいです。",
       "meaningId": "Pekerjaan ayah dan ibu saya sangat sibuk setiap hari."
     },
     "collocations": [
@@ -127004,7 +127004,7 @@
     ],
     "exampleSentence": {
       "japanese": "この種の昆虫は日本に広く分布している。",
-      "reading": "このたねのこんちゅうはにっぽんにひろくぶんぷしている。",
+      "reading": "このたねのこんちゅうはにほんにひろくぶんぷしている。",
       "meaningId": "Serangga jenis ini tersebar luas di Jepang."
     },
     "collocations": [
@@ -129072,7 +129072,7 @@
     ],
     "exampleSentence": {
       "japanese": "女王陛下万歳！",
-      "reading": "じょおうへいかまんさい！",
+      "reading": "じょおうへいかばんざい！",
       "meaningId": "Hidup Ratu!"
     },
     "collocations": [
@@ -129277,7 +129277,7 @@
     ],
     "exampleSentence": {
       "japanese": "日本には猫が駅長を務める駅がある。",
-      "reading": "にっぽんにはねこがえきちょうをつとめるえきがある。",
+      "reading": "にほんにはねこがえきちょうをつとめるえきがある。",
       "meaningId": "Ada sebuah stasiun di Jepang di mana seekor kucing berperan sebagai kepala stasiun."
     },
     "collocations": [
@@ -129741,7 +129741,7 @@
     ],
     "exampleSentence": {
       "japanese": "私には姪が二人いる。",
-      "reading": "わたしにはめいがににんいる。",
+      "reading": "わたしにはめいがふたりいる。",
       "meaningId": "Saya punya dua keponakan."
     },
     "collocations": [
@@ -130703,7 +130703,7 @@
     ],
     "exampleSentence": {
       "japanese": "一人で原始林へ乗り込もうとは君はなんて勇ましいんだ。",
-      "reading": "いちにんでげんしりんへのりこもうとはきみはなんていさましいんだ。",
+      "reading": "ひとりでげんしりんへのりこもうとはきみはなんていさましいんだ。",
       "meaningId": "Betapa beraninya Anda menjelajah hutan purba sendirian."
     },
     "collocations": [
@@ -132174,7 +132174,7 @@
     ],
     "exampleSentence": {
       "japanese": "行くも留まるも君次第だよ。",
-      "reading": "いくもとまるもきみしだいだよ。",
+      "reading": "いくもとどまるもきみしだいだよ。",
       "meaningId": "Terserah Anda apakah Anda pergi atau tinggal."
     },
     "collocations": [
@@ -132660,7 +132660,7 @@
     ],
     "exampleSentence": {
       "japanese": "日本は火山列島だ。",
-      "reading": "にっぽんはかざんれっとうだ。",
+      "reading": "にほんはかざんれっとうだ。",
       "meaningId": "Jepang adalah negara kepulauan vulkanik."
     },
     "collocations": [
@@ -132915,7 +132915,7 @@
     ],
     "exampleSentence": {
       "japanese": "私は和英辞書が必要だ。",
-      "reading": "わたしはかずひでじしょがひつようだ。",
+      "reading": "わたしはわえいじしょがひつようだ。",
       "meaningId": "Saya memerlukan kamus bahasa Jepang-Inggris."
     },
     "collocations": [
@@ -132993,7 +132993,7 @@
     ],
     "exampleSentence": {
       "japanese": "二人は、話合いで問題を解決しました。",
-      "reading": "ににんは、はなしあいでもんだいをかいけつしました。",
+      "reading": "ふたりは、はなしあいでもんだいをかいけつしました。",
       "meaningId": "Keduanya menyelesaikan masalah lewat diskusi."
     },
     "collocations": [
@@ -133245,7 +133245,7 @@
     ],
     "exampleSentence": {
       "japanese": "体を、右に捩りました。",
-      "reading": "からだを、みぎにすじりました。",
+      "reading": "からだを、みぎにねじりました。",
       "meaningId": "Saya memutar badan ke kanan."
     },
     "collocations": [
@@ -133436,7 +133436,7 @@
   "kotoba_n1_0402": {
     "id": "kotoba_n1_0402",
     "word": "一筋",
-    "reading": "ひとすき",
+    "reading": "ひとすじ",
     "meaningId": "Setia sepenuh hati",
     "meaningEn": "a line; earnestly; blindly",
     "meaningJa": "ひたすら一つのことに打ち込む様子。",
@@ -133631,7 +133631,7 @@
     ],
     "exampleSentence": {
       "japanese": "私は一人だ。",
-      "reading": "わたしはいちにんだ。",
+      "reading": "わたしはひとりだ。",
       "meaningId": "Saya sendirian."
     },
     "collocations": [
@@ -133657,7 +133657,7 @@
     ],
     "exampleSentence": {
       "japanese": "ドアが、一人でに開きました。",
-      "reading": "どあが、いちにんでにひらきました。",
+      "reading": "どあが、ひとりでにあきました。",
       "meaningId": "Pintunya terbuka dengan sendirinya."
     },
     "collocations": [
@@ -133865,7 +133865,7 @@
     ],
     "exampleSentence": {
       "japanese": "これからの星勘定を考えると、一敗もしたくない！",
-      "reading": "これからのほしかんじょうをかんがえると、いちはいもしたくない！",
+      "reading": "これからのほしかんじょうをかんがえると、いっぱいもしたくない！",
       "meaningId": "Mempertimbangkan prospek masa depanku, aku tidak ingin kalah sekali pun!"
     },
     "collocations": [
@@ -134794,7 +134794,7 @@
     ],
     "exampleSentence": {
       "japanese": "男性は一人で運搬トラックに荷物を詰め込んでいる。",
-      "reading": "だんせいはいちにんでうんぱんとらっくににもつをつめこんでいる。",
+      "reading": "だんせいはひとりでうんぱんとらっくににもつをつめこんでいる。",
       "meaningId": "Seorang pria sedang mengemas barang-barang ke dalam truk pengangkut sendirian."
     },
     "collocations": [
@@ -135305,7 +135305,7 @@
     ],
     "exampleSentence": {
       "japanese": "彼の努力は、自分の為、延いては会社の為になります。",
-      "reading": "かれのどりょくは、じぶんのため、のべいてはかいしゃのためになります。",
+      "reading": "かれのどりょくは、じぶんのため、ひいてはかいしゃのためになります。",
       "meaningId": "Usahanya bermanfaat bagi dirinya, dan lebih jauh lagi bagi perusahaan."
     },
     "collocations": [
@@ -135889,7 +135889,7 @@
     ],
     "exampleSentence": {
       "japanese": "日本に於いて、この法律が決まりました。",
-      "reading": "にっぽんにおいて、このほうりつがきまりました。",
+      "reading": "にほんにおいて、このほうりつがきまりました。",
       "meaningId": "Undang-undang ini ditetapkan di Jepang."
     },
     "collocations": [
@@ -136919,7 +136919,7 @@
     ],
     "exampleSentence": {
       "japanese": "何々、これは何ですか。",
-      "reading": "なになに、これはなんですか。",
+      "reading": "どれどれ、これはなんですか。",
       "meaningId": "Mana-mana? Apa ini?"
     },
     "collocations": [
@@ -136994,7 +136994,7 @@
     ],
     "exampleSentence": {
       "japanese": "何てこった。",
-      "reading": "なにてこった。",
+      "reading": "なんてこった。",
       "meaningId": "Apa-apaan?"
     },
     "collocations": [
@@ -137094,7 +137094,7 @@
     ],
     "exampleSentence": {
       "japanese": "何なりと言って下さい。",
-      "reading": "なになりといってください。",
+      "reading": "なんなりといってください。",
       "meaningId": "Silakan katakan apa pun yang Anda inginkan."
     },
     "collocations": [
@@ -137119,7 +137119,7 @@
     ],
     "exampleSentence": {
       "japanese": "何のために？",
-      "reading": "なにのために？",
+      "reading": "なんのために？",
       "meaningId": "Untuk apa?"
     },
     "collocations": [
@@ -137350,7 +137350,7 @@
     ],
     "exampleSentence": {
       "japanese": "何時でも、遊びに来てください。",
-      "reading": "なんじでも、あそびにきてください。",
+      "reading": "いつでも、あそびにきてください。",
       "meaningId": "Silakan datang bermain kapan saja."
     },
     "collocations": [
@@ -137533,7 +137533,7 @@
     ],
     "exampleSentence": {
       "japanese": "何方が、お先ですか。",
-      "reading": "どなたが、おさきですか。",
+      "reading": "どちらが、おさきですか。",
       "meaningId": "Siapa yang duluan?"
     },
     "collocations": [
@@ -137559,7 +137559,7 @@
     ],
     "exampleSentence": {
       "japanese": "詩集から、佳句を一つ選びました。",
-      "reading": "ししゅうから、けいくをひとつえらびました。",
+      "reading": "ししゅうから、かくをひとつえらびました。",
       "meaningId": "Saya memilih satu bait puisi indah dari kumpulan puisi."
     },
     "collocations": [
@@ -137664,7 +137664,7 @@
     ],
     "exampleSentence": {
       "japanese": "お正月に、加留多をしました。",
-      "reading": "おしょうがつに、かとめたをしました。",
+      "reading": "おしょうがつに、かるたをしました。",
       "meaningId": "Saat Tahun Baru, kami bermain karuta."
     },
     "collocations": [
@@ -137821,7 +137821,7 @@
     ],
     "exampleSentence": {
       "japanese": "今日は、可成寒いです。",
-      "reading": "きょうは、かしげるさむいです。",
+      "reading": "きょうは、かなりさむいです。",
       "meaningId": "Hari ini lumayan dingin."
     },
     "collocations": [
@@ -138126,7 +138126,7 @@
     ],
     "exampleSentence": {
       "japanese": "人の命は、果ないものです。",
-      "reading": "ひとのいのちは、はてないものです。",
+      "reading": "ひとのいのちは、はかないものです。",
       "meaningId": "Hidup manusia itu rapuh dan fana."
     },
     "collocations": [
@@ -139024,7 +139024,7 @@
     ],
     "exampleSentence": {
       "japanese": "来年から日本では介護保険制度が始まるね。",
-      "reading": "らいねんからにっぽんではかいごほけんせいどがはじまるね。",
+      "reading": "らいねんからにほんではかいごほけんせいどがはじまるね。",
       "meaningId": "Sistem asuransi perawatan jangka panjang akan dimulai di Jepang tahun depan."
     },
     "tags": [
@@ -139183,7 +139183,7 @@
     ],
     "exampleSentence": {
       "japanese": "靴のひもを、解きました。",
-      "reading": "くつのひもを、ときました。",
+      "reading": "くつのひもを、ほどきました。",
       "meaningId": "Saya membuka ikatan tali sepatu."
     },
     "collocations": [
@@ -139905,7 +139905,7 @@
     ],
     "exampleSentence": {
       "japanese": "何階ですか。",
-      "reading": "なんかいですか。",
+      "reading": "なんがいですか。",
       "meaningId": "Lantai berapa itu?"
     },
     "collocations": [
@@ -140087,7 +140087,7 @@
     ],
     "exampleSentence": {
       "japanese": "彼は、私の話に外方を向きました。",
-      "reading": "かれは、わたしのはなしにそとかたをむきました。",
+      "reading": "かれは、わたしのはなしにそっぽをむきました。",
       "meaningId": "Dia memalingkan muka dari pembicaraan saya."
     },
     "collocations": [
@@ -140907,7 +140907,7 @@
     ],
     "exampleSentence": {
       "japanese": "芳田氏は山形県に生まれ、日本大学芸術学部油絵科を卒業する。",
-      "reading": "よしだしはやまがたけんにうまれ、にっぽんだいがくげいじゅつがくぶあぶらえかをそつぎょうする。",
+      "reading": "よしだしはやまがたけんにうまれ、にほんだいがくげいじゅつがくぶあぶらえかをそつぎょうする。",
       "meaningId": "Bapak Yoshida lahir di Prefektur Yamagata dan lulus dari Sekolah Tinggi Seni Universitas Nihon, Departemen Lukisan Cat Minyak."
     },
     "collocations": [
@@ -141832,7 +141832,7 @@
     ],
     "exampleSentence": {
       "japanese": "彼は十分その職に堪える。",
-      "reading": "かれはじゅうふんそのしょくにこたえる。",
+      "reading": "かれはじゅうぶんそのしょくにたえる。",
       "meaningId": "Dia sangat cocok untuk pekerjaan itu."
     },
     "collocations": [
@@ -142297,7 +142297,7 @@
     ],
     "exampleSentence": {
       "japanese": "これは日本独特の慣習だ。",
-      "reading": "これはにっぽんどくとくのかんしゅうだ。",
+      "reading": "これはにほんどくとくのかんしゅうだ。",
       "meaningId": "Ini adalah kebiasaan unik di Jepang."
     },
     "collocations": [
@@ -143143,7 +143143,7 @@
     ],
     "exampleSentence": {
       "japanese": "お二人の間柄は？",
-      "reading": "おににんのあいだがらは？",
+      "reading": "おふたりのあいだがらは？",
       "meaningId": "Apa hubungan kalian berdua?"
     },
     "collocations": [
@@ -143371,7 +143371,7 @@
     ],
     "exampleSentence": {
       "japanese": "外から帰ったら、含嗽をします。",
-      "reading": "そとからかえったら、がんそうをします。",
+      "reading": "そとからかえったら、うがいをします。",
       "meaningId": "Setelah pulang dari luar, saya berkumur."
     },
     "collocations": [
@@ -144460,7 +144460,7 @@
     ],
     "exampleSentence": {
       "japanese": "彼は、気障な言い方をします。",
-      "reading": "かれは、きさわないいかたをします。",
+      "reading": "かれは、きざないいかたをします。",
       "meaningId": "Dia berbicara dengan gaya yang sok keren."
     },
     "collocations": [
@@ -144486,7 +144486,7 @@
     ],
     "exampleSentence": {
       "japanese": "彼は、外国の文化に気触れています。",
-      "reading": "かれは、がいこくのぶんかにきふれています。",
+      "reading": "かれは、がいこくのぶんかにかぶれています。",
       "meaningId": "Dia terpengaruh habis oleh budaya asing."
     },
     "collocations": [
@@ -144719,7 +144719,7 @@
     ],
     "exampleSentence": {
       "japanese": "この製品は、日本の規格に合っています。",
-      "reading": "このせいひんは、にっぽんのきかくにあっています。",
+      "reading": "このせいひんは、にほんのきかくにあっています。",
       "meaningId": "Produk ini sesuai dengan standar Jepang."
     },
     "collocations": [
@@ -144977,7 +144977,7 @@
     ],
     "exampleSentence": {
       "japanese": "貴い経験を、ありがとうございました。",
-      "reading": "とうといけいけんを、ありがとうございました。",
+      "reading": "たっといけいけんを、ありがとうございました。",
       "meaningId": "Terima kasih atas pengalaman yang berharga."
     },
     "collocations": [
@@ -145003,7 +145003,7 @@
     ],
     "exampleSentence": {
       "japanese": "貴女は、子供好きですね。",
-      "reading": "きじょは、こどもすきですね。",
+      "reading": "あなたは、こどもずきですね。",
       "meaningId": "Anda menyukai anak-anak, bukan?"
     },
     "collocations": [
@@ -145570,7 +145570,7 @@
     ],
     "exampleSentence": {
       "japanese": "急に、吃逆が止まらなくなりました。",
-      "reading": "きゅうに、どもぎゃくがとまらなくなりました。",
+      "reading": "きゅうに、しゃっくりがとまらなくなりました。",
       "meaningId": "Tiba-tiba cegukan saya tidak mau berhenti."
     },
     "collocations": [
@@ -145672,7 +145672,7 @@
     ],
     "exampleSentence": {
       "japanese": "この映画は、詰らないです。",
-      "reading": "このえいがは、なじらないです。",
+      "reading": "このえいがは、つまらないです。",
       "meaningId": "Film ini membosankan."
     },
     "collocations": [
@@ -145801,7 +145801,7 @@
     ],
     "exampleSentence": {
       "japanese": "川を、上流へ逆上ります。",
-      "reading": "かわを、じょうりゅうへぎゃくのぼります。",
+      "reading": "かわを、じょうりゅうへさかのぼります。",
       "meaningId": "Saya menyusuri sungai ke arah hulu."
     },
     "collocations": [
@@ -146442,7 +146442,7 @@
     ],
     "exampleSentence": {
       "japanese": "旧事を、今さら言っても仕方がありません。",
-      "reading": "きゅうことを、いまさらいってもしかたがありません。",
+      "reading": "くじを、いまさらいってもしかたがありません。",
       "meaningId": "Tidak ada gunanya mengungkit kejadian lama sekarang."
     },
     "collocations": [
@@ -146648,7 +146648,7 @@
     ],
     "exampleSentence": {
       "japanese": "彼は暖炉用に丸太を鋸で切った。",
-      "reading": "かれはだんろようにまるたをのこできった。",
+      "reading": "かれはだんろようにまるたをのこぎりできった。",
       "meaningId": "Dia menggergaji kayu untuk perapian."
     },
     "collocations": [
@@ -146726,7 +146726,7 @@
     ],
     "exampleSentence": {
       "japanese": "日本は戦後繁栄を享受している。",
-      "reading": "にっぽんはせんごはんえいをきょうじゅしている。",
+      "reading": "にほんはせんごはんえいをきょうじゅしている。",
       "meaningId": "Jepang menikmati kemakmuran setelah perang."
     },
     "collocations": [
@@ -146906,7 +146906,7 @@
     ],
     "exampleSentence": {
       "japanese": "人と自然が、共存する社会を目指します。",
-      "reading": "ひととしぜんが、きょうぞんするしゃかいをめざします。",
+      "reading": "ひととしぜんが、きょうそんするしゃかいをめざします。",
       "meaningId": "Kami menargetkan masyarakat tempat manusia dan alam hidup berdampingan."
     },
     "collocations": [
@@ -147779,7 +147779,7 @@
     ],
     "exampleSentence": {
       "japanese": "脅かすなよ。",
-      "reading": "おびやかすなよ。",
+      "reading": "おどかすなよ。",
       "meaningId": "Jangan mengancamku."
     },
     "collocations": [
@@ -148015,7 +148015,7 @@
     ],
     "exampleSentence": {
       "japanese": "彼は驚異の念で一杯だった。",
-      "reading": "かれはきょういのねんでいちはいだった。",
+      "reading": "かれはきょういのねんでいっぱいだった。",
       "meaningId": "Dia penuh rasa takjub."
     },
     "collocations": [
@@ -148192,7 +148192,7 @@
     ],
     "exampleSentence": {
       "japanese": "日本の企業業績は改善した。",
-      "reading": "にっぽんのきぎょうぎょうせきはかいぜんした。",
+      "reading": "にほんのきぎょうぎょうせきはかいぜんした。",
       "meaningId": "Kinerja perusahaan Jepang membaik."
     },
     "collocations": [
@@ -148401,7 +148401,7 @@
     ],
     "exampleSentence": {
       "japanese": "将棋では、玉を取られたら負けです。",
-      "reading": "しょうぎでは、たまをとられたらまけです。",
+      "reading": "しょうぎでは、ぎょくをとられたらまけです。",
       "meaningId": "Dalam shogi, kalau raja (gyoku) diambil maka kalah."
     },
     "collocations": [
@@ -148585,7 +148585,7 @@
     ],
     "exampleSentence": {
       "japanese": "勤労によって日本は今日の日本になった。",
-      "reading": "きんろうによってにっぽんはきょうのにっぽんになった。",
+      "reading": "きんろうによってにほんはきょうのにほんになった。",
       "meaningId": "Melalui kerja keras, Jepang menjadi seperti sekarang ini."
     },
     "collocations": [
@@ -148995,7 +148995,7 @@
     ],
     "exampleSentence": {
       "japanese": "この点については意見が区々に分かれている。",
-      "reading": "このてんについてはいけんがくくにわかれている。",
+      "reading": "このてんについてはいけんがまちまちにわかれている。",
       "meaningId": "Pendapat terbagi mengenai hal ini."
     },
     "collocations": [
@@ -149811,7 +149811,7 @@
     ],
     "exampleSentence": {
       "japanese": "二人は、結婚を契りました。",
-      "reading": "ににんは、けっこんをちぎりました。",
+      "reading": "ふたりは、けっこんをちぎりました。",
       "meaningId": "Keduanya berjanji akan menikah."
     },
     "collocations": [
@@ -150132,7 +150132,7 @@
   "kotoba_n1_1053": {
     "id": "kotoba_n1_1053",
     "word": "経つ",
-    "reading": "へる",
+    "reading": "たつ",
     "meaningId": "Berlalu (waktu)",
     "meaningEn": "to pass; to elapse; to experience",
     "meaningJa": "時が過ぎる。",
@@ -150142,8 +150142,8 @@
       "経"
     ],
     "exampleSentence": {
-      "japanese": "あの日から、五年が経ました。",
-      "reading": "あのひから、ごねんがへました。",
+      "japanese": "あの日から、五年が経ちました。",
+      "reading": "あのひから、ごねんがたちました。",
       "meaningId": "Lima tahun telah berlalu sejak hari itu."
     },
     "collocations": [
@@ -150169,7 +150169,7 @@
     ],
     "exampleSentence": {
       "japanese": "事の経緯はこうです。",
-      "reading": "ことのけいいはこうです。",
+      "reading": "ことのいきさつはこうです。",
       "meaningId": "Begini kejadiannya."
     },
     "collocations": [
@@ -151576,7 +151576,7 @@
     ],
     "exampleSentence": {
       "japanese": "彼は、ずっとしゃべり捲っています。",
-      "reading": "かれは、ずっとしゃべりめくっています。",
+      "reading": "かれは、ずっとしゃべりまくっています。",
       "meaningId": "Dia terus-menerus bicara tanpa henti."
     },
     "collocations": [
@@ -152941,7 +152941,7 @@
     ],
     "exampleSentence": {
       "japanese": "努力の現われが、結果に出ました。",
-      "reading": "どりょくのげんわれが、けっかにでました。",
+      "reading": "どりょくのあらわれが、けっかにでました。",
       "meaningId": "Wujud dari usaha itu tampak pada hasilnya."
     },
     "collocations": [
@@ -153916,7 +153916,7 @@
     ],
     "exampleSentence": {
       "japanese": "呉れ呉れも、お体に気をつけてください。",
-      "reading": "くれくれも、おからだにきをつけてください。",
+      "reading": "くれぐれも、おからだにきをつけてください。",
       "meaningId": "Sungguh-sungguh, jagalah kesehatan Anda."
     },
     "collocations": [
@@ -154046,7 +154046,7 @@
     ],
     "exampleSentence": {
       "japanese": "すみません、御手洗いはどこですか。",
-      "reading": "すみません、ごてあらいはどこですか。",
+      "reading": "すみません、おてあらいはどこですか。",
       "meaningId": "Permisi, toilet di mana?"
     },
     "collocations": [
@@ -155717,7 +155717,7 @@
     ],
     "exampleSentence": {
       "japanese": "甲の薬は乙の毒。",
-      "reading": "かぶとのくすりはおつのどく。",
+      "reading": "こうのくすりはおつのどく。",
       "meaningId": "Obat si A adalah racun si B."
     },
     "collocations": [
@@ -155923,7 +155923,7 @@
     ],
     "exampleSentence": {
       "japanese": "三行目を、読んでください。",
-      "reading": "さんこうめを、よんでください。",
+      "reading": "さんぎょうめを、よんでください。",
       "meaningId": "Tolong baca baris ketiga."
     },
     "collocations": [
@@ -156312,7 +156312,7 @@
     ],
     "exampleSentence": {
       "japanese": "彼は自発的に降伏した。",
-      "reading": "かれはじはつてきにごうぶくした。",
+      "reading": "かれはじはつてきにこうふくした。",
       "meaningId": "Dia menyerah secara sukarela."
     },
     "collocations": [
@@ -157288,7 +157288,7 @@
     ],
     "exampleSentence": {
       "japanese": "先生に「今日は」と、挨拶しました。",
-      "reading": "せんせいに「きょうは」と、あいさつしました。",
+      "reading": "せんせいに「こんにちは」と、あいさつしました。",
       "meaningId": "Saya menyapa guru dengan \"Konnichiwa\"."
     },
     "collocations": [
@@ -157597,7 +157597,7 @@
     ],
     "exampleSentence": {
       "japanese": "この映画は、些ともおもしろくないです。",
-      "reading": "このえいがは、すこしもおもしろくないです。",
+      "reading": "このえいがは、ちっともおもしろくないです。",
       "meaningId": "Film ini sama sekali tidak menarik."
     },
     "collocations": [
@@ -157674,7 +157674,7 @@
     ],
     "exampleSentence": {
       "japanese": "この問題は、左程難しくありません。",
-      "reading": "このもんだいは、ひだりほどむずかしくありません。",
+      "reading": "このもんだいは、さほどむずかしくありません。",
       "meaningId": "Soal ini tidak begitu sulit."
     },
     "collocations": [
@@ -158629,7 +158629,7 @@
     ],
     "exampleSentence": {
       "japanese": "この細工は、とても細かいです。",
-      "reading": "このざいくは、とてもこまかいです。",
+      "reading": "このさいくは、とてもこまかいです。",
       "meaningId": "Kerajinan ini sangat halus."
     },
     "collocations": [
@@ -159012,7 +159012,7 @@
     ],
     "exampleSentence": {
       "japanese": "安全柵はあるか？",
-      "reading": "あんぜんしがらみはあるか？",
+      "reading": "あんぜんさくはあるか？",
       "meaningId": "Apakah ada pagar pengaman?"
     },
     "collocations": [
@@ -159240,7 +159240,7 @@
     ],
     "exampleSentence": {
       "japanese": "二人は、すれ違いで会えませんでした。",
-      "reading": "ににんは、すれちがいであえませんでした。",
+      "reading": "ふたりは、すれちがいであえませんでした。",
       "meaningId": "Keduanya saling berselisih jalan sehingga tidak bertemu."
     },
     "collocations": [
@@ -159681,7 +159681,7 @@
     ],
     "exampleSentence": {
       "japanese": "お祭りで、子どもにお菓子を散蒔きました。",
-      "reading": "おまつりで、こどもにおかしをちまきました。",
+      "reading": "おまつりで、こどもにおかしをばらまきました。",
       "meaningId": "Di festival, mereka menebarkan camilan untuk anak-anak."
     },
     "collocations": [
@@ -160537,7 +160537,7 @@
     ],
     "exampleSentence": {
       "japanese": "私は使用人の一人をくびにした。",
-      "reading": "わたしはしようにんのいちにんをくびにした。",
+      "reading": "わたしはしようにんのひとりをくびにした。",
       "meaningId": "Saya memecat salah satu pelayan."
     },
     "collocations": [
@@ -160818,7 +160818,7 @@
     ],
     "exampleSentence": {
       "japanese": "毎週日曜日に、市が立ちます。",
-      "reading": "まいしゅうにちようびに、しがたちます。",
+      "reading": "まいしゅうにちようびに、いちがたちます。",
       "meaningId": "Pasar digelar setiap hari Minggu."
     },
     "collocations": [
@@ -161419,7 +161419,7 @@
     ],
     "exampleSentence": {
       "japanese": "氏より育ち。",
-      "reading": "しよりそだち。",
+      "reading": "うじよりそだち。",
       "meaningId": "Lingkungan lebih menentukan daripada keturunan."
     },
     "collocations": [
@@ -162118,7 +162118,7 @@
     ],
     "exampleSentence": {
       "japanese": "二人の兄弟は、性格が似通っています。",
-      "reading": "ににんのきょうだいは、せいかくがにかよっています。",
+      "reading": "ふたりのきょうだいは、せいかくがにかよっています。",
       "meaningId": "Kedua bersaudara itu wataknya sangat mirip."
     },
     "collocations": [
@@ -162948,7 +162948,7 @@
     ],
     "exampleSentence": {
       "japanese": "地球は、一日に一回自転します。",
-      "reading": "ちきゅうは、いちにちにいちかいじてんします。",
+      "reading": "ちきゅうは、いちにちにいっかいじてんします。",
       "meaningId": "Bumi berotasi sekali sehari."
     },
     "collocations": [
@@ -163155,7 +163155,7 @@
     ],
     "exampleSentence": {
       "japanese": "七日に、旅行へ行きます。",
-      "reading": "ななにちに、りょこうへいきます。",
+      "reading": "なぬかに、りょこうへいきます。",
       "meaningId": "Saya pergi bepergian pada tanggal tujuh."
     },
     "collocations": [
@@ -163335,7 +163335,7 @@
     ],
     "exampleSentence": {
       "japanese": "おせんべいが、湿気ってしまいました。",
-      "reading": "おせんべいが、しっけってしまいました。",
+      "reading": "おせんべいが、しけってしまいました。",
       "meaningId": "Senbei-nya jadi lembek karena lembap."
     },
     "collocations": [
@@ -163437,7 +163437,7 @@
     ],
     "exampleSentence": {
       "japanese": "実を言うと、行きたくありません。",
-      "reading": "みをいうと、いきたくありません。",
+      "reading": "じつをいうと、いきたくありません。",
       "meaningId": "Sebenarnya, saya tidak mau pergi."
     },
     "collocations": [
@@ -164254,7 +164254,7 @@
     ],
     "exampleSentence": {
       "japanese": "日本では米が主食です。",
-      "reading": "にっぽんではこめがしゅしょくです。",
+      "reading": "にほんではこめがしゅしょくです。",
       "meaningId": "Nasi adalah makanan pokok di Jepang."
     },
     "tags": [
@@ -165247,7 +165247,7 @@
     ],
     "exampleSentence": {
       "japanese": "お手数ですが、ご確認ください。",
-      "reading": "おてかずですが、ごかくにんください。",
+      "reading": "おてすうですが、ごかくにんください。",
       "meaningId": "Maaf merepotkan, mohon dicek."
     },
     "collocations": [
@@ -165890,7 +165890,7 @@
     ],
     "exampleSentence": {
       "japanese": "言論の自由は社会に多くの利益を授ける。",
-      "reading": "げんろんのじゆうはしゃかいにおおくのりえきをさづける。",
+      "reading": "げんろんのじゆうはしゃかいにおおくのりえきをさずける。",
       "meaningId": "Kebebasan berpendapat memberikan banyak manfaat bagi masyarakat."
     },
     "collocations": [
@@ -166824,7 +166824,7 @@
     ],
     "exampleSentence": {
       "japanese": "獣のように、吠えました。",
-      "reading": "ししのように、ほえました。",
+      "reading": "けだもののように、ほえました。",
       "meaningId": "Dia meraung seperti binatang buas."
     },
     "collocations": [
@@ -166849,7 +166849,7 @@
     ],
     "exampleSentence": {
       "japanese": "美は皮一重。",
-      "reading": "びはかわいちじゅう。",
+      "reading": "びはかわひとえ。",
       "meaningId": "Kecantikan hanyalah kulit."
     },
     "collocations": [
@@ -166924,7 +166924,7 @@
     ],
     "exampleSentence": {
       "japanese": "日本では、礼儀を重んずる。",
-      "reading": "にっぽんでは、れいぎをおもんずる。",
+      "reading": "にほんでは、れいぎをおもんずる。",
       "meaningId": "Di Jepang, sopan santun dihargai."
     },
     "collocations": [
@@ -167104,7 +167104,7 @@
     ],
     "exampleSentence": {
       "japanese": "二人の距離が、縮まりました。",
-      "reading": "ににんのきょりが、ちぢまりました。",
+      "reading": "ふたりのきょりが、ちぢまりました。",
       "meaningId": "Jarak antara kedua orang itu menjadi dekat."
     },
     "collocations": [
@@ -167578,7 +167578,7 @@
     ],
     "exampleSentence": {
       "japanese": "背中に、大きな出来物ができました。",
-      "reading": "せなかに、おおきなできぶつができました。",
+      "reading": "せなかに、おおきなできものができました。",
       "meaningId": "Muncul bisul besar di punggung saya."
     },
     "collocations": [
@@ -167990,7 +167990,7 @@
     ],
     "exampleSentence": {
       "japanese": "この天地の間にはな、所謂哲学の思いも及ばぬ大事があるわい。",
-      "reading": "このてんちのまにはな、ところいいてつがくのおもいもおよばぬだいじがあるわい。",
+      "reading": "このてんちのあいだにはな、いわゆるてつがくのおもいもおよばぬだいじがあるわい。",
       "meaningId": "Antara langit dan bumi, ada hal penting yang bahkan tidak dapat dibayangkan oleh apa yang disebut filsafat."
     },
     "collocations": [
@@ -170662,7 +170662,7 @@
     ],
     "exampleSentence": {
       "japanese": "この織は、とても細かいです。",
-      "reading": "このおは、とてもこまかいです。",
+      "reading": "このおりは、とてもこまかいです。",
       "meaningId": "Tenunan ini sangat halus."
     },
     "collocations": [
@@ -171256,7 +171256,7 @@
     ],
     "exampleSentence": {
       "japanese": "心中お察し致します。",
-      "reading": "しんじゅうおさっしいたします。",
+      "reading": "しんちゅうおさっしいたします。",
       "meaningId": "Terimalah belasungkawa tulus saya."
     },
     "collocations": [
@@ -171461,7 +171461,7 @@
     ],
     "exampleSentence": {
       "japanese": "大本教は日本の新興宗教の一つに数えられる。",
-      "reading": "おおもときょうはにっぽんのしんこうしゅうきょうのひとつにかぞえられる。",
+      "reading": "おおもときょうはにほんのしんこうしゅうきょうのひとつにかぞえられる。",
       "meaningId": "Buddhisme Oomoto dianggap sebagai salah satu agama baru di Jepang."
     },
     "collocations": [
@@ -171798,7 +171798,7 @@
     ],
     "exampleSentence": {
       "japanese": "トムはリンゴを真っ二つに切った。",
-      "reading": "とむはりんごをまっふたつにきった。",
+      "reading": "とむはりんごをまっぷたつにきった。",
       "meaningId": "Tom memotong apel menjadi dua."
     },
     "collocations": [
@@ -171823,7 +171823,7 @@
     ],
     "exampleSentence": {
       "japanese": "真にありがとうございます。",
-      "reading": "しんにありがとうございます。",
+      "reading": "まことにありがとうございます。",
       "meaningId": "Terima kasih sebesar-besarnya."
     },
     "collocations": [
@@ -172367,7 +172367,7 @@
     ],
     "exampleSentence": {
       "japanese": "身体、硬いね。",
-      "reading": "しんたい、かたいね。",
+      "reading": "からだ、かたいね。",
       "meaningId": "Tubuhmu keras."
     },
     "collocations": [
@@ -172675,7 +172675,7 @@
     ],
     "exampleSentence": {
       "japanese": "日本人の友達が、できました。",
-      "reading": "にっぽんじんのともだちが、できました。",
+      "reading": "にほんじんのともだちが、できました。",
       "meaningId": "Saya punya teman orang Jepang."
     },
     "collocations": [
@@ -174396,7 +174396,7 @@
     ],
     "exampleSentence": {
       "japanese": "言葉を、正しく使いましょう。",
-      "reading": "ことばを、まさしくつかいましょう。",
+      "reading": "ことばを、ただしくつかいましょう。",
       "meaningId": "Mari gunakan kata dengan benar."
     },
     "collocations": [
@@ -175689,7 +175689,7 @@
     ],
     "exampleSentence": {
       "japanese": "電話の声が、跡切れました。",
-      "reading": "でんわのこえが、あときれました。",
+      "reading": "でんわのこえが、とぎれました。",
       "meaningId": "Suara telepon terputus-putus."
     },
     "collocations": [
@@ -176127,7 +176127,7 @@
     ],
     "exampleSentence": {
       "japanese": "この節は、とても長いです。",
-      "reading": "このふしは、とてもながいです。",
+      "reading": "このせつは、とてもながいです。",
       "meaningId": "Bagian ini sangat panjang."
     },
     "collocations": [
@@ -176433,7 +176433,7 @@
     ],
     "exampleSentence": {
       "japanese": "先先月、友達と旅行に行きました。",
-      "reading": "さきせんげつ、ともだちとりょこうにいきました。",
+      "reading": "せんせんげつ、ともだちとりょこうにいきました。",
       "meaningId": "Dua bulan lalu, saya bepergian bersama teman."
     },
     "collocations": [
@@ -176459,7 +176459,7 @@
     ],
     "exampleSentence": {
       "japanese": "先先週、風邪をひきました。",
-      "reading": "さきせんしゅう、かぜをひきました。",
+      "reading": "せんせんしゅう、かぜをひきました。",
       "meaningId": "Dua minggu lalu, saya terkena flu."
     },
     "collocations": [
@@ -176718,7 +176718,7 @@
     ],
     "exampleSentence": {
       "japanese": "昔、この地で戦がありました。",
-      "reading": "むかし、このちでせんがありました。",
+      "reading": "むかし、このちでいくさがありました。",
       "meaningId": "Dahulu ada perang di tanah ini."
     },
     "collocations": [
@@ -177410,7 +177410,7 @@
     ],
     "exampleSentence": {
       "japanese": "朝ごはんを食べました。然うして、学校へ行きました。",
-      "reading": "あさごはんをたべました。しかうして、がっこうへいきました。",
+      "reading": "あさごはんをたべました。そうして、がっこうへいきました。",
       "meaningId": "Saya sarapan. Lalu, saya pergi ke sekolah."
     },
     "collocations": [
@@ -177460,7 +177460,7 @@
     ],
     "exampleSentence": {
       "japanese": "朝ご飯を食べて、然して学校へ行きました。",
-      "reading": "あさごはんをたべて、しかしてがっこうへいきました。",
+      "reading": "あさごはんをたべて、そしてがっこうへいきました。",
       "meaningId": "Saya sarapan, lalu pergi ke sekolah."
     },
     "collocations": [
@@ -177510,7 +177510,7 @@
     ],
     "exampleSentence": {
       "japanese": "然も楽しそうに、笑っていました。",
-      "reading": "しかもたのしそうに、わらっていました。",
+      "reading": "さもたのしそうに、わらっていました。",
       "meaningId": "Dia tertawa seolah-olah sangat senang."
     },
     "collocations": [
@@ -177714,7 +177714,7 @@
     ],
     "exampleSentence": {
       "japanese": "安全の確認を、疎かにしてはいけません。",
-      "reading": "あんぜんのかくにんを、おろかにしてはいけません。",
+      "reading": "あんぜんのかくにんを、おろそかにしてはいけません。",
       "meaningId": "Tidak boleh mengabaikan pemeriksaan keselamatan."
     },
     "collocations": [
@@ -178383,7 +178383,7 @@
     ],
     "exampleSentence": {
       "japanese": "早急な処置が必要だ。",
-      "reading": "そうきゅうなしょちがひつようだ。",
+      "reading": "さっきゅうなしょちがひつようだ。",
       "meaningId": "Diperlukan tindakan segera."
     },
     "collocations": [
@@ -178458,7 +178458,7 @@
     ],
     "exampleSentence": {
       "japanese": "英雄相知る。",
-      "reading": "えいゆうしょうしる。",
+      "reading": "えいゆうあいしる。",
       "meaningId": "Para pahlawan saling mengenal."
     },
     "collocations": [
@@ -179764,7 +179764,7 @@
     ],
     "exampleSentence": {
       "japanese": "愛より尊い物はない。",
-      "reading": "あいよりとうといものはない。",
+      "reading": "あいよりたっといものはない。",
       "meaningId": "Tidak ada yang lebih berharga dari cinta."
     },
     "collocations": [
@@ -179789,7 +179789,7 @@
     ],
     "exampleSentence": {
       "japanese": "我々は時間を守ることを尊ぶ。",
-      "reading": "われわれはじかんをまもることをとうとぶ。",
+      "reading": "われわれはじかんをまもることをたっとぶ。",
       "meaningId": "Kami menghargai ketepatan waktu."
     },
     "collocations": [
@@ -180360,7 +180360,7 @@
     ],
     "exampleSentence": {
       "japanese": "彼は、知らない体を装いました。",
-      "reading": "かれは、しらないからだをよそおいました。",
+      "reading": "かれは、しらないていをよそおいました。",
       "meaningId": "Dia berpura-pura tidak tahu."
     },
     "collocations": [
@@ -181011,7 +181011,7 @@
     ],
     "exampleSentence": {
       "japanese": "風邪で、体が怠いです。",
-      "reading": "かぜで、からだがおこたいです。",
+      "reading": "かぜで、からだがだるいです。",
       "meaningId": "Karena flu, badan saya terasa lesu."
     },
     "collocations": [
@@ -181443,7 +181443,7 @@
     ],
     "exampleSentence": {
       "japanese": "私たちは代わる代わる寝た。",
-      "reading": "わたしたちはかわるかわるねた。",
+      "reading": "わたしたちはかわるがわるねた。",
       "meaningId": "Kami tidur bergantian."
     },
     "collocations": [
@@ -182068,7 +182068,7 @@
     ],
     "exampleSentence": {
       "japanese": "洗濯のあとで、水で濯ぎます。",
-      "reading": "せんたくのあとで、みずでそそぎます。",
+      "reading": "せんたくのあとで、みずですすぎます。",
       "meaningId": "Setelah mencuci, saya membilas dengan air."
     },
     "collocations": [
@@ -183069,7 +183069,7 @@
     ],
     "exampleSentence": {
       "japanese": "変数の値を、求めます。",
-      "reading": "へんすうのねを、もとめます。",
+      "reading": "へんすうのあたいを、もとめます。",
       "meaningId": "Saya mencari nilai variabel."
     },
     "collocations": [
@@ -183379,7 +183379,7 @@
     ],
     "exampleSentence": {
       "japanese": "縄に、弛みがあります。",
-      "reading": "なわに、ゆるみがあります。",
+      "reading": "なわに、たるみがあります。",
       "meaningId": "Tali itu ada kendurnya."
     },
     "collocations": [
@@ -184588,7 +184588,7 @@
     ],
     "exampleSentence": {
       "japanese": "山から、丁々と木を切る音が聞こえます。",
-      "reading": "やまから、ちょうちょうときをきるおとがきこえます。",
+      "reading": "やまから、とうとうときをきるおとがきこえます。",
       "meaningId": "Dari gunung terdengar bunyi tok-tok orang menebang kayu."
     },
     "collocations": [
@@ -185227,7 +185227,7 @@
     ],
     "exampleSentence": {
       "japanese": "村の長に、会いました。",
-      "reading": "むらのちょうに、あいました。",
+      "reading": "むらのおさに、あいました。",
       "meaningId": "Saya bertemu kepala desa."
     },
     "collocations": [
@@ -185973,7 +185973,7 @@
     ],
     "exampleSentence": {
       "japanese": "彼は、日本通です。",
-      "reading": "かれは、にっぽんどおりです。",
+      "reading": "かれは、にほんつうです。",
       "meaningId": "Dia ahli soal Jepang."
     },
     "collocations": [
@@ -186151,7 +186151,7 @@
     ],
     "exampleSentence": {
       "japanese": "洗濯物を、ひもに吊るします。",
-      "reading": "せんたくぶつを、ひもにつるします。",
+      "reading": "せんたくものを、ひもにつるします。",
       "meaningId": "Saya menjemur cucian pada tali."
     },
     "collocations": [
@@ -187908,7 +187908,7 @@
     ],
     "exampleSentence": {
       "japanese": "兎に角、やってみましょう。",
-      "reading": "うさぎにかく、やってみましょう。",
+      "reading": "とにかく、やってみましょう。",
       "meaningId": "Bagaimanapun, mari kita coba."
     },
     "collocations": [
@@ -187934,7 +187934,7 @@
     ],
     "exampleSentence": {
       "japanese": "冗談は、兎も角、本当の話をしましょう。",
-      "reading": "じょうだんは、うさぎもすみ、ほんとうのはなしをしましょう。",
+      "reading": "じょうだんは、ともかく、ほんとうのはなしをしましょう。",
       "meaningId": "Lelucon ditinggalkan dulu, mari bicara yang sebenarnya."
     },
     "collocations": [
@@ -188473,7 +188473,7 @@
     ],
     "exampleSentence": {
       "japanese": "彼は嫌な奴だ。",
-      "reading": "かれはいやなやっこだ。",
+      "reading": "かれはいやなやつだ。",
       "meaningId": "Dia brengsek."
     },
     "collocations": [
@@ -188779,7 +188779,7 @@
     ],
     "exampleSentence": {
       "japanese": "窓に、灯がともっています。",
-      "reading": "まどに、あかりがともっています。",
+      "reading": "まどに、ともしびがともっています。",
       "meaningId": "Lampu menyala di jendela."
     },
     "collocations": [
@@ -189138,7 +189138,7 @@
     ],
     "exampleSentence": {
       "japanese": "二人は同じ結論に到達した。",
-      "reading": "ににんはおなじけつろんにとうたつした。",
+      "reading": "ふたりはおなじけつろんにとうたつした。",
       "meaningId": "Mereka berdua mencapai kesimpulan yang sama."
     },
     "collocations": [
@@ -190348,7 +190348,7 @@
     ],
     "exampleSentence": {
       "japanese": "これは日本特有の習慣だ。",
-      "reading": "これはにっぽんとくゆうのしゅうかんだ。",
+      "reading": "これはにほんとくゆうのしゅうかんだ。",
       "meaningId": "Ini adalah kebiasaan unik di Jepang."
     },
     "collocations": [
@@ -190995,7 +190995,7 @@
     ],
     "exampleSentence": {
       "japanese": "二人は結婚した。",
-      "reading": "ににんはけっこんした。",
+      "reading": "ふたりはけっこんした。",
       "meaningId": "Keduanya menikah."
     },
     "collocations": [
@@ -191046,7 +191046,7 @@
     ],
     "exampleSentence": {
       "japanese": "彼女は肉親の一人を失った。",
-      "reading": "かのじょはにくしんのいちにんをうしなった。",
+      "reading": "かのじょはにくしんのひとりをうしなった。",
       "meaningId": "Dia kehilangan salah satu anggota keluarga dekatnya."
     },
     "collocations": [
@@ -191516,7 +191516,7 @@
     ],
     "exampleSentence": {
       "japanese": "如何して、遅れたのですか。",
-      "reading": "いかして、おくれたのですか。",
+      "reading": "どうして、おくれたのですか。",
       "meaningId": "Kenapa Anda terlambat?"
     },
     "collocations": [
@@ -191542,7 +191542,7 @@
     ],
     "exampleSentence": {
       "japanese": "如何しても、この仕事を終わらせたいです。",
-      "reading": "いかしても、このしごとをおわらせたいです。",
+      "reading": "どうしても、このしごとをおわらせたいです。",
       "meaningId": "Bagaimanapun, saya ingin menyelesaikan pekerjaan ini."
     },
     "collocations": [
@@ -192910,7 +192910,7 @@
     ],
     "exampleSentence": {
       "japanese": "学校はプールの水を月一回排水する。",
-      "reading": "がっこうはぷーるのみずをつきいちかいはいすいする。",
+      "reading": "がっこうはぷーるのみずをつきいっかいはいすいする。",
       "meaningId": "Sekolah menguras kolam sebulan sekali."
     },
     "collocations": [
@@ -193895,7 +193895,7 @@
     ],
     "exampleSentence": {
       "japanese": "このおもちゃは、発条で動きます。",
-      "reading": "このおもちゃは、はつじょうでうごきます。",
+      "reading": "このおもちゃは、ばねでうごきます。",
       "meaningId": "Mainan ini bergerak dengan pegas."
     },
     "collocations": [
@@ -194494,7 +194494,7 @@
     ],
     "exampleSentence": {
       "japanese": "斑の犬を、飼っています。",
-      "reading": "むらのいぬを、かっています。",
+      "reading": "ぶちのいぬを、かっています。",
       "meaningId": "Saya memelihara anjing belang."
     },
     "collocations": [
@@ -194877,7 +194877,7 @@
     ],
     "exampleSentence": {
       "japanese": "彼女と、彼此話しました。",
-      "reading": "かのじょと、ひしはなしました。",
+      "reading": "かのじょと、あれこれはなしました。",
       "meaningId": "Saya berbincang ini-itu dengannya."
     },
     "collocations": [
@@ -195111,7 +195111,7 @@
     ],
     "exampleSentence": {
       "japanese": "先進国の中では日本だけがイタリアよりも高齢者の人口比率が高い。",
-      "reading": "せんしんこくのなかではにっぽんだけがいたりあよりもこうれいしゃのじんこうひりつがたかい。",
+      "reading": "せんしんこくのなかではにほんだけがいたりあよりもこうれいしゃのじんこうひりつがたかい。",
       "meaningId": "Di antara negara-negara maju, hanya Jepang yang memiliki proporsi penduduk lanjut usia lebih tinggi dibandingkan Italia."
     },
     "collocations": [
@@ -195724,7 +195724,7 @@
     ],
     "exampleSentence": {
       "japanese": "犬が一匹欲しい。",
-      "reading": "いぬがいちひきほしい。",
+      "reading": "いぬがいっぴきほしい。",
       "meaningId": "Saya ingin seekor anjing."
     },
     "collocations": [
@@ -196397,7 +196397,7 @@
     ],
     "exampleSentence": {
       "japanese": "４は日本では不吉な数字だ。",
-      "reading": "４はにっぽんではふきつなすうじだ。",
+      "reading": "４はにほんではふきつなすうじだ。",
       "meaningId": "4 adalah angka sial di Jepang."
     },
     "collocations": [
@@ -196423,7 +196423,7 @@
     ],
     "exampleSentence": {
       "japanese": "日本経済は不況である。",
-      "reading": "にっぽんけいざいはふきょうである。",
+      "reading": "にほんけいざいはふきょうである。",
       "meaningId": "Perekonomian Jepang sedang dalam resesi."
     },
     "collocations": [
@@ -196612,7 +196612,7 @@
     ],
     "exampleSentence": {
       "japanese": "不図、昔のことを思い出しました。",
-      "reading": "ふず、むかしのことをおもいだしました。",
+      "reading": "ふと、むかしのことをおもいだしました。",
       "meaningId": "Tiba-tiba, saya teringat masa lalu."
     },
     "collocations": [
@@ -197259,7 +197259,7 @@
     ],
     "exampleSentence": {
       "japanese": "父母に、手紙を書きました。",
-      "reading": "ちちははに、てがみをかきました。",
+      "reading": "ふぼに、てがみをかきました。",
       "meaningId": "Saya menulis surat kepada ayah dan ibu."
     },
     "collocations": [
@@ -197825,7 +197825,7 @@
     ],
     "exampleSentence": {
       "japanese": "日本人の精神はその独特の風土に根ざしている。",
-      "reading": "にっぽんじんのせいしんはそのどくとくのふうどにねざしている。",
+      "reading": "にほんじんのせいしんはそのどくとくのふうどにねざしている。",
       "meaningId": "Semangat Jepang berakar pada iklimnya yang unik."
     },
     "collocations": [
@@ -197928,7 +197928,7 @@
     ],
     "exampleSentence": {
       "japanese": "日本の戦後の復興は有名な話である。",
-      "reading": "にっぽんのせんごのふっこうはゆうめいなはなしである。",
+      "reading": "にほんのせんごのふっこうはゆうめいなはなしである。",
       "meaningId": "Pemulihan Jepang pascaperang adalah cerita yang terkenal."
     },
     "collocations": [
@@ -200854,7 +200854,7 @@
     ],
     "exampleSentence": {
       "japanese": "この寺には、国の宝器が残っています。",
-      "reading": "このてらには、くにのたからきがのこっています。",
+      "reading": "このてらには、くにのほうきがのこっています。",
       "meaningId": "Di kuil ini tersimpan benda pusaka negara."
     },
     "collocations": [
@@ -201447,7 +201447,7 @@
     ],
     "exampleSentence": {
       "japanese": "御坊ちゃんに幸あれ。",
-      "reading": "ごぼうちゃんにこうあれ。",
+      "reading": "おぼっちゃんにさちあれ。",
       "meaningId": "Semoga putra Anda bahagia."
     },
     "collocations": [
@@ -202347,7 +202347,7 @@
     ],
     "exampleSentence": {
       "japanese": "雪に、道が埋まってしまいました。",
-      "reading": "ゆきに、みちがうまってしまいました。",
+      "reading": "ゆきに、みちがうずまってしまいました。",
       "meaningId": "Jalan tertimbun salju."
     },
     "collocations": [
@@ -203064,7 +203064,7 @@
     ],
     "exampleSentence": {
       "japanese": "日本は人口密度が高い国である。",
-      "reading": "にっぽんはじんこうみつどがたかいくにである。",
+      "reading": "にほんはじんこうみつどがたかいくにである。",
       "meaningId": "Jepang merupakan negara dengan kepadatan penduduk yang tinggi."
     },
     "collocations": [
@@ -204103,7 +204103,7 @@
     ],
     "exampleSentence": {
       "japanese": "また明後日。",
-      "reading": "またみょうごにち。",
+      "reading": "またあさって。",
       "meaningId": "Sampai jumpa lusa."
     },
     "collocations": [
@@ -204727,7 +204727,7 @@
     ],
     "exampleSentence": {
       "japanese": "目蓋が、重いです。",
-      "reading": "めふたが、おもいです。",
+      "reading": "まぶたが、おもいです。",
       "meaningId": "Kelopak mata saya berat."
     },
     "collocations": [
@@ -204805,7 +204805,7 @@
     ],
     "exampleSentence": {
       "japanese": "日本では摂氏の目盛りが使われている。",
-      "reading": "にっぽんではせっしのめもりがつかわれている。",
+      "reading": "にほんではせっしのめもりがつかわれている。",
       "meaningId": "Di Jepang, skala Celcius digunakan."
     },
     "collocations": [
@@ -205115,7 +205115,7 @@
     ],
     "exampleSentence": {
       "japanese": "夜更かしをする。",
-      "reading": "よるふかしをする。",
+      "reading": "よふかしをする。",
       "meaningId": "Begadang."
     },
     "collocations": [
@@ -205193,7 +205193,7 @@
     ],
     "exampleSentence": {
       "japanese": "夜中に、目が覚めました。",
-      "reading": "やちゅうに、めがさめました。",
+      "reading": "よなかに、めがさめました。",
       "meaningId": "Saya terbangun di tengah malam."
     },
     "collocations": [
@@ -205348,7 +205348,7 @@
     ],
     "exampleSentence": {
       "japanese": "矢っ張り、この店がいちばんおいしいです。",
-      "reading": "やっはり、このみせがいちばんおいしいです。",
+      "reading": "やっぱり、このみせがいちばんおいしいです。",
       "meaningId": "Ternyata memang restoran ini yang paling enak."
     },
     "collocations": [
@@ -206045,7 +206045,7 @@
     ],
     "exampleSentence": {
       "japanese": "雄の犬と雌の犬を、飼っています。",
-      "reading": "ゆうのいぬとめすのいぬを、かっています。",
+      "reading": "おすのいぬとめすのいぬを、かっています。",
       "meaningId": "Saya memelihara anjing jantan dan betina."
     },
     "collocations": [
@@ -208574,7 +208574,7 @@
     ],
     "exampleSentence": {
       "japanese": "船が、日本の領海に入りました。",
-      "reading": "ふねが、にっぽんのりょうかいにはいりました。",
+      "reading": "ふねが、にほんのりょうかいにはいりました。",
       "meaningId": "Kapal masuk ke perairan teritorial Jepang."
     },
     "collocations": [
@@ -209158,7 +209158,7 @@
     ],
     "exampleSentence": {
       "japanese": "蓮の花はなんとも言えない芳香をはなっていた。",
-      "reading": "はちすのはなはなんともいえないほうこうをはなっていた。",
+      "reading": "はすのはなはなんともいえないほうこうをはなっていた。",
       "meaningId": "Bunga teratai memiliki keharuman yang tak terlukiskan."
     },
     "collocations": [
@@ -209389,7 +209389,7 @@
     ],
     "exampleSentence": {
       "japanese": "朝、草に露が降りていました。",
-      "reading": "あさ、くさにろがおりていました。",
+      "reading": "あさ、くさにつゆがおりていました。",
       "meaningId": "Pagi hari ada embun di rumput."
     },
     "collocations": [
@@ -210284,7 +210284,7 @@
     ],
     "exampleSentence": {
       "japanese": "吝嗇な人は、お金を使いません。",
-      "reading": "りんしょくなひとは、おかねをつかいません。",
+      "reading": "けちなひとは、おかねをつかいません。",
       "meaningId": "Orang pelit tidak mau mengeluarkan uang."
     },
     "collocations": [
@@ -210690,7 +210690,7 @@
     ],
     "exampleSentence": {
       "japanese": "痛いので、頬を抓ってみました。",
-      "reading": "いたいので、ほおをつめってみました。",
+      "reading": "いたいので、ほおをつねってみました。",
       "meaningId": "Untuk memastikan, saya mencubit pipi."
     },
     "collocations": [
@@ -210715,7 +210715,7 @@
     ],
     "exampleSentence": {
       "japanese": "二人の関係が、拗れてしまいました。",
-      "reading": "ににんのかんけいが、こじれてしまいました。",
+      "reading": "ふたりのかんけいが、こじれてしまいました。",
       "meaningId": "Hubungan mereka berdua menjadi rumit."
     },
     "collocations": [
@@ -210740,7 +210740,7 @@
     ],
     "exampleSentence": {
       "japanese": "その料理人は毎日違う料理を拵える。",
-      "reading": "そのりょうりじんはまいにちちがうりょうりをこしらえる。",
+      "reading": "そのりょうりにんはまいにちちがうりょうりをこしらえる。",
       "meaningId": "Koki menyiapkan hidangan berbeda setiap hari."
     },
     "collocations": [
@@ -210968,7 +210968,7 @@
     ],
     "exampleSentence": {
       "japanese": "雨で、インクが滲みました。",
-      "reading": "あめで、いんくがしみました。",
+      "reading": "あめで、いんくがにじみました。",
       "meaningId": "Tinta meluber karena hujan."
     },
     "collocations": [
@@ -211168,7 +211168,7 @@
     ],
     "exampleSentence": {
       "japanese": "少し目を瞑って、深呼吸しましょう。",
-      "reading": "すこしめをつむって、しんこきゅうしましょう。",
+      "reading": "すこしめをつぶって、しんこきゅうしましょう。",
       "meaningId": "Mari memejamkan mata sedikit dan menarik napas dalam."
     },
     "collocations": [
@@ -211345,7 +211345,7 @@
     ],
     "exampleSentence": {
       "japanese": "臍に、ほくろがあります。",
-      "reading": "ほぞに、ほくろがあります。",
+      "reading": "へそに、ほくろがあります。",
       "meaningId": "Ada tahi lalat di pusar."
     },
     "collocations": [
@@ -211964,7 +211964,7 @@
     ],
     "exampleSentence": {
       "japanese": "この方は、自力でトイレに行けます。",
-      "reading": "このほうは、じりきでといれにいけます。",
+      "reading": "このかたは、じりきでといれにいけます。",
       "meaningId": "Beliau bisa pergi ke toilet dengan kekuatan sendiri."
     },
     "definitionId": "Melakukan sesuatu dengan kekuatan sendiri tanpa bantuan orang lain.",
@@ -212264,7 +212264,7 @@
     ],
     "exampleSentence": {
       "japanese": "食事のあとで、口腔のケアをします。",
-      "reading": "しょくじのあとで、こうこうのけあをします。",
+      "reading": "しょくじのあとで、こうくうのけあをします。",
       "meaningId": "Setelah makan, saya merawat rongga mulut."
     },
     "definitionId": "Ruang di dalam mulut.",
@@ -212295,7 +212295,7 @@
     ],
     "exampleSentence": {
       "japanese": "口腔内に、食べ物が残っています。",
-      "reading": "こうこうないに、たべものがのこっています。",
+      "reading": "こうくうないに、たべものがのこっています。",
       "meaningId": "Masih ada sisa makanan di dalam rongga mulut."
     },
     "definitionId": "Bagian dalam rongga mulut.",
@@ -212325,7 +212325,7 @@
     ],
     "exampleSentence": {
       "japanese": "誤嚥を防ぐために、ゆっくり食べてもらいます。",
-      "reading": "あやまえんをふせぐために、ゆっくりたべてもらいます。",
+      "reading": "ごえんをふせぐために、ゆっくりたべてもらいます。",
       "meaningId": "Untuk mencegah tersedak masuk saluran napas, saya meminta beliau makan pelan-pelan."
     },
     "definitionId": "Ada makanan di sana.",
@@ -212355,7 +212355,7 @@
     ],
     "exampleSentence": {
       "japanese": "薬の誤飲に、注意してください。",
-      "reading": "くすりのあやまいんに、ちゅういしてください。",
+      "reading": "くすりのごいんに、ちゅういしてください。",
       "meaningId": "Waspadalah terhadap tertelannya obat secara keliru."
     },
     "definitionId": "Menelan asapnya.",
@@ -212475,7 +212475,7 @@
     ],
     "exampleSentence": {
       "japanese": "嚥下がしやすいように、食事を細かく切ります。",
-      "reading": "えんかがしやすいように、しょくじをこまかくきります。",
+      "reading": "えんげがしやすいように、しょくじをこまかくきります。",
       "meaningId": "Agar mudah menelan, makanan dipotong kecil-kecil."
     },
     "definitionId": "Menelan makanan dari mulut masuk ke lambung.",
@@ -212842,7 +212842,7 @@
     ],
     "exampleSentence": {
       "japanese": "立位を保つのは、難しいです。",
-      "reading": "たついをたもつのは、むずかしいです。",
+      "reading": "りついをたもつのは、むずかしいです。",
       "meaningId": "Mempertahankan posisi berdiri itu sulit bagi beliau."
     },
     "definitionId": "Batu berdiri.",
@@ -213232,7 +213232,7 @@
     ],
     "exampleSentence": {
       "japanese": "脱水を防ぐために、尿測をします。",
-      "reading": "だっすいをふせぐために、にょうはかをします。",
+      "reading": "だっすいをふせぐために、にょうそくをします。",
       "meaningId": "Untuk mencegah dehidrasi, dilakukan pengukuran urin."
     },
     "definitionId": "Ukur urin Anda.",
@@ -213262,7 +213262,7 @@
     ],
     "exampleSentence": {
       "japanese": "夜、頻尿で何度も起きます。",
-      "reading": "よる、しきにょうでなんどもおきます。",
+      "reading": "よる、ひんにょうでなんどもおきます。",
       "meaningId": "Pada malam hari, beliau berkali-kali bangun karena sering buang air kecil."
     },
     "definitionId": "Sering buang air kecil.",
@@ -213384,7 +213384,7 @@
     ],
     "exampleSentence": {
       "japanese": "便失禁があったので、すぐに着替えさせました。",
-      "reading": "びんしっきんがあったので、すぐにきがえさせました。",
+      "reading": "べんしっきんがあったので、すぐにきがえさせました。",
       "meaningId": "Karena ada inkontinensia tinja, saya segera mengganti pakaian beliau."
     },
     "definitionId": "Kebocoran tikungan.",
@@ -214017,7 +214017,7 @@
     ],
     "exampleSentence": {
       "japanese": "吐物は、手袋をして片づけます。",
-      "reading": "おうぶつは、てぶくろをしてかたづけます。",
+      "reading": "とぶつは、てぶくろをしてかたづけます。",
       "meaningId": "Muntahan dibersihkan dengan memakai sarung tangan."
     },
     "definitionId": "Isi lambung yang dimuntahkan.",
@@ -214289,7 +214289,7 @@
     ],
     "exampleSentence": {
       "japanese": "この方の平熱は、三十六度です。",
-      "reading": "このほうのへいねつは、さんじゅうろくどです。",
+      "reading": "このかたのへいねつは、さんじゅうろくどです。",
       "meaningId": "Suhu normal beliau tiga puluh enam derajat."
     },
     "definitionId": "Taion Biasa.",
@@ -214443,7 +214443,7 @@
     ],
     "exampleSentence": {
       "japanese": "ベッドで、踵部が圧迫されています。",
-      "reading": "べっどで、かかとぶがあっぱくされています。",
+      "reading": "べっどで、しょうぶがあっぱくされています。",
       "meaningId": "Tumit beliau tertekan di tempat tidur."
     },
     "definitionId": "Bagian tumit pada kaki.",
@@ -214473,7 +214473,7 @@
     ],
     "exampleSentence": {
       "japanese": "足底に、傷がないか確認します。",
-      "reading": "あしそこに、きずがないかかくにんします。",
+      "reading": "そくていに、きずがないかかくにんします。",
       "meaningId": "Saya memeriksa apakah ada luka di telapak kaki."
     },
     "definitionId": "Bagian bawah telapak kaki.",
@@ -214504,7 +214504,7 @@
     ],
     "exampleSentence": {
       "japanese": "転んで、大腿骨を骨折しました。",
-      "reading": "ころんで、だいたいぼねをこっせつしました。",
+      "reading": "ころんで、だいたいこつをこっせつしました。",
       "meaningId": "Beliau jatuh dan tulang pahanya patah."
     },
     "definitionId": "Tulang paha.",
@@ -214565,7 +214565,7 @@
     ],
     "exampleSentence": {
       "japanese": "この方は、要介護三と認定されています。",
-      "reading": "このほうは、ようかいごさんとにんていされています。",
+      "reading": "このかたは、ようかいごさんとにんていされています。",
       "meaningId": "Beliau diakui berada pada kategori perlu perawatan tingkat tiga."
     },
     "definitionId": "Tempat dimana keranjang dibutuhkan.",
@@ -214688,7 +214688,7 @@
     ],
     "exampleSentence": {
       "japanese": "一人で歩くのは、まだ不可能です。",
-      "reading": "いちにんであるくのは、まだふかのうです。",
+      "reading": "ひとりであるくのは、まだふかのうです。",
       "meaningId": "Berjalan sendirian masih belum memungkinkan."
     },
     "definitionId": "Keadaan tidak mungkin atau tidak dapat dilakukan.",
@@ -214718,7 +214718,7 @@
     ],
     "exampleSentence": {
       "japanese": "立つときは、健側の足に力を入れます。",
-      "reading": "たつときは、けんがわのあしにちからをいれます。",
+      "reading": "たつときは、けんそくのあしにちからをいれます。",
       "meaningId": "Saat berdiri, beliau menumpukan tenaga pada kaki sisi yang sehat."
     },
     "definitionId": "Sisi tubuh yang sehat tanpa kelumpuhan.",
@@ -214930,7 +214930,7 @@
     ],
     "exampleSentence": {
       "japanese": "入浴の前に、脱衣所で服を脱ぎます。",
-      "reading": "にゅうよくのまえに、だついしょでふくをぬぎます。",
+      "reading": "にゅうよくのまえに、だついじょでふくをぬぎます。",
       "meaningId": "Sebelum mandi, beliau melepas pakaian di ruang ganti."
     },
     "definitionId": "Di mana harus menyeka wajah Anda.",
@@ -214960,7 +214960,7 @@
     ],
     "exampleSentence": {
       "japanese": "この方は、車いすを自操できます。",
-      "reading": "このほうは、くるまいすをじみさおできます。",
+      "reading": "このかたは、くるまいすをじそうできます。",
       "meaningId": "Beliau bisa menggerakkan kursi rodanya sendiri."
     },
     "definitionId": "Bergerak sendiri.",
@@ -215020,7 +215020,7 @@
     ],
     "exampleSentence": {
       "japanese": "この方は、廊下を自走して食堂へ行きます。",
-      "reading": "このほうは、ろうかをじはししてしょくどうへいきます。",
+      "reading": "このかたは、ろうかをじそうしてしょくどうへいきます。",
       "meaningId": "Beliau menggerakkan kursi rodanya sendiri ke ruang makan melalui lorong."
     },
     "definitionId": "Berjalan sendiri.",
@@ -215170,7 +215170,7 @@
     ],
     "exampleSentence": {
       "japanese": "朝から、腹痛を訴えています。",
-      "reading": "あさから、はらいたをうったえています。",
+      "reading": "あさから、ふくつうをうったえています。",
       "meaningId": "Sejak pagi beliau mengeluh sakit perut."
     },
     "definitionId": "Saya lapar.",
@@ -215300,7 +215300,7 @@
   "kotoba_kaigo_0190": {
     "id": "kotoba_kaigo_0190",
     "word": "熱感",
-    "reading": "ねつかん",
+    "reading": "ねっかん",
     "meaningId": "Terasa panas",
     "meaningEn": "",
     "meaningJa": "さわったとき熱く感じること。",
@@ -215382,7 +215382,7 @@
     ],
     "exampleSentence": {
       "japanese": "背中に、発赤が見られます。",
-      "reading": "せなかに、はっせきがみられます。",
+      "reading": "せなかに、ほっせきがみられます。",
       "meaningId": "Terlihat kemerahan di punggung beliau."
     },
     "definitionId": "Kulit yang menjadi merah.",
@@ -215473,7 +215473,7 @@
     ],
     "exampleSentence": {
       "japanese": "床ずれを防ぐために、腹臥位にします。",
-      "reading": "とこずれをふせぐために、はらがいにします。",
+      "reading": "とこずれをふせぐために、ふくがいにします。",
       "meaningId": "Untuk mencegah luka tekan, beliau diposisikan telungkup."
     },
     "definitionId": "Posisi berbaring tengkurap.",
@@ -215930,7 +215930,7 @@
     ],
     "exampleSentence": {
       "japanese": "この方は、食事も入浴も全介助です。",
-      "reading": "このほうは、しょくじもにゅうよくもぜんかいじょです。",
+      "reading": "このかたは、しょくじもにゅうよくもぜんかいじょです。",
       "meaningId": "Beliau memerlukan bantuan penuh baik untuk makan maupun mandi."
     },
     "definitionId": "Semuanya baik-baik saja.",
@@ -216083,7 +216083,7 @@
     ],
     "exampleSentence": {
       "japanese": "寒い日は、足浴で体を温めます。",
-      "reading": "さむいひは、あしよくでからだをあたためます。",
+      "reading": "さむいひは、そくよくでからだをあたためます。",
       "meaningId": "Pada hari dingin, tubuh dihangatkan dengan rendam kaki."
     },
     "definitionId": "Merendam dan membersihkan kaki dengan air hangat.",
@@ -216176,7 +216176,7 @@
     ],
     "exampleSentence": {
       "japanese": "お風呂のあと、保湿剤を塗ります。",
-      "reading": "おふろのあと、ほしめざいをぬります。",
+      "reading": "おふろのあと、ほしつざいをぬります。",
       "meaningId": "Setelah mandi, saya mengoleskan pelembab."
     },
     "definitionId": "Gosok sabunnya.",
@@ -216206,7 +216206,7 @@
     ],
     "exampleSentence": {
       "japanese": "手が冷たいので、手浴をします。",
-      "reading": "てがつめたいので、てよくをします。",
+      "reading": "てがつめたいので、しゅよくをします。",
       "meaningId": "Karena tangan beliau dingin, dilakukan rendam tangan."
     },
     "definitionId": "Merendam dan membersihkan tangan dengan air hangat.",
@@ -216298,7 +216298,7 @@
     ],
     "exampleSentence": {
       "japanese": "浴場は、一階にあります。",
-      "reading": "よくじょうは、いちかいにあります。",
+      "reading": "よくじょうは、いっかいにあります。",
       "meaningId": "Tempat pemandian ada di lantai satu."
     },
     "definitionId": "Mandi mandi.",
@@ -216390,7 +216390,7 @@
     ],
     "exampleSentence": {
       "japanese": "眠れない夜は、入眠剤を飲みます。",
-      "reading": "ねむれないよるは、にゅうねむりざいをのみます。",
+      "reading": "ねむれないよるは、にゅうみんざいをのみます。",
       "meaningId": "Pada malam beliau tidak bisa tidur, beliau minum obat tidur."
     },
     "definitionId": "Obat tidur.",
@@ -216451,7 +216451,7 @@
     ],
     "exampleSentence": {
       "japanese": "肩甲骨の周りを、やさしくマッサージします。",
-      "reading": "かたこうこつのまわりを、やさしくまっさーじします。",
+      "reading": "けんこうこつのまわりを、やさしくまっさーじします。",
       "meaningId": "Saya memijat lembut di sekitar tulang belikat."
     },
     "definitionId": "Ada tulang di antah berantah.",
@@ -216604,7 +216604,7 @@
     ],
     "exampleSentence": {
       "japanese": "これは、二人だけの内緒の話です。",
-      "reading": "これは、ににんだけのないしょのはなしです。",
+      "reading": "これは、ふたりだけのないしょのはなしです。",
       "meaningId": "Ini adalah rahasia di antara kita berdua."
     },
     "definitionId": "Hal yang disembunyikan agar tidak diketahui orang.",
@@ -217154,7 +217154,7 @@
     ],
     "exampleSentence": {
       "japanese": "拘縮を防ぐために、毎日手足を動かします。",
-      "reading": "かかわちぢみをふせぐために、まいにちてあしをうごかします。",
+      "reading": "こうしゅくをふせぐために、まいにちてあしをうごかします。",
       "meaningId": "Untuk mencegah kontraktur, saya menggerakkan tangan dan kaki beliau setiap hari."
     },
     "definitionId": "Sendi yang mengeras sehingga sulit digerakkan.",
@@ -217277,7 +217277,7 @@
     ],
     "exampleSentence": {
       "japanese": "二月三日は、節分です。",
-      "reading": "にがつさんにちは、せつぶんです。",
+      "reading": "にがつみっかは、せつぶんです。",
       "meaningId": "Tanggal tiga Februari adalah Setsubun."
     },
     "definitionId": "Festival Settsuun.",
@@ -217461,7 +217461,7 @@
     ],
     "exampleSentence": {
       "japanese": "令和は、二〇一九年に始まりました。",
-      "reading": "りょうわは、に〇いちきゅうねんにはじまりました。",
+      "reading": "れいわは、にせんじゅうきゅうねんにはじまりました。",
       "meaningId": "Era Reiwa dimulai pada tahun 2019."
     },
     "definitionId": "Situasi saat ini.",
@@ -217680,7 +217680,7 @@
     ],
     "exampleSentence": {
       "japanese": "短期目標は、一人でトイレに行くことです。",
-      "reading": "たんきもくひょうは、いちにんでといれにいくことです。",
+      "reading": "たんきもくひょうは、ひとりでといれにいくことです。",
       "meaningId": "Target jangka pendeknya adalah pergi ke toilet sendiri."
     },
     "definitionId": "Mizikaikan no Mokuhyo.",
@@ -217851,7 +217851,7 @@
   "kotoba_kaigo_0317": {
     "id": "kotoba_kaigo_0317",
     "word": "在宅復帰",
-    "reading": "ざいたくふつき",
+    "reading": "ざいたくふっき",
     "meaningId": "Kembali ke rumah",
     "meaningEn": "",
     "meaningJa": "いえにかえれる",
@@ -218041,7 +218041,7 @@
   "kotoba_kaigo_0325": {
     "id": "kotoba_kaigo_0325",
     "word": "欠勤",
-    "reading": "けつきん",
+    "reading": "けっきん",
     "meaningId": "Mangkir / Absen kerja",
     "meaningEn": "",
     "meaningJa": "しごとをやすむ",
@@ -218132,7 +218132,7 @@
   "kotoba_kaigo_0330": {
     "id": "kotoba_kaigo_0330",
     "word": "日勤",
-    "reading": "につきん",
+    "reading": "にっきん",
     "meaningId": "Dinas siang",
     "meaningEn": "",
     "meaningJa": "ひるのしごと",
@@ -218334,7 +218334,7 @@
     ],
     "exampleSentence": {
       "japanese": "床ずれを防ぐために、褥瘡のケアをします。",
-      "reading": "とこずれをふせぐために、しとねくさのけあをします。",
+      "reading": "とこずれをふせぐために、じょくそうのけあをします。",
       "meaningId": "Untuk mencegah luka baring, kami melakukan perawatan dekubitus."
     },
     "definitionId": "Luka pada kulit akibat berbaring lama dalam satu posisi.",
@@ -218364,7 +218364,7 @@
     ],
     "exampleSentence": {
       "japanese": "足に、浮腫があります。",
-      "reading": "あしに、むくみがあります。",
+      "reading": "あしに、ふしゅがあります。",
       "meaningId": "Ada edema pada kaki beliau."
     },
     "definitionId": "Penumpukan cairan di jaringan tubuh yang menyebabkan bengkak.",
@@ -218604,7 +218604,7 @@
     ],
     "exampleSentence": {
       "japanese": "昨夜は、良眠でした。",
-      "reading": "さくやは、よねむでした。",
+      "reading": "さくやは、りょうみんでした。",
       "meaningId": "Tadi malam beliau tidur dengan baik."
     },
     "definitionId": "Tidur yang nyenyak dan cukup.",
@@ -218634,7 +218634,7 @@
     ],
     "exampleSentence": {
       "japanese": "眠れないときは、眠剤を飲みます。",
-      "reading": "ねむれないときは、ねむりざいをのみます。",
+      "reading": "ねむれないときは、みんざいをのみます。",
       "meaningId": "Kalau tidak bisa tidur, beliau minum obat tidur."
     },
     "definitionId": "Obat tidur.",
@@ -218819,7 +218819,7 @@
     ],
     "exampleSentence": {
       "japanese": "技能実習生は、日本で技術を学びます。",
-      "reading": "ぎのうじっしゅうせいは、にっぽんでぎじゅつをまなびます。",
+      "reading": "ぎのうじっしゅうせいは、にほんでぎじゅつをまなびます。",
       "meaningId": "Peserta pemagangan teknis mempelajari keterampilan di Jepang."
     },
     "meaningJa": "Technical Intern Training Program",
@@ -219026,7 +219026,7 @@
     ],
     "exampleSentence": {
       "japanese": "日本留学試験は、年に二回あります。",
-      "reading": "にっぽんりゅうがくしけんは、としににかいあります。",
+      "reading": "にほんりゅうがくしけんは、としににかいあります。",
       "meaningId": "Ujian masuk pelajar asing (EJU) diadakan dua kali setahun."
     },
     "meaningJa": "Examination for Japanese University Admission",
@@ -219099,7 +219099,7 @@
     ],
     "exampleSentence": {
       "japanese": "日本へ行く前に、海外労働者カードを作ります。",
-      "reading": "にっぽんへいくまえに、かいがいろうどうしゃかーどをつくります。",
+      "reading": "にほんへいくまえに、かいがいろうどうしゃかーどをつくります。",
       "meaningId": "Sebelum berangkat ke Jepang, saya membuat kartu pekerja luar negeri (EKTLN)."
     },
     "meaningJa": "Elektronik Kartu Tenaga Kerja Luar Negeri",
@@ -219259,7 +219259,7 @@
     ],
     "exampleSentence": {
       "japanese": "日本へ行く前に、研修機関で日本語を学びます。",
-      "reading": "にっぽんへいくまえに、けんしゅうきかんでにほんごをまなびます。",
+      "reading": "にほんへいくまえに、けんしゅうきかんでにほんごをまなびます。",
       "meaningId": "Sebelum berangkat ke Jepang, saya belajar bahasa Jepang di lembaga pelatihan."
     },
     "meaningJa": "Lembaga Pelatihan Kerja",
@@ -219325,7 +219325,7 @@
     ],
     "exampleSentence": {
       "japanese": "送出機関は、本国で人を集めます。",
-      "reading": "そうしゅつきかんは、ほんごくでひとをあつめます。",
+      "reading": "おくりだしきかんは、ほんごくでひとをあつめます。",
       "meaningId": "Lembaga pengirim merekrut orang di negara asal."
     },
     "meaningJa": "Sending Organization",
@@ -220676,7 +220676,7 @@
   "kotoba_ext_0031": {
     "id": "kotoba_ext_0031",
     "word": "すき焼き",
-    "reading": "",
+    "reading": "すきやき",
     "meaningId": "Sukiyaki (rebusan daging gaya Jepang)",
     "meaningEn": "sukiyaki",
     "meaningJa": "牛肉や野菜を鍋で煮ながら食べる日本料理。",
@@ -220790,7 +220790,7 @@
     ],
     "exampleSentence": {
       "japanese": "昼ごはんは、牛丼にしました。",
-      "reading": "ひるごはんは、うしどんぶりにしました。",
+      "reading": "ひるごはんは、ぎゅうどんにしました。",
       "meaningId": "Untuk makan siang saya memilih gyudon."
     },
     "definitionId": "Nasi mangkuk dengan irisan daging sapi rebus di atasnya.",
@@ -220839,7 +220839,7 @@
     ],
     "exampleSentence": {
       "japanese": "お弁当に、唐揚げを入れました。",
-      "reading": "おべんとうに、とうあげをいれました。",
+      "reading": "おべんとうに、からあげをいれました。",
       "meaningId": "Saya memasukkan karaage ke dalam bento."
     },
     "definitionId": "Daging ayam berbalut tepung yang digoreng.",
@@ -222343,7 +222343,7 @@
     ],
     "exampleSentence": {
       "japanese": "ドラッグストアで、風邪薬を買いました。",
-      "reading": "どらっぐすとあで、かぜやくをかいました。",
+      "reading": "どらっぐすとあで、かぜぐすりをかいました。",
       "meaningId": "Saya membeli obat flu di toko obat."
     },
     "definitionId": "Toko yang menjual obat dan kebutuhan sehari-hari.",
@@ -229483,7 +229483,7 @@
     ],
     "exampleSentence": {
       "japanese": "朝ごはんに、焼き鮭を食べました。",
-      "reading": "あさごはんに、やきじゃけをたべました。",
+      "reading": "あさごはんに、やきざけをたべました。",
       "meaningId": "Saya makan salmon panggang untuk sarapan."
     },
     "definitionId": "Ikan berdaging kemerahan yang kembali ke sungai untuk bertelur.",
