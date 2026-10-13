@@ -45,14 +45,14 @@ test('item tanpa angka mastery tidak menampilkan "True Mastery" rekaan', () => {
 import { buildSmartRecallQueue, recordItemInteraction } from '../../utils/mastery';
 import { KOTOBA_DATABASE } from '../../data/kotoba';
 
-test('Recall merender engine flashcard & canvas (bukan hanya pilihan ganda)', () => {
+test('Recall: materi dari flashcard diuji dengan soal (tanpa tombol Lupa / Ingat); yang ditulis -> canvas', () => {
   const k = Object.values(KOTOBA_DATABASE).find(x => x.word === '黒')!;
   const flash = buildSmartRecallQueue({ [k.id]: recordItemInteraction(undefined, k.id, 'kotoba', 'flashcard', true) });
-  assert.equal(flash[0].exerciseFormat, 'flashcard');
+  assert.notEqual(flash[0].exerciseFormat, 'flashcard');
   const htmlFlash = render({ recallQueue: flash });
-  assert.match(htmlFlash, /Ingat/);
-  assert.match(htmlFlash, /Lupa/);
-  assert.doesNotMatch(htmlFlash, /50\/50/);
+  assert.doesNotMatch(htmlFlash, />\s*Lupa\s*</);
+  assert.doesNotMatch(htmlFlash, /nilai dirimu/);
+  for (const option of flash[0].sampleQuestion!.options) assert.ok(htmlFlash.includes(option.split('<')[0].slice(0, 6)), option);
 
   const canvas = buildSmartRecallQueue({ [k.id]: recordItemInteraction(undefined, k.id, 'kotoba', 'writing', true) });
   assert.equal(canvas[0].exerciseFormat, 'canvas');

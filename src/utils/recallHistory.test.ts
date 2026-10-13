@@ -79,8 +79,10 @@ test('3. belajar kotoba lewat flashcard -> Recall memilihnya dengan format soal 
   assert.ok(item);
   assert.equal(item!.category, 'kotoba');
   assert.ok(item!.sampleQuestion);
-  assert.equal(item!.exerciseFormat, 'flashcard');
+  // bukan "balik kartu lalu nilai diri sendiri": harus soal yang jawabannya bisa dinilai
+  assert.ok(['meaning', 'context', 'curated'].includes(item!.exerciseFormat!), item!.exerciseFormat);
   const q = item!.sampleQuestion!;
+  assert.ok(q.options.length >= 2 && q.correctIndex >= 0 && q.correctIndex < q.options.length);
   assert.equal(new Set(q.options).size, q.options.length, 'opsi tidak boleh ganda');
 });
 
@@ -246,10 +248,15 @@ test('regresi: 台所 yang hanya dibuka tidak membuat Recall macet di soal itu',
   assert.deepEqual(ids(q), [KURO.id]);
 });
 
-test('engine Recall mengikuti cara belajar: canvas, flashcard, soal; hasil Recall (engine apa pun) menandai sudah diuji', () => {
+test('engine Recall mengikuti cara belajar: canvas, soal (tanpa penilaian diri); hasil Recall (engine apa pun) menandai sudah diuji', () => {
   const k = kotobaByWord('黒');
   const bunpouFlash = interact({}, BUNPOU.id, 'bunpou', 'flashcard');
-  assert.equal(buildSmartRecallQueue(bunpouFlash)[0].exerciseFormat, 'flashcard');
+  assert.notEqual(buildSmartRecallQueue(bunpouFlash)[0].exerciseFormat, 'flashcard');
+  // tidak ada kombinasi riwayat yang menghasilkan engine penilaian diri
+  for (const type of ['flashcard', 'writing', 'quiz'] as const) {
+    const rec = interact({}, k.id, 'kotoba', type)[k.id];
+    assert.notEqual(selectRecallEngine({ category: 'kotoba', itemId: k.id, difficultyLevel: 1, masteryRecord: rec }), 'flashcard');
+  }
 
   // kanji yang ditulis -> canvas
   const kanjiWritten = writeWithScore({}, KANJI.id, 'kanji');

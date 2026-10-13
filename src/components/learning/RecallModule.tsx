@@ -12,7 +12,6 @@ import { DOKKAI_DATABASE } from '../../data/dokkai';
 import { CHOUKAI_DATABASE } from '../../data/choukai';
 import { KanjiWritingCanvas } from './KanjiWritingCanvas';
 import { KotobaWritingPractice } from './KotobaWritingPractice';
-import { UniversalFlashcard } from './UniversalFlashcard';
 import { KOTOBA_DATABASE } from '../../data/kotoba';
 import { KANJI_DATABASE } from '../../data/kanji';
 import { BUNPOU_DATABASE } from '../../data/bunpou';
@@ -108,8 +107,6 @@ export const RecallModule: React.FC<RecallModuleProps> = ({
       onCompleteRef.current(p.answered, p.correct, p.exp, p.correct * 15, { sessionKey: sessionKeyRef.current, partial: true, extra: extraRef.current });
     }
   }, []);
-  // Engine flashcard: kartu dibalik dulu sebelum penilaian diri (ingat / lupa).
-  const [isCardFlipped, setIsCardFlipped] = useState(false);
   // Hasil nyata sesi (sama dengan yang diberikan ke pemain), untuk layar ringkasan.
   const [sessionReward, setSessionReward] = useState<{ exp: number; gold: number } | null>(null);
 
@@ -233,7 +230,7 @@ export const RecallModule: React.FC<RecallModuleProps> = ({
   const totalItems = filteredQueue.length;
   const isSentenceBuilder = currentQ.difficultyLevel === 5 && !!currentQ.scrambleWords?.length;
   // Engine latihan non-pilihan-ganda yang dipilih untuk item ini (lihat selectRecallEngine di utils/mastery).
-  const rawEngine = currentItem.exerciseFormat === 'canvas' || currentItem.exerciseFormat === 'flashcard' || currentItem.exerciseFormat === 'fusion'
+  const rawEngine = currentItem.exerciseFormat === 'canvas' || currentItem.exerciseFormat === 'fusion'
     ? currentItem.exerciseFormat : null;
   // Grammar Fusion: stage dibangun dari pola bunpou + kata kerja yang dipilih saat antrean dibangun.
   // (tanpa useMemo: berada setelah early-return; FusionPlayer hanya membaca `stage` sekali lewat key per item)
@@ -245,16 +242,13 @@ export const RecallModule: React.FC<RecallModuleProps> = ({
   })();
   const kotobaForCanvas = currentItem.category === 'kotoba' ? KOTOBA_DATABASE[currentItem.itemId] : undefined;
   const kanjiForCanvas = currentItem.category === 'kanji' ? KANJI_DATABASE[currentItem.itemId] : undefined;
-  const flashcardSource = currentItem.category === 'kotoba' ? KOTOBA_DATABASE[currentItem.itemId]
-    : currentItem.category === 'kanji' ? KANJI_DATABASE[currentItem.itemId]
-    : currentItem.category === 'bunpou' ? BUNPOU_DATABASE[currentItem.itemId] : undefined;
   // Jatuh kembali ke soal bila data engine tidak tersedia (mis. materi kustom).
   const engine = rawEngine === 'canvas' && (kotobaForCanvas || kanjiForCanvas) ? 'canvas'
-    : rawEngine === 'flashcard' && flashcardSource ? 'flashcard'
     : rawEngine === 'fusion' && fusionStage ? 'fusion' : null;
 
-  // Satu jalur pencatatan hasil untuk SEMUA engine (pilihan ganda, canvas, flashcard).
-  const submitResult = (isCorrect: boolean, interaction: 'writing' | 'flashcard' | 'quiz', expKind: 'recall' | 'sentence' = 'recall') => {
+  // Satu jalur pencatatan hasil untuk SEMUA engine (pilihan ganda, canvas, fusion). Setiap hasil berasal dari
+  // jawaban yang dinilai sistem; tidak ada penilaian diri (ingat / lupa).
+  const submitResult = (isCorrect: boolean, interaction: 'writing' | 'quiz', expKind: 'recall' | 'sentence' = 'recall') => {
     if (isAnswered) return;
     setIsAnswered(true);
     progressRef.current.answered += 1;
@@ -304,7 +298,6 @@ export const RecallModule: React.FC<RecallModuleProps> = ({
       setCurrentIndex(prev => prev + 1);
       setSelectedOption(null);
       setIsAnswered(false);
-      setIsCardFlipped(false);
       setHiddenOptions([]);
     } else {
       setIsFinished(true);
@@ -630,43 +623,6 @@ export const RecallModule: React.FC<RecallModuleProps> = ({
               }}
               endActions={[{ label: currentIndex < totalItems - 1 ? 'Materi Berikutnya' : 'Selesai', primary: true, onClick: handleNext }]}
             />
-          </div>
-        ) : engine === 'flashcard' ? (
-          /* ENGINE FLASHCARD: balik kartu lalu nilai diri sendiri (ingat / lupa) */
-          <div className="space-y-3 pt-2" key={`flash_${currentItem.itemId}`}>
-            <p className="text-xs text-text-secondary text-center">
-              Ingat-ingat artinya dulu, lalu balik kartu dan nilai dirimu dengan jujur.
-            </p>
-            <UniversalFlashcard
-              item={flashcardSource as any}
-              isFlipped={isCardFlipped}
-              onFlip={() => setIsCardFlipped(f => !f)}
-              soundEnabled={soundEnabled}
-              furiganaEnabled={furiganaEnabled}
-            />
-            {!isAnswered ? (
-              <div className="grid grid-cols-2 gap-2.5">
-                <button
-                  disabled={!isCardFlipped}
-                  onClick={() => submitResult(false, 'flashcard')}
-                  className="p-3 rounded-2xl border border-border-subtle bg-surface-inset text-text-secondary text-xs sm:text-sm font-bold disabled:opacity-40 flex items-center justify-center gap-1.5"
-                >
-                  <XCircle className="w-4 h-4" /> Lupa
-                </button>
-                <button
-                  disabled={!isCardFlipped}
-                  onClick={() => submitResult(true, 'flashcard')}
-                  className="p-3 rounded-2xl border border-border-subtle bg-gold/15 text-gold text-xs sm:text-sm font-bold disabled:opacity-40 flex items-center justify-center gap-1.5"
-                >
-                  <CheckCircle2 className="w-4 h-4" /> Ingat
-                </button>
-              </div>
-            ) : (
-              <button onClick={handleNext} className="rpg-btn rpg-btn-primary w-full py-3 text-xs sm:text-sm gap-2">
-                <span>{currentIndex < totalItems - 1 ? 'Materi Berikutnya' : 'Selesai'}</span>
-                <ArrowRight className="w-4 h-4" />
-              </button>
-            )}
           </div>
         ) : isSentenceBuilder ? (
           <div className="space-y-4 pt-2">

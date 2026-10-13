@@ -1083,12 +1083,14 @@ function generateAdaptiveQuestion(
 /**
  * Pilih ENGINE latihan Recall yang sesuai cara materi itu dipelajari, bukan selalu pilihan ganda:
  *  - canvas    : kotoba/kanji yang pernah ditulis -> kanvas menulis (KanjiWritingCanvas / KotobaWritingPractice)
- *  - flashcard : materi yang dipelajari lewat flashcard -> balik kartu + penilaian diri (ingat / lupa)
  *  - lainnya   : soal pilihan ganda / susun kalimat (null = pakai format soal hasil generateAdaptiveQuestion)
+ * Tidak ada engine "balik kartu lalu nilai diri sendiri": hasil Recall menggerakkan mastery & jadwal SRS, jadi harus
+ * berasal dari jawaban yang bisa dinilai (data), bukan pengakuan ingat / lupa. Materi yang dipelajari lewat
+ * flashcard diuji dengan soal arti/konteks.
  * Belum diuji -> mengikuti cara berlatihnya; sudah diuji -> bergantian engine tiap sesi (attemptsCount genap/ganjil)
  * supaya ingatan diuji dari beberapa sisi. Level >= 4 (konteks/produksi kalimat) tetap soal.
  */
-export function selectRecallEngine(item: Pick<RecallQueueItem, 'category' | 'itemId' | 'difficultyLevel' | 'masteryRecord'>): 'fusion' | 'conjugation' | 'canvas' | 'flashcard' | 'listening' | null {
+export function selectRecallEngine(item: Pick<RecallQueueItem, 'category' | 'itemId' | 'difficultyLevel' | 'masteryRecord'>): 'fusion' | 'conjugation' | 'canvas' | 'listening' | null {
   const r = item.masteryRecord;
   if (!r) return null;
 
@@ -1098,29 +1100,22 @@ export function selectRecallEngine(item: Pick<RecallQueueItem, 'category' | 'ite
     if (pattern) {
       const turn = r.attemptsCount || 0;
       const canConj = pattern.requiredConjugation !== 'jisho';
-      const flipped = (r.flashcardCount || 0) > 0;
       // Urutan bergantian per sesi; 'null' = soal pilihan ganda kurasi bunpou.
-      const seq: Array<'fusion' | 'conjugation' | 'flashcard' | null> = ['fusion'];
+      const seq: Array<'fusion' | 'conjugation' | null> = ['fusion'];
       if (canConj) seq.push('conjugation');
-      if (flipped) seq.push('flashcard');
       seq.push(null);
-      if (!hasBeenRecallTested(r)) return flipped && (r.quizCount || 0) === 0 && (r.writingCount || 0) === 0 && turn <= 1 ? 'flashcard' : 'fusion';
+      if (!hasBeenRecallTested(r)) return 'fusion';
       return seq[turn % seq.length];
     }
   }
   if (item.difficultyLevel >= 4) return null;
   const canWrite = (item.category === 'kotoba' && !!KOTOBA_DATABASE[item.itemId]) ||
     (item.category === 'kanji' && !!KANJI_DATABASE[item.itemId]);
-  const canFlash = (item.category === 'kotoba' && !!KOTOBA_DATABASE[item.itemId]) ||
-    (item.category === 'kanji' && !!KANJI_DATABASE[item.itemId]) ||
-    (item.category === 'bunpou' && !!BUNPOU_DATABASE[item.itemId]);
   const wrote = (r.writingCount || 0) > 0 && canWrite;
-  const flipped = (r.flashcardCount || 0) > 0 && canFlash;
-  if (!hasBeenRecallTested(r)) return wrote ? 'canvas' : flipped ? 'flashcard' : null;
+  if (!hasBeenRecallTested(r)) return wrote ? 'canvas' : null;
   // Sudah diuji: bergantian antar engine yang cocok; null = soal pilihan ganda/konteks.
-  const rotation: Array<'canvas' | 'flashcard' | 'listening' | null> = [];
+  const rotation: Array<'canvas' | 'listening' | null> = [];
   if (wrote) rotation.push('canvas');
-  if (flipped) rotation.push('flashcard');
   const kt = item.category === 'kotoba' ? KOTOBA_DATABASE[item.itemId] : undefined;
   if (kt?.reading) rotation.push('listening');
   if (rotation.length === 0) return null;
