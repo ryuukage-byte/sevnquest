@@ -16,7 +16,9 @@ import { getGameOverHp, HP_POTION_ID } from '../utils/recovery';
 import { DEFAULT_STATS } from '../state/defaultStats';
 import { canonicalEntityId } from '../state/canonicalizeStats';
 import { STORAGE_KEY_SIGNATURE } from '../state/storageKeys';
-import { applyLevelFromExp } from '../state/derivedState';
+import {
+  applyRewardToStats, applyStudyToStats, getStudyMissionAdvances, resolveStudyInteraction,
+} from '../state/playerProgress';
 import { consumePendingErrors } from '../utils/errorClassifier';
 import { KOTOBA_DATABASE } from '../data/kotoba';
 import { KANJI_DATABASE } from '../data/kanji';
@@ -43,29 +45,13 @@ export function usePlayerActions({
 }: Params) {
 // Give EXP & Gold reward directly (pure base EXP, respects JLPT Ascension gates)
   const handleRewardPlayer = (expGained: number, goldGained: number = 0) => {
-    const preview = applyLevelFromExp({ ...stats, totalExp: Math.round(Math.max(0, (stats.totalExp || 0) + expGained)) });
-    if (preview.levelsGained > 0) {
+    const preview = applyRewardToStats(stats, expGained, goldGained);
+    if (preview.level > stats.level) {
       playSound('levelup', stats.soundEnabled);
-      showToast(`Naik ke Level ${preview.stats.level}! +${preview.stats.unallocatedPoints - (stats.unallocatedPoints || 0)} poin atribut`, 4000);
+      showToast(`Naik ke Level ${preview.level}! +${preview.unallocatedPoints - (stats.unallocatedPoints || 0)} poin atribut`, 4000);
     }
-    setStats(prev => {
-      const newTotalExp = Math.round(Math.max(0, (prev.totalExp || 0) + expGained));
-      const { effectiveTierIndex, isGated, gatedReason } = getEffectiveTier({
-        ...prev,
-        totalExp: newTotalExp,
-      });
-
-      // Level adalah fungsi dari totalExp: naik level memberi poin atribut dan menambah HP/MP maksimum.
-      const { stats: leveled } = applyLevelFromExp({
-        ...prev,
-        totalExp: newTotalExp,
-        tierIndex: Math.max(0, effectiveTierIndex),
-        tierPromotionGated: isGated,
-        gatedReason: gatedReason,
-        gold: Math.round(Math.max(0, (prev.gold || 0) + goldGained)),
-      });
-      return leveled;
-    });
+    // EXP pecahan dibawa lewat expFraction (lihat utils/expAward.ts); totalExp tetap bilangan bulat.
+    setStats(prev => applyRewardToStats(prev, expGained, goldGained));
   };
 
   const advanceMissions = (
@@ -145,86 +131,14 @@ export function usePlayerActions({
       handleRewardPlayer(expGained, goldGained);
     }
 
-    const effectiveInteraction: 'writing' | 'flashcard' | 'quiz' =
-      interactionTypeOverride || (moduleId === 'kanji' ? 'writing' : (moduleId === 'kotoba' ? 'flashcard' : 'quiz'));
+    const interaction = resolveStudyInteraction(moduleId, interactionTypeOverride);
 
-    // ID agregat sesi (drill/tryout/dungeon/star_rush) bukan item materi: jangan dibuat record mastery,
-    // kalau tidak itemMastery membengkak (ID dungeon unik per sesi) dan antrean recall berisi item hantu.
-    const isSessionAggregate =
-      moduleId === 'questions' ||
-      moduleId === 'tryOuts' ||
-      (itemId !== undefined && /^(dungeon_|drill_|tryout_|star_rush)/.test(itemId));
-
-    // Advance mission progress based on completed module
-    if (effectiveInteraction === 'writing' || moduleId === 'kanji') advanceMissions('kanji', 1);
-    if (moduleId === 'bunpou') advanceMissions('bunpou', 1);
-    else if (moduleId === 'kotoba' && effectiveInteraction !== 'writing') advanceMissions('kotoba', 1);
-    else if (moduleId === 'choukai') advanceMissions('choukai', 1);
-    else if (moduleId === 'dokkai') {
-      const isPerfect = score !== undefined && total !== undefined && total > 0 && score === total;
-      advanceMissions('dokkai', 1, { isPerfect });
-    }
-    else if (moduleId === 'boss') {
-      advanceMissions('boss', 1);
+    for (const adv of getStudyMissionAdvances({ moduleId, interaction, score, total })) {
+      advanceMissions(adv.category, adv.amount, adv.extra);
     }
 
-    if (score && score > 0) {
-      advanceMissions('quiz', score);
-    }
-
-    // Update Item Mastery, Recall Queue & Study Statistics
-    setStats(prev => {
-      let updatedMastery = prev.itemMastery || {};
-      let updatedRecallQueue = prev.recallQueue || [];
-
-      if (itemId && !isSessionAggregate && score !== undefined && total !== undefined) {
-        const cat = moduleId === 'boss' ? 'bunpou' : moduleId;
-        const currentItem = prev.itemMastery ? prev.itemMastery[itemId] : undefined;
-        const isContextual = moduleId === 'dokkai' || moduleId === 'boss';
-        const updatedRecord = recordItemAttempt(
-          currentItem,
-          itemId,
-          cat,
-          score,
-          total,
-          detectedErrors.length > 0 ? detectedErrors : undefined,
-          isContextual,
-          effectiveInteraction,
-          moduleId
-        );
-        updatedMastery = {
-          ...updatedMastery,
-          [itemId]: updatedRecord
-        };
-        try {
-          updatedRecallQueue = buildSmartRecallQueue(updatedMastery);
-        } catch (e) {
-          console.warn('Failed to update recall queue', e);
-        }
-      }
-
-      let newStats: PlayerStats = {
-        ...prev,
-        itemMastery: updatedMastery,
-        recallQueue: updatedRecallQueue,
-      };
-
-      // Record Activity for Stats Profile (the specific module)
-      const effectiveId = itemId || `study_${moduleId}_${Date.now()}`;
-      if (effectiveInteraction === 'writing' || moduleId === 'kanji') newStats = recordStudyActivity(newStats, 'kanjiWriting', effectiveId);
-      else if (moduleId === 'kotoba') newStats = recordStudyActivity(newStats, 'flashcards', effectiveId);
-      else if (moduleId === 'boss') newStats = recordStudyActivity(newStats, 'bossBattles', effectiveId);
-      else if (moduleId === 'questions') newStats = recordStudyActivity(newStats, 'questions', effectiveId, total || 1);
-      else if (moduleId === 'tryOuts') newStats = recordStudyActivity(newStats, 'tryOuts', effectiveId, 1);
-      else newStats = recordStudyActivity(newStats, moduleId as any, effectiveId);
-
-      // Record total questions answered if it was a quiz
-      if (total && total > 1 && moduleId !== 'kanji' && moduleId !== 'kotoba' && effectiveInteraction !== 'writing') {
-        newStats = recordStudyActivity(newStats, 'questions', effectiveId, total);
-      }
-
-      return newStats;
-    });
+    // score/total undefined = tidak ada penilaian (mis. flashcard): dicatat sebagai latihan, bukan attempt.
+    setStats(prev => applyStudyToStats(prev, { moduleId, itemId, score, total, interaction, detectedErrors }));
   };
 
   // Lightweight Item Interaction Handler (Flashcard flip, Quick Kanji draw, Bunpou practice)

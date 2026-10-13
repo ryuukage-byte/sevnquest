@@ -27,6 +27,8 @@ export interface PlayerStats {
   currentExp?: number;
   maxExp?: number;
   totalExp: number;
+  /** Sisa EXP pecahan (0 ≤ x < 1) yang belum genap 1 EXP; dibawa ke reward berikutnya (lihat utils/expAward.ts). */
+  expFraction?: number;
   tierIndex: number; // 0 to 9 (Tier 1 to Tier 10)
   
   // Base Attributes
