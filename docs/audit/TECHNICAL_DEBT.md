@@ -38,8 +38,8 @@ Risiko: T tinggi · S sedang · R rendah.
 | C-01 | T | `user_saves` tidak ada ⇒ save penuh di `user_metadata.cloud_save` (ikut JWT) | **FIXED** tabel dibuat 2026-10-13 (RLS own-row; `anon` tanpa akses; `authenticated` select/insert/update saja); klien memigrasikan save lama saat simpan berikutnya (lazy). Sisa: pantau ukuran `user_metadata` lama & uji login perangkat kedua |
 | C-02 | T | Jalur leaderboard lama pasti gagal di DB ini bila env `VITE_SECURE_LEADERBOARD` tak `'true'` | **FIXED** default true |
 | C-03 | S | Event `quiz_answer` (skor mingguan) tak dikirim siapa pun ⇒ arena mingguan hanya bertambah dari menulis kanji | **FIXED** `handleStudyComplete` (jawaban bernilai tunggal) dan `handleItemReviewed` (Recall) mengirim `quiz_answer`; server membatasi 40/menit & dedupe 10 dtk. Belum diuji end-to-end dengan akun nyata |
-| C-04 | S | Konflik multi-perangkat: EXP lebih besar menang, tidak dijumlah | OPEN — ledger memungkinkan rekonsiliasi |
-| C-05 | S | `nq_fusion_progress` tak ikut cloud ⇒ clear pertama bisa diulang di perangkat baru (reward penuh) | OPEN |
+| C-04 | S | Konflik multi-perangkat: EXP lebih besar menang, tidak dijumlah | **MITIGATED** `reconcileRewardsFromLedger`: reward unik di riwayat sisi kalah dijumlahkan (anchor entri bersama; bila ragu tidak menambah). Tidak menolong EXP/gold pra-ledger atau entri yang terpangkas (>200) |
+| C-05 | S | `nq_fusion_progress` tak ikut cloud ⇒ clear pertama bisa diulang di perangkat baru (reward penuh) | **FIXED untuk reward** (`fusion_stage_first` lifetime lewat ledger/cloud); tampilan "pertama kali" masih lokal |
 | C-06 | S | `user_mastery` diisi skor sintetis (`retention=100`, `recognition=knowledge`) & tak dibaca balik | OPEN |
 | C-07 | S | Tower: `handleTowerMastery` tak dipanggil; konten Room tak bawa ID materi ⇒ progres menara tak memengaruhi Recall/ascension | DECISION (butuh desain) |
 | C-08 | S | Tier leaderboard (server, murni EXP) ≠ tier in-app (digerbang Ascend) | OPEN |
@@ -59,7 +59,7 @@ Risiko: T tinggi · S sedang · R rendah.
 | D-06 | R | Dua target deploy (Vercel `api/` + Cloudflare `functions/`) dengan logika duplikat | OPEN |
 | D-07 | R | Dependensi kemungkinan tak terpakai (`express`, `dotenv`, `jimp`, `esbuild`, `gh-pages`); `package.json` name `react-example`; `.env.example` merujuk file yang tidak ada | OPEN |
 | D-08 | R | Dokumen yang dirujuk kode tidak ada: `docs/TOWER1_ARCHITECTURE.md`, `docs/TOWER2_ARCHITECTURE.md`, `supabase/migrations/20261001_*.sql` | OPEN |
-| D-09 | S | Tanpa CI; tes hanya lokal | OPEN |
+| D-09 | S | Tanpa CI; tes hanya lokal | **FIXED (menunggu proses pertama)** `.github/workflows/ci.yml`: `tsc`, `npm test`, `vite build` pada PR/push main |
 | D-10 | S | Chunk `data-kotoba` 8,5 MB | OPEN |
 | D-11 | R | Tabel konten Supabase (kanji/vocabulary/grammar ±11.8k baris) tidak dipakai — salinan basi berpotensi menyesatkan | OPEN |
 | D-12 | R | Tiga salinan konstanta level/tier (TS + 2 fungsi SQL) | OPEN (tambah tes kontrak) |

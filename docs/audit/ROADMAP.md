@@ -11,7 +11,8 @@ Kompleksitas: L rendah · M sedang · H tinggi. Setiap item memuat kriteria suks
 | K4 | Dungeon membayar jawaban salah/waktu habis | pertahankan / bayar hanya benar |
 | K5 | Tier leaderboard (murni EXP) vs tier in-app (digerbang) | samakan (kirim tier efektif) / biarkan |
 
-## Gelombang 1 — integritas (sebelum fitur baru)
+## Gelombang 1 — integritas (sebelum fitur baru) — **dikerjakan di PR #14**
+Status: #1 ✅ · #2 ✅ · #3 ✅ (mitigasi) · #4 ✅ · #5 ✅ · #6 ✅ (reward) · #7 ✅ (tes + CI). Sisa lihat TECHNICAL_DEBT.
 | # | Item | Reuse | File | Risiko | Kompleksitas | Kriteria sukses |
 |---|---|---|---|---|---|---|
 | 1 | Klasifikasikan sisa sumber reward ke ledger: Arcade (5), Dungeon (eventKey sudah; tambah batas harian total), drill Library, menulis kanji/kosakata, Fusion stage | `awardExp`, `REWARD_POLICY` | `components/arcade/*`, `dungeon/DungeonSessionRunner`, `library/*`, `fusion` | ekonomi berubah | M | tidak ada `legacy_unclassified`/`study_unclassified` baru di ledger pada alur normal; tes per sumber |
