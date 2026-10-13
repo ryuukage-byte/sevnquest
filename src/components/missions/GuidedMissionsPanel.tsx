@@ -1,4 +1,5 @@
-import React, { lazy, Suspense, useMemo, useState } from 'react';
+import React, { Suspense, useMemo, useState } from 'react';
+import { lazyWithRetry as lazy } from '../../utils/lazyWithRetry';
 import { motion } from 'motion/react';
 import confetti from 'canvas-confetti';
 import {
