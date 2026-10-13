@@ -46,6 +46,7 @@ Risiko: T tinggi · S sedang · R rendah.
 | C-09 | S | Tidak ada CSP; rate-limit `api/deck-topic` in-memory; `api/captions` pakai endpoint tak resmi | OPEN |
 | C-10 | R | Anon key hardcode di `lib/supabase.ts` (publik by design; RLS+RPC terverifikasi) | diterima |
 | C-11 | S | RLS policy `roles={public}` dengan `auth.uid()=user_id` (anon ⇒ nol baris); aman tetapi gunakan `TO authenticated` agar eksplisit | OPEN (kosmetik keamanan) |
+| C-12 | R | Advisor Supabase (2026-10-13): *Leaked Password Protection* nonaktif (Auth); `submit_score_event` v1 tanpa `search_path` (tidak dapat dieksekusi, kosmetik); 24 tabel RLS-tanpa-policy (INFO, disengaja: hanya diakses RPC/service) | OPEN |
 
 ## D. Kode & arsitektur
 | ID | R | Temuan | Status |
