@@ -35,6 +35,14 @@ Bukti: ✅ kode/eksekusi · 🔶 pembacaan struktur (belum dijalankan di browser
 | Studi kasus tier perks | `data/rpg/tiers.perks` | U ✅ | teks saja; tak ada efek |
 
 ## 4. Misi
+### 4a. Misi harian = Guided Learning (kurikulum personal)
+`engine/curriculum/*` (murni, tes `curriculum.test.ts`), `missions/GuidedMissionsPanel`, `missions/GuidedSetupWizard`, state `PlayerStats.guidedPlan`.
+Profil (level saat ini, target, durasi, menit/hari, preferensi) → urutan materi dari DB (tanpa LLM) → misi harian Kotoba/Kanji/Bunpou/Recall.
+"Selesai" diturunkan dari `itemMastery` (`hasPracticed`), jadi belajar lewat Library/Buku Saku/Recall ikut terhitung; Tower/Arcade tidak.
+Materi tertunda didahulukan esok hari; jatah dihitung ulang dari sisa materi ÷ sisa hari (maks ×1,5) dan dikurangi saat antrean Recall menumpuk.
+Klaim lewat ledger `mission_claim` (ref `guided_<misi>:<tanggal>`). Tabel `dm_*` di bawah **tidak lagi ditampilkan**; state-nya masih ada (payload cloud) → kandidat pembersihan.
+
+### 4b. Misi lama (dm_* tersembunyi) & mingguan
 | Misi | Pemicu hidup | St |
 |---|---|---|
 | dm_01 Bunpou (1 sesi) | `handleStudyComplete(bunpou)` | C ✅ |

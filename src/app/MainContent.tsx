@@ -52,6 +52,7 @@ export function MainContent(props: MainContentProps) {
     handleStartRemediationRecall, handleItemReviewed, handleCompleteRecallSession, handleUseMp,
     handleClaimMission, handleGameOver, handleHpDamage, handleResetData,
     handleUpdateName, handleUpdateSignature, handleToggleBookmark, handleUpdateDecks, handleReplayOnboarding,
+    handleStartGuidedPlan, handleStopGuidedPlan, handleClaimGuidedMission,
     isAuthenticated, setIsAuthenticated, cloudSyncStatus, lastSyncedAt, saveToCloud,
   } = props;
 
@@ -91,7 +92,6 @@ export function MainContent(props: MainContentProps) {
                   <ModuleBoundary label="Beranda">
                   <HomeView
                     stats={stats}
-                    dailyMissions={dailyMissions}
                     onOpenStatusModal={() => setIsStatusModalOpen(true)}
                     onNavigateTab={(tab) => handleTabChange(tab as TabType)}
                     onStartRecall={() => setIsRecallActive(true)}
@@ -139,10 +139,23 @@ export function MainContent(props: MainContentProps) {
                 {(visitedTabs.has('daily') || visitedTabs.has('weekly')) && (
                   <ModuleBoundary label="Misi">
                   <MissionsView
-                    dailyMissions={dailyMissions}
                     weeklyMissions={weeklyMissions}
                     onClaimReward={handleClaimMission}
                     soundEnabled={stats.soundEnabled}
+                    guided={{
+                      stats,
+                      soundEnabled: stats.soundEnabled,
+                      onStartPlan: handleStartGuidedPlan,
+                      onStopPlan: handleStopGuidedPlan,
+                      onClaim: handleClaimGuidedMission,
+                      onStartRecall: () => setIsRecallActive(true),
+                      onExplore: () => handleTabChange('library'),
+                      onRewardPlayer: handleRewardPlayer,
+                      onCompleteStudyItem: handleStudyComplete,
+                      onRecordInteraction: handleRecordItemInteraction,
+                      onToggleBookmark: handleToggleBookmark,
+                      onUpdateDecks: handleUpdateDecks,
+                    }}
                   />
                   </ModuleBoundary>
                 )}

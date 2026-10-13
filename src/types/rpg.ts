@@ -108,6 +108,9 @@ export interface PlayerStats {
 
   // User Pocket Decks (Buku Saku)
   userDecks?: UserDeck[];
+
+  /** Guided Learning: profil kurikulum + penugasan hari ini (lihat engine/curriculum). */
+  guidedPlan?: import('../engine/curriculum/types').GuidedPlan;
 }
 
 export type DeckType = 'mixed' | 'flashcard' | 'writing' | 'kotoba' | 'kanji' | 'bunpou';
