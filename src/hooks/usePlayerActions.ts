@@ -11,13 +11,15 @@ import { recordItemAttempt, recordItemInteraction, buildSmartRecallQueue, hasBee
 import { recordRecallAnswer, recordRecallSession } from '../engine/recall/session';
 import { recordStudyActivity } from '../utils/activity';
 import { safeSetItem } from '../utils/storage';
-import { getTodayLocalDate } from '../utils/time';
+import { getTodayLocalDate, getLocalIsoWeekId } from '../utils/time';
+import { awardExp, LEGACY_META } from '../engine/reward/awardExp';
+import type { RewardDecision, RewardMeta, StudyCompleteResult } from '../engine/reward/types';
 import { getGameOverHp, HP_POTION_ID } from '../utils/recovery';
 import { DEFAULT_STATS } from '../state/defaultStats';
 import { canonicalEntityId } from '../state/canonicalizeStats';
 import { STORAGE_KEY_SIGNATURE } from '../state/storageKeys';
 import {
-  applyRewardToStats, applyStudyToStats, getStudyMissionAdvances, resolveStudyInteraction,
+  applyStudyToStats, getStudyMissionAdvances, resolveStudyInteraction,
 } from '../state/playerProgress';
 import { consumePendingErrors } from '../utils/errorClassifier';
 import { KOTOBA_DATABASE } from '../data/kotoba';
@@ -44,14 +46,17 @@ export function usePlayerActions({
   showToast,
 }: Params) {
 // Give EXP & Gold reward directly (pure base EXP, respects JLPT Ascension gates)
-  const handleRewardPlayer = (expGained: number, goldGained: number = 0) => {
-    const preview = applyRewardToStats(stats, expGained, goldGained);
-    if (preview.level > stats.level) {
+  const handleRewardPlayer = (expGained: number, goldGained: number = 0, meta: RewardMeta = LEGACY_META): RewardDecision => {
+    const req = { ...meta, exp: expGained, gold: goldGained };
+    // Pratinjau terhadap snapshot render: untuk toast level-up dan nilai kembalian ke UI. Keputusan RESMI
+    // (idempotency/batas/ledger) diambil di dalam updater di bawah terhadap state terbaru.
+    const preview = awardExp(stats, req);
+    if (preview.decision.granted && preview.stats.level > stats.level) {
       playSound('levelup', stats.soundEnabled);
-      showToast(`Naik ke Level ${preview.level}! +${preview.unallocatedPoints - (stats.unallocatedPoints || 0)} poin atribut`, 4000);
+      showToast(`Naik ke Level ${preview.stats.level}! +${preview.stats.unallocatedPoints - (stats.unallocatedPoints || 0)} poin atribut`, 4000);
     }
-    // EXP pecahan dibawa lewat expFraction (lihat utils/expAward.ts); totalExp tetap bilangan bulat.
-    setStats(prev => applyRewardToStats(prev, expGained, goldGained));
+    setStats(prev => awardExp(prev, req).stats);
+    return preview.decision;
   };
 
   const advanceMissions = (
@@ -121,14 +126,22 @@ export function usePlayerActions({
     itemId?: string,
     score?: number,
     total?: number,
-    interactionTypeOverride?: 'writing' | 'flashcard' | 'quiz'
-  ) => {
+    interactionTypeOverride?: 'writing' | 'flashcard' | 'quiz',
+    rewardMeta?: RewardMeta
+  ): StudyCompleteResult => {
     // ID kanonik: alias lama / karakter kanji tidak boleh membuat record mastery ganda.
     if (itemId) itemId = canonicalEntityId(itemId);
     // Jenis kesalahan dari sesi kuis yang baru selesai (sekali pakai; kosong untuk mode tanpa kuis)
     const detectedErrors = consumePendingErrors();
+    let rewardDecision: RewardDecision | undefined;
     if (expGained > 0 || goldGained > 0) {
-      handleRewardPlayer(expGained, goldGained);
+      // Sesi dungeon punya ID unik per sesi -> dipakai sebagai identitas kejadian (cegah bayar dua kali).
+      const meta: RewardMeta = rewardMeta ?? {
+        source: 'study_unclassified',
+        ref: itemId,
+        ...(itemId && /^dungeon_/.test(itemId) ? { eventKey: itemId } : {}),
+      };
+      rewardDecision = handleRewardPlayer(expGained, goldGained, meta);
     }
 
     const interaction = resolveStudyInteraction(moduleId, interactionTypeOverride);
@@ -139,6 +152,7 @@ export function usePlayerActions({
 
     // score/total undefined = tidak ada penilaian (mis. flashcard): dicatat sebagai latihan, bukan attempt.
     setStats(prev => applyStudyToStats(prev, { moduleId, itemId, score, total, interaction, detectedErrors }));
+    return rewardDecision;
   };
 
   // Lightweight Item Interaction Handler (Flashcard flip, Quick Kanji draw, Bunpou practice)
@@ -251,7 +265,7 @@ export function usePlayerActions({
   };
 
   const handleCompleteRecallSession = (totalReviewed: number, correctCount: number, expGained: number, goldGained: number) => {
-    handleRewardPlayer(expGained, goldGained);
+    handleRewardPlayer(expGained, goldGained, { source: 'recall_session', note: `${correctCount}/${totalReviewed} benar` });
 
     advanceMissions('kotoba', Math.min(5, totalReviewed));
     if (correctCount > 0) {
@@ -328,8 +342,15 @@ export function usePlayerActions({
     if (mission.claimed) return;
     if (!mission.completed && (mission.progress || 0) < mission.target) return;
 
-    handleRewardPlayer(mission.rewardExp, mission.rewardGold);
-    if (mission.rewardGems) {
+    // Identitas klaim = misi + periode (hari / minggu ISO): klik ganda atau klaim ulang tidak dibayar dua kali.
+    const period = mission.type === 'daily' ? getTodayLocalDate() : getLocalIsoWeekId();
+    const decision = handleRewardPlayer(mission.rewardExp, mission.rewardGold, {
+      source: 'mission_claim',
+      ref: `${mission.id}:${period}`,
+      note: mission.title,
+    });
+    const alreadyPaid = !decision.granted && decision.reason !== 'empty';
+    if (mission.rewardGems && !alreadyPaid) {
       setStats(prev => ({ ...prev, gems: prev.gems + (mission.rewardGems || 0) }));
     }
 

@@ -1,3 +1,4 @@
+import type { RewardHandler } from '../../engine/reward/types';
 import React, { useState, useRef } from 'react';
 import { motion } from 'motion/react';
 import {
@@ -25,7 +26,7 @@ import { ConjugationSandboxModal } from './ConjugationSandboxModal';
 
 interface ConjugationDojoViewProps {
   soundEnabled?: boolean;
-  onRewardPlayer?: (exp: number, gold: number) => void;
+  onRewardPlayer?: RewardHandler;
 }
 
 export const ConjugationDojoView: React.FC<ConjugationDojoViewProps> = ({
@@ -47,6 +48,8 @@ export const ConjugationDojoView: React.FC<ConjugationDojoViewProps> = ({
   const [streak, setStreak] = useState(0);
   const [totalScore, setTotalScore] = useState(0);
   const [totalAnswered, setTotalAnswered] = useState(0);
+  // true bila hadiah jawaban terakhir ditolak (kombinasi ini sudah dibayar hari ini)
+  const [rewardDenied, setRewardDenied] = useState(false);
 
   // Sandbox "Coba dengan Kotoba" (eksplorasi, tidak memberi EXP/mastery)
   const [sandboxFormId, setSandboxFormId] = useState<string | null>(null);
@@ -97,9 +100,12 @@ export const ConjugationDojoView: React.FC<ConjugationDojoViewProps> = ({
       setStreak(prev => prev + 1);
       setTotalScore(prev => prev + 1);
       setTotalAnswered(prev => prev + 1);
-      if (onRewardPlayer) {
-        onRewardPlayer(15, 10);
-      }
+      // Sekali per kombinasi verb|bentuk per hari (aturan di engine/reward/policy.ts).
+      const decision = onRewardPlayer?.(15, 10, {
+        source: 'conjugation_dojo',
+        ref: `${currentQuestion.targetVerb.id}|${currentQuestion.targetForm.id}`,
+      });
+      setRewardDenied(!!decision && !decision.granted);
     } else {
       playSound('wrong', soundEnabled);
       setStreak(0);
@@ -316,7 +322,7 @@ export const ConjugationDojoView: React.FC<ConjugationDojoViewProps> = ({
                     <XCircle className="w-5 h-5 text-rose-400" />
                   )}
                   <span className="font-heading font-bold text-sm sm:text-base">
-                    {selectedAnswerIndex === currentQuestion.correctIndex ? 'Tepat Sekali! (+15 EXP)' : 'Kurang Tepat!'}
+                    {selectedAnswerIndex === currentQuestion.correctIndex ? (rewardDenied ? 'Tepat Sekali! (hadiah kombinasi ini sudah diambil hari ini)' : 'Tepat Sekali! (+15 EXP)') : 'Kurang Tepat!'}
                   </span>
                 </div>
 

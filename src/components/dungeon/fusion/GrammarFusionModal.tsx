@@ -1,3 +1,4 @@
+import type { RewardHandler } from '../../../engine/reward/types';
 import React, { useCallback, useEffect, useReducer, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { X, Sparkles, Lightbulb, RotateCcw, Check, Wind, Trophy, ArrowRight } from 'lucide-react';
@@ -16,7 +17,7 @@ import { FusionWordBoard } from './FusionWordBoard';
 interface Props {
   onClose: () => void;
   soundEnabled?: boolean;
-  onRewardPlayer?: (exp: number, gold: number) => void;
+  onRewardPlayer?: RewardHandler;
 }
 
 /** Durasi tiap fase (ms); total ±1000 ms. */
@@ -334,8 +335,6 @@ export const FusionPlayer: React.FC<PlayerProps> = ({ stage, baseWord, soundEnab
   );
 };
 
-// Kombinasi (pola × kata) Latihan Bebas yang sudah memberi hadiah pada sesi halaman ini — mencegah farming.
-const freeRewarded = new Set<string>();
 const FREE_TABS = [
   { id: 'stage', label: 'Stage' },
   { id: 'free', label: 'Latihan Bebas' },
@@ -372,16 +371,16 @@ export const GrammarFusionModal: React.FC<Props> = ({ onClose, soundEnabled = tr
       gold: Math.round(gold * ratio),
       note: firstClear ? undefined : `Ulangan: hadiah ${Math.round(REPEAT_REWARD_RATIO * 100)}%`,
     };
-    onRewardPlayer?.(out.exp, out.gold);
+    onRewardPlayer?.(out.exp, out.gold, { source: 'fusion_stage', ref: stage.id, note: firstClear ? 'clear pertama' : 'ulangan' });
     return out;
   }, [progress, stage.id, onRewardPlayer]);
 
   const handleFreeFinished = useCallback((_m: number, _h: number, exp: number, gold: number): RewardOut => {
     if (!freePick) return { exp: 0, gold: 0 };
     const key = `${freePick.pattern.id}|${freePick.verb.japanese}`;
-    if (freeRewarded.has(key)) return { exp: 0, gold: 0, note: 'Latihan bebas: kombinasi ini sudah memberi hadiah di sesi ini.' };
-    freeRewarded.add(key);
-    onRewardPlayer?.(exp, gold);
+    // Sekali per kombinasi per hari, dijaga ledger (bertahan setelah refresh & ikut cloud).
+    const decision = onRewardPlayer?.(exp, gold, { source: 'fusion_free', ref: key });
+    if (decision && !decision.granted) return { exp: 0, gold: 0, note: 'Latihan bebas: kombinasi ini sudah memberi hadiah hari ini.' };
     return { exp, gold, note: 'Latihan bebas: hadiah kombinasi baru.' };
   }, [freePick, onRewardPlayer]);
 

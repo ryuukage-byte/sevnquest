@@ -354,3 +354,11 @@ Dikerjakan setelah audit ini. Detail ada di deskripsi PR.
 - §I-2 (flashcard dihitung attempt sempurna): diperbaiki; flip/Next tanpa skor = latihan (`recordItemInteraction`), bukan `recordItemAttempt`.
 - Tes baru: `src/utils/expAward.test.ts`, `src/state/playerProgress.test.ts` (23 tes).
 - Belum disentuh: §I-3 s.d. I-17 (misi, ledger/idempotency, farming, cloud, kode mati).
+
+## Status tindak lanjut — Tahap 3 (`awardExp`, ledger, idempotency)
+
+- Pintu tunggal: `src/engine/reward/awardExp.ts`; aturan di `policy.ts` (satu tabel, nilai awal yang bisa disetel); keputusan/ledger/merge di `ledger.ts`.
+- `PlayerStats.rewardLedger` (≤200 entri) + `rewardClaims` (penanda idempotency/batas, kedaluwarsa otomatis) ikut tersimpan lokal & cloud (di-union saat sinkron).
+- Disambungkan: klaim misi, Tower 1/2 clear pertama, Conjugation Dojo, soal detail Bunpou/Entity, Grammar Fusion (stage & bebas), Recall, flashcard Buku Saku (flip/complete).
+- Masih lewat jalur lama (`legacy_unclassified` / `study_unclassified`, tercatat tapi tanpa batas): arcade, dungeon (hanya eventKey), tryout/drill, menulis kanji/kosakata, Text Study.
+- Tes: `src/engine/reward/reward.test.ts` (21 tes).

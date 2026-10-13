@@ -1,6 +1,7 @@
 import type { PlayerStats, StageClearData, UserDeck } from '../types/rpg';
 import type { ItemMasteryRecord } from '../types/content';
 import { mergeRecallDaily } from '../engine/recall/session';
+import { mergeRewardState } from '../engine/reward/ledger';
 
 /**
  * Penggabungan data lokal ↔ cloud tanpa menghapus progres yang hanya ada di salah satu sisi.
@@ -85,5 +86,7 @@ export function mergeStatsCollections(
     itemMastery: mergeItemMastery(local.itemMastery, cloud.itemMastery),
     userDecks: mergeUserDecks(local.userDecks, cloud.userDecks),
     recallDaily: mergeRecallDaily(local.recallDaily, cloud.recallDaily),
+    // Penanda & riwayat reward di-union supaya klaim di satu perangkat tidak bisa diulang di perangkat lain.
+    ...mergeRewardState(local, cloud),
   };
 }
