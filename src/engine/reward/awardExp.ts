@@ -1,5 +1,7 @@
 import type { PlayerStats } from '../../types/rpg';
 import { applyRewardToStats } from '../../state/playerProgress';
+import { touchActiveDay } from '../../state/streak';
+import { localDayKey } from './ledger';
 import { commitReward, decideReward } from './ledger';
 import type { RewardDecision, RewardMeta, RewardRequest } from './types';
 
@@ -18,7 +20,9 @@ export function awardExp(
   if (!decision.granted) {
     return { stats: state.rewardClaims === prev.rewardClaims ? prev : { ...prev, rewardClaims: state.rewardClaims }, decision };
   }
-  const rewarded = applyRewardToStats(prev, decision.exp, decision.gold);
+  let rewarded = applyRewardToStats(prev, decision.exp, decision.gold);
+  // Reward belajar menandai hari ini aktif (streak). Klaim misi bukan aktivitas belajar.
+  if (req.source !== 'mission_claim') rewarded = touchActiveDay(rewarded, localDayKey(now));
   return { stats: { ...rewarded, rewardClaims: state.rewardClaims, rewardLedger: state.rewardLedger }, decision };
 }
 

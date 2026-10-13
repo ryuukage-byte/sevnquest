@@ -5,6 +5,8 @@ import { recordStudyActivity } from '../utils/activity';
 import { recordItemAttempt, recordItemInteraction, buildSmartRecallQueue } from '../utils/mastery';
 import type { ErrorType } from '../types/content';
 import { applyLevelFromExp } from './derivedState';
+import { touchActiveDay } from './streak';
+import { localDayKey } from '../engine/reward/ledger';
 
 /**
  * Transisi state pemain yang MURNI (tanpa React) untuk reward dan hasil belajar.
@@ -82,7 +84,7 @@ export function getStudyMissionAdvances(c: Pick<StudyCompletion, 'moduleId' | 'i
  *  - Ada skor/total  -> jawaban bernilai: recordItemAttempt (akurasi, streak, SRS).
  *  - Flashcard tanpa skor -> latihan ringan: recordItemInteraction('flashcard'); BUKAN attempt, SRS tidak bergerak.
  */
-export function applyStudyToStats(prev: PlayerStats, c: StudyCompletion): PlayerStats {
+export function applyStudyToStats(prev: PlayerStats, c: StudyCompletion, now: Date = new Date()): PlayerStats {
   const { moduleId, itemId, score, total, interaction } = c;
   const isAggregate = isSessionAggregateId(moduleId, itemId);
   let updatedMastery = prev.itemMastery || {};
@@ -131,5 +133,6 @@ export function applyStudyToStats(prev: PlayerStats, c: StudyCompletion): Player
   if (total && total > 1 && moduleId !== 'kanji' && moduleId !== 'kotoba' && interaction !== 'writing' && interaction !== 'flashcard') {
     next = recordStudyActivity(next, 'questions', effectiveId, total);
   }
-  return next;
+  // Hasil belajar nyata menandai hari ini aktif (streak), walau EXP-nya ditolak batas harian.
+  return touchActiveDay(next, localDayKey(now));
 }

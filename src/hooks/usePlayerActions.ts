@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { useCallback, type Dispatch, type SetStateAction } from 'react';
+import { useCallback, useEffect, type Dispatch, type SetStateAction } from 'react';
 import confetti from 'canvas-confetti';
 import type { PlayerStats, StageClearData, Mission, DeckItemCategory, UserDeck } from '../types/rpg';
 import { calculateMaxHp, calculateMaxMp } from '../data/tiers';
@@ -12,6 +12,8 @@ import { recordRecallAnswer, recordRecallSession } from '../engine/recall/sessio
 import { recordStudyActivity } from '../utils/activity';
 import { safeSetItem } from '../utils/storage';
 import { getTodayLocalDate, getLocalIsoWeekId } from '../utils/time';
+import { advanceDailyMissions, advanceWeeklyMissions, syncStreakMission, type MissionCategory } from '../state/missions';
+import { touchActiveDay } from '../state/streak';
 import { awardExp, LEGACY_META } from '../engine/reward/awardExp';
 import type { RewardDecision, RewardMeta, StudyCompleteResult } from '../engine/reward/types';
 import { getGameOverHp, HP_POTION_ID } from '../utils/recovery';
@@ -60,63 +62,19 @@ export function usePlayerActions({
   };
 
   const advanceMissions = (
-    category: 'bunpou' | 'kotoba' | 'kanji' | 'dokkai' | 'choukai' | 'streak' | 'stage_clear' | 'boss' | 'quiz',
+    category: MissionCategory,
     amount: number = 1,
     extra?: { isPerfect?: boolean; streakCount?: number }
   ) => {
-    setDailyMissions(prev =>
-      prev.map(m => {
-        let shouldIncrement = false;
-        let incAmount = amount;
-
-        if (m.id === 'dm_01' && category === 'bunpou') shouldIncrement = true;
-        else if (m.id === 'dm_02' && category === 'kotoba') shouldIncrement = true;
-        else if (m.id === 'dm_03' && category === 'kanji') shouldIncrement = true;
-        else if (m.id === 'dm_04' && category === 'choukai') shouldIncrement = true;
-        else if (m.id === 'dm_05' && (category === 'quiz' || category === 'bunpou' || category === 'kotoba' || category === 'choukai')) shouldIncrement = true;
-
-        if (shouldIncrement) {
-          const newProgress = Math.min(m.target, m.progress + incAmount);
-          return {
-            ...m,
-            progress: newProgress,
-            completed: newProgress >= m.target,
-          };
-        }
-        return m;
-      })
-    );
-
-    setWeeklyMissions(prev =>
-      prev.map(m => {
-        let shouldIncrement = false;
-        let incAmount = amount;
-
-        if (m.id === 'wm_01' && category === 'stage_clear') shouldIncrement = true;
-        else if (m.id === 'wm_02' && category === 'streak') {
-          const currentStreak = extra?.streakCount ?? stats.streakDays;
-          const newProgress = Math.min(m.target, Math.max(m.progress, currentStreak));
-          return {
-            ...m,
-            progress: newProgress,
-            completed: newProgress >= m.target,
-          };
-        }
-        else if (m.id === 'wm_03' && category === 'dokkai' && extra?.isPerfect) shouldIncrement = true;
-        else if (m.id === 'wm_04' && (category === 'boss' || category === 'stage_clear')) shouldIncrement = true;
-
-        if (shouldIncrement) {
-          const newProgress = Math.min(m.target, m.progress + incAmount);
-          return {
-            ...m,
-            progress: newProgress,
-            completed: newProgress >= m.target,
-          };
-        }
-        return m;
-      })
-    );
+    setDailyMissions(prev => advanceDailyMissions(prev, category, amount));
+    setWeeklyMissions(prev => advanceWeeklyMissions(prev, category, amount, extra));
   };
+
+  // Misi streak mingguan mengikuti streak belajar (state/streak.ts); dihitung ulang saat streak berubah.
+  useEffect(() => {
+    const now = new Date();
+    setWeeklyMissions(prev => syncStreakMission(prev, stats, getTodayLocalDate(), now));
+  }, [stats.streakDays, stats.lastActiveDate]);
 
   // Universal Study Activity Completion Handler (Works across Stages, Library, Decks, & Practice)
   const handleStudyComplete = (
@@ -254,25 +212,35 @@ export function usePlayerActions({
         'recall'
       );
       currentMastery[itemId] = updated;
-      return {
+      return touchActiveDay({
         ...prev,
         itemMastery: currentMastery,
         recallQueue: buildSmartRecallQueue(currentMastery),
         // Kuota harian: jawaban ini + apakah materinya baru pertama kali diuji (dihitung dari record SEBELUM dijawab).
         recallDaily: recordRecallAnswer(prev.recallDaily, getTodayLocalDate(), !existing || !hasBeenRecallTested(existing))
-      };
+      }, getTodayLocalDate());
     });
   };
 
-  const handleCompleteRecallSession = (totalReviewed: number, correctCount: number, expGained: number, goldGained: number) => {
-    handleRewardPlayer(expGained, goldGained, { source: 'recall_session', note: `${correctCount}/${totalReviewed} benar` });
+  const handleCompleteRecallSession = (
+    totalReviewed: number, correctCount: number, expGained: number, goldGained: number,
+    opts?: { sessionKey?: string; partial?: boolean }
+  ) => {
+    handleRewardPlayer(expGained, goldGained, {
+      source: 'recall_session',
+      ...(opts?.sessionKey ? { eventKey: opts.sessionKey } : {}),
+      note: `${correctCount}/${totalReviewed} benar${opts?.partial ? ' (sesi ditinggalkan)' : ''}`,
+    });
 
     advanceMissions('kotoba', Math.min(5, totalReviewed));
     if (correctCount > 0) {
       advanceMissions('quiz', correctCount);
     }
 
-    setStats(prev => ({ ...prev, recallDaily: recordRecallSession(prev.recallDaily, getTodayLocalDate()) }));
+    // Sesi yang ditinggalkan di tengah tidak dihitung sebagai sesi selesai.
+    if (!opts?.partial) {
+      setStats(prev => ({ ...prev, recallDaily: recordRecallSession(prev.recallDaily, getTodayLocalDate()) }));
+    }
     // Layar ringkasan sesi (RecallModule) ditutup lewat tombolnya (onExit); menutup di sini membuatnya tak pernah terlihat.
   };
 
