@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { useCallback, useEffect, type Dispatch, type SetStateAction } from 'react';
+import { useCallback, useEffect, useRef, type Dispatch, type SetStateAction } from 'react';
 import confetti from 'canvas-confetti';
 import type { PlayerStats, StageClearData, Mission, DeckItemCategory, UserDeck } from '../types/rpg';
 import { calculateMaxHp, calculateMaxMp } from '../data/tiers';
@@ -15,13 +15,15 @@ import { getTodayLocalDate, getLocalIsoWeekId } from '../utils/time';
 import { advanceDailyMissions, advanceWeeklyMissions, syncStreakMission, type MissionCategory } from '../state/missions';
 import { touchActiveDay } from '../state/streak';
 import { awardExp, LEGACY_META } from '../engine/reward/awardExp';
+import { REWARD_POLICY } from '../engine/reward/policy';
+import { sendScoreEvent } from '../lib/supabase';
 import type { RewardDecision, RewardMeta, StudyCompleteResult } from '../engine/reward/types';
 import { getGameOverHp, HP_POTION_ID } from '../utils/recovery';
 import { DEFAULT_STATS } from '../state/defaultStats';
 import { canonicalEntityId } from '../state/canonicalizeStats';
 import { STORAGE_KEY_SIGNATURE } from '../state/storageKeys';
 import {
-  applyStudyToStats, getStudyMissionAdvances, resolveStudyInteraction,
+  applyStudyToStats, getStudyMissionAdvances, resolveStudyInteraction, inferStudyRewardMeta, isSessionAggregateId,
 } from '../state/playerProgress';
 import { consumePendingErrors } from '../utils/errorClassifier';
 import { KOTOBA_DATABASE } from '../data/kotoba';
@@ -48,6 +50,8 @@ export function usePlayerActions({
   showToast,
 }: Params) {
 // Give EXP & Gold reward directly (pure base EXP, respects JLPT Ascension gates)
+  const capNotified = useRef(new Set<string>());
+
   const handleRewardPlayer = (expGained: number, goldGained: number = 0, meta: RewardMeta = LEGACY_META): RewardDecision => {
     const req = { ...meta, exp: expGained, gold: goldGained };
     // Pratinjau terhadap snapshot render: untuk toast level-up dan nilai kembalian ke UI. Keputusan RESMI
@@ -58,6 +62,13 @@ export function usePlayerActions({
       showToast(`Naik ke Level ${preview.stats.level}! +${preview.stats.unallocatedPoints - (stats.unallocatedPoints || 0)} poin atribut`, 4000);
     }
     setStats(prev => awardExp(prev, req).stats);
+    // Beri tahu sekali per keluarga per sesi halaman saat batas EXP harian tercapai (latihan tetap tercatat).
+    const family = REWARD_POLICY[req.source]?.family;
+    const d = preview.decision;
+    if (family && (d.capped || d.reason === 'daily_cap') && !capNotified.current.has(family)) {
+      capNotified.current.add(family);
+      showToast(`Batas EXP harian untuk mode ini tercapai. Latihan tetap tercatat; EXP lanjut besok.`, 5000);
+    }
     return preview.decision;
   };
 
@@ -91,18 +102,13 @@ export function usePlayerActions({
     if (itemId) itemId = canonicalEntityId(itemId);
     // Jenis kesalahan dari sesi kuis yang baru selesai (sekali pakai; kosong untuk mode tanpa kuis)
     const detectedErrors = consumePendingErrors();
+    const interaction = resolveStudyInteraction(moduleId, interactionTypeOverride);
     let rewardDecision: RewardDecision | undefined;
     if (expGained > 0 || goldGained > 0) {
-      // Sesi dungeon punya ID unik per sesi -> dipakai sebagai identitas kejadian (cegah bayar dua kali).
-      const meta: RewardMeta = rewardMeta ?? {
-        source: 'study_unclassified',
-        ref: itemId,
-        ...(itemId && /^dungeon_/.test(itemId) ? { eventKey: itemId } : {}),
-      };
+      // Pemanggil boleh menyebut sumber; bila tidak, dikenali dari ID/interaksi (dungeon_/drill_/menulis).
+      const meta: RewardMeta = rewardMeta ?? inferStudyRewardMeta(moduleId, interaction, itemId);
       rewardDecision = handleRewardPlayer(expGained, goldGained, meta);
     }
-
-    const interaction = resolveStudyInteraction(moduleId, interactionTypeOverride);
 
     for (const adv of getStudyMissionAdvances({ moduleId, interaction, score, total })) {
       advanceMissions(adv.category, adv.amount, adv.extra);
@@ -110,6 +116,12 @@ export function usePlayerActions({
 
     // score/total undefined = tidak ada penilaian (mis. flashcard): dicatat sebagai latihan, bukan attempt.
     setStats(prev => applyStudyToStats(prev, { moduleId, itemId, score, total, interaction, detectedErrors }));
+
+    // Skor arena mingguan: satu jawaban bernilai (bukan menulis; kanvas mengirim 'kanji_write' sendiri) = satu event.
+    // Server membatasi 40 event/menit dan mengabaikan duplikat 10 dtk; tamu diabaikan di sendScoreEvent.
+    if (itemId && !isSessionAggregateId(moduleId, itemId) && score !== undefined && total === 1 && interaction !== 'writing') {
+      void sendScoreEvent('quiz_answer', itemId, score >= 1);
+    }
     return rewardDecision;
   };
 
@@ -197,6 +209,7 @@ export function usePlayerActions({
     interactionType: 'writing' | 'flashcard' | 'quiz' = 'quiz'
   ) => {
     itemId = canonicalEntityId(itemId);
+    void sendScoreEvent('quiz_answer', itemId, isCorrect);
     setStats(prev => {
       const currentMastery = { ...(prev.itemMastery || {}) };
       const existing = currentMastery[itemId];
@@ -224,10 +237,10 @@ export function usePlayerActions({
 
   const handleCompleteRecallSession = (
     totalReviewed: number, correctCount: number, expGained: number, goldGained: number,
-    opts?: { sessionKey?: string; partial?: boolean }
+    opts?: { sessionKey?: string; partial?: boolean; extra?: boolean }
   ) => {
     handleRewardPlayer(expGained, goldGained, {
-      source: 'recall_session',
+      source: opts?.extra ? 'recall_extra' : 'recall_session',
       ...(opts?.sessionKey ? { eventKey: opts.sessionKey } : {}),
       note: `${correctCount}/${totalReviewed} benar${opts?.partial ? ' (sesi ditinggalkan)' : ''}`,
     });

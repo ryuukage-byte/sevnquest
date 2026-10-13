@@ -6,6 +6,7 @@ import { recordItemAttempt, recordItemInteraction, buildSmartRecallQueue } from 
 import type { ErrorType } from '../types/content';
 import { applyLevelFromExp } from './derivedState';
 import { touchActiveDay } from './streak';
+import type { RewardMeta } from '../engine/reward/types';
 import { localDayKey } from '../engine/reward/ledger';
 
 /**
@@ -45,6 +46,19 @@ export function isSessionAggregateId(moduleId: StudyModuleId, itemId?: string): 
   return moduleId === 'questions' ||
     moduleId === 'tryOuts' ||
     (itemId !== undefined && /^(dungeon_|drill_|tryout_|star_rush)/.test(itemId));
+}
+
+/**
+ * Sumber reward untuk hasil belajar yang pemanggilnya TIDAK menyebut sumber. Hanya pola yang tegas dikenali
+ * dari ID/interaksi; selebihnya `study_unclassified` (tercatat, tanpa batas).
+ */
+export function inferStudyRewardMeta(moduleId: StudyModuleId, interaction: StudyInteraction, itemId?: string): RewardMeta {
+  if (itemId && /^dungeon_/.test(itemId)) return { source: 'dungeon_session', ref: itemId, eventKey: itemId };
+  if (itemId && /^drill_/.test(itemId)) return { source: 'drill_session', ref: itemId };
+  if (interaction === 'writing' && itemId && !isSessionAggregateId(moduleId, itemId)) {
+    return { source: 'writing_practice', ref: itemId };
+  }
+  return { source: 'study_unclassified', ref: itemId };
 }
 
 export interface StudyCompletion {

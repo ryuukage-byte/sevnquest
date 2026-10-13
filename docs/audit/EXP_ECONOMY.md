@@ -36,6 +36,7 @@ Pintu tunggal `awardExp(stats, {source, ref?, eventKey?, exp, gold, note?})`:
 1. `exp`/`gold` tak valid/≤0 → ditolak `empty`.
 2. `eventKey` sudah pernah (2 hari) → `duplicate_event`.
 3. Kunci batas `lim:<source>:<ref>[:<hari>]` mencapai `limit` → `limit_reached`.
+3b. **Batas EXP harian keluarga** (`FAMILY_DAILY_EXP_CAP`): sisa batas hampir habis → diberikan sebagian (`capped`); habis → `daily_cap`. Latihan tetap tercatat di mastery.
 4. Diberikan → `applyRewardToStats` (EXP pecahan, level, tier) + tandai hari aktif (streak) kecuali `mission_claim` + catat `rewardLedger` (≤200) & `rewardClaims`.
 Keputusan resmi diambil di dalam updater `setStats` (atomik terhadap panggilan beruntun); UI memakai pratinjau dari snapshot render.
 
@@ -51,7 +52,15 @@ Keputusan resmi diambil di dalam updater `setStats` (atomik terhadap panggilan b
 | `mission_claim` | misi × periode (ttl 8 hari) | 1 | flag `claimed` |
 | `tryout_exam` | hari × ujian | 1 | tak terbatas |
 | `text_study_entity` | hari × entitas | 1 | `Set` modul-level |
-| `fusion_stage`, `recall_session`, `study_unclassified`, `legacy_unclassified` | — | tanpa batas (dicatat) | — |
+| `fusion_stage_first` | selamanya × stage, keluarga `fusion` | 1 | state lokal `nq_fusion_progress` |
+| `fusion_stage_repeat` | hari × stage, keluarga `fusion` | 5 | tanpa batas (40% hadiah) |
+| `arcade_*` (5 mode) | keluarga `arcade` | EXP harian 1.500 | tanpa batas |
+| `dungeon_session` | eventKey = ID sesi; keluarga `dungeon` | EXP harian 3.000 | tanpa batas |
+| `drill_session` | keluarga `drill` | EXP harian 1.500 | tanpa batas |
+| `writing_practice` | hari × materi (5), keluarga `writing` | EXP harian 2.000 | tanpa batas |
+| `tryout_exam` | + keluarga `tryout` | EXP harian 2.400 (≈2 ujian penuh) | — |
+| `recall_extra` (Latihan Ekstra) | keluarga `recall_extra` | EXP harian 500 | tanpa batas |
+| `recall_session` (jatah normal), `study_unclassified`, `legacy_unclassified` | — | tanpa batas (dicatat); jatah normal sudah dibatasi 40 jawaban/hari oleh `engine/recall/session` | — |
 
 ## 4. Tabel sumber EXP (kondisi pasca-PR)
 | Aktivitas | Kondisi | EXP | Bonus/batas | Pemberi | Penyimpanan |

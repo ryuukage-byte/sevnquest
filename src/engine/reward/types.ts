@@ -13,9 +13,19 @@ export type RewardSource =
   | 'tower_floor'
   | 'mission_claim'
   | 'fusion_free'
-  | 'fusion_stage'
+  | 'fusion_stage_first'
+  | 'fusion_stage_repeat'
   | 'tryout_exam'
   | 'text_study_entity'
+  | 'arcade_kanji_speed'
+  | 'arcade_kotoba_guess'
+  | 'arcade_sudden_death'
+  | 'arcade_conjugation_rush'
+  | 'arcade_star_sentence'
+  | 'dungeon_session'
+  | 'drill_session'
+  | 'writing_practice'
+  | 'recall_extra'
   | 'recall_session'
   | 'study_unclassified'
   | 'legacy_unclassified';
@@ -45,7 +55,7 @@ export interface RewardRequest extends RewardMeta {
   gold: number;
 }
 
-export type RewardDenyReason = 'duplicate_event' | 'limit_reached' | 'empty';
+export type RewardDenyReason = 'duplicate_event' | 'limit_reached' | 'daily_cap' | 'empty';
 
 export interface RewardDecision {
   granted: boolean;
@@ -53,6 +63,8 @@ export interface RewardDecision {
   /** Jumlah yang benar-benar diberikan (0 bila ditolak). */
   exp: number;
   gold: number;
+  /** true bila hanya sebagian yang diberikan karena batas EXP harian keluarga sumber hampir habis. */
+  capped?: boolean;
 }
 
 export interface RewardLedgerEntry {

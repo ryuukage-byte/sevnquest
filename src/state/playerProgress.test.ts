@@ -1,6 +1,6 @@
 import test, { mock } from 'node:test';
 import assert from 'node:assert/strict';
-import { applyRewardToStats, applyStudyToStats, getStudyMissionAdvances } from './playerProgress';
+import { applyRewardToStats, applyStudyToStats, getStudyMissionAdvances, inferStudyRewardMeta } from './playerProgress';
 import { DEFAULT_STATS } from './defaultStats';
 import { stripDerivedStats } from './derivedState';
 import { STORAGE_KEY_STATS } from './storageKeys';
@@ -214,4 +214,12 @@ test('D1. misi: flashcard kanji bukan "lembar menulis"; flashcard kotoba tidak m
   assert.deepEqual(cats({ moduleId: 'kanji', interaction: 'writing', score: 1, total: 1 }), ['kanji', 'quiz']);
   assert.deepEqual(cats({ moduleId: 'kotoba', interaction: 'flashcard' }), ['kotoba']);
   assert.deepEqual(cats({ moduleId: 'bunpou', interaction: 'quiz', score: 2, total: 3 }), ['bunpou', 'quiz']);
+});
+
+test('I1. sumber reward dikenali dari ID/interaksi bila pemanggil tidak menyebutnya', () => {
+  assert.deepEqual(inferStudyRewardMeta('kanji', 'writing', 'dungeon_writing_123'), { source: 'dungeon_session', ref: 'dungeon_writing_123', eventKey: 'dungeon_writing_123' });
+  assert.deepEqual(inferStudyRewardMeta('questions', 'quiz', 'drill_bunpou_N3'), { source: 'drill_session', ref: 'drill_bunpou_N3' });
+  assert.deepEqual(inferStudyRewardMeta('kanji', 'writing', 'kanji_001'), { source: 'writing_practice', ref: 'kanji_001' });
+  assert.deepEqual(inferStudyRewardMeta('kotoba', 'flashcard', 'kotoba_1'), { source: 'study_unclassified', ref: 'kotoba_1' });
+  assert.deepEqual(inferStudyRewardMeta('tryOuts', 'quiz', 'n3_001'), { source: 'study_unclassified', ref: 'n3_001' });
 });

@@ -29,7 +29,7 @@ interface RecallModuleProps {
   /** `opts.sessionKey` = identitas sesi (cegah bayar dua kali); `opts.partial` = sesi ditinggalkan di tengah. */
   onCompleteRecallSession: (
     totalReviewed: number, correctCount: number, expGained: number, goldGained: number,
-    opts?: { sessionKey?: string; partial?: boolean }
+    opts?: { sessionKey?: string; partial?: boolean; extra?: boolean }
   ) => void;
   onExit: () => void;
   soundEnabled?: boolean;
@@ -76,6 +76,10 @@ export const RecallModule: React.FC<RecallModuleProps> = ({
   // Latihan ekstra setelah target harian / kuota materi baru tercapai: sesi kecil, tetap berurut prioritas.
   const [isExtraSession, setIsExtraSession] = useState(false);
   const startExtraSession = () => {
+    // Sesi baru: identitas, penghitung, dan penanda ekstra direset (jangan bentrok dengan sesi sebelumnya).
+    sessionKeyRef.current = `${Date.now().toString(36)}${Math.random().toString(36).slice(2, 8)}`;
+    progressRef.current = { answered: 0, correct: 0, exp: 0, finished: false };
+    extraRef.current = true;
     setIsExtraSession(true);
     setSessionQueue(extraPlan.items);
     setCurrentIndex(0);
@@ -94,13 +98,14 @@ export const RecallModule: React.FC<RecallModuleProps> = ({
   // Identitas sesi + ringkasan terkini (untuk membayar sesi yang ditinggalkan di tengah jalan).
   const sessionKeyRef = useRef(`${Date.now().toString(36)}${Math.random().toString(36).slice(2, 8)}`);
   const progressRef = useRef({ answered: 0, correct: 0, exp: 0, finished: false });
+  const extraRef = useRef(false);
   const onCompleteRef = useRef(onCompleteRecallSession);
   onCompleteRef.current = onCompleteRecallSession;
   useEffect(() => () => {
     // Keluar/berpindah tab di tengah sesi: jawaban sudah tercatat di mastery, jadi EXP-nya juga dibayar (tanpa bonus INT).
     const p = progressRef.current;
     if (!p.finished && p.answered > 0 && p.exp > 0) {
-      onCompleteRef.current(p.answered, p.correct, p.exp, p.correct * 15, { sessionKey: sessionKeyRef.current, partial: true });
+      onCompleteRef.current(p.answered, p.correct, p.exp, p.correct * 15, { sessionKey: sessionKeyRef.current, partial: true, extra: extraRef.current });
     }
   }, []);
   // Engine flashcard: kartu dibalik dulu sebelum penilaian diri (ingat / lupa).
@@ -317,7 +322,7 @@ export const RecallModule: React.FC<RecallModuleProps> = ({
 
       setSessionReward({ exp: expGained, gold: goldGained });
       progressRef.current.finished = true;
-      onCompleteRecallSession(totalItems, correctCount, expGained, goldGained, { sessionKey: sessionKeyRef.current });
+      onCompleteRecallSession(totalItems, correctCount, expGained, goldGained, { sessionKey: sessionKeyRef.current, extra: isExtraSession });
     }
   };
 

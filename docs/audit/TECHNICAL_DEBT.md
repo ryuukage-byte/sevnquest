@@ -10,12 +10,12 @@ Risiko: T tinggi · S sedang · R rendah.
 | E-02 | T | Flip & Next flashcard ⇒ `recordItemAttempt(1/1)` sempurna 2×/kartu; kanji flashcard dihitung "menulis" (statistik & misi) | **FIXED** latihan ≠ attempt; tes B1–B6, M4 |
 | E-03 | T | Dungeon flashcard membayar flip tiap toggle dan lagi di agregat akhir | **FIXED** sekali per kartu, dibayar sekali |
 | E-04 | S | Layar hasil runner menampilkan lantai fiktif / total yang tak dibayar | **FIXED** (flashcard & menulis) |
-| E-05 | T | Tidak ada ledger/idempotency; guard di state komponen (hilang saat remount/refresh), `Set` in-memory | **FIXED** untuk 12 sumber (lihat EXP_ECONOMY §3); **OPEN** untuk arcade, dungeon (hanya eventKey), drill/Library kuis, menulis, Fusion stage |
+| E-05 | T | Tidak ada ledger/idempotency; guard di state komponen (hilang saat remount/refresh), `Set` in-memory | **FIXED** semua sumber reward kini lewat ledger dan berklasifikasi (arcade ×5, dungeon, drill, menulis, Fusion, tryout, Text Study, Recall, Tower, misi, flashcard, Dojo, detail Bunpou/Entity). Sisa `study_unclassified` hanya jalur langka (mis. fallback tanpa sumber) |
 | E-06 | T | Conjugation Dojo 15 EXP tiap jawaban benar | **FIXED** 1×/(verb\|bentuk)/hari |
-| E-07 | T | Simulasi ujian 10×skor (hingga 1.200 EXP) berulang tanpa batas | **MITIGATED** 1×/ujian/hari; **OPEN** batas total harian |
+| E-07 | T | Simulasi ujian 10×skor (hingga 1.200 EXP) berulang tanpa batas | **FIXED** 1×/ujian/hari + batas total keluarga `tryout` 2.400 EXP/hari |
 | E-08 | S | Next flashcard dibayar tanpa melihat jawaban | **FIXED** wajib dibalik; 3×/kartu/hari |
 | E-09 | S | Recall: keluar di tengah sesi menghilangkan EXP sementara mastery tersimpan | **FIXED** bayar sesi ditinggalkan; `sessionKey` idempoten |
-| E-10 | S | Recall "Latihan Ekstra" tanpa batas putaran (EXP penuh, `+2·INT` per sesi) | OPEN |
+| E-10 | S | Recall "Latihan Ekstra" tanpa batas putaran (EXP penuh, `+2·INT` per sesi) | **FIXED** sumber `recall_extra` dengan batas EXP harian 500 |
 | E-11 | S | `DeckWritingRunner` & lantai flashcard dungeon mengirim "benar" tanpa penilaian nyata | OPEN |
 | E-12 | R | Dungeon membayar jawaban salah/waktu habis (partisipasi) | DECISION |
 | E-13 | R | Bonus INT tiga rumus berbeda; default `playerInt=10` pada prop | OPEN |
@@ -37,7 +37,7 @@ Risiko: T tinggi · S sedang · R rendah.
 |---|---|---|---|
 | C-01 | T | `user_saves` tidak ada ⇒ save penuh di `user_metadata.cloud_save` (ikut JWT) | **FIXED** tabel dibuat 2026-10-13 (RLS own-row; `anon` tanpa akses; `authenticated` select/insert/update saja); klien memigrasikan save lama saat simpan berikutnya (lazy). Sisa: pantau ukuran `user_metadata` lama & uji login perangkat kedua |
 | C-02 | T | Jalur leaderboard lama pasti gagal di DB ini bila env `VITE_SECURE_LEADERBOARD` tak `'true'` | **FIXED** default true |
-| C-03 | S | Event `quiz_answer` (skor mingguan) tak dikirim siapa pun (pengirim `QuizEngine` sudah mati sebelumnya) ⇒ arena mingguan hanya bertambah dari menulis kanji | OPEN |
+| C-03 | S | Event `quiz_answer` (skor mingguan) tak dikirim siapa pun ⇒ arena mingguan hanya bertambah dari menulis kanji | **FIXED** `handleStudyComplete` (jawaban bernilai tunggal) dan `handleItemReviewed` (Recall) mengirim `quiz_answer`; server membatasi 40/menit & dedupe 10 dtk. Belum diuji end-to-end dengan akun nyata |
 | C-04 | S | Konflik multi-perangkat: EXP lebih besar menang, tidak dijumlah | OPEN — ledger memungkinkan rekonsiliasi |
 | C-05 | S | `nq_fusion_progress` tak ikut cloud ⇒ clear pertama bisa diulang di perangkat baru (reward penuh) | OPEN |
 | C-06 | S | `user_mastery` diisi skor sintetis (`retention=100`, `recognition=knowledge`) & tak dibaca balik | OPEN |

@@ -1,4 +1,4 @@
-import { DAY_CLAIM_TTL_DAYS, EVENT_KEY_TTL_DAYS, REWARD_LEDGER_MAX, REWARD_POLICY } from './policy';
+import { DAY_CLAIM_TTL_DAYS, EVENT_KEY_TTL_DAYS, FAMILY_DAILY_EXP_CAP, REWARD_LEDGER_MAX, REWARD_POLICY } from './policy';
 import type {
   RewardClaim, RewardDecision, RewardLedgerEntry, RewardRequest, RewardState,
 } from './types';
@@ -11,6 +11,14 @@ export function localDayKey(now: Date): string {
   const m = String(now.getMonth() + 1).padStart(2, '0');
   const d = String(now.getDate()).padStart(2, '0');
   return `${y}-${m}-${d}`;
+}
+
+/** ID entri deterministik (waktu + hash isi) — unik lintas perangkat tanpa Math.random, sehingga updater tetap murni. */
+function entryId(now: Date, req: RewardRequest, exp: number, gold: number): string {
+  const text = `${req.source}|${req.ref ?? ''}|${req.eventKey ?? ''}|${exp}|${gold}`;
+  let h = 5381;
+  for (let i = 0; i < text.length; i++) h = ((h * 33) ^ text.charCodeAt(i)) >>> 0;
+  return `${now.getTime().toString(36)}-${h.toString(36)}`;
 }
 
 function finiteNonNegative(n: number): number {
@@ -43,6 +51,12 @@ export function limitKey(req: Pick<RewardRequest, 'source' | 'ref'>, now: Date):
     : `lim:${req.source}:${ref}`;
 }
 
+/** Kunci penghitung EXP harian keluarga sumber (null bila sumber tidak punya keluarga). */
+export function familyCapKey(source: RewardRequest['source'], now: Date): string | null {
+  const family = REWARD_POLICY[source].family;
+  return family ? `cap:${family}:${localDayKey(now)}` : null;
+}
+
 export const eventClaimKey = (req: Pick<RewardRequest, 'source' | 'eventKey'>): string | null =>
   req.eventKey ? `evt:${req.source}:${req.eventKey}` : null;
 
@@ -64,6 +78,18 @@ export function decideReward(state: RewardState, req: RewardRequest, now: Date =
   const policy = REWARD_POLICY[req.source];
   if (lim && policy.limit !== undefined && (claims[lim]?.n ?? 0) >= policy.limit) {
     return { granted: false, reason: 'limit_reached', exp: 0, gold: 0 };
+  }
+
+  // Batas EXP harian keluarga: beri sisa bila hampir habis, tolak bila habis.
+  const capKey = familyCapKey(req.source, now);
+  if (capKey && exp > 0) {
+    const cap = FAMILY_DAILY_EXP_CAP[policy.family!];
+    const remaining = Math.max(0, cap - (claims[capKey]?.n ?? 0));
+    if (remaining <= 0.0001) return { granted: false, reason: 'daily_cap', exp: 0, gold: 0 };
+    if (exp > remaining) {
+      const ratio = remaining / exp;
+      return { granted: true, capped: true, exp: Math.round(remaining * 10000) / 10000, gold: Math.round(gold * ratio) };
+    }
   }
   return { granted: true, exp, gold };
 }
@@ -98,8 +124,18 @@ export function commitReward(
     nextClaims[lim] = { n: (prev?.n ?? 0) + 1, at, ...(until ? { until } : {}) };
   }
 
+  const capKey = familyCapKey(req.source, now);
+  if (capKey && decision.exp > 0) {
+    const prev = nextClaims[capKey];
+    nextClaims[capKey] = {
+      n: Math.round(((prev?.n ?? 0) + decision.exp) * 10000) / 10000,
+      at,
+      until: new Date(now.getTime() + DAY_CLAIM_TTL_DAYS * DAY_MS).toISOString(),
+    };
+  }
+
   const entry: RewardLedgerEntry = {
-    id: `${now.getTime().toString(36)}-${ledger.length.toString(36)}`,
+    id: entryId(now, req, decision.exp, decision.gold),
     at,
     source: req.source,
     ...(req.ref !== undefined ? { ref: req.ref } : {}),

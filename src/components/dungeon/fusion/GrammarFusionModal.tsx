@@ -365,14 +365,27 @@ export const GrammarFusionModal: React.FC<Props> = ({ onClose, soundEnabled = tr
     const { progress: next, firstClear } = recordFusionClear(progress, stage.id, mistakes, hints);
     setProgress(next);
     saveFusionProgress(next);
-    const ratio = firstClear ? 1 : REPEAT_REWARD_RATIO;
-    const out: RewardOut = {
-      exp: Math.round(exp * ratio),
-      gold: Math.round(gold * ratio),
-      note: firstClear ? undefined : `Ulangan: hadiah ${Math.round(REPEAT_REWARD_RATIO * 100)}%`,
-    };
-    onRewardPlayer?.(out.exp, out.gold, { source: 'fusion_stage', ref: stage.id, note: firstClear ? 'clear pertama' : 'ulangan' });
-    return out;
+
+    // Clear pertama: hadiah penuh, sekali SELAMANYA menurut ledger (berlaku lintas perangkat, tidak bergantung localStorage).
+    let treatAsFirst = firstClear;
+    if (firstClear) {
+      const d = onRewardPlayer?.(exp, gold, { source: 'fusion_stage_first', ref: stage.id, note: 'clear pertama' });
+      if (!d || d.granted) {
+        return { exp: d?.exp ?? exp, gold: d?.gold ?? gold, note: d?.capped ? 'Batas EXP Fusion harian tercapai: sebagian hadiah' : undefined };
+      }
+      // Sudah diklaim di perangkat lain -> diperlakukan sebagai ulangan. Batas harian: tidak ada hadiah.
+      if (d.reason === 'daily_cap') return { exp: 0, gold: 0, note: 'Batas EXP Fusion harian tercapai' };
+      treatAsFirst = false;
+    }
+
+    const ratio = treatAsFirst ? 1 : REPEAT_REWARD_RATIO;
+    const e = Math.round(exp * ratio);
+    const g = Math.round(gold * ratio);
+    const d = onRewardPlayer?.(e, g, { source: 'fusion_stage_repeat', ref: stage.id, note: 'ulangan' });
+    if (d && !d.granted) {
+      return { exp: 0, gold: 0, note: d.reason === 'daily_cap' ? 'Batas EXP Fusion harian tercapai' : 'Batas ulangan hari ini tercapai' };
+    }
+    return { exp: d?.exp ?? e, gold: d?.gold ?? g, note: `Ulangan: hadiah ${Math.round(REPEAT_REWARD_RATIO * 100)}%` };
   }, [progress, stage.id, onRewardPlayer]);
 
   const handleFreeFinished = useCallback((_m: number, _h: number, exp: number, gold: number): RewardOut => {

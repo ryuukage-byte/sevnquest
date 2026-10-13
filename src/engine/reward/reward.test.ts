@@ -240,3 +240,79 @@ test('D1. localDayKey memakai kalender lokal (YYYY-MM-DD)', () => {
   assert.equal(localDayKey(new Date(2026, 0, 5, 23, 59)), '2026-01-05');
   assert.equal(localDayKey(new Date(2026, 11, 31, 0, 0)), '2026-12-31');
 });
+
+// ------------------------------------------------------------ gelombang 1: keluarga & batas EXP harian
+
+import { FAMILY_DAILY_EXP_CAP } from './policy';
+
+test('F1. batas EXP harian keluarga: sisa diberikan sebagian, lalu ditolak (daily_cap); hari berikutnya reset', () => {
+  const cap = FAMILY_DAILY_EXP_CAP.arcade;
+  const r = (exp: number, ref: string) => req({ source: 'arcade_kotoba_guess', ref, exp, gold: 10 });
+  let st = {} as Parameters<typeof commitReward>[0];
+  let paid = 0;
+  let i = 0;
+  while (paid + 100 <= cap) { const c = commitReward(st, r(100, `w${i++}`), at(0, i * 0.001)); assert.equal(c.decision.granted, true); st = c.state; paid += c.decision.exp; }
+  assert.equal(paid, cap - (cap % 100));
+  // reward yang melewati sisa → sebagian
+  const remaining = cap - paid;
+  const part = commitReward(st, r(300, 'w-last'), at(0, 5));
+  if (remaining > 0) {
+    assert.equal(part.decision.granted, true);
+    assert.equal(part.decision.capped, true);
+    assert.equal(part.decision.exp, remaining);
+    assert.ok(part.decision.gold < 10 && part.decision.gold >= 0);
+    st = part.state;
+  }
+  // habis
+  const denied = commitReward(st, r(1, 'w-over'), at(0, 6));
+  assert.deepEqual(denied.decision, { granted: false, reason: 'daily_cap', exp: 0, gold: 0 });
+  assert.equal(denied.state.rewardLedger.length, st.rewardLedger!.length);
+  // besok: reset
+  assert.equal(commitReward(st, r(100, 'w-new'), at(1)).decision.granted, true);
+});
+
+test('F2. keluarga berbeda tidak saling menghabiskan batas; sumber tanpa keluarga tidak terbatas', () => {
+  const big = (source: RewardRequest['source']) => req({ source, ref: 'x', exp: FAMILY_DAILY_EXP_CAP.arcade, gold: 0 });
+  const a = commitReward({}, big('arcade_kanji_speed'), T0);
+  assert.equal(commitReward(a.state, big('arcade_sudden_death'), at(0, 1)).decision.granted, false, 'arcade berbagi batas');
+  assert.equal(commitReward(a.state, req({ source: 'dungeon_session', ref: 'd1', exp: 500, gold: 0 }), at(0, 1)).decision.granted, true, 'dungeon keluarga lain');
+  assert.equal(commitReward(a.state, req({ source: 'recall_session', ref: undefined, exp: 99999, gold: 0 }), at(0, 1)).decision.granted, true, 'recall tanpa keluarga');
+});
+
+test('F3. tryout: batas per-ujian (1×/hari) DAN total harian keluarga tryout', () => {
+  const t = (ref: string) => req({ source: 'tryout_exam', ref, exp: 1200, gold: 600 });
+  let st = commitReward({}, t('a'), T0).state;
+  st = commitReward(st, t('b'), at(0, 1)).state;
+  const third = commitReward(st, t('c'), at(0, 2));
+  assert.equal(FAMILY_DAILY_EXP_CAP.tryout, 2400);
+  assert.deepEqual(third.decision, { granted: false, reason: 'daily_cap', exp: 0, gold: 0 });
+  assert.equal(commitReward(st, t('a'), at(0, 2)).decision.reason, 'limit_reached', 'ujian yang sama: batas per-ujian lebih dulu');
+});
+
+test('F4. Fusion: clear pertama sekali selamanya; ulangan 5×/hari; keduanya berbagi keluarga fusion', () => {
+  const first = req({ source: 'fusion_stage_first', ref: 'stage-1', exp: 60, gold: 30 });
+  const a = commitReward({}, first, T0);
+  assert.equal(commitReward(a.state, first, at(40)).decision.reason, 'limit_reached');
+  const rep = req({ source: 'fusion_stage_repeat', ref: 'stage-1', exp: 24, gold: 12 });
+  let st = a.state;
+  const res: boolean[] = [];
+  for (let i = 0; i < 7; i++) { const c = commitReward(st, rep, at(0, i * 0.01)); st = c.state; res.push(c.decision.granted); }
+  assert.deepEqual(res, [true, true, true, true, true, false, false]);
+});
+
+test('F5. writing_practice: 5×/materi/hari; ID entri unik walau waktu & payload identik berbeda ref', () => {
+  const w = (ref: string) => req({ source: 'writing_practice', ref, exp: 50, gold: 0 });
+  let st = {} as Parameters<typeof commitReward>[0];
+  const outcomes: boolean[] = [];
+  for (let i = 0; i < 6; i++) { const c = commitReward(st, w('kanji_001'), at(0, i * 0.01)); st = c.state; outcomes.push(c.decision.granted); }
+  assert.deepEqual(outcomes, [true, true, true, true, true, false]);
+  const ids = commitReward(commitReward({}, w('a'), T0).state, w('b'), T0).state.rewardLedger.map(e => e.id);
+  assert.equal(new Set(ids).size, 2, 'waktu sama, ref beda → id beda');
+});
+
+test('F6. merge: penghitung batas harian di-union (n terbesar) sehingga perangkat lain tidak mengosongkan batas', () => {
+  const a = commitReward({}, req({ source: 'arcade_kanji_speed', ref: 'x', exp: 900, gold: 0 }), T0).state;
+  const b = commitReward({}, req({ source: 'arcade_kanji_speed', ref: 'y', exp: 1400, gold: 0 }), at(0, 1)).state;
+  const m = mergeRewardState(a, b, at(0, 2));
+  assert.equal(commitReward(m, req({ source: 'arcade_kanji_speed', ref: 'z', exp: 200, gold: 0 }), at(0, 3)).decision.capped, true, 'sisa 100 dari 1500');
+});
