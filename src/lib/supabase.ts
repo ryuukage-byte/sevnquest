@@ -570,9 +570,11 @@ export interface CloudSavePayload {
  */
 export async function saveGameToCloud(saveData: CloudSavePayload): Promise<boolean> {
   try {
-    const { data: { user }, error } = await supabase.auth.getUser();
+    const { data: { user } } = await supabase.auth.getUser();
+    // getUser() memanggil server; gagal sesaat (jaringan / token menunggu refresh) tidak boleh membatalkan
+    // simpan selama sesi lokal masih ada. Hanya menyerah bila memang tidak ada pengguna.
     const targetUser = user || (await getSession())?.user;
-    if (error || !targetUser) {
+    if (!targetUser) {
       // Even if unauthenticated/guest, sync the public leaderboard record
       if (saveData.stats?.userId && (saveData.stats.level || saveData.stats.totalExp)) {
         await upsertLeaderboard(saveData.stats as PlayerStats);
