@@ -3,7 +3,7 @@ import { lazyWithRetry as lazy } from '../../utils/lazyWithRetry';
 import { motion } from 'motion/react';
 import confetti from 'canvas-confetti';
 import {
-  BookOpen, PenTool, Layers, Brain, CheckCircle2, Trophy, Clock, Settings2, Play, AlertTriangle, Compass, ClipboardCheck, Info,
+  BookOpen, PenTool, Layers, Brain, CheckCircle2, Trophy, Clock, Settings2, Play, AlertTriangle, Compass, ClipboardCheck, Info, Sparkles,
 } from 'lucide-react';
 import type { PlayerStats, UserDeck, DeckItemCategory } from '../../types/rpg';
 import type { BunpouItem } from '../../types/content';
@@ -20,6 +20,8 @@ import { isItemBookmarked } from '../../utils/decks';
 import { getTodayLocalDate } from '../../utils/time';
 import { playSound } from '../../utils/audio';
 import { GuidedSetupWizard } from './GuidedSetupWizard';
+import { AiContextModal } from './AiContextModal';
+import { buildDailyMissionAiContext } from '../../engine/curriculum/aiContext';
 
 // Mode latihan dimuat saat dibutuhkan (kanvas menulis membawa hanzi-writer).
 const DeckFlashcardRunner = lazy(() => import('../deck/DeckFlashcardRunner').then(m => ({ default: m.DeckFlashcardRunner })));
@@ -115,6 +117,7 @@ export const GuidedMissionsPanel: React.FC<GuidedMissionsPanelProps> = ({
   const [runner, setRunner] = useState<Runner>(null);
   const [inspect, setInspect] = useState<{ id: string; category: 'kotoba' | 'kanji' } | null>(null);
   const [bunpouItem, setBunpouItem] = useState<BunpouItem | null>(null);
+  const [showAiContext, setShowAiContext] = useState(false);
 
   const curriculum = useMemo(
     () => (plan ? getCurriculum(plan.profile) : undefined),
@@ -141,6 +144,13 @@ export const GuidedMissionsPanel: React.FC<GuidedMissionsPanelProps> = ({
   }
 
   const overview = planOverview(plan, curriculum, mastery, today);
+  // Konteks AI hanya dihitung saat pengguna membukanya (tidak membebani render biasa).
+  const aiContext = showAiContext && day
+    ? buildDailyMissionAiContext({
+        day, dayIndex: overview.dayIndex, profile: plan.profile,
+        db: { kotoba: KOTOBA_DATABASE, kanji: KANJI_DATABASE, bunpou: BUNPOU_DATABASE },
+      })
+    : undefined;
   const progress = day ? dayProgress(day, mastery, stats.recallDaily, stats.studyStats, curriculum.learnMinutes) : undefined;
   // "Sampai tuntas" = sasaran program mencakup seluruh materi inti yang belum dipelajari saat program dibuat.
   const goalIsFull = overview.goal + (plan.baseline ? plan.baseline.kotoba + plan.baseline.kanji + plan.baseline.bunpou : 0) >= overview.planned;
@@ -201,13 +211,25 @@ export const GuidedMissionsPanel: React.FC<GuidedMissionsPanelProps> = ({
             </h3>
             <p className="text-xs font-bold mt-0.5" style={{ color: paceBadge.color }}>{paceBadge.text}</p>
           </div>
-          <button
-            onClick={() => { setIsEditing(true); playSound('click', soundEnabled); }}
-            className="btn-physical-secondary px-3 py-1.5 rounded-xl text-[11px] font-bold flex items-center gap-1.5 shrink-0"
-            aria-label="Ubah kurikulum"
-          >
-            <Settings2 className="w-3.5 h-3.5" /> Ubah
-          </button>
+          <div className="flex items-center gap-1.5 shrink-0">
+            {day && (
+              <button
+                onClick={() => { setShowAiContext(true); playSound('click', soundEnabled); }}
+                className="btn-physical-secondary px-3 py-1.5 rounded-xl text-[11px] font-bold flex items-center gap-1.5"
+                aria-label="Salin konteks materi misi hari ini untuk AI"
+                title="Salin materi misi hari ini sebagai konteks untuk ChatGPT / Claude"
+              >
+                <Sparkles className="w-3.5 h-3.5" /> Konteks AI
+              </button>
+            )}
+            <button
+              onClick={() => { setIsEditing(true); playSound('click', soundEnabled); }}
+              className="btn-physical-secondary px-3 py-1.5 rounded-xl text-[11px] font-bold flex items-center gap-1.5"
+              aria-label="Ubah kurikulum"
+            >
+              <Settings2 className="w-3.5 h-3.5" /> Ubah
+            </button>
+          </div>
         </div>
 
         <div className="space-y-1 mt-3 relative z-10">
@@ -469,6 +491,15 @@ export const GuidedMissionsPanel: React.FC<GuidedMissionsPanelProps> = ({
       </div>
 
       {/* Mode latihan */}
+      {aiContext && (
+        <AiContextModal
+          text={aiContext.text}
+          summary={`${aiContext.counts.kotoba} kotoba · ${aiContext.counts.kanji} kanji · ${aiContext.counts.bunpou} bunpou`}
+          soundEnabled={soundEnabled}
+          onClose={() => setShowAiContext(false)}
+        />
+      )}
+
       <Suspense fallback={null}>
         {runner?.mode === 'flashcard' && (
           <DeckFlashcardRunner

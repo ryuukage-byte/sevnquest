@@ -10,6 +10,7 @@ import {
   Bookmark,
   Trash2,
   Edit2,
+  Sparkles,
 } from 'lucide-react';
 import { UserDeck, DeckItemCategory } from '../../types/rpg';
 import { KotobaItem, KanjiItem, BunpouItem, ItemMasteryRecord } from '../../types/content';
@@ -25,6 +26,9 @@ import { BUNPOU_DATABASE } from '../../data/bunpou';
 import { asWritable } from '../../engine/traits/traits';
 import { resolveDeckItem } from '../../utils/decks';
 import { BookIcon } from '../ui/EngravingIcons';
+import { AiContextModal } from '../missions/AiContextModal';
+import { buildDeckAiContext } from '../../engine/curriculum/aiContext';
+import { DEFAULT_BOOKMARK_DECK_ID } from '../../utils/decks';
 
 export interface DeckDetailViewProps {
   deck: UserDeck;
@@ -82,6 +86,7 @@ export const DeckDetailView: React.FC<DeckDetailViewProps> = ({
   userDecks = [],
 }) => {
   const [activeRunner, setActiveRunner] = useState<'flashcard' | 'writing' | null>(null);
+  const [showAiContext, setShowAiContext] = useState(false);
 
   // Extract real database entities scoped to this deck
   const deckKotoba = useMemo<KotobaItem[]>(() => {
@@ -163,6 +168,21 @@ export const DeckDetailView: React.FC<DeckDetailViewProps> = ({
           <span>{isTemplate ? 'Kembali ke Daftar Deck Template' : 'Kembali ke Daftar Buku Saku'}</span>
         </button>
 
+        <div className="flex items-center gap-2 flex-wrap">
+        <button
+          type="button"
+          onClick={() => {
+            playSound('click', soundEnabled);
+            setShowAiContext(true);
+          }}
+          className="btn-physical-secondary px-3 py-1.5 rounded-xl text-xs font-bold flex items-center gap-1.5 transition-colors cursor-pointer"
+          title="Salin materi deck ini sebagai konteks untuk ChatGPT / Claude"
+          aria-label="Salin konteks deck untuk AI"
+        >
+          <Sparkles className="w-3.5 h-3.5" />
+          <span>Konteks AI</span>
+        </button>
+
         {/* User Deck Actions: Edit Info & Delete Deck */}
         {!isTemplate && !deck.isDefault && (
           <div className="flex items-center gap-2">
@@ -191,7 +211,25 @@ export const DeckDetailView: React.FC<DeckDetailViewProps> = ({
             )}
           </div>
         )}
+        </div>
       </div>
+
+      {showAiContext && (() => {
+        const ctx = buildDeckAiContext({
+          deck,
+          kind: isTemplate ? 'official' : (deck.isDefault || deck.id === DEFAULT_BOOKMARK_DECK_ID) ? 'bookmark' : 'custom',
+          db: { kotoba: KOTOBA_DATABASE, kanji: KANJI_DATABASE, bunpou: BUNPOU_DATABASE },
+        });
+        return (
+          <AiContextModal
+            title={`Deck "${deck.title}" untuk ChatGPT / Claude`}
+            text={ctx.text}
+            summary={`${ctx.counts.kotoba} kotoba · ${ctx.counts.kanji} kanji · ${ctx.counts.bunpou} bunpou`}
+            soundEnabled={soundEnabled}
+            onClose={() => setShowAiContext(false)}
+          />
+        );
+      })()}
 
       {/* 2. Deck Header Banner (Skeuomorphic Japanese Adventure Notebook) */}
       <div className="panel panel-stitched p-5 sm:p-6 rounded-3xl border border-border-subtle space-y-4 shadow-sm">
