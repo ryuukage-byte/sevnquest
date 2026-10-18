@@ -37,6 +37,15 @@ function tryAutoReload(): boolean {
   return true;
 }
 
+/** Catat URL chunk yang gagal supaya "Bersihkan Cache & Muat Ulang" bisa membuang salinan HTTP-nya. */
+function rememberStaleUrl(err: unknown): void {
+  const msg = err instanceof Error ? err.message : String(err);
+  const url = msg.match(/https?:\/\/\S+?\.(?:js|mjs|css)/)?.[0];
+  if (!url) return;
+  const w = window as unknown as { __sevnStaleUrls?: string[] };
+  (w.__sevnStaleUrls ||= []).push(url);
+}
+
 async function loadWithRetry<T>(factory: () => Promise<T>): Promise<T> {
   let lastError: unknown;
   for (let attempt = 0; attempt <= RETRY_DELAYS_MS.length; attempt++) {
@@ -48,6 +57,7 @@ async function loadWithRetry<T>(factory: () => Promise<T>): Promise<T> {
       await new Promise((resolve) => setTimeout(resolve, RETRY_DELAYS_MS[attempt]));
     }
   }
+  if (isChunkLoadError(lastError)) rememberStaleUrl(lastError);
   if (isChunkLoadError(lastError) && tryAutoReload()) {
     // Halaman sedang dimuat ulang: biarkan fallback Suspense tampil, jangan kedipkan layar error.
     return new Promise<T>(() => {});

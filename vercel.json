@@ -59,7 +59,7 @@
       "destination": "https://iokhdhqnpslpwsxspvaj.supabase.co/$1"
     },
     {
-      "source": "/(.*)",
+      "source": "/((?!assets/|data/|avatars/|[^/]*\\.[^/]*$).*)",
       "destination": "/index.html"
     }
   ]
