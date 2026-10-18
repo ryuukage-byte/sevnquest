@@ -1,10 +1,11 @@
 import { getWordTypeLabel } from '../../utils/wordType';
 import React, { useState, useMemo, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Edit3, RotateCcw, ArrowRight, Volume2, Layers, BookOpen, Clock } from 'lucide-react';
+import { Edit3, RotateCcw, ArrowRight, Volume2, BookOpen, Clock } from 'lucide-react';
 import { KotobaItem } from '../../types/content';
 import { KanjiWritingCanvas, preloadStrokeData } from './KanjiWritingCanvas';
 import { RubyText } from './RubyText';
+import { KanjiComponentsSection } from './KanjiComponentsSection';
 import { playSound, speakJapanese } from '../../utils/audio';
 import { getKotobaBaseExp, calculateWritingReward, WritingRewardResult } from '../../utils/rewards';
 import { parseReadingVariations, getHighlightedKotobaYomikata } from '../../utils/readingHighlightUtils';
@@ -349,10 +350,7 @@ export const KotobaWritingPractice: React.FC<KotobaWritingPracticeProps> = ({
 
           {/* Kanji Components (if any) */}
           {kotoba.kanjiComponents && kotoba.kanjiComponents.length > 0 && (
-            <div className="space-y-2">
-              <h4 className="text-xs font-bold text-text-muted uppercase tracking-wider flex items-center gap-1.5">
-                <Layers className="w-3.5 h-3.5" /> Komponen Kanji
-              </h4>
+            <KanjiComponentsSection etymology={kotoba.etymology}>
               <div className="flex flex-wrap gap-2">
                 {kotoba.kanjiComponents.map((k, i) => (
                   <span
@@ -363,7 +361,7 @@ export const KotobaWritingPractice: React.FC<KotobaWritingPracticeProps> = ({
                   </span>
                 ))}
               </div>
-            </div>
+            </KanjiComponentsSection>
           )}
 
           {/* Example Sentence (if any) */}

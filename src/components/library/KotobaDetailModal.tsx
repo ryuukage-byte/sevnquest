@@ -2,11 +2,12 @@ import { getWordTypeLabel } from '../../utils/wordType';
 import React, { useMemo, useState, useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import { motion } from 'motion/react';
-import { X, Volume2, Layers, Link as LinkIcon, Network, Edit3, ChevronLeft, ChevronRight, Zap, AlertTriangle, ArrowLeft } from 'lucide-react';
+import { X, Volume2, Link as LinkIcon, Network, Edit3, ChevronLeft, ChevronRight, Zap, AlertTriangle, ArrowLeft } from 'lucide-react';
 import { BookIcon } from '../ui/EngravingIcons';
 import { KotobaItem, ItemMasteryRecord, KanjiItem } from '../../types/content';
 import { playSound, speakJapanese } from '../../utils/audio';
 import { RubyText } from '../learning/RubyText';
+import { KanjiComponentsSection } from '../learning/KanjiComponentsSection';
 import { KOTOBA_DATABASE } from '../../data/kotoba';
 import { KANJI_DATABASE } from '../../data/kanji';
 import { KotobaWritingPractice } from '../learning/KotobaWritingPractice';
@@ -495,10 +496,7 @@ export const KotobaDetailModal: React.FC<KotobaDetailModalProps> = ({
 
             {/* Kanji Breakdown - Interactive Links */}
             {effectiveItem.kanjiComponents && effectiveItem.kanjiComponents.length > 0 && (
-              <div className="space-y-2">
-                <h4 className="text-xs font-bold text-text-muted uppercase tracking-wider flex items-center gap-1.5">
-                  <Layers className="w-3.5 h-3.5" /> Komponen Kanji
-                </h4>
+              <KanjiComponentsSection etymology={effectiveItem.etymology}>
                 <div className="flex flex-wrap gap-2">
                   {effectiveItem.kanjiComponents.map((k, i) => (
                     <button
@@ -515,7 +513,7 @@ export const KotobaDetailModal: React.FC<KotobaDetailModalProps> = ({
                     </button>
                   ))}
                 </div>
-              </div>
+              </KanjiComponentsSection>
             )}
 
             {/* Example Sentences */}

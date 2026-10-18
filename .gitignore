@@ -11,6 +11,7 @@ raw_data/
 Ocr JLPT/
 scratch/
 .vscode/
+.claude/
 *.bak
 .codegraph/
 kotoba kaigo raw/

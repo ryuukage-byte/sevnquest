@@ -245,6 +245,7 @@ export interface KotobaItem {
     | 'conjunction' | 'particle' | 'pronoun' | 'counter' | 'numeral' | 'interjection'
     | 'expression' | 'prefix' | 'suffix' | 'auxiliary';
   kanjiComponents: string[];
+  etymology?: string; // Asal-usul kanji/makna (opsional, hanya untuk kata terpilih)
   exampleSentence?: {
     japanese: string;
     reading: string;
