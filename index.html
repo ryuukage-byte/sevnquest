@@ -98,25 +98,45 @@
                          window.location.hostname.startsWith('10.') || 
                          window.location.port !== '';
 
+        // Cache HTTP browser tidak ikut terhapus oleh caches.delete(). Host SPA pernah membalas chunk yang
+        // hilang dengan index.html (200 + immutable), jadi paksa ambil ulang index.html, aset yang ia rujuk,
+        // dan chunk yang gagal dimuat langsung dari jaringan sebelum memuat ulang.
+        function refreshHttpCache() {
+          var urls = (window.__sevnStaleUrls || []).slice();
+          var opts = { cache: 'reload', credentials: 'same-origin' };
+          return fetch(window.location.pathname, opts)
+            .then(function(r) { return r.text(); })
+            .then(function(html) {
+              var re = /(?:src|href)="([^"]*\/assets\/[^"]+)"/g, m;
+              while ((m = re.exec(html))) urls.push(new URL(m[1], window.location.href).href);
+            })
+            .catch(function() {})
+            .then(function() {
+              return Promise.all(urls.map(function(u) { return fetch(u, opts).catch(function() {}); }));
+            });
+        }
+
         function forceClearAndReload() {
           if (hasRecovered) return;
           hasRecovered = true;
+          var done = function() { window.location.reload(); };
+          var timeout = new Promise(function(r) { setTimeout(r, 6000); });
           try {
+            var tasks = [];
             if ('serviceWorker' in navigator) {
-              navigator.serviceWorker.getRegistrations().then(function(regs) {
-                for (var i = 0; i < regs.length; i++) { regs[i].unregister(); }
-              });
+              tasks.push(navigator.serviceWorker.getRegistrations().then(function(regs) {
+                return Promise.all(regs.map(function(r) { return r.unregister(); }));
+              }));
             }
             if ('caches' in window) {
-              caches.keys().then(function(keys) {
-                Promise.all(keys.map(function(k) { return caches.delete(k); })).then(function() {
-                  window.location.reload();
-                });
-              });
-              return;
+              tasks.push(caches.keys().then(function(keys) {
+                return Promise.all(keys.map(function(k) { return caches.delete(k); }));
+              }));
             }
+            Promise.race([Promise.all(tasks).then(refreshHttpCache), timeout]).then(done, done);
+            return;
           } catch (e) {}
-          window.location.reload();
+          done();
         }
 
         window.__sevnForceReload = forceClearAndReload;
