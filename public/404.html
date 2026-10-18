@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>SevnQuest</title>
+    <!-- Cloudflare Pages: adanya 404.html mematikan fallback SPA, sehingga chunk/aset yang hilang
+         menjadi 404 sungguhan (bukan index.html berstatus 200 yang tersimpan sebagai "immutable").
+         Aplikasi tidak memakai routing path, jadi path lain cukup diarahkan ke beranda. -->
+    <script>
+      if (!/\.(?:js|mjs|css|json|png|jpe?g|svg|ico|webmanifest|woff2?)$/i.test(location.pathname)) {
+        location.replace('/');
+      }
+    </script>
+  </head>
+  <body></body>
+</html>
