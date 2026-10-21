@@ -60,8 +60,15 @@ interface BunpouDetailModalProps {
  */
 const cleanSummary = (text?: string): string => {
   if (!text) return '';
+  // Hanya buang keterangan berbahasa Inggris di akhir (sisa data lama). Keterangan berbahasa Indonesia
+  // seperti "(benda mati)" atau "(dan aku jadi repot)" adalah bagian dari makna dan harus tetap tampil.
   return text
-    .replace(/\s*\([A-Za-z0-9\s/,'’._\-—]{4,}\)\.?\s*$/g, '')
+    .replace(/\s*\(([A-Za-z0-9\s/,'’._\-—]{4,})\)\.?\s*$/g, (match, inner: string) =>
+      /\b(the|of|to|with|is|are|was|for)\b/i.test(inner) &&
+      !/\b(dan|yang|di|ke|tidak|untuk|dengan|aku|saya|itu|ini)\b/i.test(inner)
+        ? ''
+        : match
+    )
     .trim();
 };
 

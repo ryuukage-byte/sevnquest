@@ -25,6 +25,8 @@ interface RawBunpou {
   meaning_en: string;
   meaning_id: string;
   explanation_note?: string;
+  /** Kategori fungsi (salah satu dari ALL_GRAMMAR_FUNCTION_CATEGORIES) untuk materi non-mingguan. */
+  functions?: string[];
   examples: RawExample[];
   question_ids: string[];
 }
@@ -38,6 +40,12 @@ interface RawQuestion {
   options: string[];
   correct_answer: number;
   explanation: string;
+}
+
+/** Menambahkan titik di akhir kalimat bila belum ada tanda baca penutup. */
+function withFinalPeriod(text: string): string {
+  const t = (text || '').trim();
+  return /[.!?。]$/.test(t) ? t : `${t}.`;
 }
 
 // Group questions by material_id
@@ -93,9 +101,11 @@ export const BUNPOU_DATABASE: Record<string, BunpouItem> = {};
     meaningEn: item.meaning_en || `${detectedLevel} Grammar Pattern`,
     level: detectedLevel,
     explanation: item.explanation_note
-      ? `${item.meaning_id}. Catatan: ${item.explanation_note}`
-      : `${item.meaning_id}.`,
+      ? `${withFinalPeriod(item.meaning_id)} ${item.explanation_note}`
+      : withFinalPeriod(item.meaning_id),
     formula: item.formula || '',
+    functions: item.functions,
+    nuance: item.explanation_note,
     examples,
     questions: questions.length > 0 ? questions : [
       {

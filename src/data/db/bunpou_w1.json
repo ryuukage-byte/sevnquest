@@ -6,8 +6,8 @@
     "title": "書かれている（受身形 / passive form）",
     "formula": "Vれる（受身形）",
     "meaning_en": "Passive voice used to state a fact without mentioning the subject.",
-    "meaning_id": "Tertulis / Dibuat / Dikatakan bahwa... (Fakta umum atau teks resmi tanpa menyebut pelaku)",
-    "explanation_note": "Menyatakan fakta objektif dari sudut pandang teks atau peristiwa yang sudah diakui umum.",
+    "meaning_id": "Ditulis/dibuat/dikatakan bahwa ~ (pasif untuk fakta umum)",
+    "explanation_note": "Bentuk pasif dipakai untuk menyampaikan fakta, isi tulisan, tradisi, atau pengetahuan umum tanpa perlu menyebut pelakunya: 世界一大きいダイヤモンドだと言われている = dikatakan bahwa ini berlian terbesar di dunia; ここに名前が書かれている = di sini tertulis nama. Fokusnya pada hal atau informasinya, bukan pada siapa yang melakukan.",
     "examples": [
       {
         "jp": "これは、世界でいちばん大きいダイヤモンドだと言われています。",
@@ -33,8 +33,8 @@
     "title": "赤ちゃんに泣かれた（迷惑の受身 / adversative passive）",
     "formula": "（Nに）Vれる",
     "meaning_en": "Shows a difficult/troublesome situation as a result of someone's action.",
-    "meaning_id": "Kena getah kerepotan akibat... (Pasif kerugian: subjek merasa repot/terganggu oleh aksi orang lain)",
-    "explanation_note": "Mengandung rasa jengkel, sedih, atau kerepotan mendalam akibat peristiwa di luar kendali.",
+    "meaning_id": "Kena ~; dirugikan karena ~ (pasif kerugian)",
+    "explanation_note": "Pasif kerugian (迷惑の受身) menyatakan bahwa subjek, biasanya pembicara, merasa terganggu atau dirugikan oleh tindakan orang lain atau suatu kejadian. Pelaku ditandai に: 赤ちゃんに泣かれた = (saya repot karena) bayinya menangis; 雨に降られた = kehujanan. Pola ini juga bisa dipakai dengan kata kerja intransitif, yang tidak mungkin dipasifkan dalam bahasa Indonesia.",
     "examples": [
       {
         "jp": "友達の赤ちゃんを抱っこしたら、泣かれてしまった。",
@@ -60,8 +60,8 @@
     "title": "早く帰らせてください（V(さ)せてください / もらえますか / もらえませんか）",
     "formula": "V(さ)せて + ください／もらえますか／もらえませんか",
     "meaning_en": "Expression used when asking for permission from the other person regarding one's own action.",
-    "meaning_id": "Tolong izinkan saya untuk... (Meminta izin dengan sopan agar diri sendiri boleh berbuat)",
-    "explanation_note": "Permohonan santun kepada atasan atau lawan bicara demi kenyamanan bersama.",
+    "meaning_id": "Izinkan saya ~ (meminta izin dengan sopan)",
+    "explanation_note": "Bentuk kausatif (〜させる) dalam bentuk -te ditambah ください/もらえますか/もらえませんか dipakai untuk meminta izin agar pembicara sendiri boleh melakukan sesuatu: 早く帰らせてください = izinkan saya pulang lebih awal. Bentuk もらえませんか lebih halus daripada ください. Versi paling sopan: 〜させていただけませんか.",
     "examples": [
       {
         "jp": "ちょっと気分が悪いので、早く帰らせてください。",
@@ -87,8 +87,8 @@
     "title": "もう寝ないと（Vないと／Vなくちゃ）",
     "formula": "Vないと／Vなくちゃ",
     "meaning_en": "Shortened form of 'Vなければならない' (must / have to).",
-    "meaning_id": "Harus segera... / Nggak boleh nggak! (Bentuk lisan santai untuk keharusan mendesak)",
-    "explanation_note": "Ragam percakapan akrab yang cepat dan lincah tanpa kesan kaku seperti buku teks.",
+    "meaning_id": "Harus ~ (bentuk singkat lisan)",
+    "explanation_note": "〜ないと dan 〜なくちゃ adalah singkatan lisan dari 〜なければならない/〜なくてはいけない, berarti 'harus ~'. Bagian akhirnya (いけない/ならない) dihilangkan: もう寝ないと = aku harus tidur sekarang. Pola ini sering dipakai saat berbicara pada diri sendiri atau dengan teman dekat. Bentuk lain: 〜なきゃ.",
     "examples": [
       {
         "jp": "明日は早く出かけるから、もう寝ないと。",
@@ -114,8 +114,8 @@
     "title": "食べちゃった（Vちゃう／Vじゃう）",
     "formula": "Vて→Vちゃう ／ V で→Vじゃう",
     "meaning_en": "Colloquial contracted form of 'Vてしまう' (to have finished doing / to have done something regrettable).",
-    "meaning_id": "Sudah keburu... / Terlanjur... (Aksi tuntas beres atau keteledoran yang disesali)",
-    "explanation_note": "Arti ditentukan konteks kalimat: apakah sengaja dituntaskan atau kelalaian yang disesali.",
+    "meaning_id": "Sudah ~ sampai habis; telanjur ~ (bentuk lisan てしまう)",
+    "explanation_note": "〜ちゃう/〜じゃう adalah singkatan lisan dari 〜てしまう/〜でしまう. Maknanya sama: (1) tindakan selesai tuntas (全部食べちゃった = sudah kumakan semua), atau (2) sesuatu terjadi tanpa disengaja dan disesali (財布を忘れちゃった = dompetnya ketinggalan). 〜でしまう menjadi 〜じゃう (飲んじゃう). Bentuk lampaunya 〜ちゃった/〜じゃった.",
     "examples": [
       {
         "jp": "試験が終わった！今日は飲んじゃおう！",
@@ -141,8 +141,8 @@
     "title": "書いとく（Vとく／Vどく）",
     "formula": "Vて おく→Vとく ／ Vで おく→Vどく",
     "meaning_en": "Colloquial contracted form of 'Vておく' (to do something in advance / for later).",
-    "meaning_id": "Mempersiapkan terlebih dahulu / Biarkan saja begitu (Bekal persiapan masa depan)",
-    "explanation_note": "Praktis dalam obrolan santai saat membagi tugas atau merapikan barang.",
+    "meaning_id": "~ dulu (sebagai persiapan) — bentuk lisan ておく",
+    "explanation_note": "〜とく/〜どく adalah singkatan lisan dari 〜ておく/〜でおく: ノートに書いとく = kucatat dulu di buku; 薬を飲んどく = kuminum dulu obatnya. Maknanya sama dengan ておく: melakukan sesuatu lebih dulu sebagai persiapan, atau membiarkan sesuatu tetap dalam keadaannya.",
     "examples": [
       {
         "jp": "テストで間違ったところを、ノートに書いとこう。",
@@ -168,8 +168,8 @@
     "title": "女みたいだ（N/V/A/na/N＋みたいだ／みたいに／みたいなN）",
     "formula": "N・V・A・na・N ＋ みたいだ／みたいに／みたいなN",
     "meaning_en": "More colloquial than '〜ようだ' (looks like / seems like / similar to).",
-    "meaning_id": "Kelihatannya seperti... / Mirip banget kayak... (Perumpamaan atau dugaan visual spontan)",
-    "explanation_note": "Ragam percakapan lisan santai untuk mengibaratkan hal yang mirip padahal aslinya bukan.",
+    "meaning_id": "Seperti ~; sepertinya ~ (santai)",
+    "explanation_note": "みたいだ punya dua fungsi. (1) Perumpamaan: 女みたいだ = seperti perempuan (padahal bukan). (2) Dugaan berdasarkan apa yang dilihat atau didengar: 雨が降るみたいだ = sepertinya akan hujan. みたい langsung disambung ke kata benda dan kata sifat-na tanpa の/な, berubah seperti kata sifat-na (みたいな + kata benda, みたいに + kata kerja), dan terdengar lebih santai daripada ようだ.",
     "examples": [
       {
         "jp": "彼の話し方は、女みたいだ。",
@@ -195,8 +195,8 @@
     "title": "春らしい（Nらしい）",
     "formula": "N ＋ らしい",
     "meaning_en": "Expresses that something truly feels/fits the typical image of N.",
-    "meaning_id": "Bener-bener khas... banget! (Mencerminkan sifat sejati dan karakter ideal aslinya)",
-    "explanation_note": "Pujian atau penegasan bahwa objek memiliki karakter ideal sesuai status aslinya.",
+    "meaning_id": "Benar-benar khas ~; layaknya ~",
+    "explanation_note": "Kata benda + らしい menyatakan bahwa sesuatu memiliki ciri ideal atau khas dari kata benda itu: 春らしい日 = hari yang benar-benar terasa musim semi; 男らしい = jantan; 学生らしい服装 = pakaian yang pantas untuk pelajar. Biasanya bernada positif. Berubah seperti kata sifat-i (らしくない = tidak seperti biasanya/tidak pantas).",
     "examples": [
       {
         "jp": "今日は、春らしい暖かい日でした。",
@@ -222,8 +222,8 @@
     "title": "大人っぽい（Nっぽい）",
     "formula": "N ＋ っぽい",
     "meaning_en": "Expresses a strong impression/tendency of having the quality of N (often mildly negative for na-adj-like words).",
-    "meaning_id": "Gayanya agak ke-...-an / Cenderung kayak... (Kesan lahiriah yang tampak dari luar)",
-    "explanation_note": "Pengamatan kasual atas kecenderungan penampilan lahiriah.",
+    "meaning_id": "Terkesan ~; cenderung ~",
+    "explanation_note": "っぽい menyatakan kesan atau kecenderungan yang tampak dari luar. Setelah kata benda, artinya 'terkesan seperti ~': 大人っぽい = terlihat dewasa, 子どもっぽい = kekanak-kanakan. Setelah bentuk masu, artinya 'mudah/sering ~': 忘れっぽい = pelupa, 怒りっぽい = mudah marah. Nadanya santai dan kadang sedikit negatif (安っぽい = terkesan murahan).",
     "examples": [
       {
         "jp": "あの小学生は、大人っぽい。",
@@ -249,8 +249,8 @@
     "title": "忘れ物をしないようにしましょう（Vる／Vない＋ようにする）",
     "formula": "Vる／Vない ＋ ようにする",
     "meaning_en": "Shows habit, mindfulness, or effort.",
-    "meaning_id": "Berusaha selalu membiasakan... (Usaha sadar dan konsisten untuk menjaga hal/kebiasaan baik)",
-    "explanation_note": "Menekankan niat dan kedisiplinan yang dijaga secara berkesinambungan.",
+    "meaning_id": "Berusaha (membiasakan diri) untuk ~",
+    "explanation_note": "Kata kerja bentuk kamus atau bentuk -nai + ようにする menyatakan usaha sadar agar sesuatu terjadi atau tidak terjadi: 忘れ物をしないようにしましょう = mari berusaha agar tidak ada barang yang tertinggal. Bentuk ようにしている menyatakan kebiasaan yang sedang dijaga: 毎日野菜を食べるようにしている = saya berusaha makan sayur setiap hari.",
     "examples": [
       {
         "jp": "忘れ物をしないようにしましょう。",
@@ -276,8 +276,8 @@
     "title": "聞こえるように話す（Vる／Vない／Vれる＋ように）",
     "formula": "Vる／Vない／Vれる ＋ ように",
     "meaning_en": "Means 'with the aim/purpose of achieving that state'.",
-    "meaning_id": "Supaya bisa... / Agar terwujud kondisi... (Tindakan demi mencapai keadaan yang diinginkan)",
-    "explanation_note": "Fokus pada tercapainya suatu kondisi target yang berada di luar kendali langsung otot pembicara.",
+    "meaning_id": "Agar ~; supaya ~ (tujuan berupa keadaan)",
+    "explanation_note": "ように menyatakan tujuan agar suatu keadaan tercapai. Kata kerja sebelum ように biasanya bentuk potensial, bentuk -nai, atau kata kerja yang tidak bisa dikendalikan langsung (聞こえる, 見える, 分かる): みんなに聞こえるように大きな声で話す = berbicara keras agar terdengar oleh semua orang; 忘れないようにメモする = mencatat agar tidak lupa.",
     "examples": [
       {
         "jp": "みんなに聞こえるようにもっと大きな声で話してください。",
@@ -303,8 +303,8 @@
     "title": "使えるようになった（Vるようになる）",
     "formula": "Vる ＋ ようになる",
     "meaning_en": "Shows a change to a state where something has become possible.",
-    "meaning_id": "Sekarang sudah menjadi bisa... / Mulai terbiasa... (Perubahan kemampuan atau kebiasaan baru)",
-    "explanation_note": "Menandai perkembangan keterampilan pribadi atau adaptasi gaya hidup baru.",
+    "meaning_id": "Menjadi (bisa/biasa) ~; sekarang sudah ~",
+    "explanation_note": "Kata kerja bentuk kamus atau bentuk potensial + ようになる menyatakan perubahan menuju kemampuan atau kebiasaan baru: 漢字が読めるようになった = (sekarang) sudah bisa membaca kanji; 毎朝走るようになった = jadi rutin lari setiap pagi. Pola ini menekankan proses perubahan dari keadaan sebelumnya.",
     "examples": [
       {
         "jp": "直してもらったから、使えるようになったよ。",
@@ -330,8 +330,8 @@
     "title": "ご存じのように（Nの／V＋ように）",
     "formula": "Nの／V ＋ ように",
     "meaning_en": "Often used as an introductory phrase before an explanation.",
-    "meaning_id": "Sebagaimana yang kita tahu / Seperti yang terlihat... (Pengantar merujuk pada fakta yang sudah dipahami bersama)",
-    "explanation_note": "Membangun kesamaan persepsi dan memuluskan transisi pembicaraan.",
+    "meaning_id": "Seperti (yang) ~",
+    "explanation_note": "Kata benda + の atau kata kerja + ように dipakai sebagai pengantar yang merujuk pada sesuatu yang sudah diketahui, terlihat, atau disebut: ご存じのように = seperti yang Anda ketahui; 前にも言ったように = seperti yang sudah saya katakan sebelumnya; 図のように = seperti pada gambar. Sering dipakai dalam presentasi atau penjelasan resmi.",
     "examples": [
       {
         "jp": "皆様ご存じのように、試験の内容が変わります。",
@@ -357,8 +357,8 @@
     "title": "早く来るように。（Vる／Vない＋ように。）",
     "formula": "Vる／Vない ＋ ように。",
     "meaning_en": "Indicates a soft/light command.",
-    "meaning_id": "Dimohon untuk selalu... / Harap supaya... (Instruksi atau arahan halus dari guru/atasan)",
-    "explanation_note": "Arahan resmi bernada membimbing tanpa terdengar kasar atau menekan.",
+    "meaning_id": "Harap ~; hendaknya ~ (perintah halus)",
+    "explanation_note": "Kata kerja bentuk kamus atau bentuk -nai + ように di akhir kalimat adalah perintah atau instruksi yang halus, biasanya dari guru, atasan, atau dalam pengumuman: 明日はもっと早く来るように = besok harap datang lebih awal; 遅れないように = jangan sampai terlambat. Bagian 言う atau してください dihilangkan.",
     "examples": [
       {
         "jp": "明日はもっと早く来るように。",
@@ -397,8 +397,8 @@
     "title": "合格しますように。（Vます／Vません／Vれます＋ように。）",
     "formula": "Vます／Vません／Vれます ＋ ように。",
     "meaning_en": "Expresses a hope/wish.",
-    "meaning_id": "Semoga... terkabul! (Doa dan permohonan tulus yang dipanjatkan)",
-    "explanation_note": "Penuh muatan spiritual, harapan masa depan, dan ketulusan hati.",
+    "meaning_id": "Semoga ~",
+    "explanation_note": "Bentuk ます/ません + ように di akhir kalimat menyatakan doa atau harapan tulus, misalnya saat berdoa di kuil atau menulis harapan: 合格しますように = semoga (saya) lulus; 雨が降りませんように = semoga tidak hujan. Kata kerja yang dipakai biasanya kata kerja yang di luar kendali pembicara atau bentuk potensial (治りますように, 会えますように).",
     "examples": [
       {
         "jp": "合格しますように。",
@@ -424,8 +424,8 @@
     "title": "やめようと思う（Vようと思う）",
     "formula": "Vよう ＋ と思う",
     "meaning_en": "Shows one's will or plan.",
-    "meaning_id": "Berniat untuk... / Sedang berencana... (Niat dalam hati yang ingin diwujudkan)",
-    "explanation_note": "Menunjukkan komitmen internal sebelum melangkah ke tindakan nyata.",
+    "meaning_id": "Berniat ~; berpikir untuk ~",
+    "explanation_note": "Bentuk ajakan (〜よう/〜おう) + と思う menyatakan niat atau rencana pembicara: 会社をやめようと思う = saya berniat berhenti dari perusahaan. Bentuk と思っている menyatakan niat yang sudah dipikirkan sejak beberapa waktu dan masih berlanjut. Untuk orang lain, gunakan と思っている.",
     "examples": [
       {
         "jp": "会社をやめようと思っている。",
@@ -451,8 +451,8 @@
     "title": "電車に乗ろうとしたときに（Vようとする）",
     "formula": "Vよう ＋ とする",
     "meaning_en": "Shows the moment one is about to start an action.",
-    "meaning_id": "Baru saja mau... / Tepat pas hendak... (Detik-detik tepat sebelum suatu aksi dimulai)",
-    "explanation_note": "Ketepatan momentum sesaat sebelum tindakan dieksekusi.",
+    "meaning_id": "Hendak ~; mencoba ~",
+    "explanation_note": "Bentuk ajakan + とする punya dua makna. (1) Tepat saat hendak melakukan sesuatu, sering diikuti とき/ところ: 電車に乗ろうとしたときに、ドアが閉まった = tepat saat hendak naik kereta, pintunya tertutup. (2) Berusaha melakukan sesuatu: 思い出そうとしたが、思い出せなかった = mencoba mengingat, tetapi tidak bisa.",
     "examples": [
       {
         "jp": "電車に乗ろうとしたときに、ドアが閉まって乗れなかった。",
@@ -478,8 +478,8 @@
     "title": "食べようとしない（Vようとしない）",
     "formula": "Vよう ＋ としない",
     "meaning_en": "Indicates that one cannot feel the will/intention to do an action (present continuous negative intention).",
-    "meaning_id": "Sama sekali nggak mau... / Ogah banget... (Menunjukkan keengganan keras atau sikap mogok orang lain)",
-    "explanation_note": "Mengamati sikap keras kepala atau penolakan pasif dari orang lain.",
+    "meaning_id": "Tidak mau ~ (sama sekali)",
+    "explanation_note": "Bentuk ajakan + としない menyatakan bahwa seseorang sama sekali tidak menunjukkan kemauan untuk melakukan sesuatu: 子どもがご飯を食べようとしない = anak itu tidak mau makan sama sekali. Biasanya dipakai untuk orang lain (pihak ketiga), karena yang digambarkan adalah sikap yang terlihat dari luar.",
     "examples": [
       {
         "jp": "ご飯を食べようとしないんだよ。",

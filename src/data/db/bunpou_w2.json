@@ -6,8 +6,8 @@
     "title": "女性ばかり（N／Vて＋ばかり／ばかりだ／ばかりのN／ばかりで、Vてばかりいる）",
     "formula": "N／Vて ＋ ばかり(だ／のN／で)；Vてばかりいる",
     "meaning_en": "Emphasizes 'only / nothing but' (だけ).",
-    "meaning_id": "Cuma... melulu! / Kebanyakan... doang (Banyak sekali sampai terkesan berlebihan atau menjengkelkan)",
-    "explanation_note": "Sering mengandung nada teguran, kritik, atau keluhan atas ketidakseimbangan aktivitas.",
+    "meaning_id": "Melulu ~; hanya ~ saja (terlalu banyak)",
+    "explanation_note": "ばかり menyatakan bahwa hanya satu hal saja yang ada atau dilakukan, sering dengan nada mengeluh karena terasa berlebihan: 女性ばかり = hanya perempuan saja; 甘い物ばかり食べる = makan yang manis-manis melulu. Bentuk 〜てばかりいる berarti 'terus-terusan ~': 遊んでばかりいる = main terus. Sebelum kata benda dipakai ばかりの.",
     "examples": [
       {
         "jp": "この店のお客さんは、女性ばかりですね。",
@@ -33,8 +33,8 @@
     "title": "会員だけしか（Nだけしか＋Vない）",
     "formula": "Nだけしか ＋ Vない",
     "meaning_en": "Emphasizes 'only' (だけ) even more strongly.",
-    "meaning_id": "Cuma... doang, nggak ada selain itu (Hanya terbatas pada itu saja, selain itu sama sekali tidak)",
-    "explanation_note": "Menegaskan batas tegas yang tidak menyisakan ruang bagi opsi lain.",
+    "meaning_id": "Hanya ~ (dan tidak ada yang lain)",
+    "explanation_note": "だけしか + bentuk negatif adalah gabungan だけ dan しか〜ない untuk menekankan pembatasan dengan sangat kuat: 会員だけしか入れません = hanya anggota yang boleh masuk, selain itu sama sekali tidak. Predikatnya harus negatif.",
     "examples": [
       {
         "jp": "このコンサートは、会員だけしか入れません。",
@@ -60,8 +60,8 @@
     "title": "ひらがなさえ（N／Nに／Nで＋さえ）",
     "formula": "N／Nに／Nで ＋ さえ",
     "meaning_en": "Even (emphasizing an extreme example).",
-    "meaning_id": "Bahkan... pun sampai segitunya (Menyebut contoh paling dasar/ekstrem untuk menunjukkan keparahan)",
-    "explanation_note": "Menyoroti kontras ekstrem untuk menunjukkan betapa parah atau luar biasanya suatu situasi.",
+    "meaning_id": "Bahkan ~ pun",
+    "explanation_note": "さえ menyebut contoh yang paling dasar atau ekstrem untuk menyiratkan bahwa hal lain pasti demikian juga: ひらがなさえ書けない = hiragana saja tidak bisa ditulis (apalagi kanji). さえ menggantikan が dan を, tetapi ditambahkan setelah partikel lain (子どもにさえ分かる = anak kecil pun paham). Pola 〜さえ〜ば berarti 'asalkan ~ saja'.",
     "examples": [
       {
         "jp": "ひらがなさえ書けないんですから、漢字なんて書けません。",
@@ -87,8 +87,8 @@
     "title": "明日こそ（Nこそ／〜から(理由)こそ）",
     "formula": "Nこそ ／ ～から（理由）こそ",
     "meaning_en": "Expresses emphasis.",
-    "meaning_id": "Justru kali ini pasti...! / Karena alasan itulah justru... (Menegaskan tekad bulat membara)",
-    "explanation_note": "Memberikan sorotan utama dan dorongan emosional yang kuat pada kata yang dilekatkan.",
+    "meaning_id": "Justru ~ (yang ditekankan)",
+    "explanation_note": "こそ menekankan bahwa hal itulah yang paling tepat atau penting, bukan yang lain: 明日こそ勉強するぞ = besok pasti belajar (tidak seperti hari-hari sebelumnya); こちらこそ = justru saya (yang berterima kasih). Dengan alasan, からこそ berarti 'justru karena ~': 好きだからこそ厳しくする = justru karena sayang, saya bersikap tegas.",
     "examples": [
       {
         "jp": "明日こそ勉強するぞ！",
@@ -114,8 +114,8 @@
     "title": "この問題に関して（Nに関して／関しては／関しても／関するN）",
     "formula": "Nに ＋ 関して／関しては／関しても／関するN",
     "meaning_en": "Regarding/concerning something.",
-    "meaning_id": "Berkenaan dengan... / Mengenai topik... (Bahasa resmi/formal untuk mengangkat topik bahasan/isu)",
-    "explanation_note": "Mengangkat isu atau wacana yang luas dalam ranah formal.",
+    "meaning_id": "Mengenai ~; berkenaan dengan ~ (formal)",
+    "explanation_note": "Kata benda + に関して (にかんして) berarti 'mengenai' atau 'berkenaan dengan', dan lebih formal daripada について. Variasinya: に関しては (menonjolkan topik), に関しても (mengenai ~ pun), dan に関する + kata benda (この問題に関する意見 = pendapat mengenai masalah ini). Sering dipakai dalam rapat, berita, seminar, atau tulisan resmi.",
     "examples": [
       {
         "jp": "この問題に関して、ご意見ありませんか。",
@@ -141,8 +141,8 @@
     "title": "日本文化について（Nについて／についてのN／については／についても）",
     "formula": "Nに ＋ ついて／についてのN／については／についても",
     "meaning_en": "About/concerning something (more common/casual than 関して).",
-    "meaning_id": "Tentang... / Soal... (Membicarakan hal yang menjadi isi atau topik utama obrolan)",
-    "explanation_note": "Menandai tema inti yang sedang menjadi fokus perbincangan.",
+    "meaning_id": "Tentang ~; mengenai ~",
+    "explanation_note": "Kata benda + について menyatakan topik yang dibicarakan, dipikirkan, atau dipelajari: 日本文化について勉強する = belajar tentang budaya Jepang. Sebelum kata benda dipakai についての (日本についての本 = buku tentang Jepang). については menonjolkan topik, dan についても berarti 'tentang ~ juga'. Bisa dipakai dalam situasi santai maupun semiformal.",
     "examples": [
       {
         "jp": "日本文化について勉強する。",
@@ -168,8 +168,8 @@
     "title": "天気予報によれば（Nによれば／によると）",
     "formula": "Nに ＋ よれば／よると",
     "meaning_en": "According to (a source of information).",
-    "meaning_id": "Berdasarkan kabar dari... / Menurut... (Mengutip sumber data atau berita tepercaya)",
-    "explanation_note": "Merujuk pada otoritas sumber informasi pihak ketiga yang kredibel.",
+    "meaning_id": "Menurut ~ (sumber informasi)",
+    "explanation_note": "Kata benda + によれば atau によると menyebut sumber informasi: 天気予報によれば、明日は晴れるらしい = menurut ramalan cuaca, besok sepertinya cerah. Akhir kalimatnya biasanya memakai ungkapan kabar seperti 〜そうだ, 〜らしい, atau 〜ということだ, karena informasinya berasal dari pihak lain.",
     "examples": [
       {
         "jp": "天気予報によれば、明日は晴れるらしい。",
@@ -195,8 +195,8 @@
     "title": "努力によって（Nに＋よって／よっては／より／よるN）",
     "formula": "Nに ＋ よって／よっては／より／よるN",
     "meaning_en": "Expresses method, cause, or case.",
-    "meaning_id": "Melalui... / Tergantung pada... / Karena faktor... (Metode, penyebab, atau keragaman kasus)",
-    "explanation_note": "Ragam resmi tertulis untuk menghubungkan instrumen, kausalitas, atau variasi.",
+    "meaning_id": "Dengan/melalui ~; karena ~; tergantung ~; oleh ~",
+    "explanation_note": "Kata benda + によって punya beberapa fungsi. (1) Cara atau sarana: 努力によって病気を克服した = mengatasi penyakit melalui usaha. (2) Sebab: 地震によって家が壊れた = rumah hancur karena gempa. (3) Variasi, 'tergantung ~': 国によって習慣が違う = kebiasaan berbeda tergantung negaranya. (4) Pelaku dalam kalimat pasif: この絵はピカソによって描かれた = lukisan ini dibuat oleh Picasso. Bentuk lain: により (formal), によっては (dalam sebagian kasus), による + kata benda.",
     "examples": [
       {
         "jp": "彼は努力によって病気を克服した。",
@@ -222,8 +222,8 @@
     "title": "大きさが違う（A/na→さ, noun-forming suffix）",
     "formula": "A（い→さ）／naさ",
     "meaning_en": "Forms a noun expressing a characteristic, feeling, or its degree.",
-    "meaning_id": "Tingkat / Kadar... (Mengubah kata sifat jadi ukuran terukur: panasnya, panjangnya, beratnya)",
-    "explanation_note": "Objektivitas matematis dan derajat besaran yang dapat dibandingkan secara nyata.",
+    "meaning_id": "Pembentuk kata benda ukuran/tingkat (~nya)",
+    "explanation_note": "さ ditambahkan pada kata sifat (kata sifat-i tanpa い, kata sifat-na langsung) untuk membentuk kata benda yang menyatakan ukuran atau tingkat suatu sifat: 大きい→大きさ = ukuran, 重い→重さ = berat, 便利→便利さ = kepraktisan. Hasilnya bisa diukur atau dibandingkan secara objektif. いい menjadi よさ.",
     "examples": [
       {
         "jp": "大きさは違うが、君と同じかばんを持っているよ。",
@@ -249,8 +249,8 @@
     "title": "苦しみは続く（A/na→み, noun-forming suffix）",
     "formula": "A（い→み）／naみ",
     "meaning_en": "Forms a noun expressing a state/condition or nature.",
-    "meaning_id": "Rasa mendalam... / Kesan... (Mengubah kata sifat jadi kualitas rasa emosional yang berbekas)",
-    "explanation_note": "Kedalaman emosional dan kesan batin yang berbekas di perasaan.",
+    "meaning_id": "Pembentuk kata benda rasa/kesan (~nya)",
+    "explanation_note": "み ditambahkan pada sejumlah kata sifat tertentu untuk membentuk kata benda yang menyatakan perasaan, kesan, atau keadaan yang dirasakan: 悲しい→悲しみ = kesedihan, 苦しい→苦しみ = penderitaan, 楽しい→楽しみ = kesenangan/hal yang dinanti, 暖かい→暖かみ = kehangatan. Hanya dipakai dengan kata-kata tertentu, tidak bisa dibentuk bebas.",
     "examples": [
       {
         "jp": "戦争が終わった今でも、この国の苦しみはまだ続いている。",
@@ -276,8 +276,8 @@
     "title": "テストのこと（Nの／V/A/na/N＋こと）",
     "formula": "Nの／V・A・na・N（naな／Nである）＋ こと",
     "meaning_en": "Nominalizer referring to a matter/fact/topic about something.",
-    "meaning_id": "Hal ihwal tentang... / Soal... (Menjadikan gagasan atau topik sebagai objek pemikiran)",
-    "explanation_note": "Mengonseptualisasikan gagasan abstrak ke dalam ranah mental.",
+    "meaning_id": "Hal tentang ~; soal ~",
+    "explanation_note": "こと setelah kata benda + の berarti 'hal-hal tentang ~' atau 'urusan ~': テストのことで質問がある = ada pertanyaan soal ujian; 彼のことが好きだ = saya suka dia (segala hal tentang dirinya). Setelah kata kerja atau kalimat, こと mengubahnya menjadi kata benda: 約束したことを忘れた = lupa hal yang sudah dijanjikan. Kata sifat-na memakai な dan kata benda memakai である (学生であること).",
     "examples": [
       {
         "jp": "来週のテストのことで、質問があります。",
@@ -303,8 +303,8 @@
     "title": "電話するのを忘れた（V/A/na/N＋の, nominalizer）",
     "formula": "V・A・na・N（naな）＋ の",
     "meaning_en": "Nominalizer turning an action/state into a noun-like clause (subject/object of a sentence).",
-    "meaning_id": "Aksi / Kegiatan... (Mengubah kata kerja jadi objek nyata yang dirasakan panca indra)",
-    "explanation_note": "Aksi dinamis yang tertangkap langsung oleh mata, telinga, atau sentuhan.",
+    "meaning_id": "Pembentuk kata benda: (kegiatan) ~-nya",
+    "explanation_note": "の setelah bentuk biasa mengubah kata kerja atau kalimat menjadi kata benda, sehingga bisa diikuti partikel: 電話するのを忘れた = lupa menelepon; 歌うのが好きだ = suka bernyanyi; 彼が来るのを待つ = menunggu dia datang. の terutama dipakai dengan kata kerja persepsi (見る, 聞こえる), perasaan (好き, 嫌い), dan beberapa kata kerja seperti 忘れる, 待つ, 手伝う.",
     "examples": [
       {
         "jp": "田中さんに電話するのをすっかり忘れていました。",
@@ -330,8 +330,8 @@
     "title": "木村さんという人（NというN'／というもの／ということ）",
     "formula": "N ＋ というN'／というもの／ということ",
     "meaning_en": "Introduces/defines what something/someone is called.",
-    "meaning_id": "Orang / Hal yang bernama... (Menjelaskan sebutan nama benda/orang yang belum dikenal lawan bicara)",
-    "explanation_note": "Menyebutkan label identitas awal sebelum mendalami isi topik.",
+    "meaning_id": "~ yang bernama ~",
+    "explanation_note": "Nama atau sebutan + という + kata benda dipakai untuk memperkenalkan orang, tempat, atau benda yang mungkin belum dikenal lawan bicara: 木村さんという人から電話があった = ada telepon dari orang yang bernama Kimura. Pola というもの dipakai untuk membicarakan hakikat sesuatu (愛というもの = yang namanya cinta), dan ということ untuk isi suatu informasi.",
     "examples": [
       {
         "jp": "さっき、木村さんという人から電話がありましたよ。",
@@ -357,8 +357,8 @@
     "title": "「デジカメ」というのは・・・（N＋というのは／っていうのは）",
     "formula": "N ＋ というのは／っていうのは",
     "meaning_en": "Expresses the meaning of a term.",
-    "meaning_id": "Yang dimaksud dengan... adalah... (Mendefinisikan arti istilah atau singkatan kata)",
-    "explanation_note": "Menyibak arti hakiki di balik suatu kata wacana.",
+    "meaning_id": "Yang dimaksud dengan ~ adalah ~",
+    "explanation_note": "Kata benda + というのは (santai: っていうのは) dipakai untuk menjelaskan atau menanyakan arti suatu istilah: 「デジカメ」というのは、デジタルカメラを短くした言い方です = 'dejikame' adalah singkatan dari kamera digital. Akhir kalimatnya biasanya 〜のことだ atau 〜という意味だ. Untuk bertanya: 〜というのは何ですか.",
     "examples": [
       {
         "jp": "「デジカメ」というのは、デジタルカメラを短くした言い方です。",
@@ -384,8 +384,8 @@
     "title": "帰国するというのは本当ですか（[文]というのは／っていうのは／ということ／っていうこと）",
     "formula": "[文] ＋ というのは／っていうのは／ということ／っていうこと",
     "meaning_en": "Nominalizes a sentence to use it as subject or object.",
-    "meaning_id": "Kabar bahwa... / Hal bahwa... (Mengangkat keseluruhan kalimat/peristiwa menjadi topik)",
-    "explanation_note": "Mengemas seluruh wacana kabar angin ke dalam satu paket topik bahasan.",
+    "meaning_id": "(Kabar/hal) bahwa ~",
+    "explanation_note": "Kalimat bentuk biasa + というのは atau ということ mengubah seluruh isi kalimat menjadi topik atau objek: 帰国するというのは本当ですか = apakah benar (kabar) bahwa Anda akan pulang ke negara asal? リンさんが帰国するということを聞いた = saya mendengar bahwa Lin akan pulang. っていうのは/っていうこと adalah bentuk santainya.",
     "examples": [
       {
         "jp": "リンさんが帰国するということを聞いて驚きました。",
@@ -411,8 +411,8 @@
     "title": "走るというより（N/na/V/A＋というより／というか）",
     "formula": "N・na・V・A ＋ というより／というか",
     "meaning_en": "Rather than saying X, it's more like Y.",
-    "meaning_id": "Bukannya dibilang begitu, lebih tepatnya malah... (Bukan dibilang..., tapi lebih pasnya...)",
-    "explanation_note": "Koreksi spontan yang memperhalus dan memperjelas realitas sebenarnya.",
+    "meaning_id": "Bukan ~, lebih tepatnya ~",
+    "explanation_note": "というより (santai: というか) dipakai untuk mengoreksi ungkapan pertama dengan ungkapan yang menurut pembicara lebih tepat: 走るというより、はっているようだ = bukan berjalan, lebih tepatnya merayap. Sering diikuti むしろ (malah). Disambung ke kata benda, kata sifat, atau kata kerja bentuk biasa.",
     "examples": [
       {
         "jp": "前の車は遅すぎて、走るというよりはっているようだ。",
@@ -438,8 +438,8 @@
     "title": "京都というと（N/na/V/A＋というと／といえば／といったら）",
     "formula": "N・na・V・A ＋ というと／といえば／といったら",
     "meaning_en": "When you say/mention X, it brings to mind Y.",
-    "meaning_id": "Kalau ngomongin soal..., langsung kepikiran... (Asosiasi spontan hal pertama yang terlintas)",
-    "explanation_note": "Koneksi asosiasi pikiran alami yang paling melekat di benak masyarakat.",
+    "meaning_id": "Kalau bicara soal ~, (yang terlintas adalah) ~",
+    "explanation_note": "というと, といえば, dan といったら dipakai saat suatu topik disebut, lalu pembicara menyebut hal yang langsung terlintas atau paling khas tentangnya: 京都というと、お寺をイメージする = kalau bicara soal Kyoto, yang terbayang adalah kuil. といえば juga dipakai untuk beralih topik dengan alami (そういえば = ngomong-ngomong). といったら bisa bernada emosional (寒さといったら = dinginnya bukan main).",
     "examples": [
       {
         "jp": "京都というと、お寺をイメージします。",
@@ -465,8 +465,8 @@
     "title": "旅行といっても（N/na/V/A＋といっても）",
     "formula": "N・na・V・A ＋ といっても",
     "meaning_en": "Even though you say X, it's not really to that extent.",
-    "meaning_id": "Walau dibilang begitu, sebenarnya aslinya cuma... (Meluruskan ekspektasi agar tidak salah paham)",
-    "explanation_note": "Meluruskan ekspektasi lawan bicara dengan nada merendah atau realistis.",
+    "meaning_id": "Walaupun disebut ~, sebenarnya (hanya) ~",
+    "explanation_note": "といっても dipakai untuk meluruskan anggapan lawan bicara agar tidak membayangkan hal yang berlebihan: 旅行といっても、近くの温泉に行っただけです = walaupun disebut liburan, sebenarnya cuma pergi ke pemandian air panas dekat rumah. Bagian kedua biasanya menjelaskan kenyataan yang lebih sederhana atau terbatas.",
     "examples": [
       {
         "jp": "旅行といっても、近くの温泉に行っただけですが。",
@@ -492,8 +492,8 @@
     "title": "聞いてごらん（Vてごらん(なさい)）",
     "formula": "Vて ＋ ごらん(なさい)",
     "meaning_en": "Used when addressing subordinates/juniors, meaning 'try doing it'.",
-    "meaning_id": "Coba deh lakukan... (Ajakan ramah menyemangati dari orang tua/senior kepada junior)",
-    "explanation_note": "Dorongan suportif hangat yang santun tanpa nada memaksa.",
+    "meaning_id": "Cobalah ~ (dari atasan kepada bawahan)",
+    "explanation_note": "Bentuk -te + ごらん(なさい) adalah cara ramah untuk menyuruh mencoba sesuatu, dipakai oleh orang tua, guru, atau senior kepada anak-anak atau junior: 先生に聞いてごらん = coba tanya ke guru. ごらん adalah bentuk hormat dari 見る, jadi maknanya mirip 〜てみなさい.",
     "examples": [
       {
         "jp": "わからなかったら、先生に聞いてごらん。",
@@ -519,8 +519,8 @@
     "title": "来るように言う（Vるよう(に)＋言う／頼む；Vないよう(に)）",
     "formula": "Vるよう(に)／Vないよう(に) ＋ 言う／頼む",
     "meaning_en": "Report an indirect command/request.",
-    "meaning_id": "Menyampaikan agar... / Menyuruh supaya... (Melaporkan pesan atau instruksi secara tidak langsung)",
-    "explanation_note": "Penyampaian instruksi secara diplomatis dan beretika.",
+    "meaning_id": "Menyuruh/meminta (orang) agar ~",
+    "explanation_note": "Kata kerja bentuk kamus atau bentuk -nai + よう(に) + 言う/頼む/伝える dipakai untuk menyampaikan perintah atau permintaan secara tidak langsung: 田中さんに、私の部屋に来るように言ってください = tolong bilang ke Tanaka agar datang ke kamar saya. Untuk larangan, gunakan bentuk -nai: 遅れないように言う. Orang yang disuruh ditandai に.",
     "examples": [
       {
         "jp": "田中さんに、私の部屋に来るよう(に)言ってください。",
@@ -546,8 +546,8 @@
     "title": "飲むなと言われた（V命令形＋と言われる／注意される／しかられる／怒られる；Vるなと）",
     "formula": "V命令形／Vるな ＋ と言われる／注意される／しかられる／怒られる",
     "meaning_en": "Reports being told/scolded in imperative form (without sounding too rough).",
-    "meaning_id": "Kena tegur disuruh / dimarahi jangan... (Melaporkan bahwa diri sendiri ditegur atau dilarang keras)",
-    "explanation_note": "Menceritakan kembali teguran keras yang membekas dari pihak yang berwenang.",
+    "meaning_id": "Disuruh ~ / dilarang ~ (melaporkan perintah yang diterima)",
+    "explanation_note": "Bentuk perintah (〜ろ/〜え) atau larangan (bentuk kamus + な) + と言われる/注意される/しかられる/怒られる dipakai untuk menceritakan bahwa seseorang diperintah, ditegur, atau dimarahi: 医者に酒を飲むなと言われた = saya dilarang dokter minum alkohol; 早く来いと言われた = saya disuruh cepat datang. Bentuk perintah ini hanya mengutip isi perintah, sehingga tidak terdengar kasar.",
     "examples": [
       {
         "jp": "医者に酒を飲むなと言われた。",
@@ -573,8 +573,8 @@
     "title": "教えてくれと頼まれた（Vてくれと／Vないでくれと＋頼まれる／言われる）",
     "formula": "Vてくれと／Vないでくれと ＋ 頼まれる／言われる",
     "meaning_en": "Reports being asked to do/not do something.",
-    "meaning_id": "Dimintai tolong supaya... (Melaporkan permohonan santai dari orang lain)",
-    "explanation_note": "Kutipan santai atas permohonan tolong yang diterima.",
+    "meaning_id": "Diminta (tolong) untuk ~ / agar tidak ~",
+    "explanation_note": "Bentuk -te + くれと atau bentuk -nai + でくれと, lalu 頼まれる/言われる, dipakai untuk melaporkan bahwa orang lain meminta pembicara melakukan atau tidak melakukan sesuatu: 友達に電話番号を教えてくれと頼まれた = saya diminta teman untuk memberi tahu nomor telepon; 誰にも言わないでくれと言われた = saya diminta untuk tidak memberi tahu siapa pun.",
     "examples": [
       {
         "jp": "友達に、田中さんの電話番号を教えてくれと頼まれた。",

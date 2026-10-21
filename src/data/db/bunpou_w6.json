@@ -6,8 +6,8 @@
     "title": "もし試験を受けていたら（もし＋Vたら／Aかったら／naだったら／Nだったら）",
     "formula": "もし ＋ Vたら／Aかったら／naだったら／Nだったら",
     "meaning_en": "If (counterfactual hypothesis or conditional).",
-    "meaning_id": "Seandainya waktu itu aku... (Mengandaikan hal di masa lalu yang tak sempat terjadi)",
-    "explanation_note": "Refleksi mendalam atas pilihan hidup di masa lalu.",
+    "meaning_id": "Seandainya ~ (pengandaian)",
+    "explanation_note": "もし + 〜たら menyatakan pengandaian. Bisa tentang masa depan (もし雨が降ったら、行かない = kalau hujan, tidak pergi) atau tentang masa lalu yang tidak terjadi (もし留学しなかったら、今頃何をしているだろう = seandainya dulu tidak kuliah ke luar negeri, kira-kira sekarang sedang apa, ya?). Kata sifat-i: 〜かったら; kata benda dan kata sifat-na: 〜だったら.",
     "examples": [
       {
         "jp": "もし、留学しなかったら、今頃は何をしているだろう。",
@@ -33,8 +33,8 @@
     "title": "もし休みが取れたとしても（もし＋V/A/na/Nとしても／としたって）",
     "formula": "もし ＋ V・A・na・N（N／naだ） ＋ としても／としたって",
     "meaning_en": "Even if (granting a hypothetical condition).",
-    "meaning_id": "Kalaupun seandainya memang bisa..., tapi tetap saja... (Pengandaian konsesif)",
-    "explanation_note": "Keteguhan fakta yang tak tergoyahkan oleh pengandaian lunak.",
+    "meaning_id": "Seandainya pun ~, (tetap) ~",
+    "explanation_note": "もし + 〜としても (santai: としたって) menyatakan bahwa walaupun suatu keadaan diandaikan terjadi, kesimpulannya tidak berubah: もし休みが取れたとしても、旅行には行かないつもりだ = seandainya pun bisa ambil cuti, saya tidak berniat bepergian. Kata benda dan kata sifat-na memakai だ (本当だとしても).",
     "examples": [
       {
         "jp": "もし、休みが取れたとしても、旅行には行かないつもりです。",
@@ -60,8 +60,8 @@
     "title": "もしもの時（もしも＋Vたら／Aかったら／na・Nなら；もしも＋でも；もしものN）",
     "formula": "もしも ＋ Vたら／Aかったら／na・Nなら；もしものN",
     "meaning_en": "In case of / if (more hypothetical/formal than もし).",
-    "meaning_id": "Jika sampai terjadi situasi darurat / Andaikan hal terburuk terjadi (Kesiapsiagaan)",
-    "explanation_note": "Kesiapsiagaan preventif menghadapi skenario krisis.",
+    "meaning_id": "Seandainya (sampai) ~; untuk keadaan darurat",
+    "explanation_note": "もしも adalah bentuk yang lebih kuat dari もし, untuk pengandaian yang kemungkinannya kecil atau sangat tidak diinginkan: もしも生まれ変われるなら = seandainya bisa terlahir kembali. Bentuk もしもの + kata benda berarti 'untuk keadaan darurat/kemungkinan terburuk': もしもの時に備える = bersiap untuk keadaan darurat.",
     "examples": [
       {
         "jp": "もしも、生まれ変われるなら、男になりたいですか、女になりたいですか。",
@@ -87,8 +87,8 @@
     "title": "お金持ちになることになる（Vる／Vない＋ことになる）",
     "formula": "Vる／Vない ＋ ことになる",
     "meaning_en": "It is decided that / it results in.",
-    "meaning_id": "Sudah diputuskan bahwa... / Hasil akhirnya menjadi... (Keputusan pihak luar atau aturan)",
-    "explanation_note": "Keputusan institusional di mana subjek mematuhi ketetapan.",
+    "meaning_id": "Diputuskan bahwa ~ (bukan oleh pembicara sendiri)",
+    "explanation_note": "Kata kerja bentuk kamus atau bentuk -nai + ことになる menyatakan bahwa sesuatu diputuskan atau ditetapkan oleh pihak lain, organisasi, atau keadaan, bukan semata-mata oleh pembicara: 来月、出張することになりました = (sudah diputuskan bahwa) bulan depan saya akan dinas luar. Juga dipakai untuk menyampaikan keputusan sendiri dengan rendah hati. ことになっている berarti aturan yang berlaku.",
     "examples": [
       {
         "jp": "来月、出張することになりました。",
@@ -114,8 +114,8 @@
     "title": "毎日運動することにしている（Vる／Vない＋ことにしている）",
     "formula": "Vる／Vない ＋ ことにしている",
     "meaning_en": "To make it a rule to / make a personal habit to.",
-    "meaning_id": "Membiasakan diri secara rutin untuk... (Disiplin pribadi yang dijaga)",
-    "explanation_note": "Kedisiplinan konsisten yang lahir dari niat pribadi.",
+    "meaning_id": "Membiasakan diri untuk ~ (aturan pribadi)",
+    "explanation_note": "Kata kerja bentuk kamus atau bentuk -nai + ことにしている menyatakan aturan atau kebiasaan pribadi yang sengaja dijaga berdasarkan keputusan sendiri: 健康のために、毎日野菜を食べることにしている = demi kesehatan, saya menjadikan kebiasaan makan sayur setiap hari; 夜はコーヒーを飲まないことにしている = saya punya aturan tidak minum kopi di malam hari.",
     "examples": [
       {
         "jp": "健康のために、毎日野菜を食べることにしています。",
@@ -141,8 +141,8 @@
     "title": "ピアノが弾けることは弾けるが（VることはVる／AいことはAい／naなことはnaだ＋が／けれど）",
     "formula": "VることはVる／AいことはAい／naなことはnaだ ＋ が／けれど",
     "meaning_en": "It is true that..., but...",
-    "meaning_id": "Ya kalau dibilang bisa sih memang bisa, tapi... (Mengakui suatu fakta dengan catatan)",
-    "explanation_note": "Kejujuran proporsional yang menghindari kesan sombong.",
+    "meaning_id": "~ sih memang ~, tetapi ~",
+    "explanation_note": "Pola VることはVる (kata yang sama diulang) + が/けれど mengakui bahwa sesuatu memang benar, tetapi dengan catatan atau batasan: ピアノは弾けることは弾けますが、上手ではありません = main piano sih memang bisa, tetapi tidak mahir. Kata sifat-i: 高いことは高いが; kata sifat-na: 便利なことは便利だが.",
     "examples": [
       {
         "jp": "ピアノは弾けることは弾けますが、上手ではありません。",
@@ -168,8 +168,8 @@
     "title": "行かないこともない（Aくない／naじゃない／Vない／Vられない＋こともない）",
     "formula": "Aくない／naじゃない／Vない／Vられない ＋ こともない",
     "meaning_en": "It's not that I can't / it's possible that.",
-    "meaning_id": "Bukannya nggak mau / Bukannya nggak bisa sama sekali (Bisa saja jika ada kondisi tertentu)",
-    "explanation_note": "Diplomasi kesantunan yang membuka peluang kompromi.",
+    "meaning_id": "Bukannya tidak ~ (sebenarnya bisa/mau juga)",
+    "explanation_note": "Bentuk negatif + こともない memakai dua bentuk negatif untuk menyatakan pengakuan yang lemah: 'bukannya tidak ~'. 鶏肉は食べないこともないですが、あまり好きではありません = bukannya saya tidak makan ayam, tetapi saya kurang suka. Biasanya diikuti が/けど dan catatan. Kata sifat-i: 〜くないこともない.",
     "examples": [
       {
         "jp": "鶏肉は、食べないこともないですが、あまり好きではありません。",
@@ -195,8 +195,8 @@
     "title": "話したところ（Vた＋ところ）",
     "formula": "Vた ＋ ところ",
     "meaning_en": "When I did something, as a result (neutral discovery).",
-    "meaning_id": "Pas dicoba lakukan, ternyata hasilnya baru ketahuan bahwa... (Mengetahui fakta baru setelah mencoba)",
-    "explanation_note": "Tindakan eksplorasi yang membuka wawasan baru.",
+    "meaning_id": "Setelah ~, ternyata ~",
+    "explanation_note": "Bentuk -ta + ところ menyatakan bahwa setelah melakukan suatu tindakan, pembicara mendapatkan hasil atau informasi tertentu: 先生に相談したところ、いいアドバイスをもらった = setelah berkonsultasi dengan guru, ternyata saya mendapat saran yang bagus. Bagian kedua adalah kejadian nyata (bentuk lampau), bukan keinginan atau perintah.",
     "examples": [
       {
         "jp": "先生に相談したところ、いいアドバイスをもらった。",
@@ -222,8 +222,8 @@
     "title": "落ちるところだった（Vる＋ところだった）",
     "formula": "Vる ＋ ところだった",
     "meaning_en": "Was about to / almost happened (narrowly avoided).",
-    "meaning_id": "Hampir saja... / Nyaris celaka! (Untung saja tidak sampai terjadi)",
-    "explanation_note": "Kelegaan luar biasa setelah lolos dari jurang bahaya.",
+    "meaning_id": "Hampir saja ~ (tetapi tidak jadi)",
+    "explanation_note": "Kata kerja bentuk kamus + ところだった menyatakan bahwa sesuatu, biasanya hal buruk, hampir terjadi tetapi akhirnya tidak terjadi: もう少しで階段から落ちるところだった = hampir saja jatuh dari tangga. Sering didahului もう少しで atau 危うく.",
     "examples": [
       {
         "jp": "もう少しで階段から落ちるところだった。",
@@ -249,8 +249,8 @@
     "title": "食べているところ（Vている／Vた／Vる＋ところ）",
     "formula": "Vている／Vた／Vる ＋ ところ（だ／へ／に／を）",
     "meaning_en": "In the process of / right at the moment of.",
-    "meaning_id": "Tepat pas lagi... / Sedang di tengah-tengah... (Titik fase berlangsungnya aksi)",
-    "explanation_note": "Ketepatan fase temporal aksi dari awal hingga akhir.",
+    "meaning_id": "Hendak ~ / sedang ~ / baru saja ~ (tahap tindakan)",
+    "explanation_note": "ところ setelah kata kerja menunjukkan tahap tindakan yang tepat. Bentuk kamus + ところだ = hendak/baru mau ~ (今出かけるところだ); 〜ているところだ = sedang ~ (今ご飯を食べているところだ = saya sedang makan); 〜たところだ = baru saja ~ (今着いたところだ). Dengan partikel (ところへ, ところに, ところを), pola ini menunjukkan momen terjadinya hal lain.",
     "examples": [
       {
         "jp": "今、ちょうどご飯を食べているところです。",
@@ -276,8 +276,8 @@
     "title": "電話したところで（Vた＋ところで…ない）",
     "formula": "Vた ＋ ところで…ない",
     "meaning_en": "Even if (doing so is useless / has no effect).",
-    "meaning_id": "Percuma saja biarpun sudah dicoba..., hasilnya bakal sia-sia (Tindakan yang sia-sia)",
-    "explanation_note": "Kepastian rasional bahwa tindakan tersebut sudah terlambat atau tak berguna.",
+    "meaning_id": "Walaupun ~ pun, percuma",
+    "explanation_note": "Bentuk -ta + ところで menyatakan bahwa walaupun suatu tindakan dilakukan, hasilnya tidak akan berarti: 今さら走ったところで、間に合わない = walaupun sekarang lari pun, sudah tidak akan sempat. Bagian kedua biasanya penilaian negatif (無駄だ, 間に合わない, 変わらない). Tidak dipakai dengan perintah atau keinginan.",
     "examples": [
       {
         "jp": "今さら走ったところで、間に合わない。",
@@ -303,8 +303,8 @@
     "title": "行かないわけにはいかない（Vない＋わけにはいかない；Vるわけにはいかない）",
     "formula": "Vない＋わけにはいかない；Vる＋わけにはいかない",
     "meaning_en": "Cannot help but do / must do due to social obligation; or cannot do due to reasons.",
-    "meaning_id": "Mau nggak mau harus berangkat / Nggak mungkin bisa mangkir (Tuntutan sosial atau etika)",
-    "explanation_note": "Tanggung jawab sosial yang menuntut komitmen kehadiran.",
+    "meaning_id": "Tidak mungkin tidak ~ / tidak bisa (begitu saja) ~",
+    "explanation_note": "Bentuk -nai + わけにはいかない menyatakan keharusan karena tanggung jawab sosial atau moral: 大事な会議だから、休むわけにはいかない = karena rapat penting, saya tidak bisa (begitu saja) tidak masuk. Bentuk kamus + わけにはいかない berarti 'tidak bisa ~ karena alasan tertentu': 行かないわけにはいかない = mau tidak mau harus pergi.",
     "examples": [
       {
         "jp": "大事な会議だから、休むわけにはいかない。",
@@ -330,8 +330,8 @@
     "title": "熱があるわけだ（V/A/na/N＋わけだ）",
     "formula": "V・A・na・N ＋ わけだ",
     "meaning_en": "Naturally / no wonder that (logical consequence).",
-    "meaning_id": "Pantas saja begitu! / Masuk akal banget sekarang (Baru paham setelah tahu alasannya)",
-    "explanation_note": "Pencerahan logis yang menyambungkan teka-teki penyebab.",
+    "meaning_id": "Pantas saja ~; tentu saja ~",
+    "explanation_note": "わけだ menyatakan bahwa pembicara memahami alasan suatu keadaan setelah mengetahui faktanya: 暑いわけだ。35度もある = pantas saja panas. Ternyata sampai 35 derajat. Juga dipakai untuk menyatakan kesimpulan logis: 彼は10年日本にいたから、日本語が上手なわけだ = dia 10 tahun di Jepang, jadi wajar bahasa Jepangnya bagus. Kata benda memakai な/である.",
     "examples": [
       {
         "jp": "暑いわけだ。35度もある。",
@@ -357,8 +357,8 @@
     "title": "嫌いなわけではない（V/A/na/N＋わけではない／わけじゃない）",
     "formula": "V・A・na・N ＋ わけではない／わけじゃない",
     "meaning_en": "It doesn't mean that / not necessarily.",
-    "meaning_id": "Bukan berarti benci begitu sih / Jangan salah paham dulu (Membantah generalisasi berlebihan)",
-    "explanation_note": "Membantah ekstremitas penilaian secara halus dan berimbang.",
+    "meaning_id": "Bukan berarti ~",
+    "explanation_note": "わけではない (santai: わけじゃない) menyangkal kesimpulan yang mungkin ditarik orang lain, tanpa menyangkal semuanya: 嫌いなわけではないが、あまり食べたくない = bukan berarti saya benci, tetapi sedang tidak ingin makan. Sering dipasangkan dengan からといって atau 別に. Kata sifat-na memakai な.",
     "examples": [
       {
         "jp": "嫌いなわけではないが、あまり食べたくない。",
@@ -384,8 +384,8 @@
     "title": "勝てるわけがない（V/A/na/N＋わけがない／わけはない）",
     "formula": "V・A・na・N ＋ わけがない／わけはない",
     "meaning_en": "There is no way that / impossible.",
-    "meaning_id": "Mana mungkin bisa menang! / Mustahil banget secara logika (Penolakan mutlak)",
-    "explanation_note": "Ketidakmungkinan mutlak yang bertentangan dengan hukum logika.",
+    "meaning_id": "Tidak mungkin ~",
+    "explanation_note": "わけがない (atau わけはない) menyatakan keyakinan kuat bahwa sesuatu sama sekali tidak mungkin berdasarkan logika: 彼が勝てるわけがない = mana mungkin dia bisa menang. Kata benda memakai な/である, kata sifat-na memakai な. Maknanya sama dengan はずがない; lisan santainya: わけない.",
     "examples": [
       {
         "jp": "彼が勝てるわけがない。",
@@ -411,8 +411,8 @@
     "title": "お越しください（お／ご＋Vます＋ください；ご案内します；お持ちします）",
     "formula": "お／ご ＋ Vます ＋ ください／いたします／申し上げる",
     "meaning_en": "Honorific and humble expressions (Sonkeigo & Kenjougo).",
-    "meaning_id": "Silakan datang / Silakan berkunjung (Ungkapan hormat sonkeigo kepada tamu/klien)",
-    "explanation_note": "Penghormatan tinggi khas keramahan bisnis Jepang (Omotenashi).",
+    "meaning_id": "Silakan ~ (hormat); saya ~ (merendah)",
+    "explanation_note": "お/ご + bentuk masu + ください adalah permintaan hormat (sonkeigo) agar lawan bicara melakukan sesuatu: お入りください = silakan masuk; ご利用ください = silakan gunakan. お/ご + bentuk masu + する/いたす adalah bentuk merendah (kenjougo) untuk tindakan pembicara: ご案内します = saya pandu; お持ちいたします = saya bawakan. Kata asli Jepang memakai お, kata kango memakai ご.",
     "examples": [
       {
         "jp": "どうぞお入りください。",
@@ -438,8 +438,8 @@
     "title": "ご覧になる・拝見する（特別な敬語 / Special Honorifics & Humble forms）",
     "formula": "敬語・謙譲語の特別形",
     "meaning_en": "Special irregular honorific and humble verbs (e.g. いらっしゃる, おっしゃる, 参る, 存じる).",
-    "meaning_id": "Melihat (Sonkeigo: Tamu yang melihat / Kenjougo: Saya yang melihat dokumen)",
-    "explanation_note": "Penataan hierarki kesantunan yang sangat esensial dalam dunia kerja.",
+    "meaning_id": "Kata kerja hormat/merendah bentuk khusus",
+    "explanation_note": "Beberapa kata kerja punya bentuk keigo khusus yang tidak mengikuti pola お〜になる/お〜する. Contoh bentuk hormat (sonkeigo): 見る→ご覧になる, 言う→おっしゃる, 行く/来る/いる→いらっしゃる, 食べる→召し上がる. Contoh bentuk merendah (kenjougo): 見る→拝見する, 言う→申す/申し上げる, 行く/来る→参る, 知る→存じる. Bentuk-bentuk ini perlu dihafal.",
     "examples": [
       {
         "jp": "先生がこちらの本をご覧になりました。",
@@ -465,8 +465,8 @@
     "title": "ご案内申し上げます（ご案内申し上げます／ご案内差し上げます）",
     "formula": "ご／お ＋ Vます ＋ 申し上げる／差し上げる",
     "meaning_en": "Formal humble expression for polite service.",
-    "meaning_id": "Izinkan kami memandu / Dengan hormat kami sampaikan (Kenjougo melayani klien)",
-    "explanation_note": "Dedikasi pelayanan rendah hati demi kepuasan klien.",
+    "meaning_id": "Dengan hormat saya ~ (merendah, sangat formal)",
+    "explanation_note": "ご/お + bentuk masu + 申し上げる adalah bentuk merendah (kenjougo) yang lebih tinggi daripada お〜する, dipakai dalam situasi sangat formal, pidato, atau pengumuman: 心よりお祝い申し上げます = dengan tulus saya mengucapkan selamat; ご案内申し上げます = dengan hormat kami sampaikan informasi. 〜差し上げる dipakai untuk memberikan sesuatu kepada orang yang dihormati (ご連絡差し上げます).",
     "examples": [
       {
         "jp": "心よりお祝い申し上げます。",
@@ -492,8 +492,8 @@
     "title": "お越しいただき（お／ご＋Vます＋いただく／願う）",
     "formula": "お／ご ＋ Vます ＋ いただく／願う",
     "meaning_en": "Humbly receiving an action / politely asking.",
-    "meaning_id": "Terima kasih atas kesediaan Anda untuk datang (Menghargai kebaikan pihak lain)",
-    "explanation_note": "Apresiasi elegan atas waktu dan kehadiran tamu kehormatan.",
+    "meaning_id": "Terima kasih atas kesediaan Anda ~ (sangat sopan)",
+    "explanation_note": "お/ご + bentuk masu + いただく adalah bentuk merendah dari 〜てもらう, dipakai untuk berterima kasih atau meminta dengan sangat sopan: 本日はご来店いただき、誠にありがとうございます = terima kasih banyak atas kunjungan Anda hari ini. お〜願う adalah permintaan sopan (お待ち願います = mohon menunggu).",
     "examples": [
       {
         "jp": "本日はご来店いただき、誠にありがとうございます。",
@@ -519,8 +519,8 @@
     "title": "よろしいでしょうか（丁寧な尋ね方 / Polite Inquiries）",
     "formula": "〜よろしいでしょうか／〜ていただけますでしょうか",
     "meaning_en": "Very polite inquiry/request.",
-    "meaning_id": "Apakah kiranya berkenan jika...? (Permohonan izin atau konfirmasi bisnis sangat santun)",
-    "explanation_note": "Kesantunan tingkat tinggi dalam negosiasi dan kesepakatan kerja.",
+    "meaning_id": "Apakah ~ berkenan?; bolehkah ~? (sangat sopan)",
+    "explanation_note": "よろしいでしょうか adalah bentuk sangat sopan dari いいですか, dipakai untuk meminta izin atau memastikan persetujuan: こちらでよろしいでしょうか = apakah ini sudah sesuai? 少しお時間よろしいでしょうか = bolehkah saya meminta waktu sebentar? 〜ていただけますでしょうか adalah permintaan yang sangat halus.",
     "examples": [
       {
         "jp": "こちらでよろしいでしょうか。",
@@ -546,8 +546,8 @@
     "title": "お伝えください（伝言・依頼 / Conveying Messages）",
     "formula": "お／ご ＋ Vます ＋ くださいますよう／お伝え願えますか",
     "meaning_en": "Politely asking someone to convey a message.",
-    "meaning_id": "Mohon sudi sampaikan salam saya kepada... (Titip pesan secara santun)",
-    "explanation_note": "Mempererat relasi interpersonal antar instansi.",
+    "meaning_id": "Mohon sampaikan ~ (titip pesan dengan sopan)",
+    "explanation_note": "お伝えください dan ungkapan sejenis dipakai untuk menitipkan pesan atau salam kepada orang ketiga melalui lawan bicara: 田中様によろしくお伝えください = mohon sampaikan salam saya kepada Bapak/Ibu Tanaka. Versi yang lebih halus: お伝えいただけますか atau お伝え願えますか.",
     "examples": [
       {
         "jp": "田中様によろしくお伝えください。",
@@ -573,8 +573,8 @@
     "title": "総まとめ総合復習（General Review & Nuance Master）",
     "formula": "N3文法総合マスター",
     "meaning_en": "Comprehensive N3 grammar integration.",
-    "meaning_id": "Review Menyeluruh Pola Kalimat N3 (Penguasaan rasa bahasa & anti-tertukar)",
-    "explanation_note": "Integrasi menyeluruh rasa bahasa agar terdengar alami bak penutur asli.",
+    "meaning_id": "Rangkuman: membedakan pola-pola N3",
+    "explanation_note": "Materi ini mengulang pola-pola N3 yang sudah dipelajari dengan fokus pada nuansa dan situasi pemakaiannya. Banyak pola punya terjemahan Indonesia yang mirip (misalnya はず/べき, ように/ために, ことにする/ことになる), padahal penggunaannya berbeda. Perhatikan siapa pelakunya, apakah tindakan disengaja, tingkat kesopanan, dan apakah bernada positif atau negatif.",
     "examples": [
       {
         "jp": "最後まであきらめずにがんばりましょう！",

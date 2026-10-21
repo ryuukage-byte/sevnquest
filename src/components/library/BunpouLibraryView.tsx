@@ -124,9 +124,13 @@ export const BunpouLibraryView: React.FC<BunpouLibraryViewProps> = ({
 
       // 2. Function Category Filter
       if (functionFilter !== 'Semua Fungsi') {
-        const matchesCategory = item.functions?.some(fn => 
-          fn.toLowerCase().includes(functionFilter.toLowerCase())
-        );
+        // Cocokkan lewat kunci kanji (mis. "推測・比喩"): fungsi kurasi seperti "推測 (dugaan)" ikut masuk
+        // ke kategori 推測・比喩 walau label Indonesianya berbeda.
+        const filterKeys = functionFilter.split(/[ (（]/)[0].split('・');
+        const matchesCategory = item.functions?.some(fn => {
+          const fnKeys = fn.split(/[ (（]/)[0].split('・');
+          return fnKeys.some(k => k && filterKeys.includes(k));
+        });
         if (!matchesCategory) return false;
       }
 

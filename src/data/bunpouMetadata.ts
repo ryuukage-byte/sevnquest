@@ -27,15 +27,15 @@ const CURATED_BUNPOU_METADATA: Record<string, BunpouMetadata> = {
     comparisonNotes: [
       {
         targetGrammar: '〜ようだ',
-        difference: 'みたいだ lebih santai/lisan dan menyambung langsung ke kata benda tanpa の (女みたい). Sedangkan ようだ lebih formal/tertulis dan memerlukan partikel の (女のようだ).',
+        difference: 'みたいだ lebih santai dan langsung disambung ke kata benda tanpa の (女みたい). ようだ lebih formal dan memerlukan の setelah kata benda (女のようだ). Maknanya sama.',
       },
       {
         targetGrammar: '〜そうだ',
-        difference: 'そうだ (kelihatan akan / sepertinya) didasarkan pada tanda visual sekilas sesaat sebelum kejadian (雨が降りそうだ). Sedangkan みたいだ adalah kesimpulan atau dugaan menyeluruh (雨が降るみたいだ).',
+        difference: 'そうだ (bentuk masu + そうだ) adalah dugaan dari penampilan atau tanda yang terlihat langsung, sering "hampir/akan segera" (雨が降りそうだ = sepertinya akan segera hujan, melihat awan gelap). みたいだ adalah dugaan dari berbagai informasi yang dilihat atau didengar (雨が降るみたいだ = sepertinya akan hujan, misalnya setelah mendengar ramalan cuaca).',
       },
       {
         targetGrammar: '〜らしい',
-        difference: 'らしい menekankan informasi dari luar/pihak ketiga atau karakteristik sejati (春らしい). Sedangkan みたいだ menyatakan kemiripan atau perumpamaan subjektif pembicara.',
+        difference: 'らしい sebagai dugaan lebih berdasarkan informasi dari luar (kabar, berita), dan sebagai akhiran kata benda berarti "khas/layaknya" (春らしい). みたいだ lebih berdasarkan pengamatan pembicara sendiri, dan juga dipakai untuk perumpamaan (女みたい = seperti perempuan, padahal bukan).',
       },
     ],
   },
@@ -57,7 +57,7 @@ const CURATED_BUNPOU_METADATA: Record<string, BunpouMetadata> = {
     comparisonNotes: [
       {
         targetGrammar: 'Kalimat Aktif (赤ちゃんが泣いた)',
-        difference: 'Kalimat aktif hanya menyatakan peristiwa bayi menangis. Bentuk 泣かれた menegaskan bahwa pembicara merasa kerepotan/terganggu akibat tangisan tersebut.',
+        difference: 'Kalimat aktif hanya menyatakan bahwa bayi menangis. Bentuk 泣かれた menambahkan bahwa pembicara merasa repot atau terganggu oleh tangisan itu.',
       },
     ],
   },
@@ -71,7 +71,7 @@ const CURATED_BUNPOU_METADATA: Record<string, BunpouMetadata> = {
     comparisonNotes: [
       {
         targetGrammar: '〜てください',
-        difference: 'Vてください meminta lawan bicara melakukan aksi (contoh: 帰ってください = silakan Anda pulang). Sedangkan V(さ)せてください meminta izin agar pembicara yang pulang (izinkan saya pulang).',
+        difference: 'Vてください meminta lawan bicara melakukan sesuatu (帰ってください = silakan Anda pulang). V(さ)せてください meminta izin agar pembicara sendiri yang melakukannya (帰らせてください = izinkan saya pulang).',
       },
     ],
   },
@@ -101,7 +101,7 @@ const CURATED_BUNPOU_METADATA: Record<string, BunpouMetadata> = {
     comparisonNotes: [
       {
         targetGrammar: '〜みたいだ',
-        difference: 'みたいだ bermakna "mirip padahal bukan" (laki-laki berpenampilan mirip wanita: 女みたい). Sedangkan らしい bermakna "khas sesuai status aslinya" (wanita yang benar-benar feminin: 女らしい).',
+        difference: 'みたいだ berarti "mirip, padahal bukan" (laki-laki yang bergaya seperti perempuan: 女みたい). らしい berarti "memiliki ciri khas yang ideal dari statusnya sendiri" (perempuan yang benar-benar feminin: 女らしい).',
       },
     ],
   },
@@ -115,7 +115,7 @@ const CURATED_BUNPOU_METADATA: Record<string, BunpouMetadata> = {
     comparisonNotes: [
       {
         targetGrammar: '〜らしい',
-        difference: 'らしい memuji sifat positif yang selayaknya (大人らしい = bersikap bijak layaknya orang dewasa). Sedangkan っぽい bernada pengamatan lahiriah sekilas (大人っぽい = berdandan/bergaya seperti orang dewasa).',
+        difference: 'らしい dipakai untuk orang yang memang termasuk kategori itu dan bersikap sesuai idealnya (大人らしい = orang dewasa yang bersikap dewasa). っぽい menyatakan kesan dari luar, biasanya untuk yang sebenarnya bukan kategori itu (大人っぽい = anak/remaja yang terlihat dewasa).',
       },
     ],
   },
@@ -137,7 +137,7 @@ const CURATED_BUNPOU_METADATA: Record<string, BunpouMetadata> = {
     comparisonNotes: [
       {
         targetGrammar: '〜ために',
-        difference: 'ために digunakan bila kedua klausa menggunakan kata kerja kehendak/sengaja (volitional). Sedangkan ように digunakan jika klausa tujuan menyatakan keadaan yang tidak bisa dikontrol langsung (potensial/non-volitional).',
+        difference: 'ために dipakai jika tujuannya berupa tindakan yang disengaja dan pelakunya sama (日本へ行くために貯金する = menabung untuk pergi ke Jepang). ように dipakai jika tujuannya berupa keadaan yang tidak bisa dikendalikan langsung, misalnya bentuk potensial atau bentuk -nai (聞こえるように話す = berbicara agar terdengar).',
       },
     ],
   },
@@ -159,7 +159,7 @@ const CURATED_BUNPOU_METADATA: Record<string, BunpouMetadata> = {
     comparisonNotes: [
       {
         targetGrammar: '〜だけ',
-        difference: 'だけ bersifat netral objektif ("hanya ini saja"). Sedangkan ばかり bernuansa subjektif bahwa jumlahnya terlalu banyak dan melulu hal itu saja.',
+        difference: 'だけ bernada netral ("hanya ini saja"). ばかり menekankan bahwa jumlahnya banyak dan isinya hanya hal itu, sering dengan nada mengeluh.',
       },
     ],
   },
@@ -173,7 +173,7 @@ const CURATED_BUNPOU_METADATA: Record<string, BunpouMetadata> = {
     comparisonNotes: [
       {
         targetGrammar: '〜について',
-        difference: 'について lebih umum dan dapat digunakan dalam percakapan lisan santai. Sedangkan に関して lebih formal, bernuansa akademis atau berita jurnalistik.',
+        difference: 'について umum dipakai dalam percakapan maupun tulisan. に関して lebih formal dan banyak dipakai dalam berita, rapat, atau tulisan akademis.',
       },
     ],
   },
@@ -195,7 +195,7 @@ const CURATED_BUNPOU_METADATA: Record<string, BunpouMetadata> = {
     comparisonNotes: [
       {
         targetGrammar: '〜わけだ',
-        difference: 'わけだ menyatakan pemahaman/konfirmasi logis setelah mendengar alasannya ("pantas saja demikian"). Sedangkan はずだ adalah prediksi berdasarkan perhitungan/jadwal ("seharusnya begitu").',
+        difference: 'わけだ menyatakan pemahaman setelah mengetahui alasannya ("pantas saja"). はずだ menyatakan dugaan yakin berdasarkan informasi atau perhitungan ("seharusnya begitu"), sebelum dipastikan.',
       },
     ],
   },
@@ -209,7 +209,7 @@ const CURATED_BUNPOU_METADATA: Record<string, BunpouMetadata> = {
     comparisonNotes: [
       {
         targetGrammar: '〜なければならない',
-        difference: 'なければならない menyatakan aturan hukum atau keharusan objektif. Sedangkan べきだ adalah pertimbangan moral atau penilaian etika pembicara.',
+        difference: 'なければならない menyatakan keharusan karena aturan atau keadaan. べきだ menyatakan penilaian pembicara tentang apa yang sepatutnya dilakukan menurut moral atau akal sehat.',
       },
     ],
   },
@@ -263,11 +263,11 @@ const CURATED_BUNPOU_METADATA: Record<string, BunpouMetadata> = {
     comparisonNotes: [
       {
         targetGrammar: '〜より〜のほうが (Komparatif)',
-        difference: '「A より B のほうが〜」 membandingkan 2 hal (B lebih ~ dibanding A). Sedangkan 「一番」 menyatakan satu yang paling unggul di antara seluruh anggota kelompok (3 hal atau lebih).',
+        difference: '「A より B のほうが〜」 membandingkan dua hal (B lebih ~ daripada A). 「一番」 menyatakan yang paling menonjol di antara seluruh anggota kelompok, biasanya tiga hal atau lebih.',
       },
       {
-        targetGrammar: '最も (Mottomo)',
-        difference: 'Keduanya bermakna "paling/ter-", namun 「最も」 bernuansa formal/tertulis/akademis, sedangkan 「一番」 umum dan natural digunakan dalam percakapan lisan sehari-hari.',
+        targetGrammar: '最も (もっとも)',
+        difference: 'Keduanya berarti "paling/ter-", tetapi 「最も」 terdengar formal dan banyak dipakai dalam tulisan, sedangkan 「一番」 umum dan alami dalam percakapan sehari-hari.',
       },
     ],
   },
@@ -281,7 +281,7 @@ const CURATED_BUNPOU_METADATA: Record<string, BunpouMetadata> = {
     comparisonNotes: [
       {
         targetGrammar: '〜と〜と どちらが〜 (Pilihan 2 Objek)',
-        difference: 'Jika memilih di antara 2 objek, gunakan 「A と B と どちらが〜」. Jika memilih yang nomor satu di antara 3 objek atau lebih, gunakan 「〜の中で〜が一番〜」.',
+        difference: 'Untuk memilih di antara dua hal, gunakan 「A と B と どちらが〜」. Untuk memilih yang paling menonjol di antara tiga hal atau lebih, gunakan 「〜の中で〜が一番〜」.',
       },
     ],
   },
@@ -535,7 +535,8 @@ function getMetadataForBunpou(item: BunpouItem): BunpouMetadata {
       beforeState: curated?.beforeState || base.beforeState,
       afterState: curated?.afterState || base.afterState,
       naturalMeaning: curated?.meaning_id || base.naturalMeaning,
-      nuance: curated?.nuance || base.nuance,
+      // Catatan penjelasan per pola (explanation_note) lebih spesifik daripada ringkasan nuansa di atas.
+      nuance: curated?.nuance || item.nuance || base.nuance,
     };
   }
 
@@ -544,7 +545,9 @@ function getMetadataForBunpou(item: BunpouItem): BunpouMetadata {
   if (match && CATEGORY_MAP[match[1]]) {
     const fallbackCategory = CATEGORY_MAP[match[1]];
     return {
-      functions: fallbackCategory.functions,
+      // Kategori per pola (db/bunpou.json) lebih tepat daripada kategori per hari, yang hanya merangkum
+      // tema satu hari pelajaran dan sering tidak cocok untuk tiap pola di dalamnya.
+      functions: item.functions && item.functions.length > 0 ? item.functions : fallbackCategory.functions,
       nuance: curated?.nuance || fallbackCategory.nuance,
       relatedKeywords: fallbackCategory.relatedKeywords,
       baseLevel: fallbackCategory.baseLevel,
@@ -555,64 +558,16 @@ function getMetadataForBunpou(item: BunpouItem): BunpouMetadata {
     };
   }
 
-  // Semantic metadata derivation for non-weekday items (bp_n5_..., bp_n4_..., etc.)
-  // Never default to w1d1 (受身・許可)
+  // Materi non-mingguan (bp_n5_..., bp_n4_..., dst.): pakai data per-item dari db/bunpou.json
+  // (kategori fungsi dan catatan penjelasan). Dulu fungsi & nuansa ditebak lewat regex atas judul/arti,
+  // dan tebakan itu sering keliru (mis. "kata" pada "kata kerja" membuat ratusan pola dicap "Cara & Metode").
   const title = item.title || '';
-  const meaning = `${item.meaningId || ''} ${item.meaningEn || ''} ${item.explanation || ''}`.toLowerCase();
   const level = (item.level as 'N5' | 'N4' | 'N3' | 'N2') || 'N5';
 
-  let derivedFunctions = [`文法パターン (Tata Bahasa ${level})`];
-  let derivedNuance = item.meaningId
-    ? `Pola kalimat untuk menyatakan: ${item.meaningId}.`
-    : 'Penggunaan sesuai rumus dan konteks kalimat.';
-  let derivedKeywords: string[] = [title.replace(/[〜~［］[\]]/g, '').trim()].filter(Boolean);
-
-  if (/一番|最も|より|ほど|くらべ|superlative|compar|paling|ter-|banding/i.test(title + ' ' + meaning)) {
-    derivedFunctions = ['程度・比較 (Tingkat Derajat & Perbandingan)'];
-    derivedNuance = 'Digunakan untuk menyatakan perbandingan atau tingkat derajat (komparatif / superlatif) di antara objek atau dalam kelompok.';
-    derivedKeywords = ['一番', '最も', '比較', '程度'];
-  } else if (/受身|られる|れる|passive|terkena|di-/i.test(title + ' ' + meaning)) {
-    derivedFunctions = ['受身・許可 (Bentuk Pasif & Izin)'];
-    derivedNuance = 'Menyatakan tindakan pasif dari sudut pandang pembicara atau subjek.';
-    derivedKeywords = ['受身', '迷惑', 'られる'];
-  } else if (/使役|させる|causative|menyuruh/i.test(title + ' ' + meaning)) {
-    derivedFunctions = ['使役・使役受身 (Bentuk Kausatif & Paksaan)'];
-    derivedNuance = 'Menunjukkan instruksi, membiarkan, atau menyuruh pihak lain melakukan aksi.';
-    derivedKeywords = ['使役', '指示', 'させる'];
-  } else if (/方|kata|cara|metode|how to|way of|prosedur|手段/i.test(title + ' ' + meaning)) {
-    derivedFunctions = ['方法・手段 (Cara & Metode)'];
-    derivedNuance = 'Menunjukkan tata cara, metode, atau prosedur dalam melakukan suatu aktivitas (contoh: 使い方 = cara menggunakan, 作り方 = cara membuat).';
-    derivedKeywords = ['方法', 'やり方', '手順'];
-  } else if (/から|ので|ため|\b(reason|cause)\b|sebab|karena|alasan/i.test(title + ' ' + meaning)) {
-    derivedFunctions = ['原因・理由 (Sebab-Akibat & Alasan)'];
-    derivedNuance = 'Menjelaskan faktor penyebab, alasan logis, atau motif di balik suatu peristiwa.';
-    derivedKeywords = ['理由', '原因', 'わけ'];
-  } else if (/たら|ば|なら|と|condition|if|kalau|jika|pengandaian/i.test(title + ' ' + meaning)) {
-    derivedFunctions = ['仮定・条件 (Pengandaian & Syarat)'];
-    derivedNuance = 'Menyatakan hubungan syarat dan akibat dalam situasi tertentu atau skenario pengandaian.';
-    derivedKeywords = ['条件', '仮定', 'もし'];
-  } else if (/そう|よう|らしい|みたい|dugaan|tampak|sepertinya|kelihatannya|perumpamaan/i.test(title + ' ' + meaning)) {
-    derivedFunctions = ['推測・比喩 (Dugaan & Perumpamaan)'];
-    derivedNuance = 'Menyatakan kesan visual, perkiraan berdasarkan pengamatan, atau perumpamaan sifat.';
-    derivedKeywords = ['推測', '比喩', '様子'];
-  } else if (/べき|なければ|ほうがいい|kewajiban|harus|sebaiknya|anjuran/i.test(title + ' ' + meaning)) {
-    derivedFunctions = ['義務・助言 (Kewajiban & Nasihat)'];
-    derivedNuance = 'Menyatakan anjuran yang bermanfaat atau keharusan moral yang patut dilaksanakan.';
-    derivedKeywords = ['義務', '助言', '提案'];
-  } else if (/とき|あとで|まえに|ながら|waktu|ketika|sebelum|setelah|saat/i.test(title + ' ' + meaning)) {
-    derivedFunctions = ['時間・契機 (Waktu & Momen Aksi)'];
-    derivedNuance = 'Menunjukkan titik waktu, urutan kejadian, atau aksi yang berlangsung simultan.';
-    derivedKeywords = ['時間', '契機', '順序'];
-  } else if (/てはいけない|てもいい|boleh|izin|dilarang/i.test(title + ' ' + meaning)) {
-    derivedFunctions = ['受身・許可 (Bentuk Pasif & Izin)'];
-    derivedNuance = 'Memberikan persetujuan izin melakukan aksi atau menyatakan batasan aturan.';
-    derivedKeywords = ['許可', '禁止', 'ルール'];
-  }
-
   return {
-    functions: derivedFunctions,
-    nuance: curated?.nuance || derivedNuance,
-    relatedKeywords: derivedKeywords,
+    functions: item.functions || [],
+    nuance: curated?.nuance || item.nuance || '',
+    relatedKeywords: [title.replace(/[〜~［］[\]]/g, '').trim()].filter(Boolean),
     baseLevel: level,
     keyTakeaway: curated?.keyTakeaway,
     beforeState: curated?.beforeState,
@@ -660,4 +615,8 @@ export const ALL_GRAMMAR_FUNCTION_CATEGORIES = [
   '努力・変化・目的 (Usaha & Perubahan)',
   '日常会話・短縮 (Percakapan Sehari-hari)',
   '敬語 (Bahasa Sopan & Bisnis)',
+  '意志・希望 (Keinginan & Niat)',
+  '授受 (Memberi & Menerima)',
+  '列挙・接続 (Penghubung & Penyebutan)',
+  '助詞・基本文型 (Partikel & Pola Dasar)',
 ];
