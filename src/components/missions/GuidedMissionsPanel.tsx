@@ -19,7 +19,9 @@ import { BUNPOU_DATABASE } from '../../data/bunpou';
 import { isItemBookmarked } from '../../utils/decks';
 import { getTodayLocalDate } from '../../utils/time';
 import { playSound } from '../../utils/audio';
+import { buildMissionAiContext } from '../../utils/missionAiContext';
 import { GuidedSetupWizard } from './GuidedSetupWizard';
+import { MissionAiContextButton } from './MissionAiContextButton';
 
 // Mode latihan dimuat saat dibutuhkan (kanvas menulis membawa hanzi-writer).
 const DeckFlashcardRunner = lazy(() => import('../deck/DeckFlashcardRunner').then(m => ({ default: m.DeckFlashcardRunner })));
@@ -313,6 +315,7 @@ export const GuidedMissionsPanel: React.FC<GuidedMissionsPanelProps> = ({
         const percent = Math.min(100, Math.round((m.done / m.total) * 100));
         const reward = GUIDED_REWARDS[m.key];
         const carried = new Set(day?.carried || []);
+        const category = isCategory(m.key) ? m.key : null;
         return (
           <motion.div
             key={m.key}
@@ -428,6 +431,23 @@ export const GuidedMissionsPanel: React.FC<GuidedMissionsPanelProps> = ({
                 <button onClick={onStartRecall} className="btn-physical-primary px-3.5 py-2 rounded-xl text-xs font-bold flex items-center gap-1.5">
                   <Brain className="w-3.5 h-3.5" /> Mulai Recall
                 </button>
+              )}
+
+              {category && (
+                <MissionAiContextButton
+                  buildText={() => buildMissionAiContext({
+                    missionTitle: meta.title,
+                    category,
+                    date: day?.date ?? today,
+                    dayIndex: overview.dayIndex,
+                    durationDays: overview.durationDays,
+                    currentLevel: plan.profile.currentLevel,
+                    targetLevel: plan.profile.targetLevel,
+                    ids: m.ids,
+                    carried,
+                    mastery,
+                  })}
+                />
               )}
 
               <div className="ml-auto">
