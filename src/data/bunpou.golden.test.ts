@@ -7,7 +7,8 @@ import { BUNPOU_DATABASE } from './bunpou';
 import rawBunpou from './db/bunpou.json';
 
 // Hash BUNPOU_DATABASE diukur SEBELUM sentences.json dilepas dari bunpou.ts (915 item, 1.704 contoh).
-const GOLDEN_SHA256 = 'e65ff12f794658c1d2e13c0a7ee420e677bb154206936cd0a35ecf2f240155ad';
+// Di-baseline ulang setelah audit penjelasan tata bahasa (arti & rumus ditulis ulang; id, judul, level, contoh tetap).
+const GOLDEN_SHA256 = '11ff740104ffccd7e9806b59c617ddf40731150c67835e912a512a6c45a9bd2a';
 
 test('BUNPOU_DATABASE identik dengan sebelum C1 (id, judul, level, contoh+reading, arti, rumus)', () => {
   const items = Object.values(BUNPOU_DATABASE);

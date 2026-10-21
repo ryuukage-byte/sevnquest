@@ -1,996 +1,924 @@
 {
   "w1d1g1": {
-    "meaning_id": "Tertulis / Dibuat / Dikatakan bahwa... (Fakta umum atau teks resmi tanpa menyebut pelaku)",
-    "keyTakeaway": "Dipakai saat fokus kalimat adalah isi tulisan, tradisi sejarah, atau pengumuman resmi di mana siapa pelaku spesifiknya tidak penting untuk disebutkan.",
-    "nuance": "Menyatakan fakta objektif dari sudut pandang teks atau peristiwa yang sudah diakui umum.",
-    "beforeState": "Fokus Pelaku: Menyebutkan siapa yang menulis/membuat 👤",
-    "afterState": "Fakta Objektif: Menegaskan isi tulisan atau keberadaan bendanya 📜"
+    "meaning_id": "Ditulis/dibuat/dikatakan bahwa ~ (pasif untuk fakta umum)",
+    "keyTakeaway": "Gunakan pasif jenis ini ketika pelakunya tidak penting, tidak diketahui, atau berupa 'orang pada umumnya'. Jika pelakunya penting, cukup pakai kalimat aktif.",
+    "nuance": "Bentuk pasif dipakai untuk menyampaikan fakta, isi tulisan, tradisi, atau pengetahuan umum tanpa perlu menyebut pelakunya: 世界一大きいダイヤモンドだと言われている = dikatakan bahwa ini berlian terbesar di dunia; ここに名前が書かれている = di sini tertulis nama. Fokusnya pada hal atau informasinya, bukan pada siapa yang melakukan.",
+    "beforeState": "田中さんがこの本を書いた。— Menonjolkan siapa penulisnya.",
+    "afterState": "この本は多くの国で読まれている。— Menonjolkan fakta tentang bukunya, pelaku tidak disebut."
   },
   "w1d1g2": {
-    "meaning_id": "Kena getah kerepotan akibat... (Pasif kerugian: subjek merasa repot/terganggu oleh aksi orang lain)",
-    "keyTakeaway": "Pola 'pasif kerepotan (迷惑受身)': subjek merasa dirugikan atau terganggu oleh perbuatan pihak lain, meskipun tidak ada kontak fisik langsung (misal: kehujanan, bayi menangis semalaman).",
-    "nuance": "Mengandung rasa jengkel, sedih, atau kerepotan mendalam akibat peristiwa di luar kendali.",
-    "beforeState": "Kalimat Netral: Fakta biasa pihak lain melakukan aksi 💬",
-    "afterState": "Pasif Kerepotan: Subjek merasa sangat terbebani atau dirugikan 🛡️"
+    "meaning_id": "Kena ~; dirugikan karena ~ (pasif kerugian)",
+    "keyTakeaway": "Bandingkan dengan kalimat aktif: 雨が降った hanya menyatakan fakta hujan turun, sedangkan 雨に降られた menambahkan perasaan bahwa pembicara dirugikan (kehujanan).",
+    "nuance": "Pasif kerugian (迷惑の受身) menyatakan bahwa subjek, biasanya pembicara, merasa terganggu atau dirugikan oleh tindakan orang lain atau suatu kejadian. Pelaku ditandai に: 赤ちゃんに泣かれた = (saya repot karena) bayinya menangis; 雨に降られた = kehujanan. Pola ini juga bisa dipakai dengan kata kerja intransitif, yang tidak mungkin dipasifkan dalam bahasa Indonesia.",
+    "beforeState": "赤ちゃんが泣いた。— Hanya fakta bahwa bayi menangis.",
+    "afterState": "赤ちゃんに泣かれた。— Pembicara merasa repot atau terganggu oleh tangisan bayi."
   },
   "w1d1g3": {
-    "meaning_id": "Tolong izinkan saya untuk... (Meminta izin dengan sopan agar diri sendiri boleh berbuat)",
-    "keyTakeaway": "Hati-hati! Pola V(さ)せてください meminta izin agar PEMBICARA yang diizinkan berbuat, beda dengan Vてください yang menyuruh LAWAN BICARA yang berbuat.",
-    "nuance": "Permohonan santun kepada atasan atau lawan bicara demi kenyamanan bersama.",
-    "beforeState": "Menyuruh Lawan Bicara: 〜てください (Lawan bicara yang berbuat) 👥",
-    "afterState": "Meminta Izin Diri Sendiri: 〜(さ)せてください (Izinkan saya yang berbuat) 🤝"
+    "meaning_id": "Izinkan saya ~ (meminta izin dengan sopan)",
+    "keyTakeaway": "Jangan tertukar: 帰ってください = tolong (Anda) pulang, sedangkan 帰らせてください = izinkan saya pulang. Bentuk (さ)せて menandakan bahwa yang akan melakukan adalah pembicara.",
+    "nuance": "Bentuk kausatif (〜させる) dalam bentuk -te ditambah ください/もらえますか/もらえませんか dipakai untuk meminta izin agar pembicara sendiri boleh melakukan sesuatu: 早く帰らせてください = izinkan saya pulang lebih awal. Bentuk もらえませんか lebih halus daripada ください. Versi paling sopan: 〜させていただけませんか.",
+    "beforeState": "早く帰ってください。— Meminta lawan bicara pulang.",
+    "afterState": "早く帰らせてください。— Meminta izin agar pembicara boleh pulang."
   },
   "w1d2g1": {
-    "meaning_id": "Harus segera... / Nggak boleh nggak! (Bentuk lisan santai untuk keharusan mendesak)",
-    "keyTakeaway": "Singkatan lisan praktis dari 〜なければならない. Sangat sering dipakai saat bergumam pada diri sendiri atau mengingatkan teman dekat tentang hal mendesak.",
-    "nuance": "Ragam percakapan akrab yang cepat dan lincah tanpa kesan kaku seperti buku teks.",
-    "beforeState": "Bentuk Standar: 〜なければならない (Panjang & kaku diucapkan) 📜",
-    "afterState": "Ragam Lisan: 〜なくちゃ / 〜なきゃ (Cepat, lincah, & natural) 💬"
+    "meaning_id": "Harus ~ (bentuk singkat lisan)",
+    "keyTakeaway": "Dipakai dalam percakapan santai. Dalam situasi formal atau tulisan, gunakan bentuk lengkap 〜なければなりません.",
+    "nuance": "〜ないと dan 〜なくちゃ adalah singkatan lisan dari 〜なければならない/〜なくてはいけない, berarti 'harus ~'. Bagian akhirnya (いけない/ならない) dihilangkan: もう寝ないと = aku harus tidur sekarang. Pola ini sering dipakai saat berbicara pada diri sendiri atau dengan teman dekat. Bentuk lain: 〜なきゃ.",
+    "beforeState": "もう寝なければならない。— Bentuk lengkap, terdengar kaku dalam obrolan.",
+    "afterState": "もう寝ないと。/ もう寝なくちゃ。— Bentuk lisan yang alami dalam percakapan."
   },
   "w1d2g2": {
-    "meaning_id": "Sudah keburu... / Terlanjur... (Aksi tuntas beres atau keteledoran yang disesali)",
-    "keyTakeaway": "Singkatan lisan dari Vてしまう. Memiliki 2 rasa bahasa: (1) aksi sudah beres tuntas sampai habis, atau (2) penyesalan atas keteledoran yang terlanjur terjadi.",
-    "nuance": "Arti ditentukan konteks kalimat: apakah sengaja dituntaskan atau kelalaian yang disesali.",
-    "beforeState": "Bentuk Standar: 〜てしまう / 〜でしまう 📜",
-    "afterState": "Ragam Lisan: 〜ちゃう / 〜じゃう (Ekspresif & akrab) 💬"
+    "meaning_id": "Sudah ~ sampai habis; telanjur ~ (bentuk lisan てしまう)",
+    "keyTakeaway": "Makna 'tuntas' atau 'menyesal' ditentukan oleh konteks. Bentuk ajakan 〜ちゃおう (飲んじゃおう) berarti 'ayo sekalian saja ~'.",
+    "nuance": "〜ちゃう/〜じゃう adalah singkatan lisan dari 〜てしまう/〜でしまう. Maknanya sama: (1) tindakan selesai tuntas (全部食べちゃった = sudah kumakan semua), atau (2) sesuatu terjadi tanpa disengaja dan disesali (財布を忘れちゃった = dompetnya ketinggalan). 〜でしまう menjadi 〜じゃう (飲んじゃう). Bentuk lampaunya 〜ちゃった/〜じゃった.",
+    "beforeState": "ケーキを食べてしまった。— Bentuk standar.",
+    "afterState": "ケーキ、食べちゃった。— Bentuk lisan yang lebih santai dan ekspresif."
   },
   "w1d2g3": {
-    "meaning_id": "Mempersiapkan terlebih dahulu / Biarkan saja begitu (Bekal persiapan masa depan)",
-    "keyTakeaway": "Singkatan lisan dari Vておく. Dipakai untuk aksi yang sengaja dikerjakan sekarang demi kemudahan nanti, atau membiarkan kondisi barang tetap seperti semula.",
-    "nuance": "Praktis dalam obrolan santai saat membagi tugas atau merapikan barang.",
-    "beforeState": "Bentuk Standar: 〜ておく / 〜でおく 📜",
-    "afterState": "Ragam Lisan: 〜とく / 〜どく (Praktis dalam obrolan santai) 💬"
+    "meaning_id": "~ dulu (sebagai persiapan) — bentuk lisan ておく",
+    "keyTakeaway": "〜ておく → 〜とく, 〜でおく → 〜どく. Bentuk ajakannya 〜とこう (書いとこう = kucatat dulu, ah).",
+    "nuance": "〜とく/〜どく adalah singkatan lisan dari 〜ておく/〜でおく: ノートに書いとく = kucatat dulu di buku; 薬を飲んどく = kuminum dulu obatnya. Maknanya sama dengan ておく: melakukan sesuatu lebih dulu sebagai persiapan, atau membiarkan sesuatu tetap dalam keadaannya.",
+    "beforeState": "ノートに書いておく。— Bentuk standar.",
+    "afterState": "ノートに書いとく。— Bentuk lisan yang lebih ringkas dalam obrolan."
   },
   "w1d3g1": {
-    "meaning_id": "Kelihatannya seperti... / Mirip banget kayak... (Perumpamaan atau dugaan visual spontan)",
-    "keyTakeaway": "Menyatakan kemiripan sifat atau perumpamaan subjektif dari apa yang diamati langsung. Kata benda langsung disambung tanpa partikel の (misal: 女みたい).",
-    "nuance": "Ragam percakapan lisan santai untuk mengibaratkan hal yang mirip padahal aslinya bukan.",
-    "beforeState": "Fakta Aslinya: Bukan hal tersebut 👤",
-    "afterState": "Kesan Tampang: Terlihat dan bertingkah mirip sekali 💡"
+    "meaning_id": "Seperti ~; sepertinya ~ (santai)",
+    "keyTakeaway": "女みたいだ = mirip perempuan, padahal bukan perempuan. 女らしい = benar-benar feminin, sesuai sifat ideal perempuan. Jangan tertukar.",
+    "nuance": "みたいだ punya dua fungsi. (1) Perumpamaan: 女みたいだ = seperti perempuan (padahal bukan). (2) Dugaan berdasarkan apa yang dilihat atau didengar: 雨が降るみたいだ = sepertinya akan hujan. みたい langsung disambung ke kata benda dan kata sifat-na tanpa の/な, berubah seperti kata sifat-na (みたいな + kata benda, みたいに + kata kerja), dan terdengar lebih santai daripada ようだ.",
+    "beforeState": "彼は女の人だ。— Pernyataan fakta.",
+    "afterState": "彼の話し方は、女みたいだ。— Cara bicaranya mirip perempuan, padahal dia bukan perempuan."
   },
   "w1d3g2": {
-    "meaning_id": "Bener-bener khas... banget! (Mencerminkan sifat sejati dan karakter ideal aslinya)",
-    "keyTakeaway": "Beda dengan みたいだ! Pola らしい dipakai saat objek tersebut MEMANG ASLINYA adalah hal itu dan memancarkan sifat aslinya secara sempurna (contoh: 春らしい = beneran musim semi yang sejuk indah).",
-    "nuance": "Pujian atau penegasan bahwa objek memiliki karakter ideal sesuai status aslinya.",
-    "beforeState": "Kemiripan Luar: Mirip tapi aslinya bukan hal itu (みたい) 🎭",
-    "afterState": "Karakter Sejati: Memang aslinya hal itu dan mencerminkan sifat khasnya (らしい) 🌟"
+    "meaning_id": "Benar-benar khas ~; layaknya ~",
+    "keyTakeaway": "Bedakan: 子どもらしい = (memang anak-anak dan) bersikap khas anak yang wajar; 子どもみたい = (bukan anak-anak, tetapi) bersikap seperti anak kecil.",
+    "nuance": "Kata benda + らしい menyatakan bahwa sesuatu memiliki ciri ideal atau khas dari kata benda itu: 春らしい日 = hari yang benar-benar terasa musim semi; 男らしい = jantan; 学生らしい服装 = pakaian yang pantas untuk pelajar. Biasanya bernada positif. Berubah seperti kata sifat-i (らしくない = tidak seperti biasanya/tidak pantas).",
+    "beforeState": "今日は暖かい日だった。— Hanya menyebut cuacanya hangat.",
+    "afterState": "今日は春らしい暖かい日だった。— Hangatnya benar-benar terasa khas musim semi."
   },
   "w1d3g3": {
-    "meaning_id": "Gayanya agak ke-...-an / Cenderung kayak... (Kesan lahiriah yang tampak dari luar)",
-    "keyTakeaway": "Menyatakan kesan fisik atau kecenderungan sifat yang tampak sekilas. Sering bernuansa agak negatif atau meremehkan jika dipadukan kata sifat (contoh: 安っぽい = murahan, 怒りっぽい = gampang ngambek).",
-    "nuance": "Pengamatan kasual atas kecenderungan penampilan lahiriah.",
-    "beforeState": "Sifat Ideal: Memiliki citra yang pantas dan selayaknya 👤",
-    "afterState": "Kesan Lahiriah: Cenderung bergaya atau bersikap ke arah itu 🎨"
+    "meaning_id": "Terkesan ~; cenderung ~",
+    "keyTakeaway": "大人っぽい dipakai untuk orang yang belum dewasa tetapi terlihat dewasa. Untuk orang dewasa yang bersikap bijak sesuai usianya, gunakan 大人らしい.",
+    "nuance": "っぽい menyatakan kesan atau kecenderungan yang tampak dari luar. Setelah kata benda, artinya 'terkesan seperti ~': 大人っぽい = terlihat dewasa, 子どもっぽい = kekanak-kanakan. Setelah bentuk masu, artinya 'mudah/sering ~': 忘れっぽい = pelupa, 怒りっぽい = mudah marah. Nadanya santai dan kadang sedikit negatif (安っぽい = terkesan murahan).",
+    "beforeState": "あの小学生は、大人だ。— Tidak tepat; anak SD bukan orang dewasa.",
+    "afterState": "あの小学生は、大人っぽい。— Anak SD itu terkesan seperti orang dewasa."
   },
   "w1d4g1": {
-    "meaning_id": "Berusaha selalu membiasakan... (Usaha sadar dan konsisten untuk menjaga hal/kebiasaan baik)",
-    "keyTakeaway": "Menunjukkan komitmen dan usaha sadar yang dilakukan terus-menerus setiap hari agar terbentuk kebiasaan baik atau terhindar dari kelalaian.",
-    "nuance": "Menekankan niat dan kedisiplinan yang dijaga secara berkesinambungan.",
-    "beforeState": "Niat Sesaat: Sekadar ingin melakukan saat itu saja ⏳",
-    "afterState": "Kebiasaan Sadar: Terus-menerus berupaya membiasakan diri 🔄"
+    "meaning_id": "Berusaha (membiasakan diri) untuk ~",
+    "keyTakeaway": "ようにする menekankan usaha yang terus dijaga, bukan keputusan sekali saja. Untuk keputusan, gunakan ことにする.",
+    "nuance": "Kata kerja bentuk kamus atau bentuk -nai + ようにする menyatakan usaha sadar agar sesuatu terjadi atau tidak terjadi: 忘れ物をしないようにしましょう = mari berusaha agar tidak ada barang yang tertinggal. Bentuk ようにしている menyatakan kebiasaan yang sedang dijaga: 毎日野菜を食べるようにしている = saya berusaha makan sayur setiap hari.",
+    "beforeState": "毎日野菜を食べる。— Hanya menyatakan kebiasaan.",
+    "afterState": "毎日野菜を食べるようにしている。— Menekankan usaha sadar untuk membiasakannya."
   },
   "w1d4g2": {
-    "meaning_id": "Supaya bisa... / Agar terwujud kondisi... (Tindakan demi mencapai keadaan yang diinginkan)",
-    "keyTakeaway": "Klausa sebelum ように biasanya memakai kata kerja bentuk potensial (bisa) atau non-kehendak (contoh: 聞こえるように = agar terdengar jelas, 忘れないように = supaya tidak lupa).",
-    "nuance": "Fokus pada tercapainya suatu kondisi target yang berada di luar kendali langsung otot pembicara.",
-    "beforeState": "Aksi Biasa: Melakukan sesuatu tanpa target kondisi spesifik 💬",
-    "afterState": "Aksi Bertujuan: Berbicara lantang agar kondisi 'terdengar jelas' tercapai 🎯"
+    "meaning_id": "Agar ~; supaya ~ (tujuan berupa keadaan)",
+    "keyTakeaway": "Untuk tujuan berupa tindakan yang disengaja, gunakan ために: 日本へ行くために貯金する. Untuk tujuan berupa keadaan (bisa ~, tidak ~), gunakan ように.",
+    "nuance": "ように menyatakan tujuan agar suatu keadaan tercapai. Kata kerja sebelum ように biasanya bentuk potensial, bentuk -nai, atau kata kerja yang tidak bisa dikendalikan langsung (聞こえる, 見える, 分かる): みんなに聞こえるように大きな声で話す = berbicara keras agar terdengar oleh semua orang; 忘れないようにメモする = mencatat agar tidak lupa.",
+    "beforeState": "大きな声で話してください。— Hanya meminta bicara keras.",
+    "afterState": "みんなに聞こえるように、大きな声で話してください。— Menjelaskan tujuannya: agar semua orang bisa mendengar."
   },
   "w1d4g3": {
-    "meaning_id": "Sekarang sudah menjadi bisa... / Mulai terbiasa... (Perubahan kemampuan atau kebiasaan baru)",
-    "keyTakeaway": "Dipakai saat ada transisi nyata: dulu tidak bisa atau belum biasa, sekarang seiring waktu menjadi mampu atau mulai terbiasa melakukan aksi tersebut.",
-    "nuance": "Menandai perkembangan keterampilan pribadi atau adaptasi gaya hidup baru.",
-    "beforeState": "Dulu: ❌ Tidak bisa / Belum biasa melakukan",
-    "afterState": "Sekarang: ✅ Menjadi bisa / Mulai mahir dan terbiasa"
+    "meaning_id": "Menjadi (bisa/biasa) ~; sekarang sudah ~",
+    "keyTakeaway": "Untuk hilangnya kemampuan atau kebiasaan, gunakan 〜なくなる: 甘い物を食べなくなった = jadi tidak makan yang manis lagi.",
+    "nuance": "Kata kerja bentuk kamus atau bentuk potensial + ようになる menyatakan perubahan menuju kemampuan atau kebiasaan baru: 漢字が読めるようになった = (sekarang) sudah bisa membaca kanji; 毎朝走るようになった = jadi rutin lari setiap pagi. Pola ini menekankan proses perubahan dari keadaan sebelumnya.",
+    "beforeState": "漢字が読める。— Hanya menyatakan kemampuan saat ini.",
+    "afterState": "漢字が読めるようになった。— Dulu tidak bisa, sekarang sudah bisa."
   },
   "w1d5g1": {
-    "meaning_id": "Sebagaimana yang kita tahu / Seperti yang terlihat... (Pengantar merujuk pada fakta yang sudah dipahami bersama)",
-    "keyTakeaway": "Ungkapan pengantar sopan sebelum menjelaskan inti topik, mengajak pendengar mengingat fakta yang sudah sama-sama diketahui bersama.",
-    "nuance": "Membangun kesamaan persepsi dan memuluskan transisi pembicaraan.",
-    "beforeState": "Penjelasan Mendadak: Langsung menyebutkan data tanpa pengantar 📢",
-    "afterState": "Pengantar Halus: Menyelaraskan pemahaman pendengar terlebih dahulu 🤝"
+    "meaning_id": "Seperti (yang) ~",
+    "keyTakeaway": "ご存じのように adalah ungkapan hormat untuk 'seperti yang Anda ketahui'. Untuk diri sendiri atau teman, cukup 知っているように.",
+    "nuance": "Kata benda + の atau kata kerja + ように dipakai sebagai pengantar yang merujuk pada sesuatu yang sudah diketahui, terlihat, atau disebut: ご存じのように = seperti yang Anda ketahui; 前にも言ったように = seperti yang sudah saya katakan sebelumnya; 図のように = seperti pada gambar. Sering dipakai dalam presentasi atau penjelasan resmi.",
+    "beforeState": "試験の内容が変わります。— Langsung menyampaikan informasi.",
+    "afterState": "ご存じのように、試験の内容が変わります。— Mengingatkan bahwa pendengar sudah tahu, lalu menyampaikan informasi."
   },
   "w1d5g2": {
-    "meaning_id": "Dimohon untuk selalu... / Harap supaya... (Instruksi atau arahan halus dari guru/atasan)",
-    "keyTakeaway": "Perintah atau instruksi yang disampaikan secara lebih lunak dan halus dibanding bentuk perintah langsung. Sangat lazim di sekolah atau tempat kerja.",
-    "nuance": "Arahan resmi bernada membimbing tanpa terdengar kasar atau menekan.",
-    "beforeState": "Perintah Kasar: Bentuk perintah langsung yang terkesan memaksa ⚠️",
-    "afterState": "Arahan Sopan: Mengarahkan tindakan dengan nada pembimbing yang santun 📋"
+    "meaning_id": "Harap ~; hendaknya ~ (perintah halus)",
+    "keyTakeaway": "Perintah ini tetap bernada dari atas ke bawah, jadi tidak dipakai kepada atasan atau orang yang lebih tua.",
+    "nuance": "Kata kerja bentuk kamus atau bentuk -nai + ように di akhir kalimat adalah perintah atau instruksi yang halus, biasanya dari guru, atasan, atau dalam pengumuman: 明日はもっと早く来るように = besok harap datang lebih awal; 遅れないように = jangan sampai terlambat. Bagian 言う atau してください dihilangkan.",
+    "beforeState": "明日は早く来い。— Bentuk perintah langsung, terdengar kasar.",
+    "afterState": "明日は早く来るように。— Instruksi yang lebih halus, khas guru atau atasan."
   },
   "w1d5g3": {
-    "meaning_id": "Semoga... terkabul! (Doa dan permohonan tulus yang dipanjatkan)",
-    "keyTakeaway": "Khusus dipakai untuk memanjatkan doa kepada Tuhan, menulis harapan di jimat kuil (ema), atau mendoakan kesuksesan orang lain dengan tulus.",
-    "nuance": "Penuh muatan spiritual, harapan masa depan, dan ketulusan hati.",
-    "beforeState": "Keinginan Pribadi: 〜たい (Saya ingin lulus) 💭",
-    "afterState": "Doa Tulus: 〜ますように (Semoga dikabulkan Yang Maha Kuasa) 🙏"
+    "meaning_id": "Semoga ~",
+    "keyTakeaway": "〜たい menyatakan keinginan pribadi, sedangkan 〜ますように adalah doa agar sesuatu terwujud, sering ditujukan kepada Tuhan atau nasib.",
+    "nuance": "Bentuk ます/ません + ように di akhir kalimat menyatakan doa atau harapan tulus, misalnya saat berdoa di kuil atau menulis harapan: 合格しますように = semoga (saya) lulus; 雨が降りませんように = semoga tidak hujan. Kata kerja yang dipakai biasanya kata kerja yang di luar kendali pembicara atau bentuk potensial (治りますように, 会えますように).",
+    "beforeState": "合格したい。— Menyatakan keinginan pribadi.",
+    "afterState": "合格しますように。— Berdoa agar diberi kelulusan."
   },
   "w1d6g1": {
-    "meaning_id": "Berniat untuk... / Sedang berencana... (Niat dalam hati yang ingin diwujudkan)",
-    "keyTakeaway": "Menyatakan tekad atau rencana pribadi di dalam pikiran. Gunakan 〜と思っています jika niat tersebut sudah dipikirkan sejak beberapa waktu lalu dan masih berlanjut.",
-    "nuance": "Menunjukkan komitmen internal sebelum melangkah ke tindakan nyata.",
-    "beforeState": "Tanpa Rencana: Masih bimbang belum ada kepastian niat ❓",
-    "afterState": "Niat Mantap: Sudah menetapkan rencana tindakan di dalam hati 💡"
+    "meaning_id": "Berniat ~; berpikir untuk ~",
+    "keyTakeaway": "ようと思う menyatakan niat yang masih bisa berubah. Untuk rencana yang sudah pasti, gunakan つもりだ atau 予定だ.",
+    "nuance": "Bentuk ajakan (〜よう/〜おう) + と思う menyatakan niat atau rencana pembicara: 会社をやめようと思う = saya berniat berhenti dari perusahaan. Bentuk と思っている menyatakan niat yang sudah dipikirkan sejak beberapa waktu dan masih berlanjut. Untuk orang lain, gunakan と思っている.",
+    "beforeState": "会社をやめる。— Pernyataan langsung, terdengar sudah pasti.",
+    "afterState": "会社をやめようと思っている。— Menyatakan niat yang sedang dipertimbangkan."
   },
   "w1d6g2": {
-    "meaning_id": "Baru saja mau... / Tepat pas hendak... (Detik-detik tepat sebelum suatu aksi dimulai)",
-    "keyTakeaway": "Menunjukkan momen sepersekian detik tepat saat hendak beraksi, namun kemudian mendadak disela atau terhalang oleh peristiwa tak terduga lain.",
-    "nuance": "Ketepatan momentum sesaat sebelum tindakan dieksekusi.",
-    "beforeState": "Aksi Berlangsung: Sedang di dalam kendaraan 🚆",
-    "afterState": "Momen Hendak Melangkah: Kaki baru mau melangkah masuk pintu ⏱️"
+    "meaning_id": "Hendak ~; mencoba ~",
+    "keyTakeaway": "Bedakan dengan 〜てみる: てみる berarti mencoba untuk melihat hasilnya, sedangkan ようとする menekankan usaha atau momen sesaat sebelum tindakan, yang sering tidak berhasil.",
+    "nuance": "Bentuk ajakan + とする punya dua makna. (1) Tepat saat hendak melakukan sesuatu, sering diikuti とき/ところ: 電車に乗ろうとしたときに、ドアが閉まった = tepat saat hendak naik kereta, pintunya tertutup. (2) Berusaha melakukan sesuatu: 思い出そうとしたが、思い出せなかった = mencoba mengingat, tetapi tidak bisa.",
+    "beforeState": "電車に乗ったときに…— Saat sudah naik kereta.",
+    "afterState": "電車に乗ろうとしたときに…— Saat baru hendak naik, belum sempat naik."
   },
   "w1d6g3": {
-    "meaning_id": "Sama sekali nggak mau... / Ogah banget... (Menunjukkan keengganan keras atau sikap mogok orang lain)",
-    "keyTakeaway": "Hanya dipakai untuk pihak ketiga (orang lain atau hewan peliharaan), menunjukkan bahwa mereka sama sekali tidak menunjukkan iktikad atau kemauan untuk bertindak.",
-    "nuance": "Mengamati sikap keras kepala atau penolakan pasif dari orang lain.",
-    "beforeState": "Belum Melakukan: Sekadar belum sempat makan ⏳",
-    "afterState": "Sengaja Menolak: Mogok makan dan sama sekali ogah menyentuh makanan 🙅"
+    "meaning_id": "Tidak mau ~ (sama sekali)",
+    "keyTakeaway": "食べない hanya menyatakan fakta tidak makan, sedangkan 食べようとしない menekankan sikap menolak atau tidak ada kemauan sama sekali.",
+    "nuance": "Bentuk ajakan + としない menyatakan bahwa seseorang sama sekali tidak menunjukkan kemauan untuk melakukan sesuatu: 子どもがご飯を食べようとしない = anak itu tidak mau makan sama sekali. Biasanya dipakai untuk orang lain (pihak ketiga), karena yang digambarkan adalah sikap yang terlihat dari luar.",
+    "beforeState": "子どもがご飯を食べない。— Hanya fakta tidak makan.",
+    "afterState": "子どもがご飯を食べようとしない。— Anak itu menolak, tidak mau mencoba makan sama sekali."
   },
   "w2d1g1": {
-    "meaning_id": "Cuma... melulu! / Kebanyakan... doang (Banyak sekali sampai terkesan berlebihan atau menjengkelkan)",
-    "keyTakeaway": "Bukan sekadar berarti 'hanya', melainkan memberi kesan 'jumlahnya melulu hal itu sampai terasa berlebihan atau bikin risih' (contoh: kerjanya main game melulu).",
-    "nuance": "Sering mengandung nada teguran, kritik, atau keluhan atas ketidakseimbangan aktivitas.",
-    "beforeState": "Fakta Jumlah: Menyebutkan jumlah biasa secara netral 💬",
-    "afterState": "Nada Keluhan: Merasa frekuensinya melulu hal itu dan berlebihan 💢"
+    "meaning_id": "Melulu ~; hanya ~ saja (terlalu banyak)",
+    "keyTakeaway": "だけ bernada netral ('hanya'), sedangkan ばかり menekankan 'banyak sekali dan hanya itu', sering bernada kritik.",
+    "nuance": "ばかり menyatakan bahwa hanya satu hal saja yang ada atau dilakukan, sering dengan nada mengeluh karena terasa berlebihan: 女性ばかり = hanya perempuan saja; 甘い物ばかり食べる = makan yang manis-manis melulu. Bentuk 〜てばかりいる berarti 'terus-terusan ~': 遊んでばかりいる = main terus. Sebelum kata benda dipakai ばかりの.",
+    "beforeState": "お客さんは女性だけだ。— Netral: hanya ada pelanggan perempuan.",
+    "afterState": "お客さんは女性ばかりだ。— Menekankan bahwa hampir semua pelanggan perempuan."
   },
   "w2d1g2": {
-    "meaning_id": "Cuma... doang, nggak ada selain itu (Hanya terbatas pada itu saja, selain itu sama sekali tidak)",
-    "keyTakeaway": "Kombinasi だけ (hanya) + しか〜ない (tidak ada selain). Jauh lebih eksklusif dan mutlak daripada cuma だけ biasa.",
-    "nuance": "Menegaskan batas tegas yang tidak menyisakan ruang bagi opsi lain.",
-    "beforeState": "Batasan Biasa: Hanya ini yang ada (だけ) 📦",
-    "afterState": "Sangat Terbatas: Sama sekali tak ada yang lain selain ini (だけしか〜ない) 🔒"
+    "meaning_id": "Hanya ~ (dan tidak ada yang lain)",
+    "keyTakeaway": "だけしか lebih tegas daripada だけ atau しか saja. Karena memakai しか, predikatnya harus bentuk negatif.",
+    "nuance": "だけしか + bentuk negatif adalah gabungan だけ dan しか〜ない untuk menekankan pembatasan dengan sangat kuat: 会員だけしか入れません = hanya anggota yang boleh masuk, selain itu sama sekali tidak. Predikatnya harus negatif.",
+    "beforeState": "会員だけ入れます。— Hanya anggota yang bisa masuk.",
+    "afterState": "会員だけしか入れません。— Penekanan lebih kuat: sama sekali tidak ada yang lain selain anggota."
   },
   "w2d1g3": {
-    "meaning_id": "Bahkan... pun sampai segitunya (Menyebut contoh paling dasar/ekstrem untuk menunjukkan keparahan)",
-    "keyTakeaway": "Menyebutkan contoh yang paling sepele/mendasar untuk menegaskan bahwa hal-hal lain di atasnya sudah pasti demikian (contoh: huruf hiragana saja tidak bisa, apalagi kanji).",
-    "nuance": "Menyoroti kontras ekstrem untuk menunjukkan betapa parah atau luar biasanya suatu situasi.",
-    "beforeState": "Penyebutan Normal: Menyebut tingkat kesulitan biasa 💬",
-    "afterState": "Contoh Paling Dasar: Hal yang paling sepele saja gagal/terkena ⚡"
+    "meaning_id": "Bahkan ~ pun",
+    "keyTakeaway": "Pola さえ〜ば (お金さえあれば = asalkan ada uang saja) adalah makna lain dari さえ yang sering muncul di N3.",
+    "nuance": "さえ menyebut contoh yang paling dasar atau ekstrem untuk menyiratkan bahwa hal lain pasti demikian juga: ひらがなさえ書けない = hiragana saja tidak bisa ditulis (apalagi kanji). さえ menggantikan が dan を, tetapi ditambahkan setelah partikel lain (子どもにさえ分かる = anak kecil pun paham). Pola 〜さえ〜ば berarti 'asalkan ~ saja'.",
+    "beforeState": "漢字が書けない。— Hanya fakta tidak bisa menulis kanji.",
+    "afterState": "ひらがなさえ書けない。— Hal paling dasar pun tidak bisa, apalagi yang lebih sulit."
   },
   "w2d1g4": {
-    "meaning_id": "Justru kali ini pasti...! / Karena alasan itulah justru... (Menegaskan tekad bulat membara)",
-    "keyTakeaway": "Dipakai untuk menegaskan tekad yang bulat ('Besoklah saatnya aku buktikan!') atau alasan kuat mengapa sesuatu dilakukan (justru karena sayang anak, makanya dididik tegas).",
-    "nuance": "Memberikan sorotan utama dan dorongan emosional yang kuat pada kata yang dilekatkan.",
-    "beforeState": "Pernyataan Biasa: Berniat melakukan besok 💬",
-    "afterState": "Tekad Membara: Justru besoklah titik balik yang tak boleh gagal! 🔥"
+    "meaning_id": "Justru ~ (yang ditekankan)",
+    "keyTakeaway": "こそ dipakai untuk penekanan positif atau tekad. Ungkapan こちらこそ (justru saya) sangat umum sebagai jawaban atas ucapan terima kasih atau permintaan maaf.",
+    "nuance": "こそ menekankan bahwa hal itulah yang paling tepat atau penting, bukan yang lain: 明日こそ勉強するぞ = besok pasti belajar (tidak seperti hari-hari sebelumnya); こちらこそ = justru saya (yang berterima kasih). Dengan alasan, からこそ berarti 'justru karena ~': 好きだからこそ厳しくする = justru karena sayang, saya bersikap tegas.",
+    "beforeState": "明日は勉強する。— Rencana biasa.",
+    "afterState": "明日こそ勉強する！— Tekad kuat: kali ini benar-benar akan belajar."
   },
   "w2d2g1": {
-    "meaning_id": "Berkenaan dengan... / Mengenai topik... (Bahasa resmi/formal untuk mengangkat topik bahasan/isu)",
-    "keyTakeaway": "Bermakna 'mengenai/tentang', namun bergaya bahasa formal, resmi, atau akademis (berita, seminar, artikel penelitian). Versi santainya dalam obrolan adalah について.",
-    "nuance": "Mengangkat isu atau wacana yang luas dalam ranah formal.",
-    "beforeState": "Obrolan Santai: Membahas masalah sehari-hari (について) ☕",
-    "afterState": "Wacana Formal: Mengkaji perkara resmi atau isu kenegaraan (に関して) 📑"
+    "meaning_id": "Mengenai ~; berkenaan dengan ~ (formal)",
+    "keyTakeaway": "Maknanya hampir sama dengan について, tetapi に関して terdengar lebih kaku dan resmi. Dalam obrolan sehari-hari, について lebih alami.",
+    "nuance": "Kata benda + に関して (にかんして) berarti 'mengenai' atau 'berkenaan dengan', dan lebih formal daripada について. Variasinya: に関しては (menonjolkan topik), に関しても (mengenai ~ pun), dan に関する + kata benda (この問題に関する意見 = pendapat mengenai masalah ini). Sering dipakai dalam rapat, berita, seminar, atau tulisan resmi.",
+    "beforeState": "この問題について、どう思う？— Santai: bagaimana menurutmu soal masalah ini?",
+    "afterState": "この問題に関して、ご意見はありませんか。— Formal: adakah pendapat mengenai masalah ini?"
   },
   "w2d2g2": {
-    "meaning_id": "Tentang... / Soal... (Membicarakan hal yang menjadi isi atau topik utama obrolan)",
-    "keyTakeaway": "Ungkapan sehari-hari paling umum untuk menyatakan topik bahasan ('berbicara tentang...', 'berpikir tentang...'). Dapat dipakai dalam situasi santai maupun semiformal.",
-    "nuance": "Menandai tema inti yang sedang menjadi fokus perbincangan.",
-    "beforeState": "Tanpa Topik: Berbicara tanpa menandai tema utama 💬",
-    "afterState": "Topik Tertuju: Menegaskan bahwa perbincangan berputar di tema tersebut 🎯"
+    "meaning_id": "Tentang ~; mengenai ~",
+    "keyTakeaway": "について umumnya diikuti kata kerja berbicara, berpikir, atau meneliti (話す, 考える, 調べる). Untuk gaya yang lebih formal, gunakan に関して.",
+    "nuance": "Kata benda + について menyatakan topik yang dibicarakan, dipikirkan, atau dipelajari: 日本文化について勉強する = belajar tentang budaya Jepang. Sebelum kata benda dipakai についての (日本についての本 = buku tentang Jepang). については menonjolkan topik, dan についても berarti 'tentang ~ juga'. Bisa dipakai dalam situasi santai maupun semiformal.",
+    "beforeState": "日本文化を勉強する。— Mempelajari budaya Jepang itu sendiri secara langsung.",
+    "afterState": "日本文化について勉強する。— Mempelajari hal-hal tentang budaya Jepang sebagai topik."
   },
   "w2d2g3": {
-    "meaning_id": "Berdasarkan kabar dari... / Menurut... (Mengutip sumber data atau berita tepercaya)",
-    "keyTakeaway": "Wajib diakhiri dengan bentuk kabar burung atau dugaan seperti 〜そうだ atau 〜ということだ (contoh: 天気予報によれば、雨が降るそうだ).",
-    "nuance": "Merujuk pada otoritas sumber informasi pihak ketiga yang kredibel.",
-    "beforeState": "Pendapat Pribadi: Mengira-ngira sendiri tanpa rujukan 💭",
-    "afterState": "Rujukan Berita: Mempertanggungjawabkan informasi dari sumber tepercaya 📻"
+    "meaning_id": "Menurut ~ (sumber informasi)",
+    "keyTakeaway": "Jangan menutup kalimat dengan pernyataan pasti seperti 晴れます saja; akhiri dengan そうです/らしいです agar jelas bahwa itu informasi dari sumber lain.",
+    "nuance": "Kata benda + によれば atau によると menyebut sumber informasi: 天気予報によれば、明日は晴れるらしい = menurut ramalan cuaca, besok sepertinya cerah. Akhir kalimatnya biasanya memakai ungkapan kabar seperti 〜そうだ, 〜らしい, atau 〜ということだ, karena informasinya berasal dari pihak lain.",
+    "beforeState": "明日は晴れると思う。— Pendapat pribadi tanpa sumber.",
+    "afterState": "天気予報によると、明日は晴れるそうだ。— Informasi yang dikutip dari ramalan cuaca."
   },
   "w2d2g4": {
-    "meaning_id": "Melalui... / Tergantung pada... / Karena faktor... (Metode, penyebab, atau keragaman kasus)",
-    "keyTakeaway": "Pola serbaguna dengan 3 fungsi utama: (1) Cara/sarana (melalui kerja keras), (2) Sebab/pemicu (rusak karena gempa), (3) Variasi kasus ('berbeda tergantung pada negaranya').",
-    "nuance": "Ragam resmi tertulis untuk menghubungkan instrumen, kausalitas, atau variasi.",
-    "beforeState": "Penyebab Netral: Menghubungkan sebab biasa dengan から 💬",
-    "afterState": "Hubungan Formal: Menjelaskan instrumen atau korelasi logis secara elegan 📊"
+    "meaning_id": "Dengan/melalui ~; karena ~; tergantung ~; oleh ~",
+    "keyTakeaway": "によっては berarti 'dalam kasus tertentu': 人によっては = ada orang yang ~. Nadanya formal; dalam percakapan sering diganti で atau から.",
+    "nuance": "Kata benda + によって punya beberapa fungsi. (1) Cara atau sarana: 努力によって病気を克服した = mengatasi penyakit melalui usaha. (2) Sebab: 地震によって家が壊れた = rumah hancur karena gempa. (3) Variasi, 'tergantung ~': 国によって習慣が違う = kebiasaan berbeda tergantung negaranya. (4) Pelaku dalam kalimat pasif: この絵はピカソによって描かれた = lukisan ini dibuat oleh Picasso. Bentuk lain: により (formal), によっては (dalam sebagian kasus), による + kata benda.",
+    "beforeState": "地震で家が壊れた。— Santai: rumah rusak karena gempa.",
+    "afterState": "地震によって家が壊れた。— Formal: gaya berita atau laporan."
   },
   "w2d3g1": {
-    "meaning_id": "Tingkat / Kadar... (Mengubah kata sifat jadi ukuran terukur: panasnya, panjangnya, beratnya)",
-    "keyTakeaway": "Mengubah kata sifat menjadi besaran kuantitatif yang objektif dan bisa diukur (misal: 重さ = beratnya dalam kilogram, 高さ = tingginya dalam meter).",
-    "nuance": "Objektivitas matematis dan derajat besaran yang dapat dibandingkan secara nyata.",
-    "beforeState": "Kata Sifat Murni: Berat (重い) / Tinggi (高い) 📏",
-    "afterState": "Besaran Terukur: Beratnya / Tingginya (重さ / 高さ) ⚖️"
+    "meaning_id": "Pembentuk kata benda ukuran/tingkat (~nya)",
+    "keyTakeaway": "Bandingkan dengan み: 重さ = berat (angka/ukuran), sedangkan 重み = bobot atau kesan berat yang dirasakan. さ bisa dipakai untuk hampir semua kata sifat, sedangkan み hanya untuk kata tertentu.",
+    "nuance": "さ ditambahkan pada kata sifat (kata sifat-i tanpa い, kata sifat-na langsung) untuk membentuk kata benda yang menyatakan ukuran atau tingkat suatu sifat: 大きい→大きさ = ukuran, 重い→重さ = berat, 便利→便利さ = kepraktisan. Hasilnya bisa diukur atau dibandingkan secara objektif. いい menjadi よさ.",
+    "beforeState": "このかばんは重い。— Kata sifat: tasnya berat.",
+    "afterState": "このかばんの重さは5キロだ。— Kata benda: berat tasnya 5 kilo."
   },
   "w2d3g2": {
-    "meaning_id": "Rasa mendalam... / Kesan... (Mengubah kata sifat jadi kualitas rasa emosional yang berbekas)",
-    "keyTakeaway": "Mengubah kata sifat menjadi kualitas rasa, nuansa subjektif, atau emosi yang dirasakan mendalam di batin (misal: 悲しみ = kesedihan mendalam, 暖かみ = rasa hangat hati).",
-    "nuance": "Kedalaman emosional dan kesan batin yang berbekas di perasaan.",
-    "beforeState": "Kata Sifat Biasa: Sedih (悲しい) / Hangat (暖かい) 💭",
-    "afterState": "Kesan Batin: Kedalaman rasa sedih / Kehangatan hati (悲しみ / 暖かみ) 💖"
+    "meaning_id": "Pembentuk kata benda rasa/kesan (~nya)",
+    "keyTakeaway": "Bedakan: 深さ = kedalaman (ukuran objektif), 深み = kedalaman makna/rasa. 楽しみ juga dipakai dalam ungkapan 楽しみにしている (menantikan dengan senang).",
+    "nuance": "み ditambahkan pada sejumlah kata sifat tertentu untuk membentuk kata benda yang menyatakan perasaan, kesan, atau keadaan yang dirasakan: 悲しい→悲しみ = kesedihan, 苦しい→苦しみ = penderitaan, 楽しい→楽しみ = kesenangan/hal yang dinanti, 暖かい→暖かみ = kehangatan. Hanya dipakai dengan kata-kata tertentu, tidak bisa dibentuk bebas.",
+    "beforeState": "戦争は苦しい。— Kata sifat: perang itu menyakitkan.",
+    "afterState": "この国の苦しみはまだ続いている。— Kata benda: penderitaan negara ini masih berlanjut."
   },
   "w2d3g3": {
-    "meaning_id": "Hal ihwal tentang... / Soal... (Menjadikan gagasan atau topik sebagai objek pemikiran)",
-    "keyTakeaway": "Menjadikan suatu fakta atau aktivitas sebagai objek pemikiran abstrak di dalam pikiran (misal: memikirkan tentang ujian, berjanji tentang sesuatu).",
-    "nuance": "Mengonseptualisasikan gagasan abstrak ke dalam ranah mental.",
-    "beforeState": "Aksi Langsung: Belajar untuk ujian 📚",
-    "afterState": "Objek Pemikiran: Hal ihwal atau urusan tentang ujian tersebut 🧠"
+    "meaning_id": "Hal tentang ~; soal ~",
+    "keyTakeaway": "Ungkapan Nのこと sering dipakai dengan kata kerja berpikir, merasa, atau bertanya (考える, 心配する, 聞く) untuk menunjukkan topik secara lebih luas.",
+    "nuance": "こと setelah kata benda + の berarti 'hal-hal tentang ~' atau 'urusan ~': テストのことで質問がある = ada pertanyaan soal ujian; 彼のことが好きだ = saya suka dia (segala hal tentang dirinya). Setelah kata kerja atau kalimat, こと mengubahnya menjadi kata benda: 約束したことを忘れた = lupa hal yang sudah dijanjikan. Kata sifat-na memakai な dan kata benda memakai である (学生であること).",
+    "beforeState": "テストで質問がある。— Kurang alami.",
+    "afterState": "テストのことで質問があります。— Ada pertanyaan menyangkut hal-hal tentang ujian."
   },
   "w2d3g4": {
-    "meaning_id": "Aksi / Kegiatan... (Mengubah kata kerja jadi objek nyata yang dirasakan panca indra)",
-    "keyTakeaway": "Menjadikan aktivitas sebagai hal fisik atau momen langsung yang dirasakan oleh panca indra (terlihat, terdengar, dihentikan seketika, atau kelupaan dilakukan).",
-    "nuance": "Aksi dinamis yang tertangkap langsung oleh mata, telinga, atau sentuhan.",
-    "beforeState": "Kata Kerja Biasa: Menelepon (電話する) 📞",
-    "afterState": "Objek Tindakan Nyata: Kegiatan meneleponnya itu sendiri (電話するの) 👁️"
+    "meaning_id": "Pembentuk kata benda: (kegiatan) ~-nya",
+    "keyTakeaway": "Dengan kata kerja persepsi (見る, 聞く), gunakan の, bukan こと: 彼が歌うのを聞いた. Dalam pola baku seperti ことができる atau ことにする, gunakan こと, bukan の.",
+    "nuance": "の setelah bentuk biasa mengubah kata kerja atau kalimat menjadi kata benda, sehingga bisa diikuti partikel: 電話するのを忘れた = lupa menelepon; 歌うのが好きだ = suka bernyanyi; 彼が来るのを待つ = menunggu dia datang. の terutama dipakai dengan kata kerja persepsi (見る, 聞こえる), perasaan (好き, 嫌い), dan beberapa kata kerja seperti 忘れる, 待つ, 手伝う.",
+    "beforeState": "田中さんに電話することを忘れた。— Kurang alami untuk tindakan konkret.",
+    "afterState": "田中さんに電話するのを忘れた。— Lupa melakukan tindakan menelepon."
   },
   "w2d4g1": {
-    "meaning_id": "Orang / Hal yang bernama... (Menjelaskan sebutan nama benda/orang yang belum dikenal lawan bicara)",
-    "keyTakeaway": "Dipakai saat memperkenalkan hal atau orang yang menurut perkiraanmu belum dikenal oleh lawan bicara (misal: orang yang bernama Tanaka, buku berjudul X).",
-    "nuance": "Menyebutkan label identitas awal sebelum mendalami isi topik.",
-    "beforeState": "Nama Langsung: Menyebut nama yang mungkin asing bagi lawan bicara ❓",
-    "afterState": "Penjelasan Sebutan: Memperjelas identitasnya dengan sebutan nama yang ramah 🏷️"
+    "meaning_id": "~ yang bernama ~",
+    "keyTakeaway": "Gunakan という saat nama itu mungkin asing bagi lawan bicara. Jika keduanya sudah kenal, cukup sebut namanya langsung.",
+    "nuance": "Nama atau sebutan + という + kata benda dipakai untuk memperkenalkan orang, tempat, atau benda yang mungkin belum dikenal lawan bicara: 木村さんという人から電話があった = ada telepon dari orang yang bernama Kimura. Pola というもの dipakai untuk membicarakan hakikat sesuatu (愛というもの = yang namanya cinta), dan ということ untuk isi suatu informasi.",
+    "beforeState": "木村さんから電話があった。— Lawan bicara dianggap sudah kenal Kimura.",
+    "afterState": "木村さんという人から電話があった。— Kimura dianggap belum dikenal lawan bicara."
   },
   "w2d4g2": {
-    "meaning_id": "Yang dimaksud dengan... adalah... (Mendefinisikan arti istilah atau singkatan kata)",
-    "keyTakeaway": "Digunakan saat menjelaskan definisi istilah baru/singkatan asing, atau menanyakan arti kata yang tidak dipahami lawan bicara.",
-    "nuance": "Menyibak arti hakiki di balik suatu kata wacana.",
-    "beforeState": "Istilah Membingungkan: Mendengar istilah teknis yang belum dimengerti 🧩",
-    "afterState": "Definisi Terbuka: Mengupas arti dan makna inti dari istilah tersebut 📖"
+    "meaning_id": "Yang dimaksud dengan ~ adalah ~",
+    "keyTakeaway": "Pola ini sangat berguna saat bertanya arti kata yang tidak dimengerti: 「ゆとり」っていうのはどういう意味ですか.",
+    "nuance": "Kata benda + というのは (santai: っていうのは) dipakai untuk menjelaskan atau menanyakan arti suatu istilah: 「デジカメ」というのは、デジタルカメラを短くした言い方です = 'dejikame' adalah singkatan dari kamera digital. Akhir kalimatnya biasanya 〜のことだ atau 〜という意味だ. Untuk bertanya: 〜というのは何ですか.",
+    "beforeState": "デジカメはデジタルカメラです。— Pernyataan biasa.",
+    "afterState": "「デジカメ」というのは、デジタルカメラのことです。— Menjelaskan definisi istilah."
   },
   "w2d4g3": {
-    "meaning_id": "Kabar bahwa... / Hal bahwa... (Mengangkat keseluruhan kalimat/peristiwa menjadi topik)",
-    "keyTakeaway": "Menjadikan seluruh isi kalimat atau rumor peristiwa sebagai subjek perbincangan (misal: 'Kabar bahwa dia lulus itu apa beneran?').",
-    "nuance": "Mengemas seluruh wacana kabar angin ke dalam satu paket topik bahasan.",
-    "beforeState": "Gosip Terpisah: Dia lulus ujian 📢",
-    "afterState": "Paket Kabar: Kabar peristiwa bahwa dia lulus itu kini diperbincangkan 📦"
+    "meaning_id": "(Kabar/hal) bahwa ~",
+    "keyTakeaway": "Pola ini sering dipakai untuk menanyakan kebenaran kabar yang didengar: 〜というのは本当ですか.",
+    "nuance": "Kalimat bentuk biasa + というのは atau ということ mengubah seluruh isi kalimat menjadi topik atau objek: 帰国するというのは本当ですか = apakah benar (kabar) bahwa Anda akan pulang ke negara asal? リンさんが帰国するということを聞いた = saya mendengar bahwa Lin akan pulang. っていうのは/っていうこと adalah bentuk santainya.",
+    "beforeState": "リンさんが帰国する。— Hanya pernyataan fakta.",
+    "afterState": "リンさんが帰国するということを聞いた。— Kabar itu dijadikan objek dari 'mendengar'."
   },
   "w2d5g1": {
-    "meaning_id": "Bukannya dibilang begitu, lebih tepatnya malah... (Bukan dibilang..., tapi lebih pasnya...)",
-    "keyTakeaway": "Gunakan saat kamu merasa kata yang baru saja diucapkan kurang pas, lalu ingin langsung meralatnya ke deskripsi yang jauh lebih akurat dan tepat menggambarkan situasi nyata.",
-    "nuance": "Koreksi spontan yang memperhalus dan memperjelas realitas sebenarnya.",
-    "beforeState": "Sebutan Pertama: Memakai kata awal yang dirasa kurang pas (misal: lari) 💬",
-    "afterState": "Ralat Akurat: Langsung meralat ke istilah yang jauh lebih tepat (merayap) 🎯"
+    "meaning_id": "Bukan ~, lebih tepatnya ~",
+    "keyTakeaway": "Gunakan saat kata pertama kurang tepat menggambarkan keadaan. AというよりB = B lebih tepat daripada A.",
+    "nuance": "というより (santai: というか) dipakai untuk mengoreksi ungkapan pertama dengan ungkapan yang menurut pembicara lebih tepat: 走るというより、はっているようだ = bukan berjalan, lebih tepatnya merayap. Sering diikuti むしろ (malah). Disambung ke kata benda, kata sifat, atau kata kerja bentuk biasa.",
+    "beforeState": "前の車は遅い。— Hanya menyebut mobil di depan lambat.",
+    "afterState": "前の車は、走るというより、はっているようだ。— Mengoreksi: bukan berjalan, tetapi lebih mirip merayap."
   },
   "w2d5g2": {
-    "meaning_id": "Kalau ngomongin soal..., langsung kepikiran... (Asosiasi spontan hal pertama yang terlintas)",
-    "keyTakeaway": "Dipakai saat mendengar satu topik, lalu secara spontan pikiranmu langsung mengaitkannya dengan ciri khas atau ikon utamanya (contoh: dengar kata Kyoto, langsung kepikiran kuil dan matcha).",
-    "nuance": "Koneksi asosiasi pikiran alami yang paling melekat di benak masyarakat.",
-    "beforeState": "Topik Tunggal: Mendengar nama kota atau makanan 🏙️",
-    "afterState": "Asosiasi Spontan: Hal ikonik pertama yang langsung terbayang di kepala 💡"
+    "meaning_id": "Kalau bicara soal ~, (yang terlintas adalah) ~",
+    "keyTakeaway": "Bagian kedua biasanya menyebut sesuatu yang dianggap khas atau terkenal, bukan pendapat yang aneh.",
+    "nuance": "というと, といえば, dan といったら dipakai saat suatu topik disebut, lalu pembicara menyebut hal yang langsung terlintas atau paling khas tentangnya: 京都というと、お寺をイメージする = kalau bicara soal Kyoto, yang terbayang adalah kuil. といえば juga dipakai untuk beralih topik dengan alami (そういえば = ngomong-ngomong). といったら bisa bernada emosional (寒さといったら = dinginnya bukan main).",
+    "beforeState": "京都にはお寺が多い。— Fakta biasa.",
+    "afterState": "京都というと、お寺を思い浮かべる。— Hal pertama yang terlintas saat mendengar 'Kyoto'."
   },
   "w2d5g3": {
-    "meaning_id": "Walau dibilang begitu, sebenarnya aslinya cuma... (Meluruskan ekspektasi agar tidak salah paham)",
-    "keyTakeaway": "Gunakan untuk meredam imajinasi lawan bicara agar tidak membayangkan hal yang terlalu muluk atau mewah dibanding realitas yang sebenarnya sederhana.",
-    "nuance": "Meluruskan ekspektasi lawan bicara dengan nada merendah atau realistis.",
-    "beforeState": "Ekspektasi Mewah: Lawan bicara membayangkan hal hebat/mahal 🏰",
-    "afterState": "Kenyataan Sebenarnya: Meluruskan bahwa faktanya biasa-biasa saja 🛖"
+    "meaning_id": "Walaupun disebut ~, sebenarnya (hanya) ~",
+    "keyTakeaway": "Pola ini sering dipakai untuk merendah. Bagian kedua sering memakai だけ atau あまり〜ない.",
+    "nuance": "といっても dipakai untuk meluruskan anggapan lawan bicara agar tidak membayangkan hal yang berlebihan: 旅行といっても、近くの温泉に行っただけです = walaupun disebut liburan, sebenarnya cuma pergi ke pemandian air panas dekat rumah. Bagian kedua biasanya menjelaskan kenyataan yang lebih sederhana atau terbatas.",
+    "beforeState": "旅行に行きました。— Lawan bicara bisa membayangkan liburan besar.",
+    "afterState": "旅行といっても、近くの温泉に行っただけです。— Meluruskan bahwa liburannya sederhana."
   },
   "w2d6g1": {
-    "meaning_id": "Coba deh lakukan... (Ajakan ramah menyemangati dari orang tua/senior kepada junior)",
-    "keyTakeaway": "Hanya dipakai oleh orang tua, guru, atau senior kepada anak kecil/junior dengan nada ramah menyemangati untuk mencoba ('Coba sendiri dulu yuk').",
-    "nuance": "Dorongan suportif hangat yang santun tanpa nada memaksa.",
-    "beforeState": "Ragu Melangkah: Anak kecil/junior ragu untuk mencoba ❓",
-    "afterState": "Dorongan Ramah: Senior mengajak mencoba dengan nada menyemangati 🎈"
+    "meaning_id": "Cobalah ~ (dari atasan kepada bawahan)",
+    "keyTakeaway": "Jangan dipakai kepada atasan atau orang yang lebih tua. Kepada mereka, gunakan 〜てみてください.",
+    "nuance": "Bentuk -te + ごらん(なさい) adalah cara ramah untuk menyuruh mencoba sesuatu, dipakai oleh orang tua, guru, atau senior kepada anak-anak atau junior: 先生に聞いてごらん = coba tanya ke guru. ごらん adalah bentuk hormat dari 見る, jadi maknanya mirip 〜てみなさい.",
+    "beforeState": "先生に聞きなさい。— Perintah: tanyalah ke guru.",
+    "afterState": "先生に聞いてごらん。— Dorongan ramah: coba saja tanya ke guru."
   },
   "w2d6g2": {
-    "meaning_id": "Menyampaikan agar... / Menyuruh supaya... (Melaporkan pesan atau instruksi secara tidak langsung)",
-    "keyTakeaway": "Bentuk kutipan tidak langsung untuk meneruskan instruksi atau permintaan kepada orang ketiga tanpa mengulang kata perintah yang kasar.",
-    "nuance": "Penyampaian instruksi secara diplomatis dan beretika.",
-    "beforeState": "Perintah Asli: Kalimat perintah langsung dari atasan 🗣️",
-    "afterState": "Penyampaian Halus: Melaporkan inti instruksi secara tidak langsung 📨"
+    "meaning_id": "Menyuruh/meminta (orang) agar ~",
+    "keyTakeaway": "Pola ini menyampaikan isi perintah tanpa mengulang bentuk perintah langsung (来い, 来てください), sehingga lebih halus.",
+    "nuance": "Kata kerja bentuk kamus atau bentuk -nai + よう(に) + 言う/頼む/伝える dipakai untuk menyampaikan perintah atau permintaan secara tidak langsung: 田中さんに、私の部屋に来るように言ってください = tolong bilang ke Tanaka agar datang ke kamar saya. Untuk larangan, gunakan bentuk -nai: 遅れないように言う. Orang yang disuruh ditandai に.",
+    "beforeState": "田中さんに「来てください」と言ってください。— Mengutip langsung.",
+    "afterState": "田中さんに、来るように言ってください。— Menyampaikan perintah secara tidak langsung."
   },
   "w2d6g3": {
-    "meaning_id": "Kena tegur disuruh / dimarahi jangan... (Melaporkan bahwa diri sendiri ditegur atau dilarang keras)",
-    "keyTakeaway": "Digunakan saat menceritakan pengalaman bahwa diri kita ditegur, diperintah, atau dimarahi oleh atasan/guru ('Saya dimarahi disuruh jangan terlambat').",
-    "nuance": "Menceritakan kembali teguran keras yang membekas dari pihak yang berwenang.",
-    "beforeState": "Momen Dimarahi: Langsung berhadapan dengan teguran atasan ⚠️",
-    "afterState": "Menceritakan Pengalaman: Membagikan cerita teguran tersebut kepada teman 🗣️"
+    "meaning_id": "Disuruh ~ / dilarang ~ (melaporkan perintah yang diterima)",
+    "keyTakeaway": "Bentuk perintah kasar (飲むな, 来い) di sini tidak berarti pembicara bersikap kasar; itu hanya cara mengutip isi perintah secara ringkas.",
+    "nuance": "Bentuk perintah (〜ろ/〜え) atau larangan (bentuk kamus + な) + と言われる/注意される/しかられる/怒られる dipakai untuk menceritakan bahwa seseorang diperintah, ditegur, atau dimarahi: 医者に酒を飲むなと言われた = saya dilarang dokter minum alkohol; 早く来いと言われた = saya disuruh cepat datang. Bentuk perintah ini hanya mengutip isi perintah, sehingga tidak terdengar kasar.",
+    "beforeState": "医者は「お酒を飲まないでください」と言った。— Mengutip langsung ucapan dokter.",
+    "afterState": "医者に酒を飲むなと言われた。— Menceritakan larangan yang diterima secara ringkas."
   },
   "w2d6g4": {
-    "meaning_id": "Dimintai tolong supaya... (Melaporkan permohonan santai dari orang lain)",
-    "keyTakeaway": "Melaporkan bahwa orang lain meminta bantuan atau memohon kepada kita secara akrab ('Dia minta tolong diajari').",
-    "nuance": "Kutipan santai atas permohonan tolong yang diterima.",
-    "beforeState": "Permintaan Tolong: Orang lain memohon bantuan secara langsung 🤝",
-    "afterState": "Melaporkan Permintaan: Menceritakan kepada orang lain bahwa kita dimintai tolong 💬"
+    "meaning_id": "Diminta (tolong) untuk ~ / agar tidak ~",
+    "keyTakeaway": "くれ adalah bentuk perintah dari くれる. Dalam kutipan seperti ini, くれ tidak terdengar kasar; ia hanya meringkas permintaan 'tolong ~'.",
+    "nuance": "Bentuk -te + くれと atau bentuk -nai + でくれと, lalu 頼まれる/言われる, dipakai untuk melaporkan bahwa orang lain meminta pembicara melakukan atau tidak melakukan sesuatu: 友達に電話番号を教えてくれと頼まれた = saya diminta teman untuk memberi tahu nomor telepon; 誰にも言わないでくれと言われた = saya diminta untuk tidak memberi tahu siapa pun.",
+    "beforeState": "友達は「教えてください」と言った。— Mengutip langsung.",
+    "afterState": "友達に教えてくれと頼まれた。— Melaporkan permintaan yang diterima pembicara."
   },
   "w3d1g1": {
-    "meaning_id": "Biarpun sudah... tetap saja... / Walaupun... (Hasil tidak berubah meski sudah berusaha)",
-    "keyTakeaway": "Menghubungkan dua fakta di mana hasil akhir tetap tidak tercapai atau meleset dari ekspektasi normal, meski upaya keras sudah dikerahkan.",
-    "nuance": "Kontras nyata antara curahan usaha dengan hasil akhir yang tidak sebanding.",
-    "beforeState": "Usaha Keras: Sudah mencari di kamus dan bertanya 🔍",
-    "afterState": "Hasil Nihil: Tetap saja tidak menemukan jawabannya ❌"
+    "meaning_id": "Walaupun ~ (tetap saja ~)",
+    "keyTakeaway": "Hasil di klausa kedua berlawanan dengan yang biasanya diharapkan dari klausa pertama. Bentuk lampau (〜ても〜なかった) menceritakan kejadian nyata.",
+    "nuance": "ても menyatakan bahwa hasil di klausa utama tetap terjadi walaupun ada keadaan di klausa pertama: 調べてもわからなかった = walaupun sudah dicari, tetap tidak paham. Kata kerja: bentuk -te + も; kata sifat-i: 〜くても; kata sifat-na dan kata benda: でも (雨でも行く = walau hujan tetap pergi).",
+    "beforeState": "調べたので、わかった。— Dicari, jadi paham (hasil wajar).",
+    "afterState": "調べても、わからなかった。— Sudah dicari, tetapi tetap tidak paham (hasil berlawanan)."
   },
   "w3d1g2": {
-    "meaning_id": "Mau seberapa keras pun... / Tak peduli sebanyak apa pun... (Tingkat usaha tidak mengubah hasil)",
-    "keyTakeaway": "Dipadukan dengan kata tanya seperti どんなに / いくら untuk menegaskan bahwa seberapa pun ekstrem usahanya, hasilnya tetap tidak berubah.",
-    "nuance": "Penekanan intensitas maksimal yang tetap tidak sanggup membalikkan keadaan.",
-    "beforeState": "Usaha Berkali-kali: Latihan terus-menerus tanpa kenal lelah 🏋️",
-    "afterState": "Kenyataan Tetap: Tetap saja belum sanggup mengalahkannya 🛡️"
+    "meaning_id": "Sebanyak/sekeras apa pun ~, (tetap) ~",
+    "keyTakeaway": "どんなに lebih menekankan tingkat atau derajat, sedangkan いくら lebih menekankan jumlah atau pengulangan. Keduanya harus dipasangkan dengan 〜ても.",
+    "nuance": "どんなに atau いくら + 〜ても menekankan bahwa seberapa pun besar usaha atau tingkat suatu hal, hasilnya tetap tidak berubah: どんなに練習しても、全然うまくならない = sekeras apa pun berlatih, sama sekali tidak ada kemajuan; いくら高くても買う = semahal apa pun, tetap beli. いくら terutama dipakai untuk jumlah atau frekuensi.",
+    "beforeState": "練習しても、うまくならない。— Walaupun berlatih, tidak ada kemajuan.",
+    "afterState": "どんなに練習しても、うまくならない。— Sekeras apa pun berlatih, tetap tidak ada kemajuan."
   },
   "w3d1g3": {
-    "meaning_id": "Tanpa melakukan... (Ragam formal tertulis dari 〜ないで)",
-    "keyTakeaway": "Bentuk tulisan formal yang setara dengan 〜ないで. Khusus kata kerja する berubah bentuk menjadi せずに (bukan しずに).",
-    "nuance": "Gaya bahasa tertulis yang anggun dan berwibawa.",
-    "beforeState": "Ragam Lisan: 〜ないで (Umum dalam percakapan sehari-hari) 💬",
-    "afterState": "Ragam Tertulis: 〜ずに (Elegan dalam esai dan laporan resmi) ✒️"
+    "meaning_id": "Tanpa ~ (bentuk formal dari ないで)",
+    "keyTakeaway": "Hati-hati: する→せずに, 来る→来ずに (こずに). Kesalahan umum adalah menulis しずに.",
+    "nuance": "Bentuk -nai tanpa ない + ずに berarti 'tanpa ~', sama dengan 〜ないで tetapi lebih formal dan sering dipakai dalam tulisan: 辞書を使わずに書いた = menulis tanpa memakai kamus. する menjadi せずに (bukan しずに). Juga dipakai dalam ungkapan seperti 〜ずにはいられない.",
+    "beforeState": "辞書を使わないで書いた。— Bentuk lisan umum.",
+    "afterState": "辞書を使わずに書いた。— Bentuk yang lebih formal/tertulis."
   },
   "w3d2g1": {
-    "meaning_id": "Sebagai... / Selaku... (Menyatakan peran, status, atau kapasitas resmi)",
-    "keyTakeaway": "Menegaskan sudut pandang, profesi, tugas, atau kapasitas resmi seseorang dalam bertindak (contoh: selaku dokter, sebagai perwakilan negara).",
-    "nuance": "Menjalankan tindakan yang terikat pada tanggung jawab peran tersebut.",
-    "beforeState": "Tindakan Pribadi: Bertindak atas nama kesenangan sendiri 👤",
-    "afterState": "Kapasitas Resmi: Bertindak mengemban amanah status dan peran 🏅"
+    "meaning_id": "Sebagai ~; selaku ~",
+    "keyTakeaway": "として menunjukkan kapasitas atau peran. Bedakan dengan にとって, yang berarti 'bagi ~' (sudut pandang seseorang).",
+    "nuance": "Kata benda + として menyatakan peran, status, atau kedudukan seseorang atau sesuatu: 日本代表として試合に出る = bertanding sebagai wakil Jepang; 趣味として = sebagai hobi. Variasi: としては (dari sisi ~; untuk ukuran ~), としても (sebagai ~ pun), としての + kata benda (教師としての責任 = tanggung jawab sebagai guru).",
+    "beforeState": "彼は試合に出る。— Hanya menyatakan dia ikut bertanding.",
+    "afterState": "彼は日本代表として試合に出る。— Menegaskan perannya: sebagai wakil Jepang."
   },
   "w3d2g2": {
-    "meaning_id": "Untuk ukuran..., kok tumben... (Di luar dugaan jika melihat standar biasanya)",
-    "keyTakeaway": "Dipakai saat hasil atau kenyataannya di luar dugaan standar kategori tersebut (misal: untuk ukuran orang asing, bahasa Jepangnya fasih banget).",
-    "nuance": "Keterkejutan positif atau evaluasi yang melampaui tolok ukur umum.",
-    "beforeState": "Standar Umum: Ekspektasi normal untuk kategori tersebut 📊",
-    "afterState": "Di Luar Dugaan: Hasil nyata ternyata jauh melampaui tolok ukur biasa 🌟"
+    "meaning_id": "Untuk ukuran ~ (ternyata di luar dugaan)",
+    "keyTakeaway": "Subjeknya biasanya orang lain atau sesuatu, bukan diri sendiri. Penilaiannya bisa positif maupun negatif (高いにしては、おいしくない = untuk ukuran harga semahal itu, rasanya tidak enak).",
+    "nuance": "にしては menyatakan bahwa kenyataan berbeda dari yang biasanya diharapkan dari kategori atau keadaan tertentu: 外国人にしては日本語が上手だ = untuk ukuran orang asing, bahasa Jepangnya bagus. Kata benda langsung disambung, kata kerja memakai bentuk biasa (初めてやったにしては上手だ). それにしては berarti 'kalau begitu, kok ~'.",
+    "beforeState": "彼は日本語が上手だ。— Penilaian biasa.",
+    "afterState": "彼は外国人にしては日本語が上手だ。— Dibandingkan dengan yang biasa diharapkan dari orang asing, ternyata bagus."
   },
   "w3d2g3": {
-    "meaning_id": "Sekalipun memang begitu..., tapi tetap saja... (Kesimpulan tetap berlaku bahkan dalam kasus ekstrem)",
-    "keyTakeaway": "Menegaskan bahwa bahkan dalam kondisi yang paling bisa dimaklumi sekali pun, perbuatan atau hal tersebut tetap tidak bisa dibenarkan.",
-    "nuance": "Menolak pemakluman berlebihan demi menegakkan batasan prinsip.",
-    "beforeState": "Alasan Pemakluman: Harganya cuma 100 yen / keadaannya darurat 🪙",
-    "afterState": "Prinsip Tegas: Tetap saja mencuri itu perbuatan salah! 🚫"
+    "meaning_id": "Walaupun (memang) ~, tetap saja ~",
+    "keyTakeaway": "Bagian kedua sering berupa kritik, keluhan, atau penilaian yang tetap dipertahankan. Maknanya mirip としても dan にせよ.",
+    "nuance": "にしても menyatakan bahwa walaupun suatu keadaan diakui atau diandaikan, penilaian atau kesimpulan berikutnya tetap berlaku: これは、100円にしても高いと思う = walaupun harganya 100 yen, menurut saya tetap mahal; 忙しいにしても、連絡ぐらいはしてほしい = walaupun sibuk, setidaknya kabari. Kata benda langsung disambung, kata kerja dan kata sifat memakai bentuk biasa.",
+    "beforeState": "これは高いと思う。— Penilaian biasa.",
+    "afterState": "これは、100円にしても高いと思う。— Walaupun hanya 100 yen, penilaiannya tetap: mahal."
   },
   "w3d2g4": {
-    "meaning_id": "Seandainya benar begitu... / Andaikan... (Mengandaikan situasi imajiner yang belum pasti)",
-    "keyTakeaway": "Mengasumsikan suatu kondisi hipotetis sebagai premis, lalu menimbang apa yang akan terjadi jika pengandaian itu benar-benar terwujud.",
-    "nuance": "Eksplorasi skenario imajiner yang belum terkonfirmasi di dunia nyata.",
-    "beforeState": "Fakta Menggantung: Berita rumor yang belum pasti kebenarannya ❓",
-    "afterState": "Skenario Hipotetis: Membedah dampak jika rumor tersebut beneran fakta 💭"
+    "meaning_id": "Seandainya ~ (pengandaian)",
+    "keyTakeaway": "としたら menekankan bahwa itu hanya anggapan atau pengandaian. Untuk keadaan yang pasti akan terjadi, gunakan たら atau と.",
+    "nuance": "としたら dan とすれば menyatakan pengandaian atas sesuatu yang belum pasti, lalu memikirkan apa yang akan terjadi jika itu benar: その話が本当だとしたら、うれしい = seandainya cerita itu benar, saya senang. Kata benda dan kata sifat-na memakai だ (本当だとしたら). Sering didahului もし.",
+    "beforeState": "その話は本当だ。うれしい。— Dianggap sudah pasti benar.",
+    "afterState": "その話が本当だとしたら、うれしい。— Belum pasti; pembicara hanya mengandaikan."
   },
   "w3d3g1": {
-    "meaning_id": "Tadinya niatnya mau... (tapi kenyataannya batal / meleset)",
-    "keyTakeaway": "Menyatakan rencana atau niat masa lalu yang pada akhirnya tidak terwujud karena terbentur halangan atau situasi tak terduga.",
-    "nuance": "Ada rasa kecewa atau penjelasan mengapa rencana awal kandas di tengah jalan.",
-    "beforeState": "Rencana Awal: Berniat pergi jalan-jalan bersama teman 🎒",
-    "afterState": "Kenyataan Meleset: Mendadak sakit sehingga rencana terpaksa batal 🌧️"
+    "meaning_id": "Tadinya berniat ~ (tetapi tidak jadi/ternyata tidak)",
+    "keyTakeaway": "つもりだった biasanya diikuti が/けど dan penjelasan mengapa rencana itu gagal.",
+    "nuance": "Bentuk kamus atau bentuk -nai + つもりだった menyatakan niat di masa lalu yang tidak terwujud: 買い物に行くつもりだったが、頭が痛かったので家にいた = tadinya berniat belanja, tetapi karena sakit kepala saya di rumah saja. Bentuk -ta + つもりだった berarti 'kukira sudah ~' (鍵をかけたつもりだった = kukira sudah mengunci).",
+    "beforeState": "買い物に行くつもりだ。— Rencana saat ini.",
+    "afterState": "買い物に行くつもりだったが…— Rencana di masa lalu yang tidak jadi."
   },
   "w3d3g2": {
-    "meaning_id": "Seharusnya pasti... / Mana mungkin begitu! (Keyakinan kuat berdasar logika atau jadwal)",
-    "keyTakeaway": "Berdasarkan bukti atau jadwal logis: はずだ = seharusnya pasti terjadi; はずがない = secara akal sehat mustahil terjadi.",
-    "nuance": "Perhitungan rasional dan kepastian berdasarkan premis yang kuat.",
-    "beforeState": "Dugaan Ragu: Masih mengira-ngira tanpa dasar pasti ❓",
-    "afterState": "Keyakinan Logis: Yakin seyakin-yakinnya karena jadwalnya sudah tertera 📌"
+    "meaning_id": "Seharusnya ~; tidak mungkin ~ (はずがない)",
+    "keyTakeaway": "はず bukan kewajiban moral; untuk 'sepantasnya dilakukan', gunakan べきだ. はずだった berarti 'seharusnya (tetapi kenyataannya tidak)'.",
+    "nuance": "はずだ menyatakan keyakinan pembicara berdasarkan alasan atau informasi yang jelas, berarti 'seharusnya ~': 田中さんは旅行中だから、家にいないはずだ = Tanaka sedang bepergian, jadi seharusnya tidak ada di rumah. はずがない berarti 'tidak mungkin ~' (彼がうそをつくはずがない). Kata benda memakai の, kata sifat-na memakai な.",
+    "beforeState": "田中さんは家にいないと思う。— Dugaan biasa.",
+    "afterState": "田中さんは旅行中だから、家にいないはずだ。— Dugaan yakin berdasarkan alasan yang jelas."
   },
   "w3d3g3": {
-    "meaning_id": "Sudah sepantasnya... / Wajib secara moral (Kewajiban moral atau etika akal sehat)",
-    "keyTakeaway": "Bukan aturan hukum tertulis, melainkan norma etika, moral, dan akal sehat umum (contoh: janji itu sudah sepantasnya ditepati). Khusus kata kerja する bisa disingkat すべき.",
-    "nuance": "Beban moral batiniah yang disepakati oleh nurani masyarakat.",
-    "beforeState": "Hukum Tertulis: Aturan formal denda atau sanksi penjara 📜",
-    "afterState": "Norma Moral: Nurani akal sehat yang mewajibkan kebaikan ⚖️"
+    "meaning_id": "Sepatutnya ~; sebaiknya tidak ~ (べきではない)",
+    "keyTakeaway": "べきだ terdengar kuat dan bisa menggurui jika dipakai kepada orang yang lebih tinggi kedudukannya. Untuk saran yang lebih lunak, gunakan 〜たほうがいい.",
+    "nuance": "Kata kerja bentuk kamus + べきだ menyatakan bahwa sesuatu sepatutnya dilakukan menurut norma, moral, atau akal sehat: 約束は守るべきだ = janji sepatutnya ditepati. べきではない berarti 'sepatutnya tidak ~'. する bisa menjadi すべき atau するべき. Untuk kata sifat dan kata benda dipakai であるべきだ (公平であるべきだ).",
+    "beforeState": "約束を守ったほうがいい。— Saran: sebaiknya menepati janji.",
+    "afterState": "約束は守るべきだ。— Penegasan norma: janji sepatutnya ditepati."
   },
   "w3d3g4": {
-    "meaning_id": "Dulu sering banget... (Mengenang memori masa lalu dengan rasa nostalgia)",
-    "keyTakeaway": "Khusus menyambung ke kata kerja bentuk lampau (Vた), dipakai saat mengenang kembali rutinitas atau kenangan manis masa kecil/masa lalu.",
-    "nuance": "Rasa rindu nostalgia yang hangat saat menengok kembali perjalanan hidup.",
-    "beforeState": "Fakta Lampau Biasa: Dulu pernah bermain di sungai 🌊",
-    "afterState": "Sentuhan Nostalgia: Mengenang betapa seringnya bermain di sungai semasa kecil 🌅"
+    "meaning_id": "Dulu sering ~ (kenangan)",
+    "keyTakeaway": "Pola ini dipakai untuk kebiasaan yang berulang, bukan kejadian sekali saja.",
+    "nuance": "Bentuk -ta + ものだ (santai: もんだ) dipakai untuk mengenang kebiasaan di masa lalu dengan perasaan nostalgia: 子どものころはよく川で遊んだものだ = waktu kecil, saya sering bermain di sungai. Sering dipasangkan dengan よく. ものだ dengan bentuk kamus punya makna lain, yaitu 'memang sudah semestinya ~' (人は年を取るものだ).",
+    "beforeState": "子どものころ、川で遊んだ。— Fakta biasa di masa lalu.",
+    "afterState": "子どものころは、よく川で遊んだものだ。— Mengenang kebiasaan itu dengan rasa rindu."
   },
   "w3d4g1": {
-    "meaning_id": "Sekalian / Mumpung lagi... (Memanfaatkan satu kesempatan untuk urusan lain)",
-    "keyTakeaway": "Aktivitas utama dilakukan dulu, lalu memanfaatkan momentum jalan tersebut untuk sekalian menyelesaikan urusan sampingan yang searah.",
-    "nuance": "Efisiensi cerdas dalam memanfaatkan satu jalan untuk dua manfaat.",
-    "beforeState": "Dua Urusan Terpisah: Pergi jalan-jalan dan pergi ke kantor pos terpisah 🚶",
-    "afterState": "Sekali Jalan: Mumpung jalan-jalan, sekalian kirim surat di kantor pos 📮"
+    "meaning_id": "Sekalian ~ (sambil melakukan hal lain)",
+    "keyTakeaway": "Bagian sebelum ついでに adalah kegiatan utama; bagian sesudahnya adalah kegiatan tambahan yang lebih kecil.",
+    "nuance": "ついでに menyatakan bahwa sambil melakukan kegiatan utama, seseorang sekalian melakukan hal lain: 散歩のついでに、この手紙を出してきてくれませんか = sekalian jalan-jalan, bisa tolong kirimkan surat ini? Kata benda memakai の, kata kerja memakai bentuk kamus atau bentuk -ta.",
+    "beforeState": "散歩に行く。それから手紙を出す。— Dua kegiatan terpisah.",
+    "afterState": "散歩のついでに、手紙を出す。— Mengirim surat sekalian saat jalan-jalan."
   },
   "w3d4g2": {
-    "meaning_id": "Tiap kali... pasti... (Setiap kali peristiwa terjadi, selalu dibarengi hal yang sama)",
-    "keyTakeaway": "Menunjukkan keteraturan alami: setiap kali hal A terjadi, tanpa terkecuali hal B selalu mengiringi bersamanya.",
-    "nuance": "Pengulangan pola yang konsisten dari waktu ke waktu.",
-    "beforeState": "Kejadian Terisolasi: Belanja sekali saat hari libur 🛍️",
-    "afterState": "Pola Berulang: Tiap kali belanja, pasti selalu membeli buku baru 📚"
+    "meaning_id": "Setiap kali ~",
+    "keyTakeaway": "たびに cocok untuk kejadian yang berulang. Bagian kedua menyatakan hal yang selalu terjadi, sering berupa perasaan atau kebiasaan.",
+    "nuance": "Kata kerja bentuk kamus atau kata benda + の + たびに menyatakan bahwa setiap kali sesuatu terjadi, hal lain selalu menyertainya: 買い物のたびに袋をたくさんもらう = setiap kali belanja, dapat banyak kantong; この写真を見るたびに、昔を思い出す = setiap kali melihat foto ini, saya teringat masa lalu.",
+    "beforeState": "買い物で袋をもらった。— Satu kejadian.",
+    "afterState": "買い物のたびに、袋をもらう。— Setiap kali belanja, selalu dapat kantong."
   },
   "w3d4g3": {
-    "meaning_id": "Baru saja... tiba-tiba langsung...! (Perubahan mendadak dan tak terduga tepat setelah aksi)",
-    "keyTakeaway": "Menunjukkan kejutan spontan: tepat detik itu juga terjadi perubahan di luar kendali pembicara (klausa kedua tidak boleh berupa ajakan atau niat sadar).",
-    "nuance": "Kecepatan momentum yang mengagetkan tanpa jeda waktu.",
-    "beforeState": "Aksi Sadar: Membuka jendela kamar 🪟",
-    "afterState": "Kejutan Spontan: Angin kencang mendadak langsung menerobos masuk 🌪️"
+    "meaning_id": "Begitu ~, tiba-tiba ~",
+    "keyTakeaway": "Untuk tindakan sengaja yang dilakukan segera setelahnya, gunakan 〜てすぐ atau 〜とすぐに, bukan とたん.",
+    "nuance": "Bentuk -ta + とたん(に) menyatakan bahwa tepat setelah sesuatu terjadi, muncul perubahan yang mendadak dan tidak terduga: 窓を開けたとたん、強い風が入ってきた = begitu jendela dibuka, angin kencang langsung masuk. Klausa kedua adalah kejadian di luar kendali pembicara, sehingga tidak boleh berupa niat, ajakan, atau perintah.",
+    "beforeState": "窓を開けた。強い風が入ってきた。— Dua kejadian berurutan.",
+    "afterState": "窓を開けたとたん、強い風が入ってきた。— Angin masuk tiba-tiba, tepat saat jendela dibuka."
   },
   "w3d4g4": {
-    "meaning_id": "Tepat di tengah-tengah asyik... (Sedang sibuk beraktivitas lalu mendadak disela)",
-    "keyTakeaway": "Menunjukkan klimaks aktivitas yang sedang berlangsung intens, lalu tiba-tiba terganggu oleh interupsi tak terduga (contoh: gempa pas lagi makan).",
-    "nuance": "Interupsi mendadak yang merusak fokus aktivitas utama.",
-    "beforeState": "Aktivitas Biasa: Sedang makan malam bersama keluarga 🍲",
-    "afterState": "Terinterupsi Tiba-tiba: Pas lagi asyik-asyiknya makan, mendadak listrik padam ⚡"
+    "meaning_id": "Tepat di tengah-tengah ~",
+    "keyTakeaway": "Dibanding 〜ている間に atau 〜ているときに, 最中に lebih menekankan bahwa kegiatannya sedang berlangsung paling intens, dan bagian kedua biasanya kejadian yang mengganggu.",
+    "nuance": "Kata benda + の atau bentuk 〜ている + 最中に (さいちゅうに) menyatakan bahwa sesuatu terjadi tepat ketika suatu kegiatan sedang berlangsung, biasanya sebagai gangguan: 食事の最中に、お客さんが来た = tepat saat sedang makan, ada tamu datang. 最中だ di akhir kalimat berarti 'sedang dalam proses ~' (今、会議の最中だ).",
+    "beforeState": "食事のときに、お客さんが来た。— Netral: saat makan, tamu datang.",
+    "afterState": "食事の最中に、お客さんが来た。— Menekankan bahwa tamu datang tepat di tengah-tengah makan."
   },
   "w3d5g1": {
-    "meaning_id": "Persis sesuai dengan... / Persis seperti yang... (Mengikuti petunjuk tanpa melenceng)",
-    "keyTakeaway": "Melakukan tindakan persis menjiplak petunjuk, ramalan, atau rencana awal tanpa melenceng (misal: jalan sesuai petunjuk peta). Jika langsung menempel kata benda berubah bunyi menjadi どおり.",
-    "nuance": "Presisi dan kesesuaian sempurna dengan acuan rujukan.",
-    "beforeState": "Rencana Awal: Rute perjalanan yang tergambar di peta 🗺️",
-    "afterState": "Eksekusi Tepat: Berjalan menelusuri rute persis sesuai petunjuk peta 🚶"
+    "meaning_id": "Sesuai dengan ~; persis seperti ~",
+    "keyTakeaway": "Perhatikan perubahan bunyi: 地図のとおり, tetapi 予定どおり (langsung tanpa の, dibaca どおり).",
+    "nuance": "とおり(に) menyatakan bahwa sesuatu dilakukan atau terjadi persis sesuai dengan petunjuk, rencana, atau perkiraan: 地図のとおりに来た = datang persis mengikuti peta; 言われたとおりにする = melakukan persis seperti yang dikatakan. Kata benda memakai の + とおり, atau langsung + どおり (予定どおり = sesuai jadwal).",
+    "beforeState": "地図を見て来た。— Hanya melihat peta.",
+    "afterState": "地図のとおりに来た。— Datang persis mengikuti rute di peta."
   },
   "w3d5g2": {
-    "meaning_id": "Dalam kondisi tetap... / Dibiarkan begitu saja (Melakukan hal lain tanpa mengubah kondisi awal)",
-    "keyTakeaway": "Kondisi semula sengaja dibiarkan bertahan tanpa dikembalikan ke keadaan normal saat melakukan tindakan berikutnya (misal: tidur dalam keadaan lampu masih menyala).",
-    "nuance": "Mempertahankan status quo keadaan pertama.",
-    "beforeState": "Kondisi Awal: Lampu kamar tidur menyala terang 💡",
-    "afterState": "Tindakan Berikut: Masuk ke selimut dan tidur dengan lampu tetap menyala 🛏️"
+    "meaning_id": "Dalam keadaan ~ (dibiarkan tetap)",
+    "keyTakeaway": "まま sering menyiratkan bahwa keadaan itu tidak biasa atau tidak semestinya (lupa mematikan, tidak melepas).",
+    "nuance": "まま menyatakan bahwa suatu keadaan dibiarkan tetap seperti itu ketika hal lain dilakukan atau terjadi: テレビをつけたまま寝てしまった = tertidur dengan TV masih menyala; 靴をはいたまま部屋に入る = masuk kamar dengan sepatu masih dipakai. Disambung ke bentuk -ta, bentuk -nai, kata benda + の, atau kata sifat.",
+    "beforeState": "テレビを消して寝た。— Mematikan TV lalu tidur (normal).",
+    "afterState": "テレビをつけたまま寝てしまった。— Tertidur tanpa mematikan TV."
   },
   "w3d5g3": {
-    "meaning_id": "Dibiarkan melulu... / Lupa dibereskan (Keteledoran atau kelalaian membiarkan kondisi)",
-    "keyTakeaway": "Selalu mengandung rasa kesal, teledor, atau kritik karena suatu benda ditinggalkan begitu saja tanpa ditutup/dimatikan (pintu terbuka terus, keran mengalir terus).",
-    "nuance": "Kelalaian yang menimbulkan pemborosan atau rasa jengkel orang sekitar.",
-    "beforeState": "Pintu Terbuka: Membuka pintu kamar saat masuk 🚪",
-    "afterState": "Lupa Menutup: Ditinggal pergi dengan pintu dibiarkan menganga melulu ⚠️"
+    "meaning_id": "Dibiarkan ~ terus (tanpa dibereskan)",
+    "keyTakeaway": "Dibanding まま, っぱなし lebih bernada negatif (lalai, tidak bertanggung jawab) dan lebih santai.",
+    "nuance": "Bentuk masu (tanpa ます) + っぱなし menyatakan bahwa sesuatu dibiarkan dalam keadaan tertentu terus-menerus, sering karena kelalaian: 窓を開けっぱなしで出てきた = pergi dengan jendela dibiarkan terbuka; 水を出しっぱなしにする = membiarkan air keran terus mengalir. Juga bisa berarti tindakan yang terus berlangsung (立ちっぱなし = berdiri terus).",
+    "beforeState": "窓を開けたまま出てきた。— Netral: jendela masih terbuka.",
+    "afterState": "窓を開けっぱなしで出てきた。— Bernada lalai: jendela dibiarkan terbuka begitu saja."
   },
   "w3d5g4": {
-    "meaning_id": "Cuma ber-... saja / Hanya itu saja (Menekankan jumlah yang sangat sedikit atau terbatas)",
-    "keyTakeaway": "Menekankan eksklusivitas atau kesendirian yang minim (misal: cuma berdua saja di ruangan, hanya sekali itu saja seumur hidup). Ragam lisan menjadi っきり.",
-    "nuance": "Kesendirian hening atau kelangkaan kesempatan.",
-    "beforeState": "Banyak Orang: Suasana ramai pesta 👥",
-    "afterState": "Eksklusif Minim: Tinggal berdua saja di dalam ruangan sunyi 🕯️"
+    "meaning_id": "Hanya ~ saja",
+    "keyTakeaway": "二人きり menekankan bahwa tidak ada orang lain, sering dalam suasana pribadi atau intim.",
+    "nuance": "きり (lisan: っきり) setelah kata benda, terutama jumlah, menyatakan bahwa hanya ada sejumlah itu: 二人きりで話したい = ingin bicara berdua saja; 一度きり = hanya sekali. Setelah bentuk -ta, きり berarti 'sejak ~ (tidak ada kelanjutannya)': 出かけたきり帰ってこない = pergi dan sejak itu tidak kembali.",
+    "beforeState": "二人で話したい。— Ingin bicara berdua.",
+    "afterState": "二人きりで話したい。— Ingin bicara hanya berdua saja, tanpa orang lain."
   },
   "w3d6g1": {
-    "meaning_id": "Kelihatan ingin... / Menunjukkan gelagat... (Menggambarkan emosi/keinginan pihak ketiga)",
-    "keyTakeaway": "Emosi dan sensasi orang lain tidak bisa dirasakan langsung di kepala kita, jadi orang Jepang wajib memakai 〜がる saat mendeskripsikan gelagat emosi orang ketiga.",
-    "nuance": "Membatasi pengamatan pada tanda-tanda lahiriah yang terlihat secara sopan.",
-    "beforeState": "Perasaan Sendiri: Saya merasa takut (怖い) 😨",
-    "afterState": "Gelagat Orang Lain: Dia tampak menunjukkan rasa takut (怖がる) 👤"
+    "meaning_id": "(Orang lain) tampak merasa ~",
+    "keyTakeaway": "Bahasa Jepang membedakan perasaan sendiri (怖い) dan perasaan orang lain yang terlihat dari luar (怖がっている). Untuk orang lain, sering dipakai bentuk 〜がっている.",
+    "nuance": "がる ditambahkan pada kata sifat perasaan (kata sifat-i tanpa い, kata sifat-na langsung) untuk menggambarkan perasaan orang lain yang terlihat dari sikapnya: 怖い→怖がる = tampak takut; 寂しい→寂しがる = tampak kesepian. Bentuk 〜がらないで berarti 'jangan ~': 怖がらないでください = jangan takut. Untuk perasaan pembicara sendiri, cukup pakai kata sifatnya (私は怖い).",
+    "beforeState": "私は犬が怖い。— Perasaan pembicara sendiri.",
+    "afterState": "弟は犬を怖がっている。— Perasaan adik, terlihat dari sikapnya."
   },
   "w3d6g2": {
-    "meaning_id": "Penginnya kamu... / Berharap pihak lain bersedia... (Menyatakan harapan terhadap orang lain)",
-    "keyTakeaway": "Bukan keinginan diri sendiri untuk bertindak, melainkan harapan tulus agar LAWAN BICARA yang melakukan (atau tidak melakukan) tindakan tersebut.",
-    "nuance": "Permohonan personal yang mengharapkan kerja sama pihak lain.",
-    "beforeState": "Keinginan Diri: Saya ingin melihat dokumen itu (見たい) 👁️",
-    "afterState": "Harapan pada Rekan: Saya ingin Anda yang memperlihatkan dokumen itu (見せてほしい) 📄"
+    "meaning_id": "Ingin (orang lain) ~",
+    "keyTakeaway": "見たい = saya ingin melihat (pembicara yang melihat); 見せてほしい = saya ingin kamu memperlihatkan (orang lain yang bertindak). Kepada atasan, lebih sopan memakai 〜ていただけませんか.",
+    "nuance": "Bentuk -te + ほしい menyatakan keinginan pembicara agar orang lain melakukan sesuatu: 教科書を見せてほしい = saya ingin (kamu) memperlihatkan buku pelajaran. Untuk 'ingin orang lain tidak ~', gunakan 〜ないでほしい. 〜てもらいたい punya makna yang sama. Orang yang diharapkan melakukannya ditandai に.",
+    "beforeState": "教科書が見たい。— Pembicara ingin melihat.",
+    "afterState": "教科書を見せてほしい。— Pembicara ingin lawan bicara memperlihatkannya."
   },
   "w3d6g3": {
-    "meaning_id": "Pura-pura... / Bersikap seolah-olah... (Bertingkah layaknya suatu keadaan padahal tidak)",
-    "keyTakeaway": "Menunjukkan kepura-puraan lahiriah yang sengaja ditampilkan untuk menutupi kenyataan sebenarnya (misal: pura-pura tidur, pura-pura tidak tahu masalah).",
-    "nuance": "Sandiwara sosial demi menghindari konflik atau menutupi rasa malu.",
-    "beforeState": "Kenyataan Sebenarnya: Sebenarnya masih terjaga dan mendengar semuanya 👂",
-    "afterState": "Sandiwara Luar: Menutup mata dan bernapas teratur pura-pura tidur 😴"
+    "meaning_id": "Pura-pura ~",
+    "keyTakeaway": "ふり selalu berarti kenyataannya berbeda. Bentuk lain: 見て見ぬふりをする = pura-pura tidak melihat.",
+    "nuance": "ふりをする menyatakan bahwa seseorang berpura-pura dalam keadaan tertentu, padahal kenyataannya tidak: 知っているふりをする = pura-pura tahu; 寝たふりをする = pura-pura tidur. Kata kerja memakai bentuk biasa, kata sifat-na memakai な, kata benda memakai の (学生のふり).",
+    "beforeState": "彼はそのことを知っている。— Fakta: dia tahu.",
+    "afterState": "彼はそのことを知っているふりをしている。— Dia bersikap seolah tahu, padahal tidak."
   },
   "w4d1g1": {
-    "meaning_id": "Bagi... / Dari sudut pandang... (Menilai kepentingan atau dampak dari kacamata seseorang)",
-    "keyTakeaway": "Menilai arti penting, nilai, atau standar dari kacamata subjek yang bersangkutan (contoh: bagi saya, keluarga adalah nomor satu).",
-    "nuance": "Subjektivitas prioritas nilai yang berbeda pada tiap individu.",
-    "beforeState": "Fakta Objektif: Pekerjaan yang berat bagi siapa saja 💼",
-    "afterState": "Kacamata Pribadi: Bagi saya pribadi, pekerjaan ini sangat bermakna 🌟"
+    "meaning_id": "Bagi ~",
+    "keyTakeaway": "にとって diikuti penilaian, bukan tindakan. Untuk sikap seseorang terhadap orang lain (ramah kepada ~), gunakan に対して.",
+    "nuance": "Kata benda (biasanya orang atau kelompok) + にとって menyatakan sudut pandang dari mana sesuatu dinilai: あなたにとって、一番大切なものは何ですか = bagimu, apa hal yang paling penting? Bagian sesudahnya biasanya berupa penilaian (大切だ, 難しい, 必要だ). Variasi: にとっては (menonjolkan), にとっても (bagi ~ pun).",
+    "beforeState": "この仕事は大切だ。— Penilaian umum.",
+    "afterState": "私にとって、この仕事は大切だ。— Penilaian dari sudut pandang saya."
   },
   "w4d1g2": {
-    "meaning_id": "Padahal..., tapi herannya malah... (Nggak sebanding dengan apa yang dikira)",
-    "keyTakeaway": "Digunakan saat kenyataan yang terjadi tidak proporsional atau berbeda dari ekspektasi wajar yang melekat pada kondisi tersebut (misal: harganya mahal tapi herannya rasanya biasa saja).",
-    "nuance": "Keheranan atas hasil yang meleset dari taksiran awal.",
-    "beforeState": "Ekspektasi Logis: Usia tua semestinya staminanya menurun 👴",
-    "afterState": "Di Luar Dugaan: Padahal sudah berusia lanjut, staminanya masih sangat lincah! 🏃"
+    "meaning_id": "Untuk ukuran ~, (ternyata) ~",
+    "keyTakeaway": "Maknanya mirip にしては. Bedanya, わりに bisa dipakai dengan kata yang menyatakan tingkat (年, 値段, 高い), sedangkan にしては lebih sering dengan kategori yang jelas (外国人, 子ども).",
+    "nuance": "わりに(は) menyatakan bahwa hasil atau kenyataan tidak sebanding dengan yang biasanya diharapkan dari suatu keadaan: 年のわりには若く見える = untuk ukuran usianya, dia terlihat muda; 高いわりにおいしくない = untuk ukuran harga semahal itu, rasanya tidak enak. Kata benda memakai の, kata sifat-na memakai な.",
+    "beforeState": "彼は若く見える。— Penilaian biasa.",
+    "afterState": "彼は年のわりには若く見える。— Dibandingkan usia sebenarnya, ternyata terlihat muda."
   },
   "w4d1g3": {
-    "meaning_id": "Padahal tahu, tapi kok malah gitu! (Menyindir atau kesal karena perilakunya bertolak belakang)",
-    "keyTakeaway": "Selalu mengandung nada menyindir, geram, atau kritik tajam kepada pihak lain yang bertingkah berlawanan dengan apa yang diketahuinya/dimilikinya.",
-    "nuance": "Kekecewaan emosional atas ketidakjujuran atau kemalasan pihak lain.",
-    "beforeState": "Kenyataan Pengetahuan: Dia sebenarnya tahu letak kesalahannya 🧠",
-    "afterState": "Sindiran Pedas: Padahal tahu, kok pura-pura polos dan diam saja! 😠"
+    "meaning_id": "Padahal ~ (nada kesal/mencela)",
+    "keyTakeaway": "Dibanding のに, くせに lebih kuat nada mencelanya dan bisa terdengar kasar. Hindari memakainya kepada atasan.",
+    "nuance": "くせに menyatakan bahwa sikap seseorang bertentangan dengan keadaannya, disertai rasa kesal, kecewa, atau mencela: 知っているくせに、教えてくれない = padahal dia tahu, tetapi tidak mau memberi tahu. Kata benda memakai の, kata sifat-na memakai な. Biasanya dipakai untuk orang lain, bukan diri sendiri.",
+    "beforeState": "知っているのに、教えてくれない。— Kecewa, tetapi masih netral.",
+    "afterState": "知っているくせに、教えてくれない。— Lebih tajam: kesal dan mencela sikapnya."
   },
   "w4d1g4": {
-    "meaning_id": "Hal sepele kayak gitu sih...! / Mana sudi... (Meremehkan, menganggap enteng, atau merendah)",
-    "keyTakeaway": "Meremehkan hal yang dianggap sepele, atau merendahkan diri sendiri secara santun ('hal kayak gitu sih gak butuh', 'saya mah gak pantas dipuji').",
-    "nuance": "Memperkecil nilai suatu hal demi ketegasan atau kesopanan merendah.",
-    "beforeState": "Penyebutan Normal: Membahas dandan atau penampilan 💄",
-    "afterState": "Meremehkan: Dandan kayak gitu mah sama sekali nggak penting bagiku! 🙅"
+    "meaning_id": "Hal (remeh) seperti ~; ~ segala",
+    "keyTakeaway": "なんて juga dipakai untuk menyatakan rasa heran: 彼が来るなんて = tak disangka dia datang. Nadanya bergantung pada konteks.",
+    "nuance": "なんか, なんて, dan など dipakai untuk menyebut sesuatu dengan nada meremehkan, menolak, atau merendah. Biasanya diikuti bentuk negatif: お化粧なんかしてはいけない = tidak boleh dandan segala; 私なんか = orang seperti saya (merendah). なんか dan なんて lebih lisan, など lebih formal. Setelah bentuk -te atau 〜く, dipakai など (怒ってなどいない = sama sekali tidak marah).",
+    "beforeState": "お化粧をしてはいけない。— Larangan netral.",
+    "afterState": "お化粧なんかしてはいけない。— Larangan dengan nada meremehkan dandanan itu."
   },
   "w4d2g1": {
-    "meaning_id": "Berkat bantuan... / Beruntung karena... (Hasil positif yang disyukuri)",
-    "keyTakeaway": "Selalu diikuti hasil yang menyenangkan atau menguntungkan pembicara. Mengungkapkan rasa syukur dan terima kasih mendalam atas bantuan orang lain.",
-    "nuance": "Rasa terima kasih yang tulus atas kontribusi pihak lain.",
-    "beforeState": "Usaha Sendiri: Belajar keras menghadapi ujian 📖",
-    "afterState": "Rasa Syukur: Berkat bimbingan guru, saya akhirnya bisa lulus! 🎉"
+    "meaning_id": "Berkat ~ (hasil baik)",
+    "keyTakeaway": "おかげで dipakai untuk hasil baik. Untuk hasil buruk, gunakan せいで. Jika dipakai untuk hasil buruk, おかげで terdengar sinis.",
+    "nuance": "おかげで menyatakan penyebab dari hasil yang baik, disertai rasa terima kasih: 先生のおかげで合格できました = berkat guru, saya bisa lulus. Kata benda memakai の, kata sifat-na memakai な, kata kerja memakai bentuk biasa. おかげさまで adalah ungkapan sopan 'berkat doa Anda' saat menjawab kabar.",
+    "beforeState": "先生が教えてくれた。合格できた。— Dua fakta terpisah.",
+    "afterState": "先生のおかげで、合格できました。— Menyebut guru sebagai penyebab keberhasilan sambil berterima kasih."
   },
   "w4d2g2": {
-    "meaning_id": "Gara-gara... / Akibat buruk dari... (Menyalahkan penyebab atas hasil buruk)",
-    "keyTakeaway": "Selalu diikuti hasil yang merugikan, sial, atau menjengkelkan. Mengarahkan kambing hitam kepada pemicu masalah.",
-    "nuance": "Kekesalan atas dampak buruk yang menimpa diri sendiri.",
-    "beforeState": "Kondisi Cuaca: Hujan turun sangat deras 🌧️",
-    "afterState": "Menyalahkan Dampak: Gara-gara hujan deras, rencana liburan jadi kacau balau 💢"
+    "meaning_id": "Gara-gara ~ (hasil buruk)",
+    "keyTakeaway": "Lawan dari おかげで. Untuk penyebab yang tidak pasti, gunakan せいか (疲れたせいか、頭が痛い = mungkin karena lelah, kepala sakit).",
+    "nuance": "せいで menyatakan penyebab dari hasil yang buruk, sering dengan nada menyalahkan: バスが遅れたせいで、約束の時間に間に合わなかった = gara-gara bus terlambat, saya tidak sempat datang tepat waktu. せいだ di akhir kalimat berarti 'itu salah ~'. せいか berarti 'mungkin karena ~' (tidak pasti). Kata benda memakai の, kata sifat-na memakai な.",
+    "beforeState": "バスが遅れた。間に合わなかった。— Dua fakta terpisah.",
+    "afterState": "バスが遅れたせいで、間に合わなかった。— Menyalahkan bus sebagai penyebab hasil buruk."
   },
   "w4d2g3": {
-    "meaning_id": "Sebagai ganti... / Mengompensasi hal lain (Pertukaran peran atau kompensasi setara)",
-    "keyTakeaway": "Bisa berarti menggantikan objek secara langsung (minum jus sebagai ganti bir), atau kompensasi timbal balik (gajinya kecil tapi liburnya banyak).",
-    "nuance": "Keseimbangan timbal balik dalam pertukaran opsi.",
-    "beforeState": "Pilihan Utama: Minum kopi berkafein di malam hari ☕",
-    "afterState": "Pengganti Sehat: Minum teh herbal hangat sebagai penggantinya 🍵"
+    "meaning_id": "Sebagai ganti ~; sebaliknya ~",
+    "keyTakeaway": "Bandingkan dengan にかわって: Nにかわって berarti mewakili seseorang (部長にかわって = mewakili kepala bagian).",
+    "nuance": "かわりに punya dua makna. (1) Pengganti: ビールのかわりにジュースをください = sebagai ganti bir, minta jus saja. (2) Imbalan atau kompensasi: この仕事は給料が安いかわりに、休みが多い = pekerjaan ini gajinya kecil, tetapi sebagai gantinya liburnya banyak. Kata benda memakai の. そのかわり(に) di awal kalimat berarti 'sebagai gantinya'.",
+    "beforeState": "ジュースをください。— Permintaan biasa.",
+    "afterState": "ビールのかわりに、ジュースをください。— Jus diminta sebagai pengganti bir."
   },
   "w4d2g4": {
-    "meaning_id": "Mewakili... / Atas nama... (Menggantikan peran orang lain secara resmi)",
-    "keyTakeaway": "Dipakai saat seseorang menggantikan peran orang lain untuk menyampaikan sambutan, tugas resmi, atau perwakilan organisasi.",
-    "nuance": "Amanah resmi mewakili figur yang berhalangan hadir.",
-    "beforeState": "Pejabat Asli: Manajer berhalangan hadir dalam rapat 🏢",
-    "afterState": "Perwakilan Resmi: Mewakili manajer, saya menyampaikan laporan ini 🤝"
+    "meaning_id": "Mewakili ~; menggantikan ~",
+    "keyTakeaway": "Nのかわりに juga bisa dipakai untuk mewakili, tetapi にかわって lebih formal dan lebih jelas bermakna 'atas nama'.",
+    "nuance": "Kata benda + にかわって (にかわり) menyatakan bahwa seseorang melakukan sesuatu untuk menggantikan atau mewakili orang lain: 部長にかわって、私がごあいさつさせていただきます = mewakili kepala bagian, saya yang akan menyampaikan sambutan. Juga bisa berarti sesuatu menggantikan yang lama (手紙にかわって、メールが使われている = email dipakai menggantikan surat).",
+    "beforeState": "私がごあいさつします。— Saya yang menyampaikan sambutan.",
+    "afterState": "部長にかわって、私がごあいさつします。— Saya menyampaikan sambutan sebagai wakil kepala bagian."
   },
   "w4d3g1": {
-    "meaning_id": "Kira-kira sebesar... / Sampai ke tingkat... (Mengibaratkan ukuran atau derajat keparahan)",
-    "keyTakeaway": "Mengibaratkan seberapa ekstrem derajat suatu kondisi dengan perumpamaan nyata ('saking laparnya sampai serasa mau pingsan'). ほど lebih formal dibanding くらい.",
-    "nuance": "Hiperbola wajar untuk menggambarkan intensitas perasaan.",
-    "beforeState": "Kondisi Lapar: Merasa sangat lapar di siang hari 🍽️",
-    "afterState": "Ibarat Ekstrem: Saking laparnya sampai serasa mau pingsan di jalan! 😵"
+    "meaning_id": "Kira-kira sebesar ~; sampai-sampai ~ (tingkat)",
+    "keyTakeaway": "Untuk tingkat yang ekstrem, ほど lebih sering dipakai (死ぬほど疲れた = capeknya setengah mati). くらい juga dipakai untuk merendahkan (これくらい簡単だ = cuma segini, mudah).",
+    "nuance": "くらい/ぐらい/ほど menyatakan ukuran atau tingkat suatu keadaan dengan memberi contoh pembanding: 米粒くらいの大きさ = sebesar butir beras; 泣きたいほど痛い = sakitnya sampai ingin menangis. Sebelum kata benda dipakai くらいの/ほどの, dan sebelum kata kerja/kata sifat dipakai くらいに/ほどに. ほど terdengar lebih formal daripada くらい.",
+    "beforeState": "とても痛い。— Hanya menyatakan sangat sakit.",
+    "afterState": "泣きたいくらい痛い。— Menjelaskan tingkatnya: sakitnya sampai ingin menangis."
   },
   "w4d3g2": {
-    "meaning_id": "Makin... justru makin... (Korelasi bertingkat atau kecenderungan kuat)",
-    "keyTakeaway": "Menunjukkan bahwa semakin tinggi tingkat kategori tersebut, semakin kuat pula sifat yang disebutkan berlaku padanya (misal: makin muda orangnya, makin cepat belajarnya).",
-    "nuance": "Kecenderungan proporsional yang terlihat pada kelompok tertentu.",
-    "beforeState": "Kategori Usia: Mengamati orang muda dan orang tua 👥",
-    "afterState": "Korelasi Sifat: Makin muda usianya, justru makin cepat daya adaptasinya 🚀"
+    "meaning_id": "Semakin ~, semakin ~",
+    "keyTakeaway": "Pola ini menyatakan kecenderungan umum, bukan satu kejadian tertentu.",
+    "nuance": "ほど setelah kata benda atau kata sifat menyatakan bahwa semakin tinggi tingkat sesuatu, semakin kuat pula keadaan berikutnya: 若い人ほど朝寝坊をする = semakin muda orangnya, semakin sering bangun kesiangan; いい物ほど高い = semakin bagus barangnya, semakin mahal. Ini bentuk singkat dari pola 〜ば〜ほど.",
+    "beforeState": "若い人は朝寝坊をする。— Pernyataan umum.",
+    "afterState": "若い人ほど朝寝坊をする。— Semakin muda, semakin cenderung bangun kesiangan."
   },
   "w4d3g3": {
-    "meaning_id": "Makin sering... makin bertambah pula... (Korelasi bertingkat sejalan)",
-    "keyTakeaway": "Kombinasi bentuk syarat 〜ば + 〜ほど. Menunjukkan proses bertahap yang berjalan searah: makin dipelajari, makin terasa menarik dan menantang.",
-    "nuance": "Progresivitas linier di mana dua variabel saling memacu naik.",
-    "beforeState": "Belajar Bahasa: Menghafal kosakata baru 📖",
-    "afterState": "Semakin Mendalam: Makin sering dipelajari, justru makin terasa keindahannya 🌟"
+    "meaning_id": "Semakin ~, semakin ~",
+    "keyTakeaway": "Kata yang sama diulang dua kali: pertama dalam bentuk -ba, kedua dalam bentuk kamus + ほど.",
+    "nuance": "Bentuk -ba + bentuk kamus dari kata yang sama + ほど menyatakan bahwa dua hal berubah bersamaan secara sejalan: 彼のことを知れば知るほど好きになる = semakin mengenalnya, semakin menyukainya. Kata sifat-i: 安ければ安いほど (semakin murah, semakin ~); kata sifat-na: 静かなら静かなほど. Bagian ば bisa dihilangkan (考えるほど分からなくなる).",
+    "beforeState": "彼のことを知って、好きになった。— Kejadian biasa.",
+    "afterState": "彼のことを知れば知るほど、好きになる。— Rasa suka bertambah seiring bertambahnya pengetahuan tentang dia."
   },
   "w4d3g4": {
-    "meaning_id": "Nggak ada yang se-... ini! (Paling tiada duanya / tidak ada tandingannya)",
-    "keyTakeaway": "Bentuk superlatif mutlak: menyatakan bahwa tidak ada orang atau benda lain di dunia ini yang sanggup menyaingi tingginya sifat objek tersebut.",
-    "nuance": "Kekaguman mutlak tanpa tandingan pembanding.",
-    "beforeState": "Perbandingan Banyak: Membandingkan banyak orang ramah 👥",
-    "afterState": "Juara Mutlak: Tidak ada orang yang sehangat dan seramah beliau di dunia ini! 🥇"
+    "meaning_id": "Tidak ada yang se-~ (seperti) ~",
+    "keyTakeaway": "Gunakan いない untuk orang/hewan dan ない untuk benda/hal. Pola ini terdengar lebih emosional daripada 一番〜.",
+    "nuance": "Kata benda + くらい/ほど + 〜はいない (orang) atau 〜はない (benda/hal) menyatakan bahwa tidak ada yang menandingi tingkat sifat tersebut, yaitu superlatif: 彼女くらい親切な人はいない = tidak ada orang yang seramah dia; 健康ほど大切なものはない = tidak ada yang lebih penting daripada kesehatan.",
+    "beforeState": "彼女は一番親切だ。— Superlatif biasa.",
+    "afterState": "彼女くらい親切な人はいない。— Menegaskan bahwa tidak ada seorang pun yang menandingi keramahannya."
   },
   "w4d4g1": {
-    "meaning_id": "Nggak perlu sampai... segitunya / Tak usah repot-repot... (Menenangkan agar tidak berlebihan)",
-    "keyTakeaway": "Memberi tahu pihak lain bahwa situasi tidak seburuk itu, sehingga tidak perlu merasa cemas, meminta maaf, atau tergesa-gesa berlebihan.",
-    "nuance": "Menghibur dan menenangkan hati lawan bicara yang sedang panik.",
-    "beforeState": "Kecemasan Berlebih: Lawan bicara panik dan terus minta maaf 🙇",
-    "afterState": "Menenangkan Ramah: Tidak perlu sampai minta maaf segitunya, ini hal sepele kok! 🍀"
+    "meaning_id": "Tidak perlu ~",
+    "keyTakeaway": "Bedakan dengan bentuk -ta + ことはない, yang berarti 'belum pernah ~' (行ったことはない).",
+    "nuance": "Kata kerja bentuk kamus + ことはない menyatakan bahwa sesuatu tidak perlu dilakukan, sering untuk menenangkan atau menasihati lawan bicara: 君があやまることはないよ = kamu tidak perlu minta maaf; そんなに心配することはない = tidak perlu khawatir begitu. Maknanya mirip 〜なくてもいい, tetapi lebih tegas dan bernada menghibur.",
+    "beforeState": "あやまらなくてもいい。— Tidak perlu minta maaf (netral).",
+    "afterState": "君があやまることはないよ。— Menenangkan: kamu sama sekali tidak perlu minta maaf."
   },
   "w4d4g2": {
-    "meaning_id": "Kabarnya katanya... / Itu artinya... (Menyampaikan kabar berita atau menyimpulkan makna)",
-    "keyTakeaway": "Memiliki 2 fungsi: (1) ragam resmi menyampaikan kabar berita dari luar, (2) menyimpulkan arti dari suatu kejadian ('Nilainya 0, artinya dia tidak lulus').",
-    "nuance": "Penyampaian kabar yang terkonfirmasi atau penarikan kesimpulan logis.",
-    "beforeState": "Data Fakta: Kereta berhenti mendadak di jalur utama 🚆",
-    "afterState": "Kesimpulan Makna: Itu artinya kita bakal terlambat sampai kantor ⏰"
+    "meaning_id": "Katanya ~; itu berarti ~",
+    "keyTakeaway": "Sebagai penyampai kabar, ということだ lebih formal daripada そうだ dan cocok untuk meneruskan pesan di tempat kerja.",
+    "nuance": "ということだ punya dua fungsi. (1) Menyampaikan kabar atau pesan yang didengar, dengan nada agak formal: 少し遅れるということです = katanya dia akan sedikit terlambat. Bisa juga mengutip perintah atau ajakan (すぐ来いということだ = dia bilang suruh segera datang). (2) Menyimpulkan makna dari suatu keadaan: 返事がないということは、だめだということだ = tidak ada jawaban, itu berarti tidak bisa.",
+    "beforeState": "田中さんは少し遅れます。— Pernyataan langsung.",
+    "afterState": "田中さんから電話があって、少し遅れるということです。— Meneruskan pesan dari Tanaka."
   },
   "w4d4g3": {
-    "meaning_id": "Kuncinya ya harus... / Jalan terbaiknya adalah... (Saran tegas dari orang berpengalaman)",
-    "keyTakeaway": "Saran atau anjuran tegas dari orang yang lebih berpengalaman/ahli mengenai solusi terbaik atas suatu permasalahan (misal: kalau mau lekas sembuh, kuncinya ya harus istirahat total).",
-    "nuance": "Nasihat otoritatif yang penuh kearifan praktis.",
-    "beforeState": "Keluhan Sakit: Mengeluh badan demam dan lemas 🤒",
-    "afterState": "Saran Mantap: Kuncinya ya harus tidur cukup dan makan bergizi! 💡"
+    "meaning_id": "Yang terbaik adalah ~; sebaiknya ~ (nasihat)",
+    "keyTakeaway": "Nasihat ini terdengar dari atas ke bawah, jadi tidak dipakai kepada atasan. Untuk saran yang lebih lunak, gunakan 〜たほうがいい.",
+    "nuance": "Kata kerja bentuk kamus atau bentuk -nai + ことだ dipakai untuk memberi nasihat yang tegas tentang hal terbaik yang harus dilakukan: 暖かくして、ゆっくり休むことだ = yang terbaik adalah menghangatkan badan dan beristirahat dengan cukup; 無理をしないことだ = jangan memaksakan diri. Biasanya diucapkan oleh orang yang lebih tua atau berpengalaman.",
+    "beforeState": "休んだほうがいい。— Saran biasa.",
+    "afterState": "ゆっくり休むことだ。— Nasihat tegas: itulah hal terbaik yang harus dilakukan."
   },
   "w4d4g4": {
-    "meaning_id": "Betapa luar biasanya rasa... ini! (Luapan emosi mendalam yang tak terhingga)",
-    "keyTakeaway": "Bentuk seruan emosional yang meluap-luap, selalu dipadukan dengan kata seperti どんなに / どれほど untuk mengungkapkan rasa bahagia, sedih, atau terharu yang luar biasa.",
-    "nuance": "Ungkapan puitis dan emosional yang melampaui batas kata-kata biasa.",
-    "beforeState": "Rasa Senang Biasa: Merasa bahagia menerima kabar 💭",
-    "afterState": "Luapan Haru: Betapa bahagianya hati ini saat mendengar berita kelulusanmu! 💖"
+    "meaning_id": "Betapa ~!",
+    "keyTakeaway": "Walaupun bentuknya seperti pertanyaan, ini bukan pertanyaan, melainkan seruan perasaan. Nadanya agak tertulis.",
+    "nuance": "どんなに, どれだけ, atau どれほど + 〜ことか menyatakan perasaan yang sangat kuat dalam bentuk seruan: 合格できたら、どんなにうれしいことか = kalau bisa lulus, betapa senangnya! 何度電話したことか = sudah berapa kali saya menelepon! Kata sifat-i langsung disambung, kata sifat-na memakai な, kata kerja memakai bentuk biasa.",
+    "beforeState": "合格できたら、とてもうれしい。— Pernyataan biasa.",
+    "afterState": "合格できたら、どんなにうれしいことか。— Seruan: betapa bahagianya!"
   },
   "w4d5g1": {
-    "meaning_id": "Eh, bukannya... ya? / Waktu itu gimana ya? (Mencoba mengonfirmasi ingatan yang samar)",
-    "keyTakeaway": "Ragam lisan akrab saat berusaha mengingat kembali detail yang pernah didengar tapi sekarang agak lupa atau ragu-ragu di kepala.",
-    "nuance": "Pengecekan ramah tanpa menghakimi kelupaan diri sendiri.",
-    "beforeState": "Ingatan Ragu: Merasa lupa jadwal rapat minggu depan ❓",
-    "afterState": "Konfirmasi Santai: Eh, jadwal rapatnya bukannya hari Selasa ya? 🤔"
+    "meaning_id": "~, ya? (mencoba mengingat/memastikan)",
+    "keyTakeaway": "っけ hanya dipakai untuk hal yang sebenarnya pernah diketahui tetapi lupa. Untuk bertanya hal yang baru, gunakan pertanyaan biasa.",
+    "nuance": "っけ di akhir kalimat dipakai saat pembicara mencoba mengingat sesuatu yang lupa atau ingin memastikan informasi yang samar: 国へ帰るのは来週だっけ? = kamu pulang minggu depan, ya? (aku agak lupa). Kata benda dan kata sifat-na memakai だっけ atau だったっけ, kata sifat-i memakai かったっけ, kata kerja memakai たっけ. Bentuk sopannya でしたっけ.",
+    "beforeState": "国へ帰るのは来週ですか。— Pertanyaan biasa.",
+    "afterState": "国へ帰るのは来週だっけ？— Pembicara pernah mendengarnya, tetapi lupa dan ingin memastikan."
   },
   "w4d5g2": {
-    "meaning_id": "Nggak ada pilihan lain selain harus...! (Tekad pasrah atau jalan satu-satunya)",
-    "keyTakeaway": "Karena semua jalan keluar lain sudah buntu, satu-satunya opsi yang tersisa adalah maju dan menuntaskannya sampai selesai.",
-    "nuance": "Kepasrahan berani untuk menghadapi tantangan terakhir.",
-    "beforeState": "Mencari Alternatif: Menimbang jalan keluar yang mudah 🧭",
-    "afterState": "Satu Pilihan Tegas: Tak ada jalan lain, kita harus berjuang sampai titik darah penghabisan! ⚔️"
+    "meaning_id": "Tidak ada pilihan selain ~",
+    "keyTakeaway": "Versi yang lebih formal: 〜ほかない, 〜よりしかたがない, 〜ざるを得ない.",
+    "nuance": "Kata kerja bentuk kamus + しかない menyatakan bahwa satu-satunya pilihan yang tersisa adalah melakukan hal itu: できるまで、やるしかない = harus terus dicoba sampai bisa; バスがないから歩くしかない = tidak ada bus, jadi terpaksa jalan kaki. Bisa bernada pasrah atau penuh tekad.",
+    "beforeState": "歩いて帰る。— Pernyataan biasa.",
+    "afterState": "バスがないから、歩いて帰るしかない。— Tidak ada pilihan lain selain jalan kaki."
   },
   "w4d5g3": {
-    "meaning_id": "Katanya sih... / Denger-denger katanya... (Kabar burung santai dalam obrolan)",
-    "keyTakeaway": "Bentuk santai sehari-hari dari 〜そうだ (kabar burung), sangat umum dipakai dalam percakapan lisan untuk membagikan gosip atau berita yang baru didengar.",
-    "nuance": "Ragam lisan akrab untuk berbagi kabar angin terkini.",
-    "beforeState": "Kabar Resmi: Berita tertulis di koran 📰",
-    "afterState": "Obrolan Akrab: Denger-denger katanya dia mau menikah bulan depan lho! 💬"
+    "meaning_id": "Katanya ~ (santai)",
+    "keyTakeaway": "Hanya dipakai dalam percakapan santai. Dengan nada naik, って juga bisa berarti bertanya ulang ('katanya ~?').",
+    "nuance": "(んだ)って di akhir kalimat adalah cara santai untuk menyampaikan kabar yang didengar: 田中さん、結婚してるんだって = katanya Tanaka sudah menikah. Kata benda dan kata sifat-na memakai なんだって. Ini bentuk lisan dari 〜そうだ atau 〜と言っていた.",
+    "beforeState": "田中さんは結婚しているそうです。— Kabar dalam bentuk sopan.",
+    "afterState": "田中さん、結婚してるんだって。— Kabar yang sama dalam gaya obrolan santai."
   },
   "w4d5g4": {
-    "meaning_id": "Habisnya... sih! / Soalnya gimana dong... (Alasan manja atau membela diri)",
-    "keyTakeaway": "Ragam lisan bernada sedikit merajuk atau membela diri, sering dipakai oleh anak-anak, wanita, atau saat mengelak di depan teman akrab.",
-    "nuance": "Pembelaan diri emosional dengan nada sedikit merengek atau manja.",
-    "beforeState": "Ditegur Teman: Ditegur mengapa tidak menghabiskan makanan 🍽️",
-    "afterState": "Alasan Manja: Habisnya rasanya aneh dan pahit banget sih! 🥺"
+    "meaning_id": "Habisnya ~; soalnya ~ (alasan manja)",
+    "keyTakeaway": "Hindari dalam situasi formal atau kepada atasan; nadanya kekanak-kanakan.",
+    "nuance": "(んだ)もん (atau もの) di akhir kalimat menyatakan alasan atau pembelaan diri dengan nada manja atau merajuk, sering diawali だって: だって、まずいんだもん = habisnya rasanya tidak enak, sih. Biasanya dipakai anak-anak, perempuan muda, atau dalam obrolan sangat akrab.",
+    "beforeState": "まずいから食べない。— Alasan biasa.",
+    "afterState": "だって、まずいんだもん。— Alasan dengan nada manja dan membela diri."
   },
   "w4d6g1": {
-    "meaning_id": "Dengan kata lain... / Singkatnya... (Menyimpulkan atau memparafrasekan pokok bahasan)",
-    "keyTakeaway": "Kata sambung untuk merangkum penjelasan panjang ke dalam satu kesimpulan inti yang padat dan mudah dipahami.",
-    "nuance": "Penyederhanaan konsep rumit menjadi formula ringkas.",
-    "beforeState": "Uraian Panjang: Penjelasan teknis berbelit-belit 📜",
-    "afterState": "Inti Padat: Singkatnya, kita harus hemat anggaran mulai besok! 🎯"
+    "meaning_id": "Dengan kata lain; yaitu",
+    "keyTakeaway": "つまり sering diikuti 〜ということだ untuk menyimpulkan maksud.",
+    "nuance": "つまり dipakai untuk menyatakan ulang sesuatu dengan kata lain, menjelaskan, atau menyimpulkan: 父の兄、つまり私の伯父 = kakak ayah saya, dengan kata lain paman saya. Sebagai penyimpul: つまり、行けないということですか = jadi, maksudnya tidak bisa pergi?",
+    "beforeState": "父の兄は医者だ。— Penjelasan biasa.",
+    "afterState": "父の兄、つまり私の伯父は医者だ。— Menyebut hal yang sama dengan istilah lain yang lebih ringkas."
   },
   "w4d6g2": {
-    "meaning_id": "Oleh sebab itulah... / Akibatnya... (Penyebab logis yang memicu hasil berikutnya)",
-    "keyTakeaway": "Kata sambung formal tertulis di mana kalimat pertama adalah pemicu masalah/alasan, dan kalimat kedua adalah dampak langsungnya.",
-    "nuance": "Kausalitas formal berurutan tanpa bias emosi.",
-    "beforeState": "Kejadian Pemicu: Ada kecelakaan beruntun di jalan tol 💥",
-    "afterState": "Dampak Langsung: Oleh sebab itulah, seluruh armada bus mengalami keterlambatan 🚌"
+    "meaning_id": "Oleh karena itu; karena hal itu",
+    "keyTakeaway": "Dibanding だから atau それで, そのため terdengar lebih objektif dan sering dipakai dalam pengumuman atau tulisan.",
+    "nuance": "そのため(に) adalah kata sambung yang menyatakan bahwa kalimat sebelumnya adalah penyebab atau alasan dari kalimat berikutnya: 隣の駅で事故があった。そのために電車が遅れている = ada kecelakaan di stasiun sebelah. Karena itu kereta terlambat. Juga bisa menyatakan tujuan (留学したい。そのために貯金している = ingin kuliah ke luar negeri, untuk itu saya menabung). Nadanya formal.",
+    "beforeState": "事故があったから、電車が遅れている。— Santai, dalam satu kalimat.",
+    "afterState": "事故があった。そのために電車が遅れている。— Formal, dua kalimat yang dihubungkan."
   },
   "w4d6g3": {
-    "meaning_id": "Sebagai hasilnya... / Akhirnya... (Hasil akhir yang terwujud dari proses sebelumnya)",
-    "keyTakeaway": "Menegaskan bahwa peristiwa di kalimat kedua adalah buah atau hasil akhir nyata yang lahir dari proses di kalimat pertama.",
-    "nuance": "Klimaks pembuktian atas upaya yang sudah dicurahkan sebelumnya.",
-    "beforeState": "Proses Perjuangan: Belajar giat setiap malam tanpa henti 🕯️",
-    "afterState": "Hasil Manis: Sebagai hasilnya, berhasil meraih peringkat satu paralel 🏆"
+    "meaning_id": "Hasilnya; akibatnya",
+    "keyTakeaway": "その結果 biasanya dipakai untuk hasil dari proses yang sudah terjadi, sehingga kalimat keduanya biasanya bentuk lampau.",
+    "nuance": "その結果 (そのけっか) adalah kata sambung yang menyatakan bahwa kalimat berikutnya adalah hasil dari proses atau kejadian di kalimat sebelumnya: 父は人の何倍も努力した。その結果、仕事で成功した = ayah berusaha berkali-kali lipat lebih keras dari orang lain. Hasilnya, dia sukses dalam pekerjaan. Hasilnya bisa baik maupun buruk.",
+    "beforeState": "努力した。成功した。— Dua fakta terpisah.",
+    "afterState": "努力した。その結果、成功した。— Kesuksesan dinyatakan sebagai hasil dari usaha."
   },
   "w4d6g4": {
-    "meaning_id": "Hal itu karena... / Alasannya adalah karena... (Menjelaskan sebab setelah kesimpulan disebut)",
-    "keyTakeaway": "Pola berpasangan formal: kesimpulan atau keputusan disebut terlebih dahulu di awal, lalu diikuti なぜなら ... からだ untuk membeberkan alasannya secara terstruktur.",
-    "nuance": "Struktur retorika logis yang meletakkan kesimpulan di depan.",
-    "beforeState": "Keputusan Mandiri: Saya memutuskan untuk mengundurkan diri 🚪",
-    "afterState": "Penjelasan Sebab: Hal itu karena saya ingin fokus melanjutkan studi di luar negeri 🎓"
+    "meaning_id": "Sebabnya adalah ~ (karena ~)",
+    "keyTakeaway": "Akhiri kalimat alasan dengan からだ/からです. Pola ini menyebut kesimpulan dulu, lalu alasannya.",
+    "nuance": "なぜなら(ば), なぜかというと, atau どうしてかというと diletakkan di awal kalimat kedua untuk menjelaskan alasan dari kesimpulan yang sudah disebut sebelumnya, dan kalimatnya diakhiri 〜からだ: 来週、国に帰ります。なぜなら、親友の結婚式に出席するからです = minggu depan saya pulang. Sebabnya, saya akan menghadiri pernikahan sahabat. なぜなら paling formal.",
+    "beforeState": "親友の結婚式に出るから、国に帰ります。— Alasan disebut lebih dulu.",
+    "afterState": "国に帰ります。なぜなら、親友の結婚式に出るからです。— Kesimpulan dulu, lalu alasannya."
   },
   "w5d1g1": {
-    "meaning_id": "Sudah jelas... dan bahkan... pun juga! (Hal utama sudah pasti, apalagi yang lainnya)",
-    "keyTakeaway": "Hal pertama dianggap sudah sewajarnya diketahui semua orang, lalu ditambahkan hal kedua yang derajatnya melampaui ekspektasi.",
-    "nuance": "Memperluas cakupan dari hal mendasar ke hal yang mengejutkan.",
-    "beforeState": "Hal Pokok: Bahasa Jepang sudah tentu harus dikuasai 🇯🇵",
-    "afterState": "Tambahan Mengejutkan: Bahkan budaya dan dialek daerahnya pun dia pahami! 🗾"
+    "meaning_id": "~ sudah tentu, ~ juga",
+    "keyTakeaway": "Bagian A adalah hal yang dianggap wajar, sedangkan bagian B adalah tambahan yang memperluas cakupan. Bentuk yang lebih formal: はもとより.",
+    "nuance": "AはもちろんBも menyatakan bahwa A sudah jelas termasuk, dan B pun termasuk: 彼は、勉強はもちろんスポーツもよくできる = dia sudah tentu pintar belajar, olahraga pun hebat. Untuk kalimat, tambahkan の: 日本語が話せるのはもちろん、英語も話せる.",
+    "beforeState": "彼はスポーツもよくできる。— Hanya menyebut satu hal.",
+    "afterState": "彼は、勉強はもちろんスポーツもよくできる。— Belajar sudah pasti, olahraga pun hebat."
   },
   "w5d1g2": {
-    "meaning_id": "Bukan cuma..., bahkan... juga ikutan! (Menumpuk dua hal negatif atau positif sekaligus)",
-    "keyTakeaway": "Menegaskan bahwa tidak hanya satu masalah yang terjadi, melainkan ada kejutan masalah lain yang menyusul di belakangnya.",
-    "nuance": "Eskalasi masalah bertingkat yang memperparah situasi.",
-    "beforeState": "Satu Masalah: Rasanya hambar dan tidak enak 🍲",
-    "afterState": "Bertambah Parah: Bukan cuma hambar, bahkan harganya pun mahal selangit! 💸"
+    "meaning_id": "Bukan hanya ~, bahkan ~",
+    "keyTakeaway": "ばかりか sering mengandung kesan mengejutkan pada bagian kedua. Maknanya dekat dengan だけでなく, tetapi lebih tertulis.",
+    "nuance": "ばかりか atau ばかりでなく menyatakan bahwa selain hal pertama, ada hal kedua yang memperkuatnya, biasanya ke arah yang sama (sama-sama buruk atau sama-sama baik): あの店は、味が悪いばかりか、店員の態度もひどい = toko itu bukan hanya rasanya buruk, bahkan sikap pelayannya pun parah. Bagian kedua biasanya memakai も atau まで. Kata sifat-na memakai な.",
+    "beforeState": "あの店は、味が悪い。— Hanya satu keluhan.",
+    "afterState": "あの店は、味が悪いばかりか、店員の態度もひどい。— Keluhan bertumpuk: rasa buruk, pelayanan pun buruk."
   },
   "w5d1g3": {
-    "meaning_id": "Dibandingkan dengan... (Membandingkan dua objek atau kondisi secara objektif)",
-    "keyTakeaway": "Pola pembanding netral untuk menjejerkan dua data, periode waktu, atau kelompok agar terlihat kontras perbedaannya secara terukur.",
-    "nuance": "Pengukuran objektif berbasis data komparasi.",
-    "beforeState": "Data Sendiri: Penjualan tahun ini mencapai target 📈",
-    "afterState": "Perbandingan Nyata: Dibandingkan tahun lalu, pertumbuhan tahun ini melonjak 30% 📊"
+    "meaning_id": "Dibandingkan dengan ~",
+    "keyTakeaway": "に比べて sering dipakai dengan perubahan (〜くなった, 増えた, 減った) atau penilaian (高い, 安い).",
+    "nuance": "Kata benda + に比べて (にくらべて) atau に比べ (lebih formal) dipakai untuk membandingkan dua hal, waktu, atau keadaan: 試験問題は昨年に比べて易しくなった = soal ujian lebih mudah dibandingkan tahun lalu. Untuk kalimat, tambahkan の: 東京に住むのに比べて = dibandingkan tinggal di Tokyo. Bagian akhirnya biasanya kata sifat atau perubahan keadaan.",
+    "beforeState": "今年の試験は易しい。— Penilaian biasa.",
+    "afterState": "今年の試験は昨年に比べて易しい。— Penilaian berdasarkan perbandingan dengan tahun lalu."
   },
   "w5d1g4": {
-    "meaning_id": "Terhadap... / Bersikap kepada... (Arah sikap atau perlakuan kepada pihak sasaran)",
-    "keyTakeaway": "Menunjukkan kepada siapa sikap, keramahan, ketegasan, atau kebijakan ditujukan secara langsung.",
-    "nuance": "Arah orientasi tindakan interpersonal.",
-    "beforeState": "Sikap Netral: Bersikap ramah dalam keseharian 😊",
-    "afterState": "Sasaran Sikap: Selalu bersikap sopan dan hangat terhadap semua pelanggan 🤝"
+    "meaning_id": "Terhadap ~; berbeda dengan ~ (kontras)",
+    "keyTakeaway": "Bandingkan dengan にとって (bagi ~): に対して menunjukkan arah sikap atau tindakan, sedangkan にとって menunjukkan sudut pandang penilaian.",
+    "nuance": "Kata benda + に対して (にたいして) punya dua fungsi. (1) Sasaran sikap, perlakuan, atau perasaan: 田中先生は生徒に対して厳しい = guru Tanaka tegas terhadap murid. (2) Kontras antara dua hal: 兄が背が高いのに対して、弟は低い = kakak tinggi, sebaliknya adik pendek. Sebelum kata benda dipakai に対する (環境に対する関心 = kepedulian terhadap lingkungan).",
+    "beforeState": "田中先生は厳しい。— Penilaian umum.",
+    "afterState": "田中先生は生徒に対して厳しい。— Menunjukkan kepada siapa sikap tegas itu ditujukan."
   },
   "w5d2g1": {
-    "meaning_id": "Tuntas beres terselesaikan! (Menuntaskan karya/tugas besar setelah kerja keras)",
-    "keyTakeaway": "Hanya dipakai untuk proyek atau pekerjaan yang menuntut usaha besar (menulis skripsi, memanggang kue, merajut baju) yang akhirnya sukses beres tuntas.",
-    "nuance": "Kelegaan membanggakan pasca perjuangan panjang.",
-    "beforeState": "Sedang Berproses: Bergadang berminggu-minggu menyusun laporan 📑",
-    "afterState": "Tuntas Beres: Laporan setebal 200 halaman akhirnya tuntas terselesaikan! 🏁"
+    "meaning_id": "Menyelesaikan ~ sampai rampung",
+    "keyTakeaway": "Dibanding 〜終わる yang netral, 〜上げる menekankan hasil akhir yang rampung dan biasanya membanggakan.",
+    "nuance": "Bentuk masu (tanpa ます) + 上げる (あげる) menyatakan bahwa suatu pekerjaan diselesaikan dengan tuntas, biasanya pekerjaan yang memerlukan usaha atau waktu: やっとレポートを書き上げた = akhirnya laporannya selesai ditulis. Bentuk intransitifnya 上がる: ケーキが焼き上がった = kuenya sudah matang sempurna.",
+    "beforeState": "レポートを書き終わった。— Selesai menulis (netral).",
+    "afterState": "レポートを書き上げた。— Laporan selesai ditulis dengan rampung, sesudah usaha keras."
   },
   "w5d2g2": {
-    "meaning_id": "Menghabiskan sampai ludes / Tak sanggup menghabiskan semuanya (Batas tuntas tanpa sisa)",
-    "keyTakeaway": "Menghabiskan sampai tetes/butir terakhir. Dalam bentuk 〜切れない menyatakan kapasitas sudah meluap tak sanggup ditampung lagi.",
-    "nuance": "Ketuntasan total atau batas kapasitas maksimal.",
-    "beforeState": "Porsi Jumbo: Makanan dalam porsi mangkuk raksasa 🍜",
-    "afterState": "Melampaui Kapasitas: Porsinya terlalu banyak sampai tak sanggup kuhabiskan! 😵"
+    "meaning_id": "~ sampai habis; tidak sanggup ~ sampai habis (切れない)",
+    "keyTakeaway": "〜切れない sering dipakai untuk jumlah yang berlebihan: 数え切れない = tak terhitung banyaknya.",
+    "nuance": "Bentuk masu (tanpa ます) + 切る (きる) menyatakan bahwa suatu tindakan dilakukan sampai habis atau tuntas: 全部読み切った = membaca sampai habis. Bentuk potensial negatif 切れない menyatakan bahwa sesuatu terlalu banyak sehingga tidak bisa dihabiskan: ご飯が多くて、食べ切れない = nasinya terlalu banyak, tidak sanggup menghabiskan. 疲れ切る berarti 'lelah sekali'.",
+    "beforeState": "ご飯を食べられない。— Tidak bisa makan (alasan tidak jelas).",
+    "afterState": "ご飯が多くて、食べ切れない。— Tidak sanggup menghabiskan karena terlalu banyak."
   },
   "w5d2g3": {
-    "meaning_id": "Baru setengah jalan... / Belum selesai tuntas (Terhenti di tengah proses pengerjaan)",
-    "keyTakeaway": "Menunjukkan kondisi aktivitas yang baru dikerjakan sebagian lalu tertunda atau ditinggal (misal: buku yang baru dibaca separuh, makanan yang belum habis).",
-    "nuance": "Kondisi menggantung yang masih menunggu kelanjutan.",
-    "beforeState": "Aktivitas Utuh: Membaca novel sampai selesai 📖",
-    "afterState": "Tergantung di Tengah: Buku yang baru dibaca separuh ditinggalkan di meja 🔖"
+    "meaning_id": "Baru setengah ~; belum selesai ~",
+    "keyTakeaway": "Sebelum kata benda dipakai 〜かけの (食べかけのパン = roti yang dimakan setengah).",
+    "nuance": "Bentuk masu (tanpa ます) + かけ menyatakan bahwa suatu tindakan sudah dimulai tetapi belum selesai: 読みかけの本 = buku yang baru setengah dibaca; この本はまだ読みかけだ = buku ini masih belum selesai saya baca. Bentuk かける berarti 'hampir/hendak ~' atau 'mulai ~' (死にかける = hampir mati, 言いかけてやめた = mulai bicara lalu berhenti).",
+    "beforeState": "この本を読んでいる。— Sedang membaca.",
+    "afterState": "これは読みかけの本だ。— Buku yang sudah mulai dibaca, tetapi belum selesai."
   },
   "w5d2g4": {
-    "meaning_id": "Baru banget matang / Masih hangat-hangatnya baru jadi (Kondisi segar pasca aksi)",
-    "keyTakeaway": "Menonjolkan kesegaran, kehangatan, atau kualitas terbaik dari sesuatu yang baru saja selesai diproses (roti baru matang, ikan baru dipancing).",
-    "nuance": "Kenikmatan maksimal dari produk yang masih sangat baru.",
-    "beforeState": "Roti Toko: Roti yang sudah dingin di rak pajangan 🥖",
-    "afterState": "Segar Baru Keluar: Roti yang baru saja keluar dari oven masih mengepul hangat! 🥐"
+    "meaning_id": "Baru saja (selesai) di-~; masih segar",
+    "keyTakeaway": "Berbeda dengan 〜たばかり yang bisa dipakai luas, 〜たて hanya untuk kata kerja tertentu dan menekankan kesegaran.",
+    "nuance": "Bentuk masu (tanpa ます) + たて menyatakan bahwa sesuatu baru saja selesai dibuat atau dilakukan, sehingga masih segar: 焼きたてのパン = roti yang baru dipanggang; ペンキ塗りたて = cat masih basah. Sebelum kata benda dipakai たての. Biasanya dipakai dengan kata kerja tertentu (焼く, できる, 取る, 生まれる).",
+    "beforeState": "焼いたパン — roti yang dipanggang (tanpa info kapan).",
+    "afterState": "焼きたてのパン — roti yang baru saja keluar dari oven dan masih hangat."
   },
   "w5d3g1": {
-    "meaning_id": "Alangkah senangnya kalau bisa... / Semoga saja... ya (Harapan santai yang diangankan)",
-    "keyTakeaway": "Bergumam mengangankan hasil yang indah dan menyenangkan bagi diri sendiri atau orang terdekat.",
-    "nuance": "Angan-angan hangat dalam lamunan positif.",
-    "beforeState": "Kenyataan Sekarang: Belum lancar berbicara bahasa Jepang 💬",
-    "afterState": "Angan-angan Indah: Alangkah senangnya kalau bisa mengobrol santai tanpa ragu! ✨"
+    "meaning_id": "Semoga ~, ya; alangkah senangnya kalau ~",
+    "keyTakeaway": "なあ menambahkan rasa perasaan dan biasanya dipakai dalam percakapan santai atau gumaman pribadi.",
+    "nuance": "〜といい, 〜たらいい, 〜ばいい, atau 〜ならいい + なあ menyatakan harapan pembicara, sering seperti bergumam pada diri sendiri: もっと日本語がうまく話せたらいいなあ = alangkah senangnya kalau bisa berbicara bahasa Jepang lebih lancar. Dengan のになあ, pembicara menyesal karena kenyataannya berbeda (晴れたらいいのになあ = sayang sekali tidak cerah).",
+    "beforeState": "日本語がうまく話せない。— Fakta.",
+    "afterState": "日本語がうまく話せたらいいなあ。— Harapan atau angan-angan pembicara."
   },
   "w5d3g2": {
-    "meaning_id": "Coba tadi... pasti nggak bakal begini! (Penyesalan atas hal yang sudah terlanjur terjadi)",
-    "keyTakeaway": "Menyesali keputusan di masa lalu: 'Seandainya dulu aku lakukan X, pasti sekarang tidak akan apes begini'.",
-    "nuance": "Rasa sesal mendalam atas kekeliruan langkah di masa lampau.",
-    "beforeState": "Terlambat Tiba: Ketinggalan kereta dan panik di stasiun 🚉",
-    "afterState": "Penyesalan Lampau: Coba tadi berangkat sepuluh menit lebih awal, pasti nggak terlambat! 🤦"
+    "meaning_id": "Seandainya (dulu) ~ (menyesal)",
+    "keyTakeaway": "Walaupun memakai よかった (baik), pola ini menyatakan bahwa kenyataannya tidak baik.",
+    "nuance": "Bentuk -ba atau -tara + よかった menyatakan penyesalan atas sesuatu yang tidak dilakukan di masa lalu: もっと早く家を出ればよかった = seandainya tadi berangkat lebih awal. Untuk menyesali sesuatu yang sudah dilakukan, gunakan bentuk negatif: 言わなければよかった = seharusnya tidak usah bilang. Sering ditambah のに atau なあ untuk menguatkan rasa sesal.",
+    "beforeState": "遅刻してしまった。— Fakta.",
+    "afterState": "もっと早く家を出ればよかった。— Menyesal karena tidak berangkat lebih awal."
   },
   "w5d3g3": {
-    "meaning_id": "Padahal harusnya kamu ikut... seru lho! (Kritik halus atau penyesalan untuk orang lain)",
-    "keyTakeaway": "Dipakai untuk lawan bicara: menyayangkan mengapa dia tidak mengambil kesempatan emas tersebut padahal hasilnya sangat bagus.",
-    "nuance": "Rasa menyayangkan keputusan orang lain dengan nada bersahabat.",
-    "beforeState": "Pilihan Lawan Bicara: Teman memutuskan tidak ikut acara festival 🎪",
-    "afterState": "Menyayangkan Kesempatan: Acaranya seru banget, padahal harusnya kamu ikut! 🎆"
+    "meaning_id": "Padahal seandainya (kamu) ~ (sayang sekali)",
+    "keyTakeaway": "Untuk diri sendiri, cukup 〜ばよかった. Dengan のに, nadanya menyayangkan pilihan orang lain.",
+    "nuance": "Bentuk -ba atau -tara ... のに menyatakan rasa menyayangkan atau kritik halus karena orang lain tidak melakukan sesuatu yang sebenarnya lebih baik: 君も行けばよかったのに = padahal seandainya kamu ikut, (pasti seru). Biasanya ditujukan kepada lawan bicara atau orang lain.",
+    "beforeState": "君は行かなかった。— Fakta.",
+    "afterState": "君も行けばよかったのに。— Menyayangkan bahwa dia tidak ikut."
   },
   "w5d3g4": {
-    "meaning_id": "Kapan ya datangnya... kok lama ya (Menunggu-nunggu dengan harap-harap cemas)",
-    "keyTakeaway": "Bentuk gumaman pada diri sendiri saat menunggu kedatangan seseorang atau menanti kepastian kabar dengan rasa tidak sabar.",
-    "nuance": "Rasa gelisah menanti kehadiran yang belum kunjung tiba.",
-    "beforeState": "Menunggu Sendirian: Menatap jam tangan di stasiun ⌚",
-    "afterState": "Harap-harap Cemas: Busnya kapan datang ya, kok sudah terlambat 15 menit... 🚌"
+    "meaning_id": "Kapan ~, ya; semoga cepat ~ (tidak sabar)",
+    "keyTakeaway": "Walaupun memakai bentuk negatif, 〜ないかな di sini menyatakan harapan, bukan penyangkalan.",
+    "nuance": "Kata kerja bentuk -nai + かな(あ) menyatakan harapan pembicara agar sesuatu terjadi, sering dengan rasa tidak sabar: バス、早く来ないかなあ = busnya cepat datang dong (kok lama). Bentuk positif + かな(あ) menyatakan rasa ingin tahu atau ragu: 明日は晴れるかなあ = besok cerah tidak, ya?",
+    "beforeState": "バスが来る。— Fakta.",
+    "afterState": "バス、早く来ないかなあ。— Berharap busnya cepat datang."
   },
   "w5d4g1": {
-    "meaning_id": "Sampai tiba saat... (Titik akhir waktu sebelum peristiwa dimulai)",
-    "keyTakeaway": "Menunjukkan batas akhir waktu di mana suatu aktivitas atau kondisi terus dipertahankan tanpa putus sampai titik itu tiba.",
-    "nuance": "Ketekunan mempertahankan kondisi hingga garis finis waktu.",
-    "beforeState": "Menunggu Dimulai: Film bioskop akan diputar pukul 7 malam 🎬",
-    "afterState": "Mempertahankan Aksi: Terus menunggu dengan sabar sampai filmnya dimulai 🍿"
+    "meaning_id": "Sampai ~ (batas waktu suatu keadaan)",
+    "keyTakeaway": "Bedakan dengan までに (paling lambat ~): 5時まで働く = bekerja terus sampai jam 5; 5時までに帰る = pulang sebelum jam 5.",
+    "nuance": "Kata kerja bentuk kamus + まで menyatakan batas akhir waktu sebuah tindakan atau keadaan yang berlangsung terus: 映画が始まるまで30分ある = masih ada 30 menit sampai film dimulai; 雨がやむまで待つ = menunggu sampai hujan reda. Kata kerja sebelum まで selalu bentuk kamus, walaupun kejadiannya di masa lalu.",
+    "beforeState": "30分待った。— Menunggu 30 menit.",
+    "afterState": "映画が始まるまで30分待った。— Menunggu 30 menit, sampai film dimulai."
   },
   "w5d4g2": {
-    "meaning_id": "Bahkan sampai ke... pun sanggup! (Batas ekstrem yang mencengangkan)",
-    "keyTakeaway": "Menyebutkan batas yang jauh melampaui dugaan normal untuk menunjukkan betapa hebat atau ekstremnya kemampuan/kondisi tersebut.",
-    "nuance": "Keterkejutan atas cakupan yang melampaui batas normal.",
-    "beforeState": "Ekspektasi Makan Ikan: Mengira hanya daging ikannya yang bisa dimakan 🐟",
-    "afterState": "Batas Ekstrem: Tulangnya dimasak lunak sampai tulangnya pun bisa dimakan! 🦴"
+    "meaning_id": "Bahkan ~ pun",
+    "keyTakeaway": "Dibanding さえ yang menyebut contoh paling dasar, まで menekankan bahwa cakupannya meluas sampai hal yang ekstrem.",
+    "nuance": "Kata benda + まで menyatakan bahwa cakupan sesuatu meluas sampai hal yang di luar dugaan: この魚は骨まで食べられる = ikan ini bahkan tulangnya pun bisa dimakan; 子どもまで知っている = bahkan anak kecil pun tahu. まで menggantikan が dan を, dan sering mengandung rasa heran.",
+    "beforeState": "この魚は食べられる。— Ikannya bisa dimakan.",
+    "afterState": "この魚は骨まで食べられる。— Bahkan tulangnya pun bisa dimakan."
   },
   "w5d4g3": {
-    "meaning_id": "Dari rentang... hingga sekitar... (Rentang waktu atau wilayah yang menyebar luwes)",
-    "keyTakeaway": "Beda dengan から〜まで yang batasnya tegas (garis kaku). 〜にかけて batas akhirnya kabur dan menyebar luas secara bertahap.",
-    "nuance": "Gradasi alami rentang waktu atau area geografis.",
-    "beforeState": "Titik Tegas: Jam 1 sampai jam 5 tepat (〜まで) ⏱️",
-    "afterState": "Rentang Gradual: Dari siang hingga berangsur ke sore hari (〜にかけて) 🌇"
+    "meaning_id": "Dari ~ sampai sekitar ~ (rentang waktu/wilayah)",
+    "keyTakeaway": "から〜まで menyatakan batas yang jelas, sedangkan から〜にかけて menyatakan rentang yang kira-kira dan menyebar.",
+    "nuance": "N1からN2にかけて menyatakan rentang waktu atau wilayah secara longgar, tanpa batas yang tegas: 明日は昼から夕方にかけて雨でしょう = besok dari siang hingga sore kemungkinan hujan; 関東から東北にかけて = dari Kanto hingga Tohoku. Sering dipakai dalam ramalan cuaca dan berita.",
+    "beforeState": "昼から夕方まで雨だ。— Batas waktu yang jelas.",
+    "afterState": "昼から夕方にかけて雨だ。— Rentang kira-kira; hujan tersebar sepanjang siang hingga sore."
   },
   "w5d4g4": {
-    "meaning_id": "Bertempat di... / Dalam kancah... (Ragam resmi/formal dari partikel で)",
-    "keyTakeaway": "Gaya bahasa resmi berita, pidato, atau laporan tertulis untuk menunjukkan lokasi acara besar, era sejarah, atau bidang wacana.",
-    "nuance": "Kewibawaan formal dalam penunjukan ruang dan waktu wacana.",
-    "beforeState": "Ragam Lisan: Berada di Osaka (で) 📍",
-    "afterState": "Ragam Resmi: Diselenggarakan bertempat di kota Osaka (において) 🏛️"
+    "meaning_id": "Di ~; dalam (bidang) ~ (formal)",
+    "keyTakeaway": "において tidak dipakai untuk tempat kegiatan sehari-hari dalam percakapan biasa (bukan 家において食べる).",
+    "nuance": "Kata benda + において adalah bentuk formal dari partikel で untuk tempat, waktu, atau bidang: 大阪において国際会議が行われた = konferensi internasional diadakan di Osaka; 現代社会において = dalam masyarakat modern. Sebelum kata benda dipakai における (日本における教育 = pendidikan di Jepang). Banyak dipakai dalam pidato, berita, dan tulisan resmi.",
+    "beforeState": "大阪で会議があった。— Santai.",
+    "afterState": "大阪において国際会議が行われた。— Formal, gaya berita atau laporan."
   },
   "w5d5g1": {
-    "meaning_id": "Meskipun seandainya... sekali pun, tetap akan...! (Tekad pantang mundur)",
-    "keyTakeaway": "Dipadukan dengan たとえ untuk menegaskan bahwa rintangan terberat sekali pun tidak akan mampu menggoyahkan tekad pembicara.",
-    "nuance": "Keteguhan prinsip yang kebal terhadap segala hambatan.",
-    "beforeState": "Hambatan Berat: Semua orang menentang keputusannya 👥",
-    "afterState": "Tekad Baja: Biarpun seluruh dunia menentang, aku tetap akan maju! 🛡️"
+    "meaning_id": "Walaupun (seandainya) ~",
+    "keyTakeaway": "たとえ selalu dipasangkan dengan 〜ても/〜でも. たとえ menguatkan kesan bahwa itu pengandaian dan pembicara bertekad kuat.",
+    "nuance": "たとえ + 〜ても menekankan pengandaian: walaupun hal yang ekstrem atau tidak diinginkan terjadi, hasilnya tetap sama: たとえ反対されても留学します = walaupun ditentang sekalipun, saya tetap akan kuliah di luar negeri. Kata sifat-i memakai 〜くても, kata benda dan kata sifat-na memakai でも.",
+    "beforeState": "反対されても留学します。— Walaupun ditentang, tetap pergi.",
+    "afterState": "たとえ反対されても留学します。— Penekanan: sekalipun ditentang, tekadnya tidak berubah."
   },
   "w5d5g2": {
-    "meaning_id": "Bisa jadi jangan-jangan... / Jangan-jangan beneran... (Kemungkinan tak terduga)",
-    "keyTakeaway": "Menyatakan firasat atau kemungkinan yang terlintas di kepala bahwa ada potensi suatu hal mengejutkan itu benar adanya.",
-    "nuance": "Kecurigaan spontan yang memicu kewaspadaan.",
-    "beforeState": "Cerita Mengagumkan: Mendengar kabar yang terdengar terlalu muluk 💭",
-    "afterState": "Kecurigaan Spontan: Jangan-jangan semua cerita itu cuma bohong belaka... 🕵️"
+    "meaning_id": "Jangan-jangan ~; mungkin saja ~",
+    "keyTakeaway": "もしかすると memperkuat kesan bahwa kemungkinannya kecil atau tak terduga. Sering juga dipasangkan dengan のではないか.",
+    "nuance": "もしかすると atau もしかしたら + 〜かもしれない menyatakan kemungkinan yang tidak terlalu besar, tetapi terlintas di pikiran pembicara: もしかすると彼の話はうそかもしれない = jangan-jangan ceritanya bohong. もしかしたら sedikit lebih santai. Kata benda dan kata sifat-na langsung disambung ke かもしれない tanpa だ.",
+    "beforeState": "彼の話はうそかもしれない。— Mungkin bohong.",
+    "afterState": "もしかすると、彼の話はうそかもしれない。— Jangan-jangan bohong; kemungkinan yang tak terduga."
   },
   "w5d5g3": {
-    "meaning_id": "Belum tentu selalu begitu! (Membantah anggapan umum yang seragam)",
-    "keyTakeaway": "Dipadukan dengan 必ずしも untuk menegaskan bahwa tidak semua kasus bisa dipukul rata (misal: barang mahal belum tentu kualitasnya selalu bagus).",
-    "nuance": "Pemikiran kritis yang menolak generalisasi kaku.",
-    "beforeState": "Anggapan Umum: Orang kaya sudah pasti hidupnya bahagia 💰",
-    "afterState": "Fakta Kritis: Banyak uang belum tentu selalu menjamin kebahagiaan hati ⚖️"
+    "meaning_id": "Belum tentu ~",
+    "keyTakeaway": "必ずしも selalu dipasangkan dengan bentuk negatif (とは限らない, わけではない).",
+    "nuance": "必ずしも (かならずしも) + 〜とは限らない menyatakan bahwa sesuatu tidak selalu benar dalam semua kasus: 金持ちが必ずしも幸福だとは限らない = orang kaya belum tentu bahagia. Pola ini dipakai untuk membantah anggapan umum yang dipukul rata. Kata benda dan kata sifat-na bisa memakai だ sebelum とは限らない.",
+    "beforeState": "金持ちは幸福だ。— Anggapan yang dipukul rata.",
+    "afterState": "金持ちが必ずしも幸福だとは限らない。— Membantah: tidak selalu begitu."
   },
   "w5d5g4": {
-    "meaning_id": "Bener-bener persis seperti... seolah mimpi! (Perumpamaan dramatis yang sangat mirip)",
-    "keyTakeaway": "Dipadukan dengan まるで untuk memberi efek dramatis bahwa kemiripannya begitu luar biasa nyata, seolah-olah hal itu benar-benar terjadi.",
-    "nuance": "Kedalaman estetika perumpamaan yang memukau imajinasi.",
-    "beforeState": "Pemandangan Indah: Melihat pemandangan salju di pegunungan 🏔️",
-    "afterState": "Perumpamaan Dramatis: Keindahannya luar biasa, persis seperti negeri dongeng! 🏰"
+    "meaning_id": "Seolah-olah ~; persis seperti ~",
+    "keyTakeaway": "まるで dipakai untuk perumpamaan, bukan dugaan. Untuk dugaan ('sepertinya'), gunakan どうやら.",
+    "nuance": "まるで + 〜ようだ atau 〜みたいだ menguatkan perumpamaan bahwa sesuatu sangat mirip dengan hal lain, padahal kenyataannya bukan: 合格した！まるで夢のようだ = saya lulus! Rasanya seolah-olah mimpi. まるで〜ようだ lebih formal, まるで〜みたいだ lebih santai. Kata benda + のよう, atau langsung + みたい.",
+    "beforeState": "夢のようだ。— Seperti mimpi.",
+    "afterState": "まるで夢のようだ。— Penekanan: benar-benar seolah-olah mimpi."
   },
   "w5d6g1": {
-    "meaning_id": "Pengin sih, tapi... / Mau gimana lagi, namun... (Kata sambung 'tapi' santai)",
-    "keyTakeaway": "Kata sambung santai sehari-hari untuk membalikkan alur pembicaraan (setara dengan でも atau けれども).",
-    "nuance": "Kontras kasual yang wajar dalam percakapan lisan.",
-    "beforeState": "Niat Positif: Sangat ingin ikut liburan bersama teman 🎒",
-    "afterState": "Hambatan Nyata: Tapi sayang dompet lagi tipis, jadi nggak bisa ikut 💸"
+    "meaning_id": "Tetapi (di awal kalimat, santai)",
+    "keyTakeaway": "だけど cocok untuk percakapan. Dalam tulisan formal, gunakan しかし.",
+    "nuance": "だけど adalah kata sambung santai di awal kalimat yang berarti 'tetapi': 旅行に行きたい。だけど、ひまがない = ingin jalan-jalan. Tetapi tidak ada waktu luang. Bentuk yang lebih sopan: ですけど, けれども, しかし (paling formal).",
+    "beforeState": "旅行に行きたいけど、ひまがない。— Dalam satu kalimat.",
+    "afterState": "旅行に行きたい。だけど、ひまがない。— Dua kalimat yang dihubungkan dengan だけど."
   },
   "w5d6g2": {
-    "meaning_id": "Maka dari itu... / Karena alasan tersebut... (Ragam sopan formal dari だから)",
-    "keyTakeaway": "Bentuk sopan halus dari だから, sangat pas digunakan dalam percakapan sopan (Keigo) atau presentasi bisnis.",
-    "nuance": "Kesopanan logis yang menjembatani sebab dan kesimpulan.",
-    "beforeState": "Ragam Santai: だから (Biasa dalam obrolan sesama teman) 💬",
-    "afterState": "Ragam Sopan: ですから (Elegan di hadapan pelanggan atau atasan) 👔"
+    "meaning_id": "Oleh karena itu; jadi (sopan)",
+    "keyTakeaway": "Kadang ですから terdengar seperti menegaskan atau sedikit kesal ('kan sudah saya bilang'), tergantung nada bicaranya.",
+    "nuance": "ですから adalah bentuk sopan dari だから, diletakkan di awal kalimat untuk menyatakan akibat atau kesimpulan dari kalimat sebelumnya: 午後から雨だそうです。ですから、傘を持っていったほうがいいですよ = katanya sore akan hujan. Jadi, sebaiknya bawa payung. Cocok untuk percakapan sopan atau presentasi.",
+    "beforeState": "雨だから、傘がいる。— Santai.",
+    "afterState": "雨です。ですから、傘がいります。— Sopan, dua kalimat dihubungkan."
   },
   "w5d6g3": {
-    "meaning_id": "Tapi tak disangka-sangka, nyatanya malah... (Kejadian mengejutkan di luar rencana)",
-    "keyTakeaway": "Kata sambung dramatis yang menandai bahwa hasil akhir berbelok drastis dan mengejutkan, bertolak belakang dengan apa yang sudah direncanakan.",
-    "nuance": "Plot twist tak terduga yang membelokkan alur ekspektasi.",
-    "beforeState": "Ekspektasi Rencana: Sudah bersiap pergi ke bandara sesuai jadwal ✈️",
-    "afterState": "Plot Twist Nyata: Tapi tak disangka-sangka, semua penerbangan dibatalkan karena badai! ⛈️"
+    "meaning_id": "Namun ternyata ~ (di luar dugaan)",
+    "keyTakeaway": "Bedanya dengan しかし: ところが menekankan kejutan atau hal yang tidak terduga, dan tidak dipakai dengan pendapat atau ajakan.",
+    "nuance": "ところが adalah kata sambung yang menyatakan bahwa hasil atau kenyataan berlawanan dengan rencana atau perkiraan sebelumnya, sering dengan rasa terkejut: コンサートに行くつもりだった。ところが、病気で行けなくなった = rencananya mau nonton konser. Namun ternyata sakit, jadi tidak bisa pergi. Biasanya dipakai untuk menceritakan kejadian nyata (bentuk lampau).",
+    "beforeState": "行くつもりだった。しかし、行けなかった。— Pertentangan biasa.",
+    "afterState": "行くつもりだった。ところが、行けなくなった。— Kenyataan yang tak terduga membelokkan rencana."
   },
   "w5d6g4": {
-    "meaning_id": "Ngomong-ngomong,... (Beralih ke topik obrolan baru yang berbeda)",
-    "keyTakeaway": "Dipakai saat ingin menutup topik sebelumnya dan memulai bahan obrolan baru yang sama sekali segar.",
-    "nuance": "Jembatan pergantian topik yang mulus dan santun.",
-    "beforeState": "Topik Pertama: Selesai membahas hasil ujian kemarin 📝",
-    "afterState": "Topik Baru: Ngomong-ngomong, liburan akhir pekan besok ada acara apa? ☕"
+    "meaning_id": "Ngomong-ngomong (beralih topik)",
+    "keyTakeaway": "Bedakan dengan そういえば: ところで dipakai untuk mengganti topik dengan sengaja, sedangkan そういえば dipakai saat teringat sesuatu yang berkaitan.",
+    "nuance": "ところで dipakai di awal kalimat untuk beralih ke topik lain yang berbeda dari pembicaraan sebelumnya: 明日試験でしょ。がんばってね。ところで、来週の月曜日は空いてる？ = besok ujian, kan? Semangat ya. Ngomong-ngomong, Senin depan kamu ada waktu? Sering dipakai untuk memulai pokok pembicaraan sebenarnya.",
+    "beforeState": "来週の月曜日は空いてる？— Langsung bertanya.",
+    "afterState": "ところで、来週の月曜日は空いてる？— Memberi tanda bahwa topiknya berganti."
   },
   "w6d1g1": {
-    "meaning_id": "Seandainya waktu itu aku... (Mengandaikan hal di masa lalu yang tak sempat terjadi)",
-    "keyTakeaway": "Mengandaikan skenario di masa lalu yang tidak terwujud, lalu membayangkan betapa berbedanya hasil yang didapat hari ini.",
-    "nuance": "Refleksi mendalam atas pilihan hidup di masa lalu.",
-    "beforeState": "Kenyataan Sekarang: Tidak mengambil peluang kerja tersebut 💼",
-    "afterState": "Refleksi Pengandaian: Seandainya waktu itu aku terima, mungkin sekarang sudah di Tokyo 🗼"
+    "meaning_id": "Seandainya ~ (pengandaian)",
+    "keyTakeaway": "Untuk pengandaian yang berlawanan dengan kenyataan masa lalu, bagian akhirnya sering memakai だろう, のに, atau 〜ていた.",
+    "nuance": "もし + 〜たら menyatakan pengandaian. Bisa tentang masa depan (もし雨が降ったら、行かない = kalau hujan, tidak pergi) atau tentang masa lalu yang tidak terjadi (もし留学しなかったら、今頃何をしているだろう = seandainya dulu tidak kuliah ke luar negeri, kira-kira sekarang sedang apa, ya?). Kata sifat-i: 〜かったら; kata benda dan kata sifat-na: 〜だったら.",
+    "beforeState": "留学したので、今ここにいる。— Fakta.",
+    "afterState": "もし留学しなかったら、今頃何をしているだろう。— Membayangkan masa lalu yang berbeda dari kenyataan."
   },
   "w6d1g2": {
-    "meaning_id": "Kalaupun seandainya memang bisa..., tapi tetap saja... (Pengandaian konsesif)",
-    "keyTakeaway": "Mengasumsikan skenario terbaik sekalipun, kesimpulan atau hambatannya tetap tidak akan berubah.",
-    "nuance": "Keteguhan fakta yang tak tergoyahkan oleh pengandaian lunak.",
-    "beforeState": "Kemungkinan Libur: Seandainya dapat jatah cuti panjang 🏖️",
-    "afterState": "Hambatan Nyata: Tetap saja ongkos tiketnya terlalu mahal untuk kantong saat ini ✈️"
+    "meaning_id": "Seandainya pun ~, (tetap) ~",
+    "keyTakeaway": "としても = pengandaian + walaupun. Bandingkan: としたら (seandainya ~, maka ~) vs としても (seandainya ~ pun, tetap ~).",
+    "nuance": "もし + 〜としても (santai: としたって) menyatakan bahwa walaupun suatu keadaan diandaikan terjadi, kesimpulannya tidak berubah: もし休みが取れたとしても、旅行には行かないつもりだ = seandainya pun bisa ambil cuti, saya tidak berniat bepergian. Kata benda dan kata sifat-na memakai だ (本当だとしても).",
+    "beforeState": "もし休みが取れたら、旅行に行く。— Kalau dapat cuti, akan bepergian.",
+    "afterState": "もし休みが取れたとしても、旅行には行かない。— Dapat cuti pun, tetap tidak bepergian."
   },
   "w6d1g3": {
-    "meaning_id": "Jika sampai terjadi situasi darurat / Andaikan hal terburuk terjadi (Kesiapsiagaan)",
-    "keyTakeaway": "Pola formal untuk mengantisipasi musibah, situasi darurat, bencana, atau hal krisis yang tak diharapkan (contoh: bekal persiapan di saat darurat).",
-    "nuance": "Kesiapsiagaan preventif menghadapi skenario krisis.",
-    "beforeState": "Kehidupan Normal: Menjalani hari-hari tenang tanpa bencana 🌤️",
-    "afterState": "Kesiapsiagaan: Menyiapkan ransel darurat jika sewaktu-waktu terjadi gempa bumi 🎒"
+    "meaning_id": "Seandainya (sampai) ~; untuk keadaan darurat",
+    "keyTakeaway": "もしもの時 dan 万が一の時 sering dipakai untuk persiapan bencana atau keadaan darurat.",
+    "nuance": "もしも adalah bentuk yang lebih kuat dari もし, untuk pengandaian yang kemungkinannya kecil atau sangat tidak diinginkan: もしも生まれ変われるなら = seandainya bisa terlahir kembali. Bentuk もしもの + kata benda berarti 'untuk keadaan darurat/kemungkinan terburuk': もしもの時に備える = bersiap untuk keadaan darurat.",
+    "beforeState": "もし生まれ変われるなら…— Pengandaian biasa.",
+    "afterState": "もしも生まれ変われるなら…— Menekankan bahwa itu pengandaian yang hampir mustahil."
   },
   "w6d2g1": {
-    "meaning_id": "Sudah diputuskan bahwa... / Hasil akhirnya menjadi... (Keputusan pihak luar atau aturan)",
-    "keyTakeaway": "Beda dengan ことにする (keputusan sendiri)! Pola ことになる menyatakan bahwa keputusan dibuat oleh institusi, takdir, atau pihak luar.",
-    "nuance": "Keputusan institusional di mana subjek mematuhi ketetapan.",
-    "beforeState": "Keputusan Mandiri: Saya yang memutuskan mutasi (ことにする) 👤",
-    "afterState": "Keputusan Perusahaan: Perusahaan menetapkan saya dipindahtugaskan (ことになる) 🏢"
+    "meaning_id": "Diputuskan bahwa ~ (bukan oleh pembicara sendiri)",
+    "keyTakeaway": "ことにする = memutuskan sendiri; ことになる = jadinya begitu (diputuskan pihak lain atau keadaan).",
+    "nuance": "Kata kerja bentuk kamus atau bentuk -nai + ことになる menyatakan bahwa sesuatu diputuskan atau ditetapkan oleh pihak lain, organisasi, atau keadaan, bukan semata-mata oleh pembicara: 来月、出張することになりました = (sudah diputuskan bahwa) bulan depan saya akan dinas luar. Juga dipakai untuk menyampaikan keputusan sendiri dengan rendah hati. ことになっている berarti aturan yang berlaku.",
+    "beforeState": "来月、出張することにしました。— Saya sendiri yang memutuskan.",
+    "afterState": "来月、出張することになりました。— Diputuskan oleh perusahaan/keadaan."
   },
   "w6d2g2": {
-    "meaning_id": "Membiasakan diri secara rutin untuk... (Disiplin pribadi yang dijaga)",
-    "keyTakeaway": "Menunjukkan aturan pribadi dan komitmen disiplin diri yang terus dijalankan secara konsisten setiap hari demi kesehatan/kebaikan diri.",
-    "nuance": "Kedisiplinan konsisten yang lahir dari niat pribadi.",
-    "beforeState": "Olahraga Insidental: Sesekali lari pagi kalau sempat 🏃",
-    "afterState": "Disiplin Rutin: Mewajibkan diri sendiri olahraga 30 menit setiap subuh ⏰"
+    "meaning_id": "Membiasakan diri untuk ~ (aturan pribadi)",
+    "keyTakeaway": "ことにしている = aturan pribadi yang dijaga; ことになっている = aturan dari luar (sekolah, perusahaan).",
+    "nuance": "Kata kerja bentuk kamus atau bentuk -nai + ことにしている menyatakan aturan atau kebiasaan pribadi yang sengaja dijaga berdasarkan keputusan sendiri: 健康のために、毎日野菜を食べることにしている = demi kesehatan, saya menjadikan kebiasaan makan sayur setiap hari; 夜はコーヒーを飲まないことにしている = saya punya aturan tidak minum kopi di malam hari.",
+    "beforeState": "毎日野菜を食べる。— Hanya kebiasaan.",
+    "afterState": "毎日野菜を食べることにしている。— Kebiasaan yang sengaja dijadikan aturan pribadi."
   },
   "w6d2g3": {
-    "meaning_id": "Ya kalau dibilang bisa sih memang bisa, tapi... (Mengakui suatu fakta dengan catatan)",
-    "keyTakeaway": "Mengakui bahwa hal tersebut benar adanya, namun segera memberi catatan batasan (misal: bisa main piano sih bisa, cuma belum tentu jago).",
-    "nuance": "Kejujuran proporsional yang menghindari kesan sombong.",
-    "beforeState": "Pernyataan Mutlak: Saya bisa berbahasa Jepang 🇯🇵",
-    "afterState": "Pengakuan Berimbang: Ya kalau dibilang bisa sih bisa, tapi baru taraf percakapan dasar 🗣️"
+    "meaning_id": "~ sih memang ~, tetapi ~",
+    "keyTakeaway": "Pola ini dipakai untuk merendah atau menghindari kesan berlebihan. Bagian kedua menyatakan batasannya.",
+    "nuance": "Pola VることはVる (kata yang sama diulang) + が/けれど mengakui bahwa sesuatu memang benar, tetapi dengan catatan atau batasan: ピアノは弾けることは弾けますが、上手ではありません = main piano sih memang bisa, tetapi tidak mahir. Kata sifat-i: 高いことは高いが; kata sifat-na: 便利なことは便利だが.",
+    "beforeState": "ピアノが弾けます。— Pernyataan langsung.",
+    "afterState": "ピアノは弾けることは弾けますが、上手ではありません。— Mengakui bisa, tetapi dengan batasan."
   },
   "w6d2g4": {
-    "meaning_id": "Bukannya nggak mau / Bukannya nggak bisa sama sekali (Bisa saja jika ada kondisi tertentu)",
-    "keyTakeaway": "Penolakan ganda (double negative): secara halus mengindikasikan bahwa kemungkinan tersebut tetap terbuka jika syaratnya dipenuhi.",
-    "nuance": "Diplomasi kesantunan yang membuka peluang kompromi.",
-    "beforeState": "Penolakan Keras: Saya tidak bisa hadir 🚫",
-    "afterState": "Peluang Terbuka: Bukannya tidak bisa hadir sama sekali sih, asalkan acaranya malam hari 🌙"
+    "meaning_id": "Bukannya tidak ~ (sebenarnya bisa/mau juga)",
+    "keyTakeaway": "Nadanya ragu-ragu dan halus, sering dipakai untuk menolak atau setuju dengan setengah hati.",
+    "nuance": "Bentuk negatif + こともない memakai dua bentuk negatif untuk menyatakan pengakuan yang lemah: 'bukannya tidak ~'. 鶏肉は食べないこともないですが、あまり好きではありません = bukannya saya tidak makan ayam, tetapi saya kurang suka. Biasanya diikuti が/けど dan catatan. Kata sifat-i: 〜くないこともない.",
+    "beforeState": "鶏肉は食べません。— Penolakan tegas.",
+    "afterState": "鶏肉は、食べないこともないです。— Bukannya tidak makan; masih mungkin."
   },
   "w6d3g1": {
-    "meaning_id": "Pas dicoba lakukan, ternyata hasilnya baru ketahuan bahwa... (Mengetahui fakta baru setelah mencoba)",
-    "keyTakeaway": "Melakukan suatu tindakan pancingan terlebih dahulu (misal: bertanya, meneliti), dan momen itu membuahkan informasi baru yang mengejutkan.",
-    "nuance": "Tindakan eksplorasi yang membuka wawasan baru.",
-    "beforeState": "Belum Tahu Fakta: Ragu apakah toko tersebut buka di hari libur ❓",
-    "afterState": "Fakta Terungkap: Pas dicoba telepon, ternyata baru ketahuan tokonya sedang renovasi 📞"
+    "meaning_id": "Setelah ~, ternyata ~",
+    "keyTakeaway": "Bedakan dengan 〜たところだ (baru saja ~). Dalam pola ini, ところ diikuti koma dan kalimat hasil.",
+    "nuance": "Bentuk -ta + ところ menyatakan bahwa setelah melakukan suatu tindakan, pembicara mendapatkan hasil atau informasi tertentu: 先生に相談したところ、いいアドバイスをもらった = setelah berkonsultasi dengan guru, ternyata saya mendapat saran yang bagus. Bagian kedua adalah kejadian nyata (bentuk lampau), bukan keinginan atau perintah.",
+    "beforeState": "先生に相談した。いいアドバイスをもらった。— Dua kejadian terpisah.",
+    "afterState": "先生に相談したところ、いいアドバイスをもらった。— Hasil yang didapat setelah berkonsultasi."
   },
   "w6d3g2": {
-    "meaning_id": "Hampir saja... / Nyaris celaka! (Untung saja tidak sampai terjadi)",
-    "keyTakeaway": "Menyatakan situasi kritis di mana bahaya atau bencana nyaris saja terjadi sepersekian detik lagi, namun untungnya berhasil selamat.",
-    "nuance": "Kelegaan luar biasa setelah lolos dari jurang bahaya.",
-    "beforeState": "Terpeleset di Tangga: Kaki terpeleset di lantai licin 🪜",
-    "afterState": "Lolos Kritis: Untung cepat memegang pegangan tangan, nyaris saja jatuh berguling! 😮‍💨"
+    "meaning_id": "Hampir saja ~ (tetapi tidak jadi)",
+    "keyTakeaway": "Pola ini selalu tentang hal yang tidak benar-benar terjadi. Bandingkan: 落ちた = benar-benar jatuh; 落ちるところだった = hampir jatuh.",
+    "nuance": "Kata kerja bentuk kamus + ところだった menyatakan bahwa sesuatu, biasanya hal buruk, hampir terjadi tetapi akhirnya tidak terjadi: もう少しで階段から落ちるところだった = hampir saja jatuh dari tangga. Sering didahului もう少しで atau 危うく.",
+    "beforeState": "階段から落ちた。— Benar-benar jatuh.",
+    "afterState": "階段から落ちるところだった。— Hampir jatuh, untungnya tidak."
   },
   "w6d3g3": {
-    "meaning_id": "Tepat pas lagi... / Sedang di tengah-tengah... (Titik fase berlangsungnya aksi)",
-    "keyTakeaway": "Vるところ = baru mau mulai; Vているところ = sedang asyik di tengah aksi; Vたところ = baru saja tuntas beres beberapa detik lalu.",
-    "nuance": "Ketepatan fase temporal aksi dari awal hingga akhir.",
-    "beforeState": "Aksi Utuh: Memasak makan malam 🍳",
-    "afterState": "Fase Tepat: Baru saja mau menyalakan kompor pas telepon berdering 📱"
+    "meaning_id": "Hendak ~ / sedang ~ / baru saja ~ (tahap tindakan)",
+    "keyTakeaway": "Ingat tiga tahap: る (sebelum), ている (sedang), た (sesudah). Dibanding 〜ている biasa, ているところ menekankan 'tepat saat ini'.",
+    "nuance": "ところ setelah kata kerja menunjukkan tahap tindakan yang tepat. Bentuk kamus + ところだ = hendak/baru mau ~ (今出かけるところだ); 〜ているところだ = sedang ~ (今ご飯を食べているところだ = saya sedang makan); 〜たところだ = baru saja ~ (今着いたところだ). Dengan partikel (ところへ, ところに, ところを), pola ini menunjukkan momen terjadinya hal lain.",
+    "beforeState": "ご飯を食べています。— Sedang makan (umum).",
+    "afterState": "今、ちょうどご飯を食べているところです。— Tepat saat ini sedang makan."
   },
   "w6d3g4": {
-    "meaning_id": "Percuma saja biarpun sudah dicoba..., hasilnya bakal sia-sia (Tindakan yang sia-sia)",
-    "keyTakeaway": "Selalu diikuti kalimat penyangkalan: menegaskan bahwa biarpun tindakan tersebut dikerjakan, hal itu tidak akan menghasilkan dampak positif apa pun.",
-    "nuance": "Kepastian rasional bahwa tindakan tersebut sudah terlambat atau tak berguna.",
-    "beforeState": "Mencoba Berlari: Berlari kencang mengejar kereta 🏃",
-    "afterState": "Kenyataan Sia-sia: Keretanya sudah jalan, percuma saja lari sekencang apa pun! 🚆"
+    "meaning_id": "Walaupun ~ pun, percuma",
+    "keyTakeaway": "ところで di sini bukan 'ngomong-ngomong'. Maknanya ditentukan oleh bentuk -ta di depannya dan bagian negatif sesudahnya.",
+    "nuance": "Bentuk -ta + ところで menyatakan bahwa walaupun suatu tindakan dilakukan, hasilnya tidak akan berarti: 今さら走ったところで、間に合わない = walaupun sekarang lari pun, sudah tidak akan sempat. Bagian kedua biasanya penilaian negatif (無駄だ, 間に合わない, 変わらない). Tidak dipakai dengan perintah atau keinginan.",
+    "beforeState": "走っても間に合わない。— Netral.",
+    "afterState": "今さら走ったところで、間に合わない。— Menekankan bahwa usahanya sia-sia."
   },
   "w6d4g1": {
-    "meaning_id": "Mau nggak mau harus berangkat / Nggak mungkin bisa mangkir (Tuntutan sosial atau etika)",
-    "keyTakeaway": "Bukan paksaan fisik, melainkan beban sosial, tanggung jawab moral, atau etika kesopanan yang membuat kita tidak bisa menolaknya.",
-    "nuance": "Tanggung jawab sosial yang menuntut komitmen kehadiran.",
-    "beforeState": "Keinginan Istirahat: Badan merasa lelah ingin rebahan di rumah 🛋️",
-    "afterState": "Tuntutan Sosial: Karena ini pernikahan sahabat karib, mau nggak mau harus hadir! 💒"
+    "meaning_id": "Tidak mungkin tidak ~ / tidak bisa (begitu saja) ~",
+    "keyTakeaway": "Pola ini menyatakan hambatan sosial atau etika, bukan ketidakmampuan fisik. Untuk 'tidak bisa' karena kemampuan, gunakan bentuk potensial.",
+    "nuance": "Bentuk -nai + わけにはいかない menyatakan keharusan karena tanggung jawab sosial atau moral: 大事な会議だから、休むわけにはいかない = karena rapat penting, saya tidak bisa (begitu saja) tidak masuk. Bentuk kamus + わけにはいかない berarti 'tidak bisa ~ karena alasan tertentu': 行かないわけにはいかない = mau tidak mau harus pergi.",
+    "beforeState": "会議を休めない。— Tidak bisa absen (umum).",
+    "afterState": "大事な会議だから、休むわけにはいかない。— Secara tanggung jawab, tidak pantas absen."
   },
   "w6d4g2": {
-    "meaning_id": "Pantas saja begitu! / Masuk akal banget sekarang (Baru paham setelah tahu alasannya)",
-    "keyTakeaway": "Seruan pemahaman spontan setelah mendengar alasan atau bukti di baliknya ('Pantas saja dia lemas seharian, rupanya semalam demam tinggi!').",
-    "nuance": "Pencerahan logis yang menyambungkan teka-teki penyebab.",
-    "beforeState": "Keheranan Awal: Heran kenapa dia tertidur pulas di meja kantor ❓",
-    "afterState": "Pencerahan Logis: Pantas saja begitu, ternyata dia lembur sampai jam 4 subuh! 💡"
+    "meaning_id": "Pantas saja ~; tentu saja ~",
+    "keyTakeaway": "わけだ menghubungkan sebab dan akibat yang masuk akal. どうりで (pantas saja) sering dipakai bersama わけだ.",
+    "nuance": "わけだ menyatakan bahwa pembicara memahami alasan suatu keadaan setelah mengetahui faktanya: 暑いわけだ。35度もある = pantas saja panas. Ternyata sampai 35 derajat. Juga dipakai untuk menyatakan kesimpulan logis: 彼は10年日本にいたから、日本語が上手なわけだ = dia 10 tahun di Jepang, jadi wajar bahasa Jepangnya bagus. Kata benda memakai な/である.",
+    "beforeState": "暑い。— Hanya merasakan panas.",
+    "afterState": "暑いわけだ。35度もある。— Setelah tahu suhunya, pembicara paham kenapa panas."
   },
   "w6d4g3": {
-    "meaning_id": "Bukan berarti benci begitu sih / Jangan salah paham dulu (Membantah generalisasi berlebihan)",
-    "keyTakeaway": "Dipakai untuk meluruskan asumsi lawan bicara agar tidak menggeneralisasi secara berlebihan ('Bukan berarti aku nggak suka masakannya, cuma perutku lagi kenyang saja').",
-    "nuance": "Membantah ekstremitas penilaian secara halus dan berimbang.",
-    "beforeState": "Asumsi Ekstrem: Mengira lawan bicara membenci makanan pedas 🌶️",
-    "afterState": "Klarifikasi Halus: Bukan berarti benci sih, cuma lambungku lagi kurang fit hari ini 🍵"
+    "meaning_id": "Bukan berarti ~",
+    "keyTakeaway": "わけではない adalah penyangkalan sebagian. Sangat berguna untuk meluruskan salah paham dengan halus.",
+    "nuance": "わけではない (santai: わけじゃない) menyangkal kesimpulan yang mungkin ditarik orang lain, tanpa menyangkal semuanya: 嫌いなわけではないが、あまり食べたくない = bukan berarti saya benci, tetapi sedang tidak ingin makan. Sering dipasangkan dengan からといって atau 別に. Kata sifat-na memakai な.",
+    "beforeState": "嫌いだ。— Pernyataan tegas.",
+    "afterState": "嫌いなわけではない。— Membantah anggapan bahwa pembicara membenci."
   },
   "w6d4g4": {
-    "meaning_id": "Mana mungkin bisa menang! / Mustahil banget secara logika (Penolakan mutlak)",
-    "keyTakeaway": "Penolakan keras dan mutlak berdasarkan akal sehat: secara logika atau perhitungan apa pun, kemungkinan hal itu terjadi adalah nol besar.",
-    "nuance": "Ketidakmungkinan mutlak yang bertentangan dengan hukum logika.",
-    "beforeState": "Peluang Masih Ada: Berharap keajaiban menang melawan atlet juara dunia 🥊",
-    "afterState": "Penolakan Mutlak: Baru latihan seminggu, mana mungkin bisa menang melawan juara dunia! ❌"
+    "meaning_id": "Tidak mungkin ~",
+    "keyTakeaway": "わけがない cenderung lebih emosional dan subjektif, sedangkan はずがない lebih berdasarkan perhitungan atau informasi.",
+    "nuance": "わけがない (atau わけはない) menyatakan keyakinan kuat bahwa sesuatu sama sekali tidak mungkin berdasarkan logika: 彼が勝てるわけがない = mana mungkin dia bisa menang. Kata benda memakai な/である, kata sifat-na memakai な. Maknanya sama dengan はずがない; lisan santainya: わけない.",
+    "beforeState": "彼は勝てないと思う。— Dugaan biasa.",
+    "afterState": "彼が勝てるわけがない。— Penyangkalan mutlak: mustahil."
   },
   "w6d5g1": {
-    "meaning_id": "Silakan datang / Silakan berkunjung (Ungkapan hormat sonkeigo kepada tamu/klien)",
-    "keyTakeaway": "Bentuk sonkeigo sopan untuk menghormati pelanggan atau tamu kehormatan, mempersilakan mereka melakukan tindakan dengan ramah dan santun.",
-    "nuance": "Penghormatan tinggi khas keramahan bisnis Jepang (Omotenashi).",
-    "beforeState": "Instruksi Biasa: Silakan datang ke kantor (来てください) 🚶",
-    "afterState": "Sonkeigo Santun: Silakan berkunjung ke galeri pameran kami (お越しください) 🌸"
+    "meaning_id": "Silakan ~ (hormat); saya ~ (merendah)",
+    "keyTakeaway": "Perhatikan siapa yang bertindak: お〜ください = lawan bicara yang bertindak; お〜する = pembicara yang bertindak untuk lawan bicara.",
+    "nuance": "お/ご + bentuk masu + ください adalah permintaan hormat (sonkeigo) agar lawan bicara melakukan sesuatu: お入りください = silakan masuk; ご利用ください = silakan gunakan. お/ご + bentuk masu + する/いたす adalah bentuk merendah (kenjougo) untuk tindakan pembicara: ご案内します = saya pandu; お持ちいたします = saya bawakan. Kata asli Jepang memakai お, kata kango memakai ご.",
+    "beforeState": "入ってください。— Sopan biasa.",
+    "afterState": "どうぞお入りください。— Lebih hormat, khas pelayanan kepada tamu."
   },
   "w6d5g2": {
-    "meaning_id": "Melihat (Sonkeigo: Tamu yang melihat / Kenjougo: Saya yang melihat dokumen)",
-    "keyTakeaway": "Jangan sampai tertukar! ご覧になる = menghormati lawan bicara yang melihat; 拝見する = merendahkan diri kita sendiri yang melihat dokumen lawan bicara.",
-    "nuance": "Penataan hierarki kesantunan yang sangat esensial dalam dunia kerja.",
-    "beforeState": "Kata Kerja Netral: Melihat dokumen (見る) 👁️",
-    "afterState": "Hierarki Tepat: Tamu yang melihat (ご覧になる) / Saya yang memeriksa (拝見する) 📋"
+    "meaning_id": "Kata kerja hormat/merendah bentuk khusus",
+    "keyTakeaway": "Jangan tertukar: ご覧になる untuk orang yang dihormati yang melihat; 拝見する untuk pembicara yang melihat milik orang yang dihormati.",
+    "nuance": "Beberapa kata kerja punya bentuk keigo khusus yang tidak mengikuti pola お〜になる/お〜する. Contoh bentuk hormat (sonkeigo): 見る→ご覧になる, 言う→おっしゃる, 行く/来る/いる→いらっしゃる, 食べる→召し上がる. Contoh bentuk merendah (kenjougo): 見る→拝見する, 言う→申す/申し上げる, 行く/来る→参る, 知る→存じる. Bentuk-bentuk ini perlu dihafal.",
+    "beforeState": "先生がこの本を見た。— Bahasa biasa.",
+    "afterState": "先生がこの本をご覧になった。— Bentuk hormat untuk tindakan guru."
   },
   "w6d5g3": {
-    "meaning_id": "Izinkan kami memandu / Dengan hormat kami sampaikan (Kenjougo melayani klien)",
-    "keyTakeaway": "Bentuk kenjougo tingkat tinggi yang dipakai staf, pemandu, atau presenter perusahaan untuk melayani audiens atau pelanggan terhormat.",
-    "nuance": "Dedikasi pelayanan rendah hati demi kepuasan klien.",
-    "beforeState": "Pelayanan Standar: Saya akan memandu Anda berkeliling (案内します) 🚶",
-    "afterState": "Kenjougo Bisnis: Dengan hormat kami memandu kunjungan Anda (ご案内申し上げます) 🏛️"
+    "meaning_id": "Dengan hormat saya ~ (merendah, sangat formal)",
+    "keyTakeaway": "Ungkapan baku yang sering dipakai: お祝い申し上げます, お詫び申し上げます, ご案内申し上げます.",
+    "nuance": "ご/お + bentuk masu + 申し上げる adalah bentuk merendah (kenjougo) yang lebih tinggi daripada お〜する, dipakai dalam situasi sangat formal, pidato, atau pengumuman: 心よりお祝い申し上げます = dengan tulus saya mengucapkan selamat; ご案内申し上げます = dengan hormat kami sampaikan informasi. 〜差し上げる dipakai untuk memberikan sesuatu kepada orang yang dihormati (ご連絡差し上げます).",
+    "beforeState": "お祝いします。— Sopan.",
+    "afterState": "心よりお祝い申し上げます。— Sangat formal, khas pidato atau surat resmi."
   },
   "w6d5g4": {
-    "meaning_id": "Terima kasih atas kesediaan Anda untuk datang (Menghargai kebaikan pihak lain)",
-    "keyTakeaway": "Bentuk sangat santun dari 〜てもらって, mengungkapkan rasa terima kasih mendalam atas kemurahan hati pihak lain yang sudi meluangkan waktu.",
-    "nuance": "Apresiasi elegan atas waktu dan kehadiran tamu kehormatan.",
-    "beforeState": "Terima Kasih Biasa: Makasih sudah datang (来てくれてありがとう) 💬",
-    "afterState": "Kehormatan Tinggi: Terima kasih sebesar-besarnya atas kesediaan Bapak/Ibu hadir (お越しいただき) 💐"
+    "meaning_id": "Terima kasih atas kesediaan Anda ~ (sangat sopan)",
+    "keyTakeaway": "お越しいただき dan ご来店いただき adalah ungkapan baku di toko, hotel, dan acara resmi.",
+    "nuance": "お/ご + bentuk masu + いただく adalah bentuk merendah dari 〜てもらう, dipakai untuk berterima kasih atau meminta dengan sangat sopan: 本日はご来店いただき、誠にありがとうございます = terima kasih banyak atas kunjungan Anda hari ini. お〜願う adalah permintaan sopan (お待ち願います = mohon menunggu).",
+    "beforeState": "来てくれてありがとう。— Santai.",
+    "afterState": "本日はお越しいただき、ありがとうございます。— Sangat sopan kepada tamu."
   },
   "w6d6g1": {
-    "meaning_id": "Apakah kiranya berkenan jika...? (Permohonan izin atau konfirmasi bisnis sangat santun)",
-    "keyTakeaway": "Pertanyaan sangat halus dalam komunikasi bisnis untuk memohon izin, mengecek kesiapan waktu, atau memastikan persetujuan klien tanpa nada memaksa.",
-    "nuance": "Kesantunan tingkat tinggi dalam negosiasi dan kesepakatan kerja.",
-    "beforeState": "Pertanyaan Biasa: Boleh minta waktu sebentar? (いいですか) ❓",
-    "afterState": "Keigo Bisnis Elegan: Apakah kiranya Bapak/Ibu berkenan meluangkan waktu sejenak? (よろしいでしょうか) 🤝"
+    "meaning_id": "Apakah ~ berkenan?; bolehkah ~? (sangat sopan)",
+    "keyTakeaway": "Dalam situasi bisnis, よろしいでしょうか jauh lebih aman daripada いいですか.",
+    "nuance": "よろしいでしょうか adalah bentuk sangat sopan dari いいですか, dipakai untuk meminta izin atau memastikan persetujuan: こちらでよろしいでしょうか = apakah ini sudah sesuai? 少しお時間よろしいでしょうか = bolehkah saya meminta waktu sebentar? 〜ていただけますでしょうか adalah permintaan yang sangat halus.",
+    "beforeState": "これでいいですか。— Sopan biasa.",
+    "afterState": "こちらでよろしいでしょうか。— Sangat sopan, khas bisnis."
   },
   "w6d6g2": {
-    "meaning_id": "Mohon sudi sampaikan salam saya kepada... (Titip pesan secara santun)",
-    "keyTakeaway": "Ungkapan elegan untuk menitipkan salam hangat atau meneruskan informasi penting kepada pihak ketiga melalui lawan bicara.",
-    "nuance": "Mempererat relasi interpersonal antar instansi.",
-    "beforeState": "Titip Pesan Biasa: Tolong bilangin ke bos ya (伝えてください) 💬",
-    "afterState": "Diplomasi Santun: Mohon sudi kiranya menyampaikan salam hormat kami kepada Bapak Direktur (お伝えください) ✉️"
+    "meaning_id": "Mohon sampaikan ~ (titip pesan dengan sopan)",
+    "keyTakeaway": "よろしくお伝えください adalah ungkapan baku di akhir percakapan atau surat.",
+    "nuance": "お伝えください dan ungkapan sejenis dipakai untuk menitipkan pesan atau salam kepada orang ketiga melalui lawan bicara: 田中様によろしくお伝えください = mohon sampaikan salam saya kepada Bapak/Ibu Tanaka. Versi yang lebih halus: お伝えいただけますか atau お伝え願えますか.",
+    "beforeState": "田中さんによろしく言って。— Santai.",
+    "afterState": "田中様によろしくお伝えください。— Sopan, cocok untuk situasi formal."
   },
   "w6d6g3": {
-    "meaning_id": "Review Menyeluruh Pola Kalimat N3 (Penguasaan rasa bahasa & anti-tertukar)",
-    "keyTakeaway": "Kunci utama menguasai tata bahasa tingkat menengah: jangan hanya menghafal terjemahan kata per kata, tapi rasakan konteks emosi dan situasi kapan orang Jepang memakainya.",
-    "nuance": "Integrasi menyeluruh rasa bahasa agar terdengar alami bak penutur asli.",
-    "beforeState": "Hafalan Kaku: Menghafal rumus secara mekanis tanpa konteks rasa 🤖",
-    "afterState": "Penguasaan Alami: Memahami nuansa emosional dan konteks situasi yang tepat sasaran 🎯"
-  },
-  "bp_n5_013": {
-    "meaning_id": "Entah ... atau ... (Pilihan di antara dua hal)",
-    "keyTakeaway": "Dipakai saat memilih salah satu di antara dua kemungkinan pilihan (misal: minum teh atau kopi).",
-    "nuance": "Memberikan opsi terbuka di antara dua alternatif yang setara."
-  },
-  "bp_n5_042": {
-    "meaning_id": "Melakukan hal-hal seperti ... dan ... (Contoh aktivitas santai tanpa urutan kaku)",
-    "keyTakeaway": "Dipakai untuk menyebutkan beberapa contoh kegiatan saat hari libur atau santai, tanpa bermaksud mengurutkannya secara kronologis.",
-    "nuance": "Menyebutkan cuplikan kegiatan acak dari banyak hal yang dikerjakan."
-  },
-  "bp_n5_098": {
-    "meaning_id": "Lebih ... dibanding ... (Membandingkan dua objek)",
-    "keyTakeaway": "Pola dasar komparatif: menyebutkan objek utama yang lebih unggul dibandingkan objek tolok ukurnya.",
-    "nuance": "Perbandingan dua objek untuk menonjolkan keunggulan salah satunya."
-  },
-  "bp_n5_115": {
-    "meaning_id": "Dibanding ..., yang ini justru lebih ...",
-    "keyTakeaway": "Menempatkan tolok ukur perbandingan di depan dengan より, lalu menegaskan objek pemenang dengan 〜のほうが.",
-    "nuance": "Menegaskan pilihan yang lebih unggul setelah menimbang opsi lain."
-  },
-  "bp_n4_117": {
-    "meaning_id": "Setiap kali / begitu ..., pasti otomatis ... (Akibat alami atau otomatis)",
-    "keyTakeaway": "Pola syarat otomatis: begitu tombol ditekan atau musim semi tiba, peristiwa berikutnya pasti langsung terjadi secara alami tanpa campur tangan niat manusia.",
-    "nuance": "Hukum alam, petunjuk arah jalan, atau kerja mekanis mesin."
-  },
-  "bp_n4_118": {
-    "meaning_id": "Di antara ... atau ..., mana yang lebih ...? (Pilihan komparatif)",
-    "keyTakeaway": "Pertanyaan komparatif untuk menanyakan preferensi atau keunggulan di antara dua opsi pilihan.",
-    "nuance": "Meminta lawan bicara memilih satu yang paling unggul di antara dua hal."
-  },
-  "bp_n4_125": {
-    "meaning_id": "Contohnya seperti ... atau ... (Menyebut beberapa contoh santai)",
-    "keyTakeaway": "Ragam lisan akrab untuk memberikan contoh-contoh santai di dalam percakapan sehari-hari.",
-    "nuance": "Penyebutan contoh non-formal yang lincah."
-  },
-  "bp_n4_143": {
-    "meaning_id": "Frekuensi: ... kali dalam ... (Berapa kali per satuan waktu)",
-    "keyTakeaway": "Menunjukkan frekuensi pengulangan aktivitas dalam satu periode waktu tertentu (misal: 3 kali dalam seminggu).",
-    "nuance": "Rasio keteraturan jadwal aktivitas."
-  },
-  "bp_n4_154": {
-    "meaning_id": "Kontras: Kalau yang satu ..., tapi kalau yang satunya lagi ...",
-    "keyTakeaway": "Mempertemukan dua partikel は untuk menonjolkan perbedaan kontras antara dua kondisi (misal: bahasa Jepang bisa, tapi bahasa Mandarin tidak bisa).",
-    "nuance": "Kontras tegas antara dua kemampuan atau kondisi."
-  },
-  "bp_n2_024": {
-    "meaning_id": "Baru saja... belum sempat beres, detik itu juga langsung... (Terjadi hampir bersamaan)",
-    "keyTakeaway": "Menunjukkan dua peristiwa yang terjadi hampir pada detik yang sama: aksi pertama belum tuntas seutuhnya, aksi kedua sudah langsung menyusul.",
-    "nuance": "Kecepatan suksesi peristiwa yang membuat napas serasa tertahan."
-  },
-  "bp_n2_102": {
-    "meaning_id": "Contoh-contoh seperti ... dan semacamnya (Menyebut representasi)",
-    "keyTakeaway": "Menyebutkan beberapa contoh representatif untuk mewakili kelompok kategori yang lebih luas.",
-    "nuance": "Ragam tulisan atau pidato yang rapi untuk mengelompokkan contoh."
-  },
-  "bp_n2_122": {
-    "meaning_id": "Segala-galanya dari awal sampai akhir tanpa terlewat satu pun",
-    "keyTakeaway": "Menekankan ketuntasan total yang mencakup seluruh aspek tanpa ada satu pun yang dikecualikan (misal: diurus semuanya dari A sampai Z).",
-    "nuance": "Cakupan menyeluruh dan tuntas."
-  },
-  "bp_n1_017": {
-    "meaning_id": "Dua-duanya sama saja nggak beresnya / Kalau yang satu begitu, yang satunya pun ikutan parah",
-    "keyTakeaway": "Kritik pedas yang menyamakan dua pihak: menegaskan bahwa jika pihak pertama sudah bertingkah buruk, pihak pasangannya pun sama-sama tidak beres.",
-    "nuance": "Kekecewaan atau celaan atas dua pihak yang sama-sama bobrok."
-  },
-  "bp_n1_085": {
-    "meaning_id": "Entah itu... ataupun..., keduanya diperlakukan setara tanpa beda",
-    "keyTakeaway": "Ragam formal tertulis untuk menegaskan bahwa aturan atau perlakuan berlaku mutlak bagi kedua kategori tanpa membeda-bedakan status.",
-    "nuance": "Kesetaraan perlakuan hukum atau prinsip di hadapan aturan."
+    "meaning_id": "Rangkuman: membedakan pola-pola N3",
+    "keyTakeaway": "Jangan hanya menghafal terjemahan; perhatikan contoh kalimat dan situasi kapan orang Jepang memakai pola tersebut.",
+    "nuance": "Materi ini mengulang pola-pola N3 yang sudah dipelajari dengan fokus pada nuansa dan situasi pemakaiannya. Banyak pola punya terjemahan Indonesia yang mirip (misalnya はず/べき, ように/ために, ことにする/ことになる), padahal penggunaannya berbeda. Perhatikan siapa pelakunya, apakah tindakan disengaja, tingkat kesopanan, dan apakah bernada positif atau negatif."
   }
 }

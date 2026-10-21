@@ -6,8 +6,8 @@
     "title": "調べてもわからなかった（Vても／Aくても／na/Nでも）",
     "formula": "Vて も／Aく ても／na・N でも",
     "meaning_en": "Even if (concessive).",
-    "meaning_id": "Biarpun sudah... tetap saja... / Walaupun... (Hasil tidak berubah meski sudah berusaha)",
-    "explanation_note": "Kontras nyata antara curahan usaha dengan hasil akhir yang tidak sebanding.",
+    "meaning_id": "Walaupun ~ (tetap saja ~)",
+    "explanation_note": "ても menyatakan bahwa hasil di klausa utama tetap terjadi walaupun ada keadaan di klausa pertama: 調べてもわからなかった = walaupun sudah dicari, tetap tidak paham. Kata kerja: bentuk -te + も; kata sifat-i: 〜くても; kata sifat-na dan kata benda: でも (雨でも行く = walau hujan tetap pergi).",
     "examples": [
       {
         "jp": "調べてもわからなかったので、先生に聞いた。",
@@ -33,8 +33,8 @@
     "title": "どんなに練習しても（どんなに／いくら＋Vても／Aくても／naでも／Nでも）",
     "formula": "どんなに／いくら ＋ Vても／Aくても／naでも／Nでも",
     "meaning_en": "No matter how much (emphatic concessive).",
-    "meaning_id": "Mau seberapa keras pun... / Tak peduli sebanyak apa pun... (Tingkat usaha tidak mengubah hasil)",
-    "explanation_note": "Penekanan intensitas maksimal yang tetap tidak sanggup membalikkan keadaan.",
+    "meaning_id": "Sebanyak/sekeras apa pun ~, (tetap) ~",
+    "explanation_note": "どんなに atau いくら + 〜ても menekankan bahwa seberapa pun besar usaha atau tingkat suatu hal, hasilnya tetap tidak berubah: どんなに練習しても、全然うまくならない = sekeras apa pun berlatih, sama sekali tidak ada kemajuan; いくら高くても買う = semahal apa pun, tetap beli. いくら terutama dipakai untuk jumlah atau frekuensi.",
     "examples": [
       {
         "jp": "ギターを習い始めたが、どんなに練習しても全然うまくならない。",
@@ -60,8 +60,8 @@
     "title": "辞書を使わずに（Vずに）",
     "formula": "V（ない→ずに；しない→せずに）",
     "meaning_en": "Without doing (formal, = Vないで).",
-    "meaning_id": "Tanpa melakukan... (Ragam formal tertulis dari 〜ないで)",
-    "explanation_note": "Gaya bahasa tertulis yang anggun dan berwibawa.",
+    "meaning_id": "Tanpa ~ (bentuk formal dari ないで)",
+    "explanation_note": "Bentuk -nai tanpa ない + ずに berarti 'tanpa ~', sama dengan 〜ないで tetapi lebih formal dan sering dipakai dalam tulisan: 辞書を使わずに書いた = menulis tanpa memakai kamus. する menjadi せずに (bukan しずに). Juga dipakai dalam ungkapan seperti 〜ずにはいられない.",
     "examples": [
       {
         "jp": "辞書を使わずに書いたので、自信がありません。",
@@ -87,8 +87,8 @@
     "title": "日本代表として（Nと＋して／しては／しても／してのN）",
     "formula": "Nと ＋ して／しては／しても／してのN",
     "meaning_en": "As / in the capacity of.",
-    "meaning_id": "Sebagai... / Selaku... (Menyatakan peran, status, atau kapasitas resmi)",
-    "explanation_note": "Menjalankan tindakan yang terikat pada tanggung jawab peran tersebut.",
+    "meaning_id": "Sebagai ~; selaku ~",
+    "explanation_note": "Kata benda + として menyatakan peran, status, atau kedudukan seseorang atau sesuatu: 日本代表として試合に出る = bertanding sebagai wakil Jepang; 趣味として = sebagai hobi. Variasi: としては (dari sisi ~; untuk ukuran ~), としても (sebagai ~ pun), としての + kata benda (教師としての責任 = tanggung jawab sebagai guru).",
     "examples": [
       {
         "jp": "彼は外国人だが、日本代表として試合に出る。",
@@ -114,8 +114,8 @@
     "title": "外国人にしては（V/A/na/Nに＋しては；それにしては）",
     "formula": "V・A・na・N（Nに／naに） ＋ しては；それにしては",
     "meaning_en": "Considering X, an unexpected feeling.",
-    "meaning_id": "Untuk ukuran..., kok tumben... (Di luar dugaan jika melihat standar biasanya)",
-    "explanation_note": "Keterkejutan positif atau evaluasi yang melampaui tolok ukur umum.",
+    "meaning_id": "Untuk ukuran ~ (ternyata di luar dugaan)",
+    "explanation_note": "にしては menyatakan bahwa kenyataan berbeda dari yang biasanya diharapkan dari kategori atau keadaan tertentu: 外国人にしては日本語が上手だ = untuk ukuran orang asing, bahasa Jepangnya bagus. Kata benda langsung disambung, kata kerja memakai bentuk biasa (初めてやったにしては上手だ). それにしては berarti 'kalau begitu, kok ~'.",
     "examples": [
       {
         "jp": "外国人にしては日本語が上手だ。",
@@ -141,8 +141,8 @@
     "title": "100円にしても（V/A/na/Nに＋しても）",
     "formula": "V・A・na・N（Nに／naに） ＋ しても",
     "meaning_en": "Even if / even granting X.",
-    "meaning_id": "Sekalipun memang begitu..., tapi tetap saja... (Kesimpulan tetap berlaku bahkan dalam kasus ekstrem)",
-    "explanation_note": "Menolak pemakluman berlebihan demi menegakkan batasan prinsip.",
+    "meaning_id": "Walaupun (memang) ~, tetap saja ~",
+    "explanation_note": "にしても menyatakan bahwa walaupun suatu keadaan diakui atau diandaikan, penilaian atau kesimpulan berikutnya tetap berlaku: これは、100円にしても高いと思う = walaupun harganya 100 yen, menurut saya tetap mahal; 忙しいにしても、連絡ぐらいはしてほしい = walaupun sibuk, setidaknya kabari. Kata benda langsung disambung, kata kerja dan kata sifat memakai bentuk biasa.",
     "examples": [
       {
         "jp": "これは、100円にしても、高いと思う。",
@@ -168,8 +168,8 @@
     "title": "本当だとしたら（N/na/A/V＋としたら／すれば）",
     "formula": "N・na・A・V ＋ としたら／すれば",
     "meaning_en": "If it were the case that... (hypothetical).",
-    "meaning_id": "Seandainya benar begitu... / Andaikan... (Mengandaikan situasi imajiner yang belum pasti)",
-    "explanation_note": "Eksplorasi skenario imajiner yang belum terkonfirmasi di dunia nyata.",
+    "meaning_id": "Seandainya ~ (pengandaian)",
+    "explanation_note": "としたら dan とすれば menyatakan pengandaian atas sesuatu yang belum pasti, lalu memikirkan apa yang akan terjadi jika itu benar: その話が本当だとしたら、うれしい = seandainya cerita itu benar, saya senang. Kata benda dan kata sifat-na memakai だ (本当だとしたら). Sering didahului もし.",
     "examples": [
       {
         "jp": "その話が本当だとしたら、うれしいです。",
@@ -195,8 +195,8 @@
     "title": "行くつもりでした（Vる／Vない＋つもりだった）",
     "formula": "Vる／Vない ＋ つもりだった",
     "meaning_en": "Was planning to do / not to do something (but didn't happen).",
-    "meaning_id": "Tadinya niatnya mau... (tapi kenyataannya batal / meleset)",
-    "explanation_note": "Ada rasa kecewa atau penjelasan mengapa rencana awal kandas di tengah jalan.",
+    "meaning_id": "Tadinya berniat ~ (tetapi tidak jadi/ternyata tidak)",
+    "explanation_note": "Bentuk kamus atau bentuk -nai + つもりだった menyatakan niat di masa lalu yang tidak terwujud: 買い物に行くつもりだったが、頭が痛かったので家にいた = tadinya berniat belanja, tetapi karena sakit kepala saya di rumah saja. Bentuk -ta + つもりだった berarti 'kukira sudah ~' (鍵をかけたつもりだった = kukira sudah mengunci).",
     "examples": [
       {
         "jp": "昨日は買い物に行くつもりでしたが、頭が痛かったのでずっと家にいました。",
@@ -222,8 +222,8 @@
     "title": "家にいないはずだ（V/A/na/N＋はずだ／はずがない）",
     "formula": "V・A・na・N ＋ はずだ／はずがない",
     "meaning_en": "Should be / is expected to be (logical conclusion); はずがない = strong negation.",
-    "meaning_id": "Seharusnya pasti... / Mana mungkin begitu! (Keyakinan kuat berdasar logika atau jadwal)",
-    "explanation_note": "Perhitungan rasional dan kepastian berdasarkan premis yang kuat.",
+    "meaning_id": "Seharusnya ~; tidak mungkin ~ (はずがない)",
+    "explanation_note": "はずだ menyatakan keyakinan pembicara berdasarkan alasan atau informasi yang jelas, berarti 'seharusnya ~': 田中さんは旅行中だから、家にいないはずだ = Tanaka sedang bepergian, jadi seharusnya tidak ada di rumah. はずがない berarti 'tidak mungkin ~' (彼がうそをつくはずがない). Kata benda memakai の, kata sifat-na memakai な.",
     "examples": [
       {
         "jp": "田中さんは今、旅行中だから、家にいないはずだ。",
@@ -249,8 +249,8 @@
     "title": "守るべきだ（Vる／naである／Aくある＋べきだ／べきではない）",
     "formula": "Vる／naである／Aくある ＋ べきだ／べきではない",
     "meaning_en": "Should do / should not do (obligation, duty). Note: すべき＝するべきだ.",
-    "meaning_id": "Sudah sepantasnya... / Wajib secara moral (Kewajiban moral atau etika akal sehat)",
-    "explanation_note": "Beban moral batiniah yang disepakati oleh nurani masyarakat.",
+    "meaning_id": "Sepatutnya ~; sebaiknya tidak ~ (べきではない)",
+    "explanation_note": "Kata kerja bentuk kamus + べきだ menyatakan bahwa sesuatu sepatutnya dilakukan menurut norma, moral, atau akal sehat: 約束は守るべきだ = janji sepatutnya ditepati. べきではない berarti 'sepatutnya tidak ~'. する bisa menjadi すべき atau するべき. Untuk kata sifat dan kata benda dipakai であるべきだ (公平であるべきだ).",
     "examples": [
       {
         "jp": "約束は守るべきだ。",
@@ -276,8 +276,8 @@
     "title": "よく遊んだものだ（Vた／Vなかった＋ものだ／もんだ）",
     "formula": "Vた／Vなかった ＋ ものだ／もんだ",
     "meaning_en": "Expressing nostalgic memories.",
-    "meaning_id": "Dulu sering banget... (Mengenang memori masa lalu dengan rasa nostalgia)",
-    "explanation_note": "Rasa rindu nostalgia yang hangat saat menengok kembali perjalanan hidup.",
+    "meaning_id": "Dulu sering ~ (kenangan)",
+    "explanation_note": "Bentuk -ta + ものだ (santai: もんだ) dipakai untuk mengenang kebiasaan di masa lalu dengan perasaan nostalgia: 子どものころはよく川で遊んだものだ = waktu kecil, saya sering bermain di sungai. Sering dipasangkan dengan よく. ものだ dengan bentuk kamus punya makna lain, yaitu 'memang sudah semestinya ~' (人は年を取るものだ).",
     "examples": [
       {
         "jp": "子どものころはよく川で遊んだものだ。",
@@ -303,8 +303,8 @@
     "title": "散歩のついでに（Nの／Vる／Vた＋ついでに）",
     "formula": "Nの／Vる／Vた ＋ ついでに",
     "meaning_en": "While doing something else / taking the opportunity of.",
-    "meaning_id": "Sekalian / Mumpung lagi... (Memanfaatkan satu kesempatan untuk urusan lain)",
-    "explanation_note": "Efisiensi cerdas dalam memanfaatkan satu jalan untuk dua manfaat.",
+    "meaning_id": "Sekalian ~ (sambil melakukan hal lain)",
+    "explanation_note": "ついでに menyatakan bahwa sambil melakukan kegiatan utama, seseorang sekalian melakukan hal lain: 散歩のついでに、この手紙を出してきてくれませんか = sekalian jalan-jalan, bisa tolong kirimkan surat ini? Kata benda memakai の, kata kerja memakai bentuk kamus atau bentuk -ta.",
     "examples": [
       {
         "jp": "散歩のついでに、この手紙を出してきてくれませんか。",
@@ -330,8 +330,8 @@
     "title": "買い物のたびに（Nの／Vる＋たびに／たび）",
     "formula": "Nの／Vる ＋ たびに／たび",
     "meaning_en": "Every time.",
-    "meaning_id": "Tiap kali... pasti... (Setiap kali peristiwa terjadi, selalu dibarengi hal yang sama)",
-    "explanation_note": "Pengulangan pola yang konsisten dari waktu ke waktu.",
+    "meaning_id": "Setiap kali ~",
+    "explanation_note": "Kata kerja bentuk kamus atau kata benda + の + たびに menyatakan bahwa setiap kali sesuatu terjadi, hal lain selalu menyertainya: 買い物のたびに袋をたくさんもらう = setiap kali belanja, dapat banyak kantong; この写真を見るたびに、昔を思い出す = setiap kali melihat foto ini, saya teringat masa lalu.",
     "examples": [
       {
         "jp": "買い物のたびに、袋をたくさんもらう。",
@@ -357,8 +357,8 @@
     "title": "開けたとたん（Vた＋とたん／とたんに）",
     "formula": "Vた ＋ とたん／とたんに",
     "meaning_en": "The moment that / just as.",
-    "meaning_id": "Baru saja... tiba-tiba langsung...! (Perubahan mendadak dan tak terduga tepat setelah aksi)",
-    "explanation_note": "Kecepatan momentum yang mengagetkan tanpa jeda waktu.",
+    "meaning_id": "Begitu ~, tiba-tiba ~",
+    "explanation_note": "Bentuk -ta + とたん(に) menyatakan bahwa tepat setelah sesuatu terjadi, muncul perubahan yang mendadak dan tidak terduga: 窓を開けたとたん、強い風が入ってきた = begitu jendela dibuka, angin kencang langsung masuk. Klausa kedua adalah kejadian di luar kendali pembicara, sehingga tidak boleh berupa niat, ajakan, atau perintah.",
     "examples": [
       {
         "jp": "窓を開けたとたん、強い風が入ってきた。",
@@ -384,8 +384,8 @@
     "title": "食事の最中に（Nの／Vている＋最中に／最中だ）",
     "formula": "Nの／Vている ＋ 最中に／最中だ",
     "meaning_en": "Right in the middle of doing something.",
-    "meaning_id": "Tepat di tengah-tengah asyik... (Sedang sibuk beraktivitas lalu mendadak disela)",
-    "explanation_note": "Interupsi mendadak yang merusak fokus aktivitas utama.",
+    "meaning_id": "Tepat di tengah-tengah ~",
+    "explanation_note": "Kata benda + の atau bentuk 〜ている + 最中に (さいちゅうに) menyatakan bahwa sesuatu terjadi tepat ketika suatu kegiatan sedang berlangsung, biasanya sebagai gangguan: 食事の最中に、お客さんが来た = tepat saat sedang makan, ada tamu datang. 最中だ di akhir kalimat berarti 'sedang dalam proses ~' (今、会議の最中だ).",
     "examples": [
       {
         "jp": "食事の最中に、お客さんが来た。",
@@ -411,8 +411,8 @@
     "title": "地図のとおり（Vる／Vた／Nの＋とおり；Nどおり）",
     "formula": "Vる／Vた／Nの ＋ とおり；Nどおり",
     "meaning_en": "As / according to / in the same way as.",
-    "meaning_id": "Persis sesuai dengan... / Persis seperti yang... (Mengikuti petunjuk tanpa melenceng)",
-    "explanation_note": "Presisi dan kesesuaian sempurna dengan acuan rujukan.",
+    "meaning_id": "Sesuai dengan ~; persis seperti ~",
+    "explanation_note": "とおり(に) menyatakan bahwa sesuatu dilakukan atau terjadi persis sesuai dengan petunjuk, rencana, atau perkiraan: 地図のとおりに来た = datang persis mengikuti peta; 言われたとおりにする = melakukan persis seperti yang dikatakan. Kata benda memakai の + とおり, atau langsung + どおり (予定どおり = sesuai jadwal).",
     "examples": [
       {
         "jp": "友達がかいてくれた地図のとおりに来たが、道に迷った。",
@@ -438,8 +438,8 @@
     "title": "テレビをつけたまま（Vた／Vない／A/na/N＋まま）",
     "formula": "Vた／Vない／A・na・N ＋ まま",
     "meaning_en": "Leaving a state as it is / while still in that state.",
-    "meaning_id": "Dalam kondisi tetap... / Dibiarkan begitu saja (Melakukan hal lain tanpa mengubah kondisi awal)",
-    "explanation_note": "Mempertahankan status quo keadaan pertama.",
+    "meaning_id": "Dalam keadaan ~ (dibiarkan tetap)",
+    "explanation_note": "まま menyatakan bahwa suatu keadaan dibiarkan tetap seperti itu ketika hal lain dilakukan atau terjadi: テレビをつけたまま寝てしまった = tertidur dengan TV masih menyala; 靴をはいたまま部屋に入る = masuk kamar dengan sepatu masih dipakai. Disambung ke bentuk -ta, bentuk -nai, kata benda + の, atau kata sifat.",
     "examples": [
       {
         "jp": "昨夜は、テレビをつけたまま寝てしまった。",
@@ -465,8 +465,8 @@
     "title": "開けっぱなし（Vますっぱなし）",
     "formula": "V（ます形） ＋ っぱなし",
     "meaning_en": "Leaving something in a certain state (often negative nuance, neglect).",
-    "meaning_id": "Dibiarkan melulu... / Lupa dibereskan (Keteledoran atau kelalaian membiarkan kondisi)",
-    "explanation_note": "Kelalaian yang menimbulkan pemborosan atau rasa jengkel orang sekitar.",
+    "meaning_id": "Dibiarkan ~ terus (tanpa dibereskan)",
+    "explanation_note": "Bentuk masu (tanpa ます) + っぱなし menyatakan bahwa sesuatu dibiarkan dalam keadaan tertentu terus-menerus, sering karena kelalaian: 窓を開けっぱなしで出てきた = pergi dengan jendela dibiarkan terbuka; 水を出しっぱなしにする = membiarkan air keran terus mengalir. Juga bisa berarti tindakan yang terus berlangsung (立ちっぱなし = berdiri terus).",
     "examples": [
       {
         "jp": "窓を開けっぱなしで出てきた。",
@@ -492,8 +492,8 @@
     "title": "二人きり（N＋きり／きりだ／っきり／っきりだ）",
     "formula": "N ＋ きり／きりだ／っきり／っきりだ",
     "meaning_en": "Only / just (small quantity), used with N showing small numbers.",
-    "meaning_id": "Cuma ber-... saja / Hanya itu saja (Menekankan jumlah yang sangat sedikit atau terbatas)",
-    "explanation_note": "Kesendirian hening atau kelangkaan kesempatan.",
+    "meaning_id": "Hanya ~ saja",
+    "explanation_note": "きり (lisan: っきり) setelah kata benda, terutama jumlah, menyatakan bahwa hanya ada sejumlah itu: 二人きりで話したい = ingin bicara berdua saja; 一度きり = hanya sekali. Setelah bentuk -ta, きり berarti 'sejak ~ (tidak ada kelanjutannya)': 出かけたきり帰ってこない = pergi dan sejak itu tidak kembali.",
     "examples": [
       {
         "jp": "二人（っ）きりで話をしたいです。",
@@ -519,8 +519,8 @@
     "title": "怖がらないで（A/na→がる／がって／がらないで）",
     "formula": "A（い→がる）／na＋がる／がって／がらないで",
     "meaning_en": "Shows an outward display of feeling (fear, desire, etc.) by a third person.",
-    "meaning_id": "Kelihatan ingin... / Menunjukkan gelagat... (Menggambarkan emosi/keinginan pihak ketiga)",
-    "explanation_note": "Membatasi pengamatan pada tanda-tanda lahiriah yang terlihat secara sopan.",
+    "meaning_id": "(Orang lain) tampak merasa ~",
+    "explanation_note": "がる ditambahkan pada kata sifat perasaan (kata sifat-i tanpa い, kata sifat-na langsung) untuk menggambarkan perasaan orang lain yang terlihat dari sikapnya: 怖い→怖がる = tampak takut; 寂しい→寂しがる = tampak kesepian. Bentuk 〜がらないで berarti 'jangan ~': 怖がらないでください = jangan takut. Untuk perasaan pembicara sendiri, cukup pakai kata sifatnya (私は怖い).",
     "examples": [
       {
         "jp": "怖がらないでください。",
@@ -546,8 +546,8 @@
     "title": "見せてほしい（Vて＋ほしい；Vないで＋ほしい／もらいたい）",
     "formula": "Vて／Vないで ＋ ほしい／もらいたい",
     "meaning_en": "Wanting someone to do (or not do) something.",
-    "meaning_id": "Penginnya kamu... / Berharap pihak lain bersedia... (Menyatakan harapan terhadap orang lain)",
-    "explanation_note": "Permohonan personal yang mengharapkan kerja sama pihak lain.",
+    "meaning_id": "Ingin (orang lain) ~",
+    "explanation_note": "Bentuk -te + ほしい menyatakan keinginan pembicara agar orang lain melakukan sesuatu: 教科書を見せてほしい = saya ingin (kamu) memperlihatkan buku pelajaran. Untuk 'ingin orang lain tidak ~', gunakan 〜ないでほしい. 〜てもらいたい punya makna yang sama. Orang yang diharapkan melakukannya ditandai に.",
     "examples": [
       {
         "jp": "教科書を見せてほしいんですが……。",
@@ -573,8 +573,8 @@
     "title": "知っているふりをする（V/A/na/N＋ふりをする）",
     "formula": "V・A・na・N ＋ ふりをする",
     "meaning_en": "Pretend to be / act as if.",
-    "meaning_id": "Pura-pura... / Bersikap seolah-olah... (Bertingkah layaknya suatu keadaan padahal tidak)",
-    "explanation_note": "Sandiwara sosial demi menghindari konflik atau menutupi rasa malu.",
+    "meaning_id": "Pura-pura ~",
+    "explanation_note": "ふりをする menyatakan bahwa seseorang berpura-pura dalam keadaan tertentu, padahal kenyataannya tidak: 知っているふりをする = pura-pura tahu; 寝たふりをする = pura-pura tidur. Kata kerja memakai bentuk biasa, kata sifat-na memakai な, kata benda memakai の (学生のふり).",
     "examples": [
       {
         "jp": "彼はそのことについて知っているふりをしているが、本当は知らないと思う。",

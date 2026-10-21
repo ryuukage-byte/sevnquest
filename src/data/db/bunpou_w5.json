@@ -6,8 +6,8 @@
     "title": "勉強はもちろん（N1はもちろんN2も；[文]のはもちろん〜(も)）",
     "formula": "N1はもちろんN2も；[文]のはもちろん～(も)",
     "meaning_en": "Of course... and also (needless to say).",
-    "meaning_id": "Sudah jelas... dan bahkan... pun juga! (Hal utama sudah pasti, apalagi yang lainnya)",
-    "explanation_note": "Memperluas cakupan dari hal mendasar ke hal yang mengejutkan.",
+    "meaning_id": "~ sudah tentu, ~ juga",
+    "explanation_note": "AはもちろんBも menyatakan bahwa A sudah jelas termasuk, dan B pun termasuk: 彼は、勉強はもちろんスポーツもよくできる = dia sudah tentu pintar belajar, olahraga pun hebat. Untuk kalimat, tambahkan の: 日本語が話せるのはもちろん、英語も話せる.",
     "examples": [
       {
         "jp": "彼は、勉強はもちろんスポーツもよくできる。",
@@ -33,8 +33,8 @@
     "title": "味が悪いばかりか（V/A/na/N＋ばかりか…(も)／ばかりでなく…(も)）",
     "formula": "V・A・na・N（Nだ／naな） ＋ ばかりか…(も)／ばかりでなく…(も)",
     "meaning_en": "Not only...but also (let alone).",
-    "meaning_id": "Bukan cuma..., bahkan... juga ikutan! (Menumpuk dua hal negatif atau positif sekaligus)",
-    "explanation_note": "Eskalasi masalah bertingkat yang memperparah situasi.",
+    "meaning_id": "Bukan hanya ~, bahkan ~",
+    "explanation_note": "ばかりか atau ばかりでなく menyatakan bahwa selain hal pertama, ada hal kedua yang memperkuatnya, biasanya ke arah yang sama (sama-sama buruk atau sama-sama baik): あの店は、味が悪いばかりか、店員の態度もひどい = toko itu bukan hanya rasanya buruk, bahkan sikap pelayannya pun parah. Bagian kedua biasanya memakai も atau まで. Kata sifat-na memakai な.",
     "examples": [
       {
         "jp": "あの店は、味が悪いばかりか、店員の態度もひどい。",
@@ -60,8 +60,8 @@
     "title": "昨年に比べて（Nに＋比べて／比べ；[文]のに＋比べ）",
     "formula": "Nに ＋ 比べて／比べ；[文]のに ＋ 比べ",
     "meaning_en": "Compared to.",
-    "meaning_id": "Dibandingkan dengan... (Membandingkan dua objek atau kondisi secara objektif)",
-    "explanation_note": "Pengukuran objektif berbasis data komparasi.",
+    "meaning_id": "Dibandingkan dengan ~",
+    "explanation_note": "Kata benda + に比べて (にくらべて) atau に比べ (lebih formal) dipakai untuk membandingkan dua hal, waktu, atau keadaan: 試験問題は昨年に比べて易しくなった = soal ujian lebih mudah dibandingkan tahun lalu. Untuk kalimat, tambahkan の: 東京に住むのに比べて = dibandingkan tinggal di Tokyo. Bagian akhirnya biasanya kata sifat atau perubahan keadaan.",
     "examples": [
       {
         "jp": "試験問題は昨年に比べて易しくなった。",
@@ -87,8 +87,8 @@
     "title": "生徒に対して（Nに／[文]のに＋対して／対し／対しては／対しても／対するN）",
     "formula": "Nに／[文]のに ＋ 対して／対し／対しては／対しても／対するN",
     "meaning_en": "Towards / in contrast to.",
-    "meaning_id": "Terhadap... / Bersikap kepada... (Arah sikap atau perlakuan kepada pihak sasaran)",
-    "explanation_note": "Arah orientasi tindakan interpersonal.",
+    "meaning_id": "Terhadap ~; berbeda dengan ~ (kontras)",
+    "explanation_note": "Kata benda + に対して (にたいして) punya dua fungsi. (1) Sasaran sikap, perlakuan, atau perasaan: 田中先生は生徒に対して厳しい = guru Tanaka tegas terhadap murid. (2) Kontras antara dua hal: 兄が背が高いのに対して、弟は低い = kakak tinggi, sebaliknya adik pendek. Sebelum kata benda dipakai に対する (環境に対する関心 = kepedulian terhadap lingkungan).",
     "examples": [
       {
         "jp": "田中先生は、生徒に対して厳しい。",
@@ -114,8 +114,8 @@
     "title": "書き上げる（Vます＋上げる／上がる）",
     "formula": "Vます ＋ 上げる／上がる",
     "meaning_en": "To completely finish an action.",
-    "meaning_id": "Tuntas beres terselesaikan! (Menuntaskan karya/tugas besar setelah kerja keras)",
-    "explanation_note": "Kelegaan membanggakan pasca perjuangan panjang.",
+    "meaning_id": "Menyelesaikan ~ sampai rampung",
+    "explanation_note": "Bentuk masu (tanpa ます) + 上げる (あげる) menyatakan bahwa suatu pekerjaan diselesaikan dengan tuntas, biasanya pekerjaan yang memerlukan usaha atau waktu: やっとレポートを書き上げた = akhirnya laporannya selesai ditulis. Bentuk intransitifnya 上がる: ケーキが焼き上がった = kuenya sudah matang sempurna.",
     "examples": [
       {
         "jp": "やっとレポートを書き上げた。",
@@ -141,8 +141,8 @@
     "title": "食べ切れない（Vます＋切る／切れる／切れない）",
     "formula": "Vます ＋ 切る／切れる／切れない",
     "meaning_en": "To finish completely / cannot finish (nothing is left).",
-    "meaning_id": "Menghabiskan sampai ludes / Tak sanggup menghabiskan semuanya (Batas tuntas tanpa sisa)",
-    "explanation_note": "Ketuntasan total atau batas kapasitas maksimal.",
+    "meaning_id": "~ sampai habis; tidak sanggup ~ sampai habis (切れない)",
+    "explanation_note": "Bentuk masu (tanpa ます) + 切る (きる) menyatakan bahwa suatu tindakan dilakukan sampai habis atau tuntas: 全部読み切った = membaca sampai habis. Bentuk potensial negatif 切れない menyatakan bahwa sesuatu terlalu banyak sehingga tidak bisa dihabiskan: ご飯が多くて、食べ切れない = nasinya terlalu banyak, tidak sanggup menghabiskan. 疲れ切る berarti 'lelah sekali'.",
     "examples": [
       {
         "jp": "ご飯の量が多くて、食べ切れないよ。",
@@ -168,8 +168,8 @@
     "title": "読みかけの本（Vます＋かける／かけのN／かけだ）",
     "formula": "Vます ＋ かける／かけのN／かけだ",
     "meaning_en": "In the middle of doing something (unfinished).",
-    "meaning_id": "Baru setengah jalan... / Belum selesai tuntas (Terhenti di tengah proses pengerjaan)",
-    "explanation_note": "Kondisi menggantung yang masih menunggu kelanjutan.",
+    "meaning_id": "Baru setengah ~; belum selesai ~",
+    "explanation_note": "Bentuk masu (tanpa ます) + かけ menyatakan bahwa suatu tindakan sudah dimulai tetapi belum selesai: 読みかけの本 = buku yang baru setengah dibaca; この本はまだ読みかけだ = buku ini masih belum selesai saya baca. Bentuk かける berarti 'hampir/hendak ~' atau 'mulai ~' (死にかける = hampir mati, 言いかけてやめた = mulai bicara lalu berhenti).",
     "examples": [
       {
         "jp": "この本はまだ読みかけだ。",
@@ -195,8 +195,8 @@
     "title": "焼きたてのパン（Vます＋たてのN／たてだ）",
     "formula": "Vます ＋ たてのN／たてだ",
     "meaning_en": "Freshly done (just finished doing).",
-    "meaning_id": "Baru banget matang / Masih hangat-hangatnya baru jadi (Kondisi segar pasca aksi)",
-    "explanation_note": "Kenikmatan maksimal dari produk yang masih sangat baru.",
+    "meaning_id": "Baru saja (selesai) di-~; masih segar",
+    "explanation_note": "Bentuk masu (tanpa ます) + たて menyatakan bahwa sesuatu baru saja selesai dibuat atau dilakukan, sehingga masih segar: 焼きたてのパン = roti yang baru dipanggang; ペンキ塗りたて = cat masih basah. Sebelum kata benda dipakai たての. Biasanya dipakai dengan kata kerja tertentu (焼く, できる, 取る, 生まれる).",
     "examples": [
       {
         "jp": "焼きたてのパンはおいしい。",
@@ -222,8 +222,8 @@
     "title": "うまく話せるといいなあ。（V/A/na/Nと＋いい(のに)なあ；Vたら/Aたら, naたら/Nたら, Vば/Aければ, naなら(ば)/Nなら(ば)＋(いいのに)なあ）",
     "formula": "V・A・na・N ＋ と／たら／ば／なら ＋ いい(のに)なあ",
     "meaning_en": "Expressing a wish/hope.",
-    "meaning_id": "Alangkah senangnya kalau bisa... / Semoga saja... ya (Harapan santai yang diangankan)",
-    "explanation_note": "Angan-angan hangat dalam lamunan positif.",
+    "meaning_id": "Semoga ~, ya; alangkah senangnya kalau ~",
+    "explanation_note": "〜といい, 〜たらいい, 〜ばいい, atau 〜ならいい + なあ menyatakan harapan pembicara, sering seperti bergumam pada diri sendiri: もっと日本語がうまく話せたらいいなあ = alangkah senangnya kalau bisa berbicara bahasa Jepang lebih lancar. Dengan のになあ, pembicara menyesal karena kenyataannya berbeda (晴れたらいいのになあ = sayang sekali tidak cerah).",
     "examples": [
       {
         "jp": "もっと日本語がうまく話せたらいいなあ。",
@@ -249,8 +249,8 @@
     "title": "もっと早く家を出ればよかった。（Vば／Vなければ／Vたら／Vなかったら＋よかった）",
     "formula": "Vば／Vなければ／Vたら／Vなかったら ＋ よかった",
     "meaning_en": "Expressing regret about the past.",
-    "meaning_id": "Coba tadi... pasti nggak bakal begini! (Penyesalan atas hal yang sudah terlanjur terjadi)",
-    "explanation_note": "Rasa sesal mendalam atas kekeliruan langkah di masa lampau.",
+    "meaning_id": "Seandainya (dulu) ~ (menyesal)",
+    "explanation_note": "Bentuk -ba atau -tara + よかった menyatakan penyesalan atas sesuatu yang tidak dilakukan di masa lalu: もっと早く家を出ればよかった = seandainya tadi berangkat lebih awal. Untuk menyesali sesuatu yang sudah dilakukan, gunakan bentuk negatif: 言わなければよかった = seharusnya tidak usah bilang. Sering ditambah のに atau なあ untuk menguatkan rasa sesal.",
     "examples": [
       {
         "jp": "遅刻してしまった。もっと早く家を出ればよかった。",
@@ -276,8 +276,8 @@
     "title": "あなたも行けばよかったのに。（Vば〜のに；Vたら〜のに）",
     "formula": "Vば～のに；Vたら～のに",
     "meaning_en": "Expressing regret / mild criticism (you should have...).",
-    "meaning_id": "Padahal harusnya kamu ikut... seru lho! (Kritik halus atau penyesalan untuk orang lain)",
-    "explanation_note": "Rasa menyayangkan keputusan orang lain dengan nada bersahabat.",
+    "meaning_id": "Padahal seandainya (kamu) ~ (sayang sekali)",
+    "explanation_note": "Bentuk -ba atau -tara ... のに menyatakan rasa menyayangkan atau kritik halus karena orang lain tidak melakukan sesuatu yang sebenarnya lebih baik: 君も行けばよかったのに = padahal seandainya kamu ikut, (pasti seru). Biasanya ditujukan kepada lawan bicara atau orang lain.",
     "examples": [
       {
         "jp": "パーティー、楽しかったよ。君も行けばよかったのに。",
@@ -303,8 +303,8 @@
     "title": "早く来ないかなあ。（Vるかな(あ)／Vないかな(あ)）",
     "formula": "Vるかな(あ)／Vないかな(あ)",
     "meaning_en": "Expressing hope or wonder (I wonder if...).",
-    "meaning_id": "Kapan ya datangnya... kok lama ya (Menunggu-nunggu dengan harap-harap cemas)",
-    "explanation_note": "Rasa gelisah menanti kehadiran yang belum kunjung tiba.",
+    "meaning_id": "Kapan ~, ya; semoga cepat ~ (tidak sabar)",
+    "explanation_note": "Kata kerja bentuk -nai + かな(あ) menyatakan harapan pembicara agar sesuatu terjadi, sering dengan rasa tidak sabar: バス、早く来ないかなあ = busnya cepat datang dong (kok lama). Bentuk positif + かな(あ) menyatakan rasa ingin tahu atau ragu: 明日は晴れるかなあ = besok cerah tidak, ya?",
     "examples": [
       {
         "jp": "バス、早く来ないかなあ。",
@@ -330,8 +330,8 @@
     "title": "映画が始まるまで（Vるまで）",
     "formula": "Vる ＋ まで",
     "meaning_en": "Until.",
-    "meaning_id": "Sampai tiba saat... (Titik akhir waktu sebelum peristiwa dimulai)",
-    "explanation_note": "Ketekunan mempertahankan kondisi hingga garis finis waktu.",
+    "meaning_id": "Sampai ~ (batas waktu suatu keadaan)",
+    "explanation_note": "Kata kerja bentuk kamus + まで menyatakan batas akhir waktu sebuah tindakan atau keadaan yang berlangsung terus: 映画が始まるまで30分ある = masih ada 30 menit sampai film dimulai; 雨がやむまで待つ = menunggu sampai hujan reda. Kata kerja sebelum まで selalu bentuk kamus, walaupun kejadiannya di masa lalu.",
     "examples": [
       {
         "jp": "映画が始まるまで30分あります。",
@@ -357,8 +357,8 @@
     "title": "骨まで食べられる（Nまで）",
     "formula": "N ＋ まで",
     "meaning_en": "Even / to that extent (extreme example, showing surprise).",
-    "meaning_id": "Bahkan sampai ke... pun sanggup! (Batas ekstrem yang mencengangkan)",
-    "explanation_note": "Keterkejutan atas cakupan yang melampaui batas normal.",
+    "meaning_id": "Bahkan ~ pun",
+    "explanation_note": "Kata benda + まで menyatakan bahwa cakupan sesuatu meluas sampai hal yang di luar dugaan: この魚は骨まで食べられる = ikan ini bahkan tulangnya pun bisa dimakan; 子どもまで知っている = bahkan anak kecil pun tahu. まで menggantikan が dan を, dan sering mengandung rasa heran.",
     "examples": [
       {
         "jp": "この魚は骨まで食べられますよ。",
@@ -384,8 +384,8 @@
     "title": "昼から夕方にかけて（N1からN2にかけて）",
     "formula": "N1から N2に ＋ かけて",
     "meaning_en": "From N1 to N2 (time or place, spanning a range).",
-    "meaning_id": "Dari rentang... hingga sekitar... (Rentang waktu atau wilayah yang menyebar luwes)",
-    "explanation_note": "Gradasi alami rentang waktu atau area geografis.",
+    "meaning_id": "Dari ~ sampai sekitar ~ (rentang waktu/wilayah)",
+    "explanation_note": "N1からN2にかけて menyatakan rentang waktu atau wilayah secara longgar, tanpa batas yang tegas: 明日は昼から夕方にかけて雨でしょう = besok dari siang hingga sore kemungkinan hujan; 関東から東北にかけて = dari Kanto hingga Tohoku. Sering dipakai dalam ramalan cuaca dan berita.",
     "examples": [
       {
         "jp": "明日は昼から夕方にかけて雨でしょう。",
@@ -411,8 +411,8 @@
     "title": "大阪において（Nにおいて）",
     "formula": "N ＋ において",
     "meaning_en": "At / in (more formal than で).",
-    "meaning_id": "Bertempat di... / Dalam kancah... (Ragam resmi/formal dari partikel で)",
-    "explanation_note": "Kewibawaan formal dalam penunjukan ruang dan waktu wacana.",
+    "meaning_id": "Di ~; dalam (bidang) ~ (formal)",
+    "explanation_note": "Kata benda + において adalah bentuk formal dari partikel で untuk tempat, waktu, atau bidang: 大阪において国際会議が行われた = konferensi internasional diadakan di Osaka; 現代社会において = dalam masyarakat modern. Sebelum kata benda dipakai における (日本における教育 = pendidikan di Jepang). Banyak dipakai dalam pidato, berita, dan tulisan resmi.",
     "examples": [
       {
         "jp": "大阪において、国際会議が行われた。",
@@ -438,8 +438,8 @@
     "title": "たとえ反対されても（たとえ＋Vても／Aくても／naでも／Nでも）",
     "formula": "たとえ ＋ Vても／Aくても／naでも／Nでも",
     "meaning_en": "Even if (emphatic concessive with たとえ).",
-    "meaning_id": "Meskipun seandainya... sekali pun, tetap akan...! (Tekad pantang mundur)",
-    "explanation_note": "Keteguhan prinsip yang kebal terhadap segala hambatan.",
+    "meaning_id": "Walaupun (seandainya) ~",
+    "explanation_note": "たとえ + 〜ても menekankan pengandaian: walaupun hal yang ekstrem atau tidak diinginkan terjadi, hasilnya tetap sama: たとえ反対されても留学します = walaupun ditentang sekalipun, saya tetap akan kuliah di luar negeri. Kata sifat-i memakai 〜くても, kata benda dan kata sifat-na memakai でも.",
     "examples": [
       {
         "jp": "たとえ反対されても留学します。",
@@ -465,8 +465,8 @@
     "title": "もしかするとうそかもしれない。（もしかすると／もしかしたら＋V/A/na/N(N/naだ)＋かもしれない）",
     "formula": "もしかすると／もしかしたら ＋ V・A・na・N（N／naだ） ＋ かもしれない",
     "meaning_en": "Maybe / perhaps (possibility).",
-    "meaning_id": "Bisa jadi jangan-jangan... / Jangan-jangan beneran... (Kemungkinan tak terduga)",
-    "explanation_note": "Kecurigaan spontan yang memicu kewaspadaan.",
+    "meaning_id": "Jangan-jangan ~; mungkin saja ~",
+    "explanation_note": "もしかすると atau もしかしたら + 〜かもしれない menyatakan kemungkinan yang tidak terlalu besar, tetapi terlintas di pikiran pembicara: もしかすると彼の話はうそかもしれない = jangan-jangan ceritanya bohong. もしかしたら sedikit lebih santai. Kata benda dan kata sifat-na langsung disambung ke かもしれない tanpa だ.",
     "examples": [
       {
         "jp": "もしかすると彼の話はうそかもしれない。",
@@ -492,8 +492,8 @@
     "title": "必ずしもいいとは限らない。（必ずしも＋V/A/na/N(N/na)＋とは限らない）",
     "formula": "必ずしも ＋ V・A・na・N（N／na） ＋ とは限らない",
     "meaning_en": "Not necessarily.",
-    "meaning_id": "Belum tentu selalu begitu! (Membantah anggapan umum yang seragam)",
-    "explanation_note": "Pemikiran kritis yang menolak generalisasi kaku.",
+    "meaning_id": "Belum tentu ~",
+    "explanation_note": "必ずしも (かならずしも) + 〜とは限らない menyatakan bahwa sesuatu tidak selalu benar dalam semua kasus: 金持ちが必ずしも幸福だとは限らない = orang kaya belum tentu bahagia. Pola ini dipakai untuk membantah anggapan umum yang dipukul rata. Kata benda dan kata sifat-na bisa memakai だ sebelum とは限らない.",
     "examples": [
       {
         "jp": "（お）金持ちが必ずしも幸福だとは限らない。",
@@ -519,8 +519,8 @@
     "title": "まるで夢のよう（まるで[Nの/Vる]よう；まるで[V/A/na/N(N/na)]みたい）",
     "formula": "まるで Nの／Vる ＋ よう；まるで V・A・na・N（N／na） ＋ みたい",
     "meaning_en": "Just like / as if.",
-    "meaning_id": "Bener-bener persis seperti... seolah mimpi! (Perumpamaan dramatis yang sangat mirip)",
-    "explanation_note": "Kedalaman estetika perumpamaan yang memukau imajinasi.",
+    "meaning_id": "Seolah-olah ~; persis seperti ~",
+    "explanation_note": "まるで + 〜ようだ atau 〜みたいだ menguatkan perumpamaan bahwa sesuatu sangat mirip dengan hal lain, padahal kenyataannya bukan: 合格した！まるで夢のようだ = saya lulus! Rasanya seolah-olah mimpi. まるで〜ようだ lebih formal, まるで〜みたいだ lebih santai. Kata benda + のよう, atau langsung + みたい.",
     "examples": [
       {
         "jp": "合格した！まるで夢のようだ。",
@@ -546,8 +546,8 @@
     "title": "行きたい。だけど、行けない。（a。だけどb。= けれども／しかし）",
     "formula": "a。だけどb。",
     "meaning_en": "But / however (casual, = けれども／しかし).",
-    "meaning_id": "Pengin sih, tapi... / Mau gimana lagi, namun... (Kata sambung 'tapi' santai)",
-    "explanation_note": "Kontras kasual yang wajar dalam percakapan lisan.",
+    "meaning_id": "Tetapi (di awal kalimat, santai)",
+    "explanation_note": "だけど adalah kata sambung santai di awal kalimat yang berarti 'tetapi': 旅行に行きたい。だけど、ひまがない = ingin jalan-jalan. Tetapi tidak ada waktu luang. Bentuk yang lebih sopan: ですけど, けれども, しかし (paling formal).",
     "examples": [
       {
         "jp": "旅行に行きたい。だけどひまがない。",
@@ -573,8 +573,8 @@
     "title": "雨です。ですから、傘がいります。（ですから＝だから, formal）",
     "formula": "a。ですからb。",
     "meaning_en": "Therefore / so (more polite than だから).",
-    "meaning_id": "Maka dari itu... / Karena alasan tersebut... (Ragam sopan formal dari だから)",
-    "explanation_note": "Kesopanan logis yang menjembatani sebab dan kesimpulan.",
+    "meaning_id": "Oleh karena itu; jadi (sopan)",
+    "explanation_note": "ですから adalah bentuk sopan dari だから, diletakkan di awal kalimat untuk menyatakan akibat atau kesimpulan dari kalimat sebelumnya: 午後から雨だそうです。ですから、傘を持っていったほうがいいですよ = katanya sore akan hujan. Jadi, sebaiknya bawa payung. Cocok untuk percakapan sopan atau presentasi.",
     "examples": [
       {
         "jp": "天気予報では午後から雨だそうです。ですから、傘を持っていったほうがいいですよ。",
@@ -600,8 +600,8 @@
     "title": "行く予定だった。ところが、行けなくなった。（a〈予想/予定〉。ところがb〈予想外の結果/事実〉。）",
     "formula": "a。ところがb。",
     "meaning_en": "However / unexpectedly (contrary to expectation).",
-    "meaning_id": "Tapi tak disangka-sangka, nyatanya malah... (Kejadian mengejutkan di luar rencana)",
-    "explanation_note": "Plot twist tak terduga yang membelokkan alur ekspektasi.",
+    "meaning_id": "Namun ternyata ~ (di luar dugaan)",
+    "explanation_note": "ところが adalah kata sambung yang menyatakan bahwa hasil atau kenyataan berlawanan dengan rencana atau perkiraan sebelumnya, sering dengan rasa terkejut: コンサートに行くつもりだった。ところが、病気で行けなくなった = rencananya mau nonton konser. Namun ternyata sakit, jadi tidak bisa pergi. Biasanya dipakai untuk menceritakan kejadian nyata (bentuk lampau).",
     "examples": [
       {
         "jp": "昨夜はコンサートに行くつもりだった。ところが病気で行けなくなった。",
@@ -627,8 +627,8 @@
     "title": "明日は試験だ。ところで、来週は？（a。ところでb。使って話題を換える）",
     "formula": "a。ところでb。",
     "meaning_en": "By the way (used when changing the topic).",
-    "meaning_id": "Ngomong-ngomong,... (Beralih ke topik obrolan baru yang berbeda)",
-    "explanation_note": "Jembatan pergantian topik yang mulus dan santun.",
+    "meaning_id": "Ngomong-ngomong (beralih topik)",
+    "explanation_note": "ところで dipakai di awal kalimat untuk beralih ke topik lain yang berbeda dari pembicaraan sebelumnya: 明日試験でしょ。がんばってね。ところで、来週の月曜日は空いてる？ = besok ujian, kan? Semangat ya. Ngomong-ngomong, Senin depan kamu ada waktu? Sering dipakai untuk memulai pokok pembicaraan sebenarnya.",
     "examples": [
       {
         "jp": "明日、試験でしょ。がんばってね。ところで、来週の月曜日は空いてる？",

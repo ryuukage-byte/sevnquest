@@ -12,19 +12,19 @@ const CURATED_SUB_BRANCHES: Record<string, SubFormulaBranch[]> = {
     {
       id: 'mitai_da',
       token: '〜みたいだ',
-      usageLocation: 'Di akhir kalimat (sebagai predikat kalimat)',
+      usageLocation: 'Di akhir kalimat, sebagai predikat',
       usageLocationType: 'predicate',
-      meaning: 'Menyatakan perumpamaan atau kesimpulan dugaan berdasarkan pengamatan pembicara ("sepertinya...", "mirip..."). Lebih santai/percakapan dibanding 〜ようだ.',
+      meaning: 'Di akhir kalimat, みたいだ menyatakan perumpamaan ("seperti ~") atau dugaan berdasarkan pengamatan pembicara ("sepertinya ~"). Lebih santai daripada 〜ようだ.',
       connectionConditions: [
         {
           partOfSpeech: 'Kata Benda (N)',
           rule: 'N ＋ みたいだ',
-          example: '女みたいだ (seperti perempuan), 子供みたいだ (seperti anak kecil) [tanpa だ atau の]',
+          example: '女みたいだ (seperti perempuan), 子供みたいだ (seperti anak kecil) [langsung, tanpa の]',
         },
         {
           partOfSpeech: 'Kata Sifat-na',
           rule: 'na ＋ みたいだ',
-          example: '静かみたいだ (tampaknya tenang), きれいみたいだ (tampaknya cantik) [tanpa だ]',
+          example: '静かみたいだ (tampaknya sepi), 元気みたいだ (tampaknya sehat) [langsung, tanpa な]',
         },
         {
           partOfSpeech: 'Kata Kerja (V)',
@@ -41,21 +41,21 @@ const CURATED_SUB_BRANCHES: Record<string, SubFormulaBranch[]> = {
         {
           japanese: '彼の話し方は、女みたいだ。',
           reading: 'かれのはなしかたは、おんなみたいだ。',
-          meaningId: 'Cara bicaranya seperti perempuan (di akhir kalimat sebagai predikat perumpamaan).',
+          meaningId: 'Cara bicaranya seperti perempuan. (perumpamaan di akhir kalimat)',
         },
         {
           japanese: '今日はとても暖かくて、もう春になったみたいだ。',
           reading: 'きょうはとてもあたたかくて、もうはるになったみたいだ。',
-          meaningId: 'Hari ini sangat hangat, sepertinya sudah menjadi musim semi (kesimpulan dugaan di akhir kalimat).',
+          meaningId: 'Hari ini hangat sekali, sepertinya musim semi sudah tiba. (dugaan di akhir kalimat)',
         },
       ],
     },
     {
       id: 'mitai_ni',
       token: '〜みたいに',
-      usageLocation: 'Sebelum Kata Kerja (V) atau Kata Sifat (A/na) sebagai adverbia (keterangan cara)',
+      usageLocation: 'Sebelum kata kerja atau kata sifat, sebagai keterangan cara',
       usageLocationType: 'adverbial',
-      meaning: 'Menjelaskan cara tindakan atau keadaan dengan perumpamaan ("seperti...", "layaknya..."). Berfungsi menerangkan verba atau adjektiva berikutnya.',
+      meaning: 'Menerangkan cara suatu tindakan atau tingkat suatu keadaan dengan perumpamaan ("seperti ~", "bagaikan ~"). Diletakkan sebelum kata kerja atau kata sifat yang diterangkannya.',
       connectionConditions: [
         {
           partOfSpeech: 'Kata Benda (N)',
@@ -63,77 +63,57 @@ const CURATED_SUB_BRANCHES: Record<string, SubFormulaBranch[]> = {
           example: '雪みたいに白い (putih seperti salju), おじいさんみたいに話す (bicara seperti kakek-kakek)',
         },
         {
-          partOfSpeech: 'Kata Sifat-na',
-          rule: 'na ＋ みたいに ＋ V / A',
-          example: 'バカみたいに騒ぐ (ribut seperti orang bodoh)',
-        },
-        {
           partOfSpeech: 'Kata Kerja (V)',
           rule: 'V普 ＋ みたいに ＋ V / A',
           example: '酔ったみたいにふらふら歩く (berjalan sempoyongan seperti orang mabuk)',
         },
-        {
-          partOfSpeech: 'Kata Sifat-i (A)',
-          rule: 'A普 ＋ みたいに ＋ V / A',
-          example: '痛いみたいに叫ぶ (berteriak seperti kesakitan)',
-        },
       ],
       examples: [
         {
-          japanese: '彼はまだ若いのに、まるでおじいさんみたいに話し方をする。',
-          reading: 'かれはまだわかいのに、まるでおじいさんみたいにはなしかたをする。',
-          meaningId: 'Meskipun dia masih muda, cara bicaranya persis seperti kakek-kakek (keterangan cara sebelum verba).',
+          japanese: '彼はまだ若いのに、まるでおじいさんみたいに話す。',
+          reading: 'かれはまだわかいのに、まるでおじいさんみたいにはなす。',
+          meaningId: 'Padahal dia masih muda, dia berbicara persis seperti kakek-kakek. (menerangkan kata kerja 話す)',
         },
         {
           japanese: '彼女の肌は雪みたいに白くて美しい。',
           reading: 'かのじょのはだはゆきみたいにしろくてうつくしい。',
-          meaningId: 'Kulitnya putih dan indah seperti salju (keterangan sebelum adjektiva 白い).',
+          meaningId: 'Kulitnya putih seperti salju dan indah. (menerangkan kata sifat 白い)',
         },
         {
           japanese: '彼はお酒に酔ったみたいにふらふら歩いている。',
           reading: 'かれはおさけによったみたいにふらふらあるいている。',
-          meaningId: 'Dia berjalan sempoyongan seperti orang yang sudah mabuk (Vた ＋ みたいに ＋ V).',
+          meaningId: 'Dia berjalan sempoyongan seperti orang mabuk. (Vた ＋ みたいに ＋ kata kerja)',
         },
       ],
     },
     {
       id: 'mitai_na',
       token: '〜みたいなN',
-      usageLocation: 'Sebelum Kata Benda (Nomina) untuk memodifikasi / menerangkan benda tersebut',
+      usageLocation: 'Sebelum kata benda, untuk menerangkan kata benda itu',
       usageLocationType: 'noun_modifier',
-      meaning: 'Menerangkan kata benda yang memiliki kemiripan, kesan, atau sifat serupa ("N yang seperti..."). Berfungsi sebagai pewatas nomina.',
+      meaning: 'Menerangkan kata benda dengan perumpamaan atau contoh ("N yang seperti ~"). Juga dipakai untuk memberi contoh: 東京みたいな大きい町 = kota besar seperti Tokyo.',
       connectionConditions: [
         {
           partOfSpeech: 'Kata Benda (N)',
           rule: 'N1 ＋ みたいな ＋ N2',
-          example: '本物の果物みたいな味 (rasa yang seperti buah asli), 太陽みたいな笑顔 (senyum seperti matahari)',
-        },
-        {
-          partOfSpeech: 'Kata Sifat-na',
-          rule: 'na ＋ みたいな ＋ N',
-          example: '夢みたいな話 (cerita yang seperti mimpi)',
+          example: '本物の果物みたいな味 (rasa yang seperti buah asli), 太陽みたいな笑顔 (senyum secerah matahari), 夢みたいな話 (cerita bagaikan mimpi)',
         },
         {
           partOfSpeech: 'Kata Kerja (V)',
           rule: 'V普 ＋ みたいな ＋ N',
           example: '怒っているみたいな顔 (wajah yang seperti sedang marah), 死んだみたいな静けさ (keheningan seperti mati)',
         },
-        {
-          partOfSpeech: 'Kata Sifat-i (A)',
-          rule: 'A普 ＋ みたいな ＋ N',
-          example: '嘘みたいなおいしさ (kelezatan yang terasa seperti mimpi/tidak nyata)',
-        },
       ],
       examples: [
         {
           japanese: 'このお菓子は、まるで本物の果物みたいな味だ。',
           reading: 'このおかしは、まるでほんもののくだものみたいなあじだ。',
-          meaningId: 'Kue ini rasanya persis seperti buah asli (memodifikasi nomina \'味\').',
+          meaningId: 'Kue ini rasanya persis seperti buah asli. (menerangkan kata benda 味)',
         },
         {
           japanese: 'あの人は怒っているみたいな顔をしている。',
           reading: 'あのひとはおこっているみたいなかおをしている。',
-          meaningId: 'Orang itu memasang wajah yang seolah-olah sedang marah (memodifikasi nomina \'顔\').',
+          meaningId: 'Orang itu berwajah seperti sedang marah. (menerangkan kata benda 顔)',
         },
       ],
     },
@@ -144,9 +124,9 @@ const CURATED_SUB_BRANCHES: Record<string, SubFormulaBranch[]> = {
     {
       id: 'sasete_kudasai',
       token: '〜(さ)せてください',
-      usageLocation: 'Di akhir kalimat (permintaan izin standar/sopan)',
+      usageLocation: 'Di akhir kalimat (meminta izin dengan sopan)',
       usageLocationType: 'predicate',
-      meaning: 'Ungkapan meminta izin kepada lawan bicara agar pembicara diperbolehkan melakukan suatu tindakan ("Tolong izinkan saya...", "Bolehkah saya...").',
+      meaning: 'Meminta izin kepada lawan bicara agar pembicara diperbolehkan melakukan sesuatu ("izinkan saya ~").',
       connectionConditions: [
         {
           partOfSpeech: 'Kata Kerja (V)',
@@ -158,16 +138,16 @@ const CURATED_SUB_BRANCHES: Record<string, SubFormulaBranch[]> = {
         {
           japanese: 'ちょっと気分が悪いので、早く帰らせてください。',
           reading: 'ちょっときぶんがわるいので、はやくかえらせてください。',
-          meaningId: 'Karena badan kurang enak, bolehkah/izinkan saya pulang lebih awal?',
+          meaningId: 'Karena badan saya kurang enak, izinkan saya pulang lebih awal.',
         },
       ],
     },
     {
       id: 'sasete_moraemasu_ka',
       token: '〜(さ)せてもらえますか',
-      usageLocation: 'Di akhir kalimat (permintaan izin lebih santun)',
+      usageLocation: 'Di akhir kalimat (meminta izin dengan lebih halus)',
       usageLocationType: 'predicate',
-      meaning: 'Permintaan izin yang lebih halus dengan menanyakan kesediaan lawan bicara ("Bisakah Anda mengizinkan saya...?").',
+      meaning: 'Meminta izin dengan bertanya apakah lawan bicara bersedia mengizinkan ("bolehkah saya ~?"). Lebih halus daripada 〜させてください.',
       connectionConditions: [
         {
           partOfSpeech: 'Kata Kerja (V)',
@@ -186,21 +166,21 @@ const CURATED_SUB_BRANCHES: Record<string, SubFormulaBranch[]> = {
     {
       id: 'sasete_moraemasen_ka',
       token: '〜(さ)せてもらえませんか',
-      usageLocation: 'Di akhir kalimat (permintaan izin sangat sopan & hormat)',
+      usageLocation: 'Di akhir kalimat (meminta izin dengan sangat halus)',
       usageLocationType: 'predicate',
-      meaning: 'Bentuk paling santun untuk meminta izin kepada atasan atau orang yang dihormati. Menggunakan negasi retoris untuk menambah rasa segan dan kesopanan.',
+      meaning: 'Bentuk tanya negatif membuat permintaan izin terdengar lebih halus dan memberi ruang bagi lawan bicara untuk menolak. Untuk atasan atau situasi resmi, bentuk yang lebih sopan lagi adalah 〜させていただけませんか.',
       connectionConditions: [
         {
           partOfSpeech: 'Kata Kerja (V)',
           rule: 'V(さ)せて ＋ もらえませんか',
-          example: '休ませてもらえませんか (apakah memungkinkan bagi saya untuk izin tidak masuk?)',
+          example: '休ませてもらえませんか (bolehkah saya izin tidak masuk?)',
         },
       ],
       examples: [
         {
           japanese: 'その件について、私にも一言言わせてもらえませんか。',
           reading: 'そのけんについて、わたしにもひとこといわせてもらえませんか。',
-          meaningId: 'Mengenai hal tersebut, apakah saya diperkenankan untuk menyampaikan sepatah kata?',
+          meaningId: 'Mengenai hal itu, bolehkah saya juga menyampaikan sepatah kata?',
         },
       ],
     },
@@ -211,9 +191,9 @@ const CURATED_SUB_BRANCHES: Record<string, SubFormulaBranch[]> = {
     {
       id: 'naito',
       token: '〜ないと',
-      usageLocation: 'Di akhir kalimat percakapan (keharusan informal)',
+      usageLocation: 'Di akhir kalimat dalam percakapan santai',
       usageLocationType: 'predicate',
-      meaning: 'Bentuk singkat kasual dari 〜なければならない (harus melakukan). Kalimat dipotong di partikel と.',
+      meaning: 'Bentuk singkat lisan dari 〜ないといけない (harus ~). Bagian いけない dihilangkan sehingga kalimat berhenti di と.',
       connectionConditions: [
         {
           partOfSpeech: 'Kata Kerja (V)',
@@ -225,20 +205,20 @@ const CURATED_SUB_BRANCHES: Record<string, SubFormulaBranch[]> = {
         {
           japanese: '明日は早く出かけるから、もう寝ないと。',
           reading: 'あしたははやくでかけるから、もうねないと。',
-          meaningId: 'Karena besok harus pergi pagi-pagi, aku harus tidur sekarang.',
+          meaningId: 'Besok aku berangkat pagi-pagi, jadi aku harus tidur sekarang.',
         },
       ],
     },
     {
       id: 'nakucha',
       token: '〜なくちゃ',
-      usageLocation: 'Di akhir kalimat percakapan (keharusan informal ramah)',
+      usageLocation: 'Di akhir kalimat dalam percakapan santai',
       usageLocationType: 'predicate',
-      meaning: 'Bentuk singkat kasual dari 〜なくてはならない (harus). Sering digunakan saat berbicara kepada diri sendiri atau teman akrab.',
+      meaning: 'Bentuk singkat lisan dari 〜なくては(いけない) (harus ~). Sering dipakai saat berbicara pada diri sendiri atau dengan teman akrab.',
       connectionConditions: [
         {
           partOfSpeech: 'Kata Kerja (V)',
-          rule: 'Vない(い→くちゃ)',
+          rule: 'Vない (ない → なくちゃ)',
           example: '出さなくちゃ (harus mengumpulkan), 食べなくちゃ (harus makan)',
         },
       ],
@@ -246,7 +226,7 @@ const CURATED_SUB_BRANCHES: Record<string, SubFormulaBranch[]> = {
         {
           japanese: '宿題を明日までに先生に出さなくちゃ。',
           reading: 'しゅくだいをあしたまでにせんせいにださなくちゃ。',
-          meaningId: 'Aku harus mengumpulkan PR ke guru sebelum besok.',
+          meaningId: 'Aku harus menyerahkan PR ke guru paling lambat besok.',
         },
       ],
     },
@@ -257,9 +237,9 @@ const CURATED_SUB_BRANCHES: Record<string, SubFormulaBranch[]> = {
     {
       id: 'chau',
       token: '〜ちゃう／〜ちゃった',
-      usageLocation: 'Di akhir kalimat percakapan (tindakan tuntas / penyesalan)',
+      usageLocation: 'Sebagai predikat dalam percakapan santai',
       usageLocationType: 'predicate',
-      meaning: 'Bentuk kontraksi percakapan dari Vてしまう. Menyatakan tindakan sudah tuntas atau rasa menyesal/terlanjur.',
+      meaning: 'Bentuk singkat lisan dari Vてしまう: tindakan selesai tuntas, atau terjadi tanpa disengaja dan disesali.',
       connectionConditions: [
         {
           partOfSpeech: 'Kata Kerja (V)',
@@ -271,16 +251,16 @@ const CURATED_SUB_BRANCHES: Record<string, SubFormulaBranch[]> = {
         {
           japanese: '大切な書類を電車の中に忘れちゃった！',
           reading: 'たいせつなしょるいをでんしゃのなかにわすれちゃった！',
-          meaningId: 'Aduh gawat, dokumen pentingku tertinggal di dalam kereta!',
+          meaningId: 'Aduh, dokumen pentingku ketinggalan di kereta!',
         },
       ],
     },
     {
       id: 'jau',
       token: '〜じゃう／〜じゃった',
-      usageLocation: 'Di akhir kalimat percakapan (untuk kata kerja berakhiran で)',
+      usageLocation: 'Sebagai predikat dalam percakapan santai (kata kerja dengan bentuk -te berakhiran で)',
       usageLocationType: 'predicate',
-      meaning: 'Bentuk kontraksi dari Vでしまう (untuk kata kerja yang bentuk te-nya berbunyi voiced / で).',
+      meaning: 'Bentuk singkat lisan dari Vでしまう, dipakai untuk kata kerja yang bentuk -te-nya berakhiran で (飲んで, 遊んで, 泳いで).',
       connectionConditions: [
         {
           partOfSpeech: 'Kata Kerja (V)',
@@ -292,7 +272,7 @@ const CURATED_SUB_BRANCHES: Record<string, SubFormulaBranch[]> = {
         {
           japanese: '喉が渇いていたから、ジュースを全部飲んじゃった。',
           reading: 'のどがかわいていたから、ジュースをぜんぶのんじゃった。',
-          meaningId: 'Karena sangat haus, aku sudah menghabiskan semua jusnya.',
+          meaningId: 'Karena haus, aku menghabiskan semua jusnya.',
         },
       ],
     },
@@ -303,14 +283,14 @@ const CURATED_SUB_BRANCHES: Record<string, SubFormulaBranch[]> = {
     {
       id: 'rashii_pred',
       token: '〜らしい',
-      usageLocation: 'Di akhir kalimat (Predikat) atau sebelum Kata Benda',
+      usageLocation: 'Sebagai predikat atau sebelum kata benda',
       usageLocationType: 'predicate',
-      meaning: 'Menyatakan bahwa sesuatu benar-benar terasa atau memiliki sifat khas yang mencerminkan esensi dari N tersebut ("benar-benar khas...").',
+      meaning: 'Menyatakan bahwa sesuatu memiliki ciri khas atau sifat ideal dari N ("benar-benar khas ~", "layaknya ~").',
       connectionConditions: [
         {
           partOfSpeech: 'Kata Benda (N)',
           rule: 'N ＋ らしい',
-          example: '春らしい (khas musim semi), 男らしい (macho/khas pria)',
+          example: '春らしい (khas musim semi), 男らしい (jantan, bersifat laki-laki sejati)',
         },
       ],
       examples: [
@@ -324,9 +304,9 @@ const CURATED_SUB_BRANCHES: Record<string, SubFormulaBranch[]> = {
     {
       id: 'rashiku',
       token: '〜らしく',
-      usageLocation: 'Sebelum Kata Kerja / Kata Sifat sebagai adverbia',
+      usageLocation: 'Sebelum kata kerja atau kata sifat, sebagai keterangan cara',
       usageLocationType: 'adverbial',
-      meaning: 'Melakukan sesuatu secara khas sesuai kodrat atau citra dari N tersebut ("dengan sikap khas...").',
+      meaning: 'Melakukan sesuatu dengan cara yang sesuai dengan sifat ideal dari N ("selayaknya ~").',
       connectionConditions: [
         {
           partOfSpeech: 'Kata Benda (N)',
@@ -338,7 +318,7 @@ const CURATED_SUB_BRANCHES: Record<string, SubFormulaBranch[]> = {
         {
           japanese: '学生らしくもっと勉強しなさい。',
           reading: 'がくせいらしくもっとべんきょうしなさい。',
-          meaningId: 'Belajarlah lebih giat layaknya seorang pelajar yang baik.',
+          meaningId: 'Belajarlah lebih giat selayaknya seorang pelajar.',
         },
       ],
     },
@@ -349,14 +329,14 @@ const CURATED_SUB_BRANCHES: Record<string, SubFormulaBranch[]> = {
     {
       id: 'ppoi_pred',
       token: '〜っぽい',
-      usageLocation: 'Di akhir kalimat (Predikat) atau sebelum Kata Benda',
+      usageLocation: 'Sebagai predikat atau sebelum kata benda',
       usageLocationType: 'predicate',
-      meaning: 'Menyatakan kesan kuat atau kecenderungan sifat tertentu yang tampak dari luar (sering bermakna agak negatif atau kebiasaan, "-ish / terkesan...").',
+      meaning: 'Menyatakan kesan yang tampak dari luar ("terkesan ~", "agak ~") atau kecenderungan ("mudah ~"). Nadanya santai dan kadang sedikit negatif.',
       connectionConditions: [
         {
           partOfSpeech: 'Kata Benda (N)',
           rule: 'N ＋ っぽい',
-          example: '大人っぽい (seperti orang dewasa), 子供っぽい (kekanak-kanakan), 油っぽい (berminyak)',
+          example: '大人っぽい (terlihat dewasa), 子供っぽい (kekanak-kanakan), 油っぽい (berminyak)',
         },
         {
           partOfSpeech: 'Kata Sifat-i (A)',
@@ -373,7 +353,7 @@ const CURATED_SUB_BRANCHES: Record<string, SubFormulaBranch[]> = {
         {
           japanese: 'あの小学生は、大人っぽい。',
           reading: 'あのしょうがくせいは、おとなっぽい。',
-          meaningId: 'Anak SD itu bersikap sangat dewasa (terkesan seperti orang dewasa).',
+          meaningId: 'Anak SD itu terkesan seperti orang dewasa.',
         },
       ],
     },
@@ -384,30 +364,30 @@ const CURATED_SUB_BRANCHES: Record<string, SubFormulaBranch[]> = {
     {
       id: 'bakari_da',
       token: '〜ばかり／〜ばかりだ',
-      usageLocation: 'Di akhir kalimat atau setelah nomina',
+      usageLocation: 'Setelah kata benda, sebagai predikat atau keterangan',
       usageLocationType: 'predicate',
-      meaning: 'Menyatakan jumlah yang sangat banyak dan hanya hal itu melulu ("isinya hanya...", "melulu...").',
+      meaning: 'Menyatakan bahwa isinya hanya hal itu saja, dengan kesan jumlahnya banyak ("~ melulu", "hampir semuanya ~").',
       connectionConditions: [
         {
           partOfSpeech: 'Kata Benda (N)',
           rule: 'N ＋ ばかり',
-          example: '女性ばかり (isinya perempuan melulu), 失敗ばかり (kegagalan terus-menerus)',
+          example: '女性ばかり (perempuan semua), 失敗ばかり (gagal melulu)',
         },
       ],
       examples: [
         {
           japanese: 'このクラスは、女性ばかりだ。',
           reading: 'このクラスは、じょせいばかりだ。',
-          meaningId: 'Kelas ini isinya hanya perempuan melulu.',
+          meaningId: 'Kelas ini isinya perempuan semua.',
         },
       ],
     },
     {
       id: 'te_bakari_iru',
       token: '〜てばかりいる',
-      usageLocation: 'Sebagai predikat kata kerja (kebiasaan berulang)',
+      usageLocation: 'Sebagai predikat (tindakan yang terus diulang)',
       usageLocationType: 'predicate',
-      meaning: 'Menyatakan seseorang terus-menerus melakukan tindakan yang sama secara berlebihan dan menimbulkan kesan mengkritik atau menyayangkan ("kerjanya cuma ... melulu").',
+      meaning: 'Menyatakan bahwa seseorang terus-menerus melakukan hal yang sama, biasanya dengan nada mengkritik ("kerjanya ~ terus").',
       connectionConditions: [
         {
           partOfSpeech: 'Kata Kerja (V)',
@@ -419,7 +399,7 @@ const CURATED_SUB_BRANCHES: Record<string, SubFormulaBranch[]> = {
         {
           japanese: '弟は勉強もしないで、一日中ゲームをしてばかりいる。',
           reading: 'おとうとはべんきょうもしないで、いちにちじゅうゲームをしてばかりいる。',
-          meaningId: 'Adikku sama sekali tidak belajar, kerjanya seharian cuma main game melulu.',
+          meaningId: 'Adikku tidak belajar sama sekali, kerjanya seharian main game terus.',
         },
       ],
     },
@@ -430,9 +410,9 @@ const CURATED_SUB_BRANCHES: Record<string, SubFormulaBranch[]> = {
     {
       id: 'ni_kanshite',
       token: '〜に関して',
-      usageLocation: 'Di tengah kalimat menghubungkan ke klausa berikutnya (Adverbial)',
+      usageLocation: 'Di tengah kalimat, sebagai keterangan topik',
       usageLocationType: 'adverbial',
-      meaning: 'Mengenai / tentang suatu topik atau permasalahan. Bentuk formal dan lebih tertulis daripada 〜について.',
+      meaning: 'Menyatakan topik atau permasalahan yang dibicarakan ("mengenai ~"). Lebih formal daripada 〜について.',
       connectionConditions: [
         {
           partOfSpeech: 'Kata Benda (N)',
@@ -444,16 +424,16 @@ const CURATED_SUB_BRANCHES: Record<string, SubFormulaBranch[]> = {
         {
           japanese: 'その事件に関して、新聞で詳しく報道された。',
           reading: 'そのじけんにかんして、しんぶんでくわしくほうどうされた。',
-          meaningId: 'Mengenai insiden tersebut, diberitakan secara mendalam di surat kabar.',
+          meaningId: 'Insiden itu diberitakan secara rinci di surat kabar.',
         },
       ],
     },
     {
       id: 'ni_kanshite_wa',
       token: '〜に関しては',
-      usageLocation: 'Sebagai penanda topik utama kalimat',
+      usageLocation: 'Sebagai penanda topik (sering untuk membandingkan)',
       usageLocationType: 'topic',
-      meaning: 'Khusus mengenai hal tersebut... (mengangkat topik untuk diperbandingkan atau dibahas khusus).',
+      meaning: 'Menonjolkan satu topik secara khusus, sering untuk dibandingkan dengan hal lain ("kalau soal ~").',
       connectionConditions: [
         {
           partOfSpeech: 'Kata Benda (N)',
@@ -465,16 +445,16 @@ const CURATED_SUB_BRANCHES: Record<string, SubFormulaBranch[]> = {
         {
           japanese: '姉はファッションに関しては敏感だが、食べ物には無関心だ。',
           reading: 'あねはファッションにかんしてはびんかんだが、たべものにはむかんしんだ。',
-          meaningId: 'Kakak perempuan saya kalau mengenai mode sangat peka, tapi kalau soal makanan tidak peduli.',
+          meaningId: 'Kakak perempuan saya peka sekali kalau soal mode, tetapi tidak peduli soal makanan.',
         },
       ],
     },
     {
       id: 'ni_kansuru_n',
       token: '〜に関するN',
-      usageLocation: 'Sebelum Kata Benda (Modifikasi Nomina)',
+      usageLocation: 'Sebelum kata benda, untuk menerangkan kata benda itu',
       usageLocationType: 'noun_modifier',
-      meaning: 'Menerangkan kata benda yang ada hubungannya dengan topik tertentu ("N yang berkaitan dengan...").',
+      meaning: 'Menerangkan kata benda yang berkaitan dengan suatu topik ("N mengenai ~").',
       connectionConditions: [
         {
           partOfSpeech: 'Kata Benda (N)',
@@ -486,7 +466,7 @@ const CURATED_SUB_BRANCHES: Record<string, SubFormulaBranch[]> = {
         {
           japanese: '日本の歴史に関する本を何冊か読んだ。',
           reading: 'にほんのれきしにかんするほんをなんさつかよんだ。',
-          meaningId: 'Saya telah membaca beberapa buku yang berkaitan dengan sejarah Jepang.',
+          meaningId: 'Saya sudah membaca beberapa buku mengenai sejarah Jepang.',
         },
       ],
     },
@@ -497,9 +477,9 @@ const CURATED_SUB_BRANCHES: Record<string, SubFormulaBranch[]> = {
     {
       id: 'ageru',
       token: '〜上げる',
-      usageLocation: 'Setelah Vます (Kata Kerja Transitif / Tindakan Pelaku)',
+      usageLocation: 'Setelah bentuk masu (tanpa ます), dengan kata kerja transitif',
       usageLocationType: 'predicate',
-      meaning: 'Menyelesaikan suatu pekerjaan atau karya secara tuntas dengan usaha penuh pembicara/pelaku.',
+      meaning: 'Pelaku menyelesaikan suatu pekerjaan atau karya sampai rampung, biasanya setelah usaha yang cukup besar.',
       connectionConditions: [
         {
           partOfSpeech: 'Kata Kerja (V)',
@@ -511,16 +491,16 @@ const CURATED_SUB_BRANCHES: Record<string, SubFormulaBranch[]> = {
         {
           japanese: '長い時間をかけて、ようやく論文を書き上げた。',
           reading: 'ながいじかんをかけて、ようやくろんぶんをかきあげた。',
-          meaningId: 'Setelah menghabiskan waktu lama, akhirnya saya berhasil menyelesaikan penulisan tesis.',
+          meaningId: 'Setelah menghabiskan waktu lama, akhirnya saya selesai menulis tesis.',
         },
       ],
     },
     {
       id: 'agaru',
       token: '〜上がる',
-      usageLocation: 'Setelah Vます (Kata Kerja Intransitif / Selesai Alami)',
+      usageLocation: 'Setelah bentuk masu (tanpa ます), sebagai kata kerja intransitif',
       usageLocationType: 'predicate',
-      meaning: 'Menunjukkan bahwa sesuatu sudah selesai terbentuk atau rampung dengan sendirinya.',
+      meaning: 'Menyatakan bahwa sesuatu sudah jadi atau rampung, dengan fokus pada hasilnya, bukan pada pelakunya.',
       connectionConditions: [
         {
           partOfSpeech: 'Kata Kerja (V)',
@@ -530,9 +510,9 @@ const CURATED_SUB_BRANCHES: Record<string, SubFormulaBranch[]> = {
       ],
       examples: [
         {
-          japanese: '焼きたての美味しいパンが焼き上がりましたよ！',
-          reading: 'やきたてのおいしいパンがやきあがりましたよ！',
-          meaningId: 'Roti lezat yang baru saja dipanggang sudah selesai matang!',
+          japanese: 'おいしいパンが焼き上がりましたよ！',
+          reading: 'おいしいパンがやきあがりましたよ！',
+          meaningId: 'Roti yang lezat sudah matang!',
         },
       ],
     },
@@ -543,9 +523,9 @@ const CURATED_SUB_BRANCHES: Record<string, SubFormulaBranch[]> = {
     {
       id: 'kiru',
       token: '〜切る',
-      usageLocation: 'Setelah Vます (Penyelesaian Total / Penuh)',
+      usageLocation: 'Setelah bentuk masu (tanpa ます)',
       usageLocationType: 'predicate',
-      meaning: 'Melakukan suatu tindakan sampai habis sama sekali tanpa ada yang tersisa.',
+      meaning: 'Melakukan suatu tindakan sampai habis atau tuntas, tanpa sisa.',
       connectionConditions: [
         {
           partOfSpeech: 'Kata Kerja (V)',
@@ -564,9 +544,9 @@ const CURATED_SUB_BRANCHES: Record<string, SubFormulaBranch[]> = {
     {
       id: 'kireru',
       token: '〜切れる',
-      usageLocation: 'Setelah Vます (Potensial: Mampu menuntaskan)',
+      usageLocation: 'Setelah bentuk masu (tanpa ます), bentuk potensial',
       usageLocationType: 'predicate',
-      meaning: 'Sanggup menyelesaikan atau menuntaskan sesuatu sampai batas akhir.',
+      meaning: 'Sanggup melakukan sesuatu sampai habis atau sampai akhir.',
       connectionConditions: [
         {
           partOfSpeech: 'Kata Kerja (V)',
@@ -585,9 +565,9 @@ const CURATED_SUB_BRANCHES: Record<string, SubFormulaBranch[]> = {
     {
       id: 'kirenai',
       token: '〜切れない',
-      usageLocation: 'Setelah Vます (Negatif Potensial: Tak sanggup menuntaskan)',
+      usageLocation: 'Setelah bentuk masu (tanpa ます), bentuk potensial negatif',
       usageLocationType: 'predicate',
-      meaning: 'Tidak sanggup menyelesaikan sampai habis karena terlalu banyak atau melampaui kemampuan.',
+      meaning: 'Tidak sanggup melakukan sesuatu sampai habis karena jumlahnya terlalu banyak atau melebihi kemampuan.',
       connectionConditions: [
         {
           partOfSpeech: 'Kata Kerja (V)',
@@ -599,7 +579,7 @@ const CURATED_SUB_BRANCHES: Record<string, SubFormulaBranch[]> = {
         {
           japanese: '料理が多すぎて、一人ではとても食べ切れません。',
           reading: 'りょうりがおおすぎて、ひとりではとてもたべきれません。',
-          meaningId: 'Makanannya terlalu banyak, sendirian saya benar-benar tidak sanggup menghabiskannya.',
+          meaningId: 'Makanannya terlalu banyak, saya tidak mungkin sanggup menghabiskannya sendirian.',
         },
       ],
     },
@@ -610,42 +590,42 @@ const CURATED_SUB_BRANCHES: Record<string, SubFormulaBranch[]> = {
     {
       id: 'kakeru',
       token: '〜かける',
-      usageLocation: 'Setelah Vます (Proses setengah jalan)',
+      usageLocation: 'Setelah bentuk masu (tanpa ます)',
       usageLocationType: 'predicate',
-      meaning: 'Memulai suatu tindakan namun berhenti di tengah jalan sebelum selesai.',
+      meaning: 'Menyatakan bahwa suatu tindakan sudah dimulai tetapi berhenti sebelum selesai, atau sesuatu hampir terjadi (死にかける = hampir mati).',
       connectionConditions: [
         {
           partOfSpeech: 'Kata Kerja (V)',
           rule: 'Vます ＋ かける',
-          example: '言いかける (hendak mengatakan tapi terhenti), 読みかける (mulai membaca tapi belum selesai)',
+          example: '言いかける (mulai bicara lalu berhenti), 忘れかける (hampir lupa)',
         },
       ],
       examples: [
         {
           japanese: '何か言いかけて、やめてしまった。',
           reading: 'なにかいいかけて、やめてしまった。',
-          meaningId: 'Dia tampak hendak mengatakan sesuatu, tetapi mendadak berhenti.',
+          meaningId: 'Dia mulai mengatakan sesuatu, tetapi lalu berhenti.',
         },
       ],
     },
     {
       id: 'kake_no_n',
       token: '〜かけのN',
-      usageLocation: 'Sebelum Kata Benda (Modifikasi Nomina)',
+      usageLocation: 'Sebelum kata benda, untuk menerangkan kata benda itu',
       usageLocationType: 'noun_modifier',
-      meaning: 'Kata benda yang kondisinya masih setengah jadi atau belum tuntas dikerjakan.',
+      meaning: 'Menerangkan benda yang tindakannya sudah dimulai tetapi belum selesai ("~ yang baru separuh").',
       connectionConditions: [
         {
           partOfSpeech: 'Kata Kerja (V)',
           rule: 'Vます ＋ かけの ＋ N',
-          example: '食べかけのリンゴ (apel yang baru dimakan separuh), 読みかけの本 (buku yang sedang dibaca setengah)',
+          example: '食べかけのリンゴ (apel yang baru dimakan separuh), 読みかけの本 (buku yang belum selesai dibaca)',
         },
       ],
       examples: [
         {
           japanese: '机の上に、飲みかけのコーヒーが置いてある。',
           reading: 'つくえのうえに、のみかけのコーヒーがおいてある。',
-          meaningId: 'Di atas meja, tergeletak kopi yang belum selesai diminum.',
+          meaningId: 'Di atas meja ada kopi yang belum habis diminum.',
         },
       ],
     },
@@ -656,9 +636,9 @@ const CURATED_SUB_BRANCHES: Record<string, SubFormulaBranch[]> = {
     {
       id: 'tate_no_n',
       token: '〜たてのN',
-      usageLocation: 'Sebelum Kata Benda (Modifikasi Nomina)',
+      usageLocation: 'Sebelum kata benda, untuk menerangkan kata benda itu',
       usageLocationType: 'noun_modifier',
-      meaning: 'Menyatakan sesuatu yang baru saja selesai dilakukan dan masih dalam kondisi sangat segar/baru.',
+      meaning: 'Menerangkan sesuatu yang baru saja selesai dibuat atau dilakukan, sehingga masih segar.',
       connectionConditions: [
         {
           partOfSpeech: 'Kata Kerja (V)',
@@ -670,28 +650,28 @@ const CURATED_SUB_BRANCHES: Record<string, SubFormulaBranch[]> = {
         {
           japanese: '焼きたてのパンは、香りが良くて本当に美味しい。',
           reading: 'やきたてのパンは、かおりがよくてほんとうにおいしい。',
-          meaningId: 'Roti yang baru saja matang dari oven memiliki aroma harum dan sangat lezat.',
+          meaningId: 'Roti yang baru dipanggang itu harum dan sungguh enak.',
         },
       ],
     },
     {
       id: 'tate_da',
       token: '〜たてだ',
-      usageLocation: 'Di akhir kalimat sebagai predikat',
+      usageLocation: 'Di akhir kalimat, sebagai predikat',
       usageLocationType: 'predicate',
-      meaning: 'Menyatakan bahwa kondisi tersebut baru saja terjadi/dibuat.',
+      meaning: 'Menyatakan bahwa sesuatu baru saja dibuat atau dilakukan.',
       connectionConditions: [
         {
           partOfSpeech: 'Kata Kerja (V)',
           rule: 'Vます ＋ たてだ',
-          example: 'ペンキは塗りたてだ (catnya baru saja dioleskan)',
+          example: 'ペンキは塗りたてだ (catnya masih baru/basah)',
         },
       ],
       examples: [
         {
           japanese: 'このペンキは塗りたてだから、触らないでください。',
           reading: 'このペンキはぬりたてだから、さわらないでください。',
-          meaningId: 'Cat ini baru saja dioleskan, tolong jangan disentuh.',
+          meaningId: 'Catnya masih basah, tolong jangan disentuh.',
         },
       ],
     },
@@ -961,6 +941,7 @@ function extractSubBranchesFromFormula(item: BunpouItem): SubFormulaBranch[] {
           },
         ],
         examples: item.examples.slice(0, 2),
+        autoGenerated: true,
       },
     ];
   }
@@ -1015,6 +996,7 @@ function extractSubBranchesFromFormula(item: BunpouItem): SubFormulaBranch[] {
         rule: `${c.rule.split('＋')[0].trim()} ＋ ${cleanToken}`,
       })),
       examples,
+      autoGenerated: true,
     };
   });
 
@@ -1027,8 +1009,14 @@ function extractSubBranchesFromFormula(item: BunpouItem): SubFormulaBranch[] {
       meaning: item.meaningId,
       connectionConditions: baseConditions,
       examples: item.examples.slice(0, 2),
+      autoGenerated: true,
     },
   ];
+}
+
+/** Cabang yang ditulis/dikurasi manual (bukan hasil urai otomatis) dan layak ditampilkan sebagai penjelasan. */
+export function getCuratedSubFormulas(item: Pick<BunpouItem, 'subFormulas'>): SubFormulaBranch[] {
+  return (item.subFormulas || []).filter(sub => !sub.autoGenerated);
 }
 
 /**
