@@ -9,6 +9,9 @@ import { flipExpFor, claimFlipReward } from '../utils/flashcardSession';
 import { KOTOBA_DATABASE } from '../data/kotoba';
 import { KANJI_DATABASE } from '../data/kanji';
 import type { PlayerStats } from '../types/rpg';
+// Seperti di aplikasi setelah ensureFullData(): bank soal kurasi terpasang ke basis data.
+import '../data/kanjiQuestions';
+import '../data/bunpouQuestions';
 
 const DAY = 24 * 60 * 60 * 1000;
 const KOTOBA_ID = Object.keys(KOTOBA_DATABASE)[0];

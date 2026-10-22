@@ -3,6 +3,7 @@ import { createRoot } from 'react-dom/client';
 import './index.css';
 import { ErrorBoundary } from './components/ErrorBoundary.tsx';
 import { BootSplash } from './components/common/BootSplash.tsx';
+import { DATASET_LOAD_ERROR } from './data/loadDataset.ts';
 
 const root = createRoot(document.getElementById('root')!);
 
@@ -23,7 +24,10 @@ function loadApp() {
     })
     .catch((err) => {
       console.error('Gagal memuat modul utama aplikasi:', err);
-      root.render(<BootSplash failed onRetry={loadApp} />);
+      // Modul yang gagal DIEVALUASI (dataset gagal diunduh) tersimpan sebagai gagal oleh browser: impor ulang
+      // hanya mengulang galat yang sama, jadi muat ulang halaman.
+      const evaluationFailed = String(err instanceof Error ? err.message : err).includes(DATASET_LOAD_ERROR);
+      root.render(<BootSplash failed onRetry={evaluationFailed ? () => window.location.reload() : loadApp} />);
     });
 }
 

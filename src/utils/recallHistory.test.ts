@@ -7,6 +7,9 @@ import { BUNPOU_DATABASE } from '../data/bunpou';
 import { stripDerivedStats } from '../state/derivedState';
 import { mergeItemMastery } from './cloudMerge';
 import type { ItemMasteryRecord } from '../types/content';
+// Seperti di aplikasi setelah ensureFullData(): bank soal kurasi terpasang ke basis data.
+import '../data/kanjiQuestions';
+import '../data/bunpouQuestions';
 
 type Mastery = Record<string, ItemMasteryRecord>;
 

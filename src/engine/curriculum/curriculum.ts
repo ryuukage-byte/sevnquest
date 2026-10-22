@@ -175,7 +175,7 @@ export function buildCurriculum(profileInput: GuidedProfile, sources: Curriculum
     pool
       .filter(isCoreKotoba)
       // yang punya contoh kalimat lebih dulu (lebih mudah dipelajari dalam konteks)
-      .map((k, i) => ({ k, i, rank: k.exampleSentence ? 0 : 1 }))
+      .map((k, i) => ({ k, i, rank: k.exampleSentence || k.hasExample ? 0 : 1 }))
       .sort((a, b) => a.rank - b.rank || a.i - b.i)
       .map(x => x.k)
   );

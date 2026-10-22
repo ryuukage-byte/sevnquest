@@ -27,6 +27,7 @@ import { useTheme } from './hooks/useTheme';
 import { usePersistence } from './hooks/usePersistence';
 import { useCloudSync } from './hooks/useCloudSync';
 import { usePlayerActions } from './hooks/usePlayerActions';
+import { useFullData } from './hooks/useFullData';
 
 export default function App() {
   // State inti (diinisialisasi dari localStorage lewat state/loadPlayerState.ts)
@@ -70,6 +71,7 @@ export default function App() {
   });
 
   useDailyRollover({ setStats, setDailyMissions, setWeeklyMissions });
+  useFullData(setStats);
   useTheme(stats.theme);
   usePersistence({
     stats, stageProgress, dailyMissions, weeklyMissions,

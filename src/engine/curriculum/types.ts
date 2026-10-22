@@ -92,7 +92,7 @@ export interface Curriculum {
 
 /** Bentuk minimal materi yang dibutuhkan generator (basis data asli memenuhi bentuk ini). */
 export interface CurriculumSources {
-  kotoba: ReadonlyArray<{ id: string; jlpt: string; kanjiComponents?: string[]; tags?: string[]; exampleSentence?: unknown }>;
+  kotoba: ReadonlyArray<{ id: string; jlpt: string; kanjiComponents?: string[]; tags?: string[]; exampleSentence?: unknown; hasExample?: boolean }>;
   kanji: ReadonlyArray<{ id: string; jlpt: string; character: string }>;
   bunpou: ReadonlyArray<{ id: string; level: string }>;
 }

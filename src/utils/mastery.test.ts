@@ -1,6 +1,9 @@
 import test, { mock } from 'node:test';
 import assert from 'node:assert/strict';
 import { recordItemAttempt, recordItemInteraction } from './mastery';
+// Seperti di aplikasi setelah ensureFullData(): bank soal kurasi terpasang ke basis data.
+import '../data/kanjiQuestions';
+import '../data/bunpouQuestions';
 
 // Tes karakterisasi mastery/SRS (EXP_ECONOMY & DATA_MODEL §2). Waktu dimock agar interval dapat dihitung.
 const D = 24 * 60 * 60 * 1000;

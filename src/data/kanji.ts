@@ -1,5 +1,4 @@
 import kanjiDb from './db/kanji.json';
-import { KANJI_QUESTION_BANK as kanjiQuestionsDb } from './questionBank';
 import { KanjiItem } from '../types/content';
 import { defineLookupAlias } from './entityIds';
 
@@ -173,32 +172,14 @@ const rawKanjiList: KanjiItem[] = Array.isArray(kanjiDb)
     ? Object.values(kanjiDb as Record<string, any>)
     : Object.values(STATIC_KANJI);
 
-// Map centralized questions by kanji ID
-const kanjiQuestionsMap = new Map<string, any[]>();
-if (Array.isArray(kanjiQuestionsDb)) {
-  for (const q of kanjiQuestionsDb) {
-    const kanjiId = q.knowledge_refs?.[0] || q.kanji_refs?.[0];
-    if (kanjiId) {
-      if (!kanjiQuestionsMap.has(kanjiId)) kanjiQuestionsMap.set(kanjiId, []);
-      kanjiQuestionsMap.get(kanjiId)!.push({
-        id: q.id,
-        prompt: q.prompt,
-        ruby: (q as any).ruby,
-        options: q.options,
-        correctIndex: q.correct_index,
-        explanation: q.explanation
-      });
-    }
-  }
-}
-
 // Index by both k.id and k.character for seamless lookup resilience
 const indexedDb: Record<string, KanjiItem> = {};
 for (const k of rawKanjiList) {
   if (k && k.id) {
+    // Soal kurasi (db/kanji_questions.json) digabung belakangan oleh kanjiQuestions.ts (lihat fullData.ts).
     const itemCopy = {
       ...k,
-      questions: kanjiQuestionsMap.get(k.id) || k.questions || []
+      questions: k.questions || []
     };
     indexedDb[k.id] = itemCopy;
     // Alias pencarian per karakter (non-enumerable) agar Object.values() tidak menggandakan kanji.

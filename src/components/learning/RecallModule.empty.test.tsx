@@ -3,6 +3,9 @@ import assert from 'node:assert/strict';
 import React from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
 import { RecallModule } from './RecallModule';
+// Seperti di aplikasi setelah ensureFullData(): bank soal kurasi terpasang ke basis data.
+import '../../data/kanjiQuestions';
+import '../../data/bunpouQuestions';
 
 const noop = () => {};
 const render = (props: Partial<React.ComponentProps<typeof RecallModule>>) =>

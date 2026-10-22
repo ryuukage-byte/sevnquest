@@ -251,6 +251,8 @@ export interface KotobaItem {
     reading: string;
     meaningId: string;
   };
+  /** Diisi saat build: entri punya `exampleSentence` (detail dimuat terpisah, lihat data/kotobaSplit.ts). */
+  hasExample?: boolean;
   relatedWords?: string[];
   collocations?: string[];
   tags?: string[];
