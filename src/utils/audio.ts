@@ -1,4 +1,4 @@
-// Audio Utility for Sound FX and Japanese TTS Speech Synthesis
+// Efek suara (Web Audio). Suara Jepang (TTS) ada di ./speech.ts.
 
 let audioCtx: AudioContext | null = null;
 let masterCompressor: DynamicsCompressorNode | null = null;
@@ -303,98 +303,5 @@ export function playSound(type: SoundType, soundEnabled: boolean = true) {
     }
   } catch (e) {
     console.warn('Audio play error', e);
-  }
-}
-
-// Voice cache for SpeechSynthesis
-let cachedVoices: SpeechSynthesisVoice[] = [];
-
-if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
-  cachedVoices = window.speechSynthesis.getVoices();
-  window.speechSynthesis.onvoiceschanged = () => {
-    cachedVoices = window.speechSynthesis.getVoices();
-  };
-}
-
-function getBestJapaneseVoice(): SpeechSynthesisVoice | null {
-  if (typeof window === 'undefined' || !('speechSynthesis' in window)) return null;
-  const voices = cachedVoices.length > 0 ? cachedVoices : window.speechSynthesis.getVoices();
-  const jaVoices = voices.filter(v => {
-    const l = v.lang.replace('_', '-').toLowerCase();
-    return l.startsWith('ja') || l.includes('ja-jp');
-  });
-
-  if (jaVoices.length === 0) return null;
-
-  // 1. Highest priority: Online / Neural / Natural AI voices (e.g. Microsoft Nanami Natural, Google 日本語)
-  const neuralVoice = jaVoices.find(v => 
-    /natural|neural|online|google|premium|enhanced/i.test(v.name)
-  );
-  if (neuralVoice) return neuralVoice;
-
-  // 2. High priority: Known high-quality Japanese voice models
-  const qualityVoice = jaVoices.find(v =>
-    /nanami|keita|kyoko|otoya|mei|sayaka|haruka|ayumi/i.test(v.name)
-  );
-  if (qualityVoice) return qualityVoice;
-
-  // 3. Fallback to any Japanese voice
-  return jaVoices[0];
-}
-
-// Chrome bisa membuang utterance yang sudah di-GC sebelum selesai bicara; simpan rujukannya.
-let activeUtterance: SpeechSynthesisUtterance | null = null;
-
-// Japanese Text-to-Speech using browser SpeechSynthesis
-export function speakJapanese(text: string, rate: number = 0.95): Promise<void> {
-  return new Promise((resolve) => {
-    if (typeof window === 'undefined' || !('speechSynthesis' in window)) {
-      resolve();
-      return;
-    }
-
-    try {
-      window.speechSynthesis.cancel(); // Stop any pending speech
-      const utterance = new SpeechSynthesisUtterance(text);
-      utterance.lang = 'ja-JP';
-      utterance.rate = rate;
-      utterance.pitch = 1.0;
-
-      // Select highest quality Neural/Natural voice available
-      const jaVoice = getBestJapaneseVoice();
-      if (jaVoice) {
-        utterance.voice = jaVoice;
-      }
-
-      activeUtterance = utterance;
-
-      utterance.onend = () => resolve();
-      utterance.onerror = () => resolve();
-
-      // Chrome sering membuang speak() yang dipanggil tepat setelah cancel(); beri jeda singkat.
-      window.setTimeout(() => {
-        // Sudah digantikan panggilan lain (soal berpindah / tombol ditekan lagi) atau dihentikan:
-        // jangan putar teks lama, kalau tidak suara soal sebelumnya muncul di soal yang baru.
-        if (activeUtterance !== utterance) {
-          resolve();
-          return;
-        }
-        try {
-          window.speechSynthesis.resume();
-          window.speechSynthesis.speak(utterance);
-        } catch {
-          resolve();
-        }
-      }, 80);
-    } catch {
-      resolve();
-    }
-  });
-}
-
-export function stopSpeaking() {
-  activeUtterance = null; // batalkan utterance yang masih menunggu jeda sebelum speak()
-  if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
-    window.speechSynthesis.cancel();
   }
 }

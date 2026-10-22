@@ -5,7 +5,8 @@ import { motion } from 'motion/react';
 import { X, Volume2, Link as LinkIcon, Network, Edit3, ChevronLeft, ChevronRight, Zap, AlertTriangle, ArrowLeft } from 'lucide-react';
 import { BookIcon } from '../ui/EngravingIcons';
 import { KotobaItem, ItemMasteryRecord, KanjiItem } from '../../types/content';
-import { playSound, speakJapanese } from '../../utils/audio';
+import { playSound } from '../../utils/audio';
+import { speakJapanese } from '../../utils/speech';
 import { RubyText } from '../learning/RubyText';
 import { KanjiComponentsSection } from '../learning/KanjiComponentsSection';
 import { KOTOBA_DATABASE } from '../../data/kotoba';
@@ -454,7 +455,7 @@ export const KotobaDetailModal: React.FC<KotobaDetailModalProps> = ({
                   </div>
                 ) : (
                   <button
-                    onClick={() => speakJapanese(effectiveItem.reading || effectiveItem.word)}
+                    onClick={() => speakJapanese(effectiveItem.word, { reading: effectiveItem.reading })}
                     className="btn-physical-secondary mx-auto mt-2 flex items-center gap-1.5 px-3 py-1.5 rounded-xl transition-colors text-xs font-bold cursor-pointer"
                   >
                     <Volume2 className="w-3.5 h-3.5" />
@@ -532,7 +533,7 @@ export const KotobaDetailModal: React.FC<KotobaDetailModalProps> = ({
                     {effectiveItem.exampleSentence.meaningId}
                   </p>
                   <button
-                    onClick={() => speakJapanese(effectiveItem.exampleSentence!.japanese)}
+                    onClick={() => speakJapanese(effectiveItem.exampleSentence!.japanese, { reading: effectiveItem.exampleSentence!.reading })}
                     className="flex items-center gap-1.5 text-[10px] text-gold hover:underline font-bold uppercase tracking-wider mt-2 cursor-pointer"
                   >
                     <Volume2 className="w-3 h-3" /> Putar Audio

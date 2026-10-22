@@ -20,7 +20,8 @@ import {
   getTargetFormDisplay,
   getConjugatedMeaningId,
 } from '../../data/conjugationRules';
-import { speakJapanese, playSound } from '../../utils/audio';
+import { playSound } from '../../utils/audio';
+import { speakJapanese } from '../../utils/speech';
 import { RubyText } from '../learning/RubyText';
 import { ConjugationSandboxModal } from './ConjugationSandboxModal';
 

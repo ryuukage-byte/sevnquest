@@ -4,12 +4,15 @@ import fs from 'fs';
 import path from 'path';
 import {defineConfig, loadEnv, type Plugin} from 'vite';
 import {splitKotobaEntries} from './src/data/kotobaSplit';
+import {SPEECH_SOURCE_FILES, buildSpeechHints} from './scripts/speech/speechHints';
 
 const DATA_DB_DIR = path.resolve(__dirname, 'src/data/db');
 const KOTOBA_JSON = path.join(DATA_DB_DIR, 'kotoba.json');
 const KOTOBA_DETAILS_MODULE = path.resolve(__dirname, 'src/data/kotobaDetails.ts');
 const LOAD_DATASET_MODULE = path.resolve(__dirname, 'src/data/loadDataset.ts');
 const DATASET_PREFIX = '\0sevn-data:';
+// Petunjuk ucapan TTS (dihitung dari data dengan kuromoji, lihat scripts/speech/speechHints.ts).
+const SPEECH_HINTS_ID = 'virtual:sevn-speech-hints';
 // Dataset di src/data/db sebesar ini ke atas dikirim sebagai berkas .json terpisah (lihat datasetModules).
 const DATASET_ASSET_MIN_BYTES = 64 * 1024;
 
@@ -74,6 +77,17 @@ function datasetModules(): Plugin {
     cache.set(name, {mtime, json});
     return json;
   };
+  let speechHints: {key: string; json: Promise<string>} | null = null;
+  const speechHintsJson = () => {
+    const key = SPEECH_SOURCE_FILES.map((f) => fs.statSync(path.join(DATA_DB_DIR, f)).mtimeMs).join('|');
+    if (speechHints?.key !== key) {
+      speechHints = {
+        key,
+        json: buildSpeechHints(DATA_DB_DIR, path.resolve(__dirname, 'node_modules/kuromoji/dict')).then((h) => JSON.stringify(h)),
+      };
+    }
+    return speechHints.json;
+  };
   return {
     name: 'sevn-datasets',
     enforce: 'pre',
@@ -82,6 +96,10 @@ function datasetModules(): Plugin {
       base = config.base;
     },
     async resolveId(source, importer, options) {
+      if (source === SPEECH_HINTS_ID) {
+        SPEECH_SOURCE_FILES.forEach((f) => files.set(`speech-hints:${f}`, path.join(DATA_DB_DIR, f)));
+        return DATASET_PREFIX + 'speech-hints';
+      }
       if (!importer || !/\.json$/.test(source)) return null;
       const resolved = await this.resolve(source, importer, {...options, skipSelf: true});
       if (!resolved) return null;
@@ -95,11 +113,17 @@ function datasetModules(): Plugin {
       files.set(name, file);
       return DATASET_PREFIX + name;
     },
-    load(id) {
+    async load(id) {
       if (!id.startsWith(DATASET_PREFIX)) return null;
       const name = id.slice(DATASET_PREFIX.length);
-      this.addWatchFile(files.get(name)!);
-      const json = datasetJson(name);
+      let json: string;
+      if (name === 'speech-hints') {
+        SPEECH_SOURCE_FILES.forEach((f) => this.addWatchFile(path.join(DATA_DB_DIR, f)));
+        json = await speechHintsJson();
+      } else {
+        this.addWatchFile(files.get(name)!);
+        json = datasetJson(name);
+      }
       if (!isBuild) return {code: `export default JSON.parse(${JSON.stringify(json)});`, map: {mappings: ''}};
       const ref = this.emitFile({type: 'asset', name: `${name}.json`, source: json});
       return {

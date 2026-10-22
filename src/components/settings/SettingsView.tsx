@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Volume2, VolumeX, RotateCcw, ShieldAlert, Settings, BookOpen, User, LogOut, Coffee, MessageCircle, Sun, Moon, RefreshCw, Cloud, Check, Compass, Smartphone, Download, Play } from 'lucide-react';
 import { PlayerStats } from '../../types/rpg';
-import { speakJapanese, playSound } from '../../utils/audio';
+import { playSound } from '../../utils/audio';
+import { JapaneseVoiceSettings } from './JapaneseVoiceSettings';
 import { signOut } from '../../lib/supabase';
 import { PwaInstallModal } from '../pwa/PwaInstallModal';
 
@@ -155,10 +156,6 @@ export const SettingsView: React.FC<SettingsViewProps> = ({
     playSound('correct', stats.soundEnabled);
     setIsNameSaved(true);
     setTimeout(() => setIsNameSaved(false), 2500);
-  };
-
-  const handleTestJapaneseVoice = () => {
-    speakJapanese('こんにちは！日本語クエストRPGへようこそ。今日も一緒に日本語を勉強しましょう！');
   };
 
   return (
@@ -414,7 +411,7 @@ export const SettingsView: React.FC<SettingsViewProps> = ({
       {/* Audio & Sound Effects Section */}
       <div className="panel panel-stitched p-4 sm:p-5 space-y-4 shadow-md">
         <h3 className="text-xs font-bold uppercase tracking-wider text-text-secondary flex items-center gap-1.5 font-heading">
-          <Volume2 className="w-4 h-4 text-indigo" /> Audio & Mantra Suara
+          <Volume2 className="w-4 h-4 text-indigo" /> Audio & Suara
         </h3>
 
         {/* Sound FX Toggle */}
@@ -492,20 +489,7 @@ export const SettingsView: React.FC<SettingsViewProps> = ({
           </div>
         )}
 
-        {/* Japanese TTS Voice Tester */}
-        <div className="pt-3 border-t border-border-subtle flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-          <div>
-            <h4 className="text-xs sm:text-sm font-bold text-text-primary font-heading">Uji Resonansi Suara Jepang (TTS)</h4>
-            <p className="text-xs text-text-secondary">Menggunakan Web Speech Synthesis Native Browser</p>
-          </div>
-          <button
-            onClick={handleTestJapaneseVoice}
-            className="btn btn-pill text-xs gap-2 self-start sm:self-auto text-indigo"
-          >
-            <Volume2 className="w-4 h-4" />
-            <span>Uji Suara 「こんにちは」</span>
-          </button>
-        </div>
+        <JapaneseVoiceSettings />
       </div>
 
       {/* Learning Preferences */}

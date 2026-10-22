@@ -10,7 +10,7 @@ import { BookOpen, CheckCircle2, Ear, Languages, MessageSquare, PenLine, Shapes,
 import { RoomSkill } from '../../engine/tower1/types';
 import { TOWER1_SKILL_LABEL } from '../../data/tower1/floors';
 import { parseRuby } from '../../engine/tower1/jp';
-import { speakJapanese, stopSpeaking } from '../../utils/audio';
+import { speakJapanese, stopSpeaking } from '../../utils/speech';
 
 /** Teks Jepang dengan markup furigana "[漢字|かんじ]". */
 export const Jp: React.FC<{ text: string; className?: string }> = ({ text, className = '' }) => (

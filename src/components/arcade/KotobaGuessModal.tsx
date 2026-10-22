@@ -18,7 +18,8 @@ import {
   ShieldAlert
 } from 'lucide-react';
 import { KOTOBA_DATABASE as kotobaDb } from '../../data/kotoba';
-import { playSound, speakJapanese } from '../../utils/audio';
+import { playSound } from '../../utils/audio';
+import { speakJapanese } from '../../utils/speech';
 import { UserDeck } from '../../types/rpg';
 import { OFFICIAL_BOOKS } from '../../data/officialBooks';
 import { getKotobaPoolForBook } from '../../utils/arcadeSourceUtils';
@@ -547,7 +548,7 @@ export const KotobaGuessModal: React.FC<KotobaGuessModalProps> = ({
                 </span>
                 <button
                   type="button"
-                  onClick={() => speakJapanese(currentWord.word)}
+                  onClick={() => speakJapanese(currentWord.word, { reading: currentWord.reading })}
                   className="btn-physical-secondary p-2 rounded-xl hover:text-teal transition-colors"
                 >
                   <Volume2 className="w-4 h-4" />

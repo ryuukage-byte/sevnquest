@@ -83,6 +83,7 @@ test('jalur boot tidak mengimpor bank soal / detail kotoba secara statis', () =>
     }
   }
   const forbidden = ['data/kotobaDetails.ts', 'data/kanjiQuestions.ts', 'data/bunpouQuestions.ts', 'data/questionBank.ts',
+    'data/speechHints.ts', 'utils/speech.ts', 'data/furiganaDictionary.json',
     'data/db/kanji_questions.json', 'data/db/bunpou_questions.json', 'data/db/kanji_extreme_100_stages.json'];
   const rel = [...seen].map(f => path.relative(root, f).replace(/\\/g, '/'));
   for (const f of forbidden) assert.ok(!rel.includes(f), `${f} terjangkau dari App.tsx secara statis`);

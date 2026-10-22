@@ -24,7 +24,8 @@ import {
   Clock
 } from 'lucide-react';
 import { DungeonPayload, DungeonConfig } from '../../utils/dungeonGenerator';
-import { playSound, speakJapanese } from '../../utils/audio';
+import { playSound } from '../../utils/audio';
+import { speakJapanese } from '../../utils/speech';
 import { fisherYatesShuffle } from '../../utils/smartRandomizer';
 import { UniversalFlashcard } from '../learning/UniversalFlashcard';
 import { UniversalWritingCard } from '../learning/UniversalWritingCard';
@@ -652,6 +653,7 @@ export const DungeonSessionRunner: React.FC<DungeonSessionRunnerProps> = ({
                   if (!it) return renderFallbackMissingItem();
 
                   const jp = it.kotoba?.word || it.kanji?.character || it.bunpou?.title || it.displayTitle || '';
+                  const jpReading = it.kotoba?.reading || it.kanji?.kunyomi?.[0] || it.kanji?.onyomi?.[0];
 
                   return (
                     <div className="space-y-4">
@@ -686,7 +688,7 @@ export const DungeonSessionRunner: React.FC<DungeonSessionRunnerProps> = ({
                         {jp && (
                           <button
                             type="button"
-                            onClick={() => speakJapanese(jp)}
+                            onClick={() => speakJapanese(jp, { reading: jpReading })}
                             className="btn-physical-secondary p-3 rounded-2xl text-gold transition-colors cursor-pointer shrink-0"
                             title="Dengarkan Pelafalan"
                           >
@@ -1015,8 +1017,8 @@ export const DungeonSessionRunner: React.FC<DungeonSessionRunnerProps> = ({
                           <button
                             type="button"
                             onClick={() => {
-                              const textToSpeak = q.targetVerb?.reading || q.targetVerb?.kanji || (q as any).dictionaryWord || '';
-                              if (textToSpeak) speakJapanese(textToSpeak);
+                              const textToSpeak = q.targetVerb?.kanji || q.targetVerb?.reading || (q as any).dictionaryWord || '';
+                              if (textToSpeak) speakJapanese(textToSpeak, { reading: q.targetVerb?.reading });
                             }}
                             className="btn-physical-secondary p-2 rounded-xl hover:text-gold transition-colors cursor-pointer shrink-0"
                             title="Dengarkan pelafalan kata dasar"
@@ -1103,8 +1105,8 @@ export const DungeonSessionRunner: React.FC<DungeonSessionRunnerProps> = ({
                               <button
                                 type="button"
                                 onClick={() => {
-                                  const textToSpeak = q.optionsRuby?.[q.correctIndex] || q.options[q.correctIndex] || '';
-                                  if (textToSpeak) speakJapanese(textToSpeak);
+                                  const textToSpeak = q.options[q.correctIndex] || '';
+                                  if (textToSpeak) speakJapanese(textToSpeak, { reading: q.optionsRuby?.[q.correctIndex] });
                                 }}
                                 className="btn-physical-secondary p-1 rounded-lg hover:text-emerald-400 transition-colors shrink-0"
                                 title="Dengarkan pelafalan hasil konjugasi"
@@ -1371,7 +1373,7 @@ export const DungeonSessionRunner: React.FC<DungeonSessionRunnerProps> = ({
                                         </span>
                                         <button
                                           type="button"
-                                          onClick={() => speakJapanese(ex.reading || ex.japanese)}
+                                          onClick={() => speakJapanese(ex.japanese, { reading: ex.reading })}
                                           className="btn-physical-secondary p-1 rounded-lg hover:text-gold transition-colors shrink-0"
                                           title="Dengarkan pelafalan contoh"
                                         >

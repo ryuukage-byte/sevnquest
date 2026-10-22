@@ -25,7 +25,8 @@ import {
   getTargetFormDisplay, 
   getConjugatedMeaningId 
 } from '../../data/conjugationRules';
-import { playSound, speakJapanese } from '../../utils/audio';
+import { playSound } from '../../utils/audio';
+import { speakJapanese } from '../../utils/speech';
 import { RPG_TIERS } from '../../data/rpg/tiers';
 import { UserDeck } from '../../types/rpg';
 import { OFFICIAL_BOOKS } from '../../data/officialBooks';
@@ -537,8 +538,8 @@ export const ConjugationSpeedRushModal: React.FC<ConjugationSpeedRushModalProps>
                   <button
                     type="button"
                     onClick={() => {
-                      const textToSpeak = currentQuestion.targetVerb.reading || currentQuestion.targetVerb.kanji;
-                      if (textToSpeak) speakJapanese(textToSpeak);
+                      const { kanji, reading } = currentQuestion.targetVerb;
+                      if (kanji || reading) speakJapanese(kanji || reading, { reading });
                     }}
                     className="btn-physical-secondary p-2 rounded-xl hover:text-gold transition-colors cursor-pointer shrink-0"
                     title="Dengarkan pelafalan kata dasar"
