@@ -1123,13 +1123,29 @@ export function selectRecallEngine(item: Pick<RecallQueueItem, 'category' | 'ite
   return rotation[(r.attemptsCount || 0) % rotation.length];
 }
 
+// Waktu ISO record di-parse sekali per objek record: record tidak pernah diubah di tempat (pembaruan selalu membuat
+// objek baru), sedangkan antrean dibangun ulang dari seluruh riwayat setiap kali ada jawaban.
+const recordTimes = new WeakMap<ItemMasteryRecord, { due: number; reviewed: number }>();
+function recordTimesOf(r: ItemMasteryRecord): { due: number; reviewed: number } {
+  let t = recordTimes.get(r);
+  if (!t) {
+    t = { due: new Date(r.nextReviewDue).getTime(), reviewed: new Date(r.lastReviewedAt).getTime() };
+    recordTimes.set(r, t);
+  }
+  return t;
+}
+
+interface RecallCandidate {
+  item: RecallQueueItem;
+  /** Waktu tinjau terakhir (ms), di-parse sekali per item, bukan di tiap perbandingan sort. */
+  reviewedAt: number;
+}
+
 /** Urutan stabil saat urgensi sama: yang paling lama tidak disentuh dulu, lalu ID. Tidak bergantung urutan penyisipan. */
-function compareRecallPriority(a: RecallQueueItem, b: RecallQueueItem): number {
-  if (b.urgencyScore !== a.urgencyScore) return b.urgencyScore - a.urgencyScore;
-  const ta = Date.parse(a.masteryRecord?.lastReviewedAt || '') || 0;
-  const tb = Date.parse(b.masteryRecord?.lastReviewedAt || '') || 0;
-  if (ta !== tb) return ta - tb;
-  return a.itemId < b.itemId ? -1 : a.itemId > b.itemId ? 1 : 0;
+function compareRecallPriority(a: RecallCandidate, b: RecallCandidate): number {
+  if (b.item.urgencyScore !== a.item.urgencyScore) return b.item.urgencyScore - a.item.urgencyScore;
+  if (a.reviewedAt !== b.reviewedAt) return a.reviewedAt - b.reviewedAt;
+  return a.item.itemId < b.item.itemId ? -1 : a.item.itemId > b.item.itemId ? 1 : 0;
 }
 
 function resolveRecallLabels(r: ItemMasteryRecord, tm?: number): { title: string; subtitle: string } {
@@ -1167,15 +1183,15 @@ export function buildSmartRecallQueue(
 ): RecallQueueItem[] {
   const records = Object.values(itemMastery);
   const now = new Date().getTime();
-  const queue: RecallQueueItem[] = [];
+  const queue: RecallCandidate[] = [];
 
   for (const r of records) {
     try {
       if (!r || !r.itemId || !hasPracticed(r)) continue;
 
-      const dueDate = new Date(r.nextReviewDue).getTime();
-      const isDue = dueDate <= now;
-      const daysSinceLastReview = (now - new Date(r.lastReviewedAt).getTime()) / (1000 * 60 * 60 * 24);
+      const times = recordTimesOf(r);
+      const isDue = times.due <= now;
+      const daysSinceLastReview = (now - times.reviewed) / (1000 * 60 * 60 * 24);
 
       let urgencyScore = 0;
       let priorityTier: RecallPriorityTier = 'REVIEW';
@@ -1236,13 +1252,12 @@ export function buildSmartRecallQueue(
       }
 
       if (urgencyScore > 0) {
-        const { title, subtitle } = resolveRecallLabels(r, tm);
-        queue.push({
+        const item: RecallQueueItem = {
           id: `recall_${r.itemId}`,
           itemId: r.itemId,
           category: r.category,
-          title,
-          subtitle,
+          title: '', // diisi hanya untuk item terpilih (resolveRecallLabels di bawah)
+          subtitle: '',
           reason,
           reasonText,
           urgencyScore,
@@ -1251,7 +1266,8 @@ export function buildSmartRecallQueue(
           trueMasteryScore: tm,
           tutorInsight,
           masteryRecord: r
-        });
+        };
+        queue.push({ item, reviewedAt: times.reviewed || 0 });
       }
     } catch (err) {
       console.warn('[SmartRecall] Failed to build recall item for record:', r?.itemId, err);
@@ -1259,9 +1275,22 @@ export function buildSmartRecallQueue(
   }
 
   queue.sort(compareRecallPriority);
-  const top = queue.slice(0, maxItems);
 
-  // Soal hanya dibuat untuk item yang benar-benar terpilih (bukan seluruh riwayat).
+  // Label & soal hanya dibuat untuk item yang benar-benar terpilih (bukan seluruh riwayat). Item yang labelnya
+  // gagal dibentuk dilewati dan digantikan kandidat berikutnya.
+  const top: RecallQueueItem[] = [];
+  for (const { item } of queue) {
+    if (top.length >= maxItems) break;
+    try {
+      const labels = resolveRecallLabels(item.masteryRecord!, item.trueMasteryScore);
+      item.title = labels.title;
+      item.subtitle = labels.subtitle;
+      top.push(item);
+    } catch (err) {
+      console.warn('[SmartRecall] Failed to build recall item for record:', item.itemId, err);
+    }
+  }
+
   for (const item of top) {
     try {
       let engine = selectRecallEngine(item);

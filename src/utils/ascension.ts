@@ -1,4 +1,5 @@
 import { PlayerStats } from '../types/rpg';
+import type { BunpouItem, KanjiItem, KotobaItem } from '../types/content';
 import { KANJI_DATABASE } from '../data/kanji';
 import { KOTOBA_DATABASE } from '../data/kotoba';
 import { BUNPOU_DATABASE } from '../data/bunpou';
@@ -65,6 +66,24 @@ const JLPT_ASCENSION_GATES: Record<JlptLevel, {
   N1: { targetJlpt: null, gateTierIndex: 9, nextTierIndex: 9, requiredExpForNextTier: 320000 },
 };
 
+// Materi per level JLPT. Basis data statis (hidrasi data lengkap hanya menambah field), jadi cukup dibangun sekali;
+// fungsi ini dipanggil di tiap render Beranda dan tiap jawaban (getEffectiveTier).
+let materialsByLevel: Map<string, { kanji: KanjiItem[]; kotoba: KotobaItem[]; bunpou: BunpouItem[] }> | null = null;
+function materialsForLevel(jlpt: JlptLevel) {
+  if (!materialsByLevel) {
+    materialsByLevel = new Map();
+    const bucket = (level: string) => {
+      let b = materialsByLevel!.get(level);
+      if (!b) materialsByLevel!.set(level, (b = { kanji: [], kotoba: [], bunpou: [] }));
+      return b;
+    };
+    for (const k of Object.values(KANJI_DATABASE)) bucket(k.jlpt).kanji.push(k);
+    for (const k of Object.values(KOTOBA_DATABASE)) bucket(k.jlpt).kotoba.push(k);
+    for (const b of Object.values(BUNPOU_DATABASE)) bucket(b.level).bunpou.push(b);
+  }
+  return materialsByLevel.get(jlpt) || { kanji: [], kotoba: [], bunpou: [] };
+}
+
 /**
  * Calculates user's mastery for a specific JLPT level across Kanji, Kotoba, and Bunpou
  */
@@ -76,9 +95,13 @@ function calculateJlptPillars(stats: PlayerStats, jlpt: JlptLevel): {
   allPassed: boolean;
 } {
   const itemMastery = stats.itemMastery || {};
+  const materials = materialsForLevel(jlpt);
+  const writtenKanji = new Set(stats.studyStats?.kanjiWriting?.uniqueIds);
+  const flashcardKotoba = new Set(stats.studyStats?.flashcards?.uniqueIds);
+  const studiedBunpou = new Set(stats.studyStats?.bunpou?.uniqueIds);
 
   // 1. KANJI
-  const allKanji = Object.values(KANJI_DATABASE).filter(k => k.jlpt === jlpt);
+  const allKanji = materials.kanji;
   const totalKanji = Math.max(1, allKanji.length);
   let kanjiMastered = 0;
 
@@ -88,7 +111,7 @@ function calculateJlptPillars(stats: PlayerStats, jlpt: JlptLevel): {
       if ((rec.masteryPercentage || 0) >= 70 || rec.status === 'MASTERED' || rec.status === 'PERFECTED') {
         kanjiMastered++;
       }
-    } else if (stats.studyStats?.kanjiWriting?.uniqueIds?.includes(k.id || k.character)) {
+    } else if (writtenKanji.has(k.id || k.character)) {
       kanjiMastered++;
     }
   }
@@ -96,7 +119,7 @@ function calculateJlptPillars(stats: PlayerStats, jlpt: JlptLevel): {
   const kanjiPct = Math.min(100, Math.round((kanjiMastered / totalKanji) * 100));
 
   // 2. KOTOBA
-  const allKotoba = Object.values(KOTOBA_DATABASE).filter(k => k.jlpt === jlpt);
+  const allKotoba = materials.kotoba;
   const totalKotoba = Math.max(1, allKotoba.length);
   let kotobaMastered = 0;
 
@@ -106,7 +129,7 @@ function calculateJlptPillars(stats: PlayerStats, jlpt: JlptLevel): {
       if ((rec.masteryPercentage || 0) >= 70 || rec.status === 'MASTERED' || rec.status === 'PERFECTED') {
         kotobaMastered++;
       }
-    } else if (stats.studyStats?.flashcards?.uniqueIds?.includes(k.id)) {
+    } else if (flashcardKotoba.has(k.id)) {
       kotobaMastered++;
     }
   }
@@ -114,7 +137,7 @@ function calculateJlptPillars(stats: PlayerStats, jlpt: JlptLevel): {
   const kotobaPct = Math.min(100, Math.round((kotobaMastered / totalKotoba) * 100));
 
   // 3. BUNPOU
-  const allBunpou = Object.values(BUNPOU_DATABASE).filter(b => b.level === jlpt);
+  const allBunpou = materials.bunpou;
   const totalBunpou = Math.max(1, allBunpou.length);
   let bunpouMastered = 0;
 
@@ -124,7 +147,7 @@ function calculateJlptPillars(stats: PlayerStats, jlpt: JlptLevel): {
       if ((rec.masteryPercentage || 0) >= 70 || rec.status === 'MASTERED' || rec.status === 'PERFECTED') {
         bunpouMastered++;
       }
-    } else if (stats.studyStats?.bunpou?.uniqueIds?.includes(b.id)) {
+    } else if (studiedBunpou.has(b.id)) {
       bunpouMastered++;
     }
   }
