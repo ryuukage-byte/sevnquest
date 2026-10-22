@@ -27,9 +27,10 @@ const directUrl = (import.meta as any).env?.VITE_SUPABASE_URL || 'https://iokhdh
 const supabaseKey = (import.meta as any).env?.VITE_SUPABASE_ANON_KEY || 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imlva2hkaHFucHNscHdzeHNwdmFqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODg0MjQyMDUsImV4cCI6MjEwNDAwMDIwNX0.8o2UFh4VXRUObjvBq_rVRxIar7yZSU7vrCgaHutYyPE';
 
 /**
- * Di web yang di-host (Vercel dsb.) permintaan lewat proxy same-origin `/supabase-proxy` (lihat vercel.json)
- * karena beberapa ISP (mis. di Indonesia) memblokir *.supabase.co sehingga login gagal "Failed to fetch".
- * Di localhost / file / host tanpa rewrite (GitHub Pages, standalone) langsung ke supabase.co.
+ * Di web yang di-host (Cloudflare Pages) permintaan lewat proxy same-origin `/supabase-proxy`
+ * (lihat functions/supabase-proxy) karena beberapa ISP (mis. di Indonesia) memblokir *.supabase.co
+ * sehingga login gagal "Failed to fetch".
+ * Di localhost / file / host tanpa proxy (standalone) langsung ke supabase.co.
  * Bila proxy gagal, resilientFetch otomatis jatuh ke directUrl dan mengingatnya (proxyBroken).
  */
 function canUseSameOriginProxy(): boolean {
