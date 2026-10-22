@@ -31,7 +31,11 @@ export interface JapaneseVoiceInfo {
   local: boolean;
 }
 
+export type TtsEngine = 'auto' | 'device' | 'cloud';
+
 export interface TtsPrefs {
+  /** auto = suara perangkat, atau suara cloud bila perangkat tidak punya suara Jepang. */
+  engine?: TtsEngine;
   /** voiceURI pilihan pengguna; kosong = otomatis (suara terbaik). */
   voiceId?: string;
   /** Pengali kecepatan 0,6–1,3. */
@@ -264,6 +268,104 @@ function reportIssue(kind: TtsIssueKind, detail?: string) {
 }
 
 // ---------------------------------------------------------------------------------------------
+// Suara cloud (opsional, /api/tts — suara neural Google bila server dikonfigurasi)
+// ---------------------------------------------------------------------------------------------
+
+type CloudState = 'unknown' | 'checking' | 'available' | 'unavailable';
+const CLOUD_STATE_KEY = 'sevnquest_tts_cloud';
+let cloudState: CloudState = (() => {
+  try {
+    const v = sessionStorage.getItem(CLOUD_STATE_KEY);
+    return v === 'available' || v === 'unavailable' ? v : 'unknown';
+  } catch {
+    return 'unknown';
+  }
+})();
+let cloudFailures = 0;
+const cloudListeners = new Set<() => void>();
+
+function setCloudState(next: CloudState) {
+  cloudState = next;
+  try {
+    if (next === 'available' || next === 'unavailable') sessionStorage.setItem(CLOUD_STATE_KEY, next);
+  } catch {
+    /* abaikan */
+  }
+  cloudListeners.forEach((fn) => fn());
+}
+
+/** Periksa (sekali per sesi) apakah server menyediakan suara cloud. */
+export function probeCloudTts(): Promise<boolean> {
+  if (cloudState === 'available' || cloudState === 'unavailable') return Promise.resolve(cloudState === 'available');
+  if (typeof fetch === 'undefined') return Promise.resolve(false);
+  setCloudState('checking');
+  return fetch('/api/tts?probe=1')
+    .then((r) => r.ok)
+    .catch(() => false)
+    .then((ok) => {
+      setCloudState(ok ? 'available' : 'unavailable');
+      return ok;
+    });
+}
+
+export function getCloudTtsState(): CloudState {
+  return cloudState;
+}
+
+export function onCloudTtsChanged(fn: () => void): () => void {
+  cloudListeners.add(fn);
+  return () => cloudListeners.delete(fn);
+}
+
+function shouldUseCloud(): boolean {
+  const engine = getTtsPrefs().engine ?? 'auto';
+  if (engine === 'device' || cloudState !== 'available') return false;
+  if (engine === 'cloud') return true;
+  return !synth() || (voices.length > 0 && !hasJapaneseVoice());
+}
+
+// Satu elemen audio dipakai ulang: iOS hanya mengizinkan putar dari elemen yang sudah diputar di dalam ketukan.
+let cloudAudio: HTMLAudioElement | null = null;
+
+function cloudUrl(text: string, speaker: DialoguePart['speaker'], rate: number): string {
+  const params = new URLSearchParams({ text, voice: speaker === 'male' ? 'male' : 'female', rate: rate.toFixed(2) });
+  return `/api/tts?${params}`;
+}
+
+/** Putar potongan lewat suara cloud; false bila potongan pertama gagal (pemanggil memakai suara perangkat). */
+function playCloud(chunks: { text: string; speaker: DialoguePart['speaker'] }[], rate: number, token: number): Promise<boolean> {
+  return new Promise((resolve) => {
+    if (typeof Audio === 'undefined') return resolve(false);
+    cloudAudio ||= new Audio();
+    const audio = cloudAudio;
+    let index = 0;
+    let anyPlayed = false;
+    const next = () => {
+      if (token !== currentToken || index >= chunks.length) return resolve(true);
+      const { text, speaker } = chunks[index++];
+      audio.onended = () => { anyPlayed = true; cloudFailures = 0; next(); };
+      audio.onerror = () => {
+        cloudFailures++;
+        if (cloudFailures >= 2) setCloudState('unavailable');
+        resolve(anyPlayed); // sebagian sudah terputar: jangan ulangi dengan suara perangkat
+      };
+      audio.src = cloudUrl(text, speaker, rate);
+      audio.play().catch(() => {
+        audio.onended = null;
+        audio.onerror = null;
+        resolve(anyPlayed);
+      });
+    };
+    next();
+  });
+}
+
+if (typeof window !== 'undefined' && (getTtsPrefs().engine ?? 'auto') !== 'device') {
+  // Cek ketersediaan lebih awal agar ketukan pertama sudah tahu mesin mana yang dipakai.
+  window.setTimeout(() => { void probeCloudTts(); }, 0);
+}
+
+// ---------------------------------------------------------------------------------------------
 // Pemutaran
 // ---------------------------------------------------------------------------------------------
 
@@ -358,10 +460,6 @@ function speakChunks(chunks: SpeechChunk[], rate: number, token: number): Promis
 export function speakJapanese(text: string, options?: number | SpeakOptions): Promise<void> {
   const opts: SpeakOptions = typeof options === 'number' ? { rate: options } : options ?? {};
   const s = synth();
-  if (!s) {
-    reportIssue('unsupported');
-    return Promise.resolve();
-  }
   const spoken = speechTextFor(text ?? '', opts.reading);
   if (!spoken) return Promise.resolve();
 
@@ -370,12 +468,36 @@ export function speakJapanese(text: string, options?: number | SpeakOptions): Pr
   const rate = Math.min(2, Math.max(0.5, (opts.rate ?? 0.95) * (prefs.rate ?? 1)));
   const parts = splitDialogue(spoken);
 
+  if (shouldUseCloud()) {
+    if (s) s.cancel();
+    const cloudChunks = parts.flatMap((part) => splitForSpeech(part.text).map((t) => ({ text: t, speaker: part.speaker })));
+    // Dipanggil sinkron (masih di dalam ketukan) agar iOS mengizinkan audio.play().
+    return playCloud(cloudChunks, rate, token).then((played) => {
+      if (played || token !== currentToken || !s) return;
+      return speakDevice(s, parts, rate, token);
+    });
+  }
+  if (!s) {
+    reportIssue('unsupported');
+    return Promise.resolve();
+  }
+  return speakDevice(s, parts, rate, token);
+}
+
+function speakDevice(s: SpeechSynthesis, parts: DialoguePart[], rate: number, token: number): Promise<void> {
   const busy = s.speaking || s.pending;
   s.cancel();
 
   const run = () => {
     if (token !== currentToken) return Promise.resolve();
-    if (voices.length > 0 && !hasJapaneseVoice()) reportIssue('no-voice');
+    if (voices.length > 0 && !hasJapaneseVoice()) {
+      // Daftar suara baru selesai dimuat dan tidak ada suara Jepang: pakai suara cloud bila tersedia.
+      if (shouldUseCloud()) {
+        const cloudChunks = parts.flatMap((part) => splitForSpeech(part.text).map((t) => ({ text: t, speaker: part.speaker })));
+        return playCloud(cloudChunks, rate, token).then((played) => { if (!played) reportIssue('no-voice'); });
+      }
+      reportIssue('no-voice');
+    }
     const base = pickVoice();
     const chunks: SpeechChunk[] = parts.flatMap((part) => {
       const plan = voiceForSpeaker(part.speaker, base);
@@ -397,6 +519,11 @@ export function speakJapanese(text: string, options?: number | SpeakOptions): Pr
 
 export function stopSpeaking() {
   currentToken++;
+  if (cloudAudio) {
+    cloudAudio.onended = null;
+    cloudAudio.onerror = null;
+    cloudAudio.pause();
+  }
   const s = synth();
   if (s) {
     try {

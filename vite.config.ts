@@ -190,6 +190,22 @@ function deckAiDevApi(env: Record<string, string>): Plugin {
   };
 }
 
+// Di dev, /api/tts memakai handler yang sama dengan fungsi Vercel (api/tts.ts); kunci dibaca dari .env.
+function ttsDevApi(env: Record<string, string>): Plugin {
+  return {
+    name: 'tts-dev-api',
+    configureServer(server) {
+      server.middlewares.use('/api/tts', async (req, res) => {
+        for (const key of ['TTS_GOOGLE_API_KEY', 'TTS_VOICE_FEMALE', 'TTS_VOICE_MALE']) {
+          if (env[key] && !process.env[key]) process.env[key] = env[key];
+        }
+        const mod = await server.ssrLoadModule('/api/tts.ts');
+        await mod.default(req, res);
+      });
+    },
+  };
+}
+
 // Di dev, /api/captions memakai handler yang sama dengan fungsi Vercel (api/captions.ts).
 function captionsDevApi(): Plugin {
   return {
@@ -218,7 +234,7 @@ export default defineConfig(({mode}) => {
 
   return {
     base: './',
-    plugins: [datasetModules(), react(), tailwindcss(), deckAiDevApi(env), captionsDevApi()],
+    plugins: [datasetModules(), react(), tailwindcss(), deckAiDevApi(env), captionsDevApi(), ttsDevApi(env)],
     // JSON lain (kecil / fitur lazy): satu ekspor default berupa literal objek. Tanpa named export per kunci,
     // dan bukan JSON.parse("...") yang membuat string sumbernya menetap di heap selama aplikasi hidup.
     json: {namedExports: false, stringify: false},

@@ -79,6 +79,7 @@ flowchart TD
 | `VITE_SECURE_LEADERBOARD` | klien | `'false'` = jalur lama (kini default true) | default berubah di PR ini |
 | `VITE_GOOGLE_AUTH`, `VITE_GOOGLE_CLIENT_ID` | klien | tombol Google | opsional |
 | `DECK_AI_BASE_URL/API_KEY/MODEL` | serverless | LLM deck | opsional → 503 → klien fallback lokal |
+| `TTS_GOOGLE_API_KEY`, `TTS_VOICE_FEMALE/MALE` | serverless (`api/tts`) | suara Jepang neural (Google Cloud TTS) | opsional → 503 → klien memakai suara perangkat |
 | `SUPABASE_URL` | CF function | target proxy | opsional |
 
 Header keamanan: `X-Content-Type-Options`, `Referrer-Policy`, `X-Frame-Options: SAMEORIGIN`, HSTS (Vercel & `_headers`). **Tidak ada CSP** ✅.
@@ -94,3 +95,9 @@ Dataset `src/data/db/*.json` ≥ 64 KB tidak lagi menjadi literal di dalam chunk
 | Heap JS setelah GC (data lengkap termuat) | 42 MB | 28 MB |
 
 Dataset terbesar (tak terkompresi): `kotoba-detail` 5,1 MB, `kotoba` (inti) 4,5 MB, `kanji-questions` 3,6 MB, `data-tryouts` (JS) 2,4 MB, `bunpou-questions` 1,3 MB, `kanji-extreme-100-stages` 1,2 MB, `bunpou` 1,1 MB, `kanji` 1,0 MB. Vendor: supabase 214 kB, react 194 kB, motion 129 kB. Build menargetkan es2022 / Safari 15+ (top-level await; aplikasi sudah mensyaratkan Safari 16.4+). `dist/` ±50 MB (sebagian besar stroke JSON di `public/data`).
+
+## 7. Suara Jepang (TTS) & furigana ✅
+- **Teks ucapan = teks tampilan.** `utils/speechText.ts` menurunkan ucapan dari segmentasi furigana yang sama dengan `RubyText` (`alignFurigana`), membuang romaji/terjemahan dalam kurung, 〜, kotak isian, dan instruksi berbahasa Indonesia. Saat build, `scripts/speech/speechHints.ts` (kuromoji) menandai pasangan data yang kanjinya berisiko dibaca lain oleh mesin TTS (±9%); hanya unit itu yang diucapkan dengan kana furigana, sisanya tetap kanji agar intonasi alami.
+- **Mesin suara** `utils/speech.ts`: Web Speech dengan peringkat suara (Natural/Neural > Google > Apple Enhanced > lainnya), aman untuk iOS (speak sinkron dalam ketukan), teks panjang dipecah, watchdog `onend`, dialog choukai per pembicara (pria/wanita), dan toast panduan bila perangkat tidak punya suara Jepang. Opsional suara cloud neural lewat `/api/tts` (lihat tabel env).
+- **Furigana** `utils/furiganaUtils.ts`: penyelarasan teks ↔ bacaan memakai pemrograman dinamis (angka, huruf Latin, 〇, ヶ, bacaan beranotasi per kata, bentuk alternatif). Gerbang data `data/readings.quality.test.ts` memastikan setiap bacaan data selaras dengan tulisannya.
+

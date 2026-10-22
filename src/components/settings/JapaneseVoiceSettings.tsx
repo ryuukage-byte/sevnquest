@@ -1,16 +1,21 @@
 import React, { useEffect, useState } from 'react';
 import { Volume2, AlertTriangle, Sparkles } from 'lucide-react';
 import {
+  getCloudTtsState,
   getSpeechSupport,
   getTtsPrefs,
   listJapaneseVoices,
+  onCloudTtsChanged,
   onVoicesChanged,
+  probeCloudTts,
   setTtsPrefs,
   speakJapanese,
   type JapaneseVoiceInfo,
+  type TtsEngine,
 } from '../../utils/speech';
 
-const SAMPLE = { text: '今日も一緒に日本語を勉強しましょう。', reading: 'きょうもいっしょににほんごをべんきょうしましょう。' };
+// Kalimat uji tanpa furigana di layar: diucapkan apa adanya agar intonasi suara terdengar natural.
+const SAMPLE = '今日も一緒に日本語を勉強しましょう。';
 
 const QUALITY_LABEL: Record<JapaneseVoiceInfo['quality'], string> = {
   natural: 'Natural',
@@ -18,26 +23,37 @@ const QUALITY_LABEL: Record<JapaneseVoiceInfo['quality'], string> = {
   basic: 'Robotik',
 };
 
+/** "Microsoft Nanami Online (Natural) - Japanese (Japan)" → "Microsoft Nanami Online (Natural)". */
+const shortName = (name: string) => name.replace(/\s*-\s*(Japanese|日本語).*$/i, '');
+
 /** Pilihan suara Jepang (per perangkat): suara natural diurutkan paling atas, kecepatan, dan uji suara. */
 export const JapaneseVoiceSettings: React.FC = () => {
   const [voices, setVoices] = useState<JapaneseVoiceInfo[]>(() => listJapaneseVoices());
   const [support, setSupport] = useState(() => getSpeechSupport());
   const [prefs, setPrefs] = useState(() => getTtsPrefs());
+  const [cloud, setCloud] = useState(() => getCloudTtsState());
 
   useEffect(() => {
     const update = () => {
       setVoices(listJapaneseVoices());
       setSupport(getSpeechSupport());
+      setCloud(getCloudTtsState());
     };
     update();
-    return onVoicesChanged(update);
+    void probeCloudTts();
+    const offVoices = onVoicesChanged(update);
+    const offCloud = onCloudTtsChanged(update);
+    return () => { offVoices(); offCloud(); };
   }, []);
+
+  const engine: TtsEngine = prefs.engine ?? 'auto';
+  const cloudAvailable = cloud === 'available';
 
   const best = voices[0];
   const selected = voices.find(v => v.id === prefs.voiceId);
   const rate = prefs.rate ?? 1;
 
-  const test = () => speakJapanese(SAMPLE.text, { reading: SAMPLE.reading });
+  const test = () => speakJapanese(SAMPLE);
 
   return (
     <div className="pt-3 border-t border-border-subtle space-y-3">
@@ -71,7 +87,30 @@ export const JapaneseVoiceSettings: React.FC = () => {
         </div>
       )}
 
-      {voices.length > 0 && (
+      <label className="block space-y-1">
+        <span className="text-[11px] font-bold text-text-secondary uppercase tracking-wider font-mono">Mesin suara</span>
+        <select
+          value={engine}
+          onChange={e => setPrefs(setTtsPrefs({ engine: e.target.value as TtsEngine }))}
+          className="w-full rounded-xl bg-surface-inset border border-border-subtle px-3 py-2 text-xs text-text-primary"
+        >
+          <option value="auto">Otomatis (disarankan)</option>
+          <option value="device">Suara perangkat saja</option>
+          <option value="cloud" disabled={!cloudAvailable}>
+            Suara cloud (Neural){cloudAvailable ? '' : ' — belum tersedia di server ini'}
+          </option>
+        </select>
+      </label>
+
+      <p className="text-[11px] text-text-secondary -mt-1">
+        {engine === 'auto' && (cloudAvailable
+          ? 'Memakai suara perangkat; bila perangkat tidak punya suara Jepang, otomatis memakai suara cloud.'
+          : 'Memakai suara terbaik yang terpasang di perangkat ini.')}
+        {engine === 'device' && 'Hanya suara yang terpasang di perangkat (bisa dipakai luring).'}
+        {engine === 'cloud' && 'Suara neural dari server: sama natural di semua perangkat, perlu internet.'}
+      </p>
+
+      {voices.length > 0 && engine !== 'cloud' && (
         <>
           {best && best.quality !== 'natural' && (
             <p className="text-[11px] text-text-secondary flex gap-1.5">
@@ -87,10 +126,10 @@ export const JapaneseVoiceSettings: React.FC = () => {
               onChange={e => setPrefs(setTtsPrefs({ voiceId: e.target.value || undefined }))}
               className="w-full rounded-xl bg-surface-inset border border-border-subtle px-3 py-2 text-xs text-text-primary"
             >
-              <option value="">Otomatis — {best ? `${best.name} (${QUALITY_LABEL[best.quality]})` : 'suara terbaik'}</option>
+              <option value="">Otomatis — {best ? `${shortName(best.name)} (${QUALITY_LABEL[best.quality]})` : 'suara terbaik'}</option>
               {voices.map(v => (
                 <option key={v.id} value={v.id}>
-                  {v.name} · {QUALITY_LABEL[v.quality]}{v.local ? '' : ' · online'}
+                  {shortName(v.name)} · {QUALITY_LABEL[v.quality]}{v.local ? '' : ' · online'}
                 </option>
               ))}
             </select>
