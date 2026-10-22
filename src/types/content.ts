@@ -66,19 +66,6 @@ export interface TrueMasteryBreakdown {
   levelTier: MasteryDifficultyLevel; // Level 1 to 5
 }
 
-export interface AdaptiveRecommendation {
-  id: string;
-  title: string;
-  reasonMessage: string;
-  recommendationType: 'REVIEW_WEAKNESS' | 'CHOUKAI_TRAINING' | 'DOKKAI_APPLICATION' | 'KANJI_PRACTICE' | 'STAGE_PROGRESS';
-  actionLabel: string;
-  category: 'bunpou' | 'kotoba' | 'kanji' | 'dokkai' | 'choukai';
-  targetStageId?: string;
-  targetItemId?: string;
-  prioritySeverity: 'critical' | 'weak' | 'routine';
-  actionType: 'recall' | 'stage' | 'status_modal';
-}
-
 export interface Question {
   id: string;
   instruction?: string; // Formal Japanese command/instruction e.g. 「（　）に入れるのに最もよいものを一つ選びなさい。」

@@ -52,15 +52,15 @@ Risiko: T tinggi · S sedang · R rendah.
 | ID | R | Temuan | Status |
 |---|---|---|---|
 | D-01 | S | ±6.700 baris UI mati (Boss/Dokkai/Choukai/Kanji/Kotoba/Bunpou Module, QuizEngine, Sakubun, Tower UI lama) | **FIXED** dihapus (commit terpisah, dapat di-revert) |
-| D-02 | R | Sisa tak terjangkau: `templateDecks`, `entityAdapters`, `grammarHighlight`, `questionUtils`, `tower2/index` (758 baris); ekspor mati di `mastery.ts` (`generateAdaptiveRecommendation`, `generateBossBattleDiagnostic`, `diagnoseDokkaiMistake`, `calculateOverallMastery`), `getLevelInfo` | OPEN |
+| D-02 | R | Sisa tak terjangkau: `templateDecks`, `entityAdapters`, `grammarHighlight`, `questionUtils`, `tower2/index` (758 baris); ekspor mati di `mastery.ts` (`generateAdaptiveRecommendation`, `generateBossBattleDiagnostic`, `diagnoseDokkaiMistake`, `calculateOverallMastery`), `getLevelInfo` | **FIXED** modul & ekspor mati dihapus (juga `BUNPOU_MIXED_DATABASE`, `src/assets/engravings`); `getLevelInfo` dipertahankan (dipakai tes) |
 | D-03 | S | `engine/tower/*` lama masih diekspor `engine/index.ts`; `towerCloudState` mengumpulkan state Tower lama ke cloud | OPEN |
 | D-04 | S | `stageProgress`, `data/world/*`, `currentStageId`, `studyStats.stages/bossBattles/dokkai/choukai` tersisa tanpa penulis | OPEN |
 | D-05 | S | `usePlayerActions` ±400 baris; prop-drilling callback 4–6 level | MITIGATED (logika inti kini fungsi murni) |
 | D-06 | R | Dua target deploy (Vercel `api/` + Cloudflare `functions/`) dengan logika duplikat | OPEN |
-| D-07 | R | Dependensi kemungkinan tak terpakai (`express`, `dotenv`, `jimp`, `esbuild`, `gh-pages`); `package.json` name `react-example`; `.env.example` merujuk file yang tidak ada | OPEN |
+| D-07 | R | Dependensi kemungkinan tak terpakai (`express`, `dotenv`, `jimp`, `esbuild`, `gh-pages`); `package.json` name `react-example`; `.env.example` merujuk file yang tidak ada | **FIXED** dihapus: `express`, `dotenv`, `jimp`, `esbuild`, `autoprefixer`, `hanzi-writer-data` (data goresan diambil dari CDN/`public/data`), `@types/express`, `@types/uuid`; alat build pindah ke devDependencies; name `sevnquest`; skrip `update-standalone` & variabel `.env.example` tanpa kode dihapus. `gh-pages` dipertahankan (`npm run deploy`) |
 | D-08 | R | Dokumen yang dirujuk kode tidak ada: `docs/TOWER1_ARCHITECTURE.md`, `docs/TOWER2_ARCHITECTURE.md`, `supabase/migrations/20261001_*.sql` | OPEN |
 | D-09 | S | Tanpa CI; tes hanya lokal | **FIXED (menunggu proses pertama)** `.github/workflows/ci.yml`: `tsc`, `npm test`, `vite build` pada PR/push main |
-| D-10 | S | Chunk `data-kotoba` 8,5 MB | OPEN |
+| D-10 | S | Chunk `data-kotoba` 8,5 MB | **FIXED** dataset besar dikirim sebagai `.json` (preload untuk jalur boot); kotoba dipecah INTI (4,5 MB, boot) / DETAIL (5,1 MB, latar belakang); bank soal kanji/bunpou keluar dari jalur boot. JS jalur boot 17,2 MB → 1,0 MB. Lihat SYSTEM_OVERVIEW §6 |
 | D-11 | R | Tabel konten Supabase (kanji/vocabulary/grammar ±11.8k baris) tidak dipakai — salinan basi berpotensi menyesatkan | OPEN |
 | D-12 | R | Tiga salinan konstanta level/tier (TS + 2 fungsi SQL) | OPEN (tambah tes kontrak) |
 | D-13 | R | Tes UI hanya satu (`RecallModule.empty`); tak ada tes komponen runner/modal | OPEN |

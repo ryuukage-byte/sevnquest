@@ -63,13 +63,14 @@ flowchart TD
 - **Turunan tidak disimpan**: `recallQueue` dihitung ulang dari `itemMastery` (`stripDerivedStats`).
 - **Identitas materi kanonik**: `data/entityIds.ts` + `state/canonicalizeStats.ts` menggabung alias lama (`bunpou_001`→`w1d1g1`) dan kanji-by-karakter.
 - **Tab keep-alive** (`FreezeWhenHidden`): tab yang sudah dikunjungi tetap ter-mount (navigasi instan), tapi dibekukan saat tersembunyi.
-- **Offline**: PWA menyimpan aset statis; konten dibundel di JS (chunk besar) sehingga banyak fitur jalan offline; Supabase tidak di-cache.
+- **Offline**: PWA menyimpan aset statis (chunk JS + dataset `.json` di `/assets/`, cache-first) sehingga fitur yang pernah dibuka jalan offline; Supabase tidak di-cache.
 
 ## 4. Boot, auth & sinkron ✅
-1. `main.tsx` render `BootSplash`, lalu `import('./App.tsx')` (retry bila gagal).
+1. `main.tsx` render `BootSplash`, lalu `import('./App.tsx')` (retry bila gagal; muat ulang halaman bila dataset gagal diunduh). Dataset inti (kotoba INTI, kanji, bunpou, dokkai) di-preload dari `index.html` dan di-await modul datanya (top-level await).
 2. `loadInitialStats()` → parse localStorage → canonicalize → `applyLevelFromExp`.
 3. `useCloudSync`: `getSession` + `onAuthStateChange`; sekali per user `handleCloudSync` (retry 1× setelah 2 dtk), gerbang `cloudHydrated` mencegah autosave menimpa cloud sebelum rekonsiliasi.
 4. Tamu (tanpa login) tetap bermain penuh secara lokal; leaderboard/skor mingguan hanya untuk yang login.
+5. Setelah tampil (idle, ≤1,5 dtk) `useFullData` memuat data lengkap (`data/fullData.ts`: detail kotoba, bank soal kanji & bunpou), menggabungkannya ke objek basis data yang sama, lalu membangun ulang antrean Recall. Setiap komponen `lazyWithRetry` menunggu `ensureFullData()`, jadi layar lazy selalu melihat data lengkap; kode jalur boot hanya boleh membaca field inti (dijaga `data/fullData.test.ts`).
 
 ## 5. Deployment & konfigurasi
 | Env | Dipakai di | Fungsi | Status |
@@ -79,9 +80,17 @@ flowchart TD
 | `VITE_GOOGLE_AUTH`, `VITE_GOOGLE_CLIENT_ID` | klien | tombol Google | opsional |
 | `DECK_AI_BASE_URL/API_KEY/MODEL` | serverless | LLM deck | opsional → 503 → klien fallback lokal |
 | `SUPABASE_URL` | CF function | target proxy | opsional |
-| `ENX_*`, `PORT` | — | disebut `.env.example`, kode pendukung tidak ada | usang |
 
 Header keamanan: `X-Content-Type-Options`, `Referrer-Policy`, `X-Frame-Options: SAMEORIGIN`, HSTS (Vercel & `_headers`). **Tidak ada CSP** ✅.
 
-## 6. Ukuran bundel (vite build) ✅
-Chunk data terbesar (tak terkompresi): `data-kotoba` **8,5 MB**, `data-kanji-questions` 3,5 MB, `data-tryouts` 2,4 MB, `data-bunpou-questions` 1,3 MB, `data-kanji-extreme-100-stages` 1,2 MB, `data-bunpou` 1,1 MB, `data-kanji` 0,9 MB, `WorldView` 0,5 MB. Vendor: supabase 214 kB, react 194 kB, motion 129 kB. `dist/` total 49 MB (stroke JSON + avatar). Dimuat lazy per modul; kotoba 8,5 MB adalah beban terbesar pada koneksi lambat 🔶.
+## 6. Ukuran bundel & pemuatan data ✅
+Dataset `src/data/db/*.json` ≥ 64 KB tidak lagi menjadi literal di dalam chunk JS. Plugin `sevn-datasets` (`vite.config.ts`) mengirimnya sebagai `assets/<nama>-<hash>.json` dengan modul pengganti `export default await loadDataset(url)` — konsumen tetap memakai impor sinkron, teks JSON dibuang setelah di-parse (literal di skrip menetap di memori), dan dataset jalur boot di-preload dari `index.html`. `kotoba.json` dipecah saat build: INTI (field jalur boot, `data/kotobaSplit.ts`) dan DETAIL (contoh kalimat, kolokasi, definisi) yang digabung in place oleh `data/kotobaDetails.ts`. Saat dev dataset tetap inline; tes (tsx) memakai JSON utuh.
+
+| Jalur | Sebelum | Sesudah |
+|---|---|---|
+| JS yang dimuat sebelum App tampil (tak terkompresi) | 17,2 MB | 1,0 MB + 6,7 MB JSON inti |
+| Boot dingin, Chromium CPU 4×, 10 Mbps | 5,3 dtk | 2,9 dtk |
+| Boot dingin, Chromium CPU 4×, jaringan lokal | 2,1 dtk | 1,8 dtk |
+| Heap JS setelah GC (data lengkap termuat) | 42 MB | 28 MB |
+
+Dataset terbesar (tak terkompresi): `kotoba-detail` 5,1 MB, `kotoba` (inti) 4,5 MB, `kanji-questions` 3,6 MB, `data-tryouts` (JS) 2,4 MB, `bunpou-questions` 1,3 MB, `kanji-extreme-100-stages` 1,2 MB, `bunpou` 1,1 MB, `kanji` 1,0 MB. Vendor: supabase 214 kB, react 194 kB, motion 129 kB. Build menargetkan es2022 / Safari 15+ (top-level await; aplikasi sudah mensyaratkan Safari 16.4+). `dist/` ±50 MB (sebagian besar stroke JSON di `public/data`).

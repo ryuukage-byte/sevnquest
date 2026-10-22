@@ -26,11 +26,11 @@ Status: #1 ✅ · #2 ✅ · #3 ✅ (mitigasi) · #4 ✅ · #5 ✅ · #6 ✅ (rew
 ## Gelombang 2 — kebersihan & arsitektur
 | # | Item | Kompleksitas |
 |---|---|---|
-| 8 | Hapus sisa mati: `templateDecks`, `entityAdapters`, `grammarHighlight`, `questionUtils`, `tower2/index`, ekspor mati `mastery.ts`, `engine/tower/*` lama + state Tower lama di `towerCloudState`, `stageProgress`/`data/world` | M |
+| 8 | ~~Hapus sisa mati: `templateDecks`, `entityAdapters`, `grammarHighlight`, `questionUtils`, `tower2/index`, ekspor mati `mastery.ts`~~ (selesai); tersisa `engine/tower/*` lama + state Tower lama di `towerCloudState`, `stageProgress`/`data/world` | M |
 | 9 | Pecah `usePlayerActions` per domain (reward, study, missions, profile, decks) + context untuk callback (kurangi prop-drilling) | M |
 | 10 | Satukan deploy target (Vercel vs Cloudflare) atau generate salah satu dari yang lain | M |
-| 11 | Pecah/lazy-load `data-kotoba` (8,5 MB) per level JLPT; indeks pencarian dibangun saat dibutuhkan | M |
-| 12 | Rapikan dependensi, `package.json` name, `.env.example`; tambah CSP | L |
+| 11 | ~~Pecah/lazy-load `data-kotoba` (8,5 MB)~~ (selesai: INTI/DETAIL + dataset `.json`); berikutnya: pecah per level JLPT bila perlu | M |
+| 12 | ~~Rapikan dependensi, `package.json` name, `.env.example`~~ (selesai); tambah CSP | L |
 
 ## Gelombang 3 — fitur baru yang kini aman dibangun
 | Fitur | Bergantung pada | Catatan |
