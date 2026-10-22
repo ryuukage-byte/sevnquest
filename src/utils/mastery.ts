@@ -5,8 +5,6 @@ import {
   RecallQueueItem,
   RecallPriorityTier,
   TrueMasteryBreakdown,
-  AdaptiveRecommendation,
-  DokkaiItem,
   Question,
   KotobaItem,
   ErrorType,
@@ -685,25 +683,6 @@ export function calculateLanguageProfile(
   };
 }
 
-export function calculateOverallMastery(records: Record<string, ItemMasteryRecord> = {}): {
-  overallPercentage: number;
-  totalMastered: number;
-  totalPerfected: number;
-  totalStudied: number;
-} {
-  const vals = Object.values(records);
-  const totalMastered = vals.filter(v => v.status === 'MASTERED' || v.status === 'PERFECTED').length;
-  const totalPerfected = vals.filter(v => v.status === 'PERFECTED').length;
-  const totalStudied = vals.length;
-  const overallPercentage = calculateLanguageProfile(records).overallPercentage;
-  return {
-    overallPercentage,
-    totalMastered,
-    totalPerfected,
-    totalStudied
-  };
-}
-
 /**
  * TRUE MASTERY 4-DIMENSIONAL ENGINE:
  * Distinguishes Skill Acquisition (Bunpou/Kotoba/Kanji) vs Skill Application (Dokkai/Choukai)
@@ -1123,13 +1102,29 @@ export function selectRecallEngine(item: Pick<RecallQueueItem, 'category' | 'ite
   return rotation[(r.attemptsCount || 0) % rotation.length];
 }
 
+// Waktu ISO record di-parse sekali per objek record: record tidak pernah diubah di tempat (pembaruan selalu membuat
+// objek baru), sedangkan antrean dibangun ulang dari seluruh riwayat setiap kali ada jawaban.
+const recordTimes = new WeakMap<ItemMasteryRecord, { due: number; reviewed: number }>();
+function recordTimesOf(r: ItemMasteryRecord): { due: number; reviewed: number } {
+  let t = recordTimes.get(r);
+  if (!t) {
+    t = { due: new Date(r.nextReviewDue).getTime(), reviewed: new Date(r.lastReviewedAt).getTime() };
+    recordTimes.set(r, t);
+  }
+  return t;
+}
+
+interface RecallCandidate {
+  item: RecallQueueItem;
+  /** Waktu tinjau terakhir (ms), di-parse sekali per item, bukan di tiap perbandingan sort. */
+  reviewedAt: number;
+}
+
 /** Urutan stabil saat urgensi sama: yang paling lama tidak disentuh dulu, lalu ID. Tidak bergantung urutan penyisipan. */
-function compareRecallPriority(a: RecallQueueItem, b: RecallQueueItem): number {
-  if (b.urgencyScore !== a.urgencyScore) return b.urgencyScore - a.urgencyScore;
-  const ta = Date.parse(a.masteryRecord?.lastReviewedAt || '') || 0;
-  const tb = Date.parse(b.masteryRecord?.lastReviewedAt || '') || 0;
-  if (ta !== tb) return ta - tb;
-  return a.itemId < b.itemId ? -1 : a.itemId > b.itemId ? 1 : 0;
+function compareRecallPriority(a: RecallCandidate, b: RecallCandidate): number {
+  if (b.item.urgencyScore !== a.item.urgencyScore) return b.item.urgencyScore - a.item.urgencyScore;
+  if (a.reviewedAt !== b.reviewedAt) return a.reviewedAt - b.reviewedAt;
+  return a.item.itemId < b.item.itemId ? -1 : a.item.itemId > b.item.itemId ? 1 : 0;
 }
 
 function resolveRecallLabels(r: ItemMasteryRecord, tm?: number): { title: string; subtitle: string } {
@@ -1167,15 +1162,15 @@ export function buildSmartRecallQueue(
 ): RecallQueueItem[] {
   const records = Object.values(itemMastery);
   const now = new Date().getTime();
-  const queue: RecallQueueItem[] = [];
+  const queue: RecallCandidate[] = [];
 
   for (const r of records) {
     try {
       if (!r || !r.itemId || !hasPracticed(r)) continue;
 
-      const dueDate = new Date(r.nextReviewDue).getTime();
-      const isDue = dueDate <= now;
-      const daysSinceLastReview = (now - new Date(r.lastReviewedAt).getTime()) / (1000 * 60 * 60 * 24);
+      const times = recordTimesOf(r);
+      const isDue = times.due <= now;
+      const daysSinceLastReview = (now - times.reviewed) / (1000 * 60 * 60 * 24);
 
       let urgencyScore = 0;
       let priorityTier: RecallPriorityTier = 'REVIEW';
@@ -1236,13 +1231,12 @@ export function buildSmartRecallQueue(
       }
 
       if (urgencyScore > 0) {
-        const { title, subtitle } = resolveRecallLabels(r, tm);
-        queue.push({
+        const item: RecallQueueItem = {
           id: `recall_${r.itemId}`,
           itemId: r.itemId,
           category: r.category,
-          title,
-          subtitle,
+          title: '', // diisi hanya untuk item terpilih (resolveRecallLabels di bawah)
+          subtitle: '',
           reason,
           reasonText,
           urgencyScore,
@@ -1251,7 +1245,8 @@ export function buildSmartRecallQueue(
           trueMasteryScore: tm,
           tutorInsight,
           masteryRecord: r
-        });
+        };
+        queue.push({ item, reviewedAt: times.reviewed || 0 });
       }
     } catch (err) {
       console.warn('[SmartRecall] Failed to build recall item for record:', r?.itemId, err);
@@ -1259,9 +1254,22 @@ export function buildSmartRecallQueue(
   }
 
   queue.sort(compareRecallPriority);
-  const top = queue.slice(0, maxItems);
 
-  // Soal hanya dibuat untuk item yang benar-benar terpilih (bukan seluruh riwayat).
+  // Label & soal hanya dibuat untuk item yang benar-benar terpilih (bukan seluruh riwayat). Item yang labelnya
+  // gagal dibentuk dilewati dan digantikan kandidat berikutnya.
+  const top: RecallQueueItem[] = [];
+  for (const { item } of queue) {
+    if (top.length >= maxItems) break;
+    try {
+      const labels = resolveRecallLabels(item.masteryRecord!, item.trueMasteryScore);
+      item.title = labels.title;
+      item.subtitle = labels.subtitle;
+      top.push(item);
+    } catch (err) {
+      console.warn('[SmartRecall] Failed to build recall item for record:', item.itemId, err);
+    }
+  }
+
   for (const item of top) {
     try {
       let engine = selectRecallEngine(item);
@@ -1293,243 +1301,6 @@ export function buildSmartRecallQueue(
     }
   }
   return top;
-}
-
-/**
- * DYNAMIC LEARNING RECOMMENDATION ENGINE:
- * Dynamically personalizes the homepage based on actual learner weaknesses!
- */
-export function generateAdaptiveRecommendation(stats: PlayerStats): AdaptiveRecommendation {
-  const profile = calculateLanguageProfile(stats.itemMastery || {});
-  const recallQueue = stats.recallQueue || [];
-  const criticalItems = recallQueue.filter(q => q.priorityTier === 'CRITICAL');
-
-  // 1. Critical Weakness in Specific Item
-  if (criticalItems.length > 0) {
-    const topCrit = criticalItems[0];
-    return {
-      id: 'rec_critical_item',
-      title: `Review ${topCrit.title}`,
-      reasonMessage: `Terdeteksi 3x kesalahan berulang pada pola ini. Segera kunci polanya di sesi Recall sebelum materi baru.`,
-      recommendationType: 'REVIEW_WEAKNESS',
-      actionLabel: 'Latih di Recall Sekarang',
-      category: topCrit.category,
-      targetItemId: topCrit.itemId,
-      prioritySeverity: 'critical',
-      actionType: 'recall'
-    };
-  }
-
-  // 2. Pillar Weakness (e.g. Choukai / Kanji / Dokkai)
-  const pillars = profile.pillars;
-  const lowestPillarKey = (['choukai', 'kanji', 'dokkai', 'bunpou', 'kotoba'] as const).reduce((minKey, key) => {
-    return pillars[key].percentage < pillars[minKey].percentage ? key : minKey;
-  }, 'choukai' as 'bunpou' | 'kotoba' | 'kanji' | 'dokkai' | 'choukai');
-
-  const lowestPillar = pillars[lowestPillarKey];
-
-  if (lowestPillar.percentage < 65) {
-    if (lowestPillarKey === 'choukai') {
-      return {
-        id: 'rec_choukai',
-        title: 'Latihan Pendengaran (Choukai)',
-        reasonMessage: `Listening saat ini menjadi kelemahan utamamu (${lowestPillar.percentage}%). Latih telinga menangkap kata kunci dan perubahan keputusan pembicara.`,
-        recommendationType: 'CHOUKAI_TRAINING',
-        actionLabel: 'Latih Choukai di Stage Ini',
-        category: 'choukai',
-        targetStageId: stats.currentStageId,
-        prioritySeverity: 'critical',
-        actionType: 'stage'
-      };
-    }
-
-    if (lowestPillarKey === 'kanji') {
-      return {
-        id: 'rec_kanji',
-        title: 'Penguatan Huruf Kanji',
-        reasonMessage: `Akurasi pembedaan radikal dan bacaan Kanji masih ${lowestPillar.percentage}%. Kuatkan bentuk visual sebelum masuk wacana panjang.`,
-        recommendationType: 'KANJI_PRACTICE',
-        actionLabel: 'Kuasai Kanji di Stage',
-        category: 'kanji',
-        targetStageId: stats.currentStageId,
-        prioritySeverity: 'weak',
-        actionType: 'stage'
-      };
-    }
-
-    if (lowestPillarKey === 'dokkai') {
-      return {
-        id: 'rec_dokkai',
-        title: 'Aplikasi Wacana (Dokkai)',
-        reasonMessage: `Kamu memahami rumus tata bahasa, namun akurasi membaca teks wacana Dokkai masih ${lowestPillar.percentage}%. Asah pemahaman kontekstual.`,
-        recommendationType: 'DOKKAI_APPLICATION',
-        actionLabel: 'Buka Ekspedisi Dokkai',
-        category: 'dokkai',
-        targetStageId: stats.currentStageId,
-        prioritySeverity: 'weak',
-        actionType: 'stage'
-      };
-    }
-  }
-
-  // 3. Routine SRS Due items
-  if (recallQueue.length > 0) {
-    return {
-      id: 'rec_srs_due',
-      title: 'Tinjau Memori Harian (SRS)',
-      reasonMessage: `Ada ${recallQueue.length} butir materi yang telah memasuki jadwal pengulangan untuk menjaga daya ingat jangka panjang.`,
-      recommendationType: 'REVIEW_WEAKNESS',
-      actionLabel: 'Mulai Sesi Recall',
-      category: 'bunpou',
-      prioritySeverity: 'routine',
-      actionType: 'recall'
-    };
-  }
-
-  // 4. Default: Continue current stage expedition
-  return {
-    id: 'rec_stage_progress',
-    title: 'Lanjutkan Ekspedisi Peta',
-    reasonMessage: `Profil kemampuanmu sangat seimbang (${profile.overallPercentage}%). Terus taklukkan tantangan di stage aktif!`,
-    recommendationType: 'STAGE_PROGRESS',
-    actionLabel: 'Masuk ke Stage Aktif',
-    category: 'bunpou',
-    targetStageId: stats.currentStageId,
-    prioritySeverity: 'routine',
-    actionType: 'stage'
-  };
-}
-
-/**
- * Diagnostic helper: Analyzes Dokkai mistakes and maps them to weak grammar/kanji/kotoba
- */
-export function diagnoseDokkaiMistake(
-  dokkaiItem: DokkaiItem,
-  _wrongQuestionIndex: number = 0
-): {
-  diagnosticMessage: string;
-  tutorAdvice: string;
-  weakGrammars: { id: string; title: string; meaning: string }[];
-  weakKanji: { id: string; character: string; meaning: string }[];
-} {
-  const rel = dokkaiItem.relationships || {};
-  const weakGrammars: { id: string; title: string; meaning: string }[] = [];
-  const weakKanji: { id: string; character: string; meaning: string }[] = [];
-
-  if (rel.bunpouRefs && rel.bunpouRefs.length > 0) {
-    for (const gid of rel.bunpouRefs) {
-      if (BUNPOU_DATABASE[gid]) {
-        weakGrammars.push({
-          id: gid,
-          title: BUNPOU_DATABASE[gid].title,
-          meaning: BUNPOU_DATABASE[gid].meaningId
-        });
-      }
-    }
-  }
-
-  if (rel.kanjiRefs && rel.kanjiRefs.length > 0) {
-    for (const kid of rel.kanjiRefs) {
-      if (KANJI_DATABASE[kid]) {
-        weakKanji.push({
-          id: kid,
-          character: KANJI_DATABASE[kid].character,
-          meaning: KANJI_DATABASE[kid].meaningId
-        });
-      }
-    }
-  }
-
-  let diagnosticMessage = 'Kamu mengalami kesulitan pada pemahaman teks bacaan terpadu ini.';
-  let tutorAdvice = 'Fokus pada kata penghubung dan subjek utama yang ditunjuk dalam setiap kalimat.';
-
-  if (weakGrammars.length > 0 && weakKanji.length > 0) {
-    diagnosticMessage = `Analisis Dokkai: Kesalahan pemahaman disebabkan pola tata bahasa 「${weakGrammars.map(g => g.title).join(', ')}」 serta Kanji 「${weakKanji.map(k => k.character).join(', ')}」 yang masih belum kokoh saat diaplikasikan dalam wacana.`;
-    tutorAdvice = `Tutor: Kamu tahu rumus tata bahasa secara mandiri, namun bingung ketika digabungkan dengan kanji majemuk dalam teks wacana. Materi telah ditandai untuk sesi Recall!`;
-  } else if (weakGrammars.length > 0) {
-    diagnosticMessage = `Analisis Dokkai: Teks ini menguji penerapan pola tata bahasa 「${weakGrammars.map(g => g.title).join(', ')}」 dalam konteks kalimat majemuk.`;
-    tutorAdvice = `Tutor: Pola ini telah diprioritaskan ke dalam antrean Recall untuk diperkuat.`;
-  } else if (weakKanji.length > 0) {
-    diagnosticMessage = `Analisis Dokkai: Kanji 「${weakKanji.map(k => k.character).join(', ')}」 dalam teks ini perlu dilatih ulang bacaannya.`;
-    tutorAdvice = `Tutor: Periksa kembali bacaan gabungan (Onyomi) kanji tersebut.`;
-  }
-
-  return {
-    diagnosticMessage,
-    tutorAdvice,
-    weakGrammars,
-    weakKanji
-  };
-}
-
-/**
- * Boss Battle Diagnostic Result Generator
- */
-export interface BossPillarResult {
-  category: 'bunpou' | 'kotoba' | 'kanji' | 'dokkai' | 'choukai';
-  label: string;
-  score: number;
-  total: number;
-  percentage: number;
-  isWeak: boolean;
-}
-
-export function generateBossBattleDiagnostic(
-  results: Record<'bunpou' | 'kotoba' | 'kanji' | 'dokkai' | 'choukai', { score: number; total: number }>,
-  missedQuestionItemIds: string[] = []
-): {
-  pillarResults: BossPillarResult[];
-  overallPercentage: number;
-  weakPillars: BossPillarResult[];
-  remediationItemIds: string[];
-  diagnosticSummary: string;
-} {
-  const categories: ('bunpou' | 'kotoba' | 'kanji' | 'dokkai' | 'choukai')[] = [
-    'bunpou', 'kotoba', 'kanji', 'dokkai', 'choukai'
-  ];
-
-  const labels = {
-    bunpou: '📖 Tata Bahasa (Bunpou)',
-    kotoba: '📝 Kosakata (Kotoba)',
-    kanji: '漢 Huruf Kanji',
-    dokkai: '📚 Pemahaman Bacaan (Dokkai)',
-    choukai: '🎧 Pendengaran (Choukai)'
-  };
-
-  let totalScore = 0;
-  let totalQuestions = 0;
-
-  const pillarResults: BossPillarResult[] = categories.map(cat => {
-    const data = results[cat] || { score: 0, total: 0 };
-    const pct = data.total > 0 ? Math.round((data.score / data.total) * 100) : 100;
-    totalScore += data.score;
-    totalQuestions += data.total;
-    return {
-      category: cat,
-      label: labels[cat],
-      score: data.score,
-      total: data.total,
-      percentage: pct,
-      isWeak: data.total > 0 && pct < 75
-    };
-  });
-
-  const overallPercentage = totalQuestions > 0 ? Math.round((totalScore / totalQuestions) * 100) : 0;
-  const weakPillars = pillarResults.filter(p => p.isWeak);
-
-  let diagnosticSummary = 'Pertahanan dan kompetensi bahasamu sangat solid di semua lini!';
-  if (weakPillars.length > 0) {
-    const weakNames = weakPillars.map(w => w.category.toUpperCase()).join(' & ');
-    diagnosticSummary = `Ujian Diagnostik Boss mendeteksi kelemahan pada pilar ${weakNames} (${weakPillars.map(w => `${w.percentage}%`).join(', ')}). Gunakan tombol Tinjau Kelemahan untuk langsung memperbaikinya!`;
-  }
-
-  return {
-    pillarResults,
-    overallPercentage,
-    weakPillars,
-    remediationItemIds: missedQuestionItemIds,
-    diagnosticSummary
-  };
 }
 
 export function calculateCoverage(stats: PlayerStats) {

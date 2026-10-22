@@ -34,7 +34,8 @@ import {
   RelationalTrait,
   QuizTrait,
 } from '../../engine/traits/traits';
-import { playSound, speakJapanese } from '../../utils/audio';
+import { playSound } from '../../utils/audio';
+import { speakJapanese } from '../../utils/speech';
 import { RubyText } from '../learning/RubyText';
 import { FormulaDisplay } from '../learning/FormulaDisplay';
 import { KanjiWritingCanvas, preloadStrokeData } from '../learning/KanjiWritingCanvas';
@@ -192,7 +193,7 @@ export const UniversalEntityModal: React.FC<UniversalEntityModalProps> = ({
   // Audio speech
   const handlePlayAudio = () => {
     if (!unified) return;
-    speakJapanese(unified.reading || unified.title);
+    speakJapanese(unified.title, { reading: unified.reading });
     playSound('click', soundEnabled);
   };
 
@@ -513,7 +514,7 @@ export const UniversalEntityModal: React.FC<UniversalEntityModalProps> = ({
                           className="text-sm sm:text-base font-jp text-text-primary font-medium"
                         />
                         <button
-                          onClick={() => speakJapanese(unified.kotoba?.exampleSentence?.japanese || '')}
+                          onClick={() => speakJapanese(unified.kotoba?.exampleSentence?.japanese || '', { reading: unified.kotoba?.exampleSentence?.reading })}
                           className="p-1 text-gold hover:text-gold/80 transition-colors shrink-0"
                           title="Dengar Audio Kalimat"
                         >
@@ -535,7 +536,7 @@ export const UniversalEntityModal: React.FC<UniversalEntityModalProps> = ({
                           className="text-sm sm:text-base font-jp text-text-primary font-medium"
                         />
                         <button
-                          onClick={() => speakJapanese(ex.japanese)}
+                          onClick={() => speakJapanese(ex.japanese, { reading: ex.reading })}
                           className="p-1 text-gold hover:text-gold/80 transition-colors shrink-0"
                         >
                           <Volume2 className="w-3.5 h-3.5" />

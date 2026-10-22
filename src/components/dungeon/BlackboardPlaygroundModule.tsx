@@ -16,7 +16,8 @@ import {
   HelpCircle
 } from 'lucide-react';
 import { RubyText } from '../learning/RubyText';
-import { playSound, speakJapanese } from '../../utils/audio';
+import { playSound } from '../../utils/audio';
+import { speakJapanese } from '../../utils/speech';
 import { VerbItem } from '../../data/conjugationRules';
 import { GrammarPatternSchema, ConjugationForm } from '../../engine/types';
 import { conjugateVerb, detectVerbGroup } from '../../engine/morphology/inflectionEngine';
@@ -219,12 +220,12 @@ export const BlackboardPlaygroundModule: React.FC<BlackboardPlaygroundModuleProp
   }, [activeVerb, activePattern]);
 
   // Handle Speech
-  const handlePlayAudio = async (text: string) => {
+  const handlePlayAudio = async (text: string, reading?: string) => {
     if (!text) return;
     playSound('click', soundEnabled);
     setIsSpeaking(true);
     try {
-      await speakJapanese(text);
+      await speakJapanese(text, { reading });
     } catch {
       // ignore
     } finally {
@@ -556,7 +557,7 @@ export const BlackboardPlaygroundModule: React.FC<BlackboardPlaygroundModuleProp
                       {/* Pronunciation Audio Button */}
                       <button
                         type="button"
-                        onClick={() => handlePlayAudio(transformation.fullJapanese)}
+                        onClick={() => handlePlayAudio(transformation.fullJapanese, transformation.fullReading)}
                         disabled={isSpeaking}
                         className="btn-physical-secondary p-2.5 sm:p-3 rounded-xl sm:rounded-2xl transition-all cursor-pointer shrink-0 ml-1.5 sm:ml-2"
                         title="Dengarkan pelafalan hasil perubahan"
@@ -623,7 +624,7 @@ export const BlackboardPlaygroundModule: React.FC<BlackboardPlaygroundModuleProp
                     </div>
                     <button
                       type="button"
-                      onClick={() => handlePlayAudio(transformation.contextSentence?.japanese || '')}
+                      onClick={() => handlePlayAudio(transformation.contextSentence?.japanese || '', transformation.contextSentence?.reading)}
                       className="p-1 rounded-md hover:bg-surface-elevated text-text-secondary hover:text-text-primary transition-colors cursor-pointer"
                       title="Dengarkan kalimat"
                     >

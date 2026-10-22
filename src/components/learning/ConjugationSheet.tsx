@@ -9,7 +9,7 @@ import {
   getAuxiliaryInfo,
 } from '../../data/conjugationBank';
 import { getSiblingSubBranches } from '../../data/bunpouSubKnowledge';
-import { speakJapanese } from '../../utils/audio';
+import { speakJapanese } from '../../utils/speech';
 
 interface ConjugationSheetProps {
   patternId: string;

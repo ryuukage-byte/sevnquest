@@ -2,7 +2,9 @@ import { getWordTypeLabel } from '../../utils/wordType';
 import React from 'react';
 import { Volume2 } from 'lucide-react';
 import { RubyText } from './RubyText';
-import { playSound, speakJapanese } from '../../utils/audio';
+import { playSound } from '../../utils/audio';
+import { speakJapanese } from '../../utils/speech';
+import { kanaReadingOf } from '../../utils/speechText';
 import { ResolvedDeckItem } from '../../utils/decks';
 import { KotobaItem, KanjiItem, BunpouItem } from '../../types/content';
 import { parseReadingVariations } from '../../utils/readingHighlightUtils';
@@ -190,7 +192,7 @@ export const UniversalFlashcard: React.FC<UniversalFlashcardProps> = ({
                     type="button"
                     onClick={(e) => {
                       e.stopPropagation();
-                      speakJapanese(norm.bunpou?.title || norm.displayTitle);
+                      speakJapanese(norm.bunpou?.title || norm.displayTitle, { reading: kanaReadingOf(norm.bunpou?.reading) });
                     }}
                     className="btn-physical-secondary p-2 rounded-xl text-purple-400 transition-colors"
                     title="Dengar pelafalan"
@@ -239,7 +241,7 @@ export const UniversalFlashcard: React.FC<UniversalFlashcardProps> = ({
                     type="button"
                     onClick={(e) => {
                       e.stopPropagation();
-                      speakJapanese(norm.kotoba?.word || norm.displayTitle);
+                      speakJapanese(norm.kotoba?.word || norm.displayTitle, { reading: norm.kotoba?.reading || norm.displayReading });
                     }}
                     className="btn-physical-secondary p-2 rounded-xl text-gold transition-colors"
                     title="Dengar pelafalan"
@@ -406,7 +408,7 @@ export const UniversalFlashcard: React.FC<UniversalFlashcardProps> = ({
                             type="button"
                             onClick={(e) => {
                               e.stopPropagation();
-                              speakJapanese(rw.word);
+                              speakJapanese(rw.word, { reading: rw.reading });
                             }}
                             className="px-2 py-1 rounded-lg bg-surface-card border border-border-subtle hover:border-border-primary flex items-center gap-1.5 text-[11px] transition-colors"
                           >
@@ -436,7 +438,7 @@ export const UniversalFlashcard: React.FC<UniversalFlashcardProps> = ({
                   type="button"
                   onClick={(e) => {
                     e.stopPropagation();
-                    speakJapanese(norm.bunpou?.title || norm.displayTitle);
+                    speakJapanese(norm.bunpou?.title || norm.displayTitle, { reading: kanaReadingOf(norm.bunpou?.reading) });
                   }}
                   className="btn-physical-secondary p-2 rounded-xl text-purple-400 transition-colors"
                   title="Dengar pelafalan"
@@ -483,7 +485,7 @@ export const UniversalFlashcard: React.FC<UniversalFlashcardProps> = ({
                               type="button"
                               onClick={(e) => {
                                 e.stopPropagation();
-                                speakJapanese(ex.japanese);
+                                speakJapanese(ex.japanese, { reading: ex.reading });
                               }}
                               className="p-1 rounded text-purple-400 hover:bg-surface-elevated"
                             >
@@ -514,7 +516,7 @@ export const UniversalFlashcard: React.FC<UniversalFlashcardProps> = ({
                   type="button"
                   onClick={(e) => {
                     e.stopPropagation();
-                    speakJapanese(norm.kotoba?.word || norm.displayTitle);
+                    speakJapanese(norm.kotoba?.word || norm.displayTitle, { reading: norm.kotoba?.reading || norm.displayReading });
                   }}
                   className="btn-physical-secondary p-2 rounded-xl text-gold transition-colors"
                   title="Dengar pelafalan"
@@ -590,7 +592,7 @@ export const UniversalFlashcard: React.FC<UniversalFlashcardProps> = ({
                         type="button"
                         onClick={(e) => {
                           e.stopPropagation();
-                          speakJapanese(norm.kotoba!.exampleSentence!.japanese);
+                          speakJapanese(norm.kotoba!.exampleSentence!.japanese, { reading: norm.kotoba!.exampleSentence!.reading });
                         }}
                         className="btn-physical-secondary p-1.5 rounded-lg text-gold shrink-0 transition-colors"
                         title="Dengarkan kalimat contoh"

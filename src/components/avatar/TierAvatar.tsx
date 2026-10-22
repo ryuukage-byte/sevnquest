@@ -15,28 +15,28 @@ import {
 import { RPG_TIERS } from '../../data/tiers';
 
 // Directly import avatar assets so Vite bundles and resolves them correctly in all environments
-import tier1Img from '../../assets/avatars/tier-1.png';
-import tier2Img from '../../assets/avatars/tier-2.png';
-import tier3Img from '../../assets/avatars/tier-3.png';
-import tier4Img from '../../assets/avatars/tier-4.png';
-import tier5Img from '../../assets/avatars/tier-5.png';
-import tier6Img from '../../assets/avatars/tier-6.png';
-import tier7Img from '../../assets/avatars/tier-7.png';
-import tier8Img from '../../assets/avatars/tier-8.png';
-import tier9Img from '../../assets/avatars/tier-9.png';
-import tier10Img from '../../assets/avatars/tier-10.png';
+import tier1Img from '../../assets/avatars/tier-1.webp';
+import tier2Img from '../../assets/avatars/tier-2.webp';
+import tier3Img from '../../assets/avatars/tier-3.webp';
+import tier4Img from '../../assets/avatars/tier-4.webp';
+import tier5Img from '../../assets/avatars/tier-5.webp';
+import tier6Img from '../../assets/avatars/tier-6.webp';
+import tier7Img from '../../assets/avatars/tier-7.webp';
+import tier8Img from '../../assets/avatars/tier-8.webp';
+import tier9Img from '../../assets/avatars/tier-9.webp';
+import tier10Img from '../../assets/avatars/tier-10.webp';
 
 // Female tier avatars
-import femaleTier1Img from '../../assets/avatars/female/tier-1.png';
-import femaleTier2Img from '../../assets/avatars/female/tier-2.png';
-import femaleTier3Img from '../../assets/avatars/female/tier-3.png';
-import femaleTier4Img from '../../assets/avatars/female/tier-4.png';
-import femaleTier5Img from '../../assets/avatars/female/tier-5.png';
-import femaleTier6Img from '../../assets/avatars/female/tier-6.png';
-import femaleTier7Img from '../../assets/avatars/female/tier-7.png';
-import femaleTier8Img from '../../assets/avatars/female/tier-8.png';
-import femaleTier9Img from '../../assets/avatars/female/tier-9.png';
-import femaleTier10Img from '../../assets/avatars/female/tier-10.png';
+import femaleTier1Img from '../../assets/avatars/female/tier-1.webp';
+import femaleTier2Img from '../../assets/avatars/female/tier-2.webp';
+import femaleTier3Img from '../../assets/avatars/female/tier-3.webp';
+import femaleTier4Img from '../../assets/avatars/female/tier-4.webp';
+import femaleTier5Img from '../../assets/avatars/female/tier-5.webp';
+import femaleTier6Img from '../../assets/avatars/female/tier-6.webp';
+import femaleTier7Img from '../../assets/avatars/female/tier-7.webp';
+import femaleTier8Img from '../../assets/avatars/female/tier-8.webp';
+import femaleTier9Img from '../../assets/avatars/female/tier-9.webp';
+import femaleTier10Img from '../../assets/avatars/female/tier-10.webp';
 
 export const TIER_AVATAR_MAP: Record<number, string> = {
   1: tier1Img,

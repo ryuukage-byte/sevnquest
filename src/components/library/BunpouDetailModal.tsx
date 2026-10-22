@@ -19,7 +19,9 @@ import {
 } from 'lucide-react';
 import { BunpouItem, Question, ItemMasteryRecord } from '../../types/content';
 import { RubyText } from '../learning/RubyText';
-import { speakJapanese, playSound } from '../../utils/audio';
+import { playSound } from '../../utils/audio';
+import { speakJapanese } from '../../utils/speech';
+import { kanaReadingOf } from '../../utils/speechText';
 import { getCanonicalGrammarTitle, getGrammarTitleInfo } from '../../utils/bunpouTitleUtils';
 import { UserDeck } from '../../types/rpg';
 import { DeckBookmarkPicker } from '../deck/DeckBookmarkPicker';
@@ -497,7 +499,7 @@ export const BunpouDetailModal: React.FC<BunpouDetailModalProps> = ({
 
                   <button
                     type="button"
-                    onClick={() => speakJapanese(titleInfo.audioTarget || titleInfo.mainTitle.replace(/^[〜~]/, ''))}
+                    onClick={() => speakJapanese(titleInfo.audioTarget || titleInfo.mainTitle, { reading: kanaReadingOf(item.reading) })}
                     className="btn-physical-secondary p-1 sm:p-1.5 rounded-lg text-indigo hover:text-indigo-light transition-all cursor-pointer shrink-0"
                     title="Dengarkan pelafalan pola kalimat"
                   >
@@ -618,7 +620,7 @@ export const BunpouDetailModal: React.FC<BunpouDetailModalProps> = ({
                         </span>
                         <button
                           type="button"
-                          onClick={() => speakJapanese(skillNodes.concept.starterExample!.japanese)}
+                          onClick={() => speakJapanese(skillNodes.concept.starterExample!.japanese, { reading: skillNodes.concept.starterExample!.reading })}
                           className="p-1 rounded-lg text-text-muted hover:text-text-primary hover:bg-surface-card transition-colors cursor-pointer"
                           title="Dengarkan pelafalan kalimat"
                         >
@@ -877,7 +879,7 @@ export const BunpouDetailModal: React.FC<BunpouDetailModalProps> = ({
                             </div>
                             <button
                               type="button"
-                              onClick={() => speakJapanese(fn.miniExample!.japanese)}
+                              onClick={() => speakJapanese(fn.miniExample!.japanese, { reading: fn.miniExample!.reading })}
                               className="p-1 rounded-lg text-text-muted hover:text-indigo transition-colors shrink-0 cursor-pointer"
                               title="Dengarkan audio"
                             >
@@ -969,7 +971,7 @@ export const BunpouDetailModal: React.FC<BunpouDetailModalProps> = ({
 
                         <button
                           type="button"
-                          onClick={() => speakJapanese(ex.japanese)}
+                          onClick={() => speakJapanese(ex.japanese, { reading: ex.reading })}
                           className="p-1 rounded-lg text-text-muted hover:text-indigo hover:bg-surface-card transition-colors cursor-pointer"
                           title="Dengarkan pelafalan kalimat"
                         >

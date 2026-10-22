@@ -1,4 +1,5 @@
 import { createElement, lazy, type ComponentType, type LazyExoticComponent } from 'react';
+import { ensureFullData } from '../data/fullData';
 
 const RETRY_DELAYS_MS = [400, 1500];
 const AUTO_RELOAD_KEY = 'sevn_pwa_auto_retry';
@@ -68,6 +69,7 @@ async function loadWithRetry<T>(factory: () => Promise<T>): Promise<T> {
 /**
  * Pengganti React.lazy untuk chunk yang dimuat dinamis: mencoba ulang saat jaringan tersendat,
  * memuat ulang halaman sekali bila chunk sudah tidak ada, dan bisa dipulihkan lewat ErrorBoundary.
+ * Komponen baru dirender setelah data lengkap (detail kotoba, bank soal) siap — lihat data/fullData.ts.
  */
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function lazyWithRetry<T extends ComponentType<any>>(
@@ -75,7 +77,7 @@ export function lazyWithRetry<T extends ComponentType<any>>(
 ): ComponentType<React.ComponentProps<T>> {
   const make = (): LazyExoticComponent<T> =>
     lazy(() =>
-      loadWithRetry(factory).catch((err) => {
+      loadWithRetry(() => Promise.all([factory(), ensureFullData()]).then(([mod]) => mod)).catch((err) => {
         failedResets.add(() => {
           Current = make();
         });

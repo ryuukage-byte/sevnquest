@@ -5,7 +5,8 @@ import { AnimatePresence } from 'motion/react';
 import { Volume2, Filter, ChevronDown, Bookmark, Trash2 } from 'lucide-react';
 import { BookIcon } from '../ui/EngravingIcons';
 import { KOTOBA_DATABASE } from '../../data/kotoba';
-import { playSound, speakJapanese } from '../../utils/audio';
+import { playSound } from '../../utils/audio';
+import { speakJapanese } from '../../utils/speech';
 import { RubyText } from '../learning/RubyText';
 import { KotobaItem, ItemMasteryRecord } from '../../types/content';
 import { KotobaDetailModal } from './KotobaDetailModal';
@@ -504,7 +505,7 @@ export const KotobaLibraryView: React.FC<KotobaLibraryViewProps> = ({
                     <button
                       onClick={(e) => {
                         e.stopPropagation();
-                        speakJapanese(item.reading || item.word);
+                        speakJapanese(item.word, { reading: item.reading });
                       }}
                       className="btn-physical-secondary p-2.5 rounded-xl transition-colors"
                       title="Dengarkan Pengucapan"

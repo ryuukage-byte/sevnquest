@@ -13,7 +13,8 @@ import { KANJI_QUESTION_BANK as kanjiQuestionsDb, BUNPOU_QUESTION_BANK as bunpou
 import { CHOUKAI_DATABASE } from '../../data/choukai';
 import { CHOUKAI_ENABLED } from '../../data/featureFlags';
 import { DOKKAI_DATABASE } from '../../data/dokkai';
-import { playSound, speakJapanese } from '../../utils/audio';
+import { playSound } from '../../utils/audio';
+import { speakJapanese } from '../../utils/speech';
 import { RubyText } from '../learning/RubyText';
 import { calculateQuizReward } from '../../utils/rewards';
 import { smartSample } from '../../utils/smartRandomizer';

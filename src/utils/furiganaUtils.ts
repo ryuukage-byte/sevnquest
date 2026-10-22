@@ -82,17 +82,6 @@ function charsMatch(c1: string, c2: string): boolean {
 }
 
 /**
- * Check if haystack starts with needle at given position, kana-insensitive.
- */
-function startsWithKana(haystack: string, needle: string, pos: number): boolean {
-  if (pos + needle.length > haystack.length) return false;
-  for (let i = 0; i < needle.length; i++) {
-    if (!charsMatch(haystack[pos + i], needle[i])) return false;
-  }
-  return true;
-}
-
-/**
  * Merge adjacent non-kanji segments into single segments for clean DOM rendering.
  */
 function mergeNonKanjiSegments(segments: RubySegment[]): RubySegment[] {
@@ -363,8 +352,9 @@ function autoAnnotateFurigana(text: string, excludeKanji?: Set<string>): RubySeg
       } else if (hasKanji && hasNonKanji && !readingHasKanji) {
         // Word contains both kanji and okurigana (e.g. 飽きる, 食べる, 思い出す)
         // Align wordMatch against reading so only kanji characters receive ruby, leaving okurigana as plain text
-        const subSegments = alignKanjiReadings(wordMatch, reading, excludeKanji);
-        segments.push(...subSegments);
+        const aligned = alignExact(wordMatch, reading, excludeKanji);
+        if (aligned && aligned.mismatches === 0) segments.push(...aligned.segments);
+        else segments.push({ text: wordMatch, ruby: reading, isKanji: true });
       } else if (hasKanji) {
         segments.push({ text: wordMatch, ruby: readingHasKanji ? undefined : reading, isKanji: true });
       } else {
@@ -410,87 +400,352 @@ function autoAnnotateFurigana(text: string, excludeKanji?: Set<string>): RubySeg
   return mergeNonKanjiSegments(segments);
 }
 
+// ---------------------------------------------------------------------------------------------
+// Penyelarasan teks ↔ bacaan (furigana dari bacaan eksplisit)
+// ---------------------------------------------------------------------------------------------
+
+/** Karakter yang "membawa bacaan" (mendapat furigana): kanji, 〇, ヶ/ヵ, angka, dan huruf Latin. */
+function isReadingBearing(char: string): boolean {
+  return isKanji(char) || char === '〇' || char === 'ヶ' || char === 'ヵ' || /[0-9０-９A-Za-zＡ-Ｚａ-ｚ]/.test(char);
+}
+
+/** Kana (termasuk ー) yang wajib cocok dengan bacaan; ・ diperlakukan sebagai tanda baca. */
+function isKanaLiteral(char: string): boolean {
+  return (isHiragana(char) || isKatakana(char)) && char !== '・' && char !== '゠';
+}
+
+/** Tanda baca / spasi / simbol: boleh ada atau tidak ada di bacaan. */
+function isSkippableReadingChar(char: string): boolean {
+  return !isKanaLiteral(char) && !isReadingBearing(char);
+}
+
+const VOWELS = new Set(['あ', 'い', 'う', 'え', 'お']);
+// Bacaan kanji tidak pernah diawali kana ini (を hanya partikel); mencegah salah ketik "terserap" ke furigana.
+const CANNOT_START_READING = new Set(['ん', 'っ', 'ー', 'ゃ', 'ゅ', 'ょ', 'ぁ', 'ぃ', 'ぅ', 'ぇ', 'ぉ', 'ゎ', 'を']);
+
+function kanaEquals(textChar: string, readingChar: string): boolean {
+  if (charsMatch(textChar, readingChar)) return true;
+  // Tanda panjang katakana ditulis sebagai vokal di sebagian bacaan (コーヒー ↔ こうひい).
+  return textChar === 'ー' && VOWELS.has(katakanaToHiragana(readingChar));
+}
+
+type AlignToken =
+  | { kind: 'group'; text: string; excluded: boolean }
+  | { kind: 'kana'; text: string }
+  | { kind: 'opt'; text: string };
+
 /**
- * Parse an annotated reading string where kanji is accompanied by inline reading or bracketed furigana
- * (e.g. "これはあくまでも仮かりの数字すうじであって" or "日本[にほん]に行[い]く")
+ * Bacaan beranotasi ("私わたしは友ともだち…" atau "日本[にほん]に…"): ambil bacaan polos (tanpa kanji & kurung
+ * anotasi) dan urutan potongan kanji sebagai petunjuk batas furigana.
  */
-function parseAnnotatedReading(
+function parseAnnotation(reading: string): { plain: string; hints: string[] } | null {
+  if (!Array.from(reading).some(c => isKanji(c))) return null;
+  const unbracketed = reading.replace(/([㐀-鿿豈-﫿々〆〇]+)[[(（《]([^\])）》]*)[\])）》]/g, '$1$2');
+  const hints: string[] = [];
+  let plain = '';
+  let run = '';
+  for (const c of unbracketed) {
+    if (isKanji(c) || c === '〇') {
+      run += c;
+    } else {
+      if (run) { hints.push(run); run = ''; }
+      plain += c;
+    }
+  }
+  if (run) hints.push(run);
+  return { plain, hints };
+}
+
+function tokenizeForAlignment(japanese: string, hints: string[] | null, excludeKanji?: Set<string>): AlignToken[] {
+  const tokens: AlignToken[] = [];
+  const chars = Array.from(japanese);
+  const hintQueue = hints ? [...hints] : null;
+  let i = 0;
+  while (i < chars.length) {
+    const c = chars[i];
+    if (isReadingBearing(c)) {
+      const excluded = !!excludeKanji?.has(c);
+      let run = '';
+      while (i < chars.length && isReadingBearing(chars[i]) && !!excludeKanji?.has(chars[i]) === excluded) {
+        run += chars[i];
+        i++;
+      }
+      // Pecah run kanji mengikuti petunjuk anotasi (三時間話 → 三 | 時間 | 話) bila cocok berurutan.
+      const parts: string[] = [];
+      let rest = run;
+      while (hintQueue && hintQueue.length > 0 && rest.length > 0) {
+        const kanjiOnly = Array.from(rest).filter(ch => isKanji(ch) || ch === '〇').join('');
+        if (!kanjiOnly || kanjiOnly !== rest) break; // run berisi angka/huruf: tanpa pemecahan
+        if (!rest.startsWith(hintQueue[0])) break;
+        parts.push(hintQueue[0]);
+        rest = rest.slice(hintQueue[0].length);
+        hintQueue.shift();
+      }
+      if (rest) parts.push(rest);
+      for (const part of parts) tokens.push({ kind: 'group', text: part, excluded });
+    } else if (isKanaLiteral(c)) {
+      tokens.push({ kind: 'kana', text: c });
+      i++;
+    } else {
+      tokens.push({ kind: 'opt', text: c });
+      i++;
+    }
+  }
+  return tokens;
+}
+
+export interface FuriganaAlignment {
+  segments: RubySegment[];
+  /** true bila bacaan bisa diselaraskan dengan teks (furigana = bacaan data). */
+  aligned: boolean;
+  /** Jumlah ketidakcocokan kana teks ↔ bacaan yang ditoleransi (0 = persis). */
+  mismatches: number;
+}
+
+const ALIGN_MAX_CELLS = 400_000;
+
+/**
+ * Selaraskan teks dengan bacaan memakai pemrograman dinamis (biaya minimum). Kana di teks harus cocok dengan
+ * bacaan (salah ketik di bacaan ditoleransi dengan biaya), tanda baca opsional, dan setiap run kanji/angka/huruf
+ * menyerap ≥1 karakter bacaan. Bila ada beberapa penyelarasan, run kanji yang lebih awal mengambil bacaan
+ * terpendek (seperti regex non-greedy).
+ */
+function alignExact(japanese: string, readingInput: string, excludeKanji?: Set<string>): FuriganaAlignment | null {
+  const annotation = parseAnnotation(readingInput);
+  const readingText = annotation ? annotation.plain : readingInput;
+  const tokens = tokenizeForAlignment(japanese, annotation?.hints ?? null, excludeKanji);
+  const reading = Array.from(readingText);
+  const n = tokens.length;
+  const m = reading.length;
+  if ((n + 1) * (m + 1) > ALIGN_MAX_CELLS) return null;
+
+  const INF = 1e9;
+  const width = m + 1;
+  // cost[t * width + p] = biaya minimum menyelaraskan tokens[t..] dengan reading[p..]
+  const cost = new Float64Array((n + 1) * width).fill(INF);
+  const choice = new Int32Array((n + 1) * width).fill(-1); // >0: panjang grup; 0: cocok/lewati token; -2: lewati bacaan
+  // Biaya: 1 per kana yang tidak cocok; tanda baca yang hanya ada di satu sisi 0,01 (lebih baik dicocokkan);
+  // pemecah seri antar-penyelarasan sama baiknya ≤ 0,001 (panjang bacaan wajar per karakter, cocok kamus).
+  const skipCost = (p: number) => (/[\s　]/.test(reading[p]) ? 0 : isSkippableReadingChar(reading[p]) ? 0.01 : 1);
+
+  for (let p = m; p >= 0; p--) cost[n * width + p] = p === m ? 0 : cost[n * width + p + 1] + skipCost(p);
+
+  for (let t = n - 1; t >= 0; t--) {
+    const tok = tokens[t];
+    const groupLen = tok.kind === 'group' ? Array.from(tok.text).length : 0;
+    const maxK = tok.kind === 'group' ? groupLen * 6 + 2 : 0;
+    // Panjang bacaan yang wajar: jumlah panjang bacaan kamus per kanji (2 bila tidak ada).
+    const expectedLen = tok.kind === 'group'
+      ? Array.from(tok.text).reduce((n, ch) => n + (furiganaDict.kanji[ch]?.length || 2), 0)
+      : 0;
+    const dictReadings = tok.kind === 'group'
+      ? [furiganaDict.words[tok.text], groupLen === 1 ? furiganaDict.kanji[tok.text] : undefined].filter((r): r is string => !!r)
+      : [];
+    for (let p = m; p >= 0; p--) {
+      let best = INF;
+      let bestChoice = -1;
+      const idx = t * width + p;
+      if (tok.kind === 'group') {
+        // Grup tidak boleh menyerap tanda baca/spasi, dan bacaan kanji tidak mungkin diawali ん/っ/ー/kana kecil.
+        if (p < m && CANNOT_START_READING.has(katakanaToHiragana(reading[p])) && /[\u3400-\u9fff\uf900-\ufaff々〆〇]/.test(tok.text[0])) {
+          // biarkan best = INF untuk pilihan grup; masih bisa lewati bacaan di bawah
+        } else for (let k = 1; k <= maxK && p + k <= m; k++) {
+          if (isSkippableReadingChar(reading[p + k - 1]) || reading[p + k - 1] === 'を') break;
+          let c = cost[(t + 1) * width + p + k] + Math.abs(k - expectedLen) * 1e-4;
+          if (dictReadings.length > 0 && dictReadings.includes(reading.slice(p, p + k).join(''))) c -= 5e-4;
+          if (c < best) { best = c; bestChoice = k; }
+        }
+      } else if (tok.kind === 'kana') {
+        if (p < m) {
+          const c = cost[(t + 1) * width + p + 1] + (kanaEquals(tok.text, reading[p]) ? 0 : 1);
+          if (c < best) { best = c; bestChoice = 0; }
+        }
+        // Kana teks tanpa pasangan sedikit lebih mahal daripada kana yang salah ketik (substitusi).
+        const del = cost[(t + 1) * width + p] + 1.0003;
+        if (del < best) { best = del; bestChoice = -3; }
+      } else {
+        if (p < m && reading[p] === tok.text) {
+          const c = cost[(t + 1) * width + p + 1];
+          if (c < best) { best = c; bestChoice = 0; }
+        }
+        const skip = cost[(t + 1) * width + p] + (/[\s　]/.test(tok.text) ? 0 : 0.01);
+        if (skip < best) { best = skip; bestChoice = -3; }
+      }
+      if (p < m) {
+        const c = cost[idx + 1] + skipCost(p);
+        if (c < best) { best = c; bestChoice = -2; }
+      }
+      cost[idx] = best;
+      choice[idx] = bestChoice;
+    }
+  }
+
+  const total = cost[0];
+  if (!(total < INF)) return null;
+
+  const segments: RubySegment[] = [];
+  let t = 0;
+  let p = 0;
+  while (t < n) {
+    const ch = choice[t * width + p];
+    if (ch === -2) { p++; continue; }
+    const tok = tokens[t];
+    if (tok.kind === 'group') {
+      const ruby = reading.slice(p, p + ch).join('');
+      if (tok.excluded || ruby === tok.text) segments.push({ text: tok.text, isKanji: !tok.excluded && isKanji(tok.text[0]) });
+      else segments.push({ text: tok.text, ruby, isKanji: true });
+      p += ch;
+    } else {
+      segments.push({ text: tok.text, isKanji: false });
+      if (ch === 0) p++;
+    }
+    t++;
+  }
+  const mismatches = Math.round(total);
+  return { segments: mergeNonKanjiSegments(segments), aligned: true, mismatches };
+}
+
+const ALTERNATIVE_SEPARATOR = /(\s*[/／]\s*)/;
+
+/** Bacaan berisi beberapa alternatif ("かねもち / おかねもち"): pakai yang paling cocok dengan teks. */
+function alignBestReading(text: string, reading: string, excludeKanji?: Set<string>): FuriganaAlignment | null {
+  const options = /[/／]/.test(reading) ? reading.split(/\s*[/／]\s*/).filter(Boolean) : [reading];
+  let best: FuriganaAlignment | null = null;
+  for (const option of options) {
+    const r = alignExact(text, option, excludeKanji);
+    if (r && (!best || r.mismatches < best.mismatches)) best = r;
+  }
+  return best;
+}
+
+/**
+ * Teks berisi beberapa bentuk tulisan ("丸い / 円い", "堅 / 硬/固い") dengan satu bacaan: selaraskan bacaan
+ * dengan tiap bentuk secara terpisah (bila jumlah alternatif bacaan sama, dipasangkan berurutan).
+ */
+function alignAlternatives(text: string, reading: string, excludeKanji?: Set<string>): FuriganaAlignment | null {
+  if (!/[/／]/.test(text)) return null;
+  const parts = text.split(ALTERNATIVE_SEPARATOR);
+  const forms = parts.filter((_, i) => i % 2 === 0);
+  const readings = reading.split(/\s*[/／]\s*/).filter(Boolean);
+  const segments: RubySegment[] = [];
+  let mismatches = 0;
+  for (let i = 0; i < parts.length; i++) {
+    if (i % 2 === 1) { segments.push({ text: parts[i], isKanji: false }); continue; }
+    const formIndex = i / 2;
+    const form = parts[i];
+    if (!form) continue;
+    const r = alignBestReading(form, readings.length === forms.length ? readings[formIndex] : readings.join(' / '), excludeKanji);
+    if (!r) return null;
+    segments.push(...r.segments);
+    mismatches += r.mismatches;
+  }
+  return { segments: mergeNonKanjiSegments(segments), aligned: true, mismatches };
+}
+
+/**
+ * Bacaan beranotasi per kata: teks dengan bacaan tiap kata disisipkan tepat setelah kata itu
+ * ("乗り遅のりおくれる", "使い方つかいかたを", "日本[にほん]に"). Temukan sisipan (hanya boleh muncul setelah
+ * karakter pembawa bacaan) dengan backtracking, lalu selaraskan tiap kata dengan bacaannya sendiri. Kata = akhiran
+ * terpanjang dari teks sejak kata sebelumnya yang diawali kanji dan cocok persis dengan bacaannya.
+ */
+function alignAnnotated(text: string, annotatedInput: string, excludeKanji?: Set<string>): FuriganaAlignment | null {
+  if (!Array.from(annotatedInput).some(c => isKanji(c))) return null;
+  const annotated = Array.from(
+    annotatedInput.replace(/([\u3400-\u9fff\uf900-\ufaff々〆〇]+)[[(（《]([^\])）》]*)[\])）》]/g, '$1$2')
+  );
+  const t = Array.from(text);
+  if (annotated.length > 600 || t.length > 300) return null;
+  const insertable = (c: string) => isHiragana(c) || isKatakana(c);
+  const memo = new Map<number, boolean>();
+  // ok(i, j, inIns): sisa teks t[i..] bisa dicocokkan dengan annotated[j..]; inIns = sedang dalam sisipan.
+  const ok = (i: number, j: number, canInsert: boolean): boolean => {
+    if (j === annotated.length) return i === t.length;
+    const key = (i * 1024 + j) * 2 + (canInsert ? 1 : 0);
+    const hit = memo.get(key);
+    if (hit !== undefined) return hit;
+    let res = false;
+    if (i < t.length && annotated[j] === t[i]) res = ok(i + 1, j + 1, isReadingBearing(t[i]));
+    if (!res && canInsert && insertable(annotated[j])) res = ok(i, j + 1, true);
+    memo.set(key, res);
+    return res;
+  };
+  if (!ok(0, 0, false)) return null;
+
+  // Rekonstruksi: posisi teks → bacaan sisipan setelahnya (cocok didahulukan, sama seperti pencarian di atas).
+  const insertions = new Map<number, string>();
+  let i = 0;
+  let j = 0;
+  let canInsert = false;
+  while (j < annotated.length) {
+    if (i < t.length && annotated[j] === t[i] && ok(i + 1, j + 1, isReadingBearing(t[i]))) {
+      canInsert = isReadingBearing(t[i]);
+      i++;
+      j++;
+    } else {
+      insertions.set(i, (insertions.get(i) ?? '') + annotated[j]);
+      j++;
+      canInsert = true;
+    }
+  }
+  if (insertions.size === 0) return null;
+
+  const segments: RubySegment[] = [];
+  let mismatches = 0;
+  let boundary = 0;
+  for (const [end, ruby] of [...insertions.entries()].sort((a, b) => a[0] - b[0])) {
+    let chosen: FuriganaAlignment | null = null;
+    let start = -1;
+    for (let s = boundary; s < end; s++) {
+      if (!isReadingBearing(t[s])) continue;
+      const word = t.slice(s, end).join('');
+      const aligned = alignExact(word, ruby, excludeKanji);
+      if (aligned && aligned.mismatches === 0) { chosen = aligned; start = s; break; }
+    }
+    if (!chosen) {
+      // Kata tak bisa ditentukan: furigana menutupi run pembawa bacaan terakhir apa adanya.
+      start = end - 1;
+      while (start > boundary && isReadingBearing(t[start - 1])) start--;
+      chosen = { segments: [{ text: t.slice(start, end).join(''), ruby, isKanji: true }], aligned: true, mismatches: 1 };
+    }
+    for (const ch of t.slice(boundary, start)) segments.push({ text: ch, isKanji: false });
+    segments.push(...chosen.segments);
+    mismatches += chosen.mismatches;
+    boundary = end;
+  }
+  for (const ch of t.slice(boundary)) {
+    // Kanji tanpa anotasi: pakai kamus agar tetap berfurigana.
+    segments.push(isKanji(ch) ? { text: ch, ruby: furiganaDict.kanji[ch] || undefined, isKanji: true } : { text: ch, isKanji: false });
+  }
+  return { segments: mergeNonKanjiSegments(segments), aligned: true, mismatches };
+}
+
+/** Kana teks yang boleh tidak cocok dengan bacaan sebelum bacaan dianggap tidak bisa dipercaya. */
+function mismatchBudget(japanese: string): number {
+  const kana = Array.from(japanese).filter(isKanaLiteral).length;
+  return Math.max(1, Math.floor(kana * 0.12));
+}
+
+/**
+ * Furigana untuk teks + bacaan eksplisit, beserta status penyelarasannya. Bacaan yang tidak bisa diselaraskan
+ * (salah ketik berat / bukan bacaan teks ini) tidak dipakai: furigana jatuh ke kamus bawaan.
+ */
+export function alignFurigana(
   japanese: string,
   reading: string,
   excludeKanji?: Set<string>
-): RubySegment[] {
-  const segments: RubySegment[] = [];
-  let jIdx = 0;
-  let rIdx = 0;
-
-  while (jIdx < japanese.length && rIdx < reading.length) {
-    const jChar = japanese[jIdx];
-
-    if (isKanji(jChar)) {
-      if (excludeKanji && excludeKanji.has(jChar)) {
-        segments.push({ text: jChar, isKanji: false });
-        jIdx++;
-        if (rIdx < reading.length && reading[rIdx] === jChar) rIdx++;
-        continue;
-      }
-
-      let kanjiSeq = '';
-      while (jIdx < japanese.length && isKanji(japanese[jIdx]) && !(excludeKanji && excludeKanji.has(japanese[jIdx]))) {
-        kanjiSeq += japanese[jIdx];
-        jIdx++;
-      }
-
-      if (reading.startsWith(kanjiSeq, rIdx)) {
-        rIdx += kanjiSeq.length;
-      }
-
-      let ruby = '';
-      if (reading[rIdx] === '[' || reading[rIdx] === '(' || reading[rIdx] === '（' || reading[rIdx] === '《') {
-        const closeChar = reading[rIdx] === '[' ? ']' : reading[rIdx] === '(' ? ')' : reading[rIdx] === '（' ? '）' : '》';
-        rIdx++;
-        while (rIdx < reading.length && reading[rIdx] !== closeChar) {
-          ruby += reading[rIdx];
-          rIdx++;
-        }
-        if (rIdx < reading.length) rIdx++;
-      } else {
-        const nextJChar = jIdx < japanese.length ? japanese[jIdx] : null;
-        if (nextJChar) {
-          while (rIdx < reading.length && reading[rIdx] !== nextJChar && !isKanji(reading[rIdx])) {
-            ruby += reading[rIdx];
-            rIdx++;
-          }
-        } else {
-          while (rIdx < reading.length && !isKanji(reading[rIdx])) {
-            ruby += reading[rIdx];
-            rIdx++;
-          }
-        }
-      }
-
-      const finalRuby = ruby || furiganaDict.words[kanjiSeq] || furiganaDict.kanji[kanjiSeq] || undefined;
-      segments.push({ text: kanjiSeq, ruby: finalRuby, isKanji: true });
-    } else {
-      segments.push({ text: jChar, isKanji: false });
-      jIdx++;
-      if (rIdx < reading.length && reading[rIdx] === jChar) {
-        rIdx++;
-      }
-    }
+): FuriganaAlignment {
+  const text = normalizeJapanesePunctuation(japanese);
+  const rd = normalizeJapanesePunctuation(reading).trim();
+  if (!rd || rd === text) {
+    // Tanpa kanji tidak ada yang perlu diselaraskan; dengan kanji, bacaan yang sama dengan teks tidak membantu.
+    const hasReadingChars = Array.from(text).some(isReadingBearing);
+    return { segments: autoAnnotateFurigana(japanese, excludeKanji), aligned: !hasReadingChars, mismatches: 0 };
   }
-
-  while (jIdx < japanese.length) {
-    const jChar = japanese[jIdx];
-    if (isKanji(jChar)) {
-      const finalRuby = furiganaDict.kanji[jChar] || undefined;
-      segments.push({ text: jChar, ruby: finalRuby, isKanji: true });
-    } else {
-      segments.push({ text: jChar, isKanji: false });
-    }
-    jIdx++;
-  }
-
-  return mergeNonKanjiSegments(segments);
+  const result = alignAlternatives(text, rd, excludeKanji)
+    ?? alignAnnotated(text, rd, excludeKanji)
+    ?? alignBestReading(text, rd, excludeKanji);
+  if (result && result.mismatches <= mismatchBudget(text)) return result;
+  return { segments: autoAnnotateFurigana(japanese, excludeKanji), aligned: false, mismatches: result?.mismatches ?? -1 };
 }
 
 /**
@@ -502,126 +757,9 @@ function alignKanjiReadings(
   origReading: string,
   excludeKanji?: Set<string>
 ): RubySegment[] {
-  if (!origJapanese) {
-    return [];
-  }
-  if (!origReading) {
-    return autoAnnotateFurigana(origJapanese, excludeKanji);
-  }
-
-  const japanese = normalizeJapanesePunctuation(origJapanese);
-  const reading = normalizeJapanesePunctuation(origReading).replace(/\s{2,}/g, ' / ');
-
-  if (japanese === reading) {
-    const hasKanji = Array.from(japanese).some(c => isKanji(c));
-    if (hasKanji) {
-      return autoAnnotateFurigana(origJapanese, excludeKanji);
-    }
-    return [{ text: origJapanese, isKanji: false }];
-  }
-
-  // If reading itself contains kanji, parse it as an annotated reading string (e.g. 漢字[かんじ] or 漢字かんじ)
-  const readingHasKanji = Array.from(reading).some(c => isKanji(c));
-  if (readingHasKanji) {
-    const inlineSegments = parseAnnotatedReading(japanese, reading, excludeKanji);
-    if (inlineSegments.some(s => s.isKanji && s.ruby)) {
-      return inlineSegments;
-    }
-    return autoAnnotateFurigana(origJapanese, excludeKanji);
-  }
-
-  const segments: RubySegment[] = [];
-  let jIdx = 0;
-  let rIdx = 0;
-
-  while (jIdx < japanese.length) {
-    const jChar = japanese[jIdx];
-
-    if (isKanji(jChar) && !(excludeKanji?.has(jChar))) {
-      let kanjiSeq = '';
-      while (jIdx < japanese.length && isKanji(japanese[jIdx]) && !(excludeKanji?.has(japanese[jIdx]))) {
-        kanjiSeq += japanese[jIdx];
-        jIdx++;
-      }
-
-      // Collect the following non-kanji anchor sequence in japanese
-      let anchor = '';
-      let lookAhead = jIdx;
-      while (lookAhead < japanese.length && (!isKanji(japanese[lookAhead]) || excludeKanji?.has(japanese[lookAhead]))) {
-        anchor += japanese[lookAhead];
-        lookAhead++;
-      }
-
-      let readingEnd = rIdx;
-      if (anchor.length > 0) {
-        // In Japanese, each kanji has at least 1 mora (character) in reading
-        const minLen = kanjiSeq.length;
-        let found = -1;
-
-        // Try matching anchor sequence with up to 4 characters prefix
-        for (let aLen = Math.min(anchor.length, 4); aLen >= 1; aLen--) {
-          const subAnchor = anchor.substring(0, aLen);
-          for (let i = rIdx + minLen; i <= reading.length - aLen; i++) {
-            if (startsWithKana(reading, subAnchor, i)) {
-              found = i;
-              break;
-            }
-          }
-          if (found >= 0) break;
-        }
-
-        // Fallback: if minLen was too strict, try from rIdx + 1
-        if (found < 0) {
-          for (let aLen = Math.min(anchor.length, 4); aLen >= 1; aLen--) {
-            const subAnchor = anchor.substring(0, aLen);
-            for (let i = rIdx + 1; i <= reading.length - aLen; i++) {
-              if (startsWithKana(reading, subAnchor, i)) {
-                found = i;
-                break;
-              }
-            }
-            if (found >= 0) break;
-          }
-        }
-
-        if (found >= 0) {
-          readingEnd = found;
-        } else {
-          readingEnd = Math.min(rIdx + kanjiSeq.length * 3, reading.length);
-        }
-      } else {
-        readingEnd = reading.length;
-      }
-
-      const rubyText = reading.substring(rIdx, readingEnd);
-      // Fallback to dictionary if rubyText is empty
-      const finalRuby = rubyText || furiganaDict.words[kanjiSeq] || furiganaDict.kanji[kanjiSeq] || undefined;
-      segments.push({ text: kanjiSeq, ruby: finalRuby, isKanji: true });
-      rIdx = readingEnd;
-    } else if (isKanji(jChar) && excludeKanji?.has(jChar)) {
-      let excludedSeq = '';
-      while (jIdx < japanese.length && isKanji(japanese[jIdx]) && excludeKanji?.has(japanese[jIdx])) {
-        excludedSeq += japanese[jIdx];
-        jIdx++;
-      }
-      segments.push({ text: excludedSeq, isKanji: false });
-    } else {
-      segments.push({ text: jChar, isKanji: false });
-      jIdx++;
-      // Skip any extraneous whitespace in reading if jChar is not whitespace
-      while (rIdx < reading.length && /[\s　]/.test(reading[rIdx]) && !/[\s　]/.test(jChar)) {
-        rIdx++;
-      }
-      // Advance rIdx if reading matches jChar
-      if (rIdx < reading.length && charsMatch(jChar, reading[rIdx])) {
-        rIdx++;
-      } else if (rIdx < reading.length && /[\s　]/.test(jChar) && /[\s　]/.test(reading[rIdx])) {
-        rIdx++;
-      }
-    }
-  }
-
-  return mergeNonKanjiSegments(segments);
+  if (!origJapanese) return [];
+  if (!origReading) return autoAnnotateFurigana(origJapanese, excludeKanji);
+  return alignFurigana(origJapanese, origReading, excludeKanji).segments;
 }
 
 /**

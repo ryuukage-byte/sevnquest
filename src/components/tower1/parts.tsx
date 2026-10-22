@@ -10,7 +10,7 @@ import { BookOpen, CheckCircle2, Ear, Languages, MessageSquare, PenLine, Shapes,
 import { RoomSkill } from '../../engine/tower1/types';
 import { TOWER1_SKILL_LABEL } from '../../data/tower1/floors';
 import { parseRuby } from '../../engine/tower1/jp';
-import { speakJapanese, stopSpeaking } from '../../utils/audio';
+import { getCloudTtsState, hasJapaneseVoice, onCloudTtsChanged, onVoicesChanged, speakJapanese, stopSpeaking } from '../../utils/speech';
 
 /** Teks Jepang dengan markup furigana "[漢字|かんじ]". */
 export const Jp: React.FC<{ text: string; className?: string }> = ({ text, className = '' }) => (
@@ -28,26 +28,21 @@ export const Jp: React.FC<{ text: string; className?: string }> = ({ text, class
   </span>
 );
 
-/** true bila perangkat punya suara Jepang. Suara dimuat asinkron, jadi dipantau. */
+/** true bila suara Jepang bisa diputar (suara perangkat, atau suara cloud bila tersedia). Dipantau karena asinkron. */
 export function useJapaneseVoice(): boolean {
   const [ok, setOk] = useState(() => detectVoice());
   useEffect(() => {
-    if (typeof window === 'undefined' || !('speechSynthesis' in window)) return;
     const update = () => setOk(detectVoice());
-    window.speechSynthesis.addEventListener?.('voiceschanged', update);
+    const offVoices = onVoicesChanged(update);
+    const offCloud = onCloudTtsChanged(update);
     update();
-    return () => window.speechSynthesis.removeEventListener?.('voiceschanged', update);
+    return () => { offVoices(); offCloud(); };
   }, []);
   return ok;
 }
 
 function detectVoice(): boolean {
-  try {
-    if (typeof window === 'undefined' || !('speechSynthesis' in window)) return false;
-    return window.speechSynthesis.getVoices().some(v => v.lang?.toLowerCase().startsWith('ja'));
-  } catch {
-    return false;
-  }
+  return hasJapaneseVoice() || getCloudTtsState() === 'available';
 }
 
 export const SpeakButton: React.FC<{

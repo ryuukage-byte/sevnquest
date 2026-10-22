@@ -74,7 +74,10 @@
     </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@600;700&family=Noto+Sans+JP:wght@500;700&family=Noto+Serif+JP:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Zen+Old+Mincho:wght@600;700;900&display=swap" rel="stylesheet">
+    <!-- CSS font pihak ketiga tidak boleh memblokir render & eksekusi modul: dimuat sebagai preload lalu diaktifkan
+         (font sudah display=swap, jadi teks tampil dengan font cadangan sampai font siap). -->
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@600;700&family=Noto+Sans+JP:wght@500;700&family=Noto+Serif+JP:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Zen+Old+Mincho:wght@600;700;900&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@600;700&family=Noto+Sans+JP:wght@500;700&family=Noto+Serif+JP:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Zen+Old+Mincho:wght@600;700;900&display=swap"></noscript>
   </head>
   <body class="bg-page text-text-primary antialiased selection:bg-gold selection:text-surface-base">
     <script>

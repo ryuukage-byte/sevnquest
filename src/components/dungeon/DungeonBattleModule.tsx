@@ -8,7 +8,8 @@ import {
   RpgTargetIcon, RpgBookIcon, RpgSwordsIcon, RpgHourglassIcon 
 } from '../ui/RpgLineIcons';
 import { TryOutData } from '../../types/content';
-import { playSound, speakJapanese } from '../../utils/audio';
+import { playSound } from '../../utils/audio';
+import { speakJapanese } from '../../utils/speech';
 import { ALL_TRYOUTS, DEFAULT_TRYOUT } from '../../data/tryouts';
 import { CHOUKAI_ENABLED } from '../../data/featureFlags';
 

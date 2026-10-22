@@ -6,7 +6,8 @@ import { KotobaItem } from '../../types/content';
 import { KanjiWritingCanvas, preloadStrokeData } from './KanjiWritingCanvas';
 import { RubyText } from './RubyText';
 import { KanjiComponentsSection } from './KanjiComponentsSection';
-import { playSound, speakJapanese } from '../../utils/audio';
+import { playSound } from '../../utils/audio';
+import { speakJapanese } from '../../utils/speech';
 import { getKotobaBaseExp, calculateWritingReward, WritingRewardResult } from '../../utils/rewards';
 import { parseReadingVariations, getHighlightedKotobaYomikata } from '../../utils/readingHighlightUtils';
 
@@ -119,7 +120,7 @@ export const KotobaWritingPractice: React.FC<KotobaWritingPracticeProps> = ({
       // Final character completed
       setIsTimerRunning(false); // Stop stopwatch on word completion
       playSound('fanfare', soundEnabled);
-      speakJapanese(displayPracticeReading || kotoba.reading || kotoba.word);
+      speakJapanese(kotoba.word, { reading: displayPracticeReading || kotoba.reading });
       const baseExp = getKotobaBaseExp(kotoba);
       const reward = calculateWritingReward({
         baseExp,
@@ -165,7 +166,7 @@ export const KotobaWritingPractice: React.FC<KotobaWritingPracticeProps> = ({
             {/* Yomikata / Reading Card with dynamic syllable highlight per character (matching KanjiWritingCanvas layout) */}
             <div
               className="flex flex-col items-center justify-between px-4 py-3 rounded-2xl bg-surface-inset hover:bg-surface-card border border-border-subtle hover:border-border-primary transition-all shadow-inner group cursor-pointer w-full text-center"
-              onClick={() => speakJapanese(displayPracticeReading || kotoba.reading || kotoba.word)}
+              onClick={() => speakJapanese(kotoba.word, { reading: displayPracticeReading || kotoba.reading })}
               title="Klik untuk mendengar audio kata ini"
             >
               {/* Highlighted Yomikata Reading */}
@@ -314,7 +315,7 @@ export const KotobaWritingPractice: React.FC<KotobaWritingPracticeProps> = ({
               </div>
             ) : (
               <button
-                onClick={() => speakJapanese(displayPracticeReading || kotoba.reading || kotoba.word)}
+                onClick={() => speakJapanese(kotoba.word, { reading: displayPracticeReading || kotoba.reading })}
                 className="btn-physical-secondary mx-auto flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl transition-colors text-xs font-bold"
                 title="Dengarkan pelafalan"
               >
@@ -382,7 +383,7 @@ export const KotobaWritingPractice: React.FC<KotobaWritingPracticeProps> = ({
                   {kotoba.exampleSentence.meaningId}
                 </p>
                 <button
-                  onClick={() => speakJapanese(kotoba.exampleSentence!.japanese)}
+                  onClick={() => speakJapanese(kotoba.exampleSentence!.japanese, { reading: kotoba.exampleSentence!.reading })}
                   className="flex items-center gap-1.5 text-[11px] text-gold hover:underline font-bold uppercase tracking-wider mt-1"
                 >
                   <Volume2 className="w-3 h-3" /> Putar Audio Kalimat

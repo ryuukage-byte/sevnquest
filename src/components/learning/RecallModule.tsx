@@ -3,7 +3,9 @@ import { motion } from 'motion/react';
 import { Flame, CheckCircle2, XCircle, Volume2, ArrowRight, Award, ShieldAlert, BookOpen, Check } from 'lucide-react';
 import confetti from 'canvas-confetti';
 import { RecallQueueItem, RecallPriorityTier } from '../../types/content';
-import { playSound, speakJapanese } from '../../utils/audio';
+import { playSound } from '../../utils/audio';
+import { speakJapanese } from '../../utils/speech';
+import { japaneseSpeechFromPrompt } from '../../utils/speechText';
 import { calcEngineExp, getEntityBaseExp } from '../../utils/rewards';
 import { RubyText } from './RubyText';
 import { planRecallSession, normalizeRecallDaily, RECALL_LIMITS, type RecallDaily } from '../../engine/recall/session';
@@ -540,7 +542,7 @@ export const RecallModule: React.FC<RecallModuleProps> = ({
             )}
 
             <button
-              onClick={() => speakJapanese(currentQ.audioPrompt ?? currentQ.prompt, currentItem.exerciseFormat === 'choukai' ? CHOUKAI_DATABASE[currentItem.itemId]?.speechRate : undefined)}
+              onClick={() => speakJapanese(currentQ.audioPrompt ?? japaneseSpeechFromPrompt(currentQ.prompt), currentItem.exerciseFormat === 'choukai' ? CHOUKAI_DATABASE[currentItem.itemId]?.speechRate : undefined)}
               className="btn-physical-secondary p-1.5 rounded-lg transition-colors"
             >
               <Volume2 className="w-3.5 h-3.5 text-gold" />

@@ -21,7 +21,8 @@ import {
   BookOpen
 } from 'lucide-react';
 import { RubyText } from '../learning/RubyText';
-import { playSound, speakJapanese } from '../../utils/audio';
+import { playSound } from '../../utils/audio';
+import { speakJapanese } from '../../utils/speech';
 import { 
   StarQuestion, 
   JLPT_STAR_QUESTIONS, 

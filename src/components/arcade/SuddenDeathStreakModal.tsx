@@ -17,7 +17,8 @@ import {
   ShieldAlert
 } from 'lucide-react';
 import { KOTOBA_DATABASE as kotobaDb } from '../../data/kotoba';
-import { playSound, speakJapanese } from '../../utils/audio';
+import { playSound } from '../../utils/audio';
+import { speakJapanese } from '../../utils/speech';
 import { RPG_TIERS } from '../../data/rpg/tiers';
 import { UserDeck } from '../../types/rpg';
 import { OFFICIAL_BOOKS } from '../../data/officialBooks';
@@ -445,7 +446,7 @@ export const SuddenDeathStreakModal: React.FC<SuddenDeathStreakModalProps> = ({
                 </span>
                 <button
                   type="button"
-                  onClick={() => speakJapanese(currentQ.word)}
+                  onClick={() => speakJapanese(currentQ.word, { reading: currentQ.reading })}
                   className="btn-physical-secondary p-2 rounded-xl hover:text-gold transition-colors"
                 >
                   <Volume2 className="w-4 h-4" />

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { ArrowLeft, ArrowRight, Crown } from 'lucide-react';
 import { LessonRoom, LessonStep } from '../../../engine/tower1/types';
 import { readingOf } from '../../../engine/tower1/jp';
-import { speakJapanese } from '../../../utils/audio';
+import { speakJapanese } from '../../../utils/speech';
 import { BeatStrip, Jp, RoomFrame, SpeakButton, useJapaneseVoice } from '../parts';
 
 interface Props {

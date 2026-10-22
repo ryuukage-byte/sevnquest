@@ -416,7 +416,7 @@
   {
     "id": "sen_kt_kotoba_0047",
     "japanese": "新しい年が始まって、もう一ヶ月が経ちました。",
-    "reading": "あたらしいとしがはじまって、もういっかいせつがたちました。",
+    "reading": "あたらしいとしがはじまって、もういっかげつがたちました。",
     "translation_id": "Sudah sebulan sejak tahun baru dimulai.",
     "translation_en": "",
     "source": "kotoba_database",
@@ -461,7 +461,7 @@
   {
     "id": "sen_kt_kotoba_0052",
     "japanese": "玄関で靴を脱いでから部屋に入ってください。",
-    "reading": "げんかんでくつをぬいだからへやにはいってください。",
+    "reading": "げんかんでくつをぬいでからへやにはいってください。",
     "translation_id": "Harap melepas sepatu Anda di pintu masuk sebelum memasuki ruangan.",
     "translation_en": "",
     "source": "kotoba_database",
@@ -695,7 +695,7 @@
   {
     "id": "sen_kt_kotoba_0079",
     "japanese": "週末は時々図書館で勉強します。",
-    "reading": "しゅうまつはときどきとしょかんてべんきょうします。",
+    "reading": "しゅうまつはときどきとしょかんでべんきょうします。",
     "translation_id": "Kadang-kadang saya belajar di perpustakaan pada akhir pekan.",
     "translation_en": "",
     "source": "kotoba_database",
@@ -704,7 +704,7 @@
   {
     "id": "sen_kt_kotoba_0080",
     "japanese": "雨が降りそうだから、傘を持って行きなさい。",
-    "reading": "あめがふりそうだから、かさををもっていきなさい。",
+    "reading": "あめがふりそうだから、かさをもっていきなさい。",
     "translation_id": "Sepertinya akan turun hujan, jadi bawalah payung.",
     "translation_en": "",
     "source": "kotoba_database",
@@ -1730,7 +1730,7 @@
   {
     "id": "sen_kt_kotoba_0196",
     "japanese": "「さ来年、日本の大学に留学する予定です。」",
-    "reading": "「さらいねん、にほんのだいがくりゅうがくするよていです。」",
+    "reading": "「さらいねん、にほんのだいがくにりゅうがくするよていです。」",
     "translation_id": "Dua tahun lagi, saya berencana kuliah ke universitas di Jepang.",
     "translation_en": "",
     "source": "kotoba_database",
@@ -12827,7 +12827,7 @@
   {
     "id": "sen_kt_kotoba_1434",
     "japanese": "駅の荷物預かり所にかばんを預けました。",
-    "reading": "えきのにもつあずかりしょにかばんをあづけました。",
+    "reading": "えきのにもつあずかりしょにかばんをあずけました。",
     "translation_id": "Saya menitipkan tas di tempat penitipan barang stasiun.",
     "translation_en": "",
     "source": "kotoba_database",
@@ -15095,7 +15095,7 @@
   {
     "id": "sen_kt_kotoba_1696",
     "japanese": "数学で、正の数と負の数を習いました。",
-    "reading": "すうがくで、せいのかずとまけのかずをならいました。",
+    "reading": "すうがくで、せいのかずとふのかずをならいました。",
     "translation_id": "Dalam matematika, saya belajar bilangan positif dan negatif.",
     "translation_en": "",
     "source": "kotoba_database",
@@ -27434,7 +27434,7 @@
   {
     "id": "sen_kt_kotoba_n2_0006",
     "japanese": "この語のアクセントはどこにあるか。",
-    "reading": "このかたりのあくせんとはどこにあるか。",
+    "reading": "このごのあくせんとはどこにあるか。",
     "translation_id": "Dimana aksen kata ini?",
     "translation_en": "",
     "source": "kotoba_database",
@@ -33869,7 +33869,7 @@
   {
     "id": "sen_kt_kotoba_n1_0328",
     "japanese": "ロープを放すな。",
-    "reading": "ろーぷをほかすな。",
+    "reading": "ろーぷをはなすな。",
     "translation_id": "Jangan lepaskan talinya.",
     "translation_en": "",
     "source": "kotoba_database",
@@ -47837,7 +47837,7 @@
   {
     "id": "sen_kt_kotoba_n1_0515",
     "japanese": "甲の薬は乙の毒。",
-    "reading": "かぶとのくすりはおつのどく。",
+    "reading": "こうのくすりはおつのどく。",
     "translation_id": "Obat bagi satu orang bisa menjadi racun bagi orang lain.",
     "translation_en": "",
     "source": "kotoba_database",
@@ -51734,7 +51734,7 @@
   {
     "id": "sen_kt_kotoba_n1_0972",
     "japanese": "先生が仰っしゃったことを、覚えています。",
-    "reading": "せんせいがおっしゃっしゃったことを、おぼえています。",
+    "reading": "せんせいがおっしゃったことを、おぼえています。",
     "translation_id": "Saya ingat apa yang dikatakan oleh guru.",
     "translation_en": "",
     "source": "kotoba_database",
@@ -64388,7 +64388,7 @@
   {
     "id": "sen_kt_kotoba_n1_2476",
     "japanese": "新茶を摘む季節になった。",
-    "reading": "しんちゃをつまむきせつになった。",
+    "reading": "しんちゃをつむきせつになった。",
     "translation_id": "Ini musim memetik teh segar.",
     "translation_en": "",
     "source": "kotoba_database",
@@ -64595,7 +64595,7 @@
   {
     "id": "sen_kt_kotoba_n1_2503",
     "japanese": "攻めから、守りに転じました。",
-    "reading": "せめから、もりにてんじました。",
+    "reading": "せめから、まもりにてんじました。",
     "translation_id": "Beralih dari menyerang ke bertahan.",
     "translation_en": "",
     "source": "kotoba_database",
@@ -83180,7 +83180,7 @@
   {
     "id": "sen_bp_bp_n1_012_2",
     "japanese": "彼とは、恋愛以前にまず信頼関係が築けていなかった。",
-    "reading": "彼かれとは、恋愛れんあい以前いぜんにまず信頼しんらい関係かんけいが築きづけていなかった。",
+    "reading": "彼かれとは、恋愛れんあい以前いぜんにまず信頼しんらい関係かんけいが築きずけていなかった。",
     "translation_id": "Contoh penggunaan pola 「〜以前」.",
     "translation_en": "With him, it wasn't even a question of romance — we hadn't built any trust to begin with.",
     "source": "bunpou_database",
@@ -85610,7 +85610,7 @@
   {
     "id": "sen_bp_bp_n1_147_2",
     "japanese": "相互の信頼なくして、真の協力関係は築けない。",
-    "reading": "相互そうごの信頼しんらいなくして、真しんの協力きょうりょく関係かんけいは築きづけない。",
+    "reading": "相互そうごの信頼しんらいなくして、真しんの協力きょうりょく関係かんけいは築きずけない。",
     "translation_id": "Contoh penggunaan pola 「〜なくしては」.",
     "translation_en": "Without mutual trust, no genuine partnership can be built.",
     "source": "bunpou_database",

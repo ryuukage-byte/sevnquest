@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { useState, useRef, useCallback, lazy } from 'react';
+import { useState, useRef, useCallback, useEffect, lazy } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Swords, Cloud } from 'lucide-react';
 import { PlayerStats, StageClearData, Mission } from './types/rpg';
@@ -27,6 +27,7 @@ import { useTheme } from './hooks/useTheme';
 import { usePersistence } from './hooks/usePersistence';
 import { useCloudSync } from './hooks/useCloudSync';
 import { usePlayerActions } from './hooks/usePlayerActions';
+import { useFullData } from './hooks/useFullData';
 
 export default function App() {
   // State inti (diinisialisasi dari localStorage lewat state/loadPlayerState.ts)
@@ -70,6 +71,14 @@ export default function App() {
   });
 
   useDailyRollover({ setStats, setDailyMissions, setWeeklyMissions });
+  useFullData(setStats);
+
+  // Masalah suara Jepang (tidak ada suara terpasang / gagal diputar) → toast berisi panduan (utils/speech.ts).
+  useEffect(() => {
+    const onTtsIssue = (e: Event) => showToast((e as CustomEvent<{ message: string }>).detail.message, 9000);
+    window.addEventListener('sevn-tts-issue', onTtsIssue);
+    return () => window.removeEventListener('sevn-tts-issue', onTtsIssue);
+  }, [showToast]);
   useTheme(stats.theme);
   usePersistence({
     stats, stageProgress, dailyMissions, weeklyMissions,
@@ -100,7 +109,7 @@ export default function App() {
             initial={{ opacity: 0, y: -20, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: -20, scale: 0.95 }}
-            className="fixed top-3 left-1/2 -translate-x-1/2 z-50 px-4 py-2 rounded-full panel border border-border-subtle shadow-xl flex items-center gap-2 text-xs font-bold text-text-primary pointer-events-none"
+            className="fixed top-3 left-1/2 -translate-x-1/2 z-50 px-4 py-2 rounded-2xl w-max max-w-[min(92vw,30rem)] panel border border-border-subtle shadow-xl flex items-center gap-2 text-xs font-bold text-text-primary pointer-events-none"
           >
             <Cloud className="w-4 h-4 text-gold animate-pulse shrink-0" />
             <span>{cloudSyncMessage}</span>

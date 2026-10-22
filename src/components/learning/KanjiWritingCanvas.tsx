@@ -2,7 +2,8 @@ import React, { useRef, useState, useEffect, useMemo } from 'react';
 import { RotateCcw, Check, PlayCircle, Eye, EyeOff, Loader2, Clock, Volume2, ArrowRight, BookOpen } from 'lucide-react';
 import { motion } from 'motion/react';
 import HanziWriter from 'hanzi-writer';
-import { playSound, speakJapanese } from '../../utils/audio';
+import { playSound } from '../../utils/audio';
+import { speakJapanese } from '../../utils/speech';
 import { sendScoreEvent } from '../../lib/supabase';
 import { KANA_STROKE_DICT } from '../../data/kanaStrokeDict';
 import { getKanjiBaseExp, calculateWritingReward, WritingRewardResult } from '../../utils/rewards';
@@ -1348,7 +1349,7 @@ export const KanjiWritingCanvas: React.FC<KanjiWritingCanvasProps> = ({
                     <div
                       key={i}
                       onClick={() => {
-                        speakJapanese(displayReading || displayWord);
+                        speakJapanese(displayWord, { reading: displayReading });
                         playSound('click', soundEnabled);
                       }}
                       className="p-2.5 rounded-xl bg-surface-inset hover:bg-surface-elevated border border-border-subtle hover:border-border-primary transition-all cursor-pointer flex items-center justify-between gap-2 shadow-xs group"
@@ -1435,7 +1436,7 @@ export const KanjiWritingCanvas: React.FC<KanjiWritingCanvasProps> = ({
                   <div
                     key={i}
                     className="flex flex-col items-center justify-center py-1 px-1.5 rounded-xl bg-surface-card/80 hover:bg-surface-elevated border border-border-subtle hover:border-border-strong transition-all group cursor-pointer w-full text-center shadow-xs min-h-[42px]"
-                    onClick={() => speakJapanese(cleanAudioWord)}
+                    onClick={() => speakJapanese(rw.word, { reading: cleanAudioWord })}
                     title={`Dengar pengucapan: ${rw.reading} - ${rw.meaningId}`}
                   >
                     <div className="flex items-center justify-center gap-1 w-full min-w-0">

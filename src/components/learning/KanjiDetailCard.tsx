@@ -5,7 +5,8 @@ import { KanjiWritingCanvas, preloadStrokeData } from './KanjiWritingCanvas';
 import { RubyText } from './RubyText';
 import { getEnrichedKanjiRelatedWords } from '../../utils/kanjiVocabularyEnricher';
 import { ErrorBoundary } from '../ErrorBoundary';
-import { speakJapanese, playSound } from '../../utils/audio';
+import { playSound } from '../../utils/audio';
+import { speakJapanese } from '../../utils/speech';
 import { WritingRewardResult } from '../../utils/rewards';
 
 
@@ -349,7 +350,7 @@ export const KanjiDetailCard: React.FC<KanjiDetailCardProps> = ({
                     <button
                       onClick={(e) => {
                         e.stopPropagation();
-                        speakJapanese(rw.reading || rw.word);
+                        speakJapanese(rw.word, { reading: rw.reading });
                       }}
                       className="btn-physical-secondary p-2 rounded-xl text-wine-accent transition-colors shrink-0"
                       title="Dengar pengucapan"

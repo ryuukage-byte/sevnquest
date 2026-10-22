@@ -2,7 +2,8 @@ import React, { useMemo, useRef, useState } from 'react';
 import { CheckCircle2 } from 'lucide-react';
 import { PairRoom, RoomOutcome } from '../../../engine/tower1/types';
 import { hashString, seededShuffle } from '../../../engine/tower1/jp';
-import { playSound, speakJapanese } from '../../../utils/audio';
+import { playSound } from '../../../utils/audio';
+import { speakJapanese } from '../../../utils/speech';
 import { readingOf } from '../../../engine/tower1/jp';
 import { Jp, RoomComplete, RoomFrame, useJapaneseVoice } from '../parts';
 
