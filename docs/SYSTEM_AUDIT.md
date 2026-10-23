@@ -28,11 +28,11 @@ Tidak ada kode aplikasi yang diubah. Satu-satunya perubahan: file ini (belum di-
 |---|---|
 | UI | React 19, Vite 6, TypeScript 5.8, Tailwind 4, `motion`, `lucide-react`, `canvas-confetti` |
 | Bahasa Jepang | `wanakana` (IME), `hanzi-writer` + `hanzi-writer-data` (+ stroke JSON lokal `public/data/kanji-strokes` 4.994 file, `kana-strokes` 486) |
-| Backend | Supabase (`@supabase/supabase-js`) — auth (email + Google ID token), tabel leaderboard/weekly/mastery/activity; proxy same-origin `/supabase-proxy` (Vercel rewrite + `functions/supabase-proxy`) dengan fallback ke `supabase.co` |
+| Backend | Supabase (`@supabase/supabase-js`) — auth (email + Google ID token), tabel leaderboard/weekly/mastery/activity; proxy same-origin `/supabase-proxy` (`functions/supabase-proxy`) dengan fallback ke `supabase.co` |
 | Serverless | `api/captions.ts` (caption YouTube), `api/deck-topic.ts` (deck AI via penyedia OpenAI-compatible); salinan `functions/api/*` untuk Cloudflare |
 | PWA | `public/sw.js`, `manifest.webmanifest`, `PwaInstallModal` |
 | Tes | `tsx --test` (18 file, semua terdaftar di `npm test`) |
-| Deploy | Vercel (`vercel.json`), `gh-pages` script juga ada |
+| Deploy | Cloudflare Pages saja (build dari `main`); `vercel.json` dan script `gh-pages` sudah dihapus |
 | State | **Tanpa library**: 4 `useState` di `App.tsx` (`stats`, `stageProgress`, `dailyMissions`, `weeklyMissions`) + hooks (`usePersistence`, `useCloudSync`, `useDailyRollover`, `usePlayerActions`). Tab keep-alive di `app/MainContent.tsx` |
 
 Struktur: `src/app` (shell), `components/*` (per fitur), `engine/*` (logika murni: recall, fusion, tower1, tower, search, textStudy, morphology, syntax…), `data/*` (konten + konfigurasi RPG), `state/*` (load/derive/canonicalize), `utils/*` (rewards, mastery, ascension, decks…), `lib/supabase.ts` (semua akses backend).

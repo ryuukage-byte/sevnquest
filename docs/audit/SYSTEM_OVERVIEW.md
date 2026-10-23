@@ -9,13 +9,13 @@
 | Serverless | `api/captions.ts` (caption YouTube via endpoint internal tak resmi), `api/deck-topic.ts` (LLM opsional, rate-limit 10/menit/IP in-memory) | Salinan Cloudflare Pages Functions di `functions/` |
 | PWA | `public/sw.js` (cache `sevnquest-v2.7`), `manifest.webmanifest`, `PwaInstallModal` | HTML network-first; aset statis cache-first; `/api/*`, Supabase, Google: network-only |
 | Tes | `tsx --test` (Node 22 `node:test`) — 22 file, 205 tes | tanpa CI |
-| Deploy | Vercel (`vercel.json`) **dan** Cloudflare Pages (`functions/`, `public/_headers`; PR preview Cloudflare terdeteksi) | dua target deploy dipelihara paralel |
+| Deploy | Cloudflare Pages saja (`functions/`, `public/_headers`; build dari `main`, PR preview otomatis) | satu target deploy; Vercel dan `gh-pages` sudah dilepas |
 
 Dependensi yang tampak tak dipakai runtime 🔶: `express`, `dotenv`, `jimp`, `esbuild`, `gh-pages` (perlu `grep` impor untuk memastikan). `.env.example` menyebut `server/engineServer.ts` & `scripts/ai_consultant.mjs` yang **tidak ada** di repo ✅.
 
 ## 2. Struktur folder ✅
 ```
-index.html, vite.config.ts, vercel.json, tsconfig.json
+index.html, vite.config.ts, tsconfig.json
 api/                 Vercel serverless (captions, deck-topic) + tes captions
 functions/           Cloudflare Pages Functions (captions, deck-topic, supabase-proxy)
 public/              sw.js, manifest, _headers, ikon, data/{kanji,kana}-strokes, avatars
