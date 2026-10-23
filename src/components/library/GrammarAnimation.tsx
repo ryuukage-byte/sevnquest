@@ -25,6 +25,8 @@ const SEGMENT_CLASS: Record<GrammarSegmentRole, string> = {
   added: 'text-state-success',
   changed: 'text-gold',
   suffix: 'text-indigo',
+  partner: 'text-choukai',
+  prefix: 'text-indigo',
 };
 
 const CATEGORY_LABEL: Record<GrammarVerbCategory, string> = {
@@ -41,6 +43,8 @@ const SEGMENT_STAGE: Partial<Record<GrammarSegmentRole, GrammarAnimationStage['k
   added: 'add',
   suffix: 'suffix',
   changed: 'contract',
+  partner: 'partner',
+  prefix: 'prefix',
 };
 
 export const GrammarAnimation: React.FC<GrammarAnimationProps> = ({ recipe, soundEnabled = true }) => {
@@ -120,17 +124,21 @@ export const GrammarAnimation: React.FC<GrammarAnimationProps> = ({ recipe, soun
 
   const onSegmentClick = (role: GrammarSegmentRole) => {
     const kind = SEGMENT_STAGE[role];
-    // Bagian yang berubah bisa berasal dari tahap perubahan (sebelum akhiran) atau kontraksi.
+    // Akhiran verba bisa "dibuang" (Golongan 2) atau "diganti" sebaris (Golongan 1); bagian yang berubah
+    // bisa berasal dari penggantian itu, perubahan sebelum akhiran, atau kontraksi.
     const idx = role === 'changed'
-      ? anim.stages.findIndex(s => s.kind === 'change' || s.kind === 'contract')
-      : kind ? anim.stages.findIndex(s => s.kind === kind) : -1;
+      ? anim.stages.findIndex(s => s.kind === 'shift' || s.kind === 'change' || s.kind === 'contract')
+      : role === 'ending' || role === 'removed'
+        ? anim.stages.findIndex(s => s.kind === 'remove' || s.kind === 'shift')
+        : kind ? anim.stages.findIndex(s => s.kind === kind) : -1;
     if (idx >= 0) goTo(idx);
   };
 
   const enter = (role: GrammarSegmentRole) => {
     if (reduceMotion || role === 'stem') return false;
     if (role === 'added') return { opacity: 0, y: -12 };
-    if (role === 'suffix') return { opacity: 0, x: 28 };
+    if (role === 'suffix' || role === 'partner') return { opacity: 0, x: 28 };
+    if (role === 'prefix') return { opacity: 0, x: -28 };
     if (role === 'removed') return { opacity: 1 };
     if (role === 'changed') return { opacity: 0, scale: 0.6 };
     return { opacity: 0 };
