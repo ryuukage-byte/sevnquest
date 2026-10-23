@@ -72,6 +72,8 @@ test('contoh kunci: verba khusus dan verba tak beraturan', () => {
   assert.equal(build('bp_n5_070', 'v_kau').result.japanese, '買わないでください');
   assert.equal(build('bp_n5_070', 'v_kuru').result.reading, 'こないでください');
   assert.equal(build('bp_n5_037', 'v_kaeru').result.japanese, '帰りたいです');
+  assert.equal(build('bp_n5_057', 'v_hairu').result.japanese, '入ってもいいです');
+  assert.equal(build('bp_n5_070', 'v_hairu').result.japanese, '入らないでください');
   assert.equal(build('bp_n5_040', 'v_kaku').result.japanese, '書いたことがある');
   // Verba khusus menjelaskan kekhususannya di tahap pertama.
   assert.match(build('bp_n5_053', 'v_kaeru').stages[0].note, /Golongan 1/);

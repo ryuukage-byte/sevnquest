@@ -49,6 +49,10 @@ const SPECIAL_VERBS: Record<string, GrammarAnimationVerb> = {
     id: 'v_kaeru', kanji: '帰る', reading: 'かえる', meaningId: 'Pulang', category: 'khusus',
     specialNote: 'Meski berakhiran -eru seperti Golongan 2, る-nya tidak sekadar dibuang.',
   },
+  v_hairu: {
+    id: 'v_hairu', kanji: '入る', reading: 'はいる', meaningId: 'Masuk', category: 'khusus',
+    specialNote: 'Meski berakhiran -iru seperti Golongan 2, る-nya tidak sekadar dibuang.',
+  },
   v_iku: {
     id: 'v_iku', kanji: '行く', reading: 'いく', meaningId: 'Pergi', category: 'khusus',
     specialNote: 'Pengecualian bentuk て/た: 行って / 行った, bukan 行いて / 行いた.',
@@ -69,7 +73,7 @@ export const GRAMMAR_ANIMATION_RECIPES: GrammarAnimationRecipe[] = [
     meaningTemplate: 'Tolong {v}.',
     suffixNote: 'ください ditempel setelah bentuk て untuk meminta seseorang melakukan sesuatu dengan sopan.',
     defaultVerbId: 'v_kaku',
-    specialVerbIds: ['v_iku', 'v_kaeru'],
+    specialVerbIds: ['v_iku', 'v_kaeru', 'v_hairu'],
   },
   {
     bunpouId: 'bp_n5_070',
@@ -78,7 +82,7 @@ export const GRAMMAR_ANIMATION_RECIPES: GrammarAnimationRecipe[] = [
     meaningTemplate: 'Tolong jangan {v}.',
     suffixNote: 'でください ditempel setelah bentuk ない untuk meminta seseorang TIDAK melakukan sesuatu dengan sopan.',
     defaultVerbId: 'v_taberu',
-    specialVerbIds: ['v_kaeru', 'v_kau'],
+    specialVerbIds: ['v_kaeru', 'v_hairu', 'v_kau'],
   },
   {
     bunpouId: 'bp_n5_037',
@@ -87,7 +91,7 @@ export const GRAMMAR_ANIMATION_RECIPES: GrammarAnimationRecipe[] = [
     meaningTemplate: 'Saya ingin {v}.',
     suffixNote: 'たい ditempel pada batang ます (bentuk ます tanpa ます) untuk menyatakan keinginan pembicara; です membuatnya sopan.',
     defaultVerbId: 'v_taberu',
-    specialVerbIds: ['v_kaeru'],
+    specialVerbIds: ['v_kaeru', 'v_hairu'],
   },
   {
     bunpouId: 'bp_n5_057',
@@ -96,7 +100,7 @@ export const GRAMMAR_ANIMATION_RECIPES: GrammarAnimationRecipe[] = [
     meaningTemplate: 'Boleh {v}.',
     suffixNote: 'もいいです ditempel setelah bentuk て untuk memberi atau meminta izin ("boleh ...").',
     defaultVerbId: 'v_kaku',
-    specialVerbIds: ['v_iku', 'v_kaeru'],
+    specialVerbIds: ['v_iku', 'v_kaeru', 'v_hairu'],
   },
   {
     bunpouId: 'bp_n5_040',
@@ -105,7 +109,7 @@ export const GRAMMAR_ANIMATION_RECIPES: GrammarAnimationRecipe[] = [
     meaningTemplate: 'Pernah {v}.',
     suffixNote: 'ことがある ditempel setelah bentuk た untuk menyatakan pengalaman yang pernah dialami.',
     defaultVerbId: 'v_kaku',
-    specialVerbIds: ['v_iku', 'v_kaeru'],
+    specialVerbIds: ['v_iku', 'v_kaeru', 'v_hairu'],
   },
 ];
 
