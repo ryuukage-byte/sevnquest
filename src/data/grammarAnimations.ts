@@ -30,10 +30,12 @@ export interface GrammarBranch {
   suffixReading?: string;
   /** Kontraksi lisan setelah akhiran ditempel (mis. てしまう → ちゃう). */
   contract?: GrammarTransform;
-  /** Arti kalimat jadi; {v} diganti arti verba (huruf kecil), {V} versi berhuruf besar. */
+  /** Arti kalimat jadi; {v} arti verba, {p} arti pasifnya (huruf kecil); {V}/{P} versi berhuruf besar. */
   meaningTemplate: string;
   /** Penjelasan saat bagian akhiran diketuk; default dibuat dari bentuk + akhiran. */
   suffixNote?: string;
+  /** Verba yang tidak berlaku untuk cabang ini saja (mis. bentuk singkat hanya untuk Golongan 1). */
+  excludeVerbIds?: string[];
 }
 
 export interface GrammarAnimationRecipe {
@@ -55,34 +57,36 @@ export interface GrammarAnimationVerb {
   reading: string;
   meaningId: string;
   category: GrammarVerbCategory;
+  /** Arti bentuk pasif ("ditulis"); dipakai lewat {p} di template arti. */
+  passiveId: string;
   /** Kenapa verba ini khusus; tampil di tahap bentuk kamus. */
   specialNote?: string;
 }
 
 /** Contoh inti: satu Golongan 1, satu Golongan 2, dan kedua verba Golongan 3. */
 const CORE_VERBS: GrammarAnimationVerb[] = [
-  { id: 'v_kaku', kanji: '書く', reading: 'かく', meaningId: 'Menulis', category: 'gol1' },
-  { id: 'v_taberu', kanji: '食べる', reading: 'たべる', meaningId: 'Makan', category: 'gol2' },
-  { id: 'v_suru', kanji: 'する', reading: 'する', meaningId: 'Melakukan', category: 'gol3' },
-  { id: 'v_kuru', kanji: '来る', reading: 'くる', meaningId: 'Datang', category: 'gol3' },
+  { id: 'v_kaku', kanji: '書く', reading: 'かく', meaningId: 'Menulis', passiveId: 'Ditulis', category: 'gol1' },
+  { id: 'v_taberu', kanji: '食べる', reading: 'たべる', meaningId: 'Makan', passiveId: 'Dimakan', category: 'gol2' },
+  { id: 'v_suru', kanji: 'する', reading: 'する', meaningId: 'Melakukan', passiveId: 'Dilakukan', category: 'gol3' },
+  { id: 'v_kuru', kanji: '来る', reading: 'くる', meaningId: 'Datang', passiveId: 'Didatangi', category: 'gol3' },
 ];
 
 const SPECIAL_VERBS: Record<string, GrammarAnimationVerb> = {
   v_kaeru: {
-    id: 'v_kaeru', kanji: '帰る', reading: 'かえる', meaningId: 'Pulang', category: 'khusus',
+    id: 'v_kaeru', kanji: '帰る', reading: 'かえる', meaningId: 'Pulang', passiveId: 'Ditinggal pulang', category: 'khusus',
     specialNote: 'Meski berakhiran -eru seperti Golongan 2, る-nya tidak sekadar dibuang.',
   },
   v_hairu: {
-    id: 'v_hairu', kanji: '入る', reading: 'はいる', meaningId: 'Masuk', category: 'khusus',
+    id: 'v_hairu', kanji: '入る', reading: 'はいる', meaningId: 'Masuk', passiveId: 'Dimasuki', category: 'khusus',
     specialNote: 'Meski berakhiran -iru seperti Golongan 2, る-nya tidak sekadar dibuang.',
   },
   v_iku: {
-    id: 'v_iku', kanji: '行く', reading: 'いく', meaningId: 'Pergi', category: 'khusus',
+    id: 'v_iku', kanji: '行く', reading: 'いく', meaningId: 'Pergi', passiveId: 'Ditinggal pergi', category: 'khusus',
     specialNote: 'Pengecualian bentuk て/た: 行って / 行った, bukan 行いて / 行いた.',
   },
   v_kau: {
-    id: 'v_kau', kanji: '買う', reading: 'かう', meaningId: 'Membeli', category: 'khusus',
-    specialNote: 'Akhiran う berubah menjadi わ, bukan あ: 買わない.',
+    id: 'v_kau', kanji: '買う', reading: 'かう', meaningId: 'Membeli', passiveId: 'Dibeli', category: 'khusus',
+    specialNote: 'Akhiran う berubah menjadi わ, bukan あ: 買わない, 買わせる, 買われる.',
   },
 };
 
@@ -98,9 +102,12 @@ const SPECIALS_BY_FORM: Partial<Record<ConjugationForm, string[]>> = {
   potential: ['v_kaeru', 'v_hairu'],
   ba: ['v_kaeru', 'v_hairu'],
   imperative: ['v_kaeru', 'v_hairu'],
+  causative: ['v_kaeru', 'v_hairu', 'v_kau'],
+  passive: ['v_kaeru', 'v_hairu', 'v_kau'],
+  causative_passive: ['v_kaeru', 'v_hairu', 'v_kau'],
 };
 
-type BranchOptions = Partial<Pick<GrammarBranch, 'suffixReading' | 'suffixNote' | 'change' | 'contract'>>;
+type BranchOptions = Partial<Pick<GrammarBranch, 'suffixReading' | 'suffixNote' | 'change' | 'contract' | 'excludeVerbIds'>>;
 type RecipeOptions = Partial<Pick<GrammarAnimationRecipe, 'defaultVerbId' | 'excludeVerbIds' | 'verbBranchOnly'>>;
 
 /** Satu cabang pola. */
@@ -110,8 +117,8 @@ function b(label: string, form: ConjugationForm, suffix: string, meaningTemplate
 
 /** Pola satu cabang: bentuk + akhiran. */
 function r(bunpouId: string, form: ConjugationForm, suffix: string, meaningTemplate: string, opts: BranchOptions & RecipeOptions = {}): GrammarAnimationRecipe {
-  const { defaultVerbId = 'v_kaku', excludeVerbIds, verbBranchOnly, ...branchOpts } = opts;
-  return { bunpouId, branches: [b(FORM_SHORT[form] ?? form, form, suffix, meaningTemplate, branchOpts)], defaultVerbId, excludeVerbIds, verbBranchOnly };
+  const { defaultVerbId = 'v_kaku', verbBranchOnly, ...branchOpts } = opts;
+  return { bunpouId, branches: [b(FORM_SHORT[form] ?? form, form, suffix, meaningTemplate, branchOpts)], defaultVerbId, verbBranchOnly };
 }
 
 /** Pola bercabang: beberapa cara membentuk, dipilih di pemilih bentuk. */
@@ -123,6 +130,7 @@ function rb(bunpouId: string, branches: GrammarBranch[], opts: RecipeOptions = {
 const FORM_SHORT: Partial<Record<ConjugationForm, string>> = {
   jisho: 'Vる', te: 'Vて', ta: 'Vた', nai: 'Vない', nakatta: 'Vなかった', masu_stem: 'Vます',
   potential: 'Vれる', ba: 'Vば', imperative: 'V perintah',
+  causative: 'V(さ)せる', passive: 'V(ら)れる', causative_passive: 'V(さ)せられる',
 };
 
 /* Perubahan & kontraksi. Pasangan て/で: verba berakhiran ぬ/ぶ/む/ぐ memakai で. */
@@ -144,6 +152,20 @@ const NAI_TO_NAKEREBA: GrammarTransform = { pairs: [['ない', 'なければ']],
 const CONTRACT_NAKEREBA: GrammarTransform = { pairs: [['なければ', 'なきゃ']], note: 'Dalam percakapan santai, なければ menyusut menjadi なきゃ.' };
 const NAI_TO_NAKUTE: GrammarTransform = { pairs: [['ない', 'なくて']], note: 'ない diubah menjadi なくて (bentuk て dari ない).' };
 const NAI_TO_NAKU: GrammarTransform = { pairs: [['ない', 'なく']], note: 'ない diubah menjadi なく agar bisa disambung dengan なる.' };
+const RU_TO_TE: GrammarTransform = {
+  pairs: [['る', 'て']],
+  note: 'Bentuk ini berperilaku seperti verba Golongan 2: る diganti て (bentuk て).',
+};
+const RU_TO_TA: GrammarTransform = {
+  pairs: [['る', 'た']],
+  note: 'Bentuk ini berperilaku seperti verba Golongan 2: る diganti た (bentuk lampau).',
+};
+/** Kausatif-pasif singkat: hanya Golongan 1 yang tidak berakhiran す (書かされる, bukan 話さされる). */
+const CONTRACT_CAUS_PASSIVE: GrammarTransform = {
+  pairs: [['せられる', 'される']],
+  note: 'Untuk Golongan 1 (kecuali akhiran す), せられる sering disingkat menjadi される.',
+};
+const NOT_GODAN = ['v_taberu', 'v_suru', 'v_kuru'];
 const POTENTIAL_TO_MASU: GrammarTransform = {
   pairs: [['る', 'ます']],
   note: 'Bentuk potensial berperilaku seperti verba Golongan 2: る diganti ます.',
@@ -480,6 +502,26 @@ export const GRAMMAR_ANIMATION_RECIPES: GrammarAnimationRecipe[] = [
     b('Vたら', 'ta', 'らよかった', 'Seharusnya {v} (menyesal).'),
     b('Vなかったら', 'nakatta', 'らよかった', 'Seharusnya tidak {v}.'),
   ]),
+
+  // ── Kausatif ／ pasif ／ potensial ────────────────────────
+  r('bp_n4_070', 'causative', '', 'Menyuruh / membiarkan (orang) {v}.'),
+  r('bp_n4_060', 'causative', 'ください', 'Izinkan saya {v}.', { change: RU_TO_TE }),
+  rb('w1d1g3', [
+    b('ください', 'causative', 'ください', 'Izinkan saya {v}.', { change: RU_TO_TE }),
+    b('もらえますか', 'causative', 'もらえますか', 'Bolehkah saya {v}?', { change: RU_TO_TE }),
+    b('もらえませんか', 'causative', 'もらえませんか', 'Bolehkah kiranya saya {v}?', { change: RU_TO_TE }),
+  ]),
+  rb('bp_n4_061', [
+    b('Panjang', 'causative_passive', '', 'Terpaksa {v} (disuruh orang).'),
+    b('Singkat', 'causative_passive', '', 'Terpaksa {v} (disuruh orang).', { contract: CONTRACT_CAUS_PASSIVE, excludeVerbIds: NOT_GODAN }),
+  ]),
+  r('bp_n4_187', 'passive', '', '{P}. (pasif)'),
+  rb('w1d1g1', [
+    b('Vれる', 'passive', '', '{P}. (pasif)'),
+    b('Vれている', 'passive', 'いる', 'Sudah / sedang {p}. (pasif)', { change: RU_TO_TE }),
+  ]),
+  r('w1d1g2', 'passive', '', '(Merasa dirugikan karena) {p}.', { change: RU_TO_TA }),
+  r('bp_n4_188', 'potential', '', 'Bisa {v}.'),
 ];
 
 const RECIPE_BY_ID = new Map(GRAMMAR_ANIMATION_RECIPES.map(rec => [rec.bunpouId, rec]));
@@ -490,9 +532,9 @@ export function getGrammarAnimationRecipe(bunpouId: string): GrammarAnimationRec
 
 /** Verba contoh untuk satu cabang pola: verba inti + verba khusus bentuk itu, tanpa yang dikecualikan pola. */
 export function getRecipeVerbs(recipe: GrammarAnimationRecipe, branchIdx = 0): GrammarAnimationVerb[] {
-  const form = recipe.branches[branchIdx]?.form ?? recipe.branches[0].form;
-  const specials = (SPECIALS_BY_FORM[form] ?? []).map(id => SPECIAL_VERBS[id]).slice(0, MAX_SPECIAL_VERBS);
-  const excluded = new Set(recipe.excludeVerbIds ?? []);
+  const branch = recipe.branches[branchIdx] ?? recipe.branches[0];
+  const specials = (SPECIALS_BY_FORM[branch.form] ?? []).map(id => SPECIAL_VERBS[id]).slice(0, MAX_SPECIAL_VERBS);
+  const excluded = new Set([...(recipe.excludeVerbIds ?? []), ...(branch.excludeVerbIds ?? [])]);
   return [...CORE_VERBS, ...specials].filter(v => !excluded.has(v.id));
 }
 
@@ -532,6 +574,9 @@ const FORM_LABEL: Partial<Record<ConjugationForm, string>> = {
   potential: 'Bentuk potensial',
   ba: 'Bentuk ば',
   imperative: 'Bentuk perintah',
+  causative: 'Bentuk kausatif',
+  passive: 'Bentuk pasif',
+  causative_passive: 'Bentuk kausatif-pasif',
 };
 
 /**
@@ -558,8 +603,10 @@ function ruleNoteFor(form: ConjugationForm, group: EngineVerbGroup, word: string
 }
 
 function fillMeaning(template: string, verb: GrammarAnimationVerb): string {
+  const cap = (t: string) => t.charAt(0).toUpperCase() + t.slice(1);
   const v = verb.meaningId.split('/')[0].trim().toLowerCase();
-  return template.replace('{V}', v.charAt(0).toUpperCase() + v.slice(1)).replace('{v}', v);
+  const p = verb.passiveId.toLowerCase();
+  return template.replace('{V}', cap(v)).replace('{v}', v).replace('{P}', cap(p)).replace('{p}', p);
 }
 
 /** Ganti kemunculan TERAKHIR pasangan pertama yang cocok; null bila tak ada yang cocok. */

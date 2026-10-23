@@ -54,8 +54,12 @@ test('contoh per cabang: 1 Gol. 1, 1 Gol. 2, maks 2 Gol. 3, maks 3 verba khusus 
     const verbs = getRecipeVerbs(r, i);
     const count = (c: string) => verbs.filter(v => v.category === c).length;
     assert.equal(count('gol1'), 1, tag);
-    assert.equal(count('gol2'), 1, tag);
-    assert.ok(count('gol3') >= 1 && count('gol3') <= 2, tag);
+    // Cabang yang sengaja hanya berlaku untuk sebagian golongan (mis. kausatif-pasif singkat) boleh kosong.
+    if (!br.excludeVerbIds?.length) {
+      assert.equal(count('gol2'), 1, tag);
+      assert.ok(count('gol3') >= 1, tag);
+    }
+    assert.ok(count('gol2') <= 1 && count('gol3') <= 2, tag);
     assert.ok(count('khusus') <= MAX_SPECIAL_VERBS, tag);
     if (br.form === 'jisho') assert.equal(count('khusus'), 0, `${tag}: bentuk kamus tidak berubah, verba khusus tak relevan`);
     for (const v of verbs.filter(v => v.category === 'khusus')) assert.ok(v.specialNote, `${v.kanji} specialNote`);
@@ -68,7 +72,7 @@ test('kalimat jadi: bacaan kana penuh; tanpa perubahan/kontraksi = bentuk engine
       const anim = buildGrammarAnimation(r, v, i);
       assert.ok(anim, `${tag} ${v.kanji}`);
       assert.ok(wanakana.isKana(anim.result.reading), `${tag} ${v.kanji} bacaan berkanji: ${anim.result.reading}`);
-      assert.ok(!/\{v\}|\{V\}/.test(anim.result.meaning), `${tag} ${v.kanji} meaning`);
+      assert.ok(!/\{[vVpP]\}/.test(anim.result.meaning), `${tag} ${v.kanji} meaning`);
       if (!br.change && !br.contract) {
         const form = conjugateVerb(v.kanji, v.reading).forms[br.form];
         assert.equal(anim.result.japanese, form.japanese + br.suffix, `${tag} ${v.kanji}`);
@@ -168,7 +172,7 @@ test('contoh kunci: verba khusus, verba tak beraturan, bacaan akhiran, dan penge
 });
 
 test('kontraksi bersuara: verba berakhiran む/ぶ/ぬ/ぐ memakai で → じゃう / どく / じゃ', () => {
-  const nomu = { id: 'v_nomu', kanji: '飲む', reading: 'のむ', meaningId: 'Minum', category: 'gol1' as const };
+  const nomu = { id: 'v_nomu', kanji: '飲む', reading: 'のむ', meaningId: 'Minum', passiveId: 'Diminum', category: 'gol1' as const };
   const result = (bunpouId: string, label: string | null) => {
     const r = getGrammarAnimationRecipe(bunpouId)!;
     const i = label === null ? 0 : r.branches.findIndex(br => br.label === label);
@@ -178,4 +182,24 @@ test('kontraksi bersuara: verba berakhiran む/ぶ/ぬ/ぐ memakai で → じ�
   assert.equal(result('bp_n4_099', 'とく').japanese, '飲んどく');
   assert.equal(result('bp_n5_045', null).japanese, '飲んじゃいけない');
   assert.equal(result('bp_n4_105', 'ちゃう').reading, 'のんじゃう');
+});
+
+test('kausatif, pasif, dan kausatif-pasif (termasuk bentuk singkat) terbentuk dengan benar', () => {
+  assert.equal(build('bp_n4_070', null, 'v_kau').result.japanese, '買わせる');
+  assert.equal(build('bp_n4_070', null, 'v_kuru').result.reading, 'こさせる');
+  assert.equal(build('bp_n4_060', null, 'v_kaeru').result.japanese, '帰らせてください');
+  assert.equal(build('w1d1g3', 'もらえませんか', 'v_suru').result.japanese, 'させてもらえませんか');
+  assert.equal(build('bp_n4_187', null, 'v_kaku').result.japanese, '書かれる');
+  assert.equal(build('bp_n4_187', null, 'v_kaku').result.meaning, 'Ditulis. (pasif)');
+  assert.equal(build('w1d1g1', 'Vれている', 'v_kaku').result.japanese, '書かれている');
+  assert.equal(build('w1d1g2', null, 'v_kaeru').result.japanese, '帰られた');
+  assert.equal(build('w1d1g2', null, 'v_kaeru').result.meaning, '(Merasa dirugikan karena) ditinggal pulang.');
+  assert.equal(build('bp_n4_188', null, 'v_suru').result.japanese, 'できる');
+  // Kausatif-pasif: panjang untuk semua, singkat hanya Golongan 1.
+  assert.equal(build('bp_n4_061', 'Panjang', 'v_taberu').result.japanese, '食べさせられる');
+  assert.equal(build('bp_n4_061', 'Singkat', 'v_kaku').result.japanese, '書かされる');
+  assert.equal(build('bp_n4_061', 'Singkat', 'v_kau').result.reading, 'かわされる');
+  const short = getGrammarAnimationRecipe('bp_n4_061')!;
+  const shortVerbs = getRecipeVerbs(short, 1).map(v => v.id);
+  for (const id of ['v_taberu', 'v_suru', 'v_kuru']) assert.ok(!shortVerbs.includes(id), `bentuk singkat tidak berlaku untuk ${id}`);
 });
