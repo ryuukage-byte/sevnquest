@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import type { DeckItemCategory } from '../../types/rpg';
 import { AnimatePresence } from 'motion/react';
-import { Search, Filter, ChevronDown, Bookmark, LayoutGrid, List, BookOpen, Zap, Trash2, ChevronRight } from 'lucide-react';
+import { Search, Filter, ChevronDown, Bookmark, LayoutGrid, List, BookOpen, Zap, Trash2, ChevronRight, PlayCircle } from 'lucide-react';
 import { ScrollIcon } from '../ui/EngravingIcons';
 import { BUNPOU_DATABASE } from '../../data/bunpou';
 import { ALL_GRAMMAR_FUNCTION_CATEGORIES } from '../../data/bunpouMetadata';
@@ -16,6 +16,9 @@ import { searchJapanese, createSubsetIndex } from '../../engine/search/universal
 import { JapaneseSearchInput } from '../common/JapaneseSearchInput';
 import { DeckBookmarkPicker } from '../deck/DeckBookmarkPicker';
 import { getBunpouCategoryTags } from '../../utils/bunpouSkillAdapter';
+import { BUNPOU_VIDEO_LINKS } from '../../data/bunpouVideos';
+import { parseShortVideoUrl, type ShortVideo } from '../../utils/shortVideo';
+import { PatternVideoScreen } from './PatternVideoScreen';
 
 const LEVEL_OPTIONS = [
   { value: 'all', label: 'Semua Level' },
@@ -73,6 +76,7 @@ export const BunpouLibraryView: React.FC<BunpouLibraryViewProps> = ({
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [functionFilter, setFunctionFilter] = useState<string>('Semua Fungsi');
   const [selectedItem, setSelectedItem] = useState<BunpouItem | null>(null);
+  const [videoTarget, setVideoTarget] = useState<{ title: string; video: ShortVideo } | null>(null);
   const [viewMode, setViewMode] = useState<'cards' | 'compact'>(() => {
     try {
       const saved = localStorage.getItem('bunpou_library_view_mode');
@@ -434,6 +438,7 @@ export const BunpouLibraryView: React.FC<BunpouLibraryViewProps> = ({
             const titleInfo = getGrammarTitleInfo(item);
             const categoryTags = getBunpouCategoryTags(item);
             const levelLabel = item.baseLevel ? `Level ${item.baseLevel}` : `Level ${item.level}`;
+            const video = parseShortVideoUrl(BUNPOU_VIDEO_LINKS[item.id] ?? '');
 
             return (
               <div
@@ -451,6 +456,21 @@ export const BunpouLibraryView: React.FC<BunpouLibraryViewProps> = ({
                   </span>
 
                   <div className="flex items-center gap-1.5 shrink-0">
+                    {video && (
+                      <button
+                        type="button"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setVideoTarget({ title: titleInfo.mainTitle, video });
+                          playSound('click', soundEnabled);
+                        }}
+                        className="btn-physical-secondary p-1.5 rounded-lg hover:text-indigo transition-all shrink-0 cursor-pointer"
+                        title="Tonton video penjelasan"
+                        aria-label="Tonton video penjelasan"
+                      >
+                        <PlayCircle className="w-3.5 h-3.5" />
+                      </button>
+                    )}
                     {onRemoveItem && (
                       <button
                         type="button"
@@ -559,6 +579,19 @@ export const BunpouLibraryView: React.FC<BunpouLibraryViewProps> = ({
             onRewardPlayer={onRewardPlayer}
             onRecordInteraction={onRecordInteraction}
             onCompleteStudyItem={onCompleteStudyItem}
+          />
+        )}
+      </AnimatePresence>
+
+      {/* Video Penjelasan */}
+      <AnimatePresence>
+        {videoTarget && (
+          <PatternVideoScreen
+            key={videoTarget.video.embedUrl}
+            title={videoTarget.title}
+            video={videoTarget.video}
+            onClose={() => setVideoTarget(null)}
+            soundEnabled={soundEnabled}
           />
         )}
       </AnimatePresence>
