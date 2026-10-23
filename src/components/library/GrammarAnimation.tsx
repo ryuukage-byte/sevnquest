@@ -136,6 +136,12 @@ export const GrammarAnimation: React.FC<GrammarAnimationProps> = ({ recipe, soun
         </span>
       </div>
 
+      {recipe.verbBranchOnly && (
+        <p className="text-[11px] text-text-muted leading-relaxed font-sans">
+          Animasi ini menunjukkan sambungan dengan kata kerja. Sambungan kata benda/sifat ada di rumus di bawah.
+        </p>
+      )}
+
       {/* Pilihan verba: per golongan + verba khusus pola ini */}
       <div className="flex flex-wrap items-center gap-x-3 gap-y-1.5" role="radiogroup" aria-label="Pilih kata kerja">
         {verbGroups.map(g => (
