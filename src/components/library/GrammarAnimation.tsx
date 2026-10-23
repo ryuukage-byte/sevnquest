@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { motion, useReducedMotion } from 'motion/react';
-import { Play, Pause, RotateCcw, ChevronLeft, ChevronRight, Volume2, Clapperboard } from 'lucide-react';
+import { Play, Pause, RotateCcw, ChevronLeft, ChevronRight, Volume2, Clapperboard, ArrowRight } from 'lucide-react';
 import {
   GRAMMAR_ANIMATION_VERBS,
   buildGrammarAnimation,
@@ -19,10 +19,10 @@ const AUTOPLAY_MS = 1600;
 
 const SEGMENT_CLASS: Record<GrammarSegmentRole, string> = {
   stem: 'text-text-primary',
-  ending: 'text-gold underline decoration-dotted underline-offset-8',
-  removed: 'text-state-danger line-through',
+  ending: 'text-text-primary underline decoration-dotted decoration-state-danger underline-offset-8',
+  removed: 'text-state-danger',
   added: 'text-state-success',
-  suffix: 'text-kotoba',
+  suffix: 'text-indigo',
 };
 
 /** Ketuk bagian kata → lompat ke tahap yang menjelaskan bagian itu. */
@@ -110,19 +110,22 @@ export const GrammarAnimation: React.FC<GrammarAnimationProps> = ({ recipe, soun
     return { opacity: 0 };
   };
 
+  const textLength = stage.segments.reduce((n, s) => n + s.text.length, 0);
+
   return (
-    <div className="p-3.5 sm:p-4 rounded-2xl bg-surface-inset border border-border-subtle shadow-xs space-y-3">
+    <div className="p-3.5 sm:p-4 rounded-2xl bg-surface-inset border border-border-subtle shadow-xs space-y-2.5">
       <div className="flex items-center justify-between gap-2">
-        <h4 className="flex items-center gap-1.5 text-xs sm:text-sm font-bold text-text-primary font-heading">
-          <Clapperboard className="w-4 h-4 text-gold" /> Animasi Pembentukan
-        </h4>
-        <span className="text-[10px] font-mono text-text-muted">
-          Tahap {stageIdx + 1}/{anim.stages.length}
+        <div className="flex items-center gap-1.5 text-text-primary font-heading font-bold text-xs uppercase tracking-wider">
+          <Clapperboard className="w-3.5 h-3.5 text-indigo" />
+          <span>Animasi Pembentukan</span>
+        </div>
+        <span className="text-[11px] font-mono text-text-muted">
+          {stageIdx + 1}/{anim.stages.length}
         </span>
       </div>
 
       {/* Pilihan verba */}
-      <div className="flex gap-1.5 overflow-x-auto pb-1 -mx-1 px-1" role="radiogroup" aria-label="Pilih kata kerja">
+      <div className="flex gap-1 overflow-x-auto pb-1 -mx-1 px-1" role="radiogroup" aria-label="Pilih kata kerja">
         {GRAMMAR_ANIMATION_VERBS.map(v => (
           <button
             key={v.id}
@@ -130,10 +133,10 @@ export const GrammarAnimation: React.FC<GrammarAnimationProps> = ({ recipe, soun
             role="radio"
             aria-checked={v.id === verb.id}
             onClick={() => pickVerb(v.id)}
-            className={`shrink-0 px-2.5 py-1 rounded-lg border text-xs font-heading font-bold transition-colors ${
+            className={`shrink-0 px-2 py-0.5 rounded-md border border-border-subtle text-[11px] font-jp shadow-xs transition-colors cursor-pointer ${
               v.id === verb.id
-                ? 'bg-gold/15 border-gold/50 text-gold'
-                : 'bg-surface-card border-border-subtle text-text-secondary hover:text-text-primary'
+                ? 'bg-indigo/20 text-indigo font-bold'
+                : 'bg-surface-card text-text-secondary font-medium hover:text-text-primary'
             }`}
           >
             {v.kanji}
@@ -142,12 +145,12 @@ export const GrammarAnimation: React.FC<GrammarAnimationProps> = ({ recipe, soun
       </div>
 
       {/* Panggung */}
-      <div className="rounded-xl bg-surface-card border border-border-subtle/80 px-3 py-5 min-h-[7.5rem] flex flex-col items-center justify-center text-center">
+      <div className="rounded-xl bg-surface-card border border-border-subtle px-3 py-4 min-h-[6.5rem] flex flex-col items-center justify-center text-center">
         <motion.div
           key={`${verb.id}-${stageIdx}`}
-          className={`font-bold font-heading tracking-wide ${
-            stage.segments.reduce((n, s) => n + s.text.length, 0) > 6 ? 'text-2xl sm:text-3xl' : 'text-3xl sm:text-4xl'
-          } ${isResult ? 'text-gold' : ''}`}
+          className={`font-bold font-jp tracking-wide leading-snug ${
+            textLength > 6 ? 'text-xl sm:text-2xl' : 'text-2xl sm:text-3xl'
+          } ${isResult ? 'text-indigo' : ''}`}
           lang="ja"
         >
           {stage.segments
@@ -158,7 +161,7 @@ export const GrammarAnimation: React.FC<GrammarAnimationProps> = ({ recipe, soun
                 <motion.span
                   key={i}
                   initial={enter(s.role)}
-                  animate={s.role === 'removed' && !reduceMotion ? { opacity: 0.4 } : { opacity: 1, x: 0, y: 0 }}
+                  animate={s.role === 'removed' ? { opacity: 0.35, y: reduceMotion ? 0 : 6, scale: reduceMotion ? 1 : 0.85 } : { opacity: 1, x: 0, y: 0 }}
                   transition={{ duration: reduceMotion ? 0 : 0.45, ease: 'easeOut' }}
                   onClick={tappable ? () => onSegmentClick(s.role) : undefined}
                   className={`inline-block ${isResult ? '' : SEGMENT_CLASS[s.role]} ${tappable ? 'cursor-pointer' : ''}`}
@@ -169,64 +172,73 @@ export const GrammarAnimation: React.FC<GrammarAnimationProps> = ({ recipe, soun
             })}
         </motion.div>
         {(stage.kind === 'base' || isResult) && (
-          <p className="mt-1.5 text-xs font-mono text-text-muted">
-            {isResult ? `${anim.result.reading} · ${anim.result.romaji}` : verb.reading}
-          </p>
+          <div className="mt-1 flex items-center gap-1 text-[11px] font-mono text-text-muted">
+            <span>{isResult ? `${anim.result.reading} · ${anim.result.romaji}` : verb.reading}</span>
+            {isResult && (
+              <button
+                type="button"
+                onClick={() => speakJapanese(anim.result.japanese)}
+                className="p-1 rounded-lg text-text-muted hover:text-indigo hover:bg-surface-inset transition-colors cursor-pointer"
+                title="Dengarkan pelafalan kalimat"
+              >
+                <Volume2 className="w-3.5 h-3.5" />
+              </button>
+            )}
+          </div>
         )}
       </div>
 
       {/* Penjelasan tahap */}
-      <div className="p-2.5 rounded-xl bg-surface-card border border-border-subtle/80 space-y-0.5" aria-live="polite">
-        <span className="text-[11px] font-bold text-gold font-heading block">{stage.label}</span>
-        <p className="text-xs text-text-secondary leading-relaxed">{stage.note}</p>
+      <div className="space-y-0.5" aria-live="polite">
+        <span className="text-[11px] font-bold uppercase tracking-wider text-text-muted font-heading">{stage.label}</span>
+        <p className="text-xs text-text-secondary leading-relaxed font-sans">{stage.note}</p>
       </div>
 
       {/* Tahapan: bisa diketuk satu per satu */}
-      <ol className="flex flex-wrap gap-1.5">
+      <ol className="p-2 sm:p-2.5 rounded-xl bg-surface-card border border-border-subtle flex flex-wrap items-center gap-1.5 text-[11px]">
         {anim.stages.map((s, i) => (
-          <li key={i}>
+          <li key={i} className="flex items-center gap-1.5">
+            {i > 0 && <ArrowRight className="w-3 h-3 text-text-muted" />}
             <button
               type="button"
               onClick={() => goTo(i)}
               aria-current={i === stageIdx ? 'step' : undefined}
-              className={`px-2 py-1 rounded-lg border text-[11px] font-heading font-bold transition-colors ${
+              className={`px-2 py-0.5 rounded-md font-jp transition-colors cursor-pointer ${
                 i === stageIdx
-                  ? 'bg-kotoba/15 border-kotoba/50 text-kotoba'
-                  : i < stageIdx
-                    ? 'bg-surface-card border-border-subtle text-text-secondary'
-                    : 'bg-surface-card border-border-subtle text-text-muted'
+                  ? 'bg-indigo/20 text-indigo border border-border-subtle font-bold'
+                  : 'bg-surface-inset text-text-secondary font-medium hover:text-text-primary'
               }`}
             >
-              {i + 1}. {s.label}
+              {s.label}
             </button>
           </li>
         ))}
       </ol>
 
       {/* Kontrol */}
-      <div className="flex items-center justify-center gap-2">
+      <div className="flex items-center justify-center gap-1.5">
         <button
           type="button"
           onClick={() => goTo(stageIdx - 1)}
           disabled={stageIdx === 0}
           aria-label="Tahap sebelumnya"
-          className="p-2 rounded-lg bg-surface-card border border-border-subtle text-text-secondary disabled:opacity-40"
+          className="btn-physical-secondary p-1.5 rounded-xl cursor-pointer disabled:opacity-40 disabled:cursor-default"
         >
           <ChevronLeft className="w-4 h-4" />
         </button>
         <button
           type="button"
           onClick={togglePlay}
-          className="flex items-center gap-1.5 px-3.5 py-2 whitespace-nowrap rounded-lg bg-gold/15 border border-gold/50 text-gold text-xs font-bold font-heading"
+          className="btn-physical-primary text-xs py-1.5 px-3.5 rounded-xl flex items-center gap-1 font-heading font-bold whitespace-nowrap cursor-pointer"
         >
-          {playing ? <Pause className="w-4 h-4" /> : <Play className="w-4 h-4" />}
+          {playing ? <Pause className="w-3.5 h-3.5" /> : <Play className="w-3.5 h-3.5" />}
           {playing ? 'Jeda' : stageIdx === 0 ? 'Mulai' : stageIdx >= lastIdx ? 'Putar lagi' : 'Lanjutkan'}
         </button>
         <button
           type="button"
           onClick={replay}
           aria-label="Ulangi animasi"
-          className="p-2 rounded-lg bg-surface-card border border-border-subtle text-text-secondary"
+          className="btn-physical-secondary p-1.5 rounded-xl cursor-pointer"
         >
           <RotateCcw className="w-4 h-4" />
         </button>
@@ -235,20 +247,10 @@ export const GrammarAnimation: React.FC<GrammarAnimationProps> = ({ recipe, soun
           onClick={() => goTo(stageIdx + 1)}
           disabled={stageIdx >= lastIdx}
           aria-label="Tahap berikutnya"
-          className="p-2 rounded-lg bg-surface-card border border-border-subtle text-text-secondary disabled:opacity-40"
+          className="btn-physical-secondary p-1.5 rounded-xl cursor-pointer disabled:opacity-40 disabled:cursor-default"
         >
           <ChevronRight className="w-4 h-4" />
         </button>
-        {isResult && (
-          <button
-            type="button"
-            onClick={() => speakJapanese(anim.result.japanese)}
-            aria-label="Dengarkan"
-            className="p-2 rounded-lg bg-surface-card border border-border-subtle text-text-secondary"
-          >
-            <Volume2 className="w-4 h-4" />
-          </button>
-        )}
       </div>
     </div>
   );
