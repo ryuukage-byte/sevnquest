@@ -1,7 +1,7 @@
 import * as wanakana from 'wanakana';
 import { explainVerbConjugation } from '../engine/morphology/inflectionEngine';
 import type { ConjugationForm, VerbGroup as EngineVerbGroup } from '../engine/types';
-import { CONJUGATION_FORMS_INFO, VERB_CONJUGATION_DATABASE, type VerbItem } from './conjugationRules';
+import { CONJUGATION_FORMS_INFO } from './conjugationRules';
 
 /* ==========================================================================
    GRAMMAR ANIMATION: resep pola = bentuk verba + akhiran pola.
@@ -20,7 +20,46 @@ export interface GrammarAnimationRecipe {
   /** Penjelasan saat bagian akhiran diketuk. */
   suffixNote: string;
   defaultVerbId: string;
+  /** Verba khusus (maks 3) yang perubahannya istimewa untuk bentuk pola ini. */
+  specialVerbIds: string[];
 }
+
+export type GrammarVerbCategory = 'gol1' | 'gol2' | 'gol3' | 'khusus';
+
+export interface GrammarAnimationVerb {
+  id: string;
+  kanji: string;
+  reading: string;
+  meaningId: string;
+  category: GrammarVerbCategory;
+  /** Kenapa verba ini khusus; tampil di tahap bentuk kamus. */
+  specialNote?: string;
+}
+
+/** Contoh inti: satu Golongan 1, satu Golongan 2, dan kedua verba Golongan 3. */
+const CORE_VERBS: GrammarAnimationVerb[] = [
+  { id: 'v_kaku', kanji: '書く', reading: 'かく', meaningId: 'Menulis', category: 'gol1' },
+  { id: 'v_taberu', kanji: '食べる', reading: 'たべる', meaningId: 'Makan', category: 'gol2' },
+  { id: 'v_suru', kanji: 'する', reading: 'する', meaningId: 'Melakukan', category: 'gol3' },
+  { id: 'v_kuru', kanji: '来る', reading: 'くる', meaningId: 'Datang', category: 'gol3' },
+];
+
+const SPECIAL_VERBS: Record<string, GrammarAnimationVerb> = {
+  v_kaeru: {
+    id: 'v_kaeru', kanji: '帰る', reading: 'かえる', meaningId: 'Pulang', category: 'khusus',
+    specialNote: 'Meski berakhiran -eru seperti Golongan 2, る-nya tidak sekadar dibuang.',
+  },
+  v_iku: {
+    id: 'v_iku', kanji: '行く', reading: 'いく', meaningId: 'Pergi', category: 'khusus',
+    specialNote: 'Pengecualian bentuk て/た: 行って / 行った, bukan 行いて / 行いた.',
+  },
+  v_kau: {
+    id: 'v_kau', kanji: '買う', reading: 'かう', meaningId: 'Membeli', category: 'khusus',
+    specialNote: 'Akhiran う berubah menjadi わ, bukan あ: 買わない.',
+  },
+};
+
+export const MAX_SPECIAL_VERBS = 3;
 
 export const GRAMMAR_ANIMATION_RECIPES: GrammarAnimationRecipe[] = [
   {
@@ -30,6 +69,7 @@ export const GRAMMAR_ANIMATION_RECIPES: GrammarAnimationRecipe[] = [
     meaningTemplate: 'Tolong {v}.',
     suffixNote: 'ください ditempel setelah bentuk て untuk meminta seseorang melakukan sesuatu dengan sopan.',
     defaultVerbId: 'v_kaku',
+    specialVerbIds: ['v_iku', 'v_kaeru'],
   },
   {
     bunpouId: 'bp_n5_070',
@@ -38,6 +78,7 @@ export const GRAMMAR_ANIMATION_RECIPES: GrammarAnimationRecipe[] = [
     meaningTemplate: 'Tolong jangan {v}.',
     suffixNote: 'でください ditempel setelah bentuk ない untuk meminta seseorang TIDAK melakukan sesuatu dengan sopan.',
     defaultVerbId: 'v_taberu',
+    specialVerbIds: ['v_kaeru', 'v_kau'],
   },
   {
     bunpouId: 'bp_n5_037',
@@ -46,6 +87,7 @@ export const GRAMMAR_ANIMATION_RECIPES: GrammarAnimationRecipe[] = [
     meaningTemplate: 'Saya ingin {v}.',
     suffixNote: 'たい ditempel pada batang ます (bentuk ます tanpa ます) untuk menyatakan keinginan pembicara; です membuatnya sopan.',
     defaultVerbId: 'v_taberu',
+    specialVerbIds: ['v_kaeru'],
   },
   {
     bunpouId: 'bp_n5_057',
@@ -53,7 +95,8 @@ export const GRAMMAR_ANIMATION_RECIPES: GrammarAnimationRecipe[] = [
     suffix: 'もいいです',
     meaningTemplate: 'Boleh {v}.',
     suffixNote: 'もいいです ditempel setelah bentuk て untuk memberi atau meminta izin ("boleh ...").',
-    defaultVerbId: 'v_nomu',
+    defaultVerbId: 'v_kaku',
+    specialVerbIds: ['v_iku', 'v_kaeru'],
   },
   {
     bunpouId: 'bp_n5_040',
@@ -61,7 +104,8 @@ export const GRAMMAR_ANIMATION_RECIPES: GrammarAnimationRecipe[] = [
     suffix: 'ことがある',
     meaningTemplate: 'Pernah {v}.',
     suffixNote: 'ことがある ditempel setelah bentuk た untuk menyatakan pengalaman yang pernah dialami.',
-    defaultVerbId: 'v_iku',
+    defaultVerbId: 'v_kaku',
+    specialVerbIds: ['v_iku', 'v_kaeru'],
   },
 ];
 
@@ -69,8 +113,11 @@ export function getGrammarAnimationRecipe(bunpouId: string): GrammarAnimationRec
   return GRAMMAR_ANIMATION_RECIPES.find(r => r.bunpouId === bunpouId);
 }
 
-/** Verba contoh: daftar verba Dojo Konjugasi, tanpa 死ぬ (canggung untuk kalimat permintaan/keinginan). */
-export const GRAMMAR_ANIMATION_VERBS: VerbItem[] = VERB_CONJUGATION_DATABASE.filter(v => v.kanji !== '死ぬ');
+/** Verba contoh untuk satu pola: verba inti + verba khusus pola itu. */
+export function getRecipeVerbs(recipe: GrammarAnimationRecipe): GrammarAnimationVerb[] {
+  const specials = recipe.specialVerbIds.map(id => SPECIAL_VERBS[id]).filter(Boolean);
+  return [...CORE_VERBS, ...specials.slice(0, MAX_SPECIAL_VERBS)];
+}
 
 export type GrammarSegmentRole = 'stem' | 'ending' | 'removed' | 'added' | 'suffix';
 
@@ -127,11 +174,11 @@ function ruleNoteFor(form: ConjugationForm, group: EngineVerbGroup, word: string
   return note;
 }
 
-function meaningOf(verb: VerbItem): string {
+function meaningOf(verb: GrammarAnimationVerb): string {
   return verb.meaningId.split('/')[0].trim().toLowerCase();
 }
 
-export function buildGrammarAnimation(recipe: GrammarAnimationRecipe, verb: VerbItem): GrammarAnimation | null {
+export function buildGrammarAnimation(recipe: GrammarAnimationRecipe, verb: GrammarAnimationVerb): GrammarAnimation | null {
   const exp = explainVerbConjugation(verb.kanji, verb.reading, recipe.form);
   if (!exp) return null;
 
@@ -148,7 +195,7 @@ export function buildGrammarAnimation(recipe: GrammarAnimationRecipe, verb: Verb
     {
       kind: 'base',
       label: 'Bentuk kamus',
-      note: `${base} (${exp.base.reading}) termasuk ${GROUP_NAME[exp.group]}.`,
+      note: `${base} (${exp.base.reading}) termasuk ${GROUP_NAME[exp.group]}.${verb.specialNote ? ` ${verb.specialNote}` : ''}`,
       segments: [{ text: stem, role: 'stem' }, { text: removed, role: 'ending' }],
     },
   ];

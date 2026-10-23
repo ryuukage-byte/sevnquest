@@ -2,11 +2,12 @@ import React, { useEffect, useMemo, useState } from 'react';
 import { motion, useReducedMotion } from 'motion/react';
 import { Play, Pause, RotateCcw, ChevronLeft, ChevronRight, Volume2, Clapperboard, ArrowRight } from 'lucide-react';
 import {
-  GRAMMAR_ANIMATION_VERBS,
   buildGrammarAnimation,
+  getRecipeVerbs,
   type GrammarAnimationRecipe,
   type GrammarAnimationStage,
   type GrammarSegmentRole,
+  type GrammarVerbCategory,
 } from '../../data/grammarAnimations';
 import { speakJapanese, playSound } from '../../utils/audio';
 
@@ -25,6 +26,13 @@ const SEGMENT_CLASS: Record<GrammarSegmentRole, string> = {
   suffix: 'text-indigo',
 };
 
+const CATEGORY_LABEL: Record<GrammarVerbCategory, string> = {
+  gol1: 'Gol. 1',
+  gol2: 'Gol. 2',
+  gol3: 'Gol. 3',
+  khusus: 'Khusus',
+};
+
 /** Ketuk bagian kata → lompat ke tahap yang menjelaskan bagian itu. */
 const SEGMENT_STAGE: Partial<Record<GrammarSegmentRole, GrammarAnimationStage['kind']>> = {
   ending: 'remove',
@@ -39,7 +47,11 @@ export const GrammarAnimation: React.FC<GrammarAnimationProps> = ({ recipe, soun
   const [stageIdx, setStageIdx] = useState(0);
   const [playing, setPlaying] = useState(false);
 
-  const verb = GRAMMAR_ANIMATION_VERBS.find(v => v.id === verbId) ?? GRAMMAR_ANIMATION_VERBS[0];
+  const verbs = useMemo(() => getRecipeVerbs(recipe), [recipe]);
+  const verb = verbs.find(v => v.id === verbId) ?? verbs[0];
+  const verbGroups = (Object.keys(CATEGORY_LABEL) as GrammarVerbCategory[])
+    .map(category => ({ category, verbs: verbs.filter(v => v.category === category) }))
+    .filter(g => g.verbs.length > 0);
   const anim = useMemo(() => buildGrammarAnimation(recipe, verb), [recipe, verb]);
   const lastIdx = anim ? anim.stages.length - 1 : 0;
 
@@ -124,23 +136,30 @@ export const GrammarAnimation: React.FC<GrammarAnimationProps> = ({ recipe, soun
         </span>
       </div>
 
-      {/* Pilihan verba */}
-      <div className="flex gap-1 overflow-x-auto pb-1 -mx-1 px-1" role="radiogroup" aria-label="Pilih kata kerja">
-        {GRAMMAR_ANIMATION_VERBS.map(v => (
-          <button
-            key={v.id}
-            type="button"
-            role="radio"
-            aria-checked={v.id === verb.id}
-            onClick={() => pickVerb(v.id)}
-            className={`shrink-0 px-2 py-0.5 rounded-md border border-border-subtle text-[11px] font-jp shadow-xs transition-colors cursor-pointer ${
-              v.id === verb.id
-                ? 'bg-indigo/20 text-indigo font-bold'
-                : 'bg-surface-card text-text-secondary font-medium hover:text-text-primary'
-            }`}
-          >
-            {v.kanji}
-          </button>
+      {/* Pilihan verba: per golongan + verba khusus pola ini */}
+      <div className="flex flex-wrap items-center gap-x-3 gap-y-1.5" role="radiogroup" aria-label="Pilih kata kerja">
+        {verbGroups.map(g => (
+          <div key={g.category} className="flex items-center gap-1">
+            <span className="text-[10px] font-bold uppercase tracking-wider text-text-muted font-heading">
+              {CATEGORY_LABEL[g.category]}
+            </span>
+            {g.verbs.map(v => (
+              <button
+                key={v.id}
+                type="button"
+                role="radio"
+                aria-checked={v.id === verb.id}
+                onClick={() => pickVerb(v.id)}
+                className={`px-2 py-0.5 rounded-md border border-border-subtle text-[11px] font-jp shadow-xs transition-colors cursor-pointer ${
+                  v.id === verb.id
+                    ? 'bg-indigo/20 text-indigo font-bold'
+                    : 'bg-surface-card text-text-secondary font-medium hover:text-text-primary'
+                }`}
+              >
+                {v.kanji}
+              </button>
+            ))}
+          </div>
         ))}
       </div>
 
