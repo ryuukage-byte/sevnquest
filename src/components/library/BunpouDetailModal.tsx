@@ -25,6 +25,8 @@ import { UserDeck } from '../../types/rpg';
 import { DeckBookmarkPicker } from '../deck/DeckBookmarkPicker';
 import { getGrammarSkillNodes } from '../../utils/bunpouSkillAdapter';
 import { useBackButton } from '../../hooks/useBackButton';
+import { getGrammarAnimationRecipe } from '../../data/grammarAnimations';
+import { GrammarAnimation } from './GrammarAnimation';
 
 interface BunpouDetailModalProps {
   item: BunpouItem;
@@ -159,6 +161,7 @@ export const BunpouDetailModal: React.FC<BunpouDetailModalProps> = ({
 
   // Extract human-centered learning flow
   const skillNodes = getGrammarSkillNodes(item);
+  const animationRecipe = getGrammarAnimationRecipe(item.id);
   const titleInfo = getGrammarTitleInfo(item);
   const cleanLevel = (item.baseLevel || item.level || 'N3').replace(/^Level\s*/i, '');
 
@@ -686,6 +689,10 @@ export const BunpouDetailModal: React.FC<BunpouDetailModalProps> = ({
                   transition={{ duration: 0.16 }}
                   className="space-y-3 sm:space-y-3.5"
                 >
+                  {animationRecipe && (
+                    <GrammarAnimation key={item.id} recipe={animationRecipe} soundEnabled={soundEnabled} />
+                  )}
+
                   {/* Formulas Section */}
                   <div className="space-y-2.5">
                     {skillNodes.formulas.map((form, fIdx) => {
