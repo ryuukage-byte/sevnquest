@@ -2,6 +2,7 @@ import React, { useEffect, useMemo, useState } from 'react';
 import { motion, useReducedMotion } from 'motion/react';
 import { Play, Pause, RotateCcw, ChevronLeft, ChevronRight, Volume2, Clapperboard, ArrowRight } from 'lucide-react';
 import {
+  PARTNER_VERBS,
   buildGrammarAnimation,
   getRecipeVerbs,
   type GrammarAnimationRecipe,
@@ -50,6 +51,7 @@ const SEGMENT_STAGE: Partial<Record<GrammarSegmentRole, GrammarAnimationStage['k
 export const GrammarAnimation: React.FC<GrammarAnimationProps> = ({ recipe, soundEnabled = true }) => {
   const reduceMotion = useReducedMotion();
   const [branchIdx, setBranchIdx] = useState(0);
+  const [partnerId, setPartnerId] = useState(PARTNER_VERBS[0].id);
   const [verbId, setVerbId] = useState(recipe.defaultVerbId);
   const [stageIdx, setStageIdx] = useState(0);
   const [playing, setPlaying] = useState(false);
@@ -59,7 +61,10 @@ export const GrammarAnimation: React.FC<GrammarAnimationProps> = ({ recipe, soun
   const verbGroups = (Object.keys(CATEGORY_LABEL) as GrammarVerbCategory[])
     .map(category => ({ category, verbs: verbs.filter(v => v.category === category) }))
     .filter(g => g.verbs.length > 0);
-  const anim = useMemo(() => buildGrammarAnimation(recipe, verb, branchIdx), [recipe, verb, branchIdx]);
+  const partner = PARTNER_VERBS.find(v => v.id === partnerId) ?? PARTNER_VERBS[0];
+  // Pemilih verba kedua hanya untuk pola dua verba yang berbeda (たり〜たり, つ〜つ, …).
+  const pickablePartner = !!recipe.branches[branchIdx]?.partner && !recipe.branches[branchIdx].partner!.same;
+  const anim = useMemo(() => buildGrammarAnimation(recipe, verb, branchIdx, partner), [recipe, verb, branchIdx, partner]);
   const lastIdx = anim ? anim.stages.length - 1 : 0;
 
   // Animasi hanya berjalan saat diminta, dan berhenti di tahap terakhir.
@@ -111,6 +116,13 @@ export const GrammarAnimation: React.FC<GrammarAnimationProps> = ({ recipe, soun
   const pickVerb = (id: string) => {
     playSound('click', soundEnabled);
     setVerbId(id);
+    setStageIdx(0);
+    setPlaying(false);
+  };
+
+  const pickPartner = (id: string) => {
+    playSound('click', soundEnabled);
+    setPartnerId(id);
     setStageIdx(0);
     setPlaying(false);
   };
@@ -214,10 +226,33 @@ export const GrammarAnimation: React.FC<GrammarAnimationProps> = ({ recipe, soun
         ))}
       </div>
 
+      {/* Pilihan verba kedua (pola dua verba yang berbeda) */}
+      {pickablePartner && (
+        <div className="flex flex-wrap items-center gap-1" role="radiogroup" aria-label="Pilih verba kedua">
+          <span className="text-[10px] font-bold uppercase tracking-wider text-text-muted font-heading mr-0.5">Verba kedua</span>
+          {PARTNER_VERBS.map(v => (
+            <button
+              key={v.id}
+              type="button"
+              role="radio"
+              aria-checked={v.id === partner.id}
+              onClick={() => pickPartner(v.id)}
+              className={`px-2 py-0.5 rounded-md border border-border-subtle text-[11px] font-jp shadow-xs transition-colors cursor-pointer ${
+                v.id === partner.id
+                  ? 'bg-choukai/20 text-choukai font-bold'
+                  : 'bg-surface-card text-text-secondary font-medium hover:text-text-primary'
+              }`}
+            >
+              {v.kanji}
+            </button>
+          ))}
+        </div>
+      )}
+
       {/* Panggung */}
       <div className="rounded-xl bg-surface-card border border-border-subtle px-3 py-4 min-h-[6.5rem] flex flex-col items-center justify-center text-center">
         <motion.div
-          key={`${branchIdx}-${verb.id}-${stageIdx}`}
+          key={`${branchIdx}-${verb.id}-${partner.id}-${stageIdx}`}
           className={`font-bold font-jp tracking-wide leading-snug ${
             textLength > 6 ? 'text-xl sm:text-2xl' : 'text-2xl sm:text-3xl'
           } ${isResult ? 'text-indigo' : ''}`}

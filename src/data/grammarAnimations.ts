@@ -184,10 +184,17 @@ function cv(id: string, kanji: string, reading: string, meaningId: string, passi
   return { id, kanji, reading, meaningId, passiveId, category };
 }
 
-/** Verba kedua untuk pola dua verba yang berbeda (たり〜たり, つ〜つ, …). */
-export const PARTNER_VERB: GrammarAnimationVerb = {
-  id: 'v_nomu', kanji: '飲む', reading: 'のむ', meaningId: 'Minum', passiveId: 'Diminum', category: 'gol1',
-};
+/**
+ * Pilihan verba kedua untuk pola dua verba yang berbeda (たり〜たり, つ〜つ, …).
+ * Tiap verba memperlihatkan perubahan bunyi yang berbeda: む → んだ, ぶ → んだ, う → った, Golongan 2.
+ */
+export const PARTNER_VERBS: GrammarAnimationVerb[] = [
+  { id: 'p_nomu', kanji: '飲む', reading: 'のむ', meaningId: 'Minum', passiveId: 'Diminum', category: 'gol1' },
+  { id: 'p_asobu', kanji: '遊ぶ', reading: 'あそぶ', meaningId: 'Bermain', category: 'gol1' },
+  { id: 'p_utau', kanji: '歌う', reading: 'うたう', meaningId: 'Bernyanyi', passiveId: 'Dinyanyikan', category: 'gol1' },
+  { id: 'p_neru', kanji: '寝る', reading: 'ねる', meaningId: 'Tidur', category: 'gol2' },
+];
+export const PARTNER_VERB = PARTNER_VERBS[0];
 
 /** Pasangan verba: diulang (same) atau verba kedua 飲む. */
 function pair(form: ConjugationForm, suffix: string, same: boolean, opts: Partial<Pick<GrammarPartner, 'change' | 'suffixReading'>> = {}): GrammarPartner {
@@ -1153,7 +1160,13 @@ function applyTransform(text: string, reading: string, t: GrammarTransform) {
   return null;
 }
 
-export function buildGrammarAnimation(recipe: GrammarAnimationRecipe, verb: GrammarAnimationVerb, branchIdx = 0): GrammarAnimation | null {
+export function buildGrammarAnimation(
+  recipe: GrammarAnimationRecipe,
+  verb: GrammarAnimationVerb,
+  branchIdx = 0,
+  /** Verba kedua pilihan untuk pola dua verba yang berbeda; default 飲む. */
+  partnerChoice: GrammarAnimationVerb = PARTNER_VERB,
+): GrammarAnimation | null {
   const branch = recipe.branches[branchIdx];
   if (!branch) return null;
   const exp = explainVerbConjugation(verb.kanji, verb.reading, branch.form);
@@ -1233,7 +1246,7 @@ export function buildGrammarAnimation(recipe: GrammarAnimationRecipe, verb: Gram
   let partnerVerb: GrammarAnimationVerb | undefined;
   if (branch.partner) {
     const pt = branch.partner;
-    partnerVerb = pt.same ? verb : PARTNER_VERB;
+    partnerVerb = pt.same ? verb : partnerChoice;
     const pr = partnerText(pt, partnerVerb);
     if (!pr) return null;
     word = [...word, { text: pr.text, role: 'partner' }];

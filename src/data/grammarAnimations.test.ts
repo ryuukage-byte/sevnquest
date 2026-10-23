@@ -5,6 +5,7 @@ import { conjugateVerb } from '../engine/morphology/inflectionEngine';
 import {
   GRAMMAR_ANIMATION_RECIPES,
   MAX_SPECIAL_VERBS,
+  PARTNER_VERBS,
   buildGrammarAnimation,
   getGrammarAnimationRecipe,
   getRecipeVerbs,
@@ -280,4 +281,28 @@ test('Golongan 1: suku kata terakhir diganti dalam barisnya (bukan dibuang); Gol
   assert.deepEqual(kinds('bp_n5_053', null, 'v_kaku').slice(1, 3), ['Buang 「く」', 'Tambah 「いて」']);
   // 読む memperlihatkan て bersuara.
   assert.equal(build('bp_n4_105', 'ちゃう', 'v_yomu').result.japanese, '読んじゃう');
+});
+
+test('pola dua verba berbeda: semua pilihan verba kedua menghasilkan bentuk dan arti yang benar', () => {
+  for (const { r, br, i, tag } of BRANCHES) {
+    if (!br.partner || br.partner.same) continue;
+    for (const pv of PARTNER_VERBS) {
+      for (const v of getRecipeVerbs(r, i)) {
+        const anim = buildGrammarAnimation(r, v, i, pv);
+        assert.ok(anim, `${tag} ${v.kanji} + ${pv.kanji}`);
+        assert.ok(wanakana.isKana(anim.result.reading), `${tag} ${v.kanji} + ${pv.kanji}: ${anim.result.reading}`);
+        const partnerSeg = anim.stages.find(s => s.kind === 'partner')!.segments.find(s => s.role === 'partner')!;
+        assert.ok(partnerSeg.text.startsWith(pv.kanji.slice(0, 1)), `${tag}: verba kedua harus ${pv.kanji}`);
+      }
+    }
+  }
+  const tari = (pvId: string) => {
+    const r = getGrammarAnimationRecipe('bp_n5_042')!;
+    const kaku = getRecipeVerbs(r).find(v => v.id === 'v_kaku')!;
+    return buildGrammarAnimation(r, kaku, 0, PARTNER_VERBS.find(p => p.id === pvId))!.result;
+  };
+  assert.equal(tari('p_asobu').japanese, '書いたり遊んだりする');
+  assert.equal(tari('p_utau').japanese, '書いたり歌ったりする');
+  assert.equal(tari('p_neru').japanese, '書いたり寝たりする');
+  assert.equal(tari('p_neru').meaning, 'Menulis, tidur, dan sebagainya.');
 });
