@@ -4,23 +4,42 @@ import type { ConjugationForm, VerbGroup as EngineVerbGroup } from '../engine/ty
 import { CONJUGATION_FORMS_INFO } from './conjugationRules';
 
 /* ==========================================================================
-   GRAMMAR ANIMATION: resep pola = bentuk verba + akhiran pola.
+   GRAMMAR ANIMATION: resep pola = bentuk verba (+ perubahan) + akhiran (+ kontraksi).
    Perubahan bentuk verba SELALU dari engine morfologi (explainVerbConjugation);
    resep hanya menyatakan bentuk mana yang dipakai dan apa yang ditempel sesudahnya.
+   Pola bercabang (Vる／Vない, formal／kontraksi) punya beberapa cabang.
    ========================================================================== */
 
-export interface GrammarAnimationRecipe {
-  bunpouId: string;
-  /** Bentuk verba yang dipakai pola ini. */
+/** Penggantian teks di ujung bentuk verba; pasangan pertama yang cocok dipakai (mis. て/で bersuara). */
+export interface GrammarTransform {
+  pairs: [from: string, to: string][];
+  note: string;
+}
+
+/** Satu cara membentuk pola: bentuk verba (+ perubahan) + akhiran (+ kontraksi). */
+export interface GrammarBranch {
+  /** Nama cabang di pemilih bentuk, mis. "Vる" / "Vない" / "ちゃう". */
+  label: string;
+  /** Bentuk verba dari engine. */
   form: ConjugationForm;
+  /** Perubahan pada bentuk verba sebelum akhiran ditempel (mis. ない → なくて). */
+  change?: GrammarTransform;
   /** Akhiran pola, ditempel langsung setelah bentuk verba; kosong = bentuk verba itu sendiri polanya. */
   suffix: string;
   /** Bacaan akhiran (kana), wajib bila akhiran memuat kanji. */
   suffixReading?: string;
+  /** Kontraksi lisan setelah akhiran ditempel (mis. てしまう → ちゃう). */
+  contract?: GrammarTransform;
   /** Arti kalimat jadi; {v} diganti arti verba (huruf kecil), {V} versi berhuruf besar. */
   meaningTemplate: string;
   /** Penjelasan saat bagian akhiran diketuk; default dibuat dari bentuk + akhiran. */
   suffixNote?: string;
+}
+
+export interface GrammarAnimationRecipe {
+  bunpouId: string;
+  /** Satu cabang untuk pola biasa; beberapa untuk pola bercabang (Vる／Vない, formal／kontraksi). */
+  branches: GrammarBranch[];
   defaultVerbId: string;
   /** Verba yang tidak wajar untuk pola ini (kolokasi), dikeluarkan dari contoh. */
   excludeVerbIds?: string[];
@@ -75,13 +94,60 @@ const SPECIALS_BY_FORM: Partial<Record<ConjugationForm, string[]>> = {
   ta: ['v_iku', 'v_kaeru', 'v_hairu'],
   nai: ['v_kaeru', 'v_hairu', 'v_kau'],
   masu_stem: ['v_kaeru', 'v_hairu'],
+  nakatta: ['v_kaeru', 'v_hairu', 'v_kau'],
+  potential: ['v_kaeru', 'v_hairu'],
+  ba: ['v_kaeru', 'v_hairu'],
+  imperative: ['v_kaeru', 'v_hairu'],
 };
 
-type RecipeOptions = Partial<Pick<GrammarAnimationRecipe, 'suffixReading' | 'suffixNote' | 'defaultVerbId' | 'excludeVerbIds' | 'verbBranchOnly'>>;
+type BranchOptions = Partial<Pick<GrammarBranch, 'suffixReading' | 'suffixNote' | 'change' | 'contract'>>;
+type RecipeOptions = Partial<Pick<GrammarAnimationRecipe, 'defaultVerbId' | 'excludeVerbIds' | 'verbBranchOnly'>>;
 
-function r(bunpouId: string, form: ConjugationForm, suffix: string, meaningTemplate: string, opts: RecipeOptions = {}): GrammarAnimationRecipe {
-  return { bunpouId, form, suffix, meaningTemplate, defaultVerbId: 'v_kaku', ...opts };
+/** Satu cabang pola. */
+function b(label: string, form: ConjugationForm, suffix: string, meaningTemplate: string, opts: BranchOptions = {}): GrammarBranch {
+  return { label, form, suffix, meaningTemplate, ...opts };
 }
+
+/** Pola satu cabang: bentuk + akhiran. */
+function r(bunpouId: string, form: ConjugationForm, suffix: string, meaningTemplate: string, opts: BranchOptions & RecipeOptions = {}): GrammarAnimationRecipe {
+  const { defaultVerbId = 'v_kaku', excludeVerbIds, verbBranchOnly, ...branchOpts } = opts;
+  return { bunpouId, branches: [b(FORM_SHORT[form] ?? form, form, suffix, meaningTemplate, branchOpts)], defaultVerbId, excludeVerbIds, verbBranchOnly };
+}
+
+/** Pola bercabang: beberapa cara membentuk, dipilih di pemilih bentuk. */
+function rb(bunpouId: string, branches: GrammarBranch[], opts: RecipeOptions = {}): GrammarAnimationRecipe {
+  const { defaultVerbId = 'v_kaku', ...rest } = opts;
+  return { bunpouId, branches, defaultVerbId, ...rest };
+}
+
+const FORM_SHORT: Partial<Record<ConjugationForm, string>> = {
+  jisho: 'Vる', te: 'Vて', ta: 'Vた', nai: 'Vない', nakatta: 'Vなかった', masu_stem: 'Vます',
+  potential: 'Vれる', ba: 'Vば', imperative: 'V perintah',
+};
+
+/* Perubahan & kontraksi. Pasangan て/で: verba berakhiran ぬ/ぶ/む/ぐ memakai で. */
+const CONTRACT_SHIMAU: GrammarTransform = {
+  pairs: [['てしまう', 'ちゃう'], ['でしまう', 'じゃう']],
+  note: 'Dalam percakapan santai, てしまう menyusut menjadi ちゃう (でしまう → じゃう).',
+};
+const CONTRACT_OKU: GrammarTransform = {
+  pairs: [['ておく', 'とく'], ['でおく', 'どく']],
+  note: 'Dalam percakapan santai, ておく menyusut menjadi とく (でおく → どく).',
+};
+const CONTRACT_TEWA: GrammarTransform = {
+  pairs: [['ては', 'ちゃ'], ['では', 'じゃ']],
+  note: 'Dalam percakapan santai, ては menyusut menjadi ちゃ (では → じゃ).',
+};
+const NAI_TO_NAKUTEWA: GrammarTransform = { pairs: [['ない', 'なくては']], note: 'ない diubah menjadi なく, lalu ditambah ては ("kalau tidak ...").' };
+const CONTRACT_NAKUTEWA: GrammarTransform = { pairs: [['なくては', 'なくちゃ']], note: 'Dalam percakapan santai, なくては menyusut menjadi なくちゃ.' };
+const NAI_TO_NAKEREBA: GrammarTransform = { pairs: [['ない', 'なければ']], note: 'ない diubah menjadi なければ (bentuk ば dari ない: "kalau tidak ...").' };
+const CONTRACT_NAKEREBA: GrammarTransform = { pairs: [['なければ', 'なきゃ']], note: 'Dalam percakapan santai, なければ menyusut menjadi なきゃ.' };
+const NAI_TO_NAKUTE: GrammarTransform = { pairs: [['ない', 'なくて']], note: 'ない diubah menjadi なくて (bentuk て dari ない).' };
+const NAI_TO_NAKU: GrammarTransform = { pairs: [['ない', 'なく']], note: 'ない diubah menjadi なく agar bisa disambung dengan なる.' };
+const POTENTIAL_TO_MASU: GrammarTransform = {
+  pairs: [['る', 'ます']],
+  note: 'Bentuk potensial berperilaku seperti verba Golongan 2: る diganti ます.',
+};
 
 const NO_KURU = ['v_kuru'];
 /** Verba gerak/intransitif yang tidak wajar untuk verba majemuk tertentu. */
@@ -117,12 +183,10 @@ export const GRAMMAR_ANIMATION_RECIPES: GrammarAnimationRecipe[] = [
   r('bp_n4_096', 'te', 'いました', 'Tadi sedang {v}.'),
   r('bp_n4_097', 'te', 'いただけませんか', 'Bisakah Anda {v}?'),
   r('bp_n4_098', 'te', 'いるところです', 'Sedang {v} saat ini.'),
-  r('bp_n4_099', 'te', 'おく', '{V} terlebih dahulu.'),
   r('bp_n4_100', 'te', 'くる', '{V} dulu, lalu kembali.', { excludeVerbIds: NO_KURU }),
   r('bp_n4_101', 'te', 'くれてありがとう', 'Terima kasih sudah {v}.'),
   r('bp_n4_102', 'te', 'くれない', 'Bisa tolong {v}?'),
   r('bp_n4_103', 'te', 'くれる', '(Seseorang) {v} untukku.'),
-  r('bp_n4_105', 'te', 'しまう', 'Terlanjur / sudah tuntas {v}.'),
   r('bp_n4_106', 'te', 'すみません', 'Maaf sudah {v}.'),
   r('bp_n4_110', 'te', 'みる', 'Mencoba {v}.'),
   r('bp_n4_111', 'te', 'も', 'Meskipun {v}, …', VB),
@@ -162,7 +226,6 @@ export const GRAMMAR_ANIMATION_RECIPES: GrammarAnimationRecipe[] = [
   r('bp_n4_087', 'ta', 'ばかりです', 'Baru saja {v}.'),
   r('bp_n4_088', 'ta', 'ら', 'Kalau / setelah {v}, …', VB),
   r('bp_n4_090', 'ta', 'らどうですか', 'Bagaimana kalau {v}?'),
-  r('w3d3g4', 'ta', 'ものだ', 'Dulu sering {v}.'),
   r('w3d4g3', 'ta', 'とたん', 'Begitu {v}, tiba-tiba …'),
   r('w4d5g1', 'ta', 'っけ', 'Sudah {v}, ya? (mengingat-ingat)', VB),
   r('w6d3g1', 'ta', 'ところ', 'Setelah {v}, ternyata …'),
@@ -188,12 +251,10 @@ export const GRAMMAR_ANIMATION_RECIPES: GrammarAnimationRecipe[] = [
   r('bp_n5_072', 'nai', 'ほうがいい', 'Sebaiknya jangan {v}.'),
   r('bp_n4_015', 'nai', 'で', 'Jangan {v} ya. (santai)'),
   r('bp_n4_131', 'nai', 'と', 'Harus {v} nih.'),
-  r('w1d2g1', 'nai', 'と', 'Harus {v} nih.'),
   r('w6d2g4', 'nai', 'こともない', 'Bukannya tidak mungkin {v}.', VB),
   r('bp_n2_115', 'nai', 'ことには', 'Kalau tidak {v}, (tidak akan) …', VB),
   r('bp_n2_116', 'nai', 'ではいられない', 'Mau tak mau pasti {v}.'),
   r('bp_n2_117', 'nai', 'わけにはいかない', 'Tidak bisa tidak {v}.'),
-  r('bp_n2_120', 'nai', 'で済む', 'Akhirnya tidak perlu {v}.', { suffixReading: 'ですむ' }),
   r('bp_n1_140', 'nai', 'でもない', 'Bukannya tidak {v}.'),
   r('bp_n1_141', 'nai', 'とも限らない', 'Bisa saja {v}.', { suffixReading: 'ともかぎらない', ...VB }),
   r('bp_n1_142', 'nai', 'までも', 'Meskipun tidak sampai {v}, …', VB),
@@ -222,7 +283,6 @@ export const GRAMMAR_ANIMATION_RECIPES: GrammarAnimationRecipe[] = [
   r('bp_n4_081', 'masu_stem', 'たがる', '(Dia) ingin {v}.'),
   r('bp_n4_133', 'masu_stem', 'ながら', 'Sambil {v}, …'),
   r('bp_n4_137', 'masu_stem', 'なさい', '{V}lah! (perintah)'),
-  r('w1d5g3', 'masu_stem', 'ますように', 'Semoga (bisa) {v}!'),
   r('w3d5g3', 'masu_stem', 'っぱなし', 'Dibiarkan begitu saja setelah {v}.', { excludeVerbIds: NO_KURU }),
   r('w5d2g3', 'masu_stem', 'かける', 'Baru setengah jalan {v}.', { excludeVerbIds: NO_KURU }),
   r('bp_n2_015', 'masu_stem', '得ない', 'Tidak mungkin {v}.', { suffixReading: 'えない', excludeVerbIds: NO_KURU }),
@@ -299,6 +359,127 @@ export const GRAMMAR_ANIMATION_RECIPES: GrammarAnimationRecipe[] = [
   r('bp_n1_215', 'jisho', 'ほどのことではない', 'Tidak sampai perlu {v}.', VB),
   r('bp_n1_219', 'jisho', 'までもない', 'Tidak perlu sampai {v}.'),
   r('bp_n1_234', 'jisho', 'や否や', 'Begitu {v}, langsung …', { suffixReading: 'やいなや' }),
+
+  // ── Kontraksi lisan ───────────────────────────────────────
+  r('w1d2g2', 'te', 'しまう', 'Terlanjur {v}. (santai)', { contract: CONTRACT_SHIMAU }),
+  r('w1d2g3', 'te', 'おく', '{V} dulu sebagai persiapan. (santai)', { contract: CONTRACT_OKU }),
+  r('bp_n5_045', 'te', 'はいけない', 'Tidak boleh {v}. (santai)', { contract: CONTRACT_TEWA }),
+  rb('bp_n4_105', [
+    b('しまう', 'te', 'しまう', 'Terlanjur / sudah tuntas {v}.'),
+    b('ちゃう', 'te', 'しまう', 'Terlanjur {v}. (santai)', { contract: CONTRACT_SHIMAU }),
+  ]),
+  rb('bp_n4_099', [
+    b('おく', 'te', 'おく', '{V} terlebih dahulu.'),
+    b('とく', 'te', 'おく', '{V} dulu. (santai)', { contract: CONTRACT_OKU }),
+  ]),
+  rb('bp_n5_073', [
+    b('なくちゃ', 'nai', '', 'Harus {v}. (santai)', { change: NAI_TO_NAKUTEWA, contract: CONTRACT_NAKUTEWA }),
+    b('なきゃ', 'nai', '', 'Harus {v}. (santai)', { change: NAI_TO_NAKEREBA, contract: CONTRACT_NAKEREBA }),
+  ]),
+  rb('w1d2g1', [
+    b('ないと', 'nai', 'と', 'Harus {v} nih.'),
+    b('なくちゃ', 'nai', '', 'Harus {v} nih. (santai)', { change: NAI_TO_NAKUTEWA, contract: CONTRACT_NAKUTEWA }),
+  ]),
+
+  // ── Bercabang: Vる ／ Vない ───────────────────────────────
+  rb('bp_n5_047', [b('Vる', 'jisho', 'つもりだ', 'Berniat {v}.'), b('Vない', 'nai', 'つもりだ', 'Berniat tidak {v}.')]),
+  rb('bp_n4_055', [b('Vる', 'jisho', 'ことにする', 'Memutuskan untuk {v}.'), b('Vない', 'nai', 'ことにする', 'Memutuskan untuk tidak {v}.')]),
+  rb('bp_n4_056', [b('Vる', 'jisho', 'ことになる', 'Diputuskan akan {v}.'), b('Vない', 'nai', 'ことになる', 'Diputuskan tidak {v}.')]),
+  rb('w6d2g1', [b('Vる', 'jisho', 'ことになる', 'Diputuskan akan {v}.'), b('Vない', 'nai', 'ことになる', 'Diputuskan tidak {v}.')]),
+  rb('w6d2g2', [b('Vる', 'jisho', 'ことにしている', 'Membiasakan diri {v}.'), b('Vない', 'nai', 'ことにしている', 'Membiasakan diri tidak {v}.')]),
+  rb('w3d3g1', [b('Vる', 'jisho', 'つもりだった', 'Tadinya berniat {v}.'), b('Vない', 'nai', 'つもりだった', 'Tadinya berniat tidak {v}.')]),
+  rb('w4d4g3', [b('Vる', 'jisho', 'ことだ', 'Sebaiknya {v}.'), b('Vない', 'nai', 'ことだ', 'Sebaiknya tidak {v}.')]),
+  rb('w5d3g4', [b('Vる', 'jisho', 'かなあ', 'Kira-kira akan {v}, ya?'), b('Vない', 'nai', 'かなあ', 'Semoga cepat {v}, deh.')]),
+  rb('w6d4g1', [b('Vない', 'nai', 'わけにはいかない', 'Tidak bisa tidak {v}.'), b('Vる', 'jisho', 'わけにはいかない', 'Tidak bisa {v} begitu saja.')]),
+  rb('bp_n4_180', [b('Vる', 'jisho', 'ようにする', 'Berusaha untuk {v}.'), b('Vない', 'nai', 'ようにする', 'Berusaha untuk tidak {v}.')]),
+  rb('w1d4g1', [b('Vる', 'jisho', 'ようにする', 'Berusaha untuk {v}.'), b('Vない', 'nai', 'ようにする', 'Berusaha untuk tidak {v}.')]),
+  rb('w1d5g2', [b('Vる', 'jisho', 'ように', 'Pastikan untuk {v}.'), b('Vない', 'nai', 'ように', 'Pastikan untuk tidak {v}.')]),
+  rb('bp_n4_178', [
+    b('Vる', 'jisho', 'ように言う', 'Menyuruh untuk {v}.', { suffixReading: 'ようにいう' }),
+    b('Vない', 'nai', 'ように言う', 'Menyuruh agar tidak {v}.', { suffixReading: 'ようにいう' }),
+  ]),
+  rb('w2d6g2', [
+    b('Vる', 'jisho', 'ように言う', 'Menyuruh untuk {v}.', { suffixReading: 'ようにいう' }),
+    b('Vない', 'nai', 'ように言う', 'Menyuruh agar tidak {v}.', { suffixReading: 'ようにいう' }),
+  ]),
+  rb('bp_n2_027', [
+    b('Vる', 'jisho', '限り', 'Selama {v}, …', { suffixReading: 'かぎり' }),
+    b('Vない', 'nai', '限り', 'Selama tidak {v}, …', { suffixReading: 'かぎり' }),
+  ], VB),
+  rb('bp_n2_043', [
+    b('Vる', 'jisho', '傾向がある', 'Cenderung {v}.', { suffixReading: 'けいこうがある' }),
+    b('Vない', 'nai', '傾向がある', 'Cenderung tidak {v}.', { suffixReading: 'けいこうがある' }),
+  ], VB),
+  rb('bp_n1_033', [
+    b('Vる', 'jisho', '嫌いがある', 'Punya kecenderungan (buruk) {v}.', { suffixReading: 'きらいがある' }),
+    b('Vない', 'nai', '嫌いがある', 'Punya kecenderungan (buruk) tidak {v}.', { suffixReading: 'きらいがある' }),
+  ], VB),
+  rb('bp_n1_231', [b('Vる', 'jisho', 'ものとする', 'Ditetapkan untuk {v}.'), b('Vない', 'nai', 'ものとする', 'Ditetapkan untuk tidak {v}.')]),
+
+  // ── Bercabang: + bentuk potensial ─────────────────────────
+  rb('bp_n4_175', [
+    b('Vる', 'jisho', 'ように', 'Supaya {v}, …'),
+    b('Vない', 'nai', 'ように', 'Supaya tidak {v}, …'),
+    b('Vれる', 'potential', 'ように', 'Supaya bisa {v}, …'),
+  ]),
+  rb('w1d4g2', [
+    b('Vる', 'jisho', 'ように', 'Supaya {v}, …'),
+    b('Vない', 'nai', 'ように', 'Supaya tidak {v}, …'),
+    b('Vれる', 'potential', 'ように', 'Supaya bisa {v}, …'),
+  ]),
+  rb('bp_n4_179', [
+    b('Vる', 'jisho', 'ように祈る', 'Berdoa agar {v}.', { suffixReading: 'ようにいのる' }),
+    b('Vない', 'nai', 'ように祈る', 'Berdoa agar tidak {v}.', { suffixReading: 'ようにいのる' }),
+    b('Vれる', 'potential', 'ように祈る', 'Berdoa agar bisa {v}.', { suffixReading: 'ようにいのる' }),
+  ]),
+  rb('bp_n4_181', [
+    b('Vる', 'jisho', 'ようになる', 'Mulai (terbiasa) {v}.'),
+    b('Vれる', 'potential', 'ようになる', 'Jadi bisa {v}.'),
+    b('Vなくなる', 'nai', 'なる', 'Jadi tidak {v} lagi.', { change: NAI_TO_NAKU }),
+  ]),
+  rb('w1d5g3', [
+    b('Vます', 'masu_stem', 'ますように', 'Semoga (bisa) {v}!'),
+    b('Vません', 'masu_stem', 'ませんように', 'Semoga tidak {v}!'),
+    b('Vれます', 'potential', 'ように', 'Semoga bisa {v}!', { change: POTENTIAL_TO_MASU }),
+  ]),
+
+  // ── Bercabang: て ／ ないで, た ／ なかった, dll. ─────────
+  rb('bp_n4_109', [b('Vて', 'te', 'ほしい', 'Ingin (kamu) {v}.'), b('Vないで', 'nai', 'でほしい', 'Ingin (kamu) tidak {v}.')]),
+  rb('w3d6g2', [b('Vて', 'te', 'ほしい', 'Ingin (kamu) {v}.'), b('Vないで', 'nai', 'でほしい', 'Ingin (kamu) tidak {v}.')]),
+  rb('w2d6g4', [
+    b('Vて', 'te', 'くれと頼まれる', 'Diminta untuk {v}.', { suffixReading: 'くれとたのまれる' }),
+    b('Vないで', 'nai', 'でくれと頼まれる', 'Diminta agar tidak {v}.', { suffixReading: 'でくれとたのまれる' }),
+  ]),
+  rb('bp_n4_115', [
+    b('Vて', 'te', 'よかった', 'Untung / syukurlah sudah {v}.'),
+    b('Vなくて', 'nai', 'よかった', 'Untung / syukurlah tidak {v}.', { change: NAI_TO_NAKUTE }),
+  ]),
+  rb('bp_n2_120', [
+    b('Vなくて', 'nai', '済む', 'Akhirnya tidak perlu {v}.', { suffixReading: 'すむ', change: NAI_TO_NAKUTE }),
+    b('Vないで', 'nai', 'で済む', 'Akhirnya tidak perlu {v}.', { suffixReading: 'ですむ' }),
+  ]),
+  rb('w3d3g4', [b('Vた', 'ta', 'ものだ', 'Dulu sering {v}.'), b('Vなかった', 'nakatta', 'ものだ', 'Dulu sering tidak {v}.')]),
+  rb('bp_n4_167', [b('Vた', 'ta', 'まま', 'Dalam keadaan sudah {v}, …'), b('Vない', 'nai', 'まま', 'Dalam keadaan tidak {v}, …')], VB),
+  rb('w3d5g2', [b('Vた', 'ta', 'まま', 'Dalam keadaan sudah {v}, …'), b('Vない', 'nai', 'まま', 'Dalam keadaan tidak {v}, …')], VB),
+  rb('w6d3g3', [
+    b('Vている', 'te', 'いるところ', 'Sedang {v}.'),
+    b('Vた', 'ta', 'ところ', 'Baru saja {v}.'),
+    b('Vる', 'jisho', 'ところ', 'Baru akan {v}.'),
+  ]),
+  rb('w3d4g1', [b('Vる', 'jisho', 'ついでに', 'Sekalian {v}, …'), b('Vた', 'ta', 'ついでに', 'Sekalian setelah {v}, …')], VB),
+  rb('w3d5g1', [b('Vる', 'jisho', 'とおり', 'Persis seperti saat {v}.'), b('Vた', 'ta', 'とおり', 'Persis seperti yang sudah {v} tadi.')], VB),
+  rb('bp_n1_154', [b('Vる', 'jisho', 'なり', 'Begitu {v}, langsung …'), b('Vた', 'ta', 'なり', 'Sejak {v}, dibiarkan begitu saja.')]),
+  rb('bp_n1_218', [b('Vる', 'jisho', 'までだ', 'Tinggal {v} saja.'), b('Vた', 'ta', 'までだ', 'Hanya {v}, tidak lebih.')]),
+  rb('w2d6g3', [
+    b('V perintah', 'imperative', 'と言われる', 'Disuruh {v}.', { suffixReading: 'といわれる' }),
+    b('Vるな', 'jisho', 'なと言われる', 'Dilarang {v}.', { suffixReading: 'なといわれる' }),
+  ]),
+  rb('w5d3g2', [
+    b('Vば', 'ba', 'よかった', 'Seharusnya {v} (menyesal).'),
+    b('Vなければ', 'nai', 'よかった', 'Seharusnya tidak {v}.', { change: NAI_TO_NAKEREBA }),
+    b('Vたら', 'ta', 'らよかった', 'Seharusnya {v} (menyesal).'),
+    b('Vなかったら', 'nakatta', 'らよかった', 'Seharusnya tidak {v}.'),
+  ]),
 ];
 
 const RECIPE_BY_ID = new Map(GRAMMAR_ANIMATION_RECIPES.map(rec => [rec.bunpouId, rec]));
@@ -307,14 +488,15 @@ export function getGrammarAnimationRecipe(bunpouId: string): GrammarAnimationRec
   return RECIPE_BY_ID.get(bunpouId);
 }
 
-/** Verba contoh untuk satu pola: verba inti + verba khusus bentuk itu, tanpa yang dikecualikan pola. */
-export function getRecipeVerbs(recipe: GrammarAnimationRecipe): GrammarAnimationVerb[] {
-  const specials = (SPECIALS_BY_FORM[recipe.form] ?? []).map(id => SPECIAL_VERBS[id]).slice(0, MAX_SPECIAL_VERBS);
+/** Verba contoh untuk satu cabang pola: verba inti + verba khusus bentuk itu, tanpa yang dikecualikan pola. */
+export function getRecipeVerbs(recipe: GrammarAnimationRecipe, branchIdx = 0): GrammarAnimationVerb[] {
+  const form = recipe.branches[branchIdx]?.form ?? recipe.branches[0].form;
+  const specials = (SPECIALS_BY_FORM[form] ?? []).map(id => SPECIAL_VERBS[id]).slice(0, MAX_SPECIAL_VERBS);
   const excluded = new Set(recipe.excludeVerbIds ?? []);
   return [...CORE_VERBS, ...specials].filter(v => !excluded.has(v.id));
 }
 
-export type GrammarSegmentRole = 'stem' | 'ending' | 'removed' | 'added' | 'suffix';
+export type GrammarSegmentRole = 'stem' | 'ending' | 'removed' | 'added' | 'changed' | 'suffix';
 
 export interface GrammarSegment {
   text: string;
@@ -322,7 +504,7 @@ export interface GrammarSegment {
 }
 
 export interface GrammarAnimationStage {
-  kind: 'base' | 'remove' | 'add' | 'suffix' | 'result';
+  kind: 'base' | 'remove' | 'add' | 'change' | 'suffix' | 'contract' | 'result';
   label: string;
   note: string;
   segments: GrammarSegment[];
@@ -346,6 +528,10 @@ const FORM_LABEL: Partial<Record<ConjugationForm, string>> = {
   nai: 'Bentuk ない',
   ta: 'Bentuk た',
   masu_stem: 'Batang ます',
+  nakatta: 'Bentuk なかった',
+  potential: 'Bentuk potensial',
+  ba: 'Bentuk ば',
+  imperative: 'Bentuk perintah',
 };
 
 /**
@@ -353,7 +539,7 @@ const FORM_LABEL: Partial<Record<ConjugationForm, string>> = {
  * Batang ます memakai aturan ます; た memakai aturan て (perubahannya identik, て→た / で→だ).
  */
 function ruleNoteFor(form: ConjugationForm, group: EngineVerbGroup, word: string): string {
-  const sourceId = form === 'masu_stem' ? 'masu' : form === 'ta' ? 'te' : form;
+  const sourceId = form === 'masu_stem' ? 'masu' : form === 'ta' ? 'te' : form === 'nakatta' ? 'nai' : form;
   const info = CONJUGATION_FORMS_INFO.find(f => f.id === sourceId);
   if (!info) return '';
   const ruleKey = group === 'godan' ? 'godan' : group === 'ichidan' ? 'ichidan' : 'irregular';
@@ -367,6 +553,7 @@ function ruleNoteFor(form: ConjugationForm, group: EngineVerbGroup, word: string
   let note = match ? match.replace(/^•\s*/, '') : text.replace(/\n/g, ' ');
   if (form === 'masu_stem') note += ' Untuk batang ます, ます-nya dibuang.';
   if (form === 'ta') note += ' Lalu て→た / で→だ.';
+  if (form === 'nakatta') note += ' Lalu ない → なかった.';
   return note;
 }
 
@@ -375,8 +562,28 @@ function fillMeaning(template: string, verb: GrammarAnimationVerb): string {
   return template.replace('{V}', v.charAt(0).toUpperCase() + v.slice(1)).replace('{v}', v);
 }
 
-export function buildGrammarAnimation(recipe: GrammarAnimationRecipe, verb: GrammarAnimationVerb): GrammarAnimation | null {
-  const exp = explainVerbConjugation(verb.kanji, verb.reading, recipe.form);
+/** Ganti kemunculan TERAKHIR pasangan pertama yang cocok; null bila tak ada yang cocok. */
+function applyTransform(text: string, reading: string, t: GrammarTransform) {
+  for (const [from, to] of t.pairs) {
+    const i = text.lastIndexOf(from);
+    const j = reading.lastIndexOf(from);
+    if (i < 0 || j < 0) continue;
+    return {
+      from,
+      to,
+      before: text.slice(0, i),
+      after: text.slice(i + from.length),
+      text: text.slice(0, i) + to + text.slice(i + from.length),
+      reading: reading.slice(0, j) + to + reading.slice(j + from.length),
+    };
+  }
+  return null;
+}
+
+export function buildGrammarAnimation(recipe: GrammarAnimationRecipe, verb: GrammarAnimationVerb, branchIdx = 0): GrammarAnimation | null {
+  const branch = recipe.branches[branchIdx];
+  if (!branch) return null;
+  const exp = explainVerbConjugation(verb.kanji, verb.reading, branch.form);
   if (!exp) return null;
 
   const base = exp.base.japanese;
@@ -385,9 +592,9 @@ export function buildGrammarAnimation(recipe: GrammarAnimationRecipe, verb: Gram
   const stem = removeStep ? removeStep.text : base;
   const removed = removeStep?.part ?? '';
   const added = addStep?.part ?? '';
-  const formLabel = FORM_LABEL[recipe.form] ?? recipe.form;
-  const rule = ruleNoteFor(recipe.form, exp.group, base);
-  const keepNote = recipe.form === 'jisho' ? ' Pola ini memakai bentuk kamus apa adanya.' : '';
+  const formLabel = FORM_LABEL[branch.form] ?? branch.form;
+  const rule = ruleNoteFor(branch.form, exp.group, base) || `${formLabel}: ${exp.result.japanese} (${exp.result.reading}).`;
+  const keepNote = branch.form === 'jisho' ? ' Pola ini memakai bentuk kamus apa adanya.' : '';
 
   const stages: GrammarAnimationStage[] = [
     {
@@ -413,24 +620,52 @@ export function buildGrammarAnimation(recipe: GrammarAnimationRecipe, verb: Gram
       segments: [{ text: stem, role: 'stem' }, { text: added, role: 'added' }],
     });
   }
-  if (recipe.suffix) {
+
+  // Bentuk verba yang sedang dibangun, sebagai segmen berwarna.
+  let word: GrammarSegment[] = [{ text: stem, role: 'stem' }, { text: added, role: 'added' }];
+  let text = exp.result.japanese;
+  let reading = exp.result.reading;
+
+  if (branch.change) {
+    const c = applyTransform(text, reading, branch.change);
+    if (!c) return null;
+    word = [{ text: c.before, role: 'stem' }, { text: c.to, role: 'changed' }, { text: c.after, role: 'stem' }];
+    ({ text, reading } = c);
+    stages.push({ kind: 'change', label: `「${c.from}」→「${c.to}」`, note: branch.change.note, segments: word });
+  }
+
+  if (branch.suffix) {
+    word = [...word, { text: branch.suffix, role: 'suffix' }];
+    text += branch.suffix;
+    reading += branch.suffixReading ?? branch.suffix;
+    const attachedTo = branch.change ? 'bentuk tadi' : formLabel.toLowerCase();
     stages.push({
       kind: 'suffix',
-      label: `＋ ${recipe.suffix}`,
-      note: recipe.suffixNote ?? `「${recipe.suffix}」 ditempel langsung setelah ${formLabel.toLowerCase()}.`,
-      segments: [{ text: stem, role: 'stem' }, { text: added, role: 'added' }, { text: recipe.suffix, role: 'suffix' }],
+      label: `＋ ${branch.suffix}`,
+      note: branch.suffixNote ?? `「${branch.suffix}」 ditempel langsung setelah ${attachedTo}.`,
+      segments: word,
     });
   }
 
-  const japanese = exp.result.japanese + recipe.suffix;
-  const reading = exp.result.reading + (recipe.suffixReading ?? recipe.suffix);
-  const meaning = fillMeaning(recipe.meaningTemplate, verb);
+  if (branch.contract) {
+    const c = applyTransform(text, reading, branch.contract);
+    if (!c) return null;
+    ({ text, reading } = c);
+    stages.push({
+      kind: 'contract',
+      label: `Singkat 「${c.from}」→「${c.to}」`,
+      note: branch.contract.note,
+      segments: [{ text: c.before, role: 'stem' }, { text: c.to, role: 'changed' }, { text: c.after, role: 'stem' }],
+    });
+  }
+
+  const meaning = fillMeaning(branch.meaningTemplate, verb);
   stages.push({
     kind: 'result',
     label: 'Kalimat jadi',
     note: meaning,
-    segments: [{ text: japanese, role: 'stem' }],
+    segments: [{ text, role: 'stem' }],
   });
 
-  return { stages, result: { japanese, reading, romaji: wanakana.toRomaji(reading), meaning } };
+  return { stages, result: { japanese: text, reading, romaji: wanakana.toRomaji(reading), meaning } };
 }

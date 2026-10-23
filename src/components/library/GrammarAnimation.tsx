@@ -23,6 +23,7 @@ const SEGMENT_CLASS: Record<GrammarSegmentRole, string> = {
   ending: 'text-text-primary underline decoration-dotted decoration-state-danger underline-offset-8',
   removed: 'text-state-danger',
   added: 'text-state-success',
+  changed: 'text-gold',
   suffix: 'text-indigo',
 };
 
@@ -39,20 +40,22 @@ const SEGMENT_STAGE: Partial<Record<GrammarSegmentRole, GrammarAnimationStage['k
   removed: 'remove',
   added: 'add',
   suffix: 'suffix',
+  changed: 'contract',
 };
 
 export const GrammarAnimation: React.FC<GrammarAnimationProps> = ({ recipe, soundEnabled = true }) => {
   const reduceMotion = useReducedMotion();
+  const [branchIdx, setBranchIdx] = useState(0);
   const [verbId, setVerbId] = useState(recipe.defaultVerbId);
   const [stageIdx, setStageIdx] = useState(0);
   const [playing, setPlaying] = useState(false);
 
-  const verbs = useMemo(() => getRecipeVerbs(recipe), [recipe]);
+  const verbs = useMemo(() => getRecipeVerbs(recipe, branchIdx), [recipe, branchIdx]);
   const verb = verbs.find(v => v.id === verbId) ?? verbs[0];
   const verbGroups = (Object.keys(CATEGORY_LABEL) as GrammarVerbCategory[])
     .map(category => ({ category, verbs: verbs.filter(v => v.category === category) }))
     .filter(g => g.verbs.length > 0);
-  const anim = useMemo(() => buildGrammarAnimation(recipe, verb), [recipe, verb]);
+  const anim = useMemo(() => buildGrammarAnimation(recipe, verb, branchIdx), [recipe, verb, branchIdx]);
   const lastIdx = anim ? anim.stages.length - 1 : 0;
 
   // Animasi hanya berjalan saat diminta, dan berhenti di tahap terakhir.
@@ -108,9 +111,19 @@ export const GrammarAnimation: React.FC<GrammarAnimationProps> = ({ recipe, soun
     setPlaying(false);
   };
 
+  const pickBranch = (idx: number) => {
+    playSound('click', soundEnabled);
+    setBranchIdx(idx);
+    setStageIdx(0);
+    setPlaying(false);
+  };
+
   const onSegmentClick = (role: GrammarSegmentRole) => {
     const kind = SEGMENT_STAGE[role];
-    const idx = kind ? anim.stages.findIndex(s => s.kind === kind) : -1;
+    // Bagian yang berubah bisa berasal dari tahap perubahan (sebelum akhiran) atau kontraksi.
+    const idx = role === 'changed'
+      ? anim.stages.findIndex(s => s.kind === 'change' || s.kind === 'contract')
+      : kind ? anim.stages.findIndex(s => s.kind === kind) : -1;
     if (idx >= 0) goTo(idx);
   };
 
@@ -119,6 +132,7 @@ export const GrammarAnimation: React.FC<GrammarAnimationProps> = ({ recipe, soun
     if (role === 'added') return { opacity: 0, y: -12 };
     if (role === 'suffix') return { opacity: 0, x: 28 };
     if (role === 'removed') return { opacity: 1 };
+    if (role === 'changed') return { opacity: 0, scale: 0.6 };
     return { opacity: 0 };
   };
 
@@ -140,6 +154,29 @@ export const GrammarAnimation: React.FC<GrammarAnimationProps> = ({ recipe, soun
         <p className="text-[11px] text-text-muted leading-relaxed font-sans">
           Animasi ini menunjukkan sambungan dengan kata kerja. Sambungan kata benda/sifat ada di rumus di bawah.
         </p>
+      )}
+
+      {/* Pilihan cabang: pola dengan beberapa cara membentuk (Vる／Vない, formal／kontraksi) */}
+      {recipe.branches.length > 1 && (
+        <div className="flex flex-wrap items-center gap-1" role="radiogroup" aria-label="Pilih bentuk pola">
+          <span className="text-[10px] font-bold uppercase tracking-wider text-text-muted font-heading mr-0.5">Bentuk</span>
+          {recipe.branches.map((br, i) => (
+            <button
+              key={br.label}
+              type="button"
+              role="radio"
+              aria-checked={i === branchIdx}
+              onClick={() => pickBranch(i)}
+              className={`px-2 py-0.5 rounded-md border border-border-subtle text-[11px] font-jp shadow-xs transition-colors cursor-pointer ${
+                i === branchIdx
+                  ? 'bg-gold/15 text-gold font-bold'
+                  : 'bg-surface-card text-text-secondary font-medium hover:text-text-primary'
+              }`}
+            >
+              {br.label}
+            </button>
+          ))}
+        </div>
       )}
 
       {/* Pilihan verba: per golongan + verba khusus pola ini */}
@@ -172,7 +209,7 @@ export const GrammarAnimation: React.FC<GrammarAnimationProps> = ({ recipe, soun
       {/* Panggung */}
       <div className="rounded-xl bg-surface-card border border-border-subtle px-3 py-4 min-h-[6.5rem] flex flex-col items-center justify-center text-center">
         <motion.div
-          key={`${verb.id}-${stageIdx}`}
+          key={`${branchIdx}-${verb.id}-${stageIdx}`}
           className={`font-bold font-jp tracking-wide leading-snug ${
             textLength > 6 ? 'text-xl sm:text-2xl' : 'text-2xl sm:text-3xl'
           } ${isResult ? 'text-indigo' : ''}`}
@@ -186,7 +223,7 @@ export const GrammarAnimation: React.FC<GrammarAnimationProps> = ({ recipe, soun
                 <motion.span
                   key={i}
                   initial={enter(s.role)}
-                  animate={s.role === 'removed' ? { opacity: 0.35, y: reduceMotion ? 0 : 6, scale: reduceMotion ? 1 : 0.85 } : { opacity: 1, x: 0, y: 0 }}
+                  animate={s.role === 'removed' ? { opacity: 0.35, y: reduceMotion ? 0 : 6, scale: reduceMotion ? 1 : 0.85 } : { opacity: 1, x: 0, y: 0, scale: 1 }}
                   transition={{ duration: reduceMotion ? 0 : 0.45, ease: 'easeOut' }}
                   onClick={tappable ? () => onSegmentClick(s.role) : undefined}
                   className={`inline-block ${isResult ? '' : SEGMENT_CLASS[s.role]} ${tappable ? 'cursor-pointer' : ''}`}
