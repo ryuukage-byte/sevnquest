@@ -7,7 +7,7 @@
 import * as wanakana from 'wanakana';
 import type { KanjiItem, KotobaItem } from '../../types/content';
 import { getFormationNote, type FormationTransparency, type KotobaFormationNote } from '../../data/kotobaInsights';
-import { isKanjiChar, splitWordReading, toHiragana, type ReadingPart, type ReadingType } from './readingSplit';
+import { hasKotobaInsight, isKanjiChar, splitWordReading, toHiragana, type ReadingPart, type ReadingType } from './readingSplit';
 
 export type InsightStepKind = 'recognize' | 'breakdown' | 'formation' | 'family' | 'usage' | 'quiz';
 
@@ -672,7 +672,4 @@ export function buildKotobaInsight(item: KotobaItem, src: InsightSources, opts: 
   return insight;
 }
 
-/** Tombol "Pemahaman Kotoba" hanya muncul untuk kata yang memuat kanji. */
-export function hasKotobaInsight(item: Pick<KotobaItem, 'word'>): boolean {
-  return Array.from(item.word || '').some(c => isKanjiChar(c) && c !== '々');
-}
+export { hasKotobaInsight };

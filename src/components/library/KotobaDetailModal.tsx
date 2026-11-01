@@ -1,5 +1,5 @@
 import { getWordTypeLabel } from '../../utils/wordType';
-import React, { useMemo, useState, useEffect } from 'react';
+import React, { useMemo, useState, useEffect, Suspense } from 'react';
 import { createPortal } from 'react-dom';
 import { motion } from 'motion/react';
 import { X, Volume2, Link as LinkIcon, Network, Edit3, ChevronLeft, ChevronRight, Zap, AlertTriangle, ArrowLeft, Layers } from 'lucide-react';
@@ -16,11 +16,14 @@ import { fisherYatesShuffle } from '../../utils/smartRandomizer';
 import { useBackButton } from '../../hooks/useBackButton';
 import { KanjiDetailModal } from './KanjiDetailModal';
 import { recordKanjiWriting } from '../../utils/kanjiWritingRecord';
-import { KotobaInsightModal } from './KotobaInsightModal';
-import { hasKotobaInsight } from '../../engine/kotobaInsight/kotobaInsight';
+import { lazyWithRetry as lazy } from '../../utils/lazyWithRetry';
+import { hasKotobaInsight } from '../../engine/kotobaInsight/readingSplit';
 
 import { UserDeck } from '../../types/rpg';
 import { DeckBookmarkPicker } from '../deck/DeckBookmarkPicker';
+
+// Modal Pemahaman Kotoba memuat data kurasi yang besar: baru diunduh saat dibuka.
+const KotobaInsightModal = lazy(() => import('./KotobaInsightModal').then(m => ({ default: m.KotobaInsightModal })));
 
 interface KotobaDetailModalProps {
   isOpen: boolean;
@@ -642,6 +645,7 @@ export const KotobaDetailModal: React.FC<KotobaDetailModalProps> = ({
         </motion.div>
 
         {isInsightOpen && (
+          <Suspense fallback={null}>
           <KotobaInsightModal
             isOpen
             onClose={() => setIsInsightOpen(false)}
@@ -654,6 +658,7 @@ export const KotobaDetailModal: React.FC<KotobaDetailModalProps> = ({
             onRecordInteraction={onRecordInteraction}
             onCompleteStudyItem={onCompleteStudyItem}
           />
+          </Suspense>
         )}
 
         {/* Kanji Component Drilldown Modal */}

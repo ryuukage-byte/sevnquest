@@ -32,6 +32,12 @@ export interface ReadingSplit {
 
 export const isKanjiChar = (ch: string): boolean => /[㐀-䶿一-鿿豈-﫿々〆]/.test(ch);
 
+/** Tombol "Pemahaman Kotoba" hanya muncul untuk kata yang memuat kanji. Sengaja di file ringan ini agar
+ *  UI daftar tidak ikut memuat data kurasi yang besar. */
+export function hasKotobaInsight(item: { word?: string }): boolean {
+  return Array.from(item.word || '').some(c => isKanjiChar(c) && c !== '々');
+}
+
 export const toHiragana = (s: string): string =>
   s.replace(/[ァ-ヶ]/g, ch => String.fromCharCode(ch.charCodeAt(0) - 0x60));
 

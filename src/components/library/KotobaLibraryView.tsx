@@ -1,5 +1,5 @@
 import { getWordTypeLabel } from '../../utils/wordType';
-import React, { useState, useMemo, useDeferredValue } from 'react';
+import React, { useState, useMemo, useDeferredValue, Suspense } from 'react';
 import type { DeckItemCategory } from '../../types/rpg';
 import { AnimatePresence } from 'motion/react';
 import { Volume2, Filter, ChevronDown, Bookmark, Trash2 } from 'lucide-react';
@@ -9,8 +9,8 @@ import { playSound, speakJapanese } from '../../utils/audio';
 import { RubyText } from '../learning/RubyText';
 import { KotobaItem, ItemMasteryRecord } from '../../types/content';
 import { KotobaDetailModal } from './KotobaDetailModal';
-import { KotobaInsightModal } from './KotobaInsightModal';
-import { hasKotobaInsight } from '../../engine/kotobaInsight/kotobaInsight';
+import { lazyWithRetry as lazy } from '../../utils/lazyWithRetry';
+import { hasKotobaInsight } from '../../engine/kotobaInsight/readingSplit';
 import { UserDeck } from '../../types/rpg';
 import { isItemBookmarked } from '../../utils/decks';
 import { searchJapanese, createSubsetIndex } from '../../engine/search/universalSearch';
@@ -18,6 +18,8 @@ import { JapaneseSearchInput } from '../common/JapaneseSearchInput';
 import { parseReadingVariations } from '../../utils/readingHighlightUtils';
 import { DeckBookmarkPicker } from '../deck/DeckBookmarkPicker';
 
+// Modal Pemahaman Kotoba memuat data kurasi yang besar: baru diunduh saat dibuka.
+const KotobaInsightModal = lazy(() => import('./KotobaInsightModal').then(m => ({ default: m.KotobaInsightModal })));
 
 const LEVEL_OPTIONS = [
   { value: 'all', label: 'Semua Level' },
@@ -583,6 +585,7 @@ export const KotobaLibraryView: React.FC<KotobaLibraryViewProps> = ({
       {/* Pemahaman Kotoba */}
       <AnimatePresence>
         {insightItem && (
+          <Suspense fallback={null}>
           <KotobaInsightModal
             isOpen={true}
             onClose={() => setInsightItem(null)}
@@ -595,6 +598,7 @@ export const KotobaLibraryView: React.FC<KotobaLibraryViewProps> = ({
             onRecordInteraction={onRecordInteraction}
             onCompleteStudyItem={onCompleteStudyItem}
           />
+          </Suspense>
         )}
       </AnimatePresence>
     </div>
