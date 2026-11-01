@@ -2,13 +2,15 @@ import { getWordTypeLabel } from '../../utils/wordType';
 import React, { useState, useMemo, useDeferredValue } from 'react';
 import type { DeckItemCategory } from '../../types/rpg';
 import { AnimatePresence } from 'motion/react';
-import { Volume2, Filter, ChevronDown, Bookmark, Trash2 } from 'lucide-react';
+import { Volume2, Filter, ChevronDown, Bookmark, Trash2, Sparkles } from 'lucide-react';
 import { BookIcon } from '../ui/EngravingIcons';
 import { KOTOBA_DATABASE } from '../../data/kotoba';
 import { playSound, speakJapanese } from '../../utils/audio';
 import { RubyText } from '../learning/RubyText';
 import { KotobaItem, ItemMasteryRecord } from '../../types/content';
 import { KotobaDetailModal } from './KotobaDetailModal';
+import { KotobaInsightModal } from './KotobaInsightModal';
+import { hasKotobaInsight } from '../../engine/kotobaInsight/kotobaInsight';
 import { UserDeck } from '../../types/rpg';
 import { isItemBookmarked } from '../../utils/decks';
 import { searchJapanese, createSubsetIndex } from '../../engine/search/universalSearch';
@@ -119,6 +121,7 @@ export const KotobaLibraryView: React.FC<KotobaLibraryViewProps> = ({
   const [priorityFilter, setPriorityFilter] = useState<PriorityTier>('all');
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [selectedItem, setSelectedItem] = useState<KotobaItem | null>(null);
+  const [insightItem, setInsightItem] = useState<KotobaItem | null>(null);
 
   const allKotoba = useMemo(() => {
     if (items) return items;
@@ -472,6 +475,21 @@ export const KotobaLibraryView: React.FC<KotobaLibraryViewProps> = ({
                     <p className="text-xs sm:text-sm font-semibold text-text-secondary transition-colors leading-snug">
                       {item.meaningId}
                     </p>
+                    {hasKotobaInsight(item) && (
+                      <button
+                        type="button"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setInsightItem(item);
+                          playSound('click', soundEnabled);
+                        }}
+                        className="mt-2.5 inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl border border-border-subtle bg-surface-inset text-[11px] font-bold text-text-secondary hover:text-gold hover:border-gold/50 transition-colors cursor-pointer"
+                        title={`Pahami bagaimana ${item.word} terbentuk`}
+                      >
+                        <Sparkles className="w-3.5 h-3.5 text-gold" />
+                        Pemahaman Kotoba
+                      </button>
+                    )}
                   </div>
                   <div className="flex items-center gap-1.5 shrink-0">
                     {onRemoveItem && (
@@ -559,6 +577,24 @@ export const KotobaLibraryView: React.FC<KotobaLibraryViewProps> = ({
             onPrev={handlePrevItem}
             hasNext={hasNext}
             hasPrev={hasPrev}
+          />
+        )}
+      </AnimatePresence>
+
+      {/* Pemahaman Kotoba */}
+      <AnimatePresence>
+        {insightItem && (
+          <KotobaInsightModal
+            isOpen={true}
+            onClose={() => setInsightItem(null)}
+            item={insightItem}
+            soundEnabled={soundEnabled}
+            userDecks={userDecks}
+            onToggleDeckItem={onToggleBookmark ? (deckId) => onToggleBookmark(insightItem.id, 'kotoba', undefined, deckId) : undefined}
+            onUpdateDecks={onUpdateDecks}
+            onRewardPlayer={onRewardPlayer}
+            onRecordInteraction={onRecordInteraction}
+            onCompleteStudyItem={onCompleteStudyItem}
           />
         )}
       </AnimatePresence>

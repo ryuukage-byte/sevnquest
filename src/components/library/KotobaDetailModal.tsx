@@ -2,7 +2,7 @@ import { getWordTypeLabel } from '../../utils/wordType';
 import React, { useMemo, useState, useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import { motion } from 'motion/react';
-import { X, Volume2, Link as LinkIcon, Network, Edit3, ChevronLeft, ChevronRight, Zap, AlertTriangle, ArrowLeft } from 'lucide-react';
+import { X, Volume2, Link as LinkIcon, Network, Edit3, ChevronLeft, ChevronRight, Zap, AlertTriangle, ArrowLeft, Sparkles } from 'lucide-react';
 import { BookIcon } from '../ui/EngravingIcons';
 import { KotobaItem, ItemMasteryRecord, KanjiItem } from '../../types/content';
 import { playSound, speakJapanese } from '../../utils/audio';
@@ -16,6 +16,8 @@ import { fisherYatesShuffle } from '../../utils/smartRandomizer';
 import { useBackButton } from '../../hooks/useBackButton';
 import { KanjiDetailModal } from './KanjiDetailModal';
 import { recordKanjiWriting } from '../../utils/kanjiWritingRecord';
+import { KotobaInsightModal } from './KotobaInsightModal';
+import { hasKotobaInsight } from '../../engine/kotobaInsight/kotobaInsight';
 
 import { UserDeck } from '../../types/rpg';
 import { DeckBookmarkPicker } from '../deck/DeckBookmarkPicker';
@@ -80,6 +82,7 @@ export const KotobaDetailModal: React.FC<KotobaDetailModalProps> = ({
   const [selectedKanjiChar, setSelectedKanjiChar] = useState<string | null>(null);
 
   const [isWritingMode, setIsWritingMode] = useState(false);
+  const [isInsightOpen, setIsInsightOpen] = useState(false);
   const [selectedReadingIndex, setSelectedReadingIndex] = useState<number>(-1);
   const hasRecordedWritingRef = React.useRef(false);
 
@@ -96,6 +99,10 @@ export const KotobaDetailModal: React.FC<KotobaDetailModalProps> = ({
 
   // Handle drilldown back step
   const handleBackInHistory = () => {
+    if (isInsightOpen) {
+      setIsInsightOpen(false);
+      return true;
+    }
     if (selectedKanjiChar) {
       setSelectedKanjiChar(null);
       playSound('click', soundEnabled);
@@ -492,6 +499,20 @@ export const KotobaDetailModal: React.FC<KotobaDetailModalProps> = ({
                 <Edit3 className="w-4 h-4" />
                 <span>Latih dengan Menulis (Active Recall)</span>
               </button>
+
+              {hasKotobaInsight(effectiveItem) && (
+                <button
+                  type="button"
+                  onClick={() => {
+                    setIsInsightOpen(true);
+                    playSound('click', soundEnabled);
+                  }}
+                  className="btn-physical-secondary w-full max-w-xs mx-auto py-2.5 rounded-2xl font-bold text-sm transition-all flex items-center justify-center gap-2 font-heading cursor-pointer"
+                >
+                  <Sparkles className="w-4 h-4 text-gold" />
+                  <span>Pemahaman Kotoba</span>
+                </button>
+              )}
             </div>
 
             {/* Kanji Breakdown - Interactive Links */}
@@ -619,6 +640,21 @@ export const KotobaDetailModal: React.FC<KotobaDetailModalProps> = ({
 
           </div>
         </motion.div>
+
+        {isInsightOpen && (
+          <KotobaInsightModal
+            isOpen
+            onClose={() => setIsInsightOpen(false)}
+            item={effectiveItem}
+            soundEnabled={soundEnabled}
+            userDecks={userDecks}
+            onToggleDeckItem={onToggleDeckItem}
+            onUpdateDecks={onUpdateDecks}
+            onRewardPlayer={onRewardPlayer}
+            onRecordInteraction={onRecordInteraction}
+            onCompleteStudyItem={onCompleteStudyItem}
+          />
+        )}
 
         {/* Kanji Component Drilldown Modal */}
         {selectedKanjiChar && (
