@@ -16,10 +16,10 @@ import {
   MessageCircle,
   Network,
   RotateCcw,
-  Sparkles,
   Volume2,
   X,
 } from 'lucide-react';
+import { BookIcon } from '../ui/EngravingIcons';
 import type { KanjiItem, KotobaItem } from '../../types/content';
 import type { UserDeck } from '../../types/rpg';
 import { KOTOBA_DATABASE } from '../../data/kotoba';
@@ -243,7 +243,7 @@ export const KotobaInsightModal: React.FC<KotobaInsightModalProps> = ({
             )}
             <div className="min-w-0">
               <h3 className="text-sm font-bold text-text-primary flex items-center gap-1.5 font-heading">
-                <Sparkles className="w-4 h-4 text-gold shrink-0" />
+                <BookIcon className="w-4 h-4 text-gold shrink-0" />
                 Pemahaman Kotoba
               </h3>
               <p className="text-[11px] text-text-muted font-mono truncate">

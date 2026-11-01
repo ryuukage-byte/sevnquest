@@ -2,7 +2,7 @@ import { getWordTypeLabel } from '../../utils/wordType';
 import React, { useMemo, useState, useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import { motion } from 'motion/react';
-import { X, Volume2, Link as LinkIcon, Network, Edit3, ChevronLeft, ChevronRight, Zap, AlertTriangle, ArrowLeft, Sparkles } from 'lucide-react';
+import { X, Volume2, Link as LinkIcon, Network, Edit3, ChevronLeft, ChevronRight, Zap, AlertTriangle, ArrowLeft, Layers } from 'lucide-react';
 import { BookIcon } from '../ui/EngravingIcons';
 import { KotobaItem, ItemMasteryRecord, KanjiItem } from '../../types/content';
 import { playSound, speakJapanese } from '../../utils/audio';
@@ -509,7 +509,7 @@ export const KotobaDetailModal: React.FC<KotobaDetailModalProps> = ({
                   }}
                   className="btn-physical-secondary w-full max-w-xs mx-auto py-2.5 rounded-2xl font-bold text-sm transition-all flex items-center justify-center gap-2 font-heading cursor-pointer"
                 >
-                  <Sparkles className="w-4 h-4 text-gold" />
+                  <Layers className="w-4 h-4 text-gold" />
                   <span>Pemahaman Kotoba</span>
                 </button>
               )}

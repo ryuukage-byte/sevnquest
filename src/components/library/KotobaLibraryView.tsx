@@ -2,7 +2,7 @@ import { getWordTypeLabel } from '../../utils/wordType';
 import React, { useState, useMemo, useDeferredValue } from 'react';
 import type { DeckItemCategory } from '../../types/rpg';
 import { AnimatePresence } from 'motion/react';
-import { Volume2, Filter, ChevronDown, Bookmark, Trash2, Sparkles } from 'lucide-react';
+import { Volume2, Filter, ChevronDown, Bookmark, Trash2 } from 'lucide-react';
 import { BookIcon } from '../ui/EngravingIcons';
 import { KOTOBA_DATABASE } from '../../data/kotoba';
 import { playSound, speakJapanese } from '../../utils/audio';
@@ -483,10 +483,9 @@ export const KotobaLibraryView: React.FC<KotobaLibraryViewProps> = ({
                           setInsightItem(item);
                           playSound('click', soundEnabled);
                         }}
-                        className="mt-2.5 inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl border border-border-subtle bg-surface-inset text-[11px] font-bold text-text-secondary hover:text-gold hover:border-gold/50 transition-colors cursor-pointer"
+                        className="mt-2.5 inline-flex items-center px-2.5 py-1.5 rounded-xl border border-border-subtle bg-surface-inset text-[11px] font-bold text-text-secondary hover:text-gold hover:border-gold/50 transition-colors cursor-pointer"
                         title={`Pahami bagaimana ${item.word} terbentuk`}
                       >
-                        <Sparkles className="w-3.5 h-3.5 text-gold" />
                         Pemahaman Kotoba
                       </button>
                     )}
