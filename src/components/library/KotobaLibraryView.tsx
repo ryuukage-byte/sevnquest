@@ -1,5 +1,5 @@
 import { getWordTypeLabel } from '../../utils/wordType';
-import React, { useState, useMemo, useDeferredValue } from 'react';
+import React, { useState, useMemo, useDeferredValue, Suspense } from 'react';
 import type { DeckItemCategory } from '../../types/rpg';
 import { AnimatePresence } from 'motion/react';
 import { Volume2, Filter, ChevronDown, Bookmark, Trash2 } from 'lucide-react';
@@ -9,6 +9,8 @@ import { playSound, speakJapanese } from '../../utils/audio';
 import { RubyText } from '../learning/RubyText';
 import { KotobaItem, ItemMasteryRecord } from '../../types/content';
 import { KotobaDetailModal } from './KotobaDetailModal';
+import { lazyWithRetry as lazy } from '../../utils/lazyWithRetry';
+import { hasKotobaInsight } from '../../engine/kotobaInsight/readingSplit';
 import { UserDeck } from '../../types/rpg';
 import { isItemBookmarked } from '../../utils/decks';
 import { searchJapanese, createSubsetIndex } from '../../engine/search/universalSearch';
@@ -16,6 +18,8 @@ import { JapaneseSearchInput } from '../common/JapaneseSearchInput';
 import { parseReadingVariations } from '../../utils/readingHighlightUtils';
 import { DeckBookmarkPicker } from '../deck/DeckBookmarkPicker';
 
+// Modal Pemahaman Kotoba memuat data kurasi yang besar: baru diunduh saat dibuka.
+const KotobaInsightModal = lazy(() => import('./KotobaInsightModal').then(m => ({ default: m.KotobaInsightModal })));
 
 const LEVEL_OPTIONS = [
   { value: 'all', label: 'Semua Level' },
@@ -119,6 +123,7 @@ export const KotobaLibraryView: React.FC<KotobaLibraryViewProps> = ({
   const [priorityFilter, setPriorityFilter] = useState<PriorityTier>('all');
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [selectedItem, setSelectedItem] = useState<KotobaItem | null>(null);
+  const [insightItem, setInsightItem] = useState<KotobaItem | null>(null);
 
   const allKotoba = useMemo(() => {
     if (items) return items;
@@ -472,6 +477,20 @@ export const KotobaLibraryView: React.FC<KotobaLibraryViewProps> = ({
                     <p className="text-xs sm:text-sm font-semibold text-text-secondary transition-colors leading-snug">
                       {item.meaningId}
                     </p>
+                    {hasKotobaInsight(item) && (
+                      <button
+                        type="button"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setInsightItem(item);
+                          playSound('click', soundEnabled);
+                        }}
+                        className="mt-2.5 inline-flex items-center px-2.5 py-1.5 rounded-xl border border-border-subtle bg-surface-inset text-[11px] font-bold text-text-secondary hover:text-gold hover:border-gold/50 transition-colors cursor-pointer"
+                        title={`Pahami bagaimana ${item.word} terbentuk`}
+                      >
+                        Pemahaman Kotoba
+                      </button>
+                    )}
                   </div>
                   <div className="flex items-center gap-1.5 shrink-0">
                     {onRemoveItem && (
@@ -560,6 +579,26 @@ export const KotobaLibraryView: React.FC<KotobaLibraryViewProps> = ({
             hasNext={hasNext}
             hasPrev={hasPrev}
           />
+        )}
+      </AnimatePresence>
+
+      {/* Pemahaman Kotoba */}
+      <AnimatePresence>
+        {insightItem && (
+          <Suspense fallback={null}>
+          <KotobaInsightModal
+            isOpen={true}
+            onClose={() => setInsightItem(null)}
+            item={insightItem}
+            soundEnabled={soundEnabled}
+            userDecks={userDecks}
+            onToggleDeckItem={onToggleBookmark ? (deckId) => onToggleBookmark(insightItem.id, 'kotoba', undefined, deckId) : undefined}
+            onUpdateDecks={onUpdateDecks}
+            onRewardPlayer={onRewardPlayer}
+            onRecordInteraction={onRecordInteraction}
+            onCompleteStudyItem={onCompleteStudyItem}
+          />
+          </Suspense>
         )}
       </AnimatePresence>
     </div>
