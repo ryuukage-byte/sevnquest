@@ -1,6 +1,6 @@
 # PRD: Model Monetisasi SevnQuest / Nihongo Quest
 
-Versi: 0.2 (revisi dari draft 0.1)
+Versi: 0.3 (revisi dari draft 0.1)
 Tanggal: 4 November 2026
 Status: Draft untuk review
 
@@ -15,13 +15,15 @@ Status: Draft untuk review
 | 3 | 10 level = 10 rank leaderboard (Minarai → Kami), donatur = rank 4–10 | Level donatur punya badge sendiri, **tidak** memakai rank belajar | Repo memakai 10 tier RPG berbasis EXP (Villager → Mythic Deity). Memakai rank yang sama untuk donatur bertentangan dengan aturan "donasi bukan pay-to-win". |
 | 4 | Kuota Kaiwa AI (Gemini) per tier | Kaiwa dikeluarkan dari tier. Fitur AI yang ada: **Deck AI** | Tidak ada fitur Kaiwa maupun integrasi Gemini di repo ini. |
 | 5 | "Akses dicek di Edge Function, data diverifikasi di backend" | Gating dua jenis: **lunak** (konten yang dibundel di klien) dan **keras** (fitur server) | Konten dibundel di JS dan bisa dipakai offline; tamu bisa bermain penuh tanpa login. Konten tidak bisa dikunci di backend tanpa memindahkan data ke server. |
-| 6 | Tidak menyebut kanal donasi yang sudah ada | Trakteer (`teer.id/sevnsoul`) di Pengaturan ikut diputuskan | Sudah ada tombol "Dukung Developer" di `SettingsView`. |
+| 6 | Tidak menyebut kanal donasi yang sudah ada | Trakteer (`teer.id/sevnsoul`) di Pengaturan **diganti QRIS** | Keputusan pemilik (v0.3). Semua pembayaran lewat satu kanal. |
+| 7 | Basic = Map 1 Stage 1–5 | Basic = **kana (hiragana, katakana) sampai N5** | Keputusan pemilik (v0.3). |
+| 8 | Produk N3 GATE / NihongoQuest belum jelas | Produk utama adalah **SevnQuest**, mencakup seluruh bahasa Jepang (kana sampai N1, plus Kaigo dan SSW) | Keputusan pemilik (v0.3). |
 
 ---
 
 ## 1. Ringkasan
 
-Web app belajar bahasa Jepang (JLPT N5–N1) dengan dua lapisan monetisasi:
+SevnQuest adalah produk utama: web app belajar bahasa Jepang yang mencakup seluruh jenjang, dari kana sampai JLPT N1, plus kosakata Kaigo dan SSW. PRD ini berlaku untuk SevnQuest. Dua lapisan monetisasi:
 
 1. **Tier Akses (3 level):** Basic, Medium, Full. Menentukan konten dan fitur yang bisa dipakai.
 2. **Tier Donatur (7 level, D1–D7):** Dibayar tambahan di atas tier akses. Benefitnya kosmetik dan komunitas, terpisah dari rank belajar.
@@ -95,9 +97,11 @@ Usulan pembagian berdasarkan isi repo saat ini. Angka final diputuskan di Pertan
 
 | Tier | Harga | Konten | Fitur |
 |---|---|---|---|
-| **Basic** | Gratis | Semua materi N5 dan N4 (Library, Tower, Recall), Tower lantai 001–016 | Recall dengan batas harian saat ini (40 jawaban, 10 materi baru), Arcade, leaderboard, cloud sync |
-| **Medium** | Rp 15.000 / bulan | + Materi N3 (132 pola, 366 kanji, 1.960 kotoba), seluruh Tower, semua Dungeon | + Latihan Ekstra Recall tanpa batas, tryout N5–N3, statistik lengkap |
-| **Full** | Rp 35.000 / bulan | + Materi N2 dan N1, semua tryout, Choukai saat aktif kembali | + Deck AI, Imersi YouTube, early access fitur baru |
+| **Basic** | Gratis | Kana (hiragana, katakana) dan semua materi N5: kotoba, kanji, bunpou, soal. Tower lantai yang materinya kana atau N5 (Menara 1: 001–016, lalu lantai N5 di Menara 2). Tryout N5 | Recall dengan batas harian saat ini (40 jawaban, 10 materi baru), Arcade dan Dungeon dengan sumber materi kana/N5, leaderboard, cloud sync |
+| **Medium** | Rp 15.000 / bulan | + Materi N4 dan N3 (bunpou 189 + 132 pola, kanji 167 + 366, kotoba 731 + 1.960), Tower lantai N4 dan N3, tryout N4–N3 | + Latihan Ekstra Recall tanpa batas, semua mode Dungeon, statistik lengkap |
+| **Full** | Rp 35.000 / bulan | + Materi N2 dan N1, Kaigo dan SSW, semua tryout, Choukai saat aktif kembali | + Deck AI, Imersi YouTube, early access fitur baru |
+
+Aturan pembagian: tier sebuah materi ditentukan oleh level JLPT-nya. Kana dan N5 = Basic, N4–N3 = Medium, N2–N1 serta Kaigo/SSW = Full. Untuk Tower, Arcade, Dungeon, dan Buku Saku, yang dicek adalah level materi yang dipakai, bukan modenya. Nomor lantai Tower yang tepat ditentukan saat implementasi dari data `src/data/tower1` dan `src/data/tower2`.
 
 Paket periode (QRIS statis tidak bisa menagih otomatis, jadi pengguna membeli masa aktif di muka):
 
@@ -136,12 +140,8 @@ Nama badge hanya contoh dan tidak memakai nama tier RPG (Villager … Mythic Dei
 - Tier RPG tetap hanya dari EXP dan gerbang ascension. Donasi tidak memberi EXP, gold, atau bonus apa pun yang memengaruhi skor.
 - Papan donatur tampil terpisah dan menampilkan level D1–D7 beserta nama.
 
-### Hubungan dengan Trakteer
-Tombol "Dukung Developer" (Trakteer) di Pengaturan sudah ada. Pilihan:
-- (a) Trakteer tetap untuk donasi sekali bayar tanpa benefit, QRIS untuk tier donatur.
-- (b) Trakteer diganti seluruhnya dengan QRIS.
-
-Diputuskan di Pertanyaan Terbuka no. 1.
+### Pengganti Trakteer
+Tombol "Dukung Developer" (Trakteer, `teer.id/sevnsoul`) di Pengaturan diganti dengan halaman Dukung/Upgrade yang memakai QRIS. Donasi sekali bayar tanpa benefit tetap bisa: pengguna memindai QRIS dan membayar nominal bebas tanpa membuat order. Donasi seperti itu tidak memberi badge karena tidak bisa dicocokkan ke akun.
 
 ---
 
@@ -209,7 +209,7 @@ Bukti bayar disimpan di bucket Storage privat `payment-proofs`, path `<user_id>/
 | **Lunak** | Konten yang dibundel di klien (materi N3–N1, Tower, Dungeon, tryout) | Klien membaca `get_my_entitlement()` saat login, menyimpan hasilnya di cache lokal, menampilkan kunci dan CTA upgrade | Bisa diakali oleh pengguna teknis. Diterima untuk v1. |
 | **Keras** | Fitur server: Deck AI (`functions/api/deck-topic.ts`), Imersi (`functions/api/captions.ts`) | Cloudflare Function memverifikasi JWT Supabase dan memanggil `get_my_entitlement` sebelum memanggil LLM atau caption | Tidak bisa diakali dari klien |
 
-- Tag `tier_required` ditambahkan di metadata konten (level JLPT sudah cukup untuk sebagian besar materi: N5/N4 = basic, N3 = medium, N2/N1 = full).
+- Tag `tier_required` diturunkan dari level JLPT materi: kana/N5 = basic, N4/N3 = medium, N2/N1/Kaigo/SSW = full.
 - Cache entitlement berlaku maksimal 7 hari offline. Setelah itu, materi tier atas terkunci sampai app online lagi.
 - Tamu (tanpa login) diperlakukan sebagai Basic.
 - Penguncian keras untuk konten (memindahkan dataset ke server) di luar lingkup versi ini.
@@ -223,7 +223,7 @@ Bukti bayar disimpan di bucket Storage privat `payment-proofs`, path `<user_id>/
 
 ## 7. Metrik Keberhasilan
 
-- Konversi Basic → Medium: target 5% pengguna aktif login dalam 30 hari pertama.
+- Konversi Basic → Medium: target 5% pengguna aktif login dalam 30 hari pertama. Titik konversi utama: saat pengguna menuntaskan N5 dan mencoba materi N4.
 - Perpanjangan (bukan retensi auto-renew) bulan ke-3: target 50% pengguna berbayar membeli periode berikutnya.
 - Rasio donatur dari pengguna berbayar: target 10%.
 - Biaya LLM (Deck AI) per pengguna Full kurang dari 15% harga Full.
@@ -251,21 +251,21 @@ Bukti bayar disimpan di bucket Storage privat `payment-proofs`, path `<user_id>/
 
 ## 9. Pertanyaan Terbuka
 
-1. Trakteer dipertahankan untuk donasi sekali bayar, atau diganti seluruhnya dengan QRIS?
-2. Pembagian konten di bagian 4 (N5–N4 gratis, N3 Medium, N2–N1 Full) sudah sesuai, atau N3 perlu sebagian gratis karena target utama app adalah N3?
-3. Apakah tier donatur dijual sebagai periode bulanan saja, atau ada opsi sekali bayar / lifetime untuk D7?
-4. Apakah papan donatur ditampilkan publik atau hanya di dalam app?
-5. Apakah N3 GATE dan NihongoQuest digabung jadi satu produk, atau berdiri sendiri? Bila berdiri sendiri, PRD ini hanya berlaku untuk repo `sevnquest`.
-6. Siapa saja admin verifikasi pembayaran, dan pada jam berapa saja order diproses?
+Sudah diputuskan (v0.3): Trakteer diganti QRIS; Basic = kana sampai N5; produk utama SevnQuest.
+
+1. Apakah tier donatur dijual sebagai periode bulanan saja, atau ada opsi sekali bayar / lifetime untuk D7?
+2. Apakah papan donatur ditampilkan publik atau hanya di dalam app?
+3. Siapa saja admin verifikasi pembayaran, dan pada jam berapa saja order diproses?
+4. Apakah tamu (tanpa login) tetap bisa memakai semua materi Basic, atau sebagian butuh login?
 
 ---
 
 ## 10. Langkah Berikutnya
 
-1. Putuskan Pertanyaan Terbuka no. 1, 2, dan 5.
+1. Putuskan Pertanyaan Terbuka no. 1 dan 3.
 2. Cek biaya dan ketentuan akun GoPay Merchant untuk penjualan langganan digital.
 3. Buat migrasi Supabase: `subscription_tiers`, `payment_orders`, `user_subscriptions`, `admins`, RPC, bucket `payment-proofs`.
-4. Buat halaman Upgrade (QRIS + nominal unik + klaim) dan halaman admin.
+4. Buat halaman Upgrade (QRIS + nominal unik + klaim) dan halaman admin. Ganti tombol Trakteer di `SettingsView` dengan tautan ke halaman ini.
 5. Tambah pengecekan entitlement di `functions/api/deck-topic.ts` dan `functions/api/captions.ts`.
 6. Tandai konten dengan `tier_required` dan pasang gating lunak di Library, Tower, Dungeon, dan tryout.
 7. Uji alur end-to-end dengan transaksi nyata nominal kecil sebelum rilis.
