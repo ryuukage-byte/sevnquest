@@ -78,11 +78,11 @@ export const RecallModule: React.FC<RecallModuleProps> = ({
   const [isExtraSession, setIsExtraSession] = useState(false);
   const { canAccessTier, openUpgrade } = useAccess();
   const startExtraSession = () => {
-    // Paket Basic: 1 putaran Latihan Ekstra per hari; Medium ke atas tanpa batas (PRD bagian 4).
-    if (!canAccessTier('medium')) {
+    // Gratis: 1 putaran Latihan Ekstra per hari; Full tanpa batas (PRD bagian 4).
+    if (!canAccessTier('full')) {
       const key = 'sevnquest_extra_recall_day';
       if (safeGetItem(key) === today) {
-        openUpgrade({ requiredTier: 'medium', label: 'Latihan Ekstra tanpa batas' });
+        openUpgrade({ requiredTier: 'full', label: 'Latihan Ekstra tanpa batas' });
         return;
       }
       safeSetItem(key, today);

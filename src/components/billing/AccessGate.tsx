@@ -27,15 +27,15 @@ export const LockedOverlay: React.FC<{
         <div className="space-y-1">
           <h3 className="font-heading font-black text-text-primary text-lg">{label} terkunci</h3>
           <p className="text-xs text-text-secondary leading-relaxed">
-            Materi ini tersedia mulai paket <b>{TIER_LABEL[requiredTier]}</b>. Paket gratis mencakup kana sampai N5.
-            Progres yang sudah kamu kumpulkan tetap tersimpan.
+            Materi ini butuh akses <b>{TIER_LABEL[requiredTier]}</b>. Gratis mencakup kana sampai N5; Full terbuka lewat
+            donasi (total Rp 17.000 sebulan). Progres yang sudah kamu kumpulkan tetap tersimpan.
           </p>
         </div>
         <button
           onClick={() => openUpgrade({ requiredTier, label })}
           className="btn-cta w-full py-3 text-xs font-heading font-black flex items-center justify-center gap-2"
         >
-          <Crown className="w-4 h-4" /> Lihat Paket
+          <Crown className="w-4 h-4" /> Buka dengan Donasi
         </button>
       </div>
     </div>

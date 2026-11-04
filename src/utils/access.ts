@@ -1,7 +1,8 @@
-// Aturan akses tier (docs/prd/PRD_MONETISASI.md bagian 4). Murni, tanpa React/Supabase, supaya bisa diuji.
-//   Basic  (gratis): kana dan N5
-//   Medium         : + N4, N3
-//   Full           : + N2, N1, Kaigo, SSW, materi campuran semua level, Deck AI, Imersi
+// Aturan akses (docs/prd/PRD_MONETISASI.md bagian 4). Murni, tanpa React/Supabase, supaya bisa diuji.
+//   Basic (gratis): kana dan N5
+//   Full          : semua materi lain (N4-N1, Kaigo, SSW, campuran), Deck AI, Imersi.
+//                   Dibuka lewat donasi: total bulanan >= Rp 17.000, tiap setoran lifetime, atau lifetime penuh.
+// 'medium' hanya tersisa sebagai nilai lama; tidak dijual lagi.
 
 export type AccessTier = 'basic' | 'medium' | 'full';
 
@@ -27,17 +28,11 @@ export function requiredTierForLevel(level: string | null | undefined): AccessTi
   const v = String(level).trim().toUpperCase();
   if (!v) return 'basic';
   if (v === 'ALL' || v === 'SEMUA' || v === 'CAMPURAN' || v === 'MIXED') return 'full';
-  if (/KAIGO|SSW|^PM$|MEDIS/.test(v)) return 'full';
-  if (/JFT/.test(v)) return 'medium'; // JFT-Basic setara A2 (sekitar N4)
+  if (/KAIGO|SSW|^PM$|MEDIS|JFT/.test(v)) return 'full';
   if (/KANA|HIRAGANA|KATAKANA/.test(v)) return 'basic';
   // Rentang campuran ("N5_N4", "N3-N2") mengikuti level tertinggi di dalamnya.
   const levels = [...v.matchAll(/N\s*([1-5])/g)].map(x => Number(x[1]));
-  if (levels.length) {
-    const n = Math.min(...levels);
-    if (n === 5) return 'basic';
-    if (n === 4 || n === 3) return 'medium';
-    return 'full';
-  }
+  if (levels.length) return Math.min(...levels) === 5 ? 'basic' : 'full';
   return 'basic';
 }
 
@@ -45,11 +40,11 @@ export function canAccessLevel(have: AccessTier, level: string | null | undefine
   return tierAtLeast(have, requiredTierForLevel(level));
 }
 
-/** Tower: lantai 1-60 = kana dan N5 (Basic), 61-100 = N4 (Medium). Lihat src/data/tower2/floors.ts. */
+/** Tower: lantai 1-60 = kana dan N5 (Basic), 61-100 = N4 (Full). Lihat src/data/tower2/floors.ts. */
 export const TOWER_BASIC_LAST_FLOOR = 60;
 
 export function requiredTierForTowerFloor(floor: number): AccessTier {
-  return floor <= TOWER_BASIC_LAST_FLOOR ? 'basic' : 'medium';
+  return floor <= TOWER_BASIC_LAST_FLOOR ? 'basic' : 'full';
 }
 
 /** Fitur berbasis server. */
@@ -64,16 +59,38 @@ export type GatedFeature = keyof typeof FEATURE_TIER;
 // Entitlement (hasil RPC get_my_entitlement) + cache offline
 // ---------------------------------------------------------------------------
 
+export interface DonationConfig {
+  monthlyThreshold: number;
+  monthlyMin: number;
+  lifetimeUnit: number;
+  lifetimeTarget: number;
+  fullDays: number;
+}
+
+export const DEFAULT_DONATION_CONFIG: DonationConfig = {
+  monthlyThreshold: 17000,
+  monthlyMin: 5000,
+  lifetimeUnit: 25000,
+  lifetimeTarget: 700000,
+  fullDays: 30,
+};
+
 export interface Entitlement {
   accessTier: AccessTier;
   accessExpiresAt: string | null;
   accessInGrace: boolean;
   isLifetime: boolean;
-  donorLevel: number;
-  donorTitle: string | null;
-  donorExpiresAt: string | null;
-  donorInGrace: boolean;
-  lifetimeTitle: string | null;
+  /** Total setoran lifetime (tidak pernah reset). */
+  lifetimeTotal: number;
+  badgeLevel: number;
+  badgeTitle: string | null;
+  /** 'YYYY-MM' (WIB) bulan berjalan menurut server. */
+  month: string | null;
+  /** Total donasi bulanan di bulan berjalan. */
+  monthTotal: number;
+  /** Full bulan ini sudah dibuka lewat jalur bulanan. */
+  monthUnlocked: boolean;
+  config: DonationConfig;
   isAdmin: boolean;
 }
 
@@ -82,30 +99,51 @@ export const BASIC_ENTITLEMENT: Entitlement = {
   accessExpiresAt: null,
   accessInGrace: false,
   isLifetime: false,
-  donorLevel: 0,
-  donorTitle: null,
-  donorExpiresAt: null,
-  donorInGrace: false,
-  lifetimeTitle: null,
+  lifetimeTotal: 0,
+  badgeLevel: 0,
+  badgeTitle: null,
+  month: null,
+  monthTotal: 0,
+  monthUnlocked: false,
+  config: DEFAULT_DONATION_CONFIG,
   isAdmin: false,
 };
+
+function num(v: unknown, fallback: number, max = 1e9): number {
+  const n = Number(v);
+  return Number.isFinite(n) && n >= 0 ? Math.min(max, Math.trunc(n)) : fallback;
+}
+
+function parseConfig(raw: unknown): DonationConfig {
+  const r = (raw && typeof raw === 'object' ? raw : {}) as Record<string, unknown>;
+  const d = DEFAULT_DONATION_CONFIG;
+  return {
+    monthlyThreshold: num(r.monthly_threshold, d.monthlyThreshold) || d.monthlyThreshold,
+    monthlyMin: num(r.monthly_min, d.monthlyMin) || d.monthlyMin,
+    lifetimeUnit: num(r.lifetime_unit, d.lifetimeUnit) || d.lifetimeUnit,
+    lifetimeTarget: num(r.lifetime_target, d.lifetimeTarget) || d.lifetimeTarget,
+    fullDays: num(r.full_days, d.fullDays) || d.fullDays,
+  };
+}
 
 /** Ubah jsonb dari RPC menjadi Entitlement; nilai aneh jatuh ke Basic. */
 export function parseEntitlement(raw: unknown): Entitlement {
   if (!raw || typeof raw !== 'object') return { ...BASIC_ENTITLEMENT };
   const r = raw as Record<string, unknown>;
   const str = (v: unknown) => (typeof v === 'string' && v ? v : null);
-  const donor = Number(r.donor_level);
+  const tier = r.access_tier === 'medium' ? 'full' : r.access_tier;
   return {
-    accessTier: isAccessTier(r.access_tier) ? r.access_tier : 'basic',
+    accessTier: isAccessTier(tier) ? tier : 'basic',
     accessExpiresAt: str(r.access_expires_at),
     accessInGrace: r.access_in_grace === true,
     isLifetime: r.is_lifetime === true,
-    donorLevel: Number.isFinite(donor) ? Math.max(0, Math.min(7, Math.trunc(donor))) : 0,
-    donorTitle: str(r.donor_title),
-    donorExpiresAt: str(r.donor_expires_at),
-    donorInGrace: r.donor_in_grace === true,
-    lifetimeTitle: str(r.lifetime_title),
+    lifetimeTotal: num(r.lifetime_total, 0),
+    badgeLevel: num(r.badge_level, 0, 8),
+    badgeTitle: str(r.badge_title),
+    month: str(r.month),
+    monthTotal: num(r.month_total, 0),
+    monthUnlocked: r.month_unlocked === true,
+    config: parseConfig(r.config),
     isAdmin: r.is_admin === true,
   };
 }
@@ -144,11 +182,19 @@ function toRaw(e: Entitlement): Record<string, unknown> {
     access_expires_at: e.accessExpiresAt,
     access_in_grace: e.accessInGrace,
     is_lifetime: e.isLifetime,
-    donor_level: e.donorLevel,
-    donor_title: e.donorTitle,
-    donor_expires_at: e.donorExpiresAt,
-    donor_in_grace: e.donorInGrace,
-    lifetime_title: e.lifetimeTitle,
+    lifetime_total: e.lifetimeTotal,
+    badge_level: e.badgeLevel,
+    badge_title: e.badgeTitle,
+    month: e.month,
+    month_total: e.monthTotal,
+    month_unlocked: e.monthUnlocked,
+    config: {
+      monthly_threshold: e.config.monthlyThreshold,
+      monthly_min: e.config.monthlyMin,
+      lifetime_unit: e.config.lifetimeUnit,
+      lifetime_target: e.config.lifetimeTarget,
+      full_days: e.config.fullDays,
+    },
     is_admin: e.isAdmin,
   };
 }
@@ -162,57 +208,54 @@ export function daysUntil(iso: string | null, now = Date.now()): number | null {
 }
 
 // ---------------------------------------------------------------------------
-// Katalog paket (cermin tabel subscription_prices; server tetap sumber kebenaran harga)
+// Donasi: badge permanen dan hitungan "kurang Rp X lagi"
 // ---------------------------------------------------------------------------
 
-export interface PlanOption {
-  tierCode: string;
-  periodMonths: number; // 0 = sekali bayar
-  priceIdr: number;
-  label: string;
-  title?: string;
+export interface Badge {
+  level: number;
+  title: string;
+  kanji: string;
+  minTotal: number;
 }
 
-export const ACCESS_PLANS: PlanOption[] = [
-  { tierCode: 'medium', periodMonths: 1, priceIdr: 15000, label: 'Medium 1 bulan' },
-  { tierCode: 'medium', periodMonths: 3, priceIdr: 42000, label: 'Medium 3 bulan' },
-  { tierCode: 'medium', periodMonths: 12, priceIdr: 150000, label: 'Medium 12 bulan' },
-  { tierCode: 'full', periodMonths: 1, priceIdr: 35000, label: 'Full 1 bulan' },
-  { tierCode: 'full', periodMonths: 3, priceIdr: 99000, label: 'Full 3 bulan' },
-  { tierCode: 'full', periodMonths: 12, priceIdr: 350000, label: 'Full 12 bulan' },
+/** Cermin badge_for() di database. Level 8 (Eien) = Full selamanya. */
+export const BADGES: Badge[] = [
+  { level: 1, title: 'Sakura', kanji: '桜', minTotal: 25000 },
+  { level: 2, title: 'Ume', kanji: '梅', minTotal: 50000 },
+  { level: 3, title: 'Take', kanji: '竹', minTotal: 100000 },
+  { level: 4, title: 'Matsu', kanji: '松', minTotal: 200000 },
+  { level: 5, title: 'Tsuki', kanji: '月', minTotal: 300000 },
+  { level: 6, title: 'Taiyou', kanji: '太陽', minTotal: 450000 },
+  { level: 7, title: 'Fuji', kanji: '富士', minTotal: 600000 },
+  { level: 8, title: 'Eien', kanji: '永遠', minTotal: 700000 },
 ];
 
-export const DONOR_PLANS: PlanOption[] = [
-  { tierCode: 'd1', periodMonths: 1, priceIdr: 25000, label: 'D1', title: 'Sakura' },
-  { tierCode: 'd2', periodMonths: 1, priceIdr: 50000, label: 'D2', title: 'Ume' },
-  { tierCode: 'd3', periodMonths: 1, priceIdr: 75000, label: 'D3', title: 'Take' },
-  { tierCode: 'd4', periodMonths: 1, priceIdr: 100000, label: 'D4', title: 'Matsu' },
-  { tierCode: 'd5', periodMonths: 1, priceIdr: 150000, label: 'D5', title: 'Tsuki' },
-  { tierCode: 'd6', periodMonths: 1, priceIdr: 250000, label: 'D6', title: 'Taiyou' },
-  { tierCode: 'd7', periodMonths: 1, priceIdr: 500000, label: 'D7', title: 'Fuji' },
-];
+export function badgeForTotal(total: number): Badge | null {
+  let best: Badge | null = null;
+  for (const b of BADGES) if (total >= b.minTotal) best = b;
+  return best;
+}
 
-export const LIFETIME_PLAN: PlanOption = {
-  tierCode: 'lifetime', periodMonths: 0, priceIdr: 700000, label: 'Lifetime', title: 'Eien',
-};
+export function nextBadge(total: number): Badge | null {
+  return BADGES.find(b => total < b.minTotal) ?? null;
+}
 
-export const DONOR_BENEFITS: string[] = [
-  'Badge donatur, nama di papan donatur',
-  '+ Frame avatar khusus',
-  '+ Voting topik konten berikutnya',
-  '+ Nama tampil di halaman utama',
-  '+ Prioritas antrian request konten',
-  '+ Sesi feedback 1-on-1 per bulan',
-  '+ Nama di kredit app',
-];
+/** Sisa donasi bulan ini agar Full 30 hari terbuka (0 bila sudah terbuka). */
+export function monthlyRemaining(e: Pick<Entitlement, 'monthTotal' | 'monthUnlocked' | 'config'>): number {
+  if (e.monthUnlocked) return 0;
+  return Math.max(0, e.config.monthlyThreshold - e.monthTotal);
+}
 
-export function planLabel(tierCode: string, periodMonths: number): string {
-  const all = [...ACCESS_PLANS, ...DONOR_PLANS, LIFETIME_PLAN];
-  const p = all.find(x => x.tierCode === tierCode && x.periodMonths === periodMonths);
-  if (!p) return `${tierCode} ${periodMonths} bln`;
-  if (p.tierCode.startsWith('d')) return `Donatur ${p.label} ${p.title} (1 bulan)`;
-  if (p.tierCode === 'lifetime') return `Lifetime (title ${p.title})`;
-  return p.label;
+/** Jumlah setoran lifetime yang masih bisa dibuat sampai target. */
+export function lifetimeUnitsLeft(e: Pick<Entitlement, 'lifetimeTotal' | 'isLifetime' | 'config'>): number {
+  if (e.isLifetime) return 0;
+  return Math.max(0, Math.floor((e.config.lifetimeTarget - e.lifetimeTotal) / e.config.lifetimeUnit));
+}
+
+export function planLabel(tierCode: string, baseAmount: number): string {
+  if (tierCode === 'monthly') return `Donasi bulanan ${formatIdr(baseAmount)}`;
+  if (tierCode === 'lifetime_unit') return `Setoran lifetime ${formatIdr(baseAmount)}`;
+  return `${tierCode} ${formatIdr(baseAmount)}`;
 }
 
 export function formatIdr(n: number): string {

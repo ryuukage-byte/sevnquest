@@ -1184,7 +1184,7 @@ export const QuestionLibraryView: React.FC<QuestionLibraryViewProps> = ({
           ))}
           {entitlement.accessTier !== 'full' && (
             <button
-              onClick={() => openUpgrade({ requiredTier: entitlement.accessTier === 'basic' ? 'medium' : 'full', label: 'Soal & tryout level lanjut' })}
+              onClick={() => openUpgrade({ requiredTier: 'full', label: 'Soal & tryout level lanjut' })}
               className="text-[11px] text-gold font-bold underline-offset-2 hover:underline shrink-0"
             >
               Buka level lain

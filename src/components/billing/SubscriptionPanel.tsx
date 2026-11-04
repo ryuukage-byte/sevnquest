@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Crown, ShieldCheck, EyeOff, Loader2 } from 'lucide-react';
 import { useAccess } from '../../state/entitlement';
-import { TIER_LABEL } from '../../utils/access';
+import { badgeForTotal, formatIdr, monthlyRemaining } from '../../utils/access';
 import { fetchDonorAnonymous, setDonorAnonymous } from '../../lib/billing';
 import { playSound } from '../../utils/audio';
 
@@ -13,7 +13,9 @@ function fmt(iso: string | null): string {
 /** Panel Pengaturan: paket aktif, tombol upgrade, opsi anonim donatur, dan pintu admin. */
 export const SubscriptionPanel: React.FC<{ soundEnabled?: boolean }> = ({ soundEnabled = true }) => {
   const { entitlement, openUpgrade, openAdmin } = useAccess();
-  const isDonor = entitlement.donorLevel > 0 || entitlement.isLifetime;
+  const isDonor = entitlement.lifetimeTotal > 0 || entitlement.monthTotal > 0 || entitlement.isLifetime;
+  const badge = badgeForTotal(entitlement.lifetimeTotal);
+  const remaining = monthlyRemaining(entitlement);
   const [anonymous, setAnonymous] = useState<boolean | null>(null);
   const [saving, setSaving] = useState(false);
 
@@ -39,28 +41,34 @@ export const SubscriptionPanel: React.FC<{ soundEnabled?: boolean }> = ({ soundE
   return (
     <div className="panel panel-stitched p-4 sm:p-5 space-y-3 shadow-md">
       <h3 className="text-xs font-bold uppercase tracking-wider text-text-secondary flex items-center gap-1.5 font-heading">
-        <Crown className="w-4 h-4 text-gold" /> Paket & Langganan
+        <Crown className="w-4 h-4 text-gold" /> Akses & Donasi
       </h3>
 
       <div className="flex flex-wrap items-center gap-2 text-xs">
         <span className="font-heading font-black text-text-primary text-base">
-          {entitlement.isLifetime ? 'Lifetime' : TIER_LABEL[entitlement.accessTier]}
+          {entitlement.isLifetime ? 'Full selamanya' : entitlement.accessTier === 'full' ? 'Full' : 'Gratis'}
         </span>
-        {entitlement.isLifetime && <span className="text-text-secondary">Full selamanya</span>}
-        {!entitlement.isLifetime && entitlement.accessExpiresAt && (
+        {!entitlement.isLifetime && entitlement.accessTier === 'full' && entitlement.accessExpiresAt && (
           <span className={entitlement.accessInGrace ? 'text-rose-400' : 'text-text-secondary'}>
             {entitlement.accessInGrace ? 'masa tenggang, ' : ''}sampai {fmt(entitlement.accessExpiresAt)}
           </span>
         )}
-        {entitlement.accessTier === 'basic' && <span className="text-text-secondary">Gratis: kana sampai N5</span>}
-        {entitlement.lifetimeTitle && (
-          <span className="px-2 py-0.5 rounded-full border border-gold/40 bg-gold/10 text-gold font-bold">永遠 {entitlement.lifetimeTitle}</span>
+        {entitlement.accessTier === 'basic' && <span className="text-text-secondary">kana sampai N5</span>}
+        {badge && (
+          <span className="px-2 py-0.5 rounded-full border border-gold/40 bg-gold/10 text-gold font-bold">{badge.kanji} {badge.title}</span>
         )}
-        {entitlement.donorTitle && (
-          <span className="px-2 py-0.5 rounded-full border border-indigo/40 bg-indigo/10 text-indigo font-bold">
-            D{entitlement.donorLevel} {entitlement.donorTitle}
-          </span>
-        )}
+      </div>
+      <div className="grid grid-cols-2 gap-2 text-[11px]">
+        <div className="rounded-xl border border-border-subtle bg-surface-inset p-2.5">
+          <div className="text-text-muted">Donasi bulan ini</div>
+          <div className="font-mono font-bold text-text-primary">{formatIdr(entitlement.monthTotal)}</div>
+          <div className="text-text-secondary">{entitlement.monthUnlocked ? 'Full bulan ini terbuka' : `kurang ${formatIdr(remaining)} untuk Full`}</div>
+        </div>
+        <div className="rounded-xl border border-border-subtle bg-surface-inset p-2.5">
+          <div className="text-text-muted">Tabungan lifetime</div>
+          <div className="font-mono font-bold text-text-primary">{formatIdr(entitlement.lifetimeTotal)}</div>
+          <div className="text-text-secondary">dari {formatIdr(entitlement.config.lifetimeTarget)}</div>
+        </div>
       </div>
 
       <div className="flex flex-col sm:flex-row gap-2">
@@ -68,7 +76,7 @@ export const SubscriptionPanel: React.FC<{ soundEnabled?: boolean }> = ({ soundE
           onClick={() => { playSound('click', soundEnabled); openUpgrade(); }}
           className="btn-cta flex-1 py-2.5 text-xs font-heading font-black flex items-center justify-center gap-2"
         >
-          <Crown className="w-4 h-4" /> {entitlement.accessTier === 'basic' ? 'Upgrade Paket' : 'Perpanjang / Upgrade'}
+          <Crown className="w-4 h-4" /> Donasi & Buka Full
         </button>
         {entitlement.isAdmin && (
           <button

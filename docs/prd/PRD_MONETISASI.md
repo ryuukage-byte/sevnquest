@@ -1,6 +1,6 @@
 # PRD: Model Monetisasi SevnQuest / Nihongo Quest
 
-Versi: 0.5 (fase 1 diimplementasikan)
+Versi: 0.6 (model donasi bulanan + lifetime)
 Tanggal: 4 November 2026
 Status: Draft untuk review
 
@@ -28,8 +28,8 @@ Status: Draft untuk review
 
 SevnQuest adalah produk utama: web app belajar bahasa Jepang yang mencakup seluruh jenjang, dari kana sampai JLPT N1, plus kosakata Kaigo dan SSW. PRD ini berlaku untuk SevnQuest. Dua lapisan monetisasi:
 
-1. **Tier Akses (3 level):** Basic, Medium, Full. Menentukan konten dan fitur yang bisa dipakai.
-2. **Tier Donatur:** title bulanan D1–D7 (dibayar di atas tier akses) dan paket **Lifetime** sekali bayar. Benefitnya kosmetik dan komunitas, terpisah dari rank belajar.
+1. **Akses (2 tingkat):** Gratis (kana sampai N5) dan Full. Full dibuka lewat donasi, bukan paket harga tetap.
+2. **Donasi dua jalur:** bulanan (nominal bebas, total ≥ Rp 17.000 sebulan membuka Full 30 hari) dan lifetime (setoran kelipatan Rp 25.000, tiap setoran membuka Full 30 hari, total Rp 700.000 = Full selamanya). Badge permanen dari total lifetime, terpisah dari rank belajar.
 
 Pembayaran memakai QRIS statis milik merchant:
 
@@ -94,75 +94,62 @@ Fakta arsitektur yang berdampak ke monetisasi:
 
 ---
 
-## 4. Tier Akses
+## 4. Akses dan Model Donasi (v0.6)
 
-Pembagian berdasarkan keputusan pemilik (v0.3): kana sampai N5 gratis.
+Akses hanya dua tingkat:
 
-| Tier | Harga | Konten | Fitur |
-|---|---|---|---|
-| **Basic** | Gratis | Kana (hiragana, katakana) dan semua materi N5: kotoba, kanji, bunpou, soal. Tower lantai yang materinya kana atau N5 (Menara 1: 001–016, lalu lantai N5 di Menara 2). Tryout N5 | Recall dengan batas harian saat ini (40 jawaban, 10 materi baru), Arcade dan Dungeon dengan sumber materi kana/N5, leaderboard, cloud sync |
-| **Medium** | Rp 15.000 / bulan | + Materi N4 dan N3 (bunpou 189 + 132 pola, kanji 167 + 366, kotoba 731 + 1.960), Tower lantai N4 dan N3, tryout N4–N3 | + Latihan Ekstra Recall tanpa batas, semua mode Dungeon, statistik lengkap |
-| **Full** | Rp 35.000 / bulan | + Materi N2 dan N1, Kaigo dan SSW, semua tryout, Choukai saat aktif kembali | + Deck AI, Imersi YouTube, early access fitur baru |
+| Akses | Isi |
+|---|---|
+| **Gratis** | Kana (hiragana, katakana) dan semua materi N5, Tower lantai 001–060, tryout N5, Recall dengan batas harian, 1 putaran Latihan Ekstra per hari |
+| **Full** | Semua materi lain (N4–N1, Kaigo, SSW, JFT, materi campuran), Tower 061–100, semua tryout dan Dungeon, Deck AI (30/hari), Imersi YouTube, Latihan Ekstra tanpa batas |
 
-Aturan pembagian: tier sebuah materi ditentukan oleh level JLPT-nya. Kana dan N5 = Basic, N4–N3 = Medium, N2–N1 serta Kaigo/SSW = Full. Untuk Tower, Arcade, Dungeon, dan Buku Saku, yang dicek adalah level materi yang dipakai, bukan modenya. Tower: lantai 001–060 (kana dan N5) = Basic, 061–100 (N4) = Medium. JFT-Basic dihitung setara N4 (Medium). Materi campuran yang memuat level berbayar (misal "Semua Level", "N5–N4") mengikuti level tertingginya. Paket Basic mendapat 1 putaran Latihan Ekstra Recall per hari.
+Full tidak dijual sebagai paket harga tetap. Full terbuka lewat dua jalur donasi yang terpisah:
 
-Paket periode (QRIS statis tidak bisa menagih otomatis, jadi pengguna membeli masa aktif di muka):
-
-| Paket | Medium | Full |
+| | Jalur Bulanan | Jalur Lifetime |
 |---|---|---|
-| 1 bulan | Rp 15.000 | Rp 35.000 |
-| 3 bulan | Rp 42.000 | Rp 99.000 |
-| 12 bulan | Rp 150.000 | Rp 350.000 |
+| Nominal | Bebas, minimal Rp 5.000 | Kelipatan Rp 25.000 per setoran |
+| Akumulasi | Per bulan kalender (WIB), kembali ke 0 tiap awal bulan | Seumur hidup, tidak pernah reset |
+| Hadiah | Total bulan itu ≥ **Rp 17.000** → Full 30 hari (sekali per bulan; kelebihan tetap tercatat) | Tiap setoran → Full 30 hari. Total **Rp 700.000** → Full selamanya + title 永遠 Eien |
+| Tampilan | "Bulan ini Rp 5.000 · kurang Rp 12.000 lagi untuk Full" | Progres menuju Rp 700.000 dan badge berikutnya |
 
-Catatan:
-- Pembelian baru saat masih aktif **menambah** masa aktif, tidak menimpa.
-- Naik dari Medium ke Full saat masih aktif: Full langsung aktif sejak disetujui; sisa Medium tidak hilang dan tetap berlaku setelah Full berakhir (lebih sederhana daripada konversi proporsional dan tidak merugikan pengguna).
-- Pengguna yang sudah memakai materi tier atas sebelum monetisasi berlaku tetap menyimpan progresnya. Materi itu hanya terkunci untuk latihan baru.
+Aturan:
+- Full 30 hari selalu bersambung dari akhir masa Full yang masih aktif, jadi tidak ada hari yang hilang.
+- Masa 30 hari dihitung sejak donasi yang mencapai ambang diverifikasi admin, bukan sejak awal bulan.
+- Nominal yang dikreditkan adalah nominal yang dipilih; potongan kode unik (Rp 1–99) ditanggung SevnQuest.
+- Setoran lifetime dibatasi agar total tidak melewati Rp 700.000.
+- Medium dan paket 1/3/12 bulan dari v0.5 dihapus. Rp 17.000 dipilih karena terjangkau pelajar (sekitar dua gelas es kopi susu), sementara biaya server tertutup oleh sekitar 24 donatur bulanan.
+- Lifetime Rp 700.000 setara sekitar 41 bulan donasi bulanan; tiap setoran 25 rb sekaligus memberi 30 hari Full, sehingga jalur ini terasa seperti "langganan yang lama-lama menjadi permanen".
 
 ---
 
-## 5. Tier Donatur
+## 5. Badge Donatur
 
-Tier donatur adalah pembayaran tambahan di atas tier akses. Pengguna harus punya tier Medium atau Full yang aktif untuk ikut donatur.
+Badge permanen dihitung dari total jalur lifetime:
 
-| Level | Nama badge (usulan) | Harga / bulan | Benefit |
-|---|---|---|---|
-| D1 | Sakura | Rp 25.000 | Badge donatur, nama di papan donatur |
-| D2 | Ume | Rp 50.000 | + Frame avatar khusus |
-| D3 | Take | Rp 75.000 | + Voting topik konten berikutnya |
-| D4 | Matsu | Rp 100.000 | + Nama tampil di halaman utama |
-| D5 | Tsuki | Rp 150.000 | + Prioritas antrian request konten |
-| D6 | Taiyou | Rp 250.000 | + Sesi feedback 1-on-1 (per bulan) |
-| D7 | Fuji | Rp 500.000 | + Semua benefit sebelumnya + nama di kredit app |
+| Badge | Total setoran lifetime |
+|---|---|
+| 桜 Sakura | Rp 25.000 |
+| 梅 Ume | Rp 50.000 |
+| 竹 Take | Rp 100.000 |
+| 松 Matsu | Rp 200.000 |
+| 月 Tsuki | Rp 300.000 |
+| 太陽 Taiyou | Rp 450.000 |
+| 富士 Fuji | Rp 600.000 |
+| 永遠 Eien | Rp 700.000 (Full selamanya) |
 
-Nama badge hanya contoh dan tidak memakai nama tier RPG (Villager … Mythic Deity) maupun rank leaderboard.
-
-### Paket Lifetime
-
-| Paket | Harga | Benefit |
-|---|---|---|
-| **Lifetime** | Rp 700.000 sekali bayar | Akses **Full selamanya**, title permanen (usulan nama: *Eien*), nama di papan donatur bagian Lifetime |
-
-- Title permanen tidak pernah hilang. Title bulanan D1–D7 tetap bisa dibeli di atasnya; pengguna Lifetime tidak perlu tier akses terpisah untuk ikut donatur bulanan.
-- Pengguna yang sedang berlangganan Medium/Full lalu membeli Lifetime: sisa masa aktif tidak dikembalikan dalam bentuk uang.
-- "Selamanya" berarti selama SevnQuest beroperasi. Ini ditulis jelas di halaman pembelian dan syarat layanan.
-- Fitur yang memakan biaya per pemakaian (Deck AI) tetap mengikuti batas wajar harian yang sama dengan Full (30 permintaan per hari WIB, dihitung di database), supaya biaya LLM tidak tak terbatas untuk pembayaran sekali.
-- Titik impas: Rp 700.000 setara 20 bulan Full. Harga ditinjau ulang bila biaya server per pengguna naik.
+Donatur jalur bulanan tampil di bagian "Donatur Bulan Ini" pada papan donatur.
 
 ### Aturan "prioritas"
-- Prioritas berarti **urutan antrian request konten dan voting**, bukan posisi di papan skor belajar.
-- Papan skor belajar (EXP, skor mingguan) tetap murni berdasarkan performa.
-- Tier RPG tetap hanya dari EXP dan gerbang ascension. Donasi tidak memberi EXP, gold, atau bonus apa pun yang memengaruhi skor.
-- Papan donatur tampil terpisah dan menampilkan Lifetime serta level D1–D7 beserta nama.
+- Donasi tidak memberi EXP, gold, atau bonus apa pun yang memengaruhi papan skor belajar.
+- Tier RPG tetap hanya dari EXP dan gerbang ascension.
 
 ### Papan donatur
-- Tampil **hanya di dalam app** (perlu login), tidak di halaman publik atau yang bisa diindeks mesin pencari.
-- Nama yang tampil adalah nama tampilan (display name) di app, bukan nama asli atau email.
-- Donatur bisa memilih **anonim**; level dan title tetap terhitung, namanya tampil sebagai "Donatur anonim".
-- Alasan: tidak semua orang ingin jumlah donasinya terlihat publik, dan papan di dalam app tetap jadi motivasi bagi pengguna lain. Bila nanti dibutuhkan untuk promosi, halaman publik bisa ditambah dengan izin terpisah (opt-in).
+- Hanya di dalam app (perlu login); tidak menampilkan nominal.
+- Nama yang tampil adalah nama tampilan di app. Donatur bisa memilih anonim di Pengaturan.
+- Urutan: Lifetime, pemegang badge (dari tertinggi), lalu donatur bulan ini.
 
 ### Pengganti Trakteer
-Tombol "Dukung Developer" (Trakteer, `teer.id/sevnsoul`) di Pengaturan diganti dengan halaman Dukung/Upgrade yang memakai QRIS. Donasi sekali bayar tanpa benefit tetap bisa: pengguna memindai QRIS dan membayar nominal bebas tanpa membuat order. Donasi seperti itu tidak memberi badge karena tidak bisa dicocokkan ke akun.
+Tombol "Dukung Developer" di Pengaturan membuka halaman donasi QRIS. Halaman hanya menampilkan kode QR (tanpa poster GoPay), nama merchant, dan NMID.
 
 ---
 
@@ -190,7 +177,7 @@ sequenceDiagram
 ```
 
 Detail:
-- **Nominal unik.** QRIS statis tidak membawa ID pesanan, jadi transaksi dicocokkan lewat nominal. Harga dikurangi kode unik 1–99 (contoh Medium 1 bulan: Rp 14.937). Pengguna tidak pernah membayar di atas harga daftar. Kode unik tidak boleh sama di antara order `pending` dengan harga dasar yang sama. Bila 99 kode habis, pakai 3 digit.
+- **Nominal unik.** QRIS statis tidak membawa ID pesanan, jadi transaksi dicocokkan lewat nominal. Harga dikurangi kode unik 1–99 (contoh donasi Rp 15.000: bayar Rp 14.937). Pengguna tidak pernah membayar di atas harga daftar. Kode unik tidak boleh sama di antara order `pending` dengan harga dasar yang sama. Bila 99 kode habis, pakai 3 digit.
 - **Masa berlaku order:** 24 jam. Setelah itu status `expired` dan kode unik dilepas.
 - **Klaim:** pengguna mengisi jam bayar dan boleh mengunggah screenshot. Screenshot hanya bukti pendukung. Admin wajib mencocokkan ke riwayat transaksi GoPay Merchant karena screenshot mudah dipalsukan.
 - **Nominal tidak cocok** (salah ketik): admin bisa menyetujui manual bila jumlah ≥ harga paket dikurangi kode unik dan transaksinya bisa diidentifikasi. Bila kurang, ditolak dan diarahkan ke kontak dukungan.
@@ -258,7 +245,7 @@ Bukti bayar disimpan di bucket Storage privat `payment-proofs`, path `<user_id>/
 
 ## 7. Metrik Keberhasilan
 
-- Konversi Basic → Medium: target 5% pengguna aktif login dalam 30 hari pertama. Titik konversi utama: saat pengguna menuntaskan N5 dan mencoba materi N4.
+- Konversi gratis → donatur bulanan: target 5% pengguna aktif login dalam 30 hari pertama. Titik konversi utama: saat pengguna menuntaskan N5 dan mencoba materi N4.
 - Perpanjangan (bukan retensi auto-renew) bulan ke-3: target 50% pengguna berbayar membeli periode berikutnya.
 - Rasio donatur dari pengguna berbayar: target 10%.
 - Biaya LLM (Deck AI) per pengguna Full kurang dari 15% harga Full.
@@ -302,7 +289,7 @@ Masih terbuka:
 
 | Bagian | Lokasi |
 |---|---|
-| Skema, RPC, kebijakan Storage | `supabase/migrations/20261104_monetization.sql` |
+| Skema, RPC, kebijakan Storage | `supabase/migrations/20261104_monetization.sql`, model donasi di `20261104b_donation_model.sql` |
 | Aturan tier (murni, teruji) | `src/utils/access.ts`, `src/utils/access.test.ts` |
 | Entitlement + cache offline 7 hari | `src/state/entitlement.tsx`, `src/lib/billing.ts` |
 | Wajib login | `src/App.tsx`, `src/hooks/useCloudSync.ts` (`authChecked`) |

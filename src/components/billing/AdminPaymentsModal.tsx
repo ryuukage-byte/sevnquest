@@ -172,7 +172,7 @@ export const AdminPaymentsModal: React.FC<{ onClose: () => void; soundEnabled?: 
                   <div className="flex-1 min-w-0 space-y-0.5">
                     <div className="flex flex-wrap items-baseline gap-x-3">
                       <span className="font-mono font-black text-lg text-gold">{formatIdr(o.amount_idr)}</span>
-                      <span className="font-bold text-text-primary">{planLabel(o.tier_code, o.period_months)}</span>
+                      <span className="font-bold text-text-primary">{planLabel(o.tier_code, o.base_price_idr)}</span>
                       <span className="text-[10px] uppercase text-text-muted">{o.status}</span>
                     </div>
                     <div className="text-text-secondary truncate">

@@ -650,7 +650,7 @@ export const SettingsView: React.FC<SettingsViewProps> = ({
         <div className="flex flex-col sm:flex-row gap-3">
           <button
             type="button"
-            onClick={() => { playSound('click'); openUpgrade({ tab: 'donor' }); }}
+            onClick={() => { playSound('click'); openUpgrade(); }}
             className="flex-1 py-3 px-4 rounded-xl bg-surface-inset hover:bg-surface-elevated border border-border-subtle hover:border-border-primary flex flex-col items-center justify-center gap-2 transition-all group shadow-sm"
           >
             <Coffee className="w-5 h-5 text-gold group-hover:scale-110 transition-transform" />

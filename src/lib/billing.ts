@@ -30,15 +30,20 @@ export interface AdminOrder extends PaymentOrder {
 export interface DonorBoardRow {
   display_name: string | null;
   is_anonymous: boolean;
-  donor_level: number;
-  donor_title: string | null;
+  badge_level: number;
+  badge_title: string | null;
   is_lifetime: boolean;
+  monthly_this_month: boolean;
 }
+
+export type DonationKind = 'monthly' | 'lifetime';
 
 /** Pesan Indonesia untuk kode error dari RPC. */
 export function billingErrorMessage(err: unknown): string {
   const msg = (err && typeof err === 'object' && 'message' in err ? String((err as { message: unknown }).message) : String(err || '')) || '';
-  if (/donor_requires_access/.test(msg)) return 'Tier donatur butuh langganan Medium, Full, atau Lifetime yang aktif.';
+  if (/invalid_amount/.test(msg)) return 'Nominal tidak valid. Donasi bulanan minimal Rp 5.000; setoran lifetime kelipatan Rp 25.000.';
+  if (/exceeds_lifetime_target/.test(msg)) return 'Setoran melebihi sisa menuju Rp 700.000. Kurangi jumlah setoran.';
+  if (/already_lifetime/.test(msg)) return 'Kamu sudah Lifetime. Terima kasih!';
   if (/too_many_pending/.test(msg)) return 'Masih ada 3 pesanan belum dibayar. Bayar atau batalkan salah satunya dulu.';
   if (/invalid_plan/.test(msg)) return 'Paket tidak tersedia.';
   if (/not_authenticated|JWT/.test(msg)) return 'Sesi login habis. Silakan masuk lagi.';
@@ -55,8 +60,8 @@ export async function fetchEntitlement(): Promise<Entitlement> {
   return parseEntitlement(data);
 }
 
-export async function createPaymentOrder(tierCode: string, periodMonths: number): Promise<PaymentOrder> {
-  const { data, error } = await supabase.rpc('create_payment_order', { p_tier_code: tierCode, p_period_months: periodMonths });
+export async function createPaymentOrder(kind: DonationKind, amountIdr: number): Promise<PaymentOrder> {
+  const { data, error } = await supabase.rpc('create_payment_order', { p_kind: kind, p_amount: Math.round(amountIdr) });
   if (error) throw error;
   return data as PaymentOrder;
 }
