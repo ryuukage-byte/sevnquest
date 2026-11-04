@@ -73,6 +73,16 @@ export function titleForms(title: string): string[] {
 
 const escapeRe = (s: string) => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 
+/** Judul ringkas: buang catatan dalam kurung (judul pola lama N3 memuat rumus lengkap di dalam kurung). */
+export function shortTitle(title: string): string {
+  return title.replace(/\s*[（(].*$/, '').trim() || title;
+}
+
+/** Judul tampilan: judul kurasi bila ada, selain itu judul database tanpa catatan dalam kurung. */
+export function displayTitle(item: Pick<BunpouItem, 'id' | 'title'>): string {
+  return BUNPOU_PATTERN_INSIGHTS[item.id]?.title ?? shortTitle(item.title);
+}
+
 /** Cari rentang pola di kalimat. Pola bisa berubah bentuk, jadi pakai `match` kurasi bila ada. */
 export function findPatternSpan(sentence: string, note: PatternInsightNote, title: string): [number, number] | undefined {
   const sources = note.match?.length ? note.match : titleForms(title).filter(t => t.length > 1).map(escapeRe);
@@ -139,7 +149,7 @@ function buildFamily(id: string, note: PatternInsightNote, db: Record<string, Bu
         const item = db[x.id];
         return {
           id: item.id,
-          title: item.title,
+          title: displayTitle(item),
           meaning: BUNPOU_PATTERN_INSIGHTS[item.id]?.natural ?? item.meaningId,
           level: item.level,
           standalone: x.standalone,
@@ -175,7 +185,7 @@ export function buildPatternInsight(item: BunpouItem, db: Record<string, BunpouI
 
   return {
     id: item.id,
-    title: item.title,
+    title: displayTitle(item),
     parts: note.parts,
     literal: note.literal,
     natural: note.natural,

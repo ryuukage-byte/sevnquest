@@ -25,6 +25,8 @@ test('setiap catatan kurasi menunjuk pola yang ada dan lengkap', () => {
     for (const p of note.parts) assert.ok(p.text && p.meaning, `${id}: komponen lengkap`);
     assert.ok(note.literal && note.natural && note.explanation, `${id}: makna lengkap`);
     for (const src of note.match ?? []) assert.doesNotThrow(() => new RegExp(src), `${id}: regex ${src}`);
+    // Judul pola lama N3 memuat contoh + rumus dalam kurung, jadi wajib punya judul tampilan kurasi.
+    if (!id.startsWith('bp_')) assert.ok(note.title, `${id}: pola lama wajib punya judul tampilan`);
   }
 });
 

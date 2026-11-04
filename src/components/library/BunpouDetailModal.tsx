@@ -230,14 +230,28 @@ export const BunpouDetailModal: React.FC<BunpouDetailModalProps> = ({
   const animationRecipe = getGrammarAnimationRecipe(item.id);
   const curatedFormulaRows = useMemo(
     () =>
-      patternInsight && item.formula
+      // Pola dengan rumus kurasi lama (subFormulas) tetap memakai rumus itu karena lebih terperinci.
+      patternInsight && item.formula && !item.subFormulas?.length
         ? item.formula
             .split(/\s+\/\s+/)
             .map(splitFormula)
             .filter((parts) => parts.length > 0)
         : null,
-    [patternInsight, item.formula]
+    [patternInsight, item.formula, item.subFormulas]
   );
+
+  // Catatan kurasi lama (Tanpa Pola / Dengan Pola, Catatan Kunci) untuk lembar Pembentukan Makna.
+  // Format aslinya "Label: isi 🎯"; emoji dibuang, label dipisah.
+  const splitCuratedNote = (raw?: string) => {
+    if (!raw) return null;
+    const clean = raw.replace(/\p{Extended_Pictographic}|\uFE0F/gu, '').trim();
+    const idx = clean.indexOf(':');
+    return idx > 0 && idx < 40
+      ? { label: clean.slice(0, idx).trim(), text: clean.slice(idx + 1).trim() }
+      : { label: '', text: clean };
+  };
+  const curatedBefore = splitCuratedNote(item.beforeState);
+  const curatedAfter = splitCuratedNote(item.afterState);
   const titleInfo = getGrammarTitleInfo(item);
   const cleanLevel = (item.baseLevel || item.level || 'N3').replace(/^Level\s*/i, '');
 
@@ -842,6 +856,29 @@ export const BunpouDetailModal: React.FC<BunpouDetailModalProps> = ({
                   className="space-y-3 sm:space-y-3.5"
                 >
                   <PatternFormationSection insight={patternInsight} />
+
+                  {curatedBefore && curatedAfter && (
+                    <div className={`${SHEET_CARD} space-y-2`}>
+                      <SectionTitle icon={<Lightbulb className="w-3.5 h-3.5 text-gold" />}>Tanpa Pola vs Dengan Pola</SectionTitle>
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                        <div className="p-2.5 rounded-xl bg-surface-card border border-border-subtle space-y-1">
+                          <RolePill className="!bg-surface-inset !text-text-muted">{curatedBefore.label || 'Tanpa pola'}</RolePill>
+                          <p className="text-xs text-text-secondary leading-snug">{curatedBefore.text}</p>
+                        </div>
+                        <div className={`p-2.5 rounded-xl ${PLUM_SOFT_BG} border border-border-subtle space-y-1`}>
+                          <RolePill>{curatedAfter.label || 'Dengan pola'}</RolePill>
+                          <p className="text-xs text-text-primary font-medium leading-snug">{curatedAfter.text}</p>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+
+                  {item.keyTakeaway && (
+                    <div className={`${SHEET_CARD} space-y-1.5`}>
+                      <SectionTitle icon={<BookOpen className={`w-3.5 h-3.5 ${PLUM_ICON}`} />}>Catatan Kunci</SectionTitle>
+                      <p className="text-xs sm:text-[13px] text-text-secondary leading-relaxed">{item.keyTakeaway}</p>
+                    </div>
+                  )}
                 </motion.div>
               )}
 
