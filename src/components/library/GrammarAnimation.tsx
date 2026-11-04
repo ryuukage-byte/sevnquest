@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { motion, useReducedMotion } from 'motion/react';
-import { Play, Pause, RotateCcw, ChevronLeft, ChevronRight, Volume2, Clapperboard, ArrowRight } from 'lucide-react';
+import { Play, Pause, RotateCcw, ChevronLeft, ChevronRight, Volume2, Clapperboard } from 'lucide-react';
 import {
   PARTNER_VERBS,
   buildGrammarAnimation,
@@ -11,6 +11,7 @@ import {
   type GrammarVerbCategory,
 } from '../../data/grammarAnimations';
 import { speakJapanese, playSound } from '../../utils/audio';
+import { PLUM_BORDER, PLUM_ICON, PLUM_SOFT_BG, PLUM_TEXT, RolePill, SHEET_CARD, SectionTitle } from './bunpouSheetUi';
 
 interface GrammarAnimationProps {
   recipe: GrammarAnimationRecipe;
@@ -25,9 +26,9 @@ const SEGMENT_CLASS: Record<GrammarSegmentRole, string> = {
   removed: 'text-state-danger',
   added: 'text-state-success',
   changed: 'text-gold',
-  suffix: 'text-indigo',
+  suffix: PLUM_TEXT,
   partner: 'text-choukai',
-  prefix: 'text-indigo',
+  prefix: PLUM_TEXT,
 };
 
 const CATEGORY_LABEL: Record<GrammarVerbCategory, string> = {
@@ -158,104 +159,102 @@ export const GrammarAnimation: React.FC<GrammarAnimationProps> = ({ recipe, soun
 
   const textLength = stage.segments.reduce((n, s) => n + s.text.length, 0);
 
+  const chip = (selected: boolean, accent: 'plum' | 'gold' | 'partner' = 'plum') =>
+    `px-2.5 py-1 rounded-lg border text-xs font-jp shadow-xs transition-colors cursor-pointer ${
+      !selected
+        ? 'bg-surface-inset border-border-subtle text-text-secondary font-medium hover:text-text-primary'
+        : accent === 'gold'
+          ? 'bg-gold/15 border-gold/50 text-gold font-bold'
+          : accent === 'partner'
+            ? 'bg-choukai/15 border-choukai/50 text-choukai font-bold'
+            : `${PLUM_SOFT_BG} ${PLUM_BORDER} ${PLUM_TEXT} font-bold`
+    }`;
+
   return (
-    <div className="p-3.5 sm:p-4 rounded-2xl bg-surface-inset border border-border-subtle shadow-xs space-y-2.5">
-      <div className="flex items-center justify-between gap-2">
-        <div className="flex items-center gap-1.5 text-text-primary font-heading font-bold text-xs uppercase tracking-wider">
-          <Clapperboard className="w-3.5 h-3.5 text-indigo" />
-          <span>Animasi Pembentukan</span>
-        </div>
-        <span className="text-[11px] font-mono text-text-muted">
-          {stageIdx + 1}/{anim.stages.length}
-        </span>
-      </div>
+    <div className={`${SHEET_CARD} space-y-3`}>
+      <SectionTitle
+        icon={<Clapperboard className={`w-3.5 h-3.5 ${PLUM_ICON}`} />}
+        aside={
+          <span className="text-[10px] font-mono text-text-muted">
+            tahap {stageIdx + 1}/{anim.stages.length}
+          </span>
+        }
+      >
+        Animasi Pembentukan
+      </SectionTitle>
 
       {recipe.verbBranchOnly && (
-        <p className="text-[11px] text-text-muted leading-relaxed font-sans">
+        <p className="text-[11px] text-text-muted leading-relaxed">
           Animasi ini menunjukkan sambungan dengan kata kerja. Sambungan kata benda/sifat ada di rumus di bawah.
         </p>
       )}
 
-      {/* Pilihan cabang: pola dengan beberapa cara membentuk (Vる／Vない, formal／kontraksi) */}
-      {recipe.branches.length > 1 && (
-        <div className="flex flex-wrap items-center gap-1" role="radiogroup" aria-label="Pilih bentuk pola">
-          <span className="text-[10px] font-bold uppercase tracking-wider text-text-muted font-heading mr-0.5">Bentuk</span>
-          {recipe.branches.map((br, i) => (
-            <button
-              key={br.label}
-              type="button"
-              role="radio"
-              aria-checked={i === branchIdx}
-              onClick={() => pickBranch(i)}
-              className={`px-2 py-0.5 rounded-md border border-border-subtle text-[11px] font-jp shadow-xs transition-colors cursor-pointer ${
-                i === branchIdx
-                  ? 'bg-gold/15 text-gold font-bold'
-                  : 'bg-surface-card text-text-secondary font-medium hover:text-text-primary'
-              }`}
-            >
-              {br.label}
-            </button>
+      {/* Pemilih: bentuk pola, kata kerja per golongan, verba kedua */}
+      <div className="p-2 sm:p-2.5 rounded-xl bg-surface-card border border-border-subtle space-y-2">
+        {recipe.branches.length > 1 && (
+          <div className="flex flex-wrap items-center gap-1.5" role="radiogroup" aria-label="Pilih bentuk pola">
+            <RolePill className="w-[3.75rem] text-center">Bentuk</RolePill>
+            {recipe.branches.map((br, i) => (
+              <button
+                key={br.label}
+                type="button"
+                role="radio"
+                aria-checked={i === branchIdx}
+                onClick={() => pickBranch(i)}
+                className={chip(i === branchIdx, 'gold')}
+              >
+                {br.label}
+              </button>
+            ))}
+          </div>
+        )}
+
+        <div className="space-y-1.5" role="radiogroup" aria-label="Pilih kata kerja">
+          {verbGroups.map(g => (
+            <div key={g.category} className="flex flex-wrap items-center gap-1.5">
+              <RolePill className="w-[3.75rem] text-center">{CATEGORY_LABEL[g.category]}</RolePill>
+              {g.verbs.map(v => (
+                <button
+                  key={v.id}
+                  type="button"
+                  role="radio"
+                  aria-checked={v.id === verb.id}
+                  onClick={() => pickVerb(v.id)}
+                  className={chip(v.id === verb.id)}
+                >
+                  {v.kanji}
+                </button>
+              ))}
+            </div>
           ))}
         </div>
-      )}
 
-      {/* Pilihan verba: per golongan + verba khusus pola ini */}
-      <div className="flex flex-wrap items-center gap-x-3 gap-y-1.5" role="radiogroup" aria-label="Pilih kata kerja">
-        {verbGroups.map(g => (
-          <div key={g.category} className="flex items-center gap-1">
-            <span className="text-[10px] font-bold uppercase tracking-wider text-text-muted font-heading">
-              {CATEGORY_LABEL[g.category]}
-            </span>
-            {g.verbs.map(v => (
+        {pickablePartner && (
+          <div className="flex flex-wrap items-center gap-1.5" role="radiogroup" aria-label="Pilih verba kedua">
+            <RolePill className="text-center">Verba kedua</RolePill>
+            {PARTNER_VERBS.map(v => (
               <button
                 key={v.id}
                 type="button"
                 role="radio"
-                aria-checked={v.id === verb.id}
-                onClick={() => pickVerb(v.id)}
-                className={`px-2 py-0.5 rounded-md border border-border-subtle text-[11px] font-jp shadow-xs transition-colors cursor-pointer ${
-                  v.id === verb.id
-                    ? 'bg-indigo/20 text-indigo font-bold'
-                    : 'bg-surface-card text-text-secondary font-medium hover:text-text-primary'
-                }`}
+                aria-checked={v.id === partner.id}
+                onClick={() => pickPartner(v.id)}
+                className={chip(v.id === partner.id, 'partner')}
               >
                 {v.kanji}
               </button>
             ))}
           </div>
-        ))}
+        )}
       </div>
-
-      {/* Pilihan verba kedua (pola dua verba yang berbeda) */}
-      {pickablePartner && (
-        <div className="flex flex-wrap items-center gap-1" role="radiogroup" aria-label="Pilih verba kedua">
-          <span className="text-[10px] font-bold uppercase tracking-wider text-text-muted font-heading mr-0.5">Verba kedua</span>
-          {PARTNER_VERBS.map(v => (
-            <button
-              key={v.id}
-              type="button"
-              role="radio"
-              aria-checked={v.id === partner.id}
-              onClick={() => pickPartner(v.id)}
-              className={`px-2 py-0.5 rounded-md border border-border-subtle text-[11px] font-jp shadow-xs transition-colors cursor-pointer ${
-                v.id === partner.id
-                  ? 'bg-choukai/20 text-choukai font-bold'
-                  : 'bg-surface-card text-text-secondary font-medium hover:text-text-primary'
-              }`}
-            >
-              {v.kanji}
-            </button>
-          ))}
-        </div>
-      )}
 
       {/* Panggung */}
       <div className="rounded-xl bg-surface-card border border-border-subtle px-3 py-4 min-h-[6.5rem] flex flex-col items-center justify-center text-center">
         <motion.div
           key={`${branchIdx}-${verb.id}-${partner.id}-${stageIdx}`}
-          className={`font-bold font-jp tracking-wide leading-snug ${
-            textLength > 6 ? 'text-xl sm:text-2xl' : 'text-2xl sm:text-3xl'
-          } ${isResult ? 'text-indigo' : ''}`}
+          className={`font-black font-jp tracking-wide leading-snug ${
+            textLength > 6 ? 'text-xl sm:text-2xl' : 'text-2xl sm:text-[1.7rem]'
+          } ${isResult ? PLUM_TEXT : 'text-text-primary'}`}
           lang="ja"
         >
           {stage.segments
@@ -277,13 +276,13 @@ export const GrammarAnimation: React.FC<GrammarAnimationProps> = ({ recipe, soun
             })}
         </motion.div>
         {(stage.kind === 'base' || isResult) && (
-          <div className="mt-1 flex items-center gap-1 text-[11px] font-mono text-text-muted">
+          <div className="mt-1 flex items-center gap-1 text-[11px] font-jp text-text-muted">
             <span>{isResult ? `${anim.result.reading} · ${anim.result.romaji}` : verb.reading}</span>
             {isResult && (
               <button
                 type="button"
                 onClick={() => speakJapanese(anim.result.japanese)}
-                className="p-1 rounded-lg text-text-muted hover:text-indigo hover:bg-surface-inset transition-colors cursor-pointer"
+                className="p-1 rounded-lg text-text-muted hover:text-text-primary hover:bg-surface-inset transition-colors cursor-pointer"
                 title="Dengarkan pelafalan kalimat"
               >
                 <Volume2 className="w-3.5 h-3.5" />
@@ -293,28 +292,44 @@ export const GrammarAnimation: React.FC<GrammarAnimationProps> = ({ recipe, soun
         )}
       </div>
 
-      {/* Penjelasan tahap */}
-      <div className="space-y-0.5" aria-live="polite">
-        <span className="text-[11px] font-bold uppercase tracking-wider text-text-muted font-heading">{stage.label}</span>
-        <p className="text-xs text-text-secondary leading-relaxed font-sans">{stage.note}</p>
+      {/* Penjelasan tahap: sebaris seperti arti komponen di Bedah Komponen */}
+      <div className="flex items-start gap-2.5 p-2 rounded-xl border border-border-subtle bg-surface-card" aria-live="polite">
+        <span
+          className={`w-6 h-6 shrink-0 rounded-full ${PLUM_SOFT_BG} ${PLUM_TEXT} font-mono font-bold text-[11px] flex items-center justify-center`}
+        >
+          {stageIdx + 1}
+        </span>
+        <span className="min-w-0 space-y-0.5">
+          <RolePill>{stage.label}</RolePill>
+          <span className="block text-xs text-text-secondary leading-snug">{stage.note}</span>
+        </span>
       </div>
 
       {/* Tahapan: bisa diketuk satu per satu */}
-      <ol className="p-2 sm:p-2.5 rounded-xl bg-surface-card border border-border-subtle flex flex-wrap items-center gap-1.5 text-[11px]">
+      <ol className="flex items-center px-1" aria-label="Tahapan pembentukan">
         {anim.stages.map((s, i) => (
-          <li key={i} className="flex items-center gap-1.5">
-            {i > 0 && <ArrowRight className="w-3 h-3 text-text-muted" />}
+          <li key={i} className={`flex items-center ${i > 0 ? 'flex-1' : ''}`}>
+            {i > 0 && (
+              <span
+                className={`flex-1 h-0.5 mx-1 rounded-full ${i <= stageIdx ? 'bg-[#7d6b9e] dark:bg-[#b7a3dc]' : 'bg-border-subtle'}`}
+                aria-hidden
+              />
+            )}
             <button
               type="button"
               onClick={() => goTo(i)}
               aria-current={i === stageIdx ? 'step' : undefined}
-              className={`px-2 py-0.5 rounded-md font-jp transition-colors cursor-pointer ${
+              aria-label={`Tahap ${i + 1}: ${s.label}`}
+              title={s.label}
+              className={`w-6 h-6 shrink-0 rounded-full border text-[10.5px] font-mono font-bold flex items-center justify-center transition-colors cursor-pointer ${
                 i === stageIdx
-                  ? 'bg-indigo/20 text-indigo border border-border-subtle font-bold'
-                  : 'bg-surface-inset text-text-secondary font-medium hover:text-text-primary'
+                  ? 'bg-[#7d6b9e] dark:bg-[#b7a3dc] border-transparent text-white dark:text-[#231c2f]'
+                  : i < stageIdx
+                    ? `${PLUM_SOFT_BG} ${PLUM_BORDER} ${PLUM_TEXT}`
+                    : 'bg-surface-card border-border-subtle text-text-muted hover:text-text-primary'
               }`}
             >
-              {s.label}
+              {i + 1}
             </button>
           </li>
         ))}

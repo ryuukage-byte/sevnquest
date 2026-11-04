@@ -27,6 +27,17 @@ import { getGrammarSkillNodes } from '../../utils/bunpouSkillAdapter';
 import { useBackButton } from '../../hooks/useBackButton';
 import { getGrammarAnimationRecipe } from '../../data/grammarAnimations';
 import { GrammarAnimation } from './GrammarAnimation';
+import {
+  PLUM_BORDER,
+  PLUM_ICON,
+  PLUM_SOFT_BG,
+  PLUM_TEXT,
+  PlusChips,
+  RolePill,
+  SHEET_CARD,
+  SectionTitle,
+  splitFormula,
+} from './bunpouSheetUi';
 import { BUNPOU_DATABASE } from '../../data/bunpou';
 import { buildPatternInsight } from '../../engine/bunpouInsight/bunpouInsight';
 import {
@@ -217,6 +228,16 @@ export const BunpouDetailModal: React.FC<BunpouDetailModalProps> = ({
   // Extract human-centered learning flow
   const skillNodes = getGrammarSkillNodes(item);
   const animationRecipe = getGrammarAnimationRecipe(item.id);
+  const curatedFormulaRows = useMemo(
+    () =>
+      patternInsight && item.formula
+        ? item.formula
+            .split(/\s+\/\s+/)
+            .map(splitFormula)
+            .filter((parts) => parts.length > 0)
+        : null,
+    [patternInsight, item.formula]
+  );
   const titleInfo = getGrammarTitleInfo(item);
   const cleanLevel = (item.baseLevel || item.level || 'N3').replace(/^Level\s*/i, '');
 
@@ -858,136 +879,92 @@ export const BunpouDetailModal: React.FC<BunpouDetailModalProps> = ({
                     <GrammarAnimation key={item.id} recipe={animationRecipe} soundEnabled={soundEnabled} />
                   )}
 
-                  {/* Formulas Section */}
-                  <div className="space-y-2.5">
-                    {skillNodes.formulas.map((form, fIdx) => {
-                      // Defensively sanitize breakdown parts: strip leading/trailing '+' and filter out pure plus items
-                      const cleanParts = form.breakdown
-                        .map((p) => p.replace(/^[＋+\s]+|[＋+\s]+$/g, '').trim())
-                        .filter((p) => p.length > 0 && p !== '+' && p !== '＋');
+                  {/* Pola terkurasi: rumus asli dari database (rumus & "kata yang cocok" hasil
+                      generator otomatis sering keliru untuk pola-pola ini, mis. Aい ＋ は ＋ いけない). */}
+                  {curatedFormulaRows && (
+                    <div className={`${SHEET_CARD} space-y-2.5`}>
+                      <SectionTitle icon={<Layers className={`w-3.5 h-3.5 ${PLUM_ICON}`} />}>Rumus Sambungan</SectionTitle>
+                      {curatedFormulaRows.map((parts, rIdx) => (
+                        <div key={rIdx} className="p-2.5 rounded-xl bg-surface-card border border-border-subtle">
+                          <PlusChips parts={parts} />
+                        </div>
+                      ))}
+                    </div>
+                  )}
 
-                      // Check if items are distinct part-of-speech rules (e.g. "Kata Benda (N): N ＋ らしい")
-                      const isConditionRules = cleanParts.length > 0 && cleanParts.some((p) => p.includes(':'));
+                  {/* Rumus sambungan: gaya sama dengan Bedah Komponen (chip ＋ chip, pil peran) */}
+                  {!curatedFormulaRows && skillNodes.formulas.length > 0 && (
+                    <div className={`${SHEET_CARD} space-y-2.5`}>
+                      <SectionTitle icon={<Layers className={`w-3.5 h-3.5 ${PLUM_ICON}`} />}>Rumus Sambungan</SectionTitle>
+                      {skillNodes.formulas.map((form, fIdx) => {
+                        // Bersihkan bagian rumus: buang '+' di tepi dan item yang hanya berisi '+'.
+                        const cleanParts = form.breakdown
+                          .map((p) => p.replace(/^[＋+\s]+|[＋+\s]+$/g, '').trim())
+                          .filter((p) => p.length > 0 && p !== '+' && p !== '＋');
+                        // Bagian berbentuk "Kata Benda (N): N ＋ らしい" = aturan per jenis kata.
+                        const isConditionRules = cleanParts.some((p) => p.includes(':'));
 
-                      return (
-                        <div
-                          key={fIdx}
-                          className="p-3.5 sm:p-4 rounded-2xl bg-surface-inset border border-border-subtle shadow-xs space-y-2.5"
-                        >
-                          <h4 className="text-xs sm:text-sm font-bold text-text-primary font-heading">
-                            {form.title}
-                          </h4>
+                        return (
+                          <div key={fIdx} className="p-2.5 rounded-xl bg-surface-card border border-border-subtle space-y-2">
+                            <p className={`font-jp font-black text-sm ${PLUM_TEXT}`}>{form.title}</p>
 
-                          {/* Connection Formula Display */}
-                          {isConditionRules ? (
-                            <div className="space-y-1.5">
-                              {cleanParts.map((part, pIdx) => {
-                                const colonIdx = part.indexOf(':');
-                                if (colonIdx !== -1) {
-                                  const posLabel = part.slice(0, colonIdx).trim();
-                                  const posRule = part.slice(colonIdx + 1).trim();
+                            {isConditionRules ? (
+                              <div className="space-y-2">
+                                {cleanParts.map((part, pIdx) => {
+                                  const colonIdx = part.indexOf(':');
+                                  if (colonIdx === -1) return <PlusChips key={pIdx} parts={splitFormula(part)} />;
                                   return (
-                                    <div
-                                      key={pIdx}
-                                      className="flex flex-wrap items-center gap-2 p-2 rounded-xl bg-surface-card border border-border-subtle/80 text-xs"
-                                    >
-                                      <span className="px-2 py-0.5 rounded-md bg-indigo/10 border border-border-subtle text-indigo font-bold text-[11px] font-heading shrink-0">
-                                        {posLabel}
-                                      </span>
-                                      <span className="font-mono text-text-primary font-semibold text-xs tracking-wide">
-                                        {posRule}
-                                      </span>
+                                    <div key={pIdx} className="space-y-1">
+                                      <RolePill>{part.slice(0, colonIdx).trim()}</RolePill>
+                                      <PlusChips parts={splitFormula(part.slice(colonIdx + 1))} />
                                     </div>
                                   );
-                                }
-                                return (
-                                  <div
-                                    key={pIdx}
-                                    className="p-2 rounded-xl bg-surface-card border border-border-subtle/80 text-xs font-mono text-text-primary font-semibold"
-                                  >
-                                    {part}
-                                  </div>
-                                );
-                              })}
-                            </div>
-                          ) : (
-                            <div className="flex flex-wrap items-center gap-1.5">
-                              {cleanParts.map((part, pIdx) => (
-                                <React.Fragment key={pIdx}>
-                                  {pIdx > 0 && (
-                                    <span className="text-text-muted font-bold text-xs select-none">
-                                      ＋
-                                    </span>
-                                  )}
-                                  <span className="px-2.5 py-0.5 rounded-lg bg-surface-card border border-border-subtle font-mono text-xs font-semibold text-text-primary shadow-xs">
-                                    {part}
-                                  </span>
-                                </React.Fragment>
-                              ))}
-                            </div>
-                          )}
-
-                        {/* Progression Arrow */}
-                        {form.progression && form.progression.length > 0 && (
-                          <div className="p-2 sm:p-2.5 rounded-xl bg-surface-card border border-border-subtle flex flex-wrap items-center gap-1.5 text-xs font-mono">
-                            {form.progression.map((step, sIdx) => (
-                              <React.Fragment key={sIdx}>
-                                {sIdx > 0 && <ArrowRight className="w-3 h-3 text-text-muted" />}
-                                <span
-                                  className={`px-2 py-0.5 rounded-md ${
-                                    sIdx === form.progression!.length - 1
-                                      ? 'bg-indigo/20 text-indigo border border-border-subtle font-bold'
-                                      : 'bg-surface-inset text-text-secondary font-medium'
-                                  }`}
-                                >
-                                  {step}
-                                </span>
-                              </React.Fragment>
-                            ))}
-                          </div>
-                        )}
-
-                        {form.note && (
-                          <p className="text-[11px] text-text-muted leading-relaxed font-sans">
-                            💡 {form.note}
-                          </p>
-                        )}
-                        </div>
-                      );
-                    })}
-                  </div>
-
-                  {/* Word Identities: Kata yang Cocok */}
-                  {skillNodes.wordIdentities.length > 0 && (
-                    <div className="p-3.5 sm:p-4 rounded-2xl bg-surface-inset border border-border-subtle shadow-xs space-y-2.5">
-                      <div className="flex items-center gap-1.5 text-text-primary font-heading font-bold text-xs uppercase tracking-wider">
-                        <Layers className="w-3.5 h-3.5 text-indigo" />
-                        <span>Kata yang Cocok Masuk (Kategori & Contoh)</span>
-                      </div>
-
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                        {skillNodes.wordIdentities.map((identity, iIdx) => (
-                          <div
-                            key={iIdx}
-                            className="p-3 rounded-xl bg-surface-card border border-border-subtle space-y-1.5 flex flex-col justify-between"
-                          >
-                            <div className="space-y-1">
-                              <div className="flex items-center gap-1.5">
-                                <span className="text-sm">{identity.icon || '🏷️'}</span>
-                                <h5 className="text-xs font-bold text-text-primary font-heading">
-                                  {identity.typeCategory}
-                                </h5>
+                                })}
                               </div>
-                              <p className="text-xs text-text-secondary font-sans leading-relaxed">
-                                {identity.functionEffect}
-                              </p>
-                            </div>
+                            ) : (
+                              <PlusChips parts={cleanParts} />
+                            )}
 
-                            <div className="pt-1.5 border-t border-border-subtle/60 flex flex-wrap items-center gap-1">
+                            {form.progression && form.progression.length > 0 && (
+                              <div className="flex flex-wrap items-center gap-1 pt-0.5">
+                                {form.progression.map((step, sIdx) => (
+                                  <span key={sIdx} className="inline-flex items-center gap-1">
+                                    {sIdx > 0 && <ArrowRight className="w-3 h-3 text-text-muted" />}
+                                    <span
+                                      className={`px-2 py-0.5 rounded-lg border text-xs font-jp ${
+                                        sIdx === form.progression!.length - 1
+                                          ? `${PLUM_SOFT_BG} ${PLUM_BORDER} ${PLUM_TEXT} font-bold`
+                                          : 'bg-surface-inset border-border-subtle text-text-secondary'
+                                      }`}
+                                    >
+                                      {step}
+                                    </span>
+                                  </span>
+                                ))}
+                              </div>
+                            )}
+
+                            {form.note && <p className="text-[11px] text-text-muted leading-relaxed">{form.note}</p>}
+                          </div>
+                        );
+                      })}
+                    </div>
+                  )}
+
+                  {/* Kata yang cocok masuk ke pola */}
+                  {!curatedFormulaRows && skillNodes.wordIdentities.length > 0 && (
+                    <div className={`${SHEET_CARD} space-y-2.5`}>
+                      <SectionTitle icon={<BookOpen className={`w-3.5 h-3.5 ${PLUM_ICON}`} />}>Kata yang Cocok Masuk</SectionTitle>
+                      <div className="space-y-1.5">
+                        {skillNodes.wordIdentities.map((identity, iIdx) => (
+                          <div key={iIdx} className="p-2.5 rounded-xl bg-surface-card border border-border-subtle space-y-1.5">
+                            <RolePill>{identity.typeCategory}</RolePill>
+                            <p className="text-xs text-text-secondary leading-snug">{identity.functionEffect}</p>
+                            <div className="flex flex-wrap items-center gap-1">
                               {identity.examples.map((ex, exIdx) => (
                                 <span
                                   key={exIdx}
-                                  className="px-2 py-0.5 rounded-md bg-surface-inset text-text-primary text-[11px] font-mono font-medium border border-border-subtle shadow-xs"
+                                  className="px-2 py-0.5 rounded-lg bg-surface-inset border border-border-subtle text-[11px] font-jp text-text-primary"
                                 >
                                   {ex}
                                 </span>

@@ -22,23 +22,9 @@ import { buildPartQuiz, quizzablePartIndexes, titleForms } from '../../engine/bu
 import { PATTERN_TRANSPARENCY_LABEL } from '../../data/bunpouPatternInsights';
 import { getFuriganaSegments } from '../../utils/furiganaUtils';
 import { playSound, speakJapanese } from '../../utils/audio';
+import { PLUM_TEXT, RolePill, SHEET_CARD, SectionTitle } from './bunpouSheetUi';
 
-const CARD = 'p-3.5 sm:p-4 rounded-2xl bg-surface-inset border border-border-subtle shadow-xs';
-const PLUM_TEXT = 'text-[#5b4a7a] dark:text-[#d6c8f0]';
-
-const SectionTitle: React.FC<{ icon: React.ReactNode; children: React.ReactNode; aside?: React.ReactNode }> = ({
-  icon,
-  children,
-  aside,
-}) => (
-  <div className="flex items-center justify-between gap-2">
-    <div className="flex items-center gap-1.5 text-text-primary font-heading font-bold text-xs uppercase tracking-wider">
-      {icon}
-      <span>{children}</span>
-    </div>
-    {aside}
-  </div>
-);
+const CARD = SHEET_CARD;
 
 const useStep = () => {
   const reduce = useReducedMotion();
@@ -120,12 +106,10 @@ export const PatternBreakdownSection: React.FC<{ insight: PatternInsight }> = ({
               {part.text}
             </span>
             <span className="min-w-0 space-y-0.5">
-              <span
-                className={`inline-block px-1.5 py-px rounded-md bg-[#7d6b9e]/12 dark:bg-[#b7a3dc]/15 text-[9.5px] font-bold uppercase tracking-wider ${PLUM_TEXT}`}
-              >
+              <RolePill>
                 {part.role}
                 {part.omitted ? ' · sering dibuang' : ''}
-              </span>
+              </RolePill>
               <span className="block text-xs text-text-secondary leading-snug">{part.meaning}</span>
             </span>
           </motion.div>
