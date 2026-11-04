@@ -1,6 +1,6 @@
 # PRD: Model Monetisasi SevnQuest / Nihongo Quest
 
-Versi: 0.3 (revisi dari draft 0.1)
+Versi: 0.4 (revisi dari draft 0.1)
 Tanggal: 4 November 2026
 Status: Draft untuk review
 
@@ -18,6 +18,9 @@ Status: Draft untuk review
 | 6 | Tidak menyebut kanal donasi yang sudah ada | Trakteer (`teer.id/sevnsoul`) di Pengaturan **diganti QRIS** | Keputusan pemilik (v0.3). Semua pembayaran lewat satu kanal. |
 | 7 | Basic = Map 1 Stage 1–5 | Basic = **kana (hiragana, katakana) sampai N5** | Keputusan pemilik (v0.3). |
 | 8 | Produk N3 GATE / NihongoQuest belum jelas | Produk utama adalah **SevnQuest**, mencakup seluruh bahasa Jepang (kana sampai N1, plus Kaigo dan SSW) | Keputusan pemilik (v0.3). |
+| 9 | Donatur hanya bulanan | + **Lifetime Rp 700.000** sekali bayar: akses Full selamanya + title permanen. Title bulanan D1–D7 tetap ada | Keputusan pemilik (v0.4). |
+| 10 | Tamu bisa bermain penuh tanpa login | **Wajib login** untuk semua pengguna, termasuk Basic | Keputusan pemilik (v0.4). |
+| 11 | Verifikasi otomatis lewat webhook | Fase 1 manual oleh pemilik tiap malam dengan halaman admin; fase 2 gateway QRIS dinamis bila volume naik | Keputusan pemilik (v0.4), lihat 6.3. |
 
 ---
 
@@ -26,7 +29,7 @@ Status: Draft untuk review
 SevnQuest adalah produk utama: web app belajar bahasa Jepang yang mencakup seluruh jenjang, dari kana sampai JLPT N1, plus kosakata Kaigo dan SSW. PRD ini berlaku untuk SevnQuest. Dua lapisan monetisasi:
 
 1. **Tier Akses (3 level):** Basic, Medium, Full. Menentukan konten dan fitur yang bisa dipakai.
-2. **Tier Donatur (7 level, D1–D7):** Dibayar tambahan di atas tier akses. Benefitnya kosmetik dan komunitas, terpisah dari rank belajar.
+2. **Tier Donatur:** title bulanan D1–D7 (dibayar di atas tier akses) dan paket **Lifetime** sekali bayar. Benefitnya kosmetik dan komunitas, terpisah dari rank belajar.
 
 Pembayaran memakai QRIS statis milik merchant:
 
@@ -65,7 +68,7 @@ Sumber: `docs/audit/FEATURE_INVENTORY.md` dan `docs/audit/SYSTEM_OVERVIEW.md`.
 
 Fakta arsitektur yang berdampak ke monetisasi:
 - Konten dibundel di JS dan disimpan PWA, sehingga bisa dipakai offline.
-- Tamu (tanpa login) bermain penuh secara lokal. Status langganan butuh login.
+- Saat ini tamu (tanpa login) bermain penuh secara lokal. Mulai monetisasi, **semua pengguna wajib login** (lihat 6.4).
 - Backend: Supabase (Auth, Postgres + RLS, RPC `SECURITY DEFINER`) dan Cloudflare Pages Functions (`functions/`). Tidak ada Supabase Edge Function.
 - Supabase diakses lewat proxy `/supabase-proxy` karena beberapa ISP memblokir `*.supabase.co`.
 
@@ -80,7 +83,7 @@ Fakta arsitektur yang berdampak ke monetisasi:
 - Harga berbayar terjangkau untuk pelajar Indonesia (mulai Rp 15.000/bulan).
 - Struktur tier mudah dipahami dalam satu layar.
 - Papan donatur terpisah dari papan skor belajar.
-- Pembayaran sampai aktif dalam waktu wajar walau verifikasi manual (target median < 12 jam).
+- Pembayaran aktif paling lambat 24 jam walau verifikasi manual (diproses tiap malam).
 
 ### Non-Tujuan (versi ini)
 - Tidak membuat sistem afiliasi atau referral.
@@ -93,7 +96,7 @@ Fakta arsitektur yang berdampak ke monetisasi:
 
 ## 4. Tier Akses
 
-Usulan pembagian berdasarkan isi repo saat ini. Angka final diputuskan di Pertanyaan Terbuka no. 2.
+Pembagian berdasarkan keputusan pemilik (v0.3): kana sampai N5 gratis.
 
 | Tier | Harga | Konten | Fitur |
 |---|---|---|---|
@@ -134,11 +137,29 @@ Tier donatur adalah pembayaran tambahan di atas tier akses. Pengguna harus punya
 
 Nama badge hanya contoh dan tidak memakai nama tier RPG (Villager … Mythic Deity) maupun rank leaderboard.
 
+### Paket Lifetime
+
+| Paket | Harga | Benefit |
+|---|---|---|
+| **Lifetime** | Rp 700.000 sekali bayar | Akses **Full selamanya**, title permanen (usulan nama: *Eien*), nama di papan donatur bagian Lifetime |
+
+- Title permanen tidak pernah hilang. Title bulanan D1–D7 tetap bisa dibeli di atasnya; pengguna Lifetime tidak perlu tier akses terpisah untuk ikut donatur bulanan.
+- Pengguna yang sedang berlangganan Medium/Full lalu membeli Lifetime: sisa masa aktif tidak dikembalikan dalam bentuk uang.
+- "Selamanya" berarti selama SevnQuest beroperasi. Ini ditulis jelas di halaman pembelian dan syarat layanan.
+- Fitur yang memakan biaya per pemakaian (Deck AI) tetap mengikuti batas wajar harian yang sama dengan Full, supaya biaya LLM tidak tak terbatas untuk pembayaran sekali.
+- Titik impas: Rp 700.000 setara 20 bulan Full. Harga ditinjau ulang bila biaya server per pengguna naik.
+
 ### Aturan "prioritas"
 - Prioritas berarti **urutan antrian request konten dan voting**, bukan posisi di papan skor belajar.
 - Papan skor belajar (EXP, skor mingguan) tetap murni berdasarkan performa.
 - Tier RPG tetap hanya dari EXP dan gerbang ascension. Donasi tidak memberi EXP, gold, atau bonus apa pun yang memengaruhi skor.
-- Papan donatur tampil terpisah dan menampilkan level D1–D7 beserta nama.
+- Papan donatur tampil terpisah dan menampilkan Lifetime serta level D1–D7 beserta nama.
+
+### Papan donatur
+- Tampil **hanya di dalam app** (perlu login), tidak di halaman publik atau yang bisa diindeks mesin pencari.
+- Nama yang tampil adalah nama tampilan (display name) di app, bukan nama asli atau email.
+- Donatur bisa memilih **anonim**; level dan title tetap terhitung, namanya tampil sebagai "Donatur anonim".
+- Alasan: tidak semua orang ingin jumlah donasinya terlihat publik, dan papan di dalam app tetap jadi motivasi bagi pengguna lain. Bila nanti dibutuhkan untuk promosi, halaman publik bisa ditambah dengan izin terpisah (opt-in).
 
 ### Pengganti Trakteer
 Tombol "Dukung Developer" (Trakteer, `teer.id/sevnsoul`) di Pengaturan diganti dengan halaman Dukung/Upgrade yang memakai QRIS. Donasi sekali bayar tanpa benefit tetap bisa: pengguna memindai QRIS dan membayar nominal bebas tanpa membuat order. Donasi seperti itu tidak memberi badge karena tidak bisa dicocokkan ke akun.
@@ -195,12 +216,24 @@ RPC (`SECURITY DEFINER`, mengikuti pola `upsert_leaderboard_entry`):
 - `approve_payment(order_id)` dan `reject_payment(order_id, reason)`: cek pengguna ada di `admins`. Approve menambah atau memperpanjang `user_subscriptions` dalam satu transaksi.
 - `get_my_entitlement()`: kembalikan tier akses, tier donatur, dan tanggal kedaluwarsa.
 
+Lifetime disimpan sebagai baris `user_subscriptions` dengan `tier_code = 'lifetime'` dan `expires_at = null` (tidak pernah kedaluwarsa); entitlement-nya setara Full. Title permanen disimpan di kolom `benefits` tier tersebut.
+
 Bukti bayar disimpan di bucket Storage privat `payment-proofs`, path `<user_id>/<order_id>.jpg`. Pengguna hanya bisa unggah ke foldernya sendiri. Hanya admin yang bisa membaca semua.
 
-### 6.3 Admin
-- Halaman admin sederhana di app (hanya tampil bila `get_my_entitlement` atau RPC terpisah menyatakan pengguna adalah admin): daftar order `claimed` dan `pending`, nominal, jam bayar, screenshot, tombol setujui/tolak.
-- Admin membuka app GoPay Merchant di sebelahnya untuk mencocokkan.
+### 6.3 Admin dan verifikasi
+
+**Fase 1: manual oleh pemilik, tiap malam.**
+- Halaman admin di app (hanya untuk akun di tabel `admins`): daftar order `claimed` dan `pending` diurutkan menurut nominal, jam bayar, screenshot, tombol setujui/tolak, dan setujui massal.
+- Pemilik membuka riwayat transaksi di app GoPay Merchant di sebelahnya. Karena tiap order punya nominal unik, satu order cukup dicocokkan dengan melihat nominal dan jam. Perkiraan 20–30 detik per order.
+- Order yang masuk setelah verifikasi malam diproses malam berikutnya, jadi waktu tunggu terlama sekitar 24 jam. Halaman Upgrade menyebut ini dengan jelas ("diaktifkan paling lambat 1×24 jam").
 - Semua keputusan admin tercatat (`verified_by`, `verified_at`, `reject_reason`).
+- Kapasitas wajar: sampai sekitar 30–50 order per malam (15–25 menit).
+
+**Fase 2: otomatis lewat payment gateway.**
+- QRIS statis tidak bisa diverifikasi otomatis secara andal. GoPay Merchant tidak menyediakan API riwayat transaksi untuk QRIS statis, dan membaca notifikasi HP dengan aplikasi pihak ketiga itu rapuh dan berisiko melanggar ketentuan.
+- Untuk ratusan sampai ribuan pembeli, pakai gateway yang membuat **QRIS dinamis per order** dan mengirim webhook (contoh: Midtrans, Xendit, Duitku, Tripay). Langganan aktif dalam hitungan detik tanpa campur tangan admin. Biaya QRIS di gateway umumnya sekitar 0,7% per transaksi (cek harga terbaru saat memilih).
+- Pemicu pindah ke fase 2: lebih dari 30 order per malam selama 2 minggu berturut-turut, atau keluhan waktu tunggu meningkat.
+- Tabel `payment_orders` dan `user_subscriptions` dirancang sama untuk kedua fase, jadi pindah ke gateway hanya menambah sumber konfirmasi (webhook) tanpa mengubah logika langganan.
 
 ### 6.4 Gating
 
@@ -211,7 +244,9 @@ Bukti bayar disimpan di bucket Storage privat `payment-proofs`, path `<user_id>/
 
 - Tag `tier_required` diturunkan dari level JLPT materi: kana/N5 = basic, N4/N3 = medium, N2/N1/Kaigo/SSW = full.
 - Cache entitlement berlaku maksimal 7 hari offline. Setelah itu, materi tier atas terkunci sampai app online lagi.
-- Tamu (tanpa login) diperlakukan sebagai Basic.
+- **Wajib login.** Tanpa login, app hanya menampilkan layar masuk/daftar. Ini juga memastikan status langganan selalu bisa dicek.
+- Pengguna lama yang selama ini bermain sebagai tamu: progres lokal (localStorage) diunggah ke akun saat login pertama lewat mekanisme cloud sync yang sudah ada, jadi progres tidak hilang. Uji alur ini sebelum rilis.
+- Setelah login sekali, sesi tersimpan; app tetap bisa dipakai offline sampai cache entitlement kedaluwarsa.
 - Penguncian keras untuk konten (memindahkan dataset ke server) di luar lingkup versi ini.
 
 ### 6.5 Masa aktif habis
@@ -227,7 +262,7 @@ Bukti bayar disimpan di bucket Storage privat `payment-proofs`, path `<user_id>/
 - Perpanjangan (bukan retensi auto-renew) bulan ke-3: target 50% pengguna berbayar membeli periode berikutnya.
 - Rasio donatur dari pengguna berbayar: target 10%.
 - Biaya LLM (Deck AI) per pengguna Full kurang dari 15% harga Full.
-- Waktu dari klaim sampai aktif: median < 12 jam, p90 < 24 jam.
+- Waktu dari klaim sampai aktif: ≤ 24 jam untuk 95% order (fase 1).
 - Order `pending` yang kedaluwarsa tanpa bayar: dipantau sebagai indikator kebingungan di alur bayar.
 
 ---
@@ -236,7 +271,9 @@ Bukti bayar disimpan di bucket Storage privat `payment-proofs`, path `<user_id>/
 
 | Risiko | Dampak | Mitigasi |
 |---|---|---|
-| Verifikasi manual tidak sanggup bila transaksi banyak | Aktivasi lambat, keluhan | Target waktu verifikasi. Bila > 30 order/hari selama 2 minggu, pindah ke gateway dengan QRIS dinamis dan webhook. |
+| Verifikasi manual tidak sanggup bila transaksi banyak | Aktivasi lambat, keluhan | Halaman admin dengan nominal unik dan setujui massal. Bila > 30 order per malam selama 2 minggu, pindah ke gateway dengan QRIS dinamis dan webhook (6.3 fase 2). |
+| Wajib login membuat pengguna baru batal mencoba | Pengguna baru turun | Daftar cukup dengan Google satu klik (`VITE_GOOGLE_AUTH`) atau email. Pantau rasio kunjungan → daftar. |
+| Lifetime merugi bila biaya server per pengguna naik | Margin turun | Batas wajar Deck AI, harga Lifetime ditinjau ulang berkala. |
 | Screenshot bukti palsu | Akses gratis tanpa bayar | Persetujuan wajib dicocokkan dengan riwayat GoPay Merchant, bukan screenshot. |
 | Salah ketik nominal / dua order dengan nominal sama | Transaksi tidak bisa dicocokkan | Kode unik per order `pending`, admin bisa approve manual, kontak dukungan. Fase 2: QRIS dengan nominal terisi otomatis. |
 | Gating lunak diakali | Sebagian pengguna memakai konten berbayar gratis | Diterima untuk v1. Fitur yang memakan biaya (Deck AI, Imersi) dikunci keras. |
@@ -251,21 +288,23 @@ Bukti bayar disimpan di bucket Storage privat `payment-proofs`, path `<user_id>/
 
 ## 9. Pertanyaan Terbuka
 
-Sudah diputuskan (v0.3): Trakteer diganti QRIS; Basic = kana sampai N5; produk utama SevnQuest.
+Sudah diputuskan:
+- (v0.3) Trakteer diganti QRIS; Basic = kana sampai N5; produk utama SevnQuest.
+- (v0.4) Lifetime Rp 700.000 = Full selamanya + title permanen, title bulanan tetap ada; papan donatur hanya di app dengan opsi anonim; verifikasi manual oleh pemilik tiap malam (fase 1), gateway bila volume naik (fase 2); wajib login.
 
-1. Apakah tier donatur dijual sebagai periode bulanan saja, atau ada opsi sekali bayar / lifetime untuk D7?
-2. Apakah papan donatur ditampilkan publik atau hanya di dalam app?
-3. Siapa saja admin verifikasi pembayaran, dan pada jam berapa saja order diproses?
-4. Apakah tamu (tanpa login) tetap bisa memakai semua materi Basic, atau sebagian butuh login?
+Masih terbuka:
+1. Nama title permanen Lifetime dan nama badge D1–D7 (usulan di bagian 5).
+2. Apakah pembeli Lifetime pertama mendapat harga promo (misal 100 orang pertama)?
 
 ---
 
 ## 10. Langkah Berikutnya
 
-1. Putuskan Pertanyaan Terbuka no. 1 dan 3.
+1. Tetapkan nama title (Pertanyaan Terbuka no. 1).
 2. Cek biaya dan ketentuan akun GoPay Merchant untuk penjualan langganan digital.
 3. Buat migrasi Supabase: `subscription_tiers`, `payment_orders`, `user_subscriptions`, `admins`, RPC, bucket `payment-proofs`.
-4. Buat halaman Upgrade (QRIS + nominal unik + klaim) dan halaman admin. Ganti tombol Trakteer di `SettingsView` dengan tautan ke halaman ini.
-5. Tambah pengecekan entitlement di `functions/api/deck-topic.ts` dan `functions/api/captions.ts`.
-6. Tandai konten dengan `tier_required` dan pasang gating lunak di Library, Tower, Dungeon, dan tryout.
-7. Uji alur end-to-end dengan transaksi nyata nominal kecil sebelum rilis.
+4. Pasang wajib login dan uji migrasi progres tamu ke akun.
+5. Buat halaman Upgrade (QRIS + nominal unik + klaim) dan halaman admin. Ganti tombol Trakteer di `SettingsView` dengan tautan ke halaman ini.
+6. Tambah pengecekan entitlement di `functions/api/deck-topic.ts` dan `functions/api/captions.ts`.
+7. Tandai konten dengan `tier_required` dan pasang gating lunak di Library, Tower, Dungeon, dan tryout.
+8. Uji alur end-to-end dengan transaksi nyata nominal kecil sebelum rilis.
