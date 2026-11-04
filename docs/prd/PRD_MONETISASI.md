@@ -306,7 +306,7 @@ Masih terbuka:
 | Aturan tier (murni, teruji) | `src/utils/access.ts`, `src/utils/access.test.ts` |
 | Entitlement + cache offline 7 hari | `src/state/entitlement.tsx`, `src/lib/billing.ts` |
 | Wajib login | `src/App.tsx`, `src/hooks/useCloudSync.ts` (`authChecked`) |
-| Halaman Upgrade (QRIS, nominal unik, klaim, bukti) | `src/components/billing/UpgradeModal.tsx`, `public/payment/qris-sevnsoul.jpg` |
+| Halaman Upgrade (QRIS, nominal unik, klaim, bukti) | `src/components/billing/UpgradeModal.tsx`, `public/payment/qris-sevnsoul.png` (kode QR saja, tanpa poster GoPay) |
 | Halaman admin verifikasi | `src/components/billing/AdminPaymentsModal.tsx` (Pengaturan → Verifikasi Pembayaran) |
 | Papan donatur + opsi anonim | `src/components/billing/DonorBoard.tsx` (tab Rank → Donatur), `SubscriptionPanel.tsx` |
 | Pengingat H-3/H-1 dan masa tenggang | `src/components/billing/ExpiryBanner.tsx` |

@@ -14,8 +14,9 @@ import {
 } from '../../lib/billing';
 import type { UpgradeRequest } from '../../state/entitlement';
 
-/** Gambar QRIS statis merchant (GoPay Merchant, SEVNSOUL STORE, NMID ID1026625677186). */
-export const QRIS_IMAGE_URL = '/payment/qris-sevnsoul.jpg';
+/** Kode QRIS statis merchant (SEVNSOUL STORE, NMID ID1026625677186), hanya kode QR hitam-putih tanpa poster. */
+export const QRIS_IMAGE_URL = '/payment/qris-sevnsoul.png';
+export const MERCHANT_NMID = 'ID1026625677186';
 export const MERCHANT_NAME = 'SEVNSOUL STORE, DIGITAL & KREATIF';
 
 const ACCESS_FEATURES: Record<'medium' | 'full', string[]> = {
@@ -376,13 +377,23 @@ const OrderRow: React.FC<{ order: PaymentOrder; onOpen: () => void }> = ({ order
 
 const QrisCard: React.FC = () => (
   <div className="space-y-2">
-    <div className="rounded-2xl overflow-hidden border border-border-subtle bg-white mx-auto max-w-[320px]">
-      <img src={QRIS_IMAGE_URL} alt={`QRIS ${MERCHANT_NAME}`} className="w-full h-auto block" loading="eager" />
+    <div className="rounded-2xl overflow-hidden border border-border-subtle bg-white mx-auto max-w-[280px] p-2">
+      <img
+        src={QRIS_IMAGE_URL}
+        alt={`QRIS ${MERCHANT_NAME}`}
+        className="w-full h-auto block"
+        style={{ imageRendering: 'pixelated' }}
+        loading="eager"
+      />
+      <div className="text-center pb-1 pt-0.5 leading-tight">
+        <div className="text-[11px] font-bold text-neutral-900">QRIS · {MERCHANT_NAME}</div>
+        <div className="text-[10px] text-neutral-600 font-mono">NMID {MERCHANT_NMID}</div>
+      </div>
     </div>
     <div className="flex justify-center">
       <a
         href={QRIS_IMAGE_URL}
-        download="QRIS-SevnQuest.jpg"
+        download="QRIS-SevnQuest.png"
         className="inline-flex items-center gap-1.5 text-[11px] text-text-secondary hover:text-text-primary px-3 py-1.5 rounded-xl border border-border-subtle bg-surface-inset"
       >
         <Download className="w-3.5 h-3.5" /> Simpan gambar QRIS (untuk scan dari galeri)
@@ -521,7 +532,7 @@ const OrderView: React.FC<{
           <QrisCard />
 
           <ol className="text-xs text-text-secondary space-y-1 list-decimal pl-5">
-            <li>Buka GoPay, OVO, DANA, ShopeePay, LinkAja, atau m-banking apa pun.</li>
+            <li>Buka e-wallet atau m-banking apa pun yang mendukung QRIS.</li>
             <li>Scan QRIS di atas (atau simpan gambarnya lalu scan dari galeri).</li>
             <li>Pastikan nama merchant <b>{MERCHANT_NAME}</b>.</li>
             <li>Ketik nominal <b className="text-gold">{formatIdr(order.amount_idr)}</b> persis, lalu bayar.</li>
