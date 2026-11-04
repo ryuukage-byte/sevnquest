@@ -304,3 +304,8 @@ end;
 $$;
 revoke all on function public.get_donor_board() from public, anon;
 grant execute on function public.get_donor_board() to authenticated;
+
+-- Advisor Supabase: kunci search_path fungsi helper.
+alter function public.donation_config() set search_path = public;
+alter function public.wib_month(timestamptz) set search_path = public;
+alter function public.badge_for(int) set search_path = public;
