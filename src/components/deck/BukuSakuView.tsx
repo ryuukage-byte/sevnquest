@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useEffect } from 'react';
+import React, { Suspense, lazy, useState, useMemo, useEffect } from 'react';
 import { AnimatePresence } from 'motion/react';
 import {
   Plus,
@@ -51,7 +51,7 @@ import { UniversalEntityModal } from '../modals/UniversalEntityModal';
 import { KotobaDetailModal } from '../library/KotobaDetailModal';
 import { KanjiDetailModal } from '../library/KanjiDetailModal';
 import { recordKanjiWriting } from '../../utils/kanjiWritingRecord';
-import { BunpouDetailModal } from '../library/BunpouDetailModal';
+const BunpouDetailModal = lazy(() => import('../library/BunpouDetailModal').then((m) => ({ default: m.BunpouDetailModal })));
 
 
 interface BukuSakuViewProps {
@@ -833,15 +833,17 @@ export const BukuSakuView: React.FC<BukuSakuViewProps> = ({
       />
 
 
-      <AnimatePresence>
-        {selectedBunpou && (
-          <BunpouDetailModal
-            item={selectedBunpou}
-            onClose={() => setSelectedBunpou(null)}
-            soundEnabled={soundEnabled}
-          />
-        )}
-      </AnimatePresence>
+      <Suspense fallback={null}>
+        <AnimatePresence>
+          {selectedBunpou && (
+            <BunpouDetailModal
+              item={selectedBunpou}
+              onClose={() => setSelectedBunpou(null)}
+              soundEnabled={soundEnabled}
+            />
+          )}
+        </AnimatePresence>
+      </Suspense>
 
     </div>
   );

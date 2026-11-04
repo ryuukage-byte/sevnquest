@@ -1,5 +1,5 @@
 import type { RewardHandler, RewardMeta } from '../../engine/reward/types';
-import React, { useState, useRef, useEffect, useCallback } from 'react';
+import React, { useState, useRef, useEffect, useCallback, useMemo } from 'react';
 import { createPortal } from 'react-dom';
 import { motion, AnimatePresence } from 'motion/react';
 import {
@@ -27,11 +27,35 @@ import { getGrammarSkillNodes } from '../../utils/bunpouSkillAdapter';
 import { useBackButton } from '../../hooks/useBackButton';
 import { getGrammarAnimationRecipe } from '../../data/grammarAnimations';
 import { GrammarAnimation } from './GrammarAnimation';
+import {
+  PLUM_BORDER,
+  PLUM_ICON,
+  PLUM_SOFT_BG,
+  PLUM_TEXT,
+  PlusChips,
+  RolePill,
+  SHEET_CARD,
+  SectionTitle,
+  splitFormula,
+} from './bunpouSheetUi';
+import { BUNPOU_DATABASE } from '../../data/bunpou';
+import { buildPatternInsight } from '../../engine/bunpouInsight/bunpouInsight';
+import {
+  PatternBreakdownSection,
+  PatternExamplesSection,
+  PatternFamilySection,
+  PatternFormationSection,
+  PatternQuickCheck,
+} from './BunpouPatternSheet';
 
 interface BunpouDetailModalProps {
   item: BunpouItem;
   masteryRecord?: ItemMasteryRecord;
   onClose: () => void;
+  /** Lembar yang dibuka pertama kali (default: Inti Makna). */
+  initialTab?: ScrapbookTabId;
+  /** Membuka pola lain dari Keluarga Pola di lembar Bedah Pola. */
+  onOpenPattern?: (id: string) => void;
   soundEnabled?: boolean;
   isBookmarked?: boolean;
   onToggleBookmark?: () => void;
@@ -67,12 +91,17 @@ const cleanSummary = (text?: string): string => {
     .trim();
 };
 
-type ScrapbookTabId = 'inti' | 'rumus' | 'fungsi' | 'contoh' | 'kuis';
+export type ScrapbookTabId = 'inti' | 'komponen' | 'makna' | 'rumus' | 'fungsi' | 'contoh' | 'keluarga' | 'kuis';
+
+// Pola yang sudah dikurasi (Bedah Pola) memakai lembar berbasis komponen; pola lain tetap lembar lama.
+const LEGACY_TAB_ORDER: ScrapbookTabId[] = ['inti', 'rumus', 'fungsi', 'contoh', 'kuis'];
+const PATTERN_TAB_ORDER: ScrapbookTabId[] = ['komponen', 'makna', 'rumus', 'contoh', 'keluarga', 'kuis'];
+
+const TAB_NUMBERS = ['①', '②', '③', '④', '⑤', '⑥'];
 
 interface ScrapbookTabMeta {
   id: ScrapbookTabId;
   label: string;
-  tabNumber: string;
   tabColorActive: string;
   tabColorInactive: string;
   sheetAccentBg: string;
@@ -83,7 +112,6 @@ const SCRAPBOOK_TABS: ScrapbookTabMeta[] = [
   {
     id: 'inti',
     label: 'Inti Makna',
-    tabNumber: '①',
     tabColorActive:
       'bg-[#f4eee1] text-[#3d3322] border-[#c8bba3] dark:bg-[#2c261e] dark:text-[#f3ede1] dark:border-[#524637]',
     tabColorInactive:
@@ -92,9 +120,38 @@ const SCRAPBOOK_TABS: ScrapbookTabMeta[] = [
     tagline: 'Esensi & pola pikir dasar pola ini',
   },
   {
+    id: 'komponen',
+    label: 'Bedah Komponen',
+    tabColorActive:
+      'bg-[#7d6b9e] text-white border-[#665682] dark:bg-[#3a2f4d] dark:text-[#efe8fb] dark:border-[#56476e]',
+    tabColorInactive:
+      'bg-[#6d5c8c] text-white/80 border-[#574a70] hover:bg-[#7d6b9e] dark:bg-[#231c2f] dark:text-[#b7a3dc] dark:border-[#352b45] hover:dark:bg-[#2d243c]',
+    sheetAccentBg: 'border-l-4 border-l-[#7d6b9e]',
+    tagline: 'Komponen pembentuk pola & artinya',
+  },
+  {
+    id: 'makna',
+    label: 'Pembentukan Makna',
+    tabColorActive:
+      'bg-[#f4eee1] text-[#3d3322] border-[#c8bba3] dark:bg-[#2c261e] dark:text-[#f3ede1] dark:border-[#524637]',
+    tabColorInactive:
+      'bg-[#e2d8c5] text-[#63553f] border-[#c8bba3] hover:bg-[#ede5d5] dark:bg-[#1f1b16] dark:text-[#a89b88] dark:border-[#383025] hover:dark:bg-[#28221b]',
+    sheetAccentBg: 'border-l-4 border-l-[#bfa06d]',
+    tagline: 'Dari arti harfiah ke makna alami',
+  },
+  {
+    id: 'keluarga',
+    label: 'Keluarga Pola',
+    tabColorActive:
+      'bg-[#7ba399] text-[#112923] border-[#65887e] dark:bg-[#233d37] dark:text-[#e6f4f1] dark:border-[#375a51]',
+    tabColorInactive:
+      'bg-[#6d9289] text-[#112923]/80 border-[#56766d] hover:bg-[#7ba399] dark:bg-[#162723] dark:text-[#8cb8ae] dark:border-[#233a34] hover:dark:bg-[#1e342f]',
+    sheetAccentBg: 'border-l-4 border-l-[#7ba399]',
+    tagline: 'Pola lain dari komponen yang sama',
+  },
+  {
     id: 'rumus',
     label: 'Rumus & Pola',
-    tabNumber: '②',
     tabColorActive:
       'bg-[#4a6d8c] text-white border-[#3b5974] dark:bg-[#274057] dark:text-white dark:border-[#3d5e7d]',
     tabColorInactive:
@@ -105,7 +162,6 @@ const SCRAPBOOK_TABS: ScrapbookTabMeta[] = [
   {
     id: 'fungsi',
     label: 'Fungsi & Nuansa',
-    tabNumber: '③',
     tabColorActive:
       'bg-[#7ba399] text-[#112923] border-[#65887e] dark:bg-[#233d37] dark:text-[#e6f4f1] dark:border-[#375a51]',
     tabColorInactive:
@@ -116,7 +172,6 @@ const SCRAPBOOK_TABS: ScrapbookTabMeta[] = [
   {
     id: 'contoh',
     label: 'Contoh Nyata',
-    tabNumber: '④',
     tabColorActive:
       'bg-[#b85338] text-white border-[#9b422a] dark:bg-[#4a2016] dark:text-[#ffdfd7] dark:border-[#6b2c1f]',
     tabColorInactive:
@@ -127,7 +182,6 @@ const SCRAPBOOK_TABS: ScrapbookTabMeta[] = [
   {
     id: 'kuis',
     label: 'Latihan Kuis',
-    tabNumber: '⑤',
     tabColorActive:
       'bg-[#e59e93] text-[#3d1a15] border-[#c98378] dark:bg-[#482426] dark:text-[#ffe4e2] dark:border-[#683437]',
     tabColorInactive:
@@ -141,6 +195,8 @@ export const BunpouDetailModal: React.FC<BunpouDetailModalProps> = ({
   item,
   masteryRecord,
   onClose,
+  initialTab,
+  onOpenPattern,
   soundEnabled = true,
   isBookmarked = false,
   onToggleBookmark,
@@ -157,16 +213,50 @@ export const BunpouDetailModal: React.FC<BunpouDetailModalProps> = ({
   }, 'bunpou_detail_modal');
 
   // Scrapbook Active Tab State
-  const [activeTab, setActiveTab] = useState<ScrapbookTabId>('inti');
+  const patternInsight = useMemo(() => buildPatternInsight(item, BUNPOU_DATABASE), [item]);
+  const visibleTabs = useMemo(
+    () =>
+      (patternInsight ? PATTERN_TAB_ORDER : LEGACY_TAB_ORDER).map(
+        (id) => SCRAPBOOK_TABS.find((t) => t.id === id)!
+      ),
+    [patternInsight]
+  );
+  const [activeTab, setActiveTab] = useState<ScrapbookTabId>(() =>
+    initialTab && visibleTabs.some((t) => t.id === initialTab) ? initialTab : visibleTabs[0].id
+  );
 
   // Extract human-centered learning flow
   const skillNodes = getGrammarSkillNodes(item);
   const animationRecipe = getGrammarAnimationRecipe(item.id);
+  const curatedFormulaRows = useMemo(
+    () =>
+      // Pola dengan rumus kurasi lama (subFormulas) tetap memakai rumus itu karena lebih terperinci.
+      patternInsight && item.formula && !item.subFormulas?.length
+        ? item.formula
+            .split(/\s+\/\s+/)
+            .map(splitFormula)
+            .filter((parts) => parts.length > 0)
+        : null,
+    [patternInsight, item.formula, item.subFormulas]
+  );
+
+  // Catatan kurasi lama (Tanpa Pola / Dengan Pola, Catatan Kunci) untuk lembar Pembentukan Makna.
+  // Format aslinya "Label: isi 🎯"; emoji dibuang, label dipisah.
+  const splitCuratedNote = (raw?: string) => {
+    if (!raw) return null;
+    const clean = raw.replace(/\p{Extended_Pictographic}|\uFE0F/gu, '').trim();
+    const idx = clean.indexOf(':');
+    return idx > 0 && idx < 40
+      ? { label: clean.slice(0, idx).trim(), text: clean.slice(idx + 1).trim() }
+      : { label: '', text: clean };
+  };
+  const curatedBefore = splitCuratedNote(item.beforeState);
+  const curatedAfter = splitCuratedNote(item.afterState);
   const titleInfo = getGrammarTitleInfo(item);
   const cleanLevel = (item.baseLevel || item.level || 'N3').replace(/^Level\s*/i, '');
 
-  const currentTabIdx = SCRAPBOOK_TABS.findIndex((t) => t.id === activeTab);
-  const activeTabMeta = SCRAPBOOK_TABS[currentTabIdx] || SCRAPBOOK_TABS[0];
+  const currentTabIdx = Math.max(0, visibleTabs.findIndex((t) => t.id === activeTab));
+  const activeTabMeta = visibleTabs[currentTabIdx] || visibleTabs[0];
 
   const handleTabChange = (tabId: ScrapbookTabId) => {
     if (tabId === activeTab) return;
@@ -176,13 +266,13 @@ export const BunpouDetailModal: React.FC<BunpouDetailModalProps> = ({
 
   const handlePrevTab = () => {
     if (currentTabIdx > 0) {
-      handleTabChange(SCRAPBOOK_TABS[currentTabIdx - 1].id);
+      handleTabChange(visibleTabs[currentTabIdx - 1].id);
     }
   };
 
   const handleNextTab = () => {
-    if (currentTabIdx < SCRAPBOOK_TABS.length - 1) {
-      handleTabChange(SCRAPBOOK_TABS[currentTabIdx + 1].id);
+    if (currentTabIdx < visibleTabs.length - 1) {
+      handleTabChange(visibleTabs[currentTabIdx + 1].id);
     }
   };
 
@@ -343,6 +433,20 @@ export const BunpouDetailModal: React.FC<BunpouDetailModalProps> = ({
     }
   };
 
+  // Cek Cepat di Bedah Pola: dicatat sebagai interaksi kuis, +5 EXP sekali per pembukaan.
+  const [patternRewardClaimed, setPatternRewardClaimed] = useState(false);
+  const handlePatternQuizAnswered = (isCorrect: boolean) => {
+    onRecordInteraction?.(item.id, 'bunpou', 'quiz', isCorrect);
+    if (isCorrect && !patternRewardClaimed) {
+      setPatternRewardClaimed(true);
+      if (onCompleteStudyItem) {
+        onCompleteStudyItem('bunpou', 5, 0, item.id, 1, 1, undefined, { source: 'entity_quiz', ref: `bedah:${item.id}` });
+      } else {
+        onRewardPlayer?.(5, 0, { source: 'entity_quiz', ref: `bedah:${item.id}` });
+      }
+    }
+  };
+
   const handleNextQuestion = () => {
     playSound('click', soundEnabled);
     if (questions.length > 1) {
@@ -357,6 +461,55 @@ export const BunpouDetailModal: React.FC<BunpouDetailModalProps> = ({
     setSelectedAnswerIndex(null);
     setIsAnswerChecked(false);
   };
+
+  // Perbandingan "Jangan Sampai Tertukar". Pada pola terkurasi hanya perbandingan hasil kurasi
+  // (comparisonNotes) yang ditampilkan; kontras generik "Bentuk Biasa Tanpa Pola" dibuang.
+  const renderNuances = (list: typeof skillNodes.nuances) => (
+                    <div className="p-3.5 sm:p-4 rounded-2xl bg-surface-inset border border-border-subtle shadow-xs space-y-2.5">
+                      <div className="flex items-center gap-1.5 text-wine-accent font-heading font-bold text-xs uppercase tracking-wider">
+                        <AlertTriangle className="w-3.5 h-3.5 text-wine-accent" />
+                        <span>Perbedaan & Nuansa: Jangan Sampai Tertukar!</span>
+                      </div>
+
+                      <div className="space-y-2">
+                        {list.map((nuance, nIdx) => (
+                          <div
+                            key={nIdx}
+                            className="p-3 rounded-xl bg-surface-card border border-border-subtle space-y-2"
+                          >
+                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                              <div className="p-2 rounded-lg bg-surface-inset border border-border-subtle space-y-0.5">
+                                <p className="text-xs font-bold text-indigo font-jp">
+                                  {nuance.contrastA}
+                                </p>
+                                <p className="text-xs text-text-secondary font-sans leading-normal">
+                                  = {cleanSummary(nuance.meaningA)}
+                                </p>
+                              </div>
+
+                              <div className="p-2 rounded-lg bg-surface-inset border border-border-subtle space-y-0.5">
+                                <p className="text-xs font-bold text-gold font-jp">
+                                  {nuance.contrastB}
+                                </p>
+                                <p className="text-xs text-text-secondary font-sans leading-normal">
+                                  = {cleanSummary(nuance.meaningB)}
+                                </p>
+                              </div>
+                            </div>
+
+                            {nuance.explanation && (
+                              <p className="text-xs text-text-muted leading-relaxed font-sans">
+                                💡 {nuance.explanation}
+                              </p>
+                            )}
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+  );
+  const curatedNuances = skillNodes.nuances
+    .filter((n) => n.contrastB !== 'Bentuk Biasa Tanpa Pola')
+    .map((n) => (patternInsight ? { ...n, meaningA: patternInsight.natural } : n));
 
   if (typeof document === 'undefined') return null;
 
@@ -410,7 +563,7 @@ export const BunpouDetailModal: React.FC<BunpouDetailModalProps> = ({
                 isDraggingState ? 'cursor-grabbing select-none' : 'cursor-grab'
               }`}
             >
-              {SCRAPBOOK_TABS.map((tab) => {
+              {visibleTabs.map((tab, tabIdx) => {
                 const isActive = activeTab === tab.id;
                 return (
                   <button
@@ -430,7 +583,7 @@ export const BunpouDetailModal: React.FC<BunpouDetailModalProps> = ({
                   >
                     {/* Tab Label */}
                     <span>
-                      {tab.tabNumber} {tab.label}
+                      {TAB_NUMBERS[tabIdx]} {tab.label}
                     </span>
 
                     {/* Active Elevated Tab Highlight */}
@@ -509,7 +662,7 @@ export const BunpouDetailModal: React.FC<BunpouDetailModalProps> = ({
                 </div>
 
                 {/* Pola Pembentukan (Formation Rule Subtitle) */}
-                {titleInfo.formationRule && (
+                {titleInfo.formationRule && !patternInsight && (
                   <div className="flex items-center gap-2 text-xs font-mono">
                     <span className="px-1.5 py-0.5 rounded bg-indigo/10 border border-border-subtle text-[10px] font-bold tracking-wider text-indigo uppercase font-mono shrink-0">
                       Pola
@@ -522,7 +675,7 @@ export const BunpouDetailModal: React.FC<BunpouDetailModalProps> = ({
 
                 {/* Meaning Summary */}
                 <p className="text-xs sm:text-sm text-text-secondary font-normal leading-relaxed pt-0.5 max-w-xl">
-                  {cleanSummary(item.meaningId || (item as any).meaning)}
+                  {patternInsight?.natural ?? cleanSummary(item.meaningId || (item as any).meaning)}
                 </p>
               </div>
 
@@ -678,6 +831,76 @@ export const BunpouDetailModal: React.FC<BunpouDetailModalProps> = ({
               )}
 
               {/* ---------------------------------------------------- */}
+              {/* LEMBAR BEDAH POLA (hanya pola terkurasi)             */}
+              {/* ---------------------------------------------------- */}
+              {activeTab === 'komponen' && patternInsight && (
+                <motion.div
+                  key="sheet-komponen"
+                  initial={{ opacity: 0, y: 8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -8 }}
+                  transition={{ duration: 0.16 }}
+                  className="space-y-3 sm:space-y-3.5"
+                >
+                  <PatternBreakdownSection insight={patternInsight} />
+                </motion.div>
+              )}
+
+              {activeTab === 'makna' && patternInsight && (
+                <motion.div
+                  key="sheet-makna"
+                  initial={{ opacity: 0, y: 8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -8 }}
+                  transition={{ duration: 0.16 }}
+                  className="space-y-3 sm:space-y-3.5"
+                >
+                  <PatternFormationSection insight={patternInsight} />
+
+                  {curatedBefore && curatedAfter && (
+                    <div className={`${SHEET_CARD} space-y-2`}>
+                      <SectionTitle icon={<Lightbulb className="w-3.5 h-3.5 text-gold" />}>Tanpa Pola vs Dengan Pola</SectionTitle>
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                        <div className="p-2.5 rounded-xl bg-surface-card border border-border-subtle space-y-1">
+                          <RolePill className="!bg-surface-inset !text-text-muted">{curatedBefore.label || 'Tanpa pola'}</RolePill>
+                          <p className="text-xs text-text-secondary leading-snug">{curatedBefore.text}</p>
+                        </div>
+                        <div className={`p-2.5 rounded-xl ${PLUM_SOFT_BG} border border-border-subtle space-y-1`}>
+                          <RolePill>{curatedAfter.label || 'Dengan pola'}</RolePill>
+                          <p className="text-xs text-text-primary font-medium leading-snug">{curatedAfter.text}</p>
+                        </div>
+                      </div>
+                    </div>
+                  )}
+
+                  {item.keyTakeaway && (
+                    <div className={`${SHEET_CARD} space-y-1.5`}>
+                      <SectionTitle icon={<BookOpen className={`w-3.5 h-3.5 ${PLUM_ICON}`} />}>Catatan Kunci</SectionTitle>
+                      <p className="text-xs sm:text-[13px] text-text-secondary leading-relaxed">{item.keyTakeaway}</p>
+                    </div>
+                  )}
+                </motion.div>
+              )}
+
+              {activeTab === 'keluarga' && patternInsight && (
+                <motion.div
+                  key="sheet-keluarga"
+                  initial={{ opacity: 0, y: 8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -8 }}
+                  transition={{ duration: 0.16 }}
+                  className="space-y-3 sm:space-y-3.5"
+                >
+                  <PatternFamilySection
+                    insight={patternInsight}
+                    soundEnabled={soundEnabled}
+                    onOpenPattern={onOpenPattern}
+                  />
+                  {curatedNuances.length > 0 && renderNuances(curatedNuances)}
+                </motion.div>
+              )}
+
+              {/* ---------------------------------------------------- */}
               {/* SHEET 2: RUMUS & POLA (Steel Sheet)                  */}
               {/* ---------------------------------------------------- */}
               {activeTab === 'rumus' && (
@@ -693,136 +916,92 @@ export const BunpouDetailModal: React.FC<BunpouDetailModalProps> = ({
                     <GrammarAnimation key={item.id} recipe={animationRecipe} soundEnabled={soundEnabled} />
                   )}
 
-                  {/* Formulas Section */}
-                  <div className="space-y-2.5">
-                    {skillNodes.formulas.map((form, fIdx) => {
-                      // Defensively sanitize breakdown parts: strip leading/trailing '+' and filter out pure plus items
-                      const cleanParts = form.breakdown
-                        .map((p) => p.replace(/^[＋+\s]+|[＋+\s]+$/g, '').trim())
-                        .filter((p) => p.length > 0 && p !== '+' && p !== '＋');
+                  {/* Pola terkurasi: rumus asli dari database (rumus & "kata yang cocok" hasil
+                      generator otomatis sering keliru untuk pola-pola ini, mis. Aい ＋ は ＋ いけない). */}
+                  {curatedFormulaRows && (
+                    <div className={`${SHEET_CARD} space-y-2.5`}>
+                      <SectionTitle icon={<Layers className={`w-3.5 h-3.5 ${PLUM_ICON}`} />}>Rumus Sambungan</SectionTitle>
+                      {curatedFormulaRows.map((parts, rIdx) => (
+                        <div key={rIdx} className="p-2.5 rounded-xl bg-surface-card border border-border-subtle">
+                          <PlusChips parts={parts} />
+                        </div>
+                      ))}
+                    </div>
+                  )}
 
-                      // Check if items are distinct part-of-speech rules (e.g. "Kata Benda (N): N ＋ らしい")
-                      const isConditionRules = cleanParts.length > 0 && cleanParts.some((p) => p.includes(':'));
+                  {/* Rumus sambungan: gaya sama dengan Bedah Komponen (chip ＋ chip, pil peran) */}
+                  {!curatedFormulaRows && skillNodes.formulas.length > 0 && (
+                    <div className={`${SHEET_CARD} space-y-2.5`}>
+                      <SectionTitle icon={<Layers className={`w-3.5 h-3.5 ${PLUM_ICON}`} />}>Rumus Sambungan</SectionTitle>
+                      {skillNodes.formulas.map((form, fIdx) => {
+                        // Bersihkan bagian rumus: buang '+' di tepi dan item yang hanya berisi '+'.
+                        const cleanParts = form.breakdown
+                          .map((p) => p.replace(/^[＋+\s]+|[＋+\s]+$/g, '').trim())
+                          .filter((p) => p.length > 0 && p !== '+' && p !== '＋');
+                        // Bagian berbentuk "Kata Benda (N): N ＋ らしい" = aturan per jenis kata.
+                        const isConditionRules = cleanParts.some((p) => p.includes(':'));
 
-                      return (
-                        <div
-                          key={fIdx}
-                          className="p-3.5 sm:p-4 rounded-2xl bg-surface-inset border border-border-subtle shadow-xs space-y-2.5"
-                        >
-                          <h4 className="text-xs sm:text-sm font-bold text-text-primary font-heading">
-                            {form.title}
-                          </h4>
+                        return (
+                          <div key={fIdx} className="p-2.5 rounded-xl bg-surface-card border border-border-subtle space-y-2">
+                            <p className={`font-jp font-black text-sm ${PLUM_TEXT}`}>{form.title}</p>
 
-                          {/* Connection Formula Display */}
-                          {isConditionRules ? (
-                            <div className="space-y-1.5">
-                              {cleanParts.map((part, pIdx) => {
-                                const colonIdx = part.indexOf(':');
-                                if (colonIdx !== -1) {
-                                  const posLabel = part.slice(0, colonIdx).trim();
-                                  const posRule = part.slice(colonIdx + 1).trim();
+                            {isConditionRules ? (
+                              <div className="space-y-2">
+                                {cleanParts.map((part, pIdx) => {
+                                  const colonIdx = part.indexOf(':');
+                                  if (colonIdx === -1) return <PlusChips key={pIdx} parts={splitFormula(part)} />;
                                   return (
-                                    <div
-                                      key={pIdx}
-                                      className="flex flex-wrap items-center gap-2 p-2 rounded-xl bg-surface-card border border-border-subtle/80 text-xs"
-                                    >
-                                      <span className="px-2 py-0.5 rounded-md bg-indigo/10 border border-border-subtle text-indigo font-bold text-[11px] font-heading shrink-0">
-                                        {posLabel}
-                                      </span>
-                                      <span className="font-mono text-text-primary font-semibold text-xs tracking-wide">
-                                        {posRule}
-                                      </span>
+                                    <div key={pIdx} className="space-y-1">
+                                      <RolePill>{part.slice(0, colonIdx).trim()}</RolePill>
+                                      <PlusChips parts={splitFormula(part.slice(colonIdx + 1))} />
                                     </div>
                                   );
-                                }
-                                return (
-                                  <div
-                                    key={pIdx}
-                                    className="p-2 rounded-xl bg-surface-card border border-border-subtle/80 text-xs font-mono text-text-primary font-semibold"
-                                  >
-                                    {part}
-                                  </div>
-                                );
-                              })}
-                            </div>
-                          ) : (
-                            <div className="flex flex-wrap items-center gap-1.5">
-                              {cleanParts.map((part, pIdx) => (
-                                <React.Fragment key={pIdx}>
-                                  {pIdx > 0 && (
-                                    <span className="text-text-muted font-bold text-xs select-none">
-                                      ＋
-                                    </span>
-                                  )}
-                                  <span className="px-2.5 py-0.5 rounded-lg bg-surface-card border border-border-subtle font-mono text-xs font-semibold text-text-primary shadow-xs">
-                                    {part}
-                                  </span>
-                                </React.Fragment>
-                              ))}
-                            </div>
-                          )}
-
-                        {/* Progression Arrow */}
-                        {form.progression && form.progression.length > 0 && (
-                          <div className="p-2 sm:p-2.5 rounded-xl bg-surface-card border border-border-subtle flex flex-wrap items-center gap-1.5 text-xs font-mono">
-                            {form.progression.map((step, sIdx) => (
-                              <React.Fragment key={sIdx}>
-                                {sIdx > 0 && <ArrowRight className="w-3 h-3 text-text-muted" />}
-                                <span
-                                  className={`px-2 py-0.5 rounded-md ${
-                                    sIdx === form.progression!.length - 1
-                                      ? 'bg-indigo/20 text-indigo border border-border-subtle font-bold'
-                                      : 'bg-surface-inset text-text-secondary font-medium'
-                                  }`}
-                                >
-                                  {step}
-                                </span>
-                              </React.Fragment>
-                            ))}
-                          </div>
-                        )}
-
-                        {form.note && (
-                          <p className="text-[11px] text-text-muted leading-relaxed font-sans">
-                            💡 {form.note}
-                          </p>
-                        )}
-                        </div>
-                      );
-                    })}
-                  </div>
-
-                  {/* Word Identities: Kata yang Cocok */}
-                  {skillNodes.wordIdentities.length > 0 && (
-                    <div className="p-3.5 sm:p-4 rounded-2xl bg-surface-inset border border-border-subtle shadow-xs space-y-2.5">
-                      <div className="flex items-center gap-1.5 text-text-primary font-heading font-bold text-xs uppercase tracking-wider">
-                        <Layers className="w-3.5 h-3.5 text-indigo" />
-                        <span>Kata yang Cocok Masuk (Kategori & Contoh)</span>
-                      </div>
-
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                        {skillNodes.wordIdentities.map((identity, iIdx) => (
-                          <div
-                            key={iIdx}
-                            className="p-3 rounded-xl bg-surface-card border border-border-subtle space-y-1.5 flex flex-col justify-between"
-                          >
-                            <div className="space-y-1">
-                              <div className="flex items-center gap-1.5">
-                                <span className="text-sm">{identity.icon || '🏷️'}</span>
-                                <h5 className="text-xs font-bold text-text-primary font-heading">
-                                  {identity.typeCategory}
-                                </h5>
+                                })}
                               </div>
-                              <p className="text-xs text-text-secondary font-sans leading-relaxed">
-                                {identity.functionEffect}
-                              </p>
-                            </div>
+                            ) : (
+                              <PlusChips parts={cleanParts} />
+                            )}
 
-                            <div className="pt-1.5 border-t border-border-subtle/60 flex flex-wrap items-center gap-1">
+                            {form.progression && form.progression.length > 0 && (
+                              <div className="flex flex-wrap items-center gap-1 pt-0.5">
+                                {form.progression.map((step, sIdx) => (
+                                  <span key={sIdx} className="inline-flex items-center gap-1">
+                                    {sIdx > 0 && <ArrowRight className="w-3 h-3 text-text-muted" />}
+                                    <span
+                                      className={`px-2 py-0.5 rounded-lg border text-xs font-jp ${
+                                        sIdx === form.progression!.length - 1
+                                          ? `${PLUM_SOFT_BG} ${PLUM_BORDER} ${PLUM_TEXT} font-bold`
+                                          : 'bg-surface-inset border-border-subtle text-text-secondary'
+                                      }`}
+                                    >
+                                      {step}
+                                    </span>
+                                  </span>
+                                ))}
+                              </div>
+                            )}
+
+                            {form.note && <p className="text-[11px] text-text-muted leading-relaxed">{form.note}</p>}
+                          </div>
+                        );
+                      })}
+                    </div>
+                  )}
+
+                  {/* Kata yang cocok masuk ke pola */}
+                  {!curatedFormulaRows && skillNodes.wordIdentities.length > 0 && (
+                    <div className={`${SHEET_CARD} space-y-2.5`}>
+                      <SectionTitle icon={<BookOpen className={`w-3.5 h-3.5 ${PLUM_ICON}`} />}>Kata yang Cocok Masuk</SectionTitle>
+                      <div className="space-y-1.5">
+                        {skillNodes.wordIdentities.map((identity, iIdx) => (
+                          <div key={iIdx} className="p-2.5 rounded-xl bg-surface-card border border-border-subtle space-y-1.5">
+                            <RolePill>{identity.typeCategory}</RolePill>
+                            <p className="text-xs text-text-secondary leading-snug">{identity.functionEffect}</p>
+                            <div className="flex flex-wrap items-center gap-1">
                               {identity.examples.map((ex, exIdx) => (
                                 <span
                                   key={exIdx}
-                                  className="px-2 py-0.5 rounded-md bg-surface-inset text-text-primary text-[11px] font-mono font-medium border border-border-subtle shadow-xs"
+                                  className="px-2 py-0.5 rounded-lg bg-surface-inset border border-border-subtle text-[11px] font-jp text-text-primary"
                                 >
                                   {ex}
                                 </span>
@@ -897,56 +1076,26 @@ export const BunpouDetailModal: React.FC<BunpouDetailModalProps> = ({
                   </div>
 
                   {/* Nuance & Difference Contrasts (Jangan Sampai Tertukar!) */}
-                  {skillNodes.nuances.length > 0 && (
-                    <div className="p-3.5 sm:p-4 rounded-2xl bg-surface-inset border border-border-subtle shadow-xs space-y-2.5">
-                      <div className="flex items-center gap-1.5 text-wine-accent font-heading font-bold text-xs uppercase tracking-wider">
-                        <AlertTriangle className="w-3.5 h-3.5 text-wine-accent" />
-                        <span>Perbedaan & Nuansa: Jangan Sampai Tertukar!</span>
-                      </div>
-
-                      <div className="space-y-2">
-                        {skillNodes.nuances.map((nuance, nIdx) => (
-                          <div
-                            key={nIdx}
-                            className="p-3 rounded-xl bg-surface-card border border-border-subtle space-y-2"
-                          >
-                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                              <div className="p-2 rounded-lg bg-surface-inset border border-border-subtle space-y-0.5">
-                                <p className="text-xs font-bold text-indigo font-jp">
-                                  {nuance.contrastA}
-                                </p>
-                                <p className="text-xs text-text-secondary font-sans leading-normal">
-                                  = {cleanSummary(nuance.meaningA)}
-                                </p>
-                              </div>
-
-                              <div className="p-2 rounded-lg bg-surface-inset border border-border-subtle space-y-0.5">
-                                <p className="text-xs font-bold text-gold font-jp">
-                                  {nuance.contrastB}
-                                </p>
-                                <p className="text-xs text-text-secondary font-sans leading-normal">
-                                  = {cleanSummary(nuance.meaningB)}
-                                </p>
-                              </div>
-                            </div>
-
-                            {nuance.explanation && (
-                              <p className="text-xs text-text-muted leading-relaxed font-sans">
-                                💡 {nuance.explanation}
-                              </p>
-                            )}
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  )}
+                  {skillNodes.nuances.length > 0 && renderNuances(skillNodes.nuances)}
                 </motion.div>
               )}
 
               {/* ---------------------------------------------------- */}
               {/* SHEET 4: CONTOH NYATA (Cherry Sheet)                 */}
               {/* ---------------------------------------------------- */}
-              {activeTab === 'contoh' && (
+              {activeTab === 'contoh' && patternInsight && (
+                <motion.div
+                  key="sheet-contoh-pola"
+                  initial={{ opacity: 0, y: 8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -8 }}
+                  transition={{ duration: 0.16 }}
+                >
+                  <PatternExamplesSection insight={patternInsight} />
+                </motion.div>
+              )}
+
+              {activeTab === 'contoh' && !patternInsight && (
                 <motion.div
                   key="sheet-contoh"
                   initial={{ opacity: 0, y: 8 }}
@@ -1009,6 +1158,14 @@ export const BunpouDetailModal: React.FC<BunpouDetailModalProps> = ({
                   transition={{ duration: 0.16 }}
                   className="space-y-3 sm:space-y-3.5"
                 >
+                  {patternInsight && (
+                    <PatternQuickCheck
+                      insight={patternInsight}
+                      soundEnabled={soundEnabled}
+                      onAnswered={handlePatternQuizAnswered}
+                    />
+                  )}
+
                   <div className="p-3.5 sm:p-4 rounded-2xl bg-surface-inset border border-border-subtle shadow-xs space-y-3">
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-1.5 text-gold font-heading font-bold text-xs uppercase tracking-wider">
@@ -1139,7 +1296,7 @@ export const BunpouDetailModal: React.FC<BunpouDetailModalProps> = ({
             {/* Sheet Page Indicator */}
             <div className="flex items-center gap-2">
               <span className="text-xs font-mono font-medium text-text-secondary">
-                Lembar {currentTabIdx + 1}/5
+                Lembar {currentTabIdx + 1}/{visibleTabs.length}
               </span>
               <span className="hidden sm:inline text-xs text-text-muted font-sans">
                 • {activeTabMeta.tagline}
@@ -1158,7 +1315,7 @@ export const BunpouDetailModal: React.FC<BunpouDetailModalProps> = ({
                 <span className="hidden xs:inline">Sebelumnya</span>
               </button>
 
-              {currentTabIdx < SCRAPBOOK_TABS.length - 1 ? (
+              {currentTabIdx < visibleTabs.length - 1 ? (
                 <button
                   type="button"
                   onClick={handleNextTab}
