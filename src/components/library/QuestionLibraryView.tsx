@@ -8,6 +8,9 @@ import {
   ArrowLeft, Layers, Compass, Clock, Flame
 } from 'lucide-react';
 import { ALL_TRYOUTS } from '../../data/tryouts';
+import { useAccess } from '../../state/entitlement';
+import { LockBadge } from '../billing/AccessGate';
+import { requiredTierForLevel } from '../../utils/access';
 import { TryOutData } from '../../types/content';
 import { KANJI_QUESTION_BANK as kanjiQuestionsDb, BUNPOU_QUESTION_BANK as bunpouQuestionsDb } from '../../data/questionBank';
 import { CHOUKAI_DATABASE } from '../../data/choukai';
@@ -334,7 +337,7 @@ export const QuestionLibraryView: React.FC<QuestionLibraryViewProps> = ({
   const [revealedExplanations, setRevealedExplanations] = useState<Record<string, boolean>>({});
 
   // Build unified questions list from tryouts + kanji questions + bunpou questions + dokkai + choukai
-  const allQuestions: UnifiedQuestionItem[] = useMemo(() => {
+  const allQuestionsRaw: UnifiedQuestionItem[] = useMemo(() => {
     const list: UnifiedQuestionItem[] = [];
 
     // 1. From Official Tryouts
@@ -519,6 +522,13 @@ export const QuestionLibraryView: React.FC<QuestionLibraryViewProps> = ({
     return CHOUKAI_ENABLED ? list : list.filter(q => q.section !== 'choukai');
   }, []);
 
+  // Gating lunak (PRD 6.4): soal di atas paket pengguna tidak ikut daftar/drill.
+  const { canAccessLevel, guardLevel, openUpgrade, entitlement } = useAccess();
+  const allQuestions = useMemo(
+    () => allQuestionsRaw.filter(q => canAccessLevel(q.level)),
+    [allQuestionsRaw, canAccessLevel]
+  );
+
   // Section & Level Filter Counts
   const countsBySection = useMemo(() => {
     const counts: Record<string, number> = { 
@@ -616,8 +626,9 @@ export const QuestionLibraryView: React.FC<QuestionLibraryViewProps> = ({
 
   // Filtered Tryouts for Tryout tab & Hero Section
   const filteredTryouts = useMemo(() => {
-    if (levelFilter === 'all') return ALL_TRYOUTS;
-    return ALL_TRYOUTS.filter(t => t.level === levelFilter);
+    const open = ALL_TRYOUTS.filter(t => canAccessLevel(t.level));
+    if (levelFilter === 'all') return open;
+    return open.filter(t => t.level === levelFilter);
   }, [levelFilter]);
 
   const displayedQuestions = filteredQuestions.slice(0, visibleCount);
@@ -1154,18 +1165,31 @@ export const QuestionLibraryView: React.FC<QuestionLibraryViewProps> = ({
             <button
               key={opt.value}
               onClick={() => {
+                playSound('click', soundEnabled);
+                if (opt.value !== 'all' && !guardLevel(opt.value, `Soal ${opt.label}`)) return;
                 setLevelFilter(opt.value);
                 setVisibleCount(30);
-                playSound('click', soundEnabled);
               }}
               className={`ui-chip px-3 py-1 text-xs font-medium shrink-0 ${levelFilter === opt.value ? 'is-active font-bold' : ''}`}
             >
               <span>{opt.label}</span>
+              {opt.value !== 'all' && !canAccessLevel(opt.value) ? (
+                <LockBadge tier={requiredTierForLevel(opt.value)} />
+              ) : (
               <span className="font-mono text-[10px] opacity-60">
                 {opt.value === 'all' ? allQuestions.length : countsByLevel[opt.value] || 0}
               </span>
+              )}
             </button>
           ))}
+          {entitlement.accessTier !== 'full' && (
+            <button
+              onClick={() => openUpgrade({ requiredTier: entitlement.accessTier === 'basic' ? 'medium' : 'full', label: 'Soal & tryout level lanjut' })}
+              className="text-[11px] text-gold font-bold underline-offset-2 hover:underline shrink-0"
+            >
+              Buka level lain
+            </button>
+          )}
         </div>
 
         {/* Sub-Category Format Quick Badges (When not in Tryout) */}

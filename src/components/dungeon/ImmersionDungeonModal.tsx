@@ -8,6 +8,7 @@ import { ImmersionStage } from './ImmersionStage';
 import { ImmersionTemplatePanel } from './ImmersionTemplatePanel';
 import type { ImmersionTemplate } from '../../engine/textStudy/immersionTemplate';
 import type { CaptionState, LyricLine, SubDungeon } from './immersionTypes';
+import { authHeaders } from '../../lib/billing';
 
 interface Props {
   onClose: () => void;
@@ -36,6 +37,9 @@ const CAPTION_ERRORS: Record<string, string> = {
   no_japanese: 'Video ini tidak punya subtitle bahasa Jepang.',
   unavailable: 'Video tidak tersedia atau dibatasi (usia/login), jadi subtitle tidak bisa diambil.',
   blocked: 'YouTube menolak permintaan dari server. Coba lagi nanti.',
+  login_required: 'Sesi login habis. Silakan masuk lagi.',
+  tier_required: 'Imersi YouTube tersedia di paket Full atau Lifetime.',
+  entitlement_unavailable: 'Status paket belum bisa dicek. Coba lagi sebentar lagi.',
 };
 
 export const ImmersionDungeonModal: React.FC<Props> = ({ onClose, soundEnabled = true }) => {
@@ -65,7 +69,8 @@ export const ImmersionDungeonModal: React.FC<Props> = ({ onClose, soundEnabled =
     setFetched(null);
     const ctrl = new AbortController();
     setCaptions({ status: 'loading' });
-    fetch(`/api/captions?v=${videoId}`, { signal: ctrl.signal })
+    authHeaders()
+      .then(headers => fetch(`/api/captions?v=${videoId}`, { signal: ctrl.signal, headers }))
       .then(async res => {
         const body = await res.json();
         if (!res.ok) throw new Error(CAPTION_ERRORS[body?.error] ?? 'Subtitle gagal diambil.');

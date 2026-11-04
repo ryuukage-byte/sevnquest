@@ -10,6 +10,7 @@
 // ==============================================================================
 
 import type { IncomingMessage, ServerResponse } from 'http';
+import { checkAccess, type GateEnv } from './_entitlement';
 
 export interface TopicPlan {
   title: string;
@@ -127,6 +128,9 @@ export default async function handler(
   const fwd = req.headers['x-forwarded-for'];
   const ip = (Array.isArray(fwd) ? fwd[0] : fwd || '').split(',')[0].trim() || req.socket.remoteAddress || 'unknown';
   if (rateLimited(ip)) return send(429, { error: 'rate_limited' });
+  const auth = req.headers.authorization;
+  const gate = await checkAccess(Array.isArray(auth) ? auth[0] : auth, 'deckAi', process.env as GateEnv);
+  if (!gate.ok) return send(gate.status, { error: gate.error });
   const out = await planTopic(req.body, process.env as PlanEnv);
   send(out.status, out.body);
 }

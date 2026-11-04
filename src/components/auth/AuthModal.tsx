@@ -145,16 +145,18 @@ export const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, onSuccess
               {isLogin ? 'Masuk ke Akun' : 'Buat Akun Petualang'}
             </h2>
           </div>
-          <button 
+          {!isMandatory && (
+          <button
             onClick={() => {
               playSound('click', soundEnabled);
               onClose();
             }}
             className="btn-physical-secondary w-8 h-8 rounded-xl transition-all flex items-center justify-center cursor-pointer p-0"
-            title="Tutup / Lanjutkan tanpa login"
+            title="Tutup"
           >
             <X className="w-4 h-4" />
           </button>
+          )}
         </div>
 
         {/* Form */}
@@ -232,7 +234,7 @@ export const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, onSuccess
                 }}
                 className="w-full py-2.5 text-xs text-text-muted hover:text-text-primary transition-colors text-center font-medium cursor-pointer"
               >
-                Lanjut Belajar Tanpa Login (Mode Tamu)
+                Tutup
               </button>
             )}
           </form>
@@ -253,11 +255,11 @@ export const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, onSuccess
             </button>
           </div>
           
-          {!isLogin && (
-            <p className="text-[10px] text-text-muted text-center mt-2 px-2">
-              Akun akan menyinkronkan progres petualangan dan peringkat Leaderboard ke cloud secara aman.
-            </p>
-          )}
+          <p className="text-[10px] text-text-muted text-center mt-2 px-2">
+            {isMandatory
+              ? 'SevnQuest memerlukan akun. Progres yang sudah ada di perangkat ini ikut tersimpan ke akunmu saat pertama masuk.'
+              : 'Akun akan menyinkronkan progres petualangan dan peringkat Leaderboard ke cloud secara aman.'}
+          </p>
         </div>
       </div>
     </div>

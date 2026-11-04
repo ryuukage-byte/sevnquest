@@ -1,0 +1,146 @@
+// Akses backend untuk monetisasi (RPC di supabase/migrations/20261104_monetization.sql).
+import { supabase } from './supabase';
+import { parseEntitlement, type Entitlement } from '../utils/access';
+
+export type OrderStatus = 'pending' | 'claimed' | 'paid' | 'rejected' | 'expired' | 'cancelled';
+
+export interface PaymentOrder {
+  id: string;
+  order_code: string;
+  user_id: string;
+  tier_code: string;
+  period_months: number;
+  base_price_idr: number;
+  unique_code: number;
+  amount_idr: number;
+  status: OrderStatus;
+  paid_at_reported: string | null;
+  proof_path: string | null;
+  reject_reason: string | null;
+  verified_at: string | null;
+  created_at: string;
+  expires_at: string;
+}
+
+export interface AdminOrder extends PaymentOrder {
+  user_email: string | null;
+  player_name: string | null;
+}
+
+export interface DonorBoardRow {
+  display_name: string | null;
+  is_anonymous: boolean;
+  donor_level: number;
+  donor_title: string | null;
+  is_lifetime: boolean;
+}
+
+/** Pesan Indonesia untuk kode error dari RPC. */
+export function billingErrorMessage(err: unknown): string {
+  const msg = (err && typeof err === 'object' && 'message' in err ? String((err as { message: unknown }).message) : String(err || '')) || '';
+  if (/donor_requires_access/.test(msg)) return 'Tier donatur butuh langganan Medium, Full, atau Lifetime yang aktif.';
+  if (/too_many_pending/.test(msg)) return 'Masih ada 3 pesanan belum dibayar. Bayar atau batalkan salah satunya dulu.';
+  if (/invalid_plan/.test(msg)) return 'Paket tidak tersedia.';
+  if (/not_authenticated|JWT/.test(msg)) return 'Sesi login habis. Silakan masuk lagi.';
+  if (/order_not_claimable/.test(msg)) return 'Pesanan ini sudah diproses atau dibatalkan.';
+  if (/forbidden/.test(msg)) return 'Akun ini bukan admin.';
+  if (/no_unique_code/.test(msg)) return 'Antrian pembayaran sedang penuh. Coba lagi nanti.';
+  if (/Failed to fetch|NetworkError|aborted/i.test(msg)) return 'Tidak ada koneksi. Coba lagi.';
+  return msg || 'Terjadi kesalahan.';
+}
+
+export async function fetchEntitlement(): Promise<Entitlement> {
+  const { data, error } = await supabase.rpc('get_my_entitlement');
+  if (error) throw error;
+  return parseEntitlement(data);
+}
+
+export async function createPaymentOrder(tierCode: string, periodMonths: number): Promise<PaymentOrder> {
+  const { data, error } = await supabase.rpc('create_payment_order', { p_tier_code: tierCode, p_period_months: periodMonths });
+  if (error) throw error;
+  return data as PaymentOrder;
+}
+
+export async function listMyOrders(): Promise<PaymentOrder[]> {
+  const { data, error } = await supabase
+    .from('payment_orders')
+    .select('*')
+    .order('created_at', { ascending: false })
+    .limit(20);
+  if (error) throw error;
+  return (data || []) as PaymentOrder[];
+}
+
+/** Unggah screenshot bukti bayar ke bucket privat. Mengembalikan path yang disimpan di pesanan. */
+export async function uploadPaymentProof(userId: string, orderId: string, file: File): Promise<string> {
+  const ext = file.type === 'image/png' ? 'png' : file.type === 'image/webp' ? 'webp' : 'jpg';
+  const path = `${userId}/${orderId}.${ext}`;
+  const { error } = await supabase.storage.from('payment-proofs').upload(path, file, { upsert: true, contentType: file.type });
+  if (error) throw error;
+  return path;
+}
+
+export async function submitPaymentClaim(orderId: string, paidAt: Date, proofPath: string | null): Promise<PaymentOrder> {
+  const { data, error } = await supabase.rpc('submit_payment_claim', {
+    p_order_id: orderId,
+    p_paid_at: paidAt.toISOString(),
+    p_proof_path: proofPath,
+  });
+  if (error) throw error;
+  return data as PaymentOrder;
+}
+
+export async function cancelPaymentOrder(orderId: string): Promise<void> {
+  const { error } = await supabase.rpc('cancel_payment_order', { p_order_id: orderId });
+  if (error) throw error;
+}
+
+export async function adminListOrders(statuses: OrderStatus[]): Promise<AdminOrder[]> {
+  const { data, error } = await supabase.rpc('admin_list_orders', { p_statuses: statuses });
+  if (error) throw error;
+  return (data || []) as AdminOrder[];
+}
+
+export async function adminApprove(orderId: string): Promise<void> {
+  const { error } = await supabase.rpc('approve_payment', { p_order_id: orderId });
+  if (error) throw error;
+}
+
+export async function adminReject(orderId: string, reason: string): Promise<void> {
+  const { error } = await supabase.rpc('reject_payment', { p_order_id: orderId, p_reason: reason });
+  if (error) throw error;
+}
+
+export async function adminProofUrl(path: string): Promise<string | null> {
+  const { data, error } = await supabase.storage.from('payment-proofs').createSignedUrl(path, 600);
+  if (error) return null;
+  return data?.signedUrl ?? null;
+}
+
+export async function fetchDonorBoard(): Promise<DonorBoardRow[]> {
+  const { data, error } = await supabase.rpc('get_donor_board');
+  if (error) throw error;
+  return (data || []) as DonorBoardRow[];
+}
+
+export async function fetchDonorAnonymous(): Promise<boolean> {
+  const { data, error } = await supabase.rpc('get_my_donor_preferences');
+  if (error) throw error;
+  return Boolean((data as { anonymous?: boolean } | null)?.anonymous);
+}
+
+export async function setDonorAnonymous(anonymous: boolean): Promise<void> {
+  const { error } = await supabase.rpc('set_donor_anonymous', { p_anonymous: anonymous });
+  if (error) throw error;
+}
+
+/** Header Authorization untuk fungsi server yang dikunci per tier (Deck AI, Imersi). */
+export async function authHeaders(): Promise<Record<string, string>> {
+  try {
+    const { data } = await supabase.auth.getSession();
+    const token = data?.session?.access_token;
+    return token ? { Authorization: `Bearer ${token}` } : {};
+  } catch {
+    return {};
+  }
+}

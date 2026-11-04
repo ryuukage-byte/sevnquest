@@ -4,6 +4,9 @@ import { OFFICIAL_BOOKS } from '../../data/officialBooks';
 import type { OfficialBook } from '../../types/books';
 import { getBookStatsMap } from '../../utils/arcadeSourceUtils';
 import { playSound } from '../../utils/audio';
+import { useAccess } from '../../state/entitlement';
+import { LockBadge } from '../billing/AccessGate';
+import { requiredTierForLevel } from '../../utils/access';
 
 export interface LevelOption<T extends string = string> {
   id: T;
@@ -36,6 +39,7 @@ export const ArcadeSourceSelector = <T extends string>({
   challengeDurationText,
   soundEnabled = true,
 }: ArcadeSourceSelectorProps<T>) => {
+  const { guardLevel, canAccessLevel } = useAccess();
   const [bookCategoryFilter, setBookCategoryFilter] = useState<'ALL' | 'CURRICULUM' | 'THEMATIC'>('ALL');
 
   // Pre-calculate counts of items per book for snappy display
@@ -125,8 +129,9 @@ export const ArcadeSourceSelector = <T extends string>({
                 key={opt.id}
                 type="button"
                 onClick={() => {
-                  onSelectLevel(opt.id);
                   playSound('click', soundEnabled);
+                  if (!guardLevel(opt.id, `Arcade ${opt.label}`)) return;
+                  onSelectLevel(opt.id);
                 }}
                 className={`p-3 rounded-2xl border text-left transition-all flex flex-col justify-between cursor-pointer ${
                   isSelected
@@ -138,6 +143,7 @@ export const ArcadeSourceSelector = <T extends string>({
                   <span className={`text-xs font-heading block ${isSelected ? 'font-bold text-text-primary' : 'font-medium text-text-secondary'}`}>
                     {opt.label}
                   </span>
+                  {!canAccessLevel(opt.id) && <LockBadge tier={requiredTierForLevel(opt.id)} />}
                   {isSelected && (
                     <span className="w-1.5 h-1.5 rounded-full bg-gold shadow-xs shrink-0 ml-1" />
                   )}
@@ -216,8 +222,9 @@ export const ArcadeSourceSelector = <T extends string>({
                   key={book.id}
                   type="button"
                   onClick={() => {
-                    onSelectBookId(book.id);
                     playSound('click', soundEnabled);
+                    if (!guardLevel(book.level, book.title)) return;
+                    onSelectBookId(book.id);
                   }}
                   className={`p-2.5 sm:p-3 rounded-2xl border text-left transition-all flex items-start gap-2.5 cursor-pointer relative ${
                     isSelected
@@ -236,6 +243,7 @@ export const ArcadeSourceSelector = <T extends string>({
                       <span className={`text-[10px] font-bold font-mono px-1.5 py-0.5 rounded-md border ${book.colorTheme?.badgeBg || 'bg-surface-card border-border-subtle'}`}>
                         {book.level}
                       </span>
+                      {!canAccessLevel(book.level) && <LockBadge tier={requiredTierForLevel(book.level)} />}
                       <span className="text-[10px] font-mono text-text-muted">
                         {count || 0} {mode === 'kanji' ? 'kanji' : mode === 'conjugation' ? 'kata kerja' : 'kata'}
                       </span>

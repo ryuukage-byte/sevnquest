@@ -10,6 +10,9 @@ import { TOWER1_DOMAIN_LABEL, TOWER1_SKILL_LABEL } from '../../data/tower1';
 import { ALL_FLOOR_MAP, skillsOf } from '../../data/towers';
 import { missingHard } from '../../engine/tower1/graph';
 import { ModalPortal, SKILL_ICON } from './parts';
+import { useAccess } from '../../state/entitlement';
+import { LockBadge } from '../billing/AccessGate';
+import { requiredTierForTowerFloor } from '../../utils/access';
 
 interface Props {
   spec: FloorSpec;
@@ -33,6 +36,7 @@ const BIG_IDEA: Record<string, string> = {
 };
 
 export const FloorDetailModal: React.FC<Props> = ({ spec, state, progress, isRecommended, onEnter, onClose, onSelectFloor }) => {
+  const { guardTier, canAccessTowerFloor } = useAccess();
   const missing = missingHard(spec, progress);
   const rec = progress.cleared[spec.id];
   const canEnter = state === 'available' || state === 'cleared';
@@ -175,11 +179,14 @@ export const FloorDetailModal: React.FC<Props> = ({ spec, state, progress, isRec
         {canEnter ? (
           <button
             type="button"
-            onClick={onEnter}
+            onClick={() => {
+              if (!guardTier(requiredTierForTowerFloor(spec.id), `Lantai ${spec.code}`)) return;
+              onEnter();
+            }}
             className="btn-physical-primary w-full py-3.5 rounded-2xl font-bold text-sm font-heading flex items-center justify-center gap-2"
           >
             <span>{state === 'cleared' ? 'Ulangi Lantai' : 'Masuk Lantai'}</span>
-            <ArrowRight className="w-4 h-4" />
+            {!canAccessTowerFloor(spec.id) ? <LockBadge tier={requiredTierForTowerFloor(spec.id)} /> : <ArrowRight className="w-4 h-4" />}
           </button>
         ) : (
           <div className="p-3.5 rounded-2xl bg-surface-inset border border-border-subtle shadow-inner flex items-center gap-2.5 text-xs text-text-secondary">

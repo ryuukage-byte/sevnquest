@@ -43,6 +43,7 @@ import { parseReadingVariations } from '../../utils/readingHighlightUtils';
 
 import { UserDeck, DeckItemCategory } from '../../types/rpg';
 import { Question } from '../../types/content';
+import { withLevelGate } from '../billing/AccessGate';
 
 export interface UniversalEntityModalProps {
   isOpen: boolean;
@@ -68,7 +69,7 @@ export interface UniversalEntityModalProps {
 
 type ModalTab = 'overview' | 'writing' | 'grammar' | 'relations' | 'quiz';
 
-export const UniversalEntityModal: React.FC<UniversalEntityModalProps> = ({
+const UniversalEntityModalInner: React.FC<UniversalEntityModalProps> = ({
   isOpen,
   onClose,
   entityId,
@@ -806,3 +807,13 @@ export const UniversalEntityModal: React.FC<UniversalEntityModalProps> = ({
     document.body
   );
 };
+
+/** Level JLPT materi yang dibuka (untuk gating lunak). */
+function entityLevel(p: UniversalEntityModalProps): string | undefined {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const e: any = p.entity || (p.entityId ? EntityRegistry.getEntity(p.entityId) : null);
+  const raw = e?.rawItem || e?.item || e?.ref || e;
+  return raw?.jlpt || raw?.level || e?.jlpt || e?.level;
+}
+
+export const UniversalEntityModal = withLevelGate(UniversalEntityModalInner, { getLevel: p => entityLevel(p), isOpen: p => p.isOpen, getClose: p => p.onClose, labelPrefix: 'Materi' });

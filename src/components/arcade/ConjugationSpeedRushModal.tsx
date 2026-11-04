@@ -35,6 +35,7 @@ import {
   getConjugationFormsForLevel 
 } from '../../utils/arcadeSourceUtils';
 import { ArcadeSourceSelector, LevelOption } from './ArcadeSourceSelector';
+import { useArcadeGuard } from './useArcadeGuard';
 
 interface ConjugationSpeedRushModalProps {
   isOpen: boolean;
@@ -88,6 +89,7 @@ export const ConjugationSpeedRushModal: React.FC<ConjugationSpeedRushModalProps>
   onCompleteStudyItem,
 }) => {
   const [sourceType, setSourceType] = useState<'LEVEL' | 'TEMPLATE_BOOK'>('LEVEL');
+  const guardArcade = useArcadeGuard();
   const [selectedLevel, setSelectedLevel] = useState<LevelFilter>('N5');
   const [selectedBookId, setSelectedBookId] = useState<string>('book_minna_n5');
   const [gameState, setGameState] = useState<'ready' | 'playing' | 'finished'>('ready');
@@ -182,6 +184,7 @@ export const ConjugationSpeedRushModal: React.FC<ConjugationSpeedRushModalProps>
 
   // Start new game
   const handleStartGame = () => {
+    if (!guardArcade(sourceType, selectedLevel, selectedBookId)) return;
     playSound('attack', soundEnabled);
     const firstQ = getNextQuestion();
     setCurrentQuestion(firstQ);

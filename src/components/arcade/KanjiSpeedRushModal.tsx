@@ -26,6 +26,7 @@ import { OFFICIAL_BOOKS } from '../../data/officialBooks';
 import { getKanjiPoolForBook } from '../../utils/arcadeSourceUtils';
 import { ArcadeSourceSelector } from './ArcadeSourceSelector';
 import { calcEngineExp, getKanjiBaseExp } from '../../utils/rewards';
+import { useArcadeGuard } from './useArcadeGuard';
 
 interface KanjiSpeedRushModalProps {
   isOpen: boolean;
@@ -77,6 +78,7 @@ export const KanjiSpeedRushModal: React.FC<KanjiSpeedRushModalProps> = ({
   onCompleteStudyItem,
 }) => {
   const [sourceType, setSourceType] = useState<'LEVEL' | 'TEMPLATE_BOOK'>('LEVEL');
+  const guardArcade = useArcadeGuard();
   const [selectedLevel, setSelectedLevel] = useState<LevelFilter>('N5');
   const [selectedBookId, setSelectedBookId] = useState<string>('book_minna_n5');
   const [gameState, setGameState] = useState<'ready' | 'playing' | 'finished'>('ready');
@@ -162,6 +164,7 @@ export const KanjiSpeedRushModal: React.FC<KanjiSpeedRushModalProps> = ({
 
   // Start new game
   const handleStartGame = () => {
+    if (!guardArcade(sourceType, selectedLevel, selectedBookId)) return;
     playSound('attack', soundEnabled);
     const queue = buildQueue();
     setKanjiQueue(queue);

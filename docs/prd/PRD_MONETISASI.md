@@ -1,6 +1,6 @@
 # PRD: Model Monetisasi SevnQuest / Nihongo Quest
 
-Versi: 0.4 (revisi dari draft 0.1)
+Versi: 0.5 (fase 1 diimplementasikan)
 Tanggal: 4 November 2026
 Status: Draft untuk review
 
@@ -104,7 +104,7 @@ Pembagian berdasarkan keputusan pemilik (v0.3): kana sampai N5 gratis.
 | **Medium** | Rp 15.000 / bulan | + Materi N4 dan N3 (bunpou 189 + 132 pola, kanji 167 + 366, kotoba 731 + 1.960), Tower lantai N4 dan N3, tryout N4–N3 | + Latihan Ekstra Recall tanpa batas, semua mode Dungeon, statistik lengkap |
 | **Full** | Rp 35.000 / bulan | + Materi N2 dan N1, Kaigo dan SSW, semua tryout, Choukai saat aktif kembali | + Deck AI, Imersi YouTube, early access fitur baru |
 
-Aturan pembagian: tier sebuah materi ditentukan oleh level JLPT-nya. Kana dan N5 = Basic, N4–N3 = Medium, N2–N1 serta Kaigo/SSW = Full. Untuk Tower, Arcade, Dungeon, dan Buku Saku, yang dicek adalah level materi yang dipakai, bukan modenya. Nomor lantai Tower yang tepat ditentukan saat implementasi dari data `src/data/tower1` dan `src/data/tower2`.
+Aturan pembagian: tier sebuah materi ditentukan oleh level JLPT-nya. Kana dan N5 = Basic, N4–N3 = Medium, N2–N1 serta Kaigo/SSW = Full. Untuk Tower, Arcade, Dungeon, dan Buku Saku, yang dicek adalah level materi yang dipakai, bukan modenya. Tower: lantai 001–060 (kana dan N5) = Basic, 061–100 (N4) = Medium. JFT-Basic dihitung setara N4 (Medium). Materi campuran yang memuat level berbayar (misal "Semua Level", "N5–N4") mengikuti level tertingginya. Paket Basic mendapat 1 putaran Latihan Ekstra Recall per hari.
 
 Paket periode (QRIS statis tidak bisa menagih otomatis, jadi pengguna membeli masa aktif di muka):
 
@@ -116,7 +116,7 @@ Paket periode (QRIS statis tidak bisa menagih otomatis, jadi pengguna membeli ma
 
 Catatan:
 - Pembelian baru saat masih aktif **menambah** masa aktif, tidak menimpa.
-- Naik dari Medium ke Full saat masih aktif: sisa hari Medium dikonversi proporsional ke hari Full.
+- Naik dari Medium ke Full saat masih aktif: Full langsung aktif sejak disetujui; sisa Medium tidak hilang dan tetap berlaku setelah Full berakhir (lebih sederhana daripada konversi proporsional dan tidak merugikan pengguna).
 - Pengguna yang sudah memakai materi tier atas sebelum monetisasi berlaku tetap menyimpan progresnya. Materi itu hanya terkunci untuk latihan baru.
 
 ---
@@ -146,7 +146,7 @@ Nama badge hanya contoh dan tidak memakai nama tier RPG (Villager … Mythic Dei
 - Title permanen tidak pernah hilang. Title bulanan D1–D7 tetap bisa dibeli di atasnya; pengguna Lifetime tidak perlu tier akses terpisah untuk ikut donatur bulanan.
 - Pengguna yang sedang berlangganan Medium/Full lalu membeli Lifetime: sisa masa aktif tidak dikembalikan dalam bentuk uang.
 - "Selamanya" berarti selama SevnQuest beroperasi. Ini ditulis jelas di halaman pembelian dan syarat layanan.
-- Fitur yang memakan biaya per pemakaian (Deck AI) tetap mengikuti batas wajar harian yang sama dengan Full, supaya biaya LLM tidak tak terbatas untuk pembayaran sekali.
+- Fitur yang memakan biaya per pemakaian (Deck AI) tetap mengikuti batas wajar harian yang sama dengan Full (30 permintaan per hari WIB, dihitung di database), supaya biaya LLM tidak tak terbatas untuk pembayaran sekali.
 - Titik impas: Rp 700.000 setara 20 bulan Full. Harga ditinjau ulang bila biaya server per pengguna naik.
 
 ### Aturan "prioritas"
@@ -298,7 +298,24 @@ Masih terbuka:
 
 ---
 
-## 10. Langkah Berikutnya
+## 10. Status Implementasi Fase 1
+
+| Bagian | Lokasi |
+|---|---|
+| Skema, RPC, kebijakan Storage | `supabase/migrations/20261104_monetization.sql` |
+| Aturan tier (murni, teruji) | `src/utils/access.ts`, `src/utils/access.test.ts` |
+| Entitlement + cache offline 7 hari | `src/state/entitlement.tsx`, `src/lib/billing.ts` |
+| Wajib login | `src/App.tsx`, `src/hooks/useCloudSync.ts` (`authChecked`) |
+| Halaman Upgrade (QRIS, nominal unik, klaim, bukti) | `src/components/billing/UpgradeModal.tsx`, `public/payment/qris-sevnsoul.jpg` |
+| Halaman admin verifikasi | `src/components/billing/AdminPaymentsModal.tsx` (Pengaturan → Verifikasi Pembayaran) |
+| Papan donatur + opsi anonim | `src/components/billing/DonorBoard.tsx` (tab Rank → Donatur), `SubscriptionPanel.tsx` |
+| Pengingat H-3/H-1 dan masa tenggang | `src/components/billing/ExpiryBanner.tsx` |
+| Gating lunak | modal detail Kotoba/Kanji/Bunpou/Universal, bank soal dan tryout, Tower, Arcade, Dungeon, program belajar, Latihan Ekstra Recall |
+| Gating keras | `api/_entitlement.ts` dipanggil `functions/api/deck-topic.ts` dan `functions/api/captions.ts` |
+
+Celah gating lunak yang diketahui (diterima untuk v1): Dungeon Kanji Extreme memakai nomor stage tanpa level, dan deck/bookmark yang sudah berisi materi level tinggi masih bisa dilatih lewat runner Buku Saku.
+
+## 11. Langkah Berikutnya
 
 1. Tetapkan nama title (Pertanyaan Terbuka no. 1).
 2. Cek biaya dan ketentuan akun GoPay Merchant untuk penjualan langganan digital.

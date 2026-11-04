@@ -1,4 +1,5 @@
 import type { TopicPlan } from '../../api/deck-topic';
+import { authHeaders } from '../lib/billing';
 
 export type { TopicPlan };
 
@@ -23,7 +24,8 @@ export async function requestTopicPlan(topic: string): Promise<TopicPlan | null>
     const res = await fetch('/api/deck-topic', {
       method: 'POST',
       signal: ctrl.signal,
-      headers: { 'Content-Type': 'application/json' },
+      // Deck AI dikunci per paket di server (api/_entitlement.ts); JWT pengguna wajib.
+      headers: { 'Content-Type': 'application/json', ...(await authHeaders()) },
       body: JSON.stringify({ topic: topic.trim() }),
     });
     if (res.status === 503 || res.status === 404) unavailable = true;
