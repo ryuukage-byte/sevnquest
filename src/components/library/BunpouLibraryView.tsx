@@ -556,7 +556,7 @@ export const BunpouLibraryView: React.FC<BunpouLibraryViewProps> = ({
             onOpenPattern={(id) => {
               const next = BUNPOU_DATABASE[id];
               if (!next) return;
-              setSelectedInitialTab('bedah');
+              setSelectedInitialTab('komponen');
               setSelectedItem(next);
             }}
             masteryRecord={selectedItem ? itemMastery?.[selectedItem.id] : undefined}

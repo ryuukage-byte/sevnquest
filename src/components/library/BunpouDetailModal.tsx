@@ -29,7 +29,13 @@ import { getGrammarAnimationRecipe } from '../../data/grammarAnimations';
 import { GrammarAnimation } from './GrammarAnimation';
 import { BUNPOU_DATABASE } from '../../data/bunpou';
 import { buildPatternInsight } from '../../engine/bunpouInsight/bunpouInsight';
-import { BunpouPatternSheet } from './BunpouPatternSheet';
+import {
+  PatternBreakdownSection,
+  PatternExamplesSection,
+  PatternFamilySection,
+  PatternFormationSection,
+  PatternQuickCheck,
+} from './BunpouPatternSheet';
 
 interface BunpouDetailModalProps {
   item: BunpouItem;
@@ -74,7 +80,11 @@ const cleanSummary = (text?: string): string => {
     .trim();
 };
 
-export type ScrapbookTabId = 'inti' | 'bedah' | 'rumus' | 'fungsi' | 'contoh' | 'kuis';
+export type ScrapbookTabId = 'inti' | 'komponen' | 'makna' | 'rumus' | 'fungsi' | 'contoh' | 'keluarga' | 'kuis';
+
+// Pola yang sudah dikurasi (Bedah Pola) memakai lembar berbasis komponen; pola lain tetap lembar lama.
+const LEGACY_TAB_ORDER: ScrapbookTabId[] = ['inti', 'rumus', 'fungsi', 'contoh', 'kuis'];
+const PATTERN_TAB_ORDER: ScrapbookTabId[] = ['komponen', 'makna', 'rumus', 'contoh', 'keluarga', 'kuis'];
 
 const TAB_NUMBERS = ['①', '②', '③', '④', '⑤', '⑥'];
 
@@ -99,14 +109,34 @@ const SCRAPBOOK_TABS: ScrapbookTabMeta[] = [
     tagline: 'Esensi & pola pikir dasar pola ini',
   },
   {
-    id: 'bedah',
-    label: 'Bedah Pola',
+    id: 'komponen',
+    label: 'Bedah Komponen',
     tabColorActive:
       'bg-[#7d6b9e] text-white border-[#665682] dark:bg-[#3a2f4d] dark:text-[#efe8fb] dark:border-[#56476e]',
     tabColorInactive:
       'bg-[#6d5c8c] text-white/80 border-[#574a70] hover:bg-[#7d6b9e] dark:bg-[#231c2f] dark:text-[#b7a3dc] dark:border-[#352b45] hover:dark:bg-[#2d243c]',
     sheetAccentBg: 'border-l-4 border-l-[#7d6b9e]',
-    tagline: 'Komponen pembentuk & logika makna',
+    tagline: 'Komponen pembentuk pola & artinya',
+  },
+  {
+    id: 'makna',
+    label: 'Pembentukan Makna',
+    tabColorActive:
+      'bg-[#f4eee1] text-[#3d3322] border-[#c8bba3] dark:bg-[#2c261e] dark:text-[#f3ede1] dark:border-[#524637]',
+    tabColorInactive:
+      'bg-[#e2d8c5] text-[#63553f] border-[#c8bba3] hover:bg-[#ede5d5] dark:bg-[#1f1b16] dark:text-[#a89b88] dark:border-[#383025] hover:dark:bg-[#28221b]',
+    sheetAccentBg: 'border-l-4 border-l-[#bfa06d]',
+    tagline: 'Dari arti harfiah ke makna alami',
+  },
+  {
+    id: 'keluarga',
+    label: 'Keluarga Pola',
+    tabColorActive:
+      'bg-[#7ba399] text-[#112923] border-[#65887e] dark:bg-[#233d37] dark:text-[#e6f4f1] dark:border-[#375a51]',
+    tabColorInactive:
+      'bg-[#6d9289] text-[#112923]/80 border-[#56766d] hover:bg-[#7ba399] dark:bg-[#162723] dark:text-[#8cb8ae] dark:border-[#233a34] hover:dark:bg-[#1e342f]',
+    sheetAccentBg: 'border-l-4 border-l-[#7ba399]',
+    tagline: 'Pola lain dari komponen yang sama',
   },
   {
     id: 'rumus',
@@ -174,11 +204,14 @@ export const BunpouDetailModal: React.FC<BunpouDetailModalProps> = ({
   // Scrapbook Active Tab State
   const patternInsight = useMemo(() => buildPatternInsight(item, BUNPOU_DATABASE), [item]);
   const visibleTabs = useMemo(
-    () => SCRAPBOOK_TABS.filter((t) => t.id !== 'bedah' || patternInsight),
+    () =>
+      (patternInsight ? PATTERN_TAB_ORDER : LEGACY_TAB_ORDER).map(
+        (id) => SCRAPBOOK_TABS.find((t) => t.id === id)!
+      ),
     [patternInsight]
   );
   const [activeTab, setActiveTab] = useState<ScrapbookTabId>(() =>
-    initialTab && (initialTab !== 'bedah' || patternInsight) ? initialTab : 'inti'
+    initialTab && visibleTabs.some((t) => t.id === initialTab) ? initialTab : visibleTabs[0].id
   );
 
   // Extract human-centered learning flow
@@ -394,6 +427,55 @@ export const BunpouDetailModal: React.FC<BunpouDetailModalProps> = ({
     setIsAnswerChecked(false);
   };
 
+  // Perbandingan "Jangan Sampai Tertukar". Pada pola terkurasi hanya perbandingan hasil kurasi
+  // (comparisonNotes) yang ditampilkan; kontras generik "Bentuk Biasa Tanpa Pola" dibuang.
+  const renderNuances = (list: typeof skillNodes.nuances) => (
+                    <div className="p-3.5 sm:p-4 rounded-2xl bg-surface-inset border border-border-subtle shadow-xs space-y-2.5">
+                      <div className="flex items-center gap-1.5 text-wine-accent font-heading font-bold text-xs uppercase tracking-wider">
+                        <AlertTriangle className="w-3.5 h-3.5 text-wine-accent" />
+                        <span>Perbedaan & Nuansa: Jangan Sampai Tertukar!</span>
+                      </div>
+
+                      <div className="space-y-2">
+                        {list.map((nuance, nIdx) => (
+                          <div
+                            key={nIdx}
+                            className="p-3 rounded-xl bg-surface-card border border-border-subtle space-y-2"
+                          >
+                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                              <div className="p-2 rounded-lg bg-surface-inset border border-border-subtle space-y-0.5">
+                                <p className="text-xs font-bold text-indigo font-jp">
+                                  {nuance.contrastA}
+                                </p>
+                                <p className="text-xs text-text-secondary font-sans leading-normal">
+                                  = {cleanSummary(nuance.meaningA)}
+                                </p>
+                              </div>
+
+                              <div className="p-2 rounded-lg bg-surface-inset border border-border-subtle space-y-0.5">
+                                <p className="text-xs font-bold text-gold font-jp">
+                                  {nuance.contrastB}
+                                </p>
+                                <p className="text-xs text-text-secondary font-sans leading-normal">
+                                  = {cleanSummary(nuance.meaningB)}
+                                </p>
+                              </div>
+                            </div>
+
+                            {nuance.explanation && (
+                              <p className="text-xs text-text-muted leading-relaxed font-sans">
+                                💡 {nuance.explanation}
+                              </p>
+                            )}
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+  );
+  const curatedNuances = skillNodes.nuances
+    .filter((n) => n.contrastB !== 'Bentuk Biasa Tanpa Pola')
+    .map((n) => (patternInsight ? { ...n, meaningA: patternInsight.natural } : n));
+
   if (typeof document === 'undefined') return null;
 
   return createPortal(
@@ -558,7 +640,7 @@ export const BunpouDetailModal: React.FC<BunpouDetailModalProps> = ({
 
                 {/* Meaning Summary */}
                 <p className="text-xs sm:text-sm text-text-secondary font-normal leading-relaxed pt-0.5 max-w-xl">
-                  {cleanSummary(item.meaningId || (item as any).meaning)}
+                  {patternInsight?.natural ?? cleanSummary(item.meaningId || (item as any).meaning)}
                 </p>
               </div>
 
@@ -714,22 +796,49 @@ export const BunpouDetailModal: React.FC<BunpouDetailModalProps> = ({
               )}
 
               {/* ---------------------------------------------------- */}
-              {/* SHEET: BEDAH POLA (Plum Sheet)                       */}
+              {/* LEMBAR BEDAH POLA (hanya pola terkurasi)             */}
               {/* ---------------------------------------------------- */}
-              {activeTab === 'bedah' && patternInsight && (
+              {activeTab === 'komponen' && patternInsight && (
                 <motion.div
-                  key="sheet-bedah"
+                  key="sheet-komponen"
                   initial={{ opacity: 0, y: 8 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -8 }}
                   transition={{ duration: 0.16 }}
+                  className="space-y-3 sm:space-y-3.5"
                 >
-                  <BunpouPatternSheet
+                  <PatternBreakdownSection insight={patternInsight} />
+                </motion.div>
+              )}
+
+              {activeTab === 'makna' && patternInsight && (
+                <motion.div
+                  key="sheet-makna"
+                  initial={{ opacity: 0, y: 8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -8 }}
+                  transition={{ duration: 0.16 }}
+                  className="space-y-3 sm:space-y-3.5"
+                >
+                  <PatternFormationSection insight={patternInsight} />
+                </motion.div>
+              )}
+
+              {activeTab === 'keluarga' && patternInsight && (
+                <motion.div
+                  key="sheet-keluarga"
+                  initial={{ opacity: 0, y: 8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -8 }}
+                  transition={{ duration: 0.16 }}
+                  className="space-y-3 sm:space-y-3.5"
+                >
+                  <PatternFamilySection
                     insight={patternInsight}
                     soundEnabled={soundEnabled}
                     onOpenPattern={onOpenPattern}
-                    onQuizAnswered={handlePatternQuizAnswered}
                   />
+                  {curatedNuances.length > 0 && renderNuances(curatedNuances)}
                 </motion.div>
               )}
 
@@ -953,56 +1062,26 @@ export const BunpouDetailModal: React.FC<BunpouDetailModalProps> = ({
                   </div>
 
                   {/* Nuance & Difference Contrasts (Jangan Sampai Tertukar!) */}
-                  {skillNodes.nuances.length > 0 && (
-                    <div className="p-3.5 sm:p-4 rounded-2xl bg-surface-inset border border-border-subtle shadow-xs space-y-2.5">
-                      <div className="flex items-center gap-1.5 text-wine-accent font-heading font-bold text-xs uppercase tracking-wider">
-                        <AlertTriangle className="w-3.5 h-3.5 text-wine-accent" />
-                        <span>Perbedaan & Nuansa: Jangan Sampai Tertukar!</span>
-                      </div>
-
-                      <div className="space-y-2">
-                        {skillNodes.nuances.map((nuance, nIdx) => (
-                          <div
-                            key={nIdx}
-                            className="p-3 rounded-xl bg-surface-card border border-border-subtle space-y-2"
-                          >
-                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                              <div className="p-2 rounded-lg bg-surface-inset border border-border-subtle space-y-0.5">
-                                <p className="text-xs font-bold text-indigo font-jp">
-                                  {nuance.contrastA}
-                                </p>
-                                <p className="text-xs text-text-secondary font-sans leading-normal">
-                                  = {cleanSummary(nuance.meaningA)}
-                                </p>
-                              </div>
-
-                              <div className="p-2 rounded-lg bg-surface-inset border border-border-subtle space-y-0.5">
-                                <p className="text-xs font-bold text-gold font-jp">
-                                  {nuance.contrastB}
-                                </p>
-                                <p className="text-xs text-text-secondary font-sans leading-normal">
-                                  = {cleanSummary(nuance.meaningB)}
-                                </p>
-                              </div>
-                            </div>
-
-                            {nuance.explanation && (
-                              <p className="text-xs text-text-muted leading-relaxed font-sans">
-                                💡 {nuance.explanation}
-                              </p>
-                            )}
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  )}
+                  {skillNodes.nuances.length > 0 && renderNuances(skillNodes.nuances)}
                 </motion.div>
               )}
 
               {/* ---------------------------------------------------- */}
               {/* SHEET 4: CONTOH NYATA (Cherry Sheet)                 */}
               {/* ---------------------------------------------------- */}
-              {activeTab === 'contoh' && (
+              {activeTab === 'contoh' && patternInsight && (
+                <motion.div
+                  key="sheet-contoh-pola"
+                  initial={{ opacity: 0, y: 8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -8 }}
+                  transition={{ duration: 0.16 }}
+                >
+                  <PatternExamplesSection insight={patternInsight} />
+                </motion.div>
+              )}
+
+              {activeTab === 'contoh' && !patternInsight && (
                 <motion.div
                   key="sheet-contoh"
                   initial={{ opacity: 0, y: 8 }}
@@ -1065,6 +1144,14 @@ export const BunpouDetailModal: React.FC<BunpouDetailModalProps> = ({
                   transition={{ duration: 0.16 }}
                   className="space-y-3 sm:space-y-3.5"
                 >
+                  {patternInsight && (
+                    <PatternQuickCheck
+                      insight={patternInsight}
+                      soundEnabled={soundEnabled}
+                      onAnswered={handlePatternQuizAnswered}
+                    />
+                  )}
+
                   <div className="p-3.5 sm:p-4 rounded-2xl bg-surface-inset border border-border-subtle shadow-xs space-y-3">
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-1.5 text-gold font-heading font-bold text-xs uppercase tracking-wider">
