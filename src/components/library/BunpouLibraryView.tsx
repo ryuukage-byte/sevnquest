@@ -6,7 +6,7 @@ import { ScrollIcon } from '../ui/EngravingIcons';
 import { BUNPOU_DATABASE } from '../../data/bunpou';
 import { ALL_GRAMMAR_FUNCTION_CATEGORIES } from '../../data/bunpouMetadata';
 import { BunpouItem, ItemMasteryRecord } from '../../types/content';
-import { BunpouDetailModal } from './BunpouDetailModal';
+import { BunpouDetailModal, type ScrapbookTabId } from './BunpouDetailModal';
 import { ConjugationDojoView } from './ConjugationDojoView';
 import { playSound } from '../../utils/audio';
 import { UserDeck } from '../../types/rpg';
@@ -73,6 +73,7 @@ export const BunpouLibraryView: React.FC<BunpouLibraryViewProps> = ({
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [functionFilter, setFunctionFilter] = useState<string>('Semua Fungsi');
   const [selectedItem, setSelectedItem] = useState<BunpouItem | null>(null);
+  const [selectedInitialTab, setSelectedInitialTab] = useState<ScrapbookTabId | undefined>(undefined);
   const [viewMode, setViewMode] = useState<'cards' | 'compact'>(() => {
     try {
       const saved = localStorage.getItem('bunpou_library_view_mode');
@@ -364,6 +365,7 @@ export const BunpouLibraryView: React.FC<BunpouLibraryViewProps> = ({
               <div
                 key={item.id}
                 onClick={() => {
+                  setSelectedInitialTab(undefined);
                   setSelectedItem(item);
                   playSound('click', soundEnabled);
                 }}
@@ -439,6 +441,7 @@ export const BunpouLibraryView: React.FC<BunpouLibraryViewProps> = ({
               <div
                 key={item.id}
                 onClick={() => {
+                  setSelectedInitialTab(undefined);
                   setSelectedItem(item);
                   playSound('click', soundEnabled);
                 }}
@@ -547,7 +550,15 @@ export const BunpouLibraryView: React.FC<BunpouLibraryViewProps> = ({
       <AnimatePresence>
         {selectedItem && (
           <BunpouDetailModal
+            key={selectedItem.id}
             item={selectedItem}
+            initialTab={selectedInitialTab}
+            onOpenPattern={(id) => {
+              const next = BUNPOU_DATABASE[id];
+              if (!next) return;
+              setSelectedInitialTab('bedah');
+              setSelectedItem(next);
+            }}
             masteryRecord={selectedItem ? itemMastery?.[selectedItem.id] : undefined}
             onClose={() => setSelectedItem(null)}
             soundEnabled={soundEnabled}

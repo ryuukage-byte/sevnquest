@@ -1,5 +1,5 @@
 import type { RewardHandler, RewardMeta } from '../../engine/reward/types';
-import React, { useState, useRef, useEffect, useCallback } from 'react';
+import React, { useState, useRef, useEffect, useCallback, useMemo } from 'react';
 import { createPortal } from 'react-dom';
 import { motion, AnimatePresence } from 'motion/react';
 import {
@@ -27,11 +27,18 @@ import { getGrammarSkillNodes } from '../../utils/bunpouSkillAdapter';
 import { useBackButton } from '../../hooks/useBackButton';
 import { getGrammarAnimationRecipe } from '../../data/grammarAnimations';
 import { GrammarAnimation } from './GrammarAnimation';
+import { BUNPOU_DATABASE } from '../../data/bunpou';
+import { buildPatternInsight } from '../../engine/bunpouInsight/bunpouInsight';
+import { BunpouPatternSheet } from './BunpouPatternSheet';
 
 interface BunpouDetailModalProps {
   item: BunpouItem;
   masteryRecord?: ItemMasteryRecord;
   onClose: () => void;
+  /** Lembar yang dibuka pertama kali (default: Inti Makna). */
+  initialTab?: ScrapbookTabId;
+  /** Membuka pola lain dari Keluarga Pola di lembar Bedah Pola. */
+  onOpenPattern?: (id: string) => void;
   soundEnabled?: boolean;
   isBookmarked?: boolean;
   onToggleBookmark?: () => void;
@@ -67,12 +74,13 @@ const cleanSummary = (text?: string): string => {
     .trim();
 };
 
-type ScrapbookTabId = 'inti' | 'rumus' | 'fungsi' | 'contoh' | 'kuis';
+export type ScrapbookTabId = 'inti' | 'bedah' | 'rumus' | 'fungsi' | 'contoh' | 'kuis';
+
+const TAB_NUMBERS = ['①', '②', '③', '④', '⑤', '⑥'];
 
 interface ScrapbookTabMeta {
   id: ScrapbookTabId;
   label: string;
-  tabNumber: string;
   tabColorActive: string;
   tabColorInactive: string;
   sheetAccentBg: string;
@@ -83,7 +91,6 @@ const SCRAPBOOK_TABS: ScrapbookTabMeta[] = [
   {
     id: 'inti',
     label: 'Inti Makna',
-    tabNumber: '①',
     tabColorActive:
       'bg-[#f4eee1] text-[#3d3322] border-[#c8bba3] dark:bg-[#2c261e] dark:text-[#f3ede1] dark:border-[#524637]',
     tabColorInactive:
@@ -92,9 +99,18 @@ const SCRAPBOOK_TABS: ScrapbookTabMeta[] = [
     tagline: 'Esensi & pola pikir dasar pola ini',
   },
   {
+    id: 'bedah',
+    label: 'Bedah Pola',
+    tabColorActive:
+      'bg-[#7d6b9e] text-white border-[#665682] dark:bg-[#3a2f4d] dark:text-[#efe8fb] dark:border-[#56476e]',
+    tabColorInactive:
+      'bg-[#6d5c8c] text-white/80 border-[#574a70] hover:bg-[#7d6b9e] dark:bg-[#231c2f] dark:text-[#b7a3dc] dark:border-[#352b45] hover:dark:bg-[#2d243c]',
+    sheetAccentBg: 'border-l-4 border-l-[#7d6b9e]',
+    tagline: 'Komponen pembentuk & logika makna',
+  },
+  {
     id: 'rumus',
     label: 'Rumus & Pola',
-    tabNumber: '②',
     tabColorActive:
       'bg-[#4a6d8c] text-white border-[#3b5974] dark:bg-[#274057] dark:text-white dark:border-[#3d5e7d]',
     tabColorInactive:
@@ -105,7 +121,6 @@ const SCRAPBOOK_TABS: ScrapbookTabMeta[] = [
   {
     id: 'fungsi',
     label: 'Fungsi & Nuansa',
-    tabNumber: '③',
     tabColorActive:
       'bg-[#7ba399] text-[#112923] border-[#65887e] dark:bg-[#233d37] dark:text-[#e6f4f1] dark:border-[#375a51]',
     tabColorInactive:
@@ -116,7 +131,6 @@ const SCRAPBOOK_TABS: ScrapbookTabMeta[] = [
   {
     id: 'contoh',
     label: 'Contoh Nyata',
-    tabNumber: '④',
     tabColorActive:
       'bg-[#b85338] text-white border-[#9b422a] dark:bg-[#4a2016] dark:text-[#ffdfd7] dark:border-[#6b2c1f]',
     tabColorInactive:
@@ -127,7 +141,6 @@ const SCRAPBOOK_TABS: ScrapbookTabMeta[] = [
   {
     id: 'kuis',
     label: 'Latihan Kuis',
-    tabNumber: '⑤',
     tabColorActive:
       'bg-[#e59e93] text-[#3d1a15] border-[#c98378] dark:bg-[#482426] dark:text-[#ffe4e2] dark:border-[#683437]',
     tabColorInactive:
@@ -141,6 +154,8 @@ export const BunpouDetailModal: React.FC<BunpouDetailModalProps> = ({
   item,
   masteryRecord,
   onClose,
+  initialTab,
+  onOpenPattern,
   soundEnabled = true,
   isBookmarked = false,
   onToggleBookmark,
@@ -157,7 +172,14 @@ export const BunpouDetailModal: React.FC<BunpouDetailModalProps> = ({
   }, 'bunpou_detail_modal');
 
   // Scrapbook Active Tab State
-  const [activeTab, setActiveTab] = useState<ScrapbookTabId>('inti');
+  const patternInsight = useMemo(() => buildPatternInsight(item, BUNPOU_DATABASE), [item]);
+  const visibleTabs = useMemo(
+    () => SCRAPBOOK_TABS.filter((t) => t.id !== 'bedah' || patternInsight),
+    [patternInsight]
+  );
+  const [activeTab, setActiveTab] = useState<ScrapbookTabId>(() =>
+    initialTab && (initialTab !== 'bedah' || patternInsight) ? initialTab : 'inti'
+  );
 
   // Extract human-centered learning flow
   const skillNodes = getGrammarSkillNodes(item);
@@ -165,8 +187,8 @@ export const BunpouDetailModal: React.FC<BunpouDetailModalProps> = ({
   const titleInfo = getGrammarTitleInfo(item);
   const cleanLevel = (item.baseLevel || item.level || 'N3').replace(/^Level\s*/i, '');
 
-  const currentTabIdx = SCRAPBOOK_TABS.findIndex((t) => t.id === activeTab);
-  const activeTabMeta = SCRAPBOOK_TABS[currentTabIdx] || SCRAPBOOK_TABS[0];
+  const currentTabIdx = Math.max(0, visibleTabs.findIndex((t) => t.id === activeTab));
+  const activeTabMeta = visibleTabs[currentTabIdx] || visibleTabs[0];
 
   const handleTabChange = (tabId: ScrapbookTabId) => {
     if (tabId === activeTab) return;
@@ -176,13 +198,13 @@ export const BunpouDetailModal: React.FC<BunpouDetailModalProps> = ({
 
   const handlePrevTab = () => {
     if (currentTabIdx > 0) {
-      handleTabChange(SCRAPBOOK_TABS[currentTabIdx - 1].id);
+      handleTabChange(visibleTabs[currentTabIdx - 1].id);
     }
   };
 
   const handleNextTab = () => {
-    if (currentTabIdx < SCRAPBOOK_TABS.length - 1) {
-      handleTabChange(SCRAPBOOK_TABS[currentTabIdx + 1].id);
+    if (currentTabIdx < visibleTabs.length - 1) {
+      handleTabChange(visibleTabs[currentTabIdx + 1].id);
     }
   };
 
@@ -343,6 +365,20 @@ export const BunpouDetailModal: React.FC<BunpouDetailModalProps> = ({
     }
   };
 
+  // Cek Cepat di Bedah Pola: dicatat sebagai interaksi kuis, +5 EXP sekali per pembukaan.
+  const [patternRewardClaimed, setPatternRewardClaimed] = useState(false);
+  const handlePatternQuizAnswered = (isCorrect: boolean) => {
+    onRecordInteraction?.(item.id, 'bunpou', 'quiz', isCorrect);
+    if (isCorrect && !patternRewardClaimed) {
+      setPatternRewardClaimed(true);
+      if (onCompleteStudyItem) {
+        onCompleteStudyItem('bunpou', 5, 0, item.id, 1, 1, undefined, { source: 'entity_quiz', ref: `bedah:${item.id}` });
+      } else {
+        onRewardPlayer?.(5, 0, { source: 'entity_quiz', ref: `bedah:${item.id}` });
+      }
+    }
+  };
+
   const handleNextQuestion = () => {
     playSound('click', soundEnabled);
     if (questions.length > 1) {
@@ -410,7 +446,7 @@ export const BunpouDetailModal: React.FC<BunpouDetailModalProps> = ({
                 isDraggingState ? 'cursor-grabbing select-none' : 'cursor-grab'
               }`}
             >
-              {SCRAPBOOK_TABS.map((tab) => {
+              {visibleTabs.map((tab, tabIdx) => {
                 const isActive = activeTab === tab.id;
                 return (
                   <button
@@ -430,7 +466,7 @@ export const BunpouDetailModal: React.FC<BunpouDetailModalProps> = ({
                   >
                     {/* Tab Label */}
                     <span>
-                      {tab.tabNumber} {tab.label}
+                      {TAB_NUMBERS[tabIdx]} {tab.label}
                     </span>
 
                     {/* Active Elevated Tab Highlight */}
@@ -674,6 +710,26 @@ export const BunpouDetailModal: React.FC<BunpouDetailModalProps> = ({
                           : `Pahami konteks penggunaannya: ${cleanSummary(item.meaningId || (item as any).meaning)}. Perhatikan pasangan kata dan situasinya agar penggunaannya tepat sasaran.`)}
                     </p>
                   </div>
+                </motion.div>
+              )}
+
+              {/* ---------------------------------------------------- */}
+              {/* SHEET: BEDAH POLA (Plum Sheet)                       */}
+              {/* ---------------------------------------------------- */}
+              {activeTab === 'bedah' && patternInsight && (
+                <motion.div
+                  key="sheet-bedah"
+                  initial={{ opacity: 0, y: 8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -8 }}
+                  transition={{ duration: 0.16 }}
+                >
+                  <BunpouPatternSheet
+                    insight={patternInsight}
+                    soundEnabled={soundEnabled}
+                    onOpenPattern={onOpenPattern}
+                    onQuizAnswered={handlePatternQuizAnswered}
+                  />
                 </motion.div>
               )}
 
@@ -1139,7 +1195,7 @@ export const BunpouDetailModal: React.FC<BunpouDetailModalProps> = ({
             {/* Sheet Page Indicator */}
             <div className="flex items-center gap-2">
               <span className="text-xs font-mono font-medium text-text-secondary">
-                Lembar {currentTabIdx + 1}/5
+                Lembar {currentTabIdx + 1}/{visibleTabs.length}
               </span>
               <span className="hidden sm:inline text-xs text-text-muted font-sans">
                 • {activeTabMeta.tagline}
@@ -1158,7 +1214,7 @@ export const BunpouDetailModal: React.FC<BunpouDetailModalProps> = ({
                 <span className="hidden xs:inline">Sebelumnya</span>
               </button>
 
-              {currentTabIdx < SCRAPBOOK_TABS.length - 1 ? (
+              {currentTabIdx < visibleTabs.length - 1 ? (
                 <button
                   type="button"
                   onClick={handleNextTab}
