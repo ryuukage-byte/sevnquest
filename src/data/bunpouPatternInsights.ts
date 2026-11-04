@@ -808,4 +808,762 @@ export const BUNPOU_PATTERN_INSIGHTS: Record<string, PatternInsightNote> = {
     transparency: 'langsung',
     match: ['をください'],
   },
+  // ══ N4 ══
+  // ── Verba majemuk: bentuk masu + verba/sifat kedua ──
+  bp_n4_001: {
+    parts: [{ text: '終わる', reading: 'おわる', role: 'kata kerja', meaning: 'selesai, berakhir' }],
+    literal: 'Melakukan X sampai selesai',
+    natural: 'Selesai melakukan X',
+    explanation:
+      'Verba bentuk masu tanpa ます disambung langsung dengan 終わる: 読み終わる (selesai membaca). Menekankan bahwa tindakannya tuntas sampai akhir.',
+    transparency: 'langsung',
+    match: ['終わ'],
+  },
+  bp_n4_003: {
+    parts: [{ text: '出す', reading: 'だす', role: 'kata kerja', meaning: 'mengeluarkan' }],
+    literal: 'Mengeluarkan (tindakan) X',
+    natural: 'Tiba-tiba mulai X',
+    explanation:
+      '出す berarti mengeluarkan. Tindakan yang "dikeluarkan" muncul tiba-tiba, sehingga 泣き出す berarti tiba-tiba mulai menangis. Lebih mendadak daripada 〜始める.',
+    transparency: 'kiasan',
+    match: ['出し', '出す'],
+  },
+  bp_n4_004: {
+    parts: [{ text: '続ける', reading: 'つづける', role: 'kata kerja', meaning: 'melanjutkan' }],
+    literal: 'Melanjutkan X',
+    natural: 'Terus-menerus melakukan X',
+    explanation: 'Verba bentuk masu + 続ける: tindakan X dilanjutkan tanpa berhenti. 歌い続ける (terus bernyanyi), 持ち続ける (terus memiliki).',
+    transparency: 'langsung',
+    match: ['続け'],
+  },
+  bp_n4_008: {
+    parts: [{ text: '始める', reading: 'はじめる', role: 'kata kerja', meaning: 'memulai' }],
+    literal: 'Memulai X',
+    natural: 'Mulai melakukan X',
+    explanation: 'Verba bentuk masu + 始める menandai titik awal tindakan atau perubahan: 話し始める (mulai berbicara), 咲き始める (mulai mekar).',
+    transparency: 'langsung',
+    match: ['始め'],
+  },
+  bp_n4_006: {
+    parts: [{ text: '直す', reading: 'なおす', role: 'kata kerja', meaning: 'memperbaiki' }],
+    literal: 'Memperbaiki dengan melakukan X',
+    natural: 'Melakukan X sekali lagi (untuk memperbaiki)',
+    explanation: '直す berarti memperbaiki. Melakukan ulang suatu tindakan supaya hasilnya lebih baik: 書き直す (menulis ulang), 考え直す (memikirkan ulang).',
+    transparency: 'langsung',
+    match: ['直し', '直す'],
+  },
+  bp_n4_009: {
+    parts: [{ text: 'やすい', role: 'kata sifat', meaning: '易い: mudah' }],
+    literal: 'Mudah di-X',
+    natural: 'Mudah X / gampang X',
+    explanation:
+      'やすい (易い) berarti mudah. 使いやすい = mudah dipakai. Untuk hal yang tidak disengaja, artinya "gampang terjadi": 汚れやすい (gampang kotor). Hasilnya kata sifat-i.',
+    transparency: 'langsung',
+    match: ['やす(?:い|かった|く)'],
+  },
+  bp_n4_007: {
+    parts: [{ text: 'にくい', role: 'kata sifat', meaning: 'seasal dengan 憎い: menjengkelkan → sulit' }],
+    literal: 'Menjengkelkan untuk di-X',
+    natural: 'Sulit X',
+    explanation:
+      'にくい seasal dengan 憎い (menjengkelkan). Sesuatu yang "menjengkelkan" untuk dilakukan berarti sulit dilakukan. Lawan kata 〜やすい. Kesulitannya cenderung objektif, misalnya karena bentuk atau sifat benda.',
+    transparency: 'kiasan',
+    match: ['にく(?:い|かった|く)'],
+  },
+  bp_n4_005: {
+    parts: [{ text: 'づらい', role: 'kata sifat', meaning: 'dari 辛い (つらい): berat, menyiksa' }],
+    literal: 'Berat (terasa menyiksa) untuk di-X',
+    natural: 'Sulit / tidak enak untuk X',
+    explanation:
+      'づらい berasal dari 辛い (つらい, berat, menyiksa). Kesulitannya terasa secara fisik atau perasaan: 言いづらい (tidak enak untuk mengatakannya). Bandingkan にくい yang lebih objektif.',
+    transparency: 'kiasan',
+    match: ['づら(?:い|かった|く)'],
+  },
+  bp_n4_002: {
+    parts: [{ text: 'がり', role: 'kontraksi', meaning: 'dari がる: "menunjukkan tanda-tanda (perasaan)"', base: 'がる' }],
+    literal: 'Orang yang (selalu) menunjukkan tanda X',
+    natural: 'Orang yang gampang merasa X',
+    explanation:
+      'がり adalah bentuk benda dari がる (menunjukkan tanda-tanda perasaan). 寒がり = orang yang selalu tampak kedinginan, 寂しがり = orang yang gampang kesepian. Menyatakan watak, bukan perasaan sesaat.',
+    transparency: 'kiasan',
+    match: ['がり'],
+  },
+  bp_n4_045: {
+    parts: [{ text: 'がる', role: 'kata kerja', meaning: 'menunjukkan tanda-tanda (perasaan)' }],
+    literal: 'Menunjukkan tanda merasa X',
+    natural: '(Orang lain) tampak merasa X',
+    explanation:
+      'Perasaan orang lain tidak bisa diketahui langsung, hanya terlihat dari tanda-tandanya. がる ditempelkan pada akar kata sifat perasaan: 怖い → 怖がる (tampak takut), 欲しい → 欲しがる. Untuk diri sendiri cukup 怖い.',
+    transparency: 'kiasan',
+    match: ['が(?:って|り|る)'],
+  },
+  bp_n4_081: {
+    parts: [
+      { text: 'た(い)', role: 'bentuk', meaning: 'たい: "ingin …"', base: 'たい' },
+      { text: 'がる', role: 'kata kerja', meaning: 'menunjukkan tanda-tanda (perasaan)' },
+    ],
+    literal: 'Menunjukkan tanda ingin X',
+    natural: '(Orang lain) ingin X',
+    explanation:
+      'たい hanya dipakai untuk keinginan sendiri. Untuk orang ketiga, い pada たい dibuang lalu diberi がる: 遊びたい → 遊びたがる. Keinginannya terlihat dari sikap orang itu. Objeknya biasanya ditandai を.',
+    transparency: 'langsung',
+    match: ['たが(?:る|って|ります|った)'],
+  },
+  bp_n4_010: {
+    parts: [
+      { text: '化', reading: 'か', role: 'kata benda', meaning: 'berubah, menjadi' },
+      { text: 'する', role: 'kata kerja', meaning: 'melakukan / menjadi' },
+    ],
+    literal: 'Berubah menjadi X',
+    natural: 'Menjadi X / me-X-kan (-isasi)',
+    explanation:
+      '化 berarti berubah wujud. Ditempelkan pada kata benda, maknanya mirip akhiran "-isasi": 都市化 (urbanisasi), 自動化 (otomatisasi). Dengan する bisa berarti berubah sendiri atau mengubah sesuatu.',
+    transparency: 'langsung',
+    match: ['化し', '化す'],
+  },
+  bp_n4_011: {
+    parts: [{ text: '代', reading: 'だい', role: 'kata benda', meaning: 'masa, generasi' }],
+    literal: 'Masa (angka) X',
+    natural: 'Usia X-an / tahun X-an',
+    explanation: '代 berarti masa atau generasi. Setelah angka puluhan menyatakan rentang sepuluh tahun: 20代 = usia dua puluhan, 1990年代 = tahun 1990-an.',
+    transparency: 'langsung',
+    match: ['代'],
+  },
+  bp_n4_018: {
+    parts: [{ text: '風', reading: 'ふう', role: 'kata benda', meaning: 'corak, gaya (seperti pada 風景, 風習)' }],
+    literal: 'Bercorak X',
+    natural: 'Bergaya X / ala X',
+    explanation:
+      'Selain "angin", 風 juga berarti corak atau gaya, seperti pada 風景 (pemandangan) dan 風習 (adat). Dibaca ふう: 中華風 (ala Tiongkok), 昔風 (gaya zaman dulu).',
+    transparency: 'kiasan',
+    match: ['風'],
+  },
+
+  // ── Permintaan santai (ください dibuang) ──
+  bp_n4_012: {
+    parts: [TE, { ...KUDASAI, omitted: true }],
+    literal: 'Lakukan X, (tolong)',
+    natural: 'Tolong X (santai)',
+    explanation: 'Ini てください yang dibuang ください-nya. Dipakai kepada teman atau keluarga: 待って (tunggu), 見て (lihat).',
+    transparency: 'langsung',
+    match: ['[てで](?=[。！!])'],
+  },
+  bp_n4_015: {
+    parts: [{ text: 'ないで', role: 'bentuk', meaning: 'ない + で: "dengan tidak melakukan …"' }, { ...KUDASAI, omitted: true }],
+    literal: 'Dengan tidak X, (tolong)',
+    natural: 'Jangan X (santai)',
+    explanation: 'Ini ないでください yang dibuang ください-nya. Larangan atau permintaan halus kepada orang dekat: 心配しないで (jangan khawatir).',
+    transparency: 'langsung',
+    match: ['ないで'],
+  },
+
+  // ── Kopula & partikel ──
+  bp_n4_013: {
+    parts: [DE_COPULA, MO_EVEN],
+    literal: 'Walaupun A, walaupun B',
+    natural: 'Baik A maupun B (sama saja)',
+    explanation:
+      'でも = で (bentuk sambung だ) + も (walaupun). Diulang pada dua hal: "walaupun A, walaupun B", artinya pilihan mana pun tidak masalah.',
+    transparency: 'kiasan',
+    match: ['でも'],
+  },
+  bp_n4_014: {
+    parts: [NAI, { text: 'は', role: 'partikel', meaning: 'topik / penekanan' }, NAI],
+    literal: 'X yang tidak …, tidak ada',
+    natural: 'Semua X (tanpa kecuali)',
+    explanation:
+      'Dua negatif saling meniadakan: 買えないものはない = barang yang tidak bisa dibeli, tidak ada → semua bisa dibeli. Untuk orang dipakai いない: 知らない人はいない.',
+    transparency: 'kiasan',
+    match: ['はい?ない'],
+  },
+  bp_n4_016: {
+    parts: [
+      { text: 'の', role: 'partikel', meaning: 'penjelasan: "hal bahwa …"' },
+      { text: 'だろう', role: 'kopula', meaning: 'dugaan: "mungkin"', base: 'だ' },
+      KA_Q,
+    ],
+    literal: 'Apakah (memang) hal X itu mungkin?',
+    natural: 'Apakah benar X, ya? (bertanya dalam hati)',
+    explanation:
+      'の menjadikan X sebagai hal yang perlu dijelaskan, だろう menduga, dan か bertanya. Pertanyaannya ditujukan pada diri sendiri, sehingga bernada merenung atau ragu. Bentuk sopannya のでしょうか.',
+    transparency: 'kiasan',
+    match: ['のだろうか'],
+  },
+  bp_n4_017: {
+    parts: [
+      { text: 'の', role: 'partikel', meaning: 'dari (kelompok)' },
+      { text: '一つ', reading: 'ひとつ', role: 'kata benda', meaning: 'satu (buah)' },
+      { text: 'だ', role: 'kopula', meaning: 'adalah' },
+    ],
+    literal: 'Adalah satu dari kelompok Y',
+    natural: 'X adalah salah satu Y',
+    explanation: 'Y adalah kelompoknya, の一つ = satu di antaranya. Untuk orang dipakai ひとり: 学生のひとりです.',
+    transparency: 'langsung',
+    match: ['の(?:一つ|ひとつ|ひとり|一人)'],
+  },
+
+  // ── Waktu ──
+  bp_n4_020: {
+    parts: [{ text: '間', reading: 'あいだ', role: 'kata benda', meaning: 'jarak, sela (waktu)' }],
+    literal: 'Sepanjang sela waktu X',
+    natural: 'Selama X',
+    explanation:
+      '間 adalah jarak atau sela. Dalam waktu, 間 mencakup seluruh rentang X, jadi tindakan berikutnya juga berlangsung sepanjang rentang itu: 寝ているあいだ、ずっと本を読んでいた.',
+    transparency: 'langsung',
+    match: ['あいだ', '間'],
+  },
+  bp_n4_021: {
+    parts: [
+      { text: '間', reading: 'あいだ', role: 'kata benda', meaning: 'jarak, sela (waktu)' },
+      { text: 'に', role: 'partikel', meaning: 'titik waktu: "pada …"' },
+    ],
+    literal: 'Pada (suatu titik) di dalam sela waktu X',
+    natural: 'Sementara X (sebelum X selesai)',
+    explanation:
+      'に menunjuk satu titik. 間に berarti tindakan berikutnya terjadi pada suatu saat di dalam rentang X dan selesai sebelum X berakhir. Bandingkan 間 tanpa に, yang berlangsung sepanjang rentang.',
+    transparency: 'langsung',
+    match: ['あいだに', '間に'],
+  },
+  bp_n4_022: {
+    parts: [
+      { text: '後', reading: 'あと', role: 'kata benda', meaning: 'belakang, sesudah' },
+      { text: 'で', role: 'partikel', meaning: 'titik/lingkup waktu' },
+    ],
+    literal: 'Di bagian sesudah X',
+    natural: 'Sesudah X',
+    explanation: 'Verba sebelum 後で selalu bentuk た (したあとで), karena X sudah selesai. Kata benda memakai の: 昼ご飯のあとで.',
+    transparency: 'langsung',
+    match: ['(?:後|あと)で'],
+  },
+  bp_n4_086: {
+    parts: [
+      { text: 'た', role: 'bentuk', meaning: 'bentuk lampau: "sudah …"' },
+      { text: 'ところ', role: 'kata benda', meaning: 'tempat → titik (waktu)' },
+    ],
+    literal: 'Tepat di titik sudah X',
+    natural: 'Baru saja X (tepat sekarang)',
+    explanation:
+      'ところ (tempat) dipakai untuk titik waktu. た + ところ = tepat di titik setelah X selesai. Menekankan waktunya yang baru sekali, bukan perasaan "masih baru".',
+    transparency: 'kiasan',
+    match: ['[ただ]ところ'],
+  },
+  bp_n4_087: {
+    parts: [
+      { text: 'た', role: 'bentuk', meaning: 'bentuk lampau: "sudah …"' },
+      { text: 'ばかり', role: 'partikel', meaning: '"hanya, sekitar"' },
+    ],
+    literal: 'Hanya (sedikit) setelah X',
+    natural: 'Baru saja X (terasa masih baru)',
+    explanation:
+      'ばかり berarti "hanya". た + ばかり = baru sebentar setelah X, menurut perasaan pembicara. Bisa saja sudah berbulan-bulan (入ったばかり), berbeda dengan たところ yang benar-benar baru saja.',
+    transparency: 'kiasan',
+    match: ['[ただ]ばかり'],
+  },
+  bp_n4_098: {
+    parts: [
+      { text: 'ている', role: 'bentuk', meaning: 'sedang (berlangsung)' },
+      { text: 'ところ', role: 'kata benda', meaning: 'tempat → titik (waktu)' },
+    ],
+    literal: 'Di titik sedang X',
+    natural: 'Sedang di tengah-tengah X',
+    explanation: 'ところ menunjuk titik waktu. ている + ところ menegaskan bahwa pembicara sedang berada di tengah tindakan X, tepat saat itu.',
+    transparency: 'kiasan',
+    match: ['[てで]いるところ'],
+  },
+
+  // ── Batas & jumlah ──
+  bp_n4_024: {
+    parts: [
+      { text: '以', reading: 'い', role: 'kata benda', meaning: 'mulai dari, dengan patokan' },
+      { text: '下', reading: 'か', role: 'kata benda', meaning: 'bawah' },
+    ],
+    literal: 'Dari X ke bawah',
+    natural: 'X atau kurang (X termasuk)',
+    explanation: '以 menjadikan X sebagai patokan, 下 menunjuk ke bawah. Patokannya ikut terhitung: 12歳以下 = 12 tahun atau kurang.',
+    transparency: 'langsung',
+    match: ['以下'],
+  },
+  bp_n4_027: {
+    parts: [
+      { text: '以', reading: 'い', role: 'kata benda', meaning: 'mulai dari, dengan patokan' },
+      { text: '上', reading: 'じょう', role: 'kata benda', meaning: 'atas' },
+    ],
+    literal: 'Dari X ke atas',
+    natural: 'X atau lebih (X termasuk)',
+    explanation: '以 menjadikan X sebagai patokan, 上 menunjuk ke atas. Patokannya ikut terhitung: 18歳以上 = 18 tahun ke atas.',
+    transparency: 'langsung',
+    match: ['以上'],
+  },
+  bp_n4_025: {
+    parts: [
+      { text: '以', reading: 'い', role: 'kata benda', meaning: 'mulai dari, dengan patokan' },
+      { text: '外', reading: 'がい', role: 'kata benda', meaning: 'luar' },
+    ],
+    literal: 'Di luar X',
+    natural: 'Selain X / kecuali X',
+    explanation: 'Semua yang berada di luar patokan X. 水曜日以外 = selain hari Rabu. Dengan predikat negatif: 私以外だれも分からない (selain saya tidak ada yang tahu).',
+    transparency: 'langsung',
+    match: ['以外'],
+  },
+  bp_n4_033: {
+    parts: [
+      { text: 'おき', role: 'kata benda', meaning: 'dari 置く: menaruh, menyisihkan (jeda)' },
+      { text: 'に', role: 'partikel', meaning: 'frekuensi' },
+    ],
+    literal: 'Dengan menyisihkan X',
+    natural: 'Setiap selang X',
+    explanation:
+      'おき dari 置く (menaruh, menyisihkan). 1日おきに = menyisihkan satu hari di antaranya → selang sehari (hari ini ya, besok tidak, lusa ya). Untuk satuan waktu kecil (10分おき) artinya sama dengan "setiap 10 menit".',
+    transparency: 'kiasan',
+    match: ['おきに'],
+  },
+  bp_n4_054: {
+    parts: [
+      { text: 'ごと', role: 'kata benda', meaning: '毎: setiap' },
+      { text: 'に', role: 'partikel', meaning: 'frekuensi' },
+    ],
+    literal: 'Pada setiap X',
+    natural: 'Setiap X / tiap kali X',
+    explanation: 'ごと (毎) berarti setiap. 四年ごとに = setiap empat tahun. Setelah verba: 会うごとに = setiap kali bertemu.',
+    transparency: 'langsung',
+    match: ['ごとに'],
+  },
+
+  // ── Keigo ──
+  bp_n4_030: {
+    parts: [{ text: 'お', role: 'bentuk', meaning: 'awalan hormat (ご untuk kata kanji)' }, KUDASAI],
+    literal: 'Berilah (saya) tindakan Anda yang terhormat X',
+    natural: 'Silakan X (sangat sopan)',
+    explanation:
+      'Verba bentuk masu tanpa ます diapit お〜ください: お待ちください. Kata benda kanji (verba する) memakai ご: ご利用ください. Lebih hormat daripada てください; sering dipakai petugas dan pengumuman.',
+    transparency: 'kiasan',
+    match: ['[おご][^をがは、。]{1,4}ください'],
+  },
+  bp_n4_031: {
+    parts: [{ text: 'お', role: 'bentuk', meaning: 'awalan hormat (ご untuk kata kanji)' }, { text: 'する', role: 'kata kerja', meaning: 'melakukan' }],
+    literal: '(Saya) melakukan X yang terhormat',
+    natural: 'Saya X-kan untuk Anda (merendah)',
+    explanation:
+      'Bahasa merendah (謙譲語): pembicara melakukan sesuatu untuk orang yang dihormati. お持ちします = saya bawakan. Tindakan orang yang dihormati tidak boleh memakai pola ini; untuk itu dipakai お〜になる.',
+    transparency: 'kiasan',
+    match: ['[おご][^をがは、。]{1,4}し(?:ます|ました)'],
+  },
+  bp_n4_032: {
+    parts: [
+      { text: 'お', role: 'bentuk', meaning: 'awalan hormat (ご untuk kata kanji)' },
+      { text: 'に', role: 'partikel', meaning: 'hasil: "menjadi …"' },
+      { text: 'なる', role: 'kata kerja', meaning: 'menjadi' },
+    ],
+    literal: '(Beliau) menjadi X yang terhormat',
+    natural: 'Beliau X (meninggikan)',
+    explanation:
+      'Bahasa hormat (尊敬語): tindakan orang yang dihormati disajikan sebagai sesuatu yang "menjadi", bukan dikerjakan langsung. Cara tidak langsung ini terasa hormat: お帰りになる = beliau pulang.',
+    transparency: 'kiasan',
+    match: ['[おご][^をがは、。]{1,4}にな(?:りました|ります|る|った)'],
+  },
+
+  // ── か: ragu & tanya tidak langsung ──
+  bp_n4_043: {
+    parts: [
+      KA_Q,
+      MO_EVEN,
+      { text: 'しれない', role: 'kata kerja', meaning: '知れない: "tidak bisa diketahui"' },
+    ],
+    literal: 'Apakah X? Itu pun tidak bisa diketahui',
+    natural: 'Mungkin X',
+    explanation:
+      'しれない adalah 知れない, "tidak bisa diketahui". "Apakah X atau tidak, tidak bisa dipastikan" → mungkin X. Kemungkinannya sekitar 50%, lebih rendah daripada だろう. Sopan: かもしれません.',
+    transparency: 'kiasan',
+    match: ['かもしれ'],
+  },
+  bp_n4_039: {
+    parts: [KA_Q, { text: 'どう', role: 'kata keterangan', meaning: 'bagaimana' }, KA_Q],
+    literal: 'Apakah X, atau bagaimana',
+    natural: 'Apakah X atau tidak',
+    explanation:
+      'Pertanyaan ya/tidak dimasukkan ke dalam kalimat lain: 本当かどうか分からない = tidak tahu benar atau tidak. どうか mewakili kemungkinan sebaliknya.',
+    transparency: 'langsung',
+    match: ['かどうか'],
+  },
+  bp_n4_040: {
+    parts: [KA_Q, { text: 'な', role: 'partikel', meaning: 'perasaan / renungan' }],
+    literal: 'X, ya? (kepada diri sendiri)',
+    natural: 'Apa X, ya? (bertanya-tanya, santai)',
+    explanation: 'か bertanya dan な menambahkan nada renungan. Pertanyaan diucapkan kepada diri sendiri: 明日は晴れるかな. Bentuk femininnya かしら.',
+    transparency: 'langsung',
+    match: ['かな'],
+  },
+  bp_n4_037: {
+    parts: [KA_Q, { text: 'しら', role: 'kontraksi', meaning: 'dari 知らん: "tidak tahu"' }],
+    literal: 'X? Saya tidak tahu',
+    natural: 'Apa X, ya? (bertanya-tanya, feminin)',
+    explanation: 'かしら berasal dari か知らん, "apakah X? saya tidak tahu". Maknanya sama dengan かな, tetapi bernada feminin.',
+    transparency: 'kiasan',
+    match: ['かしら'],
+  },
+  bp_n4_064: {
+    parts: [
+      { text: 'じゃ', role: 'kontraksi', meaning: 'では: "(sebagai) …"', base: 'だ' },
+      NAI,
+      KA_Q,
+    ],
+    literal: 'Bukankah (ini) X?',
+    natural: 'Lho, ini kan X! / Hebat juga, X!',
+    explanation:
+      'Bentuknya pertanyaan negatif, tetapi pembicara sebenarnya yakin. Dipakai untuk menunjukkan sesuatu yang ditemukan (君の傘じゃないか) atau memuji dengan sedikit terkejut (よくできたじゃないか).',
+    transparency: 'kiasan',
+    match: ['じゃないか'],
+  },
+
+  // ── が + verba/sifat ──
+  bp_n4_038: {
+    parts: [GA_SUBJ, { text: 'する', role: 'kata kerja', meaning: 'melakukan → terjadi, terasa' }],
+    literal: 'X (bau, suara, rasa) terjadi',
+    natural: 'Tercium / terdengar / terasa X',
+    explanation:
+      'Untuk rangsang yang sampai ke indra, する berarti "terjadi, terasa". Rangsangnya ditandai が: いいにおいがする (tercium bau harum), 音がする (terdengar suara).',
+    transparency: 'kiasan',
+    match: ['がし(?:ます|ました|た|ない)'],
+  },
+  bp_n4_041: {
+    parts: [GA_SUBJ, { text: '必要', reading: 'ひつよう', role: 'kata sifat', meaning: 'perlu' }],
+    literal: 'X (itu) perlu',
+    natural: 'Perlu X / membutuhkan X',
+    explanation: '必要 adalah kata sifat-na, jadi hal yang dibutuhkan ditandai が. Untuk kegiatan, tambahkan こと: 練習することが必要だ.',
+    transparency: 'langsung',
+    match: ['が必要'],
+  },
+  bp_n4_042: {
+    parts: [GA_SUBJ, { text: '見られる', reading: 'みられる', role: 'kata kerja', meaning: 'bentuk potensial 見る: "bisa dilihat"' }],
+    literal: 'X bisa dilihat',
+    natural: 'Bisa melihat X / X bisa dilihat',
+    explanation: 'Dengan bentuk potensial, benda yang bisa dilihat ditandai が. Dipakai untuk pemandangan atau hal yang tersedia di suatu tempat. Bentuk ringkas 見れる terdengar santai.',
+    transparency: 'langsung',
+    match: ['が見られ'],
+  },
+  bp_n4_049: {
+    parts: [KU_ADJ, { text: 'は', role: 'partikel', meaning: 'kontras: "kalau soal …"' }, NAI],
+    literal: 'Kalau soal X, tidak (tetapi …)',
+    natural: 'Tidak X (sih), tetapi …',
+    explanation:
+      'は di tengah bentuk くない memberi kontras: hanya sifat itu yang disangkal, dan biasanya ada lanjutan "tetapi": 安くはないが、おいしい.',
+    transparency: 'langsung',
+    match: ['くは'],
+  },
+
+  // ── こと ──
+  bp_n4_052: {
+    parts: [
+      { text: 'こと', role: 'kata benda', meaning: 'hal, peristiwa' },
+      GA_SUBJ,
+      { text: 'ある', role: 'kata kerja', meaning: 'ada' },
+    ],
+    literal: 'Ada peristiwa (di mana) X',
+    natural: 'Kadang-kadang X / ada kalanya X',
+    explanation:
+      'Dengan verba bentuk kamus, peristiwa X "ada" sesekali, jadi maknanya kadang-kadang. Bedakan dengan たことがある (bentuk た) yang berarti pernah.',
+    transparency: 'kiasan',
+    match: ['ことがあ(?:る|ります)'],
+  },
+  bp_n4_053: {
+    parts: [
+      { text: 'こと', role: 'kata benda', meaning: 'hal, perbuatan' },
+      GA_SUBJ,
+      { text: 'できる', role: 'kata kerja', meaning: 'bisa, terlaksana' },
+    ],
+    literal: 'Hal melakukan X bisa (terlaksana)',
+    natural: 'Bisa melakukan X',
+    explanation: 'こと membendakan kegiatan X, lalu できる menyatakan bahwa kegiatan itu bisa. Maknanya sama dengan bentuk potensial (弾ける), tetapi lebih formal.',
+    transparency: 'langsung',
+    match: ['ことができ'],
+  },
+  bp_n4_055: {
+    parts: [
+      { text: 'こと', role: 'kata benda', meaning: 'hal, perbuatan' },
+      { text: 'に', role: 'partikel', meaning: 'hasil: "menjadi …"' },
+      { text: 'する', role: 'kata kerja', meaning: 'membuat' },
+    ],
+    literal: 'Membuat (pilihan) menjadi hal X',
+    natural: 'Memutuskan untuk X (keputusan sendiri)',
+    explanation:
+      'Seperti コーヒーにする (memilih kopi), tetapi yang dipilih adalah perbuatan: 走ることにする = memutuskan untuk berlari. ことにしている berarti sudah menjadi kebiasaan yang diputuskan.',
+    transparency: 'kiasan',
+    match: ['ことにし'],
+  },
+  bp_n4_056: {
+    parts: [
+      { text: 'こと', role: 'kata benda', meaning: 'hal, perbuatan' },
+      { text: 'に', role: 'partikel', meaning: 'hasil: "menjadi …"' },
+      { text: 'なる', role: 'kata kerja', meaning: 'menjadi' },
+    ],
+    literal: '(Keadaan) menjadi hal X',
+    natural: 'Diputuskan bahwa X / akhirnya X',
+    explanation:
+      'Pasangan ことにする. Dengan なる, keputusannya terjadi karena pihak lain atau keadaan, bukan pembicara: 転勤することになった (saya dipindahtugaskan). Juga dipakai untuk merendah meskipun keputusan sendiri.',
+    transparency: 'kiasan',
+    match: ['ことにな'],
+  },
+
+  // ── Kausatif ──
+  bp_n4_060: {
+    parts: [
+      { text: 'させる', role: 'bentuk', meaning: 'kausatif: "membiarkan / menyuruh"' },
+      { text: 'て', role: 'bentuk', meaning: 'bentuk て' },
+      KUDASAI,
+    ],
+    literal: 'Berilah (saya) izin untuk dibiarkan X',
+    natural: 'Izinkan saya X',
+    explanation:
+      'Kausatif させる berarti membiarkan. "Tolong biarkan saya X" menjadi permintaan izin yang sopan. Bedakan: 帰ってください (silakan Anda pulang) dan 帰らせてください (izinkan saya pulang).',
+    transparency: 'kiasan',
+    match: ['せてください'],
+  },
+  bp_n4_061: {
+    parts: [
+      { text: 'させる', role: 'bentuk', meaning: 'kausatif: "menyuruh"' },
+      { text: 'られる', role: 'bentuk', meaning: 'pasif: "di-…"' },
+    ],
+    literal: 'Disuruh X',
+    natural: 'Terpaksa X (karena disuruh)',
+    explanation:
+      'Kausatif (menyuruh) digabung pasif (di-): subjek "disuruh melakukan" X oleh orang lain, biasanya dengan rasa terpaksa. Untuk Godan sering dipendekkan: 待たせられる → 待たされる.',
+    transparency: 'kiasan',
+    match: ['させられ', 'され'],
+  },
+
+  // ── Negatif yang ditekankan ──
+  bp_n4_023: {
+    parts: [{ text: 'あまり', role: 'kata keterangan', meaning: '余り: sisa, berlebih' }, NAI],
+    literal: 'Tidak sampai berlebih',
+    natural: 'Tidak terlalu X',
+    explanation:
+      'あまり berasal dari 余り (sisa, berlebih). Dengan negatif, "tidak sampai berlebihan" menjadi "tidak terlalu": あまり面白くない. Melunakkan penyangkalan.',
+    transparency: 'kiasan',
+    match: ['あまり'],
+  },
+  bp_n4_063: {
+    parts: [{ text: 'しか', role: 'partikel', meaning: '"selain …" (selalu dengan negatif)' }, NAI],
+    literal: 'Selain X, tidak ada',
+    natural: 'Hanya X (dan itu terasa kurang)',
+    explanation:
+      'しか selalu berpasangan dengan predikat negatif: 卵しかない = selain telur, tidak ada apa-apa. Berbeda dengan だけ yang netral, しか〜ない menyiratkan "terlalu sedikit".',
+    transparency: 'kiasan',
+    match: ['しか'],
+  },
+  bp_n4_069: {
+    parts: [
+      { text: '少し', reading: 'すこし', role: 'kata keterangan', meaning: 'sedikit' },
+      MO_EVEN,
+      NAI,
+    ],
+    literal: 'Sedikit pun tidak',
+    natural: 'Sama sekali tidak X',
+    explanation: 'も pada 少しも berarti "pun": sedikit pun tidak. Penyangkalan penuh yang sedikit lebih kaku daripada 全然.',
+    transparency: 'langsung',
+    match: ['少しも'],
+  },
+  bp_n4_071: {
+    parts: [{ text: '全然', reading: 'ぜんぜん', role: 'kata keterangan', meaning: '全 (seluruh) + 然 (keadaan): sepenuhnya' }, NAI],
+    literal: 'Sepenuhnya tidak',
+    natural: 'Sama sekali tidak X',
+    explanation:
+      '全然 berarti "sepenuhnya". Dengan negatif: sama sekali tidak. Dalam percakapan santai juga dipakai dengan bentuk positif (全然大丈夫 = sama sekali tidak masalah).',
+    transparency: 'langsung',
+    match: ['全然'],
+  },
+
+  // ── それ + partikel: kata sambung ──
+  bp_n4_076: {
+    parts: [{ text: 'それ', role: 'kata benda', meaning: 'itu (hal sebelumnya)' }, { text: 'で', role: 'partikel', meaning: 'sebab: "karena"' }],
+    literal: 'Karena itu',
+    natural: 'Karena itu / lalu?',
+    explanation: 'で menandai sebab, jadi それで = karena itu. Dalam percakapan juga dipakai untuk meminta lanjutan cerita: それで、どうなりましたか.',
+    transparency: 'langsung',
+    match: ['それで'],
+  },
+  bp_n4_077: {
+    parts: [{ text: 'それ', role: 'kata benda', meaning: 'itu (hal sebelumnya)' }, DE_COPULA, MO_EVEN],
+    literal: 'Walaupun (keadaannya) itu',
+    natural: 'Meskipun begitu',
+    explanation: 'それ + で + も = walaupun keadaannya begitu. Lebih tegas daripada でも di awal kalimat, yang merupakan ringkasannya.',
+    transparency: 'langsung',
+    match: ['それでも'],
+  },
+  bp_n4_078: {
+    parts: [{ text: 'それ', role: 'kata benda', meaning: 'itu (hal sebelumnya)' }, { text: 'に', role: 'partikel', meaning: 'tambahan: "di atas …"' }],
+    literal: 'Di atas itu',
+    natural: 'Lagi pula / selain itu',
+    explanation: 'に menandai tempat sesuatu ditambahkan. それに = ditambah di atas itu: menambah alasan atau hal sejenis.',
+    transparency: 'kiasan',
+    match: ['それに'],
+  },
+  bp_n4_080: {
+    parts: [{ text: 'だ', role: 'kopula', meaning: 'adalah (begitu)' }, { text: 'が', role: 'partikel', meaning: 'pertentangan: "tetapi"' }],
+    literal: '(Memang) begitu, tetapi',
+    natural: 'Namun / tetapi (di awal kalimat)',
+    explanation: 'が di sini adalah partikel "tetapi". Diberi だ (atau です yang sopan) supaya bisa berdiri di awal kalimat. Lebih kaku daripada でも.',
+    transparency: 'langsung',
+    match: ['だが', 'ですが'],
+  },
+  bp_n4_072: {
+    parts: [{ text: 'そう', role: 'kata keterangan', meaning: 'begitu' }, { text: 'いう', role: 'kata kerja', meaning: 'disebut, dikatakan' }],
+    literal: 'Yang disebut begitu',
+    natural: 'Yang seperti itu / semacam itu',
+    explanation: 'そう + いう = "yang (bisa) disebut begitu". Selalu diikuti kata benda. Satu keluarga dengan こういう (seperti ini) dan ああいう.',
+    transparency: 'kiasan',
+    match: ['そういう'],
+  },
+  bp_n4_079: {
+    parts: [{ text: 'そんな', role: 'kata benda', meaning: 'seperti itu' }, { text: 'に', role: 'partikel', meaning: 'cara / tingkat' }],
+    literal: 'Sampai seperti itu',
+    natural: 'Segitu / sebegitu',
+    explanation: 'に mengubah そんな menjadi keterangan tingkat. Dengan negatif: そんなに難しくない = tidak sesulit itu.',
+    transparency: 'langsung',
+    match: ['そんなに'],
+  },
+
+  // ── だけ ──
+  bp_n4_082: {
+    parts: [{ text: 'だけ', role: 'partikel', meaning: 'hanya' }, { text: 'で', role: 'partikel', meaning: 'sarana: "dengan"' }],
+    literal: 'Hanya dengan X',
+    natural: 'Hanya dengan X (sudah cukup)',
+    explanation: 'だけ (hanya) + で (sarana): hal kecil X saja sudah cukup untuk menimbulkan akibatnya. 声を聞くだけで元気になる.',
+    transparency: 'langsung',
+    match: ['だけで'],
+  },
+  bp_n4_083: {
+    parts: [
+      { text: 'だけ', role: 'partikel', meaning: 'hanya' },
+      DE_COPULA,
+      { text: 'なく', role: 'bentuk', meaning: 'ない yang disambung: "tidak …"', base: 'ない' },
+    ],
+    literal: 'Bukan hanya X, (tetapi) …',
+    natural: 'Tidak hanya X, tetapi juga Y',
+    explanation: 'だけでない (bukan hanya) dalam bentuk sambung なく. Hal kedua biasanya ditandai も: 英語だけでなく、中国語も.',
+    transparency: 'langsung',
+    match: ['だけでなく'],
+  },
+
+  // ── たら ──
+  bp_n4_088: {
+    parts: [
+      { text: 'た', role: 'bentuk', meaning: 'bentuk lampau: "sudah …"' },
+      { text: 'ら', role: 'partikel', meaning: 'pengandaian (dari たらば)' },
+    ],
+    literal: 'Kalau sudah X',
+    natural: 'Kalau X / setelah X',
+    explanation:
+      'たら dibentuk dari bentuk た, jadi syaratnya dibayangkan sudah terjadi. Karena itu たら bisa berarti "kalau" (安かったら) atau "setelah" (着いたら電話します).',
+    transparency: 'kiasan',
+    match: ['[ただ]ら'],
+  },
+  bp_n4_089: {
+    parts: [{ text: 'たら', role: 'bentuk', meaning: '"kalau (sudah) …"' }, II, { text: 'ですか', role: 'kopula', meaning: 'apakah (sopan)' }],
+    literal: 'Kalau X, apakah baik?',
+    natural: 'Sebaiknya X bagaimana? (minta saran)',
+    explanation: 'Menanyakan pilihan yang tepat dengan kata tanya: どこに出したらいいですか = sebaiknya diserahkan ke mana?',
+    transparency: 'kiasan',
+    match: ['[ただ]らいいですか'],
+  },
+  bp_n4_090: {
+    parts: [{ text: 'たら', role: 'bentuk', meaning: '"kalau (sudah) …"' }, { text: 'どう', role: 'kata keterangan', meaning: 'bagaimana' }],
+    literal: 'Kalau X, bagaimana?',
+    natural: 'Bagaimana kalau X? (menyarankan)',
+    explanation: 'Menyarankan tindakan kepada lawan bicara. Bisa terdengar agak mendesak; kepada atasan lebih aman memakai 〜てはいかがですか.',
+    transparency: 'kiasan',
+    match: ['[ただ]らどう'],
+  },
+  bp_n4_085: {
+    parts: [
+      { text: '例え', reading: 'たとえ', role: 'kata kerja', meaning: '例える: mencontohkan, mengumpamakan' },
+      { text: 'ば', role: 'bentuk', meaning: 'pengandaian: "kalau …"' },
+    ],
+    literal: 'Kalau dicontohkan',
+    natural: 'Misalnya',
+    explanation: '例える berarti mengumpamakan. Bentuk ば (kalau) membuatnya "kalau dicontohkan", lalu menjadi kata pembuka contoh.',
+    transparency: 'langsung',
+    match: ['例えば'],
+  },
+
+  // ── って, から ──
+  bp_n4_092: {
+    parts: [
+      { text: 'って', role: 'kontraksi', meaning: 'kutipan santai (= と)' },
+      { text: '感じ', reading: 'かんじ', role: 'kata benda', meaning: 'kesan, rasa' },
+    ],
+    literal: 'Kesannya "X"',
+    natural: 'Rasanya seperti X / kayak X (santai)',
+    explanation: 'って mengutip, 感じ berarti kesan. Ucapan dibungkus sebagai kesan sehingga tidak terdengar tegas. Sangat santai.',
+    transparency: 'kiasan',
+    match: ['って感じ'],
+  },
+  bp_n4_044: {
+    parts: [{ text: 'から', role: 'partikel', meaning: 'asal / bahan mentah' }, { text: '作る', reading: 'つくる', role: 'kata kerja', meaning: 'membuat' }],
+    literal: 'Dibuat bermula dari X',
+    natural: 'Dibuat dari X (bahan berubah wujud)',
+    explanation:
+      'から dipakai untuk bahan yang berubah wujud sehingga tidak terlihat lagi: ワインはぶどうから作られる. Kalau bahannya masih terlihat, dipakai で: 木で作った机.',
+    transparency: 'langsung',
+    match: ['から作'],
+  },
+
+  // ── て + verba bantu ──
+  bp_n4_094: {
+    parts: [TE, { text: 'あげる', role: 'kata kerja', meaning: 'memberi (kepada orang lain)' }],
+    literal: 'Memberikan tindakan X (kepada orang lain)',
+    natural: 'Melakukan X untuk orang lain',
+    explanation:
+      'あげる berarti memberi. Tindakan X "diberikan" sebagai bantuan. Kepada atasan bisa terdengar menggurui, jadi biasanya dihindari atau diganti お〜する.',
+    transparency: 'kiasan',
+    match: ['[てで]あげ'],
+  },
+  bp_n4_095: {
+    parts: [TE, { text: 'いく', role: 'kata kerja', meaning: 'pergi (menjauh dari sekarang)' }],
+    literal: 'Melakukan X lalu pergi',
+    natural: 'X lalu pergi / terus X ke depannya',
+    explanation:
+      'いく bergerak menjauh dari pembicara. Arti harfiah: melakukan X sebelum pergi (食べていく). Secara waktu: perubahan atau kegiatan yang berlanjut mulai sekarang ke masa depan (勉強していく).',
+    transparency: 'kiasan',
+    match: ['[てで]い(?:き|く|った)'],
+  },
+  bp_n4_100: {
+    parts: [TE, { text: 'くる', role: 'kata kerja', meaning: 'datang (mendekat ke sekarang)' }],
+    literal: 'Melakukan X lalu datang (kembali)',
+    natural: 'X lalu kembali / mulai X (sampai sekarang)',
+    explanation:
+      'くる bergerak mendekat ke pembicara. Arti harfiah: pergi melakukan X lalu kembali (買ってきます). Secara waktu: perubahan yang berlangsung sampai sekarang (暖かくなってきた).',
+    transparency: 'kiasan',
+    match: ['[てで]き(?:ます|ました|た)'],
+  },
+  bp_n4_096: {
+    parts: [TE, { text: 'いた', role: 'kata kerja', meaning: 'lampau いる: "dulu berada"' }],
+    literal: 'Dulu berada dalam keadaan X',
+    natural: 'Sedang X (waktu itu) / dulu X',
+    explanation: 'Bentuk lampau dari ている: tindakan yang sedang berlangsung pada saat itu (見ていました), atau keadaan yang berlangsung di masa lalu (住んでいました).',
+    transparency: 'langsung',
+    match: ['[てで]いました', '[てで]いた'],
+  },
+  bp_n4_097: {
+    parts: [
+      TE,
+      { text: 'いただけ', role: 'kata kerja', meaning: 'potensial いただく: "bisa menerima (hormat)"' },
+      { text: 'ません', role: 'bentuk', meaning: 'negatif sopan' },
+      KA_Q,
+    ],
+    literal: 'Tidakkah saya bisa menerima tindakan X dari Anda?',
+    natural: 'Bisakah Anda X? (sangat sopan)',
+    explanation:
+      'いただく = menerima dari orang yang dihormati. Pembicara bertanya apakah ia "bisa menerima" tindakan itu, dalam bentuk negatif yang memberi ruang menolak. Salah satu cara meminta yang paling sopan.',
+    transparency: 'kiasan',
+    match: ['[てで]いただけませんか'],
+  },
+  bp_n4_099: {
+    parts: [TE, { text: 'おく', role: 'kata kerja', meaning: '置く: menaruh, membiarkan' }],
+    literal: 'Melakukan X lalu menaruhnya (untuk nanti)',
+    natural: 'X dulu (sebagai persiapan) / biarkan X',
+    explanation:
+      'おく (置く) berarti menaruh. Hasil tindakan X "ditaruh" untuk dipakai nanti, jadi maknanya mempersiapkan. Juga berarti membiarkan keadaan apa adanya. Dalam percakapan menjadi とく: 勉強しとく.',
+    transparency: 'kiasan',
+    match: ['[てで]お(?:き|い|く)'],
+  },
 };
