@@ -648,7 +648,7 @@ export const BunpouDetailModal: React.FC<BunpouDetailModalProps> = ({
                 </div>
 
                 {/* Pola Pembentukan (Formation Rule Subtitle) */}
-                {titleInfo.formationRule && (
+                {titleInfo.formationRule && !patternInsight && (
                   <div className="flex items-center gap-2 text-xs font-mono">
                     <span className="px-1.5 py-0.5 rounded bg-indigo/10 border border-border-subtle text-[10px] font-bold tracking-wider text-indigo uppercase font-mono shrink-0">
                       Pola
