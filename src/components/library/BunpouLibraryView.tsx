@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { Suspense, lazy, useState, useMemo } from 'react';
 import type { DeckItemCategory } from '../../types/rpg';
 import { AnimatePresence } from 'motion/react';
 import { Search, Filter, ChevronDown, Bookmark, LayoutGrid, List, BookOpen, Zap, Trash2, ChevronRight } from 'lucide-react';
@@ -6,7 +6,10 @@ import { ScrollIcon } from '../ui/EngravingIcons';
 import { BUNPOU_DATABASE } from '../../data/bunpou';
 import { ALL_GRAMMAR_FUNCTION_CATEGORIES } from '../../data/bunpouMetadata';
 import { BunpouItem, ItemMasteryRecord } from '../../types/content';
-import { BunpouDetailModal, type ScrapbookTabId } from './BunpouDetailModal';
+import type { ScrapbookTabId } from './BunpouDetailModal';
+
+// Modal detail dimuat lazy: chunk-nya memuat data Bedah Pola (±140 KB gzip) yang baru dibutuhkan saat modal dibuka.
+const BunpouDetailModal = lazy(() => import('./BunpouDetailModal').then((m) => ({ default: m.BunpouDetailModal })));
 import { ConjugationDojoView } from './ConjugationDojoView';
 import { playSound } from '../../utils/audio';
 import { UserDeck } from '../../types/rpg';
@@ -547,6 +550,7 @@ export const BunpouLibraryView: React.FC<BunpouLibraryViewProps> = ({
       )}
 
       {/* Detail Modal */}
+      <Suspense fallback={null}>
       <AnimatePresence>
         {selectedItem && (
           <BunpouDetailModal
@@ -573,6 +577,7 @@ export const BunpouLibraryView: React.FC<BunpouLibraryViewProps> = ({
           />
         )}
       </AnimatePresence>
+      </Suspense>
     </div>
   );
 };
