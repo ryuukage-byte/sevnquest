@@ -204,6 +204,9 @@ export const LibraryView: React.FC<LibraryViewProps> = ({
         <div className={libraryTab === 'soal' ? 'block' : 'hidden'}>
           <QuestionLibraryView
             soundEnabled={soundEnabled}
+            userDecks={userDecks}
+            onUpdateDecks={onUpdateDecks}
+            onRecordInteraction={onRecordInteraction}
             onRewardPlayer={onRewardPlayer}
             onRecordStudy={onRecordStudy as any}
             onCompleteStudyItem={onCompleteStudyItem}
