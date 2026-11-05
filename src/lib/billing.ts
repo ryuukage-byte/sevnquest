@@ -51,6 +51,10 @@ export function billingErrorMessage(err: unknown): string {
   if (/forbidden/.test(msg)) return 'Akun ini bukan admin.';
   if (/no_unique_code/.test(msg)) return 'Antrian pembayaran sedang penuh. Coba lagi nanti.';
   if (/Failed to fetch|NetworkError|aborted/i.test(msg)) return 'Tidak ada koneksi. Coba lagi.';
+  // Halaman error HTML (mis. Cloudflare 520) jangan pernah ditampilkan mentah.
+  if (/<\/?(html|head|body|div|span|!doctype)/i.test(msg) || /\b5\d\d\b.*(cloudflare|gateway)/i.test(msg) || msg.length > 300) {
+    return 'Server sedang bermasalah. Muat ulang halaman lalu coba lagi sebentar lagi.';
+  }
   return msg || 'Terjadi kesalahan.';
 }
 
