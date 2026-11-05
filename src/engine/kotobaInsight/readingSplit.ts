@@ -59,7 +59,7 @@ interface ReadingCandidate {
 }
 
 /** Normalisasi satu entri bacaan dari database kanji: "シュウ (SHUU)", "やす.い", "-ごころ". */
-function normalizeEntry(raw: string): { stem: string; okurigana?: string } | null {
+export function normalizeEntry(raw: string): { stem: string; okurigana?: string } | null {
   const cleaned = toHiragana(raw.replace(/[（(].*?[)）]/g, '').replace(/[-－\s]/g, '').trim());
   if (!cleaned || !/^[ぁ-ゖー.]+$/.test(cleaned)) return null;
   const [stem, okurigana] = cleaned.split('.');
