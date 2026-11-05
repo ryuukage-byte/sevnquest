@@ -261,3 +261,40 @@ export function planLabel(tierCode: string, baseAmount: number): string {
 export function formatIdr(n: number): string {
   return 'Rp ' + Math.round(n).toLocaleString('id-ID');
 }
+
+// ---------------------------------------------------------------------------
+// Jatah harian fitur untuk akses Gratis (Bedah Soal). Disimpan lokal (gating lunak).
+// Membuka ulang soal yang sama di hari yang sama tidak memakai jatah lagi.
+// ---------------------------------------------------------------------------
+
+/** Bedah Soal gratis per hari; Full tanpa batas. */
+export const FREE_DAILY_INSIGHTS = 3;
+
+export interface DailyAllowance {
+  day: string;
+  ids: string[];
+}
+
+export function parseAllowance(raw: string | null, today: string): DailyAllowance {
+  try {
+    const v = raw ? (JSON.parse(raw) as Partial<DailyAllowance>) : null;
+    if (v && v.day === today && Array.isArray(v.ids)) return { day: today, ids: v.ids.filter(x => typeof x === 'string').slice(0, 100) };
+  } catch {
+    /* rusak: mulai ulang */
+  }
+  return { day: today, ids: [] };
+}
+
+/** Coba pakai satu jatah untuk `id`. `allowed` false bila jatah habis dan id belum pernah dibuka hari ini. */
+export function consumeDailyAllowance(
+  current: DailyAllowance,
+  id: string,
+  limit: number
+): { allowed: boolean; next: DailyAllowance; remaining: number } {
+  if (current.ids.includes(id)) {
+    return { allowed: true, next: current, remaining: Math.max(0, limit - current.ids.length) };
+  }
+  if (current.ids.length >= limit) return { allowed: false, next: current, remaining: 0 };
+  const next = { day: current.day, ids: [...current.ids, id] };
+  return { allowed: true, next, remaining: Math.max(0, limit - next.ids.length) };
+}

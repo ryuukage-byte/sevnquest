@@ -5,256 +5,46 @@ import {
   Search, Volume2, CheckCircle2, XCircle, HelpCircle, 
   Feather, BookOpen, Headphones, FileText, Check, 
   Swords, Play, RotateCcw, Trophy, Award, ArrowRight, 
-  ArrowLeft, Layers, Compass, Clock, Flame
+  ArrowLeft, Layers, Compass, Clock, Flame, ScanSearch
 } from 'lucide-react';
 import { ALL_TRYOUTS } from '../../data/tryouts';
 import { useAccess } from '../../state/entitlement';
 import { LockBadge } from '../billing/AccessGate';
-import { requiredTierForLevel } from '../../utils/access';
+import { requiredTierForLevel, FREE_DAILY_INSIGHTS, parseAllowance, consumeDailyAllowance } from '../../utils/access';
+import { safeGetItem, safeSetItem } from '../../utils/storage';
+import { getTodayLocalDate } from '../../utils/time';
 import { TryOutData } from '../../types/content';
-import { KANJI_QUESTION_BANK as kanjiQuestionsDb, BUNPOU_QUESTION_BANK as bunpouQuestionsDb } from '../../data/questionBank';
-import { CHOUKAI_DATABASE } from '../../data/choukai';
 import { CHOUKAI_ENABLED } from '../../data/featureFlags';
-import { DOKKAI_DATABASE } from '../../data/dokkai';
+import {
+  BASIC_DRILL_SUBCATEGORIES,
+  SUBCATEGORY_CONFIG,
+  getQuestionLibrary,
+  type JlptSection,
+  type QuestionSubCategory,
+  type UnifiedQuestionItem,
+} from '../../data/questionLibrary';
+import { hasQuestionInsight } from '../../engine/questionInsight/kind';
+import type { UserDeck } from '../../types/rpg';
 import { playSound, speakJapanese } from '../../utils/audio';
 import { RubyText } from '../learning/RubyText';
 import { calculateQuizReward } from '../../utils/rewards';
 import { smartSample } from '../../utils/smartRandomizer';
-import furiganaDictRaw from '../../data/furiganaDictionary.json';
-import { isKanji } from '../../utils/furiganaUtils';
 
 const DungeonBattleModule = lazy(() => import('../dungeon/DungeonBattleModule').then(m => ({ default: m.DungeonBattleModule })));
+const INSIGHT_USAGE_KEY = 'sevnquest_insight_usage';
+const QuestionInsightModal = lazy(() => import('./QuestionInsightModal').then(m => ({ default: m.QuestionInsightModal })));
 
-export type JlptSection = 'all' | 'mojiGoi' | 'bunpou' | 'dokkai' | 'choukai' | 'tryout';
+/** Beberapa paket menandai kata yang diuji di kalimat pilihan dengan @@kata@@; penanda tidak ditampilkan. */
+const stripMarks = (s: string) => s.replace(/@@/g, '');
 
-export type QuestionSubCategory = 
-  | 'all'
-  | 'kanji_reading'    // 漢字読み (Cara Baca Kanji)
-  | 'kanji_writing'    // 表記 (Penulisan Aksara)
-  | 'vocab_context'    // 文脈規定 (Konteks Kosakata)
-  | 'synonym'          // 言い換え (Sinonim / Semakna)
-  | 'vocab_usage'      // 用法 (Penggunaan Kata)
-  | 'grammar_form'     // 文法形式 (Pola & Konjugasi)
-  | 'sentence_star'    // 文の組み立て (Susun Kalimat ★)
-  | 'dokkai_reading'   // 読解 (Wacana Bacaan)
-  | 'choukai_audio';   // 聴解 (Dialog Menyimak)
-
-export interface UnifiedQuestionItem {
-  id: string;
-  section: 'mojiGoi' | 'bunpou' | 'dokkai' | 'choukai';
-  subCategory: QuestionSubCategory;
-  level: 'N5' | 'N4' | 'N3' | 'N2' | 'N1' | 'JFT';
-  sourceTitle: string;
-  instruction?: string;
-  prompt: string;
-  ruby?: string;
-  targetWord?: string;
-  passage?: string;
-  audioText?: string;
-  options: string[];
-  correctIndex: number;
-  explanation?: string;
-}
-
-export const SUBCATEGORY_CONFIG: Record<
-  QuestionSubCategory,
-  { label: string; jp: string; section: JlptSection; color: string; bg: string }
-> = {
-  all: { label: 'Semua Format', jp: '全て', section: 'all', color: 'text-text-primary', bg: 'bg-surface-inset border-border-subtle' },
-  kanji_reading: { label: 'Cara Baca Kanji', jp: '漢字読み', section: 'mojiGoi', color: 'text-indigo dark:text-indigo-soft', bg: 'bg-indigo/15 border-border-subtle' },
-  kanji_writing: { label: 'Penulisan Aksara', jp: '表記', section: 'mojiGoi', color: 'text-blue-500 dark:text-blue-400', bg: 'bg-blue-500/15 border-border-subtle' },
-  vocab_context: { label: 'Konteks Kosakata', jp: '文脈規定', section: 'mojiGoi', color: 'text-emerald-800 dark:text-emerald-400', bg: 'bg-emerald-500/15 border-border-subtle' },
-  synonym: { label: 'Sinonim / Semakna', jp: '言い換え', section: 'mojiGoi', color: 'text-teal-600 dark:text-teal-400', bg: 'bg-teal-500/15 border-border-subtle' },
-  vocab_usage: { label: 'Penggunaan Kata', jp: '用法', section: 'mojiGoi', color: 'text-red-700 dark:text-amber-400', bg: 'bg-red-700/15 border-border-subtle' },
-  grammar_form: { label: 'Pola & Konjugasi', jp: '文法形式', section: 'bunpou', color: 'text-purple-500 dark:text-purple-400', bg: 'bg-purple-500/15 border-border-subtle' },
-  sentence_star: { label: 'Susun Kalimat (★)', jp: '文の組み立て', section: 'bunpou', color: 'text-gold dark:text-gold', bg: 'bg-gold/15 border-border-subtle' },
-  dokkai_reading: { label: 'Wacana Bacaan', jp: '読解', section: 'dokkai', color: 'text-rose-500 dark:text-rose-400', bg: 'bg-rose-500/15 border-border-subtle' },
-  choukai_audio: { label: 'Dialog Menyimak', jp: '聴解', section: 'choukai', color: 'text-cyan-500 dark:text-cyan-400', bg: 'bg-cyan-500/15 border-border-subtle' },
-};
-
-export function detectQuestionSubCategory(
-  section: 'mojiGoi' | 'bunpou' | 'dokkai' | 'choukai',
-  instruction: string = '',
-  prompt: string = '',
-  passage?: string
-): QuestionSubCategory {
-  if (passage || section === 'dokkai') return 'dokkai_reading';
-  if (section === 'choukai') return 'choukai_audio';
-
-  const ins = instruction.toLowerCase();
-  const p = prompt.toLowerCase();
-
-  // Check for Star sentence
-  if (p.includes('★') || p.includes('⭐') || ins.includes('★') || ins.includes('星') || ins.includes('並び替え') || ins.includes('組み立て')) {
-    return 'sentence_star';
-  }
-
-  if (section === 'bunpou') {
-    return 'grammar_form';
-  }
-
-  if (section === 'mojiGoi') {
-    if (
-      ins.includes('読み方') || 
-      ins.includes('よみかた') || 
-      ins.includes('ひらがなで') || 
-      ins.includes('読み') ||
-      p.includes('cara baca')
-    ) {
-      return 'kanji_reading';
-    }
-    if (ins.includes('漢字で書く') || ins.includes('表記') || ins.includes('どう書きますか') || p.includes('tulis') || p.includes('tulisan')) {
-      return 'kanji_writing';
-    }
-    if (ins.includes('意味が最も近い') || ins.includes('言い換え') || ins.includes('同じ意味') || ins.includes('類義') || ins.includes('sinonim')) {
-      return 'synonym';
-    }
-    if (ins.includes('使い方') || ins.includes('用法') || ins.includes('penggunaan')) {
-      return 'vocab_usage';
-    }
-    return 'vocab_context';
-  }
-
-  return 'vocab_context';
-}
-
-/**
- * Automatically detects the tested word/kanji in reading questions.
- * In JLPT "漢字読み" (Cara Baca Kanji), the word being tested should NOT have ruby displayed on it,
- * and should be styled with a distinct, high-contrast visual accent so users can clearly see what word they are reading.
- */
-export function getQuestionTargetWord(q: {
-  subCategory?: string;
-  instruction?: string;
-  prompt: string;
-  options?: string[];
-  correctIndex?: number;
-}): string | undefined {
-  if (!q.prompt) return undefined;
-
-  // 1. Check for explicit bracketed or underlined tokens in prompt: (関係), （関係）, 【関係】, [関係], <u>関係</u>, _関係_, etc.
-  const bracketMatches = q.prompt.match(/[\(（【\[〔〈《<u>_＿]([^\)）】\]〕〉》<>\s_＿]+)[\)）】\]〕〉》<\/u>_＿]/g);
-  if (bracketMatches) {
-    for (const match of bracketMatches) {
-      const inner = match.replace(/[\(（【\[〔〈《<u>_＿\)）】\]〕〉》<\/u>]/g, '').trim();
-      if (inner && Array.from(inner).some(c => isKanji(c))) {
-        return inner;
-      }
-    }
-  }
-
-  // 2. Only proceed if it is a kanji reading question or asks for yomikata/hiragana
-  const isReadingQuestion = 
-    q.subCategory === 'kanji_reading' ||
-    (q.instruction && (
-      q.instruction.includes('読み方') || 
-      q.instruction.includes('よみかた') || 
-      q.instruction.includes('ひらがなで') || 
-      q.instruction.includes('読み') ||
-      q.instruction.toLowerCase().includes('cara baca')
-    )) ||
-    (q.prompt && (
-      q.prompt.includes('読み方') ||
-      q.prompt.toLowerCase().includes('cara baca')
-    ));
-
-  if (!isReadingQuestion || !q.options || q.options.length === 0) {
-    return undefined;
-  }
-
-  // Strip romaji e.g. "かんけい (kankei)" -> "かんけい", trim whitespace
-  const cleanOptions = q.options.map(opt => 
-    opt.replace(/\s*[\(（][^)]*[\)）]/g, '').trim()
-  ).filter(Boolean);
-
-  if (cleanOptions.length === 0) return undefined;
-
-  const dictWords = furiganaDictRaw.words as Record<string, string>;
-  const dictKanji = furiganaDictRaw.kanji as Record<string, string>;
-
-  // A. Check compound words from dictionary that exist in prompt (longer matches first)
-  const candidateWords = Object.keys(dictWords)
-    .filter(w => q.prompt.includes(w) && Array.from(w).some(c => isKanji(c)))
-    .sort((a, b) => b.length - a.length);
-
-  const correctOpt = cleanOptions[q.correctIndex ?? 0];
-
-  // Priority 1: Dictionary compound whose reading exactly matches correct option
-  if (correctOpt) {
-    for (const w of candidateWords) {
-      if (dictWords[w] === correctOpt) {
-        return w;
-      }
-    }
-  }
-
-  // Priority 2: Dictionary compound whose reading matches any candidate option
-  for (const w of candidateWords) {
-    const reading = dictWords[w];
-    if (cleanOptions.includes(reading)) {
-      return w;
-    }
-  }
-
-  // Priority 3: Verb/Adjective okurigana match
-  // e.g. prompt has "着きました", candidate option is "つきました", dictionary has "着く" -> "つく"
-  for (const opt of cleanOptions) {
-    for (const w of candidateWords) {
-      const reading = dictWords[w];
-      if (w.length >= 2 && reading.length >= 2) {
-        const kanjiStem = w.slice(0, -1);
-        const readingStem = reading.slice(0, -1);
-        if (q.prompt.includes(kanjiStem) && opt.startsWith(readingStem)) {
-          const okurigana = opt.slice(readingStem.length);
-          const surfaceCandidate = kanjiStem + okurigana;
-          if (q.prompt.includes(surfaceCandidate)) {
-            return surfaceCandidate;
-          }
-          return kanjiStem;
-        }
-      }
-    }
-  }
-
-  // B. Single kanji character match against dictionary
-  const singleKanjisInPrompt = Array.from(q.prompt).filter(c => isKanji(c));
-  if (correctOpt) {
-    for (const k of singleKanjisInPrompt) {
-      if (dictKanji[k] === correctOpt) {
-        return k;
-      }
-    }
-  }
-  for (const k of singleKanjisInPrompt) {
-    const reading = dictKanji[k];
-    if (reading && cleanOptions.includes(reading)) {
-      return k;
-    }
-  }
-
-  // C. Okurigana match with single kanji (e.g. prompt "着きました", opt "つきました", dictKanji['着'] === 'つ')
-  for (const opt of cleanOptions) {
-    for (const k of singleKanjisInPrompt) {
-      const reading = dictKanji[k];
-      if (reading && opt.startsWith(reading)) {
-        const okurigana = opt.slice(reading.length);
-        const surfaceCandidate = k + okurigana;
-        if (q.prompt.includes(surfaceCandidate)) {
-          return surfaceCandidate;
-        }
-        return k;
-      }
-    }
-  }
-
-  // D. Fallback: If prompt contains only 1 contiguous kanji sequence
-  const kanjiSequences = q.prompt.match(/[\u4e00-\u9faf\u3400-\u4dbf々〆]+/g) || [];
-  if (kanjiSequences.length === 1) {
-    return kanjiSequences[0];
-  }
-
-  return undefined;
-}
+export {
+  SUBCATEGORY_CONFIG,
+  detectQuestionSubCategory,
+  getQuestionTargetWord,
+  type JlptSection,
+  type QuestionSubCategory,
+  type UnifiedQuestionItem,
+} from '../../data/questionLibrary';
 
 const ALL_SECTION_TABS: { value: JlptSection; label: string; jp: string; icon: React.FC<{ className?: string }> }[] = [
   { value: 'all', label: 'Semua Bagian', jp: '全て', icon: BookOpen },
@@ -296,6 +86,14 @@ const LEVEL_COLORS: Record<string, { bg: string; text: string; border: string }>
 
 interface QuestionLibraryViewProps {
   soundEnabled?: boolean;
+  userDecks?: UserDeck[];
+  onUpdateDecks?: (decks: UserDeck[]) => void;
+  onRecordInteraction?: (
+    itemId: string,
+    category: 'bunpou' | 'kotoba' | 'kanji' | 'dokkai' | 'choukai',
+    interactionType: 'view' | 'writing' | 'flashcard' | 'quiz',
+    success?: boolean
+  ) => void;
   onRewardPlayer?: (exp: number, gold: number) => void;
   onRecordStudy?: (category: 'tryOuts' | 'questions' | 'dokkai' | 'choukai' | 'bunpou' | 'bossBattles', id: string, count?: number) => void;
   onCompleteStudyItem?: (
@@ -312,6 +110,9 @@ interface QuestionLibraryViewProps {
 
 export const QuestionLibraryView: React.FC<QuestionLibraryViewProps> = ({ 
   soundEnabled = true,
+  userDecks,
+  onUpdateDecks,
+  onRecordInteraction,
   onRewardPlayer,
   onRecordStudy,
   onCompleteStudyItem,
@@ -336,191 +137,11 @@ export const QuestionLibraryView: React.FC<QuestionLibraryViewProps> = ({
   const [userAnswers, setUserAnswers] = useState<Record<string, number>>({});
   const [revealedExplanations, setRevealedExplanations] = useState<Record<string, boolean>>({});
 
-  // Build unified questions list from tryouts + kanji questions + bunpou questions + dokkai + choukai
-  const allQuestionsRaw: UnifiedQuestionItem[] = useMemo(() => {
-    const list: UnifiedQuestionItem[] = [];
+  // Bedah Soal: soal yang sedang dibedah + jawaban pengguna (bila sudah menjawab).
+  const [insightTarget, setInsightTarget] = useState<{ q: UnifiedQuestionItem; answer?: number } | null>(null);
 
-    // 1. From Official Tryouts
-    for (const tryout of ALL_TRYOUTS) {
-      const lvl = tryout.level;
-      const data = tryout.data;
-      const source = tryout.title;
-
-      // Moji Goi
-      if (data?.sections?.mojiGoi?.questions) {
-        data.sections.mojiGoi.questions.forEach((q, idx) => {
-          const subCat = detectQuestionSubCategory('mojiGoi', q.instruction, q.prompt);
-          const targetWord = getQuestionTargetWord({
-            subCategory: subCat,
-            instruction: q.instruction,
-            prompt: q.prompt,
-            options: q.options || [],
-            correctIndex: q.correctIndex !== undefined ? q.correctIndex : 0,
-          });
-          list.push({
-            id: `to_${tryout.id}_mg_${q.id || idx}`,
-            section: 'mojiGoi',
-            subCategory: subCat,
-            level: lvl,
-            sourceTitle: source,
-            instruction: q.instruction || 'Pilih jawaban yang paling tepat untuk melengkapi atau mengartikan kalimat.',
-            prompt: q.prompt,
-            ruby: q.ruby,
-            targetWord,
-            options: q.options || [],
-            correctIndex: q.correctIndex !== undefined ? q.correctIndex : 0,
-            explanation: `Latihan Evaluasi ${lvl}. Pilihan jawaban yang tepat adalah nomor ${(q.correctIndex || 0) + 1}: "${(q.options || [])[q.correctIndex || 0]}".`
-          });
-        });
-      }
-
-      // Bunpou & Dokkai
-      if (data?.sections?.bunpouDokkai?.questions) {
-        data.sections.bunpouDokkai.questions.forEach((q, idx) => {
-          const isDokkai = Boolean(q.passage) || (q.instruction && q.instruction.includes('文章'));
-          const sec = isDokkai ? 'dokkai' : 'bunpou';
-          const subCat = isDokkai ? 'dokkai_reading' : detectQuestionSubCategory('bunpou', q.instruction, q.prompt, q.passage);
-          const targetWord = getQuestionTargetWord({
-            subCategory: subCat,
-            instruction: q.instruction,
-            prompt: q.prompt,
-            options: q.options || [],
-            correctIndex: q.correctIndex !== undefined ? q.correctIndex : 0,
-          });
-          list.push({
-            id: `to_${tryout.id}_bd_${q.id || idx}`,
-            section: sec,
-            subCategory: subCat,
-            level: lvl,
-            sourceTitle: source,
-            instruction: q.instruction || (isDokkai ? 'Bacalah teks wacana berikut lalu jawablah pertanyaannya.' : 'Pilih pola tata bahasa yang paling sesuai.'),
-            prompt: q.prompt,
-            ruby: q.ruby,
-            targetWord,
-            passage: q.passage,
-            options: q.options || [],
-            correctIndex: q.correctIndex !== undefined ? q.correctIndex : 0,
-            explanation: `Latihan Evaluasi ${lvl}. Kunci jawaban yang tepat adalah opsi ke-${(q.correctIndex || 0) + 1}: "${(q.options || [])[q.correctIndex || 0]}".`
-          });
-        });
-      }
-
-      // Choukai
-      if (data?.sections?.choukai?.questions) {
-        data.sections.choukai.questions.forEach((q, idx) => {
-          list.push({
-            id: `to_${tryout.id}_ck_${q.id || idx}`,
-            section: 'choukai',
-            subCategory: 'choukai_audio',
-            level: lvl,
-            sourceTitle: source,
-            instruction: q.instruction || 'Dengarkan percakapan berikut lalu pilih jawaban yang tepat.',
-            prompt: q.prompt,
-            audioText: q.ruby || q.prompt,
-            options: q.options || [],
-            correctIndex: q.correctIndex !== undefined ? q.correctIndex : 0,
-            explanation: `Soal Choukai ${lvl}. Jawaban yang tepat adalah nomor ${(q.correctIndex || 0) + 1}: "${(q.options || [])[q.correctIndex || 0]}".`
-          });
-        });
-      }
-    }
-
-    // 2. From Choukai Database
-    Object.values(CHOUKAI_DATABASE).forEach((ck) => {
-      const lvl = (ck.level?.includes('N4') ? 'N4' : ck.level?.includes('N5') ? 'N5' : 'N3') as 'N5' | 'N4' | 'N3';
-      (ck.questions || []).forEach((q, qIdx) => {
-        list.push({
-          id: `db_ck_${ck.id}_${q.id || qIdx}`,
-          section: 'choukai',
-          subCategory: 'choukai_audio',
-          level: lvl,
-          sourceTitle: ck.title,
-          instruction: `Percakapan: ${ck.dialogueSpeaker || 'Pelafalan Penutur Asli'}`,
-          prompt: q.prompt,
-          audioText: ck.audioText || ck.transcript,
-          options: q.options || [],
-          correctIndex: q.correctIndex !== undefined ? q.correctIndex : 0,
-          explanation: q.explanation || `Dengarkan baik-baik dialog. Jawaban yang benar adalah pilihan ke-${(q.correctIndex || 0) + 1}.`
-        });
-      });
-    });
-
-    // 3. From Dokkai Database
-    Object.values(DOKKAI_DATABASE).forEach((dk) => {
-      const lvl = (dk.level?.includes('N4') ? 'N4' : dk.level?.includes('N5') ? 'N5' : 'N3') as 'N5' | 'N4' | 'N3';
-      (dk.questions || []).forEach((q, qIdx) => {
-        list.push({
-          id: `db_dk_${dk.id}_${q.id || qIdx}`,
-          section: 'dokkai',
-          subCategory: 'dokkai_reading',
-          level: lvl,
-          sourceTitle: dk.title,
-          instruction: 'Bacalah teks wacana berikut:',
-          passage: dk.text,
-          prompt: q.prompt,
-          options: q.options || [],
-          correctIndex: q.correctIndex !== undefined ? q.correctIndex : 0,
-          explanation: q.explanation || `Pahami makna inti wacana. Kunci yang tepat adalah opsi ke-${(q.correctIndex || 0) + 1}.`
-        });
-      });
-    });
-
-    // 4. Sample slice from Kanji Questions (Moji/Goi)
-    if (Array.isArray(kanjiQuestionsDb)) {
-      kanjiQuestionsDb.slice(0, 100).forEach((kq) => {
-        const targetWord = getQuestionTargetWord({
-          subCategory: 'kanji_reading',
-          instruction: 'Pilihlah cara baca (yomikata) atau kanji yang tepat:',
-          prompt: kq.prompt,
-          options: kq.options || [],
-          correctIndex: kq.correct_index !== undefined ? kq.correct_index : 0,
-        });
-        list.push({
-          id: `kq_${kq.id}`,
-          section: 'mojiGoi',
-          subCategory: 'kanji_reading',
-          level: 'N3',
-          sourceTitle: 'Bank Soal Aksara Kanji',
-          instruction: 'Pilihlah cara baca (yomikata) atau kanji yang tepat:',
-          prompt: kq.prompt,
-          ruby: (kq as any).ruby,
-          targetWord,
-          options: kq.options || [],
-          correctIndex: kq.correct_index !== undefined ? kq.correct_index : 0,
-          explanation: kq.explanation || 'Perhatikan bentuk kanji dan kaidah pembacaan onyomi/kunyomi.'
-        });
-      });
-    }
-
-    // 5. Sample slice from Bunpou Questions (Grammar)
-    if (Array.isArray(bunpouQuestionsDb)) {
-      bunpouQuestionsDb.slice(0, 100).forEach((bq) => {
-        const targetWord = getQuestionTargetWord({
-          subCategory: 'grammar_form',
-          instruction: 'Lengkapi kalimat berikut dengan pola tata bahasa yang tepat:',
-          prompt: bq.prompt,
-          options: bq.options || [],
-          correctIndex: bq.correct_answer !== undefined ? bq.correct_answer : 0,
-        });
-        list.push({
-          id: `bq_${bq.id}`,
-          section: 'bunpou',
-          subCategory: 'grammar_form',
-          level: 'N3',
-          sourceTitle: 'Bank Soal Tata Bahasa',
-          instruction: 'Lengkapi kalimat berikut dengan pola tata bahasa yang tepat:',
-          prompt: bq.prompt,
-          ruby: bq.ruby,
-          targetWord,
-          options: bq.options || [],
-          correctIndex: bq.correct_answer !== undefined ? bq.correct_answer : 0,
-          explanation: bq.explanation || 'Sesuaikan bentuk sambungan part of speech dengan makna kalimat.'
-        });
-      });
-    }
-
-    return CHOUKAI_ENABLED ? list : list.filter(q => q.section !== 'choukai');
-  }, []);
+  // Daftar terpadu (tryout + Dokkai/Choukai + seluruh Bank Kanji & Tata Bahasa) — lihat data/questionLibrary.
+  const allQuestionsRaw: UnifiedQuestionItem[] = useMemo(() => getQuestionLibrary(), []);
 
   // Gating lunak (PRD 6.4): soal di atas paket pengguna tidak ikut daftar/drill.
   const { canAccessLevel, guardLevel, openUpgrade, entitlement } = useAccess();
@@ -571,10 +192,10 @@ export const QuestionLibraryView: React.FC<QuestionLibraryViewProps> = ({
   const availableSubCategories = useMemo(() => {
     if (activeSection === 'tryout') return [];
     if (activeSection === 'mojiGoi') {
-      return ['all', 'kanji_reading', 'kanji_writing', 'vocab_context', 'synonym', 'vocab_usage'] as QuestionSubCategory[];
+      return ['all', 'kanji_reading', 'kanji_writing', 'vocab_context', 'synonym', 'vocab_usage', 'moji_basic'] as QuestionSubCategory[];
     }
     if (activeSection === 'bunpou') {
-      return ['all', 'grammar_form', 'sentence_star'] as QuestionSubCategory[];
+      return ['all', 'grammar_form', 'sentence_star', 'grammar_meaning'] as QuestionSubCategory[];
     }
     if (activeSection === 'dokkai') {
       return ['all', 'dokkai_reading'] as QuestionSubCategory[];
@@ -593,6 +214,8 @@ export const QuestionLibraryView: React.FC<QuestionLibraryViewProps> = ({
       'sentence_star',
       'dokkai_reading',
       ...(CHOUKAI_ENABLED ? ['choukai_audio' as const] : []),
+      'moji_basic',
+      'grammar_meaning',
     ] as QuestionSubCategory[];
   }, [activeSection]);
 
@@ -639,7 +262,9 @@ export const QuestionLibraryView: React.FC<QuestionLibraryViewProps> = ({
     level: string = levelFilter,
     subCat: QuestionSubCategory = selectedSubCategory
   ) => {
-    let pool = allQuestions.filter((q) => {
+    // "Semua Format" = format soal JLPT; latihan dasar (arti/goresan kanji, arti pola) hanya bila dipilih langsung.
+    const jlptFormat = allQuestions.filter((q) => subCat !== 'all' || !BASIC_DRILL_SUBCATEGORIES.has(q.subCategory));
+    let pool = jlptFormat.filter((q) => {
       const matchSec = (section === 'all' || section === 'tryout') ? true : q.section === section;
       const matchLvl = level === 'all' ? true : q.level === level;
       const matchSub = subCat === 'all' ? true : q.subCategory === subCat;
@@ -647,7 +272,7 @@ export const QuestionLibraryView: React.FC<QuestionLibraryViewProps> = ({
     });
 
     if (pool.length < 10) {
-      pool = allQuestions.filter((q) => {
+      pool = jlptFormat.filter((q) => {
         const matchSec = (section === 'all' || section === 'tryout') ? true : q.section === section;
         const matchLvl = level === 'all' ? true : q.level === level;
         return matchSec && matchLvl;
@@ -655,7 +280,7 @@ export const QuestionLibraryView: React.FC<QuestionLibraryViewProps> = ({
     }
 
     if (pool.length < 10) {
-      pool = allQuestions.filter((q) => (level === 'all' ? true : q.level === level));
+      pool = jlptFormat.filter((q) => (level === 'all' ? true : q.level === level));
     }
     if (pool.length === 0) {
       pool = allQuestions;
@@ -738,6 +363,59 @@ export const QuestionLibraryView: React.FC<QuestionLibraryViewProps> = ({
       playSound('wrong', soundEnabled);
     }
   };
+
+  // Bedah Soal: akses Gratis mendapat 3 soal per hari (buka ulang soal yang sama tidak dihitung); Full tanpa batas.
+  const unlimitedInsight = entitlement.accessTier === 'full';
+  const [insightUsage, setInsightUsage] = useState(() => parseAllowance(safeGetItem(INSIGHT_USAGE_KEY), getTodayLocalDate()));
+  const insightLeft = Math.max(0, FREE_DAILY_INSIGHTS - (insightUsage.day === getTodayLocalDate() ? insightUsage.ids.length : 0));
+
+  const openInsight = (q: UnifiedQuestionItem, answer?: number) => {
+    playSound('click', soundEnabled);
+    if (!unlimitedInsight) {
+      const current = parseAllowance(safeGetItem(INSIGHT_USAGE_KEY), getTodayLocalDate());
+      const res = consumeDailyAllowance(current, q.id, FREE_DAILY_INSIGHTS);
+      if (!res.allowed) {
+        openUpgrade({ requiredTier: 'full', label: `Bedah Soal tanpa batas (gratis ${FREE_DAILY_INSIGHTS} soal per hari)` });
+        return;
+      }
+      safeSetItem(INSIGHT_USAGE_KEY, JSON.stringify(res.next));
+      setInsightUsage(res.next);
+    }
+    setInsightTarget({ q, answer });
+  };
+
+  const insightModal = insightTarget ? (
+    <Suspense fallback={null}>
+      <QuestionInsightModal
+        isOpen
+        onClose={() => setInsightTarget(null)}
+        question={insightTarget.q}
+        userAnswer={insightTarget.answer}
+        soundEnabled={soundEnabled}
+        userDecks={userDecks}
+        onUpdateDecks={onUpdateDecks}
+        onRewardPlayer={onRewardPlayer}
+        onRecordInteraction={onRecordInteraction}
+        onCompleteStudyItem={onCompleteStudyItem}
+      />
+    </Suspense>
+  ) : null;
+
+  const insightButton = (q: UnifiedQuestionItem, answer?: number, className = '') =>
+    hasQuestionInsight(q) ? (
+      <button
+        type="button"
+        onClick={() => openInsight(q, answer)}
+        className={`btn-physical-secondary px-3 py-1.5 rounded-xl text-xs font-bold inline-flex items-center gap-1.5 cursor-pointer ${className}`}
+        title="Bedah soal: perintah, kalimat, tiap pilihan, dan soal serupa"
+      >
+        <ScanSearch className="w-3.5 h-3.5 text-gold" />
+        Bedah Soal
+        {!unlimitedInsight && !insightUsage.ids.includes(q.id) && (
+          <span className="text-[10px] font-mono font-normal text-text-muted">{insightLeft > 0 ? `${insightLeft}/${FREE_DAILY_INSIGHTS}` : 'Full'}</span>
+        )}
+      </button>
+    ) : null;
 
   // --- IF RUNNING FULL DUNGEON EXAM SIMULATOR ---
   if (activeDungeonTryout) {
@@ -915,7 +593,7 @@ export const QuestionLibraryView: React.FC<QuestionLibraryViewProps> = ({
                             <span className="w-5 h-5 rounded bg-surface-inset border border-border-subtle flex items-center justify-center font-mono text-[10px]">
                               {oIdx + 1}
                             </span>
-                            <span>{opt}</span>
+                            <span>{stripMarks(opt)}</span>
                           </div>
                         );
                       })}
@@ -929,11 +607,13 @@ export const QuestionLibraryView: React.FC<QuestionLibraryViewProps> = ({
                         {q.explanation}
                       </p>
                     </div>
+                    {insightButton(q, userAns)}
                   </div>
                 );
               })}
             </div>
           </div>
+          {insightModal}
         </div>
       );
     }
@@ -1066,7 +746,7 @@ export const QuestionLibraryView: React.FC<QuestionLibraryViewProps> = ({
                       <span className="w-7 h-7 rounded-xl bg-surface-inset border border-border-subtle flex items-center justify-center font-mono text-xs font-bold shrink-0">
                         {optIdx + 1}
                       </span>
-                      <span className="leading-snug">{opt}</span>
+                      <span className="leading-snug">{stripMarks(opt)}</span>
                     </div>
                     {isAnswered && isRight && (
                       <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
@@ -1096,6 +776,7 @@ export const QuestionLibraryView: React.FC<QuestionLibraryViewProps> = ({
                 <p className="text-xs text-text-secondary leading-relaxed whitespace-pre-line">
                   {currentQ.explanation}
                 </p>
+                {insightButton(currentQ, selectedAns)}
               </div>
             )}
 
@@ -1119,6 +800,7 @@ export const QuestionLibraryView: React.FC<QuestionLibraryViewProps> = ({
             </div>
           </div>
         )}
+        {insightModal}
       </div>
     );
   }
@@ -1503,7 +1185,7 @@ export const QuestionLibraryView: React.FC<QuestionLibraryViewProps> = ({
                               <span className="w-6 h-6 rounded-lg bg-surface-inset border border-border-subtle flex items-center justify-center font-mono text-[11px] font-bold shrink-0">
                                 {optIdx + 1}
                               </span>
-                              <span className="leading-snug">{opt}</span>
+                              <span className="leading-snug">{stripMarks(opt)}</span>
                             </div>
                             {isAnswered && isCorrect && (
                               <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
@@ -1518,7 +1200,7 @@ export const QuestionLibraryView: React.FC<QuestionLibraryViewProps> = ({
 
                     {/* Explanation Toggle & Content */}
                     <div className="pt-2 flex flex-col space-y-2 border-t border-border-subtle/50">
-                      <div className="flex items-center justify-between">
+                      <div className="flex flex-wrap items-center justify-between gap-2">
                         <button
                           onClick={() => {
                             setRevealedExplanations((prev) => ({ ...prev, [q.id]: !prev[q.id] }));
@@ -1529,6 +1211,8 @@ export const QuestionLibraryView: React.FC<QuestionLibraryViewProps> = ({
                           <HelpCircle className="w-3.5 h-3.5" />
                           {isRevealed ? 'Sembunyikan Pembahasan' : 'Lihat Pembahasan & Kunci Jawaban'}
                         </button>
+
+                        {insightButton(q, selectedAnswer, 'ml-auto mr-2')}
 
                         {isAnswered && (
                           <span className={`text-xs font-bold font-mono ${selectedAnswer === q.correctIndex ? 'text-emerald-400' : 'text-rose-400'}`}>
@@ -1577,6 +1261,7 @@ export const QuestionLibraryView: React.FC<QuestionLibraryViewProps> = ({
           )}
         </div>
       )}
+      {insightModal}
     </div>
   );
 };

@@ -22,7 +22,8 @@ export const MERCHANT_NAME = 'SEVNSOUL STORE, DIGITAL & KREATIF';
 
 const FULL_FEATURES = [
   'Semua materi N4 sampai N1, Kaigo, dan SSW',
-  'Tower lantai 61–100, semua tryout dan mode Dungeon',
+  'Bedah Soal tanpa batas (gratis 3 soal per hari)',
+  'Seluruh Bank Soal dan semua tryout, Tower lantai 61–100, semua mode Dungeon',
   'Deck AI dan Imersi YouTube',
   'Latihan Ekstra Recall tanpa batas',
 ];

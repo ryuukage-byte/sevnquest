@@ -96,3 +96,19 @@ test('daysUntil dan formatIdr', () => {
   assert.equal(daysUntil(null, now), null);
   assert.equal(formatIdr(14937), 'Rp 14.937');
 });
+
+test('jatah Bedah Soal harian: 3 soal berbeda, buka ulang gratis, reset esok hari', async () => {
+  const { parseAllowance, consumeDailyAllowance, FREE_DAILY_INSIGHTS } = await import('./access');
+  let a = parseAllowance(null, '2026-11-05');
+  for (const id of ['q1', 'q2', 'q3']) {
+    const r = consumeDailyAllowance(a, id, FREE_DAILY_INSIGHTS);
+    assert.equal(r.allowed, true);
+    a = r.next;
+  }
+  assert.equal(consumeDailyAllowance(a, 'q4', FREE_DAILY_INSIGHTS).allowed, false);
+  assert.equal(consumeDailyAllowance(a, 'q2', FREE_DAILY_INSIGHTS).allowed, true);
+  const stored = JSON.stringify(a);
+  assert.equal(parseAllowance(stored, '2026-11-05').ids.length, 3);
+  assert.equal(parseAllowance(stored, '2026-11-06').ids.length, 0);
+  assert.equal(parseAllowance('{rusak', '2026-11-06').ids.length, 0);
+});

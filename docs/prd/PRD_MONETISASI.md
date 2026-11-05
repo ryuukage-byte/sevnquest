@@ -1,6 +1,6 @@
 # PRD: Model Monetisasi SevnQuest / Nihongo Quest
 
-Versi: 0.6 (model donasi bulanan + lifetime)
+Versi: 0.7 (model donasi + Bedah Soal)
 Tanggal: 4 November 2026
 Status: Draft untuk review
 
@@ -100,8 +100,10 @@ Akses hanya dua tingkat:
 
 | Akses | Isi |
 |---|---|
-| **Gratis** | Kana (hiragana, katakana) dan semua materi N5, Tower lantai 001–060, tryout N5, Recall dengan batas harian, 1 putaran Latihan Ekstra per hari |
-| **Full** | Semua materi lain (N4–N1, Kaigo, SSW, JFT, materi campuran), Tower 061–100, semua tryout dan Dungeon, Deck AI (30/hari), Imersi YouTube, Latihan Ekstra tanpa batas |
+| **Gratis** | Kana (hiragana, katakana) dan semua materi N5 beserta soalnya di Bank Soal, Tower lantai 001–060, tryout N5, Recall dengan batas harian, 1 putaran Latihan Ekstra per hari, **Bedah Soal 3 soal per hari** |
+| **Full** | Semua materi lain (N4–N1, Kaigo, SSW, JFT, materi campuran) dan soalnya, Tower 061–100, semua tryout dan Dungeon, **Bedah Soal tanpa batas**, Deck AI (30/hari), Imersi YouTube, Latihan Ekstra tanpa batas |
+
+Catatan Bedah Soal (fitur #29): pengguna Gratis dapat membedah 3 soal berbeda per hari (membuka ulang soal yang sama di hari itu tidak memakai jatah). Bedah Soal dipilih sebagai "cicipan" Full karena paling terasa nilainya tepat saat pengguna salah menjawab. Soal Serupa di dalam Bedah Soal hanya diambil dari level yang terbuka bagi pengguna.
 
 Full tidak dijual sebagai paket harga tetap. Full terbuka lewat dua jalur donasi yang terpisah:
 
