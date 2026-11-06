@@ -1,6 +1,7 @@
 import React from 'react';
 import { CastleIcon, CompassIcon, ScrollIcon, BookIcon, BookmarkIcon, TrophyIcon, SettingsIcon } from '../ui/EngravingIcons';
 import { playSound } from '../../utils/audio';
+import { useMessageUnread } from '../../lib/messages';
 
 export type TabType = 'home' | 'maps' | 'daily' | 'weekly' | 'leaderboard' | 'library' | 'deck' | 'shop' | 'settings';
 
@@ -15,6 +16,8 @@ const BottomNavigationComponent: React.FC<BottomNavigationProps> = ({
   onChangeTab,
   soundEnabled = true,
 }) => {
+  const unread = useMessageUnread();
+  const menuBadge = unread.userUnread + (unread.isAdmin ? unread.adminUnread : 0);
   const navItems: { id: TabType; label: string; icon: React.ComponentType<{ className?: string }> }[] = [
     { id: 'home', label: 'Castle', icon: CastleIcon },
     { id: 'maps', label: 'World', icon: CompassIcon },
@@ -60,11 +63,19 @@ const BottomNavigationComponent: React.FC<BottomNavigationProps> = ({
               }`}
             >
               <div
-                className={`ui-icon-box p-1.5 sm:p-2 rounded-xl ${
+                className={`relative ui-icon-box p-1.5 sm:p-2 rounded-xl ${
                   isActive ? 'is-active text-indigo' : 'text-text-secondary'
                 }`}
               >
                 <Icon className="w-4 h-4 sm:w-5 sm:h-5" />
+                {item.id === 'settings' && menuBadge > 0 && (
+                  <span
+                    aria-label={`${menuBadge} pesan belum dibaca`}
+                    className="absolute -top-1 -right-1 min-w-[16px] h-4 px-1 rounded-full bg-wine-accent text-white text-[9px] font-black leading-4 text-center"
+                  >
+                    {menuBadge > 9 ? '9+' : menuBadge}
+                  </span>
+                )}
               </div>
               <span className="text-[9px] sm:text-[10px] mt-0.5 tracking-wider font-heading font-bold truncate max-w-full">
                 {item.label}

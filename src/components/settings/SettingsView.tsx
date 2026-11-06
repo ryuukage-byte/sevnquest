@@ -9,6 +9,12 @@ import { checkIsAdmin } from '../../lib/announcements';
 const AdminBroadcastPanel = lazy(() =>
   import('../announcements/AdminBroadcastPanel').then(m => ({ default: m.AdminBroadcastPanel })),
 );
+const AdminInboxPanel = lazy(() =>
+  import('../messages/AdminInboxPanel').then(m => ({ default: m.AdminInboxPanel })),
+);
+const MessagesPanel = lazy(() =>
+  import('../messages/MessagesPanel').then(m => ({ default: m.MessagesPanel })),
+);
 
 interface SettingsViewProps {
   stats: PlayerStats;
@@ -199,6 +205,13 @@ export const SettingsView: React.FC<SettingsViewProps> = ({
           </div>
         </div>
       </div>
+
+      {/* Kotak masuk pesan pemain (hanya admin; baca/balas dijaga RLS + RPC) */}
+      {isAdmin && (
+        <Suspense fallback={null}>
+          <AdminInboxPanel soundEnabled={stats.soundEnabled} />
+        </Suspense>
+      )}
 
       {/* Broadcast admin (hanya akun di tabel admins; penulisan dijaga RLS) */}
       {isAdmin && (
@@ -662,6 +675,16 @@ export const SettingsView: React.FC<SettingsViewProps> = ({
           </div>
         </div>
       </div>
+
+      {/* Pesan pemain -> admin */}
+      <Suspense fallback={null}>
+        <MessagesPanel
+          isAuthenticated={isAuthenticated}
+          onOpenAuth={onOpenAuth}
+          playerName={stats.playerName}
+          soundEnabled={stats.soundEnabled}
+        />
+      </Suspense>
 
       {/* Support & Community Section */}
       <div className="panel panel-stitched p-4 sm:p-5 space-y-4 shadow-md">

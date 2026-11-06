@@ -15,6 +15,7 @@ import { STORAGE_KEY_HOME_GUIDE } from '../../state/storageKeys';
 import { StartGuideModal, GuidePath } from './StartGuideModal';
 import { FeatureSearch, FeatureTarget } from './FeatureSearch';
 import { AnnouncementBanners } from '../announcements/AnnouncementBanners';
+import { MessageReplyBanner } from '../messages/MessageReplyBanner';
 
 export interface HomeViewProps {
   stats: PlayerStats;
@@ -123,6 +124,9 @@ export const HomeView: React.FC<HomeViewProps> = ({
     <div className="w-full max-w-lg md:max-w-2xl lg:max-w-4xl mx-auto space-y-4 md:space-y-5 pb-20 sm:pb-8 px-2 sm:px-0">
       {/* 0. PENGUMUMAN dari admin (tetap tampil selama aktif) */}
       <AnnouncementBanners soundEnabled={stats.soundEnabled} />
+
+      {/* Balasan admin untuk pemain / pesan baru untuk admin */}
+      <MessageReplyBanner onOpenSettings={() => onNavigateTab('settings')} soundEnabled={stats.soundEnabled} />
 
       {/* 1. CHARACTER AREA: karakter (kiri, fokus visual) + info pemain (kanan) */}
       <motion.div
