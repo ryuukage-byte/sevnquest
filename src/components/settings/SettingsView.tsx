@@ -4,6 +4,8 @@ import { PlayerStats } from '../../types/rpg';
 import { speakJapanese, playSound } from '../../utils/audio';
 import { signOut } from '../../lib/supabase';
 import { PwaInstallModal } from '../pwa/PwaInstallModal';
+import { SubscriptionPanel } from '../billing/SubscriptionPanel';
+import { useAccess } from '../../state/entitlement';
 
 interface SettingsViewProps {
   stats: PlayerStats;
@@ -58,6 +60,7 @@ export const SettingsView: React.FC<SettingsViewProps> = ({
   onUpdateName,
   onReplayTutorial,
 }) => {
+  const { openUpgrade } = useAccess();
   const [playerNameInput, setPlayerNameInput] = useState(stats.playerName || '');
   const [isNameSaved, setIsNameSaved] = useState(false);
   const [deferredPrompt, setDeferredPrompt] = useState<any>(() => {
@@ -636,6 +639,8 @@ export const SettingsView: React.FC<SettingsViewProps> = ({
         </div>
       </div>
 
+      <SubscriptionPanel soundEnabled={stats.soundEnabled} />
+
       {/* Support & Community Section */}
       <div className="panel panel-stitched p-4 sm:p-5 space-y-4 shadow-md">
         <h3 className="text-xs font-bold uppercase tracking-wider text-text-secondary flex items-center gap-1.5 font-heading">
@@ -643,19 +648,17 @@ export const SettingsView: React.FC<SettingsViewProps> = ({
         </h3>
 
         <div className="flex flex-col sm:flex-row gap-3">
-          <a
-            href="https://teer.id/sevnsoul"
-            target="_blank"
-            rel="noopener noreferrer"
-            onClick={() => playSound('click')}
+          <button
+            type="button"
+            onClick={() => { playSound('click'); openUpgrade(); }}
             className="flex-1 py-3 px-4 rounded-xl bg-surface-inset hover:bg-surface-elevated border border-border-subtle hover:border-border-primary flex flex-col items-center justify-center gap-2 transition-all group shadow-sm"
           >
             <Coffee className="w-5 h-5 text-gold group-hover:scale-110 transition-transform" />
             <div className="text-center">
               <div className="text-xs font-bold text-text-primary font-heading">Dukung Developer</div>
-              <div className="text-[10px] text-text-muted">via Trakteer (teer.id)</div>
+              <div className="text-[10px] text-text-muted">via QRIS (semua e-wallet & bank)</div>
             </div>
-          </a>
+          </button>
 
           <a
             href="https://ngl.link/sevnsouls"

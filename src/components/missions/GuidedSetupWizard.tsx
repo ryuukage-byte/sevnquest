@@ -7,6 +7,7 @@ import {
 } from '../../engine/curriculum/curriculum';
 import { getCurriculum, getFoundation } from '../../engine/curriculum/sources';
 import { playSound } from '../../utils/audio';
+import { useAccess } from '../../state/entitlement';
 
 interface GuidedSetupWizardProps {
   initial?: GuidedProfile;
@@ -127,6 +128,7 @@ const Field: React.FC<{ title: string; hint?: React.ReactNode; children: React.R
 
 export const GuidedSetupWizard: React.FC<GuidedSetupWizardProps> = ({ initial, hasActivePlan, mastery, soundEnabled = true, onSubmit, onCancel }) => {
   const [profile, setProfile] = useState<GuidedProfile>(() => ({ ...DEFAULT_PROFILE, ...initial, mode: initial ? (initial.mode ?? 'time') : 'deadline' }));
+  const { guardLevel } = useAccess();
   const set = <K extends keyof GuidedProfile>(key: K, value: GuidedProfile[K]) => {
     playSound('click', soundEnabled);
     setProfile(prev => {
@@ -398,7 +400,11 @@ export const GuidedSetupWizard: React.FC<GuidedSetupWizardProps> = ({ initial, h
         <div className="flex items-center gap-2 relative z-10">
           <button
             disabled={gapTotal === 0}
-            onClick={() => { playSound('correct', soundEnabled); onSubmit(profile); }}
+            onClick={() => {
+              if (!guardLevel(profile.targetLevel, `Program belajar ${profile.targetLevel}`)) return;
+              playSound('correct', soundEnabled);
+              onSubmit(profile);
+            }}
             className="btn-cta flex-1 py-2.5 px-5 text-xs flex items-center justify-center gap-1.5 disabled:opacity-50"
           >
             {hasActivePlan ? 'Simpan & Susun Ulang' : analysis.feasible ? 'Mulai Program' : 'Mulai sebagai Program Prioritas'}

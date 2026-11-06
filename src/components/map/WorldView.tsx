@@ -7,6 +7,7 @@ import { playSound } from '../../utils/audio';
 import { DungeonType, DungeonPayload, generateDungeonSession } from '../../utils/dungeonGenerator';
 import { TextStudyDungeonModal } from '../dungeon/TextStudyDungeonModal';
 import { ImmersionDungeonModal } from '../dungeon/ImmersionDungeonModal';
+import { useAccess } from '../../state/entitlement';
 import { GrammarFusionModal } from '../dungeon/fusion/GrammarFusionModal';
 import { DungeonPortalHub } from '../dungeon/DungeonPortalHub';
 import { DungeonSetupModal } from '../dungeon/DungeonSetupModal';
@@ -65,6 +66,7 @@ export const WorldView: React.FC<WorldViewProps> = ({
   const [setupDungeonType, setSetupDungeonType] = useState<DungeonType | null>(null);
   const [textStudyOpen, setTextStudyOpen] = useState(false);
   const [immersionOpen, setImmersionOpen] = useState(false);
+  const { guardFeature } = useAccess();
   const [fusionOpen, setFusionOpen] = useState(false);
   const [activeDungeonPayload, setActiveDungeonPayload] = useState<DungeonPayload | null>(null);
 
@@ -228,7 +230,7 @@ export const WorldView: React.FC<WorldViewProps> = ({
             } else if (type === 'grammar_fusion') {
               setFusionOpen(true);
             } else if (type === 'immersion') {
-              setImmersionOpen(true);
+              if (guardFeature('immersion', 'Imersi YouTube')) setImmersionOpen(true);
             } else if (type === 'blackboard') {
               try {
                 playSound('attack', soundEnabled);

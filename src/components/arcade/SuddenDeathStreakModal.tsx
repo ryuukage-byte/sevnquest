@@ -24,6 +24,7 @@ import { OFFICIAL_BOOKS } from '../../data/officialBooks';
 import { getKotobaPoolForBook } from '../../utils/arcadeSourceUtils';
 import { ArcadeSourceSelector } from './ArcadeSourceSelector';
 import { calcEngineExp, getEntityBaseExp } from '../../utils/rewards';
+import { useArcadeGuard } from './useArcadeGuard';
 
 interface SuddenDeathStreakModalProps {
   isOpen: boolean;
@@ -80,6 +81,7 @@ export const SuddenDeathStreakModal: React.FC<SuddenDeathStreakModalProps> = ({
   onCompleteStudyItem,
 }) => {
   const [sourceType, setSourceType] = useState<'LEVEL' | 'TEMPLATE_BOOK'>('LEVEL');
+  const guardArcade = useArcadeGuard();
   const [selectedLevel, setSelectedLevel] = useState<LevelFilter>('N5');
   const [selectedBookId, setSelectedBookId] = useState<string>('book_theme_body');
   const [gameState, setGameState] = useState<'ready' | 'playing' | 'gameover'>('ready');
@@ -210,6 +212,7 @@ export const SuddenDeathStreakModal: React.FC<SuddenDeathStreakModalProps> = ({
 
   // Start / Restart game
   const handleStartGame = () => {
+    if (!guardArcade(sourceType, selectedLevel, selectedBookId)) return;
     playSound('attack', soundEnabled);
     setLives(3);
     setCurrentStreak(0);

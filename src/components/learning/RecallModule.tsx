@@ -18,6 +18,8 @@ import { BUNPOU_DATABASE } from '../../data/bunpou';
 import { FusionPlayer, readReduceMotion } from '../dungeon/fusion/GrammarFusionModal';
 import { buildFreeStage } from '../../engine/fusion/freeStage';
 import { getFusionPatterns } from '../../data/fusion/verbPool';
+import { useAccess } from '../../state/entitlement';
+import { safeGetItem, safeSetItem } from '../../utils/storage';
 
 interface RecallModuleProps {
   recallQueue: RecallQueueItem[];
@@ -74,7 +76,17 @@ export const RecallModule: React.FC<RecallModuleProps> = ({
   }, [liveRecallQueue, recallQueue.length]);
   // Latihan ekstra setelah target harian / kuota materi baru tercapai: sesi kecil, tetap berurut prioritas.
   const [isExtraSession, setIsExtraSession] = useState(false);
+  const { canAccessTier, openUpgrade } = useAccess();
   const startExtraSession = () => {
+    // Gratis: 1 putaran Latihan Ekstra per hari; Full tanpa batas (PRD bagian 4).
+    if (!canAccessTier('full')) {
+      const key = 'sevnquest_extra_recall_day';
+      if (safeGetItem(key) === today) {
+        openUpgrade({ requiredTier: 'full', label: 'Latihan Ekstra tanpa batas' });
+        return;
+      }
+      safeSetItem(key, today);
+    }
     // Sesi baru: identitas, penghitung, dan penanda ekstra direset (jangan bentrok dengan sesi sebelumnya).
     sessionKeyRef.current = `${Date.now().toString(36)}${Math.random().toString(36).slice(2, 8)}`;
     progressRef.current = { answered: 0, correct: 0, exp: 0, finished: false };

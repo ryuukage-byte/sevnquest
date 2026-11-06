@@ -40,6 +40,7 @@ import { playSound, speakJapanese } from '../../utils/audio';
 import { useBackButton } from '../../hooks/useBackButton';
 import { KanjiDetailModal } from './KanjiDetailModal';
 import { recordKanjiWriting } from '../../utils/kanjiWritingRecord';
+import { withLevelGate } from '../billing/AccessGate';
 
 const SOURCES = { kotoba: KOTOBA_DATABASE, kanji: KANJI_DATABASE };
 
@@ -80,7 +81,7 @@ interface KotobaInsightModalProps {
   ) => void;
 }
 
-export const KotobaInsightModal: React.FC<KotobaInsightModalProps> = ({
+const KotobaInsightModalInner: React.FC<KotobaInsightModalProps> = ({
   isOpen,
   onClose,
   item,
@@ -1394,3 +1395,5 @@ const QuizStep: React.FC<{
     </div>
   );
 };
+
+export const KotobaInsightModal = withLevelGate(KotobaInsightModalInner, { getLevel: p => p.item?.jlpt, isOpen: p => p.isOpen, getClose: p => p.onClose, labelPrefix: 'Kotoba' });

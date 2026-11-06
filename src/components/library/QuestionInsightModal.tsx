@@ -25,6 +25,7 @@ import { KOTOBA_DATABASE } from '../../data/kotoba';
 import { KANJI_DATABASE } from '../../data/kanji';
 import { BUNPOU_DATABASE } from '../../data/bunpou';
 import { getQuestionLibrary, type UnifiedQuestionItem } from '../../data/questionLibrary';
+import { useAccess } from '../../state/entitlement';
 import {
   QUESTION_STEP_TITLE,
   buildQuestionInsight,
@@ -114,7 +115,10 @@ export const QuestionInsightModal: React.FC<QuestionInsightModalProps> = ({
     }
   }, [question, userAnswer]);
 
-  const insight = useMemo(() => (current ? buildQuestionInsight(current, SOURCES, getQuestionLibrary()) : null), [current]);
+  // Soal Serupa hanya diambil dari level yang terbuka untuk pengguna (gating lunak, PRD 6.4).
+  const { canAccessLevel } = useAccess();
+  const pool = useMemo(() => getQuestionLibrary().filter(q => canAccessLevel(q.level)), [canAccessLevel]);
+  const insight = useMemo(() => (current ? buildQuestionInsight(current, SOURCES, pool) : null), [current, pool]);
 
   useEffect(() => {
     bodyRef.current?.scrollTo({ top: 0 });

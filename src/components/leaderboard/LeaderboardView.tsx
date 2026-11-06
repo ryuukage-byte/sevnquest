@@ -9,8 +9,10 @@ import {
   ChevronDown,
   ChevronUp,
   WifiOff,
-  Swords
+  Swords,
+  Heart
 } from 'lucide-react';
+import { DonorBoard } from '../billing/DonorBoard';
 import {
   getLeaderboard,
   getWeeklyLeaderboard,
@@ -53,6 +55,7 @@ export const LeaderboardView: React.FC<LeaderboardViewProps> = ({
   isActive = true,
 }) => {
   const [activeTab, setActiveTab] = useState<LeaderboardTab>('all-time');
+  const [showDonors, setShowDonors] = useState(false);
 
   // Muat cache (bila ada) agar tampil instan; tanpa cache daftar kosong sampai data server tiba
   const [allTimeEntries, setAllTimeEntries] = useState<LeaderboardEntry[]>(() => {
@@ -284,9 +287,10 @@ export const LeaderboardView: React.FC<LeaderboardViewProps> = ({
         <button
           onClick={() => {
             setActiveTab('all-time');
+            setShowDonors(false);
             playSound('click', soundEnabled);
           }}
-          className={`skeuo-tier-pill flex-1 flex justify-center items-center gap-2 ${activeTab === 'all-time' ? 'active' : ''}`}
+          className={`skeuo-tier-pill flex-1 flex justify-center items-center gap-2 ${activeTab === 'all-time' && !showDonors ? 'active' : ''}`}
         >
           <Trophy className="w-4 h-4" />
           Hall of Fame
@@ -294,15 +298,27 @@ export const LeaderboardView: React.FC<LeaderboardViewProps> = ({
         <button
           onClick={() => {
             setActiveTab('weekly');
+            setShowDonors(false);
             playSound('click', soundEnabled);
           }}
-          className={`skeuo-tier-pill flex-1 flex justify-center items-center gap-2 ${activeTab === 'weekly' ? 'active' : ''}`}
+          className={`skeuo-tier-pill flex-1 flex justify-center items-center gap-2 ${activeTab === 'weekly' && !showDonors ? 'active' : ''}`}
         >
           <Flame className="w-4 h-4" />
           Weekly Arena
         </button>
+        <button
+          onClick={() => {
+            setShowDonors(true);
+            playSound('click', soundEnabled);
+          }}
+          className={`skeuo-tier-pill flex-1 flex justify-center items-center gap-2 ${showDonors ? 'active' : ''}`}
+        >
+          <Heart className="w-4 h-4" />
+          Donatur
+        </button>
       </div>
 
+      {showDonors ? <DonorBoard /> : (<>
       {/* Description Context & Connection Status */}
       <div className="px-3.5 py-2.5 text-xs text-center text-text-secondary bg-surface-inset rounded-xl border border-border-subtle flex flex-col sm:flex-row items-center justify-between gap-1.5 shadow-inner">
         <span className="font-medium">
@@ -552,6 +568,8 @@ export const LeaderboardView: React.FC<LeaderboardViewProps> = ({
           </div>
         </div>
       )}
+
+      </>)}
 
       {/* Player Profile Portal Modal (Teleported to document.body) */}
       <PlayerProfileModal

@@ -27,6 +27,7 @@ import { getGrammarSkillNodes } from '../../utils/bunpouSkillAdapter';
 import { useBackButton } from '../../hooks/useBackButton';
 import { getGrammarAnimationRecipe } from '../../data/grammarAnimations';
 import { GrammarAnimation } from './GrammarAnimation';
+import { withLevelGate } from '../billing/AccessGate';
 
 interface BunpouDetailModalProps {
   item: BunpouItem;
@@ -137,7 +138,7 @@ const SCRAPBOOK_TABS: ScrapbookTabMeta[] = [
   },
 ];
 
-export const BunpouDetailModal: React.FC<BunpouDetailModalProps> = ({
+const BunpouDetailModalInner: React.FC<BunpouDetailModalProps> = ({
   item,
   masteryRecord,
   onClose,
@@ -1184,3 +1185,5 @@ export const BunpouDetailModal: React.FC<BunpouDetailModalProps> = ({
     document.body
   );
 };
+
+export const BunpouDetailModal = withLevelGate(BunpouDetailModalInner, { getLevel: p => p.item?.level, isOpen: () => true, getClose: p => p.onClose, labelPrefix: 'Bunpou' });

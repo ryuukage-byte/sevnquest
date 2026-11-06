@@ -27,6 +27,10 @@ import { useTheme } from './hooks/useTheme';
 import { usePersistence } from './hooks/usePersistence';
 import { useCloudSync } from './hooks/useCloudSync';
 import { usePlayerActions } from './hooks/usePlayerActions';
+import { EntitlementProvider } from './state/entitlement';
+import { ExpiryBanner } from './components/billing/ExpiryBanner';
+import { AdminHeaderButton } from './components/billing/AdminHeaderButton';
+import { BootSplash } from './components/common/BootSplash';
 
 export default function App() {
   // State inti (diinisialisasi dari localStorage lewat state/loadPlayerState.ts)
@@ -63,7 +67,7 @@ export default function App() {
     setStats(prev => ({ ...prev, todayStudySeconds: todaySec, totalStudySeconds: totalSec, lastStudyDate: studyDate }));
   }, []);
 
-  const { isAuthenticated, setIsAuthenticated, cloudSyncStatus, lastSyncedAt, saveToCloud } = useCloudSync({
+  const { isAuthenticated, setIsAuthenticated, authChecked, cloudSyncStatus, lastSyncedAt, saveToCloud } = useCloudSync({
     stats, stageProgress, dailyMissions, weeklyMissions,
     statsRef, stageProgressRef, dailyMissionsRef, weeklyMissionsRef,
     setStats, setStageProgress, setDailyMissions, setWeeklyMissions, showToast,
@@ -86,7 +90,34 @@ export default function App() {
   } = actions;
 
 
+  // Wajib login (PRD 6.4): tanpa sesi, hanya layar masuk/daftar yang tampil.
+  // Progres lokal tamu tidak hilang: useCloudSync menggabungkannya ke akun saat login pertama.
+  if (!authChecked) return <BootSplash />;
+  if (!isAuthenticated) {
+    return (
+      <div className="min-h-[100dvh] bg-surface-base text-text-primary flex flex-col items-center justify-center gap-3 p-4">
+        <div className="flex items-center gap-2.5">
+          <div className="w-10 h-10 rounded-xl bg-surface-inset border border-border-subtle flex items-center justify-center">
+            <Swords className="w-5 h-5 text-gold" />
+          </div>
+          <div>
+            <div className="text-sm font-bold tracking-widest font-heading">SevnQuest</div>
+            <div className="text-[10px] text-text-secondary font-mono tracking-wider">The Learning World</div>
+          </div>
+        </div>
+        <AuthModal
+          isOpen
+          isMandatory
+          onClose={() => {}}
+          onSuccess={() => setIsAuthenticated(true)}
+          soundEnabled={stats.soundEnabled}
+        />
+      </div>
+    );
+  }
+
   return (
+    <EntitlementProvider userId={stats.userId} isAuthenticated={isAuthenticated} soundEnabled={stats.soundEnabled}>
     <div 
       className="min-h-[100dvh] flex flex-col font-sans antialiased bg-surface-base text-text-primary selection:bg-gold selection:text-surface-base md:pl-24"
       style={{
@@ -139,6 +170,7 @@ export default function App() {
 
           {/* Quick HUD in Header */}
           <div className="flex items-center gap-1.5 sm:gap-2.5 text-xs">
+            <AdminHeaderButton />
             {/* Today's Study Time Tracker */}
             <StudyTimerBadge
               isStudying={isStudying}
@@ -150,6 +182,8 @@ export default function App() {
           </div>
         </div>
       </header>
+
+      <ExpiryBanner />
 
       <MainContent
         {...nav}
@@ -199,5 +233,6 @@ export default function App() {
         soundEnabled={stats.soundEnabled}
       />
     </div>
+    </EntitlementProvider>
   );
 }

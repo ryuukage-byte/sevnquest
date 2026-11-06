@@ -11,6 +11,7 @@ import { DeckBookmarkPicker } from '../deck/DeckBookmarkPicker';
 import { useBackButton } from '../../hooks/useBackButton';
 import { KOTOBA_DATABASE } from '../../data/kotoba';
 import { KotobaDetailModal } from './KotobaDetailModal';
+import { withLevelGate } from '../billing/AccessGate';
 
 interface KanjiDetailModalProps {
   isOpen: boolean;
@@ -30,7 +31,7 @@ interface KanjiDetailModalProps {
   onCompleteSheet?: (sheetNumber: number, score: number, reward?: WritingRewardResult) => void;
 }
 
-export const KanjiDetailModal: React.FC<KanjiDetailModalProps> = ({
+const KanjiDetailModalInner: React.FC<KanjiDetailModalProps> = ({
   isOpen,
   onClose,
   item,
@@ -204,3 +205,5 @@ export const KanjiDetailModal: React.FC<KanjiDetailModalProps> = ({
     document.body
   );
 };
+
+export const KanjiDetailModal = withLevelGate(KanjiDetailModalInner, { getLevel: p => p.item?.jlpt, isOpen: p => p.isOpen, getClose: p => p.onClose, labelPrefix: 'Kanji' });
