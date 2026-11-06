@@ -1,9 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, lazy, Suspense } from 'react';
 import { Volume2, VolumeX, RotateCcw, ShieldAlert, Settings, BookOpen, User, LogOut, Coffee, MessageCircle, Sun, Moon, RefreshCw, Cloud, Check, Compass, Smartphone, Download, Play } from 'lucide-react';
 import { PlayerStats } from '../../types/rpg';
 import { speakJapanese, playSound } from '../../utils/audio';
 import { signOut } from '../../lib/supabase';
 import { PwaInstallModal } from '../pwa/PwaInstallModal';
+import { checkIsAdmin } from '../../lib/announcements';
+
+const AdminBroadcastPanel = lazy(() =>
+  import('../announcements/AdminBroadcastPanel').then(m => ({ default: m.AdminBroadcastPanel })),
+);
 
 interface SettingsViewProps {
   stats: PlayerStats;
@@ -67,6 +72,21 @@ export const SettingsView: React.FC<SettingsViewProps> = ({
     return null;
   });
   const [showInstallGuide, setShowInstallGuide] = useState(false);
+  const [isAdmin, setIsAdmin] = useState(false);
+
+  useEffect(() => {
+    if (!isAuthenticated) {
+      setIsAdmin(false);
+      return;
+    }
+    let cancelled = false;
+    void checkIsAdmin().then(v => {
+      if (!cancelled) setIsAdmin(v);
+    });
+    return () => {
+      cancelled = true;
+    };
+  }, [isAuthenticated]);
   const [isStandalone, setIsStandalone] = useState<boolean>(() => {
     if (typeof window === 'undefined') return false;
     return (
@@ -179,6 +199,13 @@ export const SettingsView: React.FC<SettingsViewProps> = ({
           </div>
         </div>
       </div>
+
+      {/* Broadcast admin (hanya akun di tabel admins; penulisan dijaga RLS) */}
+      {isAdmin && (
+        <Suspense fallback={null}>
+          <AdminBroadcastPanel />
+        </Suspense>
+      )}
 
       {/* Account Section */}
       <div className="panel panel-stitched p-4 sm:p-5 space-y-4 shadow-md">

@@ -14,7 +14,7 @@ import {
   Presentation,
   Library,
   Headphones,
-  Sparkles
+  Atom
 } from 'lucide-react';
 import { DungeonType } from '../../utils/dungeonGenerator';
 import { playSound } from '../../utils/audio';
@@ -117,7 +117,7 @@ const DUNGEON_GATES: DungeonGateInfo[] = [
     type: 'grammar_fusion',
     title: 'Bunpou Dungeon: Grammar Fusion',
     accentColor: 'hover:border-border-primary',
-    icon: Sparkles,
+    icon: Atom,
     description: 'Lebur komponen tata bahasa ke kata dasar dan lihat 食べる berubah jadi 食べないでください.',
     expPerQuestion: 60,
     goldPerQuestion: 30,
