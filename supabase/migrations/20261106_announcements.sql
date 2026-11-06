@@ -4,6 +4,9 @@
 -- - Siapa pun (anon & login) hanya dapat MEMBACA pengumuman yang terbit dan masih dalam jendela waktunya.
 -- - Hanya admin (public.is_admin() -> tabel public.admins) yang dapat membaca semua, membuat, mengubah, menghapus.
 -- - Bergantung pada fungsi public.is_admin() yang sudah ada di proyek live.
+-- STATUS: DITERAPKAN 2026-11-06 ke proyek iokhdhqnpslpwsxspvaj (sevnquestnihongo) atas persetujuan pemilik,
+-- tercatat di supabase_migrations.schema_migrations sebagai 20261106130732_announcements. RLS diverifikasi:
+-- anon & non-admin hanya melihat yang terbit; INSERT non-admin ditolak.
 -- File ini idempoten; aman dijalankan ulang.
 -- ============================================================================
 
