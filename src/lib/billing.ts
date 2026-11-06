@@ -70,6 +70,41 @@ export async function createPaymentOrder(kind: DonationKind, amountIdr: number):
   return data as PaymentOrder;
 }
 
+export async function fetchOrder(orderId: string): Promise<PaymentOrder | null> {
+  const { data, error } = await supabase.from('payment_orders').select('*').eq('id', orderId).maybeSingle();
+  if (error) throw error;
+  return (data as PaymentOrder) || null;
+}
+
+export interface GatewayEvent {
+  received_at: string;
+  amount_idr: number | null;
+  result: 'approved' | 'unmatched' | 'ambiguous' | 'no_amount' | string;
+  raw_text: string | null;
+  order_code: string | null;
+}
+
+export interface GatewayStatus {
+  configured: boolean;
+  key_created_at: string | null;
+  last_event_at: string | null;
+  events: GatewayEvent[];
+}
+
+export async function adminGatewayStatus(): Promise<GatewayStatus> {
+  const { data, error } = await supabase.rpc('admin_gateway_status');
+  if (error) throw error;
+  const d = (data || {}) as Partial<GatewayStatus>;
+  return { configured: !!d.configured, key_created_at: d.key_created_at ?? null, last_event_at: d.last_event_at ?? null, events: d.events || [] };
+}
+
+/** Buat kunci webhook baru (kunci lama langsung tidak berlaku). Kunci hanya ditampilkan sekali. */
+export async function adminRotateGatewayKey(): Promise<string> {
+  const { data, error } = await supabase.rpc('admin_rotate_gateway_key');
+  if (error) throw error;
+  return String(data);
+}
+
 export async function listMyOrders(): Promise<PaymentOrder[]> {
   const { data, error } = await supabase
     .from('payment_orders')

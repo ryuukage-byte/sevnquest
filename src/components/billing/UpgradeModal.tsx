@@ -10,7 +10,7 @@ import {
   type Entitlement,
 } from '../../utils/access';
 import {
-  billingErrorMessage, cancelPaymentOrder, createPaymentOrder, listMyOrders, submitPaymentClaim, uploadPaymentProof,
+  billingErrorMessage, cancelPaymentOrder, createPaymentOrder, fetchOrder, listMyOrders, submitPaymentClaim, uploadPaymentProof,
   type DonationKind, type PaymentOrder,
 } from '../../lib/billing';
 import type { UpgradeRequest } from '../../state/entitlement';
@@ -429,32 +429,64 @@ const OrderRow: React.FC<{ order: PaymentOrder; onOpen: () => void }> = ({ order
   </button>
 );
 
-const QrisCard: React.FC = () => (
-  <div className="space-y-2">
-    <div className="rounded-2xl overflow-hidden border border-border-subtle bg-white mx-auto max-w-[280px] p-2">
-      <img
-        src={QRIS_IMAGE_URL}
-        alt={`QRIS ${MERCHANT_NAME}`}
-        className="w-full h-auto block"
-        style={{ imageRendering: 'pixelated' }}
-        loading="eager"
-      />
-      <div className="text-center pb-1 pt-0.5 leading-tight">
-        <div className="text-[11px] font-bold text-neutral-900">QRIS · {MERCHANT_NAME}</div>
-        <div className="text-[10px] text-neutral-600 font-mono">NMID {MERCHANT_NMID}</div>
+/**
+ * QRIS untuk dibayar. Dengan `amount`, kode QR dibuat ulang dari QRIS statis merchant dengan nominal terisi
+ * (QRIS bernominal); pembeli cukup scan. Bila pembuatan gagal, jatuh ke gambar QRIS statis.
+ */
+const QrisCard: React.FC<{ amount?: number }> = ({ amount }) => {
+  const [dataUrl, setDataUrl] = useState<string | null>(null);
+  useEffect(() => {
+    let cancelled = false;
+    setDataUrl(null);
+    if (!amount) return;
+    (async () => {
+      try {
+        const [{ default: QRCode }, { toDynamicQris, MERCHANT_STATIC_QRIS }] = await Promise.all([
+          import('qrcode'),
+          import('../../utils/qris'),
+        ]);
+        const url = await QRCode.toDataURL(toDynamicQris(MERCHANT_STATIC_QRIS, amount), {
+          errorCorrectionLevel: 'M', margin: 2, width: 560,
+        });
+        if (!cancelled) setDataUrl(url);
+      } catch (err) {
+        console.warn('[qris] gagal membuat QRIS bernominal, memakai QRIS statis:', err);
+      }
+    })();
+    return () => { cancelled = true; };
+  }, [amount]);
+
+  const src = dataUrl || QRIS_IMAGE_URL;
+  return (
+    <div className="space-y-2">
+      <div className="rounded-2xl overflow-hidden border border-border-subtle bg-white mx-auto max-w-[280px] p-2">
+        <img
+          src={src}
+          alt={`QRIS ${MERCHANT_NAME}`}
+          className="w-full h-auto block"
+          style={{ imageRendering: 'pixelated' }}
+          loading="eager"
+        />
+        <div className="text-center pb-1 pt-0.5 leading-tight">
+          <div className="text-[11px] font-bold text-neutral-900">QRIS · {MERCHANT_NAME}</div>
+          <div className="text-[10px] text-neutral-600 font-mono">NMID {MERCHANT_NMID}</div>
+          {dataUrl && amount ? (
+            <div className="text-[11px] font-bold text-neutral-900 mt-0.5">Nominal terisi: {formatIdr(amount)}</div>
+          ) : null}
+        </div>
+      </div>
+      <div className="flex justify-center">
+        <a
+          href={src}
+          download={dataUrl ? `QRIS-SevnQuest-${amount}.png` : 'QRIS-SevnQuest.png'}
+          className="inline-flex items-center gap-1.5 text-[11px] text-text-secondary hover:text-text-primary px-3 py-1.5 rounded-xl border border-border-subtle bg-surface-inset"
+        >
+          <Download className="w-3.5 h-3.5" /> Simpan gambar QRIS (untuk scan dari galeri)
+        </a>
       </div>
     </div>
-    <div className="flex justify-center">
-      <a
-        href={QRIS_IMAGE_URL}
-        download="QRIS-SevnQuest.png"
-        className="inline-flex items-center gap-1.5 text-[11px] text-text-secondary hover:text-text-primary px-3 py-1.5 rounded-xl border border-border-subtle bg-surface-inset"
-      >
-        <Download className="w-3.5 h-3.5" /> Simpan gambar QRIS (untuk scan dari galeri)
-      </a>
-    </div>
-  </div>
-);
+  );
+};
 
 const OrderView: React.FC<{
   order: PaymentOrder;
@@ -468,6 +500,25 @@ const OrderView: React.FC<{
   const [file, setFile] = useState<File | null>(null);
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
+
+  // Pantau status: pembayaran yang terdeteksi otomatis langsung terlihat tanpa memuat ulang.
+  useEffect(() => {
+    if (order.status !== 'pending' && order.status !== 'claimed' && order.status !== 'expired') return;
+    let stopped = false;
+    const tick = async () => {
+      try {
+        const fresh = await fetchOrder(order.id);
+        if (!stopped && fresh && fresh.status !== order.status) {
+          if (fresh.status === 'paid') playSound('fanfare', soundEnabled);
+          onUpdated(fresh);
+        }
+      } catch {
+        /* coba lagi pada putaran berikutnya */
+      }
+    };
+    const timer = setInterval(tick, 8000);
+    return () => { stopped = true; clearInterval(timer); };
+  }, [order.id, order.status]);
 
   const expired = order.status === 'pending' && Date.parse(order.expires_at) < Date.now();
   const canClaim = order.status === 'pending' || order.status === 'claimed' || order.status === 'expired';
@@ -549,7 +600,7 @@ const OrderView: React.FC<{
       {order.status === 'claimed' && (
         <div className="p-3.5 rounded-2xl border border-indigo/40 bg-indigo/10 text-xs text-text-primary flex gap-2">
           <Clock className="w-4 h-4 text-indigo shrink-0 mt-0.5" />
-          <p>Klaim diterima. Admin mencocokkan pembayaran setiap malam; donasi tercatat <b>paling lambat 1×24 jam</b>. Kamu boleh menutup halaman ini.</p>
+          <p>Klaim diterima. Pembayaran biasanya terdeteksi otomatis; bila tidak, admin mengecek setiap malam dan donasi tercatat <b>paling lambat 1×24 jam</b>. Kamu boleh menutup halaman ini.</p>
         </div>
       )}
 
@@ -562,8 +613,8 @@ const OrderView: React.FC<{
               {copied ? <Check className="w-5 h-5 text-emerald-400" /> : <Copy className="w-5 h-5 opacity-70" />}
             </button>
             <p className="text-[11px] text-text-muted">
-              Harga {formatIdr(order.base_price_idr)} dikurangi kode unik {order.unique_code}. Nominal yang persis dipakai untuk
-              mencocokkan pembayaran ke akunmu — jangan dibulatkan.
+              Donasi {formatIdr(order.base_price_idr)} dikurangi kode unik {order.unique_code}. Nominal persis ini yang dipakai untuk
+              mencocokkan pembayaran ke akunmu secara otomatis.
             </p>
             {order.status === 'pending' && (
               <p className={`text-[11px] ${expired ? 'text-rose-400' : 'text-text-secondary'}`}>
@@ -572,14 +623,14 @@ const OrderView: React.FC<{
             )}
           </div>
 
-          <QrisCard />
+          <QrisCard amount={order.amount_idr} />
 
           <ol className="text-xs text-text-secondary space-y-1 list-decimal pl-5">
             <li>Buka e-wallet atau m-banking apa pun yang mendukung QRIS.</li>
             <li>Scan QRIS di atas (atau simpan gambarnya lalu scan dari galeri).</li>
-            <li>Pastikan nama merchant <b>{MERCHANT_NAME}</b>.</li>
-            <li>Ketik nominal <b className="text-gold">{formatIdr(order.amount_idr)}</b> persis, lalu bayar.</li>
-            <li>Kembali ke sini dan tekan <b>Saya sudah bayar</b>.</li>
+            <li>Pastikan nama merchant <b>{MERCHANT_NAME}</b> dan nominal <b className="text-gold">{formatIdr(order.amount_idr)}</b> (sudah terisi; bila aplikasi tetap meminta nominal, ketik persis angka itu).</li>
+            <li>Bayar. Biasanya terverifikasi otomatis dalam 1–2 menit dan halaman ini berubah sendiri.</li>
+            <li>Belum berubah setelah beberapa menit? Tekan <b>Saya sudah bayar</b> supaya admin mengecek.</li>
           </ol>
 
           {canClaim && (

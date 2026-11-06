@@ -3,6 +3,7 @@ import { X, Loader2, Check, Ban, RefreshCw, Image as ImageIcon, ShieldCheck } fr
 import { playSound } from '../../utils/audio';
 import { useBackButton } from '../../hooks/useBackButton';
 import { formatIdr, planLabel } from '../../utils/access';
+import { AutoVerifyPanel } from './AutoVerifyPanel';
 import {
   adminApprove, adminListOrders, adminProofUrl, adminReject, billingErrorMessage, type AdminOrder, type OrderStatus,
 } from '../../lib/billing';
@@ -133,9 +134,11 @@ export const AdminPaymentsModal: React.FC<{ onClose: () => void; soundEnabled?: 
 
         <div className="p-3 sm:p-4 space-y-3">
           <p className="text-[11px] text-text-muted leading-relaxed">
-            Buka riwayat transaksi di app GoPay Merchant. Cocokkan <b>nominal persis</b> dan jam bayar, lalu setujui.
-            Jangan menyetujui hanya dari screenshot. Diurutkan: yang sudah klaim dulu, lalu menurut nominal.
+            Pesanan yang nominalnya terbaca dari notifikasi HP disetujui otomatis. Sisanya: buka riwayat transaksi di app
+            GoPay Merchant, cocokkan <b>nominal persis</b> dan jam bayar, lalu setujui. Jangan menyetujui hanya dari screenshot.
           </p>
+
+          <AutoVerifyPanel />
 
           <div className="flex gap-1.5 text-xs font-bold">
             {FILTERS.map(f => (
