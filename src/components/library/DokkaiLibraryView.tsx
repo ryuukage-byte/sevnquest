@@ -3,7 +3,8 @@
 // Setiap bacaan dibuka di DokkaiStudyModal: Baca & Pahami → Kotoba·Kanji·Pola → Inti → 3 Soal.
 
 import React, { useMemo, useState } from 'react';
-import { BookOpen, FileText, Search, Sparkles, Wand2 } from 'lucide-react';
+import { BookOpen, FileText, Search } from 'lucide-react';
+import { RpgBrushIcon, RpgScrollIcon } from '../ui/RpgLineIcons';
 import { getDokkaiCollection } from '../../engine/dokkaiStudy/collection';
 import { generateDokkai, templatesForLevel } from '../../engine/dokkaiStudy/generator';
 import { DOKKAI_LEVELS, type DokkaiLevel, type DokkaiPassage, type DokkaiSource } from '../../engine/dokkaiStudy/types';
@@ -105,7 +106,7 @@ export const DokkaiLibraryView: React.FC<Props> = ({ soundEnabled = true, onComp
 
         <div className="panel panel-stitched p-5 rounded-3xl border border-border-subtle lg:col-span-2 space-y-3">
           <div className="flex items-center gap-2">
-            <Wand2 className="w-4 h-4 text-gold" />
+            <RpgBrushIcon className="w-4 h-4 text-gold" />
             <h3 className="text-sm font-bold font-heading text-text-primary">Rakit Dokkai Baru</h3>
           </div>
           <p className="text-xs text-text-secondary">
@@ -118,18 +119,19 @@ export const DokkaiLibraryView: React.FC<Props> = ({ soundEnabled = true, onComp
               </button>
             ))}
           </div>
-          <select
-            value={genTemplate}
-            onChange={e => setGenTemplate(e.target.value)}
-            className="w-full bg-surface border border-border-subtle rounded-xl text-xs px-2 py-2 text-text-primary cursor-pointer"
-            aria-label="Jenis bacaan"
-          >
-            <option value="random">Jenis bacaan: acak</option>
-            {genTemplates.map(t => <option key={t.id} value={t.id}>{t.topic}</option>)}
-          </select>
+          <div className="flex flex-wrap gap-1.5" role="radiogroup" aria-label="Jenis bacaan">
+            <button type="button" role="radio" aria-checked={genTemplate === 'random'} className={pill(genTemplate === 'random')} onClick={() => { click(); setGenTemplate('random'); }}>
+              Acak
+            </button>
+            {genTemplates.map(t => (
+              <button key={t.id} type="button" role="radio" aria-checked={genTemplate === t.id} className={pill(genTemplate === t.id)} onClick={() => { click(); setGenTemplate(t.id); }}>
+                {t.topic}
+              </button>
+            ))}
+          </div>
           {genLevel === 'N1' && <p className="text-[11px] text-text-muted">N1 memakai kerangka esai/email N2 dengan pilihan kosakata N1.</p>}
           <button type="button" onClick={generate} className="btn-skeuo-gold w-full px-4 py-2.5 text-xs">
-            <Sparkles className="w-4 h-4" /> Rakit bacaan {genLevel}
+            <RpgScrollIcon className="w-4 h-4" /> Rakit bacaan {genLevel}
           </button>
         </div>
       </div>

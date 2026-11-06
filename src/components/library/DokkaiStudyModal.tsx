@@ -7,7 +7,7 @@ import { createPortal } from 'react-dom';
 import { motion } from 'motion/react';
 import {
   BookOpen, Check, ChevronLeft, ChevronRight, Eye, EyeOff, Languages, Lightbulb,
-  Quote, RotateCcw, Sparkles, Target, Trophy, Volume2, X,
+  Quote, RotateCcw, Target, Trophy, Volume2, X,
 } from 'lucide-react';
 import type { DokkaiPassage } from '../../engine/dokkaiStudy/types';
 import { DOKKAI_LEVELS } from '../../engine/dokkaiStudy/types';
@@ -20,6 +20,7 @@ import { FORM_LABEL } from '../../engine/textStudy/textAnalyzer';
 import { getWordTypeLabel } from '../../utils/wordType';
 import { playSound, speakJapanese } from '../../utils/audio';
 import { RubyText } from '../learning/RubyText';
+import { RpgScrollIcon } from '../ui/RpgLineIcons';
 
 type Step = 'baca' | 'materi' | 'inti' | 'soal' | 'hasil';
 const STEPS: { id: Step; label: string }[] = [
@@ -652,16 +653,6 @@ export const DokkaiStudyModal: React.FC<Props> = ({
             </p>
           </div>
           <div className="flex items-center gap-1.5 shrink-0">
-            <label className="text-[10px] font-mono text-text-muted hidden sm:block" htmlFor="dokkai-reader-level">Levelku</label>
-            <select
-              id="dokkai-reader-level"
-              value={readerLevel}
-              onChange={e => onReaderLevelChange(e.target.value)}
-              className="bg-surface border border-border-subtle rounded-lg text-xs font-bold px-1.5 py-1 text-text-primary cursor-pointer"
-              title="Kata di atas level ini ditandai"
-            >
-              {DOKKAI_LEVELS.map(lv => <option key={lv} value={lv}>{lv}</option>)}
-            </select>
             <button type="button" onClick={() => { onClose(); click(); }} className="btn-physical-secondary p-1.5" aria-label="Tutup">
               <X className="w-5 h-5" />
             </button>
@@ -694,6 +685,23 @@ export const DokkaiStudyModal: React.FC<Props> = ({
         {/* Isi */}
         <div ref={bodyRef} className="flex-1 overflow-y-auto px-4 py-4 sm:px-5 space-y-4">
           {mode === 'plain' && <PlainReading study={study} soundEnabled={soundEnabled} />}
+          {mode === 'study' && (step === 'baca' || step === 'materi') && (
+            <div className="flex flex-wrap items-center gap-1.5" role="radiogroup" aria-label="Levelku">
+              <span className="text-[11px] font-bold text-text-muted mr-1">Levelku</span>
+              {DOKKAI_LEVELS.map(lv => (
+                <button
+                  key={lv}
+                  type="button"
+                  role="radio"
+                  aria-checked={readerLevel === lv}
+                  onClick={() => { click(); onReaderLevelChange(lv); }}
+                  className={`ui-chip px-2.5 py-1 text-xs font-bold ${readerLevel === lv ? 'is-active' : ''}`}
+                >
+                  {lv}
+                </button>
+              ))}
+            </div>
+          )}
           {mode === 'study' && step === 'baca' && <ReadStep study={study} soundEnabled={soundEnabled} />}
           {mode === 'study' && step === 'materi' && <MaterialStep study={study} />}
           {mode === 'study' && step === 'inti' && <IdeaStep study={study} />}
@@ -753,7 +761,7 @@ export const DokkaiStudyModal: React.FC<Props> = ({
                 </button>
                 {onRegenerate && (
                   <button type="button" onClick={() => { click(); onRegenerate(); }} className="btn-skeuo-gold px-5 py-2.5 text-xs">
-                    <Sparkles className="w-4 h-4" /> Rakit bacaan baru
+                    <RpgScrollIcon className="w-4 h-4" /> Rakit bacaan baru
                   </button>
                 )}
               </div>
