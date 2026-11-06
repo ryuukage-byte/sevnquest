@@ -119,7 +119,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
   };
 
   return (
-    <div className="w-full max-w-lg mx-auto space-y-4 pb-20 sm:pb-8 px-2 sm:px-0">
+    <div className="w-full max-w-lg md:max-w-2xl lg:max-w-4xl mx-auto space-y-4 md:space-y-5 pb-20 sm:pb-8 px-2 sm:px-0">
       {/* 1. CHARACTER AREA: karakter (kiri, fokus visual) + info pemain (kanan) */}
       <motion.div
         data-tour="hero-card"
@@ -132,9 +132,9 @@ export const HomeView: React.FC<HomeViewProps> = ({
         }}
         className="panel panel-stitched cursor-pointer overflow-hidden group hover:scale-[1.01] transition-transform"
       >
-        <div className="relative z-10 flex items-center gap-3 sm:gap-5 min-h-[150px] sm:min-h-[180px]">
+        <div className="relative z-10 flex items-center gap-3 sm:gap-5 md:gap-8 min-h-[150px] sm:min-h-[180px] md:min-h-[260px] lg:min-h-[320px]">
           {/* Karakter ±40% */}
-          <div className="w-[40%] shrink-0 flex items-center justify-center py-2 sm:scale-125">
+          <div className="w-[40%] shrink-0 flex items-center justify-center py-2">
             <motion.div
               whileHover={{ scale: 1.05, y: -4 }}
               whileTap={{ scale: 0.95 }}
@@ -143,24 +143,42 @@ export const HomeView: React.FC<HomeViewProps> = ({
               {/* Bayangan blur di bawah kaki karakter (pengganti alas kotak) */}
               <div
                 aria-hidden="true"
-                className="absolute left-1/2 -translate-x-1/2 -bottom-1 w-[85%] h-5 rounded-[50%] bg-black/70 blur-md pointer-events-none"
+                className="absolute left-1/2 -translate-x-1/2 -bottom-1 md:bottom-1 w-[85%] md:w-[60%] h-5 md:h-7 rounded-[50%] bg-black/90 blur-md pointer-events-none"
               />
-              <TierAvatar
-                tierIndex={displayTierIndex}
-                gender={stats.characterGender || 'male'}
-                size="md"
-                pedestal={false}
-              />
+              <div className="md:hidden">
+                <TierAvatar
+                  tierIndex={displayTierIndex}
+                  gender={stats.characterGender || 'male'}
+                  size="md"
+                  pedestal={false}
+                />
+              </div>
+              <div className="hidden md:block lg:hidden">
+                <TierAvatar
+                  tierIndex={displayTierIndex}
+                  gender={stats.characterGender || 'male'}
+                  size="lg"
+                  pedestal={false}
+                />
+              </div>
+              <div className="hidden lg:block">
+                <TierAvatar
+                  tierIndex={displayTierIndex}
+                  gender={stats.characterGender || 'male'}
+                  size="xl"
+                  pedestal={false}
+                />
+              </div>
             </motion.div>
           </div>
 
           {/* Info pemain ±60%: nama, level, tier, EXP (sekali saja) */}
-          <div className="flex-1 min-w-0 space-y-2 text-left">
-            <h2 className="text-lg sm:text-2xl font-bold text-text-primary font-heading tracking-wide truncate">
+          <div className="flex-1 min-w-0 space-y-2 md:space-y-3 text-left">
+            <h2 className="text-lg sm:text-2xl md:text-3xl lg:text-4xl font-bold text-text-primary font-heading tracking-wide truncate">
               {stats.playerName || 'Pelajar Bahasa'}
             </h2>
 
-            <div className="flex items-center gap-1.5 flex-wrap text-[11px] font-mono font-bold">
+            <div className="flex items-center gap-1.5 flex-wrap text-[11px] md:text-sm font-mono font-bold">
               <span className="px-2 py-0.5 rounded-lg bg-surface-inset/80 border border-border-subtle text-gold-soft">
                 Lv. {stats.level}
               </span>
@@ -170,11 +188,11 @@ export const HomeView: React.FC<HomeViewProps> = ({
             </div>
 
             <div className="space-y-1">
-              <div className="text-sm font-mono font-bold text-gold truncate">
+              <div className="text-sm md:text-xl font-mono font-bold text-gold truncate">
                 {stats.totalExp.toLocaleString()} EXP
               </div>
               <div
-                className="h-2 w-full bg-surface-inset rounded-full overflow-hidden border border-border-subtle"
+                className="h-2 md:h-2.5 w-full bg-surface-inset rounded-full overflow-hidden border border-border-subtle"
                 role="progressbar"
                 aria-label={nextTier ? `Menuju ${nextTier.name}` : 'Tier tertinggi'}
                 aria-valuemin={0}
@@ -198,7 +216,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
                 className="btn btn-pill flex items-center gap-1 transition-transform !px-2.5 !py-1"
               >
                 <Flame className="w-3 h-3 fill-gold text-gold animate-pulse shrink-0" />
-                <span className="font-mono text-[10px] text-gold-soft font-bold tracking-wider whitespace-nowrap">{stats.streakDays} HARI STREAK</span>
+                <span className="font-mono text-[10px] md:text-xs text-gold-soft font-bold tracking-wider whitespace-nowrap">{stats.streakDays} HARI STREAK</span>
               </button>
               <span className="text-text-secondary group-hover:text-gold transition-colors shrink-0" title="Lembar Status & Profil">
                 <ChevronRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
@@ -215,7 +233,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
         whileHover={{ scale: 1.01 }}
         whileTap={{ scale: 0.98 }}
         onClick={handleContinue}
-        className="btn btn-cta flex items-center justify-between text-left group"
+        className="btn btn-cta md:!py-5 flex items-center justify-between text-left group"
       >
         <div className="flex items-center gap-3.5 min-w-0 flex-1">
           <div className="w-11 h-11 sm:w-12 sm:h-12 ui-icon-box rounded-xl text-gold group-hover:scale-105 transition-transform shrink-0">
@@ -225,7 +243,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
             <span className="breadcrumb-label text-gold-soft block">
               {nextStep.eyebrow}
             </span>
-            <h3 className="text-base sm:text-lg font-bold text-text-on-btn font-heading truncate">
+            <h3 className="text-base sm:text-lg md:text-xl font-bold text-text-on-btn font-heading truncate">
               {nextStep.title}
             </h3>
             {nextStep.hint && (
@@ -240,7 +258,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
       </motion.button>
 
       {/* 3. QUICK ACTIVITIES: tiga kartu sejajar, ukuran seragam */}
-      <div className="grid grid-cols-3 gap-2.5 sm:gap-3">
+      <div className="grid grid-cols-3 gap-2.5 sm:gap-3 md:gap-4">
         {/* Recall Memori (SRS) */}
         <button
           type="button"
@@ -251,7 +269,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
             }
           }}
           aria-disabled={!recallClickable}
-          className={`panel !p-3 flex flex-col items-center justify-center gap-1.5 text-center min-w-0 min-h-[100px] group transition-all ${
+          className={`panel !p-3 flex flex-col items-center justify-center gap-1.5 text-center min-w-0 min-h-[100px] md:min-h-[140px] lg:min-h-[160px] md:gap-2.5 group transition-all ${
             recallClickable ? 'hover:bg-surface-elevated/40 cursor-pointer' : 'cursor-default'
           }`}
         >
@@ -260,15 +278,15 @@ export const HomeView: React.FC<HomeViewProps> = ({
               ? 'bg-wine/20 text-wine-accent border-wine/40 animate-pulse'
               : 'bg-surface-inset/50 text-gold border-border-subtle'
           }`}>
-            <Flame className="w-4 h-4" />
+            <Flame className="w-4 h-4 md:w-5 md:h-5" />
           </div>
-          <span className="text-xs sm:text-sm font-bold text-text-primary font-heading group-hover:text-gold transition-colors leading-tight w-full truncate">
+          <span className="text-xs sm:text-sm md:text-base font-bold text-text-primary font-heading group-hover:text-gold transition-colors leading-tight w-full truncate">
             Recall Memori
           </span>
           {recallCount > 0 ? (
             <span className="badge-wine animate-pulse whitespace-nowrap">{recallCount} due</span>
           ) : (
-            <span className="text-[10px] font-bold text-state-success font-mono w-full truncate">
+            <span className="text-[10px] md:text-xs font-bold text-state-success font-mono w-full truncate">
               {recallPending > 0 ? '✓ Selesai' : '✓ Kosong'}
             </span>
           )}
@@ -281,15 +299,15 @@ export const HomeView: React.FC<HomeViewProps> = ({
             playSound('click', stats.soundEnabled);
             onNavigateTab('daily');
           }}
-          className="panel !p-3 flex flex-col items-center justify-center gap-1.5 text-center min-w-0 min-h-[100px] hover:bg-surface-elevated/40 cursor-pointer transition-all group"
+          className="panel !p-3 flex flex-col items-center justify-center gap-1.5 text-center min-w-0 min-h-[100px] md:min-h-[140px] lg:min-h-[160px] md:gap-2.5 hover:bg-surface-elevated/40 cursor-pointer transition-all group"
         >
           <div className="p-2.5 rounded-xl bg-surface-inset/50 text-indigo border border-border-subtle shrink-0">
-            <ScrollIcon className="w-4 h-4" />
+            <ScrollIcon className="w-4 h-4 md:w-5 md:h-5" />
           </div>
-          <span className="text-xs sm:text-sm font-bold text-text-primary font-heading group-hover:text-gold transition-colors leading-tight w-full truncate">
+          <span className="text-xs sm:text-sm md:text-base font-bold text-text-primary font-heading group-hover:text-gold transition-colors leading-tight w-full truncate">
             Misi Harian
           </span>
-          <span className={`text-[10px] font-bold font-mono w-full truncate ${
+          <span className={`text-[10px] md:text-xs font-bold font-mono w-full truncate ${
             hasClaimableReward ? 'text-gold font-black animate-pulse' : 'text-text-secondary'
           }`}>
             {guidedProgress
@@ -304,15 +322,15 @@ export const HomeView: React.FC<HomeViewProps> = ({
         <button
           type="button"
           onClick={openGuide}
-          className="panel !p-3 flex flex-col items-center justify-center gap-1.5 text-center min-w-0 min-h-[100px] hover:bg-surface-elevated/40 cursor-pointer transition-all group"
+          className="panel !p-3 flex flex-col items-center justify-center gap-1.5 text-center min-w-0 min-h-[100px] md:min-h-[140px] lg:min-h-[160px] md:gap-2.5 hover:bg-surface-elevated/40 cursor-pointer transition-all group"
         >
           <div className="p-2.5 rounded-xl bg-surface-inset/50 text-indigo border border-border-subtle shrink-0">
-            <HelpCircle className="w-4 h-4" />
+            <HelpCircle className="w-4 h-4 md:w-5 md:h-5" />
           </div>
-          <span className="text-xs sm:text-sm font-bold text-text-primary font-heading group-hover:text-gold transition-colors leading-tight w-full truncate">
+          <span className="text-xs sm:text-sm md:text-base font-bold text-text-primary font-heading group-hover:text-gold transition-colors leading-tight w-full truncate">
             Panduan
           </span>
-          <span className="text-[10px] text-text-secondary font-mono w-full truncate">SevnQuest</span>
+          <span className="text-[10px] md:text-xs text-text-secondary font-mono w-full truncate">SevnQuest</span>
         </button>
       </div>
 
