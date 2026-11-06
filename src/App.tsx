@@ -29,6 +29,7 @@ import { useCloudSync } from './hooks/useCloudSync';
 import { usePlayerActions } from './hooks/usePlayerActions';
 import { EntitlementProvider } from './state/entitlement';
 import { ExpiryBanner } from './components/billing/ExpiryBanner';
+import { AdminHeaderButton } from './components/billing/AdminHeaderButton';
 import { BootSplash } from './components/common/BootSplash';
 
 export default function App() {
@@ -169,6 +170,7 @@ export default function App() {
 
           {/* Quick HUD in Header */}
           <div className="flex items-center gap-1.5 sm:gap-2.5 text-xs">
+            <AdminHeaderButton />
             {/* Today's Study Time Tracker */}
             <StudyTimerBadge
               isStudying={isStudying}
