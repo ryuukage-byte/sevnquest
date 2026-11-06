@@ -23,7 +23,7 @@ import { RubyText } from '../learning/RubyText';
 
 type Step = 'baca' | 'materi' | 'inti' | 'soal' | 'hasil';
 const STEPS: { id: Step; label: string }[] = [
-  { id: 'baca', label: 'Baca & Pahami' },
+  { id: 'baca', label: 'Pahami' },
   { id: 'materi', label: 'Kotoba · Kanji · Pola' },
   { id: 'inti', label: 'Inti Bacaan' },
   { id: 'soal', label: '3 Soal' },
@@ -159,19 +159,18 @@ const ReadStep: React.FC<{ study: DokkaiStudy; soundEnabled: boolean }> = ({ stu
   const [open, setOpen] = useState<string | null>(null);
   const bandById = useMemo(() => new Map(study.words.map(w => [w.item.id, w.band])), [study]);
 
-  const toggle = (cls: boolean) =>
-    `px-2.5 py-1.5 rounded-xl text-[11px] font-bold border cursor-pointer inline-flex items-center gap-1 ${cls ? 'bg-gold/15 text-gold border-gold/40' : 'border-border-subtle text-text-muted'}`;
+  const toggle = (on: boolean) => `ui-chip px-3 py-1.5 text-xs font-bold ${on ? 'is-active' : ''}`;
 
   return (
     <div className="space-y-4">
       <div className="flex flex-wrap gap-1.5">
-        <button type="button" className={toggle(furigana)} onClick={() => setFurigana(v => !v)}>
+        <button type="button" aria-pressed={furigana} className={toggle(furigana)} onClick={() => setFurigana(v => !v)}>
           {furigana ? <Eye className="w-3.5 h-3.5" /> : <EyeOff className="w-3.5 h-3.5" />} Furigana
         </button>
-        <button type="button" className={toggle(markLevel)} onClick={() => setMarkLevel(v => !v)}>
+        <button type="button" aria-pressed={markLevel} className={toggle(markLevel)} onClick={() => setMarkLevel(v => !v)}>
           <Target className="w-3.5 h-3.5" /> Tandai level kata
         </button>
-        <button type="button" className={toggle(showFlow)} onClick={() => setShowFlow(v => !v)}>
+        <button type="button" aria-pressed={showFlow} className={toggle(showFlow)} onClick={() => setShowFlow(v => !v)}>
           <Lightbulb className="w-3.5 h-3.5" /> Peran paragraf
         </button>
       </div>
@@ -197,7 +196,7 @@ const ReadStep: React.FC<{ study: DokkaiStudy; soundEnabled: boolean }> = ({ stu
                   <button
                     type="button"
                     onClick={() => { void speakJapanese(p.text); playSound('click', soundEnabled); }}
-                    className="p-1 rounded-lg text-text-muted hover:text-gold cursor-pointer"
+                    className="btn-physical-secondary p-1.5"
                     aria-label="Dengarkan paragraf"
                   >
                     <Volume2 className="w-4 h-4" />
@@ -249,7 +248,8 @@ const MaterialStep: React.FC<{ study: DokkaiStudy }> = ({ study }) => {
     <button
       type="button"
       onClick={() => setTab(id)}
-      className={`flex-1 px-3 py-2 rounded-xl text-xs font-bold border cursor-pointer ${tab === id ? 'bg-gold/15 text-gold border-gold/40' : 'border-border-subtle text-text-muted'}`}
+      aria-pressed={tab === id}
+      className={`ui-chip flex-1 justify-center px-3 py-2 text-xs font-bold ${tab === id ? 'is-active' : ''}`}
     >
       {text} <span className="font-mono opacity-70">{n}</span>
     </button>
@@ -282,7 +282,7 @@ const MaterialStep: React.FC<{ study: DokkaiStudy }> = ({ study }) => {
             if (list.length === 0) return null;
             if (band === 'below' && !showBelow) {
               return (
-                <button key={band} type="button" onClick={() => setShowBelow(true)} className="btn-physical-secondary w-full px-3 py-2 rounded-xl text-xs font-bold cursor-pointer">
+                <button key={band} type="button" onClick={() => setShowBelow(true)} className="btn-physical-secondary w-full px-3 py-2 text-xs">
                   Tampilkan {list.length} kata di bawah level {study.readerLevel}
                 </button>
               );
@@ -450,23 +450,24 @@ const QuestionCard: React.FC<{
         </div>
         <p className="text-base font-jp font-bold text-text-primary leading-relaxed">{q.prompt}</p>
         {q.promptGloss && (
-          <button type="button" onClick={() => setShowGloss(v => !v)} className="text-[11px] text-text-muted hover:text-gold cursor-pointer inline-flex items-center gap-1">
-            <Languages className="w-3.5 h-3.5" /> {showGloss ? q.promptGloss : 'Bantu arti soal'}
+          <button type="button" onClick={() => setShowGloss(v => !v)} className={`ui-chip px-2.5 py-1 text-[11px] font-bold ${showGloss ? 'is-active' : ''}`}>
+            <Languages className="w-3.5 h-3.5" /> {showGloss ? 'Sembunyikan arti soal' : 'Bantu arti soal'}
           </button>
         )}
+        {showGloss && q.promptGloss && <p className="text-xs text-text-secondary">→ {q.promptGloss}</p>}
       </div>
 
-      <div className="space-y-2">
+      <div className="space-y-2.5">
         {q.options.map((o, i) => {
           const isCorrect = i === q.correctIndex;
           const chosen = answer === i;
           const style = !answered
-            ? 'border-border-subtle hover:border-gold/50 hover:bg-gold/5 cursor-pointer'
+            ? 'btn-physical-secondary !justify-start !items-start'
             : isCorrect
-              ? 'border-emerald-500 bg-emerald-500/10'
+              ? 'rounded-2xl border border-emerald-500 bg-emerald-500/10'
               : chosen
-                ? 'border-rose-500 bg-rose-500/10'
-                : 'border-border-subtle opacity-70';
+                ? 'rounded-2xl border border-rose-500 bg-rose-500/10'
+                : 'rounded-2xl border border-border-subtle opacity-70';
           const review = q.reviews[i];
           return (
             <button
@@ -475,7 +476,7 @@ const QuestionCard: React.FC<{
               disabled={answered}
               onClick={() => { onAnswer(i); playSound(isCorrect ? 'correct' : 'wrong', soundEnabled); }}
               data-option={i}
-              className={`w-full text-left p-3 rounded-2xl border transition-colors ${style}`}
+              className={`w-full text-left p-3 font-normal ${style}`}
             >
               <div className="flex gap-2">
                 <span className="w-6 h-6 shrink-0 rounded-lg bg-surface-inset border border-border-subtle text-xs font-bold flex items-center justify-center">{i + 1}</span>
@@ -530,6 +531,40 @@ const QuestionCard: React.FC<{
 };
 
 // ------------------------------------------------------------------------------
+// Bacaan polos (sebelum dibahas)
+// ------------------------------------------------------------------------------
+
+const PlainReading: React.FC<{ study: DokkaiStudy; soundEnabled: boolean }> = ({ study, soundEnabled }) => {
+  const [furigana, setFurigana] = useState(false);
+  return (
+    <div className="space-y-4">
+      <div className="flex flex-wrap items-center gap-2">
+        <button type="button" aria-pressed={furigana} onClick={() => setFurigana(v => !v)} className={`ui-chip px-3 py-1.5 text-xs font-bold ${furigana ? 'is-active' : ''}`}>
+          {furigana ? <Eye className="w-3.5 h-3.5" /> : <EyeOff className="w-3.5 h-3.5" />} Furigana
+        </button>
+        <button
+          type="button"
+          onClick={() => { void speakJapanese(study.passage.text); playSound('click', soundEnabled); }}
+          className="btn-physical-secondary px-3 py-1.5 text-xs"
+        >
+          <Volume2 className="w-3.5 h-3.5" /> Dengarkan
+        </button>
+      </div>
+      <article className="space-y-4">
+        {study.paragraphs.map((p, i) => (
+          <p key={i} className="text-lg leading-loose font-jp text-text-primary">
+            {(study.sentencesByParagraph[i] || []).map((s, j) => <RubyText key={j} text={s.text} showFurigana={furigana} />)}
+          </p>
+        ))}
+      </article>
+      <p className="text-xs text-text-muted border-t border-border-subtle pt-3">
+        Baca sampai selesai dulu. Setelah itu tekan <b className="text-text-secondary">Bahas bacaan</b> untuk membedah paragraf, kosakata, kanji, pola, dan intinya, atau <b className="text-text-secondary">Kerjakan soal</b> untuk langsung menguji pemahamanmu.
+      </p>
+    </div>
+  );
+};
+
+// ------------------------------------------------------------------------------
 // MODAL
 // ------------------------------------------------------------------------------
 
@@ -537,6 +572,8 @@ export const DokkaiStudyModal: React.FC<Props> = ({
   passage, readerLevel, onReaderLevelChange, onClose, onRegenerate, soundEnabled = true, onCompleteStudyItem, onRewardPlayer,
 }) => {
   const study = useMemo(() => buildDokkaiStudy(passage, readerLevel), [passage, readerLevel]);
+  // Bacaan dibuka polos dulu; fitur bedah baru muncul setelah pengguna menekan "Bahas".
+  const [mode, setMode] = useState<'plain' | 'study'>('plain');
   const [step, setStep] = useState<Step>('baca');
   const [qIndex, setQIndex] = useState(0);
   const [answers, setAnswers] = useState<Record<number, number>>({});
@@ -544,8 +581,8 @@ export const DokkaiStudyModal: React.FC<Props> = ({
   const bodyRef = useRef<HTMLDivElement>(null);
 
   // Bacaan baru (mis. hasil Rakit ulang) → mulai dari awal.
-  useEffect(() => { setStep('baca'); setQIndex(0); setAnswers({}); }, [passage.id]);
-  useEffect(() => { bodyRef.current?.scrollTo({ top: 0 }); }, [step, qIndex, passage.id]);
+  useEffect(() => { setMode('plain'); setStep('baca'); setQIndex(0); setAnswers({}); }, [passage.id]);
+  useEffect(() => { bodyRef.current?.scrollTo({ top: 0 }); }, [mode, step, qIndex, passage.id]);
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') onClose(); };
     window.addEventListener('keydown', onKey);
@@ -585,7 +622,9 @@ export const DokkaiStudyModal: React.FC<Props> = ({
     if (step === 'soal' && qIndex > 0) { setQIndex(qIndex - 1); return; }
     const prev = STEPS[stepIdx - 1];
     if (prev) setStep(prev.id);
+    else setMode('plain');
   };
+  const startStudy = (at: Step) => { click(); setStep(at); setMode('study'); };
   const restartQuiz = () => { click(); setAnswers({}); setQIndex(0); setStep('soal'); };
 
   const nextDisabled = step === 'soal' && answers[qIndex] === undefined;
@@ -623,42 +662,42 @@ export const DokkaiStudyModal: React.FC<Props> = ({
             >
               {DOKKAI_LEVELS.map(lv => <option key={lv} value={lv}>{lv}</option>)}
             </select>
-            <button type="button" onClick={() => { onClose(); click(); }} className="btn-physical-secondary p-1.5 rounded-xl cursor-pointer" aria-label="Tutup">
+            <button type="button" onClick={() => { onClose(); click(); }} className="btn-physical-secondary p-1.5" aria-label="Tutup">
               <X className="w-5 h-5" />
             </button>
           </div>
         </div>
 
-        {/* Rel tahapan */}
-        <ol className="flex items-center gap-1 px-3 sm:px-5 py-2 border-b border-border-subtle overflow-x-auto no-scrollbar" aria-label="Tahapan">
-          {STEPS.map((s, i) => {
-            const active = s.id === step;
-            const locked = s.id === 'hasil' && !allAnswered;
-            return (
-              <li key={s.id} className="flex items-center gap-1 shrink-0">
-                {i > 0 && <span className={`w-3 h-px ${i <= stepIdx ? 'bg-gold/60' : 'bg-border-subtle'}`} />}
-                <button
-                  type="button"
-                  disabled={locked}
-                  onClick={() => { click(); setStep(s.id); }}
-                  aria-current={active ? 'step' : undefined}
-                  className={`px-2 py-1 rounded-lg whitespace-nowrap text-[10.5px] font-bold border transition-colors ${
-                    active ? 'bg-gold/15 text-gold border-gold/40' : locked ? 'text-text-muted/50 border-transparent' : 'text-text-muted border-transparent hover:text-text-secondary cursor-pointer'
-                  }`}
-                >
-                  {i + 1}. {s.label}
-                </button>
-              </li>
-            );
-          })}
-        </ol>
+        {/* Rel tahapan (hanya saat dibahas) */}
+        {mode === 'study' && (
+          <ol className="flex items-center gap-2 px-3 sm:px-5 py-2.5 border-b border-border-subtle overflow-x-auto no-scrollbar" aria-label="Tahapan">
+            {STEPS.map((s, i) => {
+              const active = s.id === step;
+              const locked = s.id === 'hasil' && !allAnswered;
+              return (
+                <li key={s.id} className="shrink-0">
+                  <button
+                    type="button"
+                    disabled={locked}
+                    onClick={() => { click(); setStep(s.id); }}
+                    aria-current={active ? 'step' : undefined}
+                    className={`ui-chip px-3 py-1.5 text-xs font-bold ${active ? 'is-active' : ''}`}
+                  >
+                    <span className="font-mono opacity-70">{i + 1}</span> {s.label}
+                  </button>
+                </li>
+              );
+            })}
+          </ol>
+        )}
 
         {/* Isi */}
         <div ref={bodyRef} className="flex-1 overflow-y-auto px-4 py-4 sm:px-5 space-y-4">
-          {step === 'baca' && <ReadStep study={study} soundEnabled={soundEnabled} />}
-          {step === 'materi' && <MaterialStep study={study} />}
-          {step === 'inti' && <IdeaStep study={study} />}
-          {step === 'soal' && study.questions[qIndex] && (
+          {mode === 'plain' && <PlainReading study={study} soundEnabled={soundEnabled} />}
+          {mode === 'study' && step === 'baca' && <ReadStep study={study} soundEnabled={soundEnabled} />}
+          {mode === 'study' && step === 'materi' && <MaterialStep study={study} />}
+          {mode === 'study' && step === 'inti' && <IdeaStep study={study} />}
+          {mode === 'study' && step === 'soal' && study.questions[qIndex] && (
             <>
               <div className="flex items-center justify-between text-[11px] font-mono text-text-muted">
                 <span>Soal {qIndex + 1} / {total}</span>
@@ -669,7 +708,7 @@ export const DokkaiStudyModal: React.FC<Props> = ({
                 </div>
               </div>
               <details className={`${card} text-sm`}>
-                <summary className="cursor-pointer text-xs font-bold text-text-secondary">Lihat teks bacaan</summary>
+                <summary className="cursor-pointer text-xs font-bold text-text-secondary select-none">Lihat teks bacaan</summary>
                 <div className="mt-2 font-jp text-text-primary leading-loose whitespace-pre-line">{passage.text}</div>
               </details>
               <QuestionCard
@@ -682,7 +721,7 @@ export const DokkaiStudyModal: React.FC<Props> = ({
               />
             </>
           )}
-          {step === 'hasil' && (
+          {mode === 'study' && step === 'hasil' && (
             <div className="space-y-4 text-center">
               <div className="w-16 h-16 mx-auto rounded-2xl bg-surface-inset border border-border-subtle flex items-center justify-center">
                 <Trophy className="w-8 h-8 text-gold" />
@@ -696,7 +735,7 @@ export const DokkaiStudyModal: React.FC<Props> = ({
               </div>
               <div className="text-left space-y-2">
                 {study.questions.map((q, i) => (
-                  <button key={q.id} type="button" onClick={() => { click(); setQIndex(i); setStep('soal'); }} className={`${card} w-full text-left cursor-pointer flex gap-2 items-start`}>
+                  <button key={q.id} type="button" onClick={() => { click(); setQIndex(i); setStep('soal'); }} className="btn-physical-secondary w-full !justify-start !items-start text-left p-3 font-normal">
                     {answers[i] === q.correctIndex ? <Check className="w-4 h-4 text-emerald-500 shrink-0 mt-0.5" /> : <X className="w-4 h-4 text-rose-500 shrink-0 mt-0.5" />}
                     <span className="min-w-0">
                       <span className="block text-xs font-jp text-text-primary">{q.prompt}</span>
@@ -706,6 +745,9 @@ export const DokkaiStudyModal: React.FC<Props> = ({
                 ))}
               </div>
               <div className="flex flex-col sm:flex-row gap-2 justify-center">
+                <button type="button" onClick={() => { click(); setMode('plain'); }} className="btn-physical-secondary px-5 py-2.5 text-xs">
+                  <BookOpen className="w-4 h-4" /> Baca ulang
+                </button>
                 <button type="button" onClick={restartQuiz} className="btn-skeuo-indigo px-5 py-2.5 text-xs">
                   <RotateCcw className="w-4 h-4" /> Ulangi soal
                 </button>
@@ -719,11 +761,23 @@ export const DokkaiStudyModal: React.FC<Props> = ({
           )}
         </div>
 
-        {/* Navigasi */}
-        {step !== 'hasil' && (
+        {/* Navigasi: bacaan polos */}
+        {mode === 'plain' && (
+          <div className="flex items-center justify-end gap-2 px-4 py-3 sm:px-5 border-t border-border-subtle bg-surface-inset">
+            <button type="button" onClick={() => startStudy('soal')} className="btn-physical-secondary px-4 py-2 text-xs">
+              <Target className="w-4 h-4" /> Kerjakan soal
+            </button>
+            <button type="button" onClick={() => startStudy('baca')} className="btn-skeuo-gold px-4 py-2 text-xs">
+              <Lightbulb className="w-4 h-4" /> Bahas bacaan
+            </button>
+          </div>
+        )}
+
+        {/* Navigasi: pembahasan */}
+        {mode === 'study' && step !== 'hasil' && (
           <div className="flex items-center justify-between gap-2 px-4 py-3 sm:px-5 border-t border-border-subtle bg-surface-inset">
-            <button type="button" onClick={goPrev} disabled={stepIdx === 0} className="btn-physical-secondary px-3 py-2 rounded-xl text-xs font-bold inline-flex items-center gap-1 cursor-pointer disabled:opacity-40 disabled:cursor-default">
-              <ChevronLeft className="w-4 h-4" /> Kembali
+            <button type="button" onClick={goPrev} className="btn-physical-secondary px-3 py-2 text-xs">
+              <ChevronLeft className="w-4 h-4" /> {stepIdx === 0 ? 'Bacaan polos' : 'Kembali'}
             </button>
             <button type="button" onClick={goNext} disabled={nextDisabled} className="btn-skeuo-gold px-4 py-2 text-xs disabled:opacity-50">
               {step === 'soal' ? (qIndex < total - 1 ? 'Soal berikutnya' : 'Lihat hasil') : step === 'inti' ? 'Mulai 3 soal' : 'Lanjut'}

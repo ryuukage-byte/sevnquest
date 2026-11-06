@@ -83,8 +83,7 @@ export const DokkaiLibraryView: React.FC<Props> = ({ soundEnabled = true, onComp
     ? () => setActive(generateDokkai({ level: active.level, templateId: genTemplate === 'random' ? undefined : genTemplate }))
     : undefined;
 
-  const pill = (on: boolean) =>
-    `px-3 py-1.5 rounded-xl text-xs font-bold border cursor-pointer transition-colors ${on ? 'bg-gold/15 text-gold border-gold/40' : 'border-border-subtle text-text-muted hover:text-text-secondary'}`;
+  const pill = (on: boolean) => `ui-chip px-3 py-1.5 text-xs font-bold ${on ? 'is-active' : ''}`;
 
   return (
     <div className="space-y-5">
@@ -193,7 +192,7 @@ export const DokkaiLibraryView: React.FC<Props> = ({ soundEnabled = true, onComp
       )}
       {filtered.length > limit && (
         <div className="text-center">
-          <button type="button" onClick={() => { click(); setLimit(l => l + PAGE); }} className="btn-physical-secondary px-5 py-2 rounded-xl text-xs font-bold cursor-pointer">
+          <button type="button" onClick={() => { click(); setLimit(l => l + PAGE); }} className="btn-physical-secondary px-5 py-2 text-xs">
             Muat lagi ({filtered.length - limit} bacaan)
           </button>
         </div>
