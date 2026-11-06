@@ -140,17 +140,11 @@ export const HomeView: React.FC<HomeViewProps> = ({
               whileTap={{ scale: 0.95 }}
               className="relative flex items-center justify-center"
             >
-              {/* Bayangan blur di bawah kaki karakter (pengganti alas kotak) */}
-              <div
-                aria-hidden="true"
-                className="absolute left-1/2 -translate-x-1/2 -bottom-1 md:bottom-1 w-[85%] md:w-[60%] h-5 md:h-7 rounded-[50%] bg-black/90 blur-md pointer-events-none"
-              />
               <div className="md:hidden">
                 <TierAvatar
                   tierIndex={displayTierIndex}
                   gender={stats.characterGender || 'male'}
                   size="md"
-                  pedestal={false}
                 />
               </div>
               <div className="hidden md:block lg:hidden">
@@ -158,7 +152,6 @@ export const HomeView: React.FC<HomeViewProps> = ({
                   tierIndex={displayTierIndex}
                   gender={stats.characterGender || 'male'}
                   size="lg"
-                  pedestal={false}
                 />
               </div>
               <div className="hidden lg:block">
@@ -166,7 +159,6 @@ export const HomeView: React.FC<HomeViewProps> = ({
                   tierIndex={displayTierIndex}
                   gender={stats.characterGender || 'male'}
                   size="xl"
-                  pedestal={false}
                 />
               </div>
             </motion.div>
