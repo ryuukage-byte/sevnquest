@@ -1,6 +1,9 @@
 -- ============================================================================
 -- announcements v2: opsi tampilan per broadcast + tanda "sudah dibaca" yang bisa dihitung admin.
 -- Bergantung pada 20261106_announcements.sql dan public.is_admin().
+-- STATUS: DITERAPKAN 2026-11-06 ke proyek iokhdhqnpslpwsxspvaj atas persetujuan pemilik (announcements_v2).
+-- Diverifikasi: tanda baca dedup, draf diabaikan, tabel reads tak bisa dibaca langsung,
+-- statistik hanya untuk admin.
 -- File ini idempoten; aman dijalankan ulang.
 -- ============================================================================
 
@@ -99,4 +102,6 @@ end;
 $$;
 
 revoke all on function public.admin_announcement_stats() from public;
+-- Default privileges Supabase memberi EXECUTE ke anon secara langsung; cabut (hanya admin login yang perlu).
+revoke execute on function public.admin_announcement_stats() from anon;
 grant execute on function public.admin_announcement_stats() to authenticated;
