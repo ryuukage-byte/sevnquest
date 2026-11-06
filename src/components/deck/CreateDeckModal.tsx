@@ -10,7 +10,7 @@ import { KANJI_DATABASE } from '../../data/kanji';
 import { BUNPOU_DATABASE } from '../../data/bunpou';
 import { useBackButton } from '../../hooks/useBackButton';
 
-const AVAILABLE_ICONS = ['📖', '🔖', '✍️', '⚡', '🎯', '🌸', '🗡️', '📜', '🌟', '🔥', '🏯', '🍵', '🏹', '💎', '🍁', '🍙'];
+const AVAILABLE_ICONS = ['📖', '🔖', '✍️', '⚡', '🎯', '🌸', '🗡️', '📜', '🔥', '🏯', '🍵', '🏹', '💎', '🍁', '🍙'];
 
 const DECK_TYPES: { type: DeckType; label: string; desc: string }[] = [
   { type: 'mixed', label: 'Campuran', desc: 'Kosakata, Kanji, dan Tata Bahasa sekaligus' },

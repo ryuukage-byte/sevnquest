@@ -67,7 +67,7 @@ export const TOWER_PASSIVE_SKILLS: PassiveSkillDef[] = [
     name: 'Mnemonic Resonance',
     japaneseName: '記憶の共鳴 (Kioku no Kyoumei)',
     description: 'Meningkatkan perolehan EXP dan Gold setelah menaklukkan lantai.',
-    icon: 'sparkles',
+    icon: 'zap',
     maxLevel: 3,
     costPerLevel: [1, 2, 4],
     effects: [

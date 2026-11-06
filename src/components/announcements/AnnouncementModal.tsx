@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { motion } from 'motion/react';
-import { Megaphone, X, ExternalLink, Info, AlertTriangle, Sparkles } from 'lucide-react';
+import { Megaphone, X, ExternalLink, Info, AlertTriangle, Rocket } from 'lucide-react';
 import { Announcement, AnnouncementKind, pickUnseen } from '../../lib/announcementsCore';
 import { fetchActiveAnnouncements, loadSeenIds, markSeen } from '../../lib/announcements';
 import { playSound } from '../../utils/audio';
@@ -8,7 +8,7 @@ import { AnnouncementBody } from './AnnouncementBody';
 
 export const KIND_META: Record<AnnouncementKind, { label: string; Icon: typeof Info; tone: string }> = {
   info: { label: 'Info', Icon: Info, tone: 'text-indigo' },
-  update: { label: 'Update', Icon: Sparkles, tone: 'text-gold' },
+  update: { label: 'Update', Icon: Rocket, tone: 'text-gold' },
   important: { label: 'Penting', Icon: AlertTriangle, tone: 'text-wine-accent' },
 };
 
