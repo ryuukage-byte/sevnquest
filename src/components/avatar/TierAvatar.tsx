@@ -73,6 +73,8 @@ interface TierAvatarProps {
   onClick?: () => void;
   interactive?: boolean;
   showRankBadge?: boolean;
+  /** Tampilkan alas kotak di belakang karakter (default: true). */
+  pedestal?: boolean;
 }
 
 export const TierAvatar: React.FC<TierAvatarProps> = ({
@@ -82,6 +84,7 @@ export const TierAvatar: React.FC<TierAvatarProps> = ({
   onClick,
   interactive = true,
   showRankBadge = false,
+  pedestal = true,
 }) => {
   const [imgError, setImgError] = useState(false);
   const [candidateIndex, setCandidateIndex] = useState(0);
@@ -197,7 +200,9 @@ export const TierAvatar: React.FC<TierAvatarProps> = ({
         )}
 
         {/* Alas patung (solid inset, tanpa glow blur) */}
-        <div className="absolute inset-0 rounded-3xl bg-surface-inset/50 border border-border-subtle shadow-inner pointer-events-none" />
+        {pedestal && (
+          <div className="absolute inset-0 rounded-3xl bg-surface-inset/50 border border-border-subtle shadow-inner pointer-events-none" />
+        )}
 
         {/* Character Visual Image (Splash Art) */}
         <div className="relative w-full h-full flex items-center justify-center pointer-events-none z-10">
