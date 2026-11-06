@@ -18,7 +18,11 @@
 --
 -- Data uji dari message_threads/messages dipindahkan ke letters, lalu tabel & fungsi lama dihapus.
 -- Bergantung pada public.is_admin().
--- STATUS: BELUM DITERAPKAN ke proyek live. File ini idempoten; aman dijalankan ulang.
+-- STATUS: DITERAPKAN 2026-11-06 ke proyek iokhdhqnpslpwsxspvaj atas persetujuan pemilik,
+-- tercatat di supabase_migrations.schema_migrations sebagai 20261106145934_letters. Diverifikasi: 1 surat uji
+-- dipindahkan, tabel lama terhapus, RLS aktif, anon tanpa akses, authenticated tidak bisa membaca sender_id
+-- maupun INSERT langsung, fungsi internal mail_* tidak bisa dipanggil klien.
+-- File ini idempoten; aman dijalankan ulang.
 -- ============================================================================
 
 -- --------------------------------------------------------------------------- Kotak pos
