@@ -15,7 +15,10 @@
 -- - Tamu (anon) tidak punya akses sama sekali: balasan hanya bisa diterima akun login.
 --
 -- Bergantung pada fungsi public.is_admin() yang sudah ada di proyek live.
--- STATUS: BELUM DITERAPKAN ke proyek live. File ini idempoten; aman dijalankan ulang.
+-- STATUS: DITERAPKAN 2026-11-06 ke proyek iokhdhqnpslpwsxspvaj atas persetujuan pemilik,
+-- tercatat di supabase_migrations.schema_migrations sebagai 20261106143940_messages. Hak akses diverifikasi:
+-- anon tanpa akses tabel/RPC; authenticated hanya SELECT (+ DELETE dijaga RLS admin) dan EXECUTE RPC.
+-- File ini idempoten; aman dijalankan ulang.
 -- ============================================================================
 
 create table if not exists public.message_threads (
