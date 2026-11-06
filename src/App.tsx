@@ -18,6 +18,7 @@ import { recordStudyActivity } from './utils/activity';
 import { AuthModal } from './components/auth/AuthModal';
 import { ModuleBoundary } from './components/common/ModuleBoundary';
 import { SpotlightOnboarding } from './components/tutorial/SpotlightOnboarding';
+import { AnnouncementPopupHost } from './components/announcements/AnnouncementModal';
 import { MainContent } from './app/MainContent';
 import { loadInitialStats, loadStageProgress, loadDailyMissions, loadWeeklyMissions } from './state/loadPlayerState';
 import { useToast } from './hooks/useToast';
@@ -190,6 +191,9 @@ export default function App() {
         onChangeTab={handleTabChange}
         soundEnabled={stats.soundEnabled}
       />
+
+      {/* Pengumuman broadcast admin (ditahan selama tur onboarding) */}
+      <AnnouncementPopupHost suppressed={isOnboardingActive} soundEnabled={stats.soundEnabled} />
 
       {/* Interactive Spotlight Onboarding Tour */}
       <SpotlightOnboarding

@@ -1,6 +1,5 @@
 import React, { useMemo, useState } from 'react';
-import { Search, Shuffle } from 'lucide-react';
-import { RpgRuneIcon } from '../../ui/RpgLineIcons';
+import { Search, Shuffle, Atom } from 'lucide-react';
 import type { GrammarPatternSchema } from '../../../engine/types';
 import type { FusionVerbEntry } from '../../../data/fusion/verbPool';
 import { playSound } from '../../../utils/audio';
@@ -131,7 +130,7 @@ export const FusionPicker: React.FC<Props> = ({ verbs, patterns, soundEnabled, o
           onClick={() => { if (verb && pattern) { click(); onStart(verb, pattern); } }}
           className={`px-5 h-12 rounded-2xl font-heading font-black text-sm flex items-center gap-2 whitespace-nowrap shrink-0 ${verb && pattern ? 'btn-cta cursor-pointer' : 'bg-surface-inset text-text-muted border border-border-subtle opacity-60 cursor-not-allowed'}`}
         >
-          <RpgRuneIcon className="w-4 h-4" />Mulai Fusion
+          <Atom className="w-4 h-4" />Mulai Fusion
         </button>
       </div>
     </div>
