@@ -4,7 +4,8 @@ const VISITOR_KEY = 'nq_visitor_id';
 const LAST_PING_KEY = 'nq_visitor_last_ping';
 const PING_INTERVAL_MS = 30 * 60 * 1000;
 
-function getVisitorId(): string {
+/** ID acak per perangkat (dipakai juga untuk tanda baca pengumuman tamu). */
+export function getVisitorId(): string {
   try {
     let id = localStorage.getItem(VISITOR_KEY);
     if (!id) {
