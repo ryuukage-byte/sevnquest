@@ -5,7 +5,9 @@
 //  - dailyCap    : total jawaban Recall per hari (batas beban ulang; mencegah menumpuk lalu kewalahan)
 //  - newPerDay   : materi "baru dilatih, belum pernah diuji" yang diperkenalkan per hari
 //                  (item lama yang jatuh tempo SRS / lemah / kritis tidak dibatasi oleh kuota ini)
-// Setelah dailyCap tercapai pemain boleh "Latihan Ekstra" (sesi kecil, tetap mengikuti prioritas).
+// Setelah dailyCap ATAU newPerDay tercapai pemain boleh "Latihan Ekstra" (tetap mengikuti prioritas).
+// Latihan Ekstra adalah pilihan sadar pemain, jadi kuota materi baru tidak berlaku di sana; kalau tidak,
+// pemain yang antreannya berisi materi baru saja akan tertahan di 10 jawaban padahal target harian 40.
 // ==============================================================================
 
 import type { RecallQueueItem } from '../../types/content';
@@ -78,7 +80,8 @@ export interface RecallPlan {
  * Pilih item sesi dari antrean berprioritas. Urutan antrean TIDAK diubah (prioritas SRS tetap berlaku);
  * yang dilakukan hanya memotong sesuai batas:
  *  1. jatah harian tersisa -> ukuran sesi maksimal
- *  2. materi baru (NEW_UNTESTED) dibatasi newPerDay; item lain (kritis/lemah/jatuh tempo) tidak
+ *  2. materi baru (NEW_UNTESTED) dibatasi newPerDay; item lain (kritis/lemah/jatuh tempo) tidak.
+ *     Mode ekstra mengabaikan kuota materi baru (pemain memilih sendiri untuk lanjut).
  */
 export function planRecallSession(
   queue: RecallQueueItem[],
@@ -93,13 +96,17 @@ export function planRecallSession(
   const newRemaining = Math.max(0, limits.newPerDay - d.newTested);
   const capReached = remainingToday === 0 && !extra;
 
-  const size = extra ? limits.extraSessionSize : Math.min(limits.sessionSize, remainingToday);
+  // Ekstra sebelum target harian tercapai (kuota materi baru habis): sesi penuh sampai target.
+  // Ekstra setelah target harian tercapai: sesi kecil.
+  const size = extra
+    ? (remainingToday > 0 ? Math.min(limits.sessionSize, remainingToday) : limits.extraSessionSize)
+    : Math.min(limits.sessionSize, remainingToday);
   const items: RecallQueueItem[] = [];
   let newLeft = newRemaining;
   if (size > 0) {
     for (const item of queue) {
       if (items.length >= size) break;
-      if (item.reason === 'NEW_UNTESTED') {
+      if (item.reason === 'NEW_UNTESTED' && !extra) {
         if (newLeft <= 0) continue;
         newLeft--;
       }

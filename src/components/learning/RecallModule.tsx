@@ -161,7 +161,7 @@ export const RecallModule: React.FC<RecallModuleProps> = ({
     const quotaState = hasPending && livePlan.items.length === 0
       ? livePlan.capReached
         ? { icon: <Award className="w-10 h-10" />, title: 'TARGET RECALL HARI INI TERCAPAI', body: `Kamu sudah menjawab ${daily.answered}/${RECALL_LIMITS.dailyCap} soal hari ini. ${livePlan.deferred} materi lain menunggu besok sesuai jadwal SRS; istirahat juga bagian dari mengingat.` }
-        : { icon: <Award className="w-10 h-10" />, title: 'KUOTA MATERI BARU HARI INI HABIS', body: `Sudah ${daily.newTested}/${RECALL_LIMITS.newPerDay} materi baru diuji hari ini. ${livePlan.deferred} materi lain akan masuk di hari berikutnya.` }
+        : { icon: <Award className="w-10 h-10" />, title: 'KUOTA MATERI BARU HARI INI HABIS', body: `Sudah ${daily.newTested}/${RECALL_LIMITS.newPerDay} materi baru diuji hari ini (jawaban hari ini ${daily.answered}/${RECALL_LIMITS.dailyCap}). Jadwal normal menyarankan sisanya dicicil besok agar ulangan SRS tidak menumpuk, tapi kalau masih semangat kamu bisa lanjut lewat Latihan Ekstra di bawah.` }
       : null;
     const emptyState = quotaState ??
       (syncStatus === 'syncing'

@@ -70,3 +70,15 @@ test('gabungan lokal/cloud: hari terbaru menang; hari sama memakai angka terbesa
   assert.equal(mergeRecallDaily(undefined, undefined), undefined);
   assert.deepEqual(mergeRecallDaily(undefined, a), a);
 });
+
+test('latihan ekstra saat kuota materi baru habis: materi baru tetap bisa dilatih sampai target harian', () => {
+  const q = many(30, 'NEW_UNTESTED');
+  const daily = { date: T, answered: 10, newTested: RECALL_LIMITS.newPerDay, sessions: 1 };
+  const normal = planRecallSession(q, daily, T);
+  assert.equal(normal.items.length, 0);
+  assert.equal(normal.capReached, false);
+  const extra = planRecallSession(q, daily, T, { extra: true });
+  assert.equal(extra.items.length, RECALL_LIMITS.sessionSize);
+  const nearCap = planRecallSession(q, { ...daily, answered: RECALL_LIMITS.dailyCap - 3 }, T, { extra: true });
+  assert.equal(nearCap.items.length, 3);
+});
