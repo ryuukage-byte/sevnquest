@@ -157,6 +157,7 @@ const ReadStep: React.FC<{ study: DokkaiStudy; soundEnabled: boolean }> = ({ stu
   const [furigana, setFurigana] = useState(false);
   const [markLevel, setMarkLevel] = useState(true);
   const [showFlow, setShowFlow] = useState(true);
+  const [showTr, setShowTr] = useState(false);
   const [open, setOpen] = useState<string | null>(null);
   const bandById = useMemo(() => new Map(study.words.map(w => [w.item.id, w.band])), [study]);
 
@@ -173,6 +174,9 @@ const ReadStep: React.FC<{ study: DokkaiStudy; soundEnabled: boolean }> = ({ stu
         </button>
         <button type="button" aria-pressed={showFlow} className={toggle(showFlow)} onClick={() => setShowFlow(v => !v)}>
           <Lightbulb className="w-3.5 h-3.5" /> Peran paragraf
+        </button>
+        <button type="button" aria-pressed={showTr} className={toggle(showTr)} onClick={() => setShowTr(v => !v)}>
+          <Languages className="w-3.5 h-3.5" /> Terjemahan
         </button>
       </div>
       {markLevel && (
@@ -222,6 +226,22 @@ const ReadStep: React.FC<{ study: DokkaiStudy; soundEnabled: boolean }> = ({ stu
                 })}
               </p>
               {sents.map((s, si) => (open === `${pi}-${si}` ? <SentenceBreakdown key={si} s={s} study={study} /> : null))}
+              {showTr && sents.length > 0 && (
+                <ol className="space-y-1 border-t border-border-subtle pt-2">
+                  {sents.map((s, si) => (
+                    <li key={si} className="text-sm leading-relaxed">
+                      {s.translation ? (
+                        <span className="text-text-primary">{s.translation}</span>
+                      ) : (
+                        <span className="text-text-secondary">
+                          {sentenceGloss(s) || '—'}
+                          <span className="ml-1 text-[10px] font-mono text-text-muted">(arti kata, bukan terjemahan)</span>
+                        </span>
+                      )}
+                    </li>
+                  ))}
+                </ol>
+              )}
               {showFlow && (
                 <div className="text-[11px] text-text-secondary border-t border-border-subtle pt-2">
                   <span className="text-text-muted">Kalimat kunci: </span>
