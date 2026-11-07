@@ -90,7 +90,7 @@ const QrisModal: React.FC<{ soundEnabled?: boolean; onClose: () => void }> = ({ 
         <div className="text-center">
           <p className="text-sm font-bold font-heading text-text-primary">{QRIS_MERCHANT}</p>
           <p className="text-[11px] text-text-secondary">
-            Terima kasih sudah mendukung. Sudah transfer? Kirim surat ke admin lewat Kotak Pos beserta bukti bayarnya.
+            Terima kasih sudah mendukung SevnQuest!
           </p>
         </div>
 
