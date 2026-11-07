@@ -229,3 +229,11 @@ G. LOG PERKEMBANGAN
   dimulai kosong dan diisi manual; setiap link divalidasi oleh tes
   src/data/choukaiYoutube.test.ts. Soal choukai lama tetap dimatikan
   (CHOUKAI_ENABLED=false).
+- Kartu video Choukai kini membuka Immersion (pemutar + transkrip Jepang
+  yang bisa dibedah) lewat tombol "Tonton + Transkrip".
+- Diisi 26 video awal (N5: 7, N4: 8, N3: 7, N2: 4) dari channel belajar
+  bahasa Jepang. Semua lolos filter "Subtitle/CC" YouTube (caption
+  unggahan). Bahasa caption BELUM terverifikasi: endpoint caption YouTube
+  memblokir IP server (LOGIN_REQUIRED) setelah beberapa permintaan.
+  Catatan risiko: /api/captions di produksi (Cloudflare) memakai jalur
+  yang sama, jadi bisa kena blokir serupa. Perlu dicek manual di preview.
