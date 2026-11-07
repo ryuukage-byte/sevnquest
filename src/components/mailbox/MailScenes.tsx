@@ -293,3 +293,55 @@ export const TakeScene: React.FC<TakeSceneProps> = ({ stationery, variant = 'ind
     </button>
   );
 };
+
+/**
+ * Kotak pos diam untuk kartu dashboard: badan + pintu yang sama dengan adegan animasi,
+ * plus tiang bendera di samping. Bendera naik (dan bergoyang pelan) bila ada surat baru.
+ * Ukuran asli 190x200 px; `size` mengatur lebar tampilan (tinggi ikut proporsi).
+ */
+export const MailboxIdle: React.FC<{ variant?: BoxVariant; flagUp?: boolean; size?: number }> = ({
+  variant = 'red',
+  flagUp = false,
+  size = 96,
+}) => {
+  const W = 190;
+  const H = 200;
+  const c = BOX_COLORS[variant];
+  return (
+    <div className="relative shrink-0" style={{ width: size, height: (size * H) / W }} aria-hidden="true">
+      <div className="absolute left-0 top-0 origin-top-left" style={{ width: W, height: H, transform: `scale(${size / W})` }}>
+        {/* Bayangan tanah */}
+        <div className="absolute rounded-full" style={{ left: 18, top: 188, width: 130, height: 10, background: 'rgba(0,0,0,0.22)' }} />
+        {/* Badan + pintu: koordinat panggung digeser agar kotak mulai di (8,0) */}
+        <div className="absolute" style={{ left: 8 - BOX.left, top: -BOX.top, width: STAGE_W, height: STAGE_H }}>
+          <BoxBody variant={variant} />
+          <BoxDoor variant={variant} />
+        </div>
+        {/* Tiang + bendera: turun = merah redup di bawah, naik = kuning di puncak tiang */}
+        <div className="absolute rounded-full" style={{ left: 166, top: 36, width: 6, height: 154, background: '#8a8e9b' }} />
+        <div className="absolute rounded-full" style={{ left: 164, top: 30, width: 10, height: 10, background: '#a9adb8' }} />
+        <div
+          className="absolute"
+          style={{
+            left: 172, top: 42, width: 20, height: 30,
+            transform: flagUp ? 'translateY(0)' : 'translateY(112px)',
+            transition: 'transform 600ms cubic-bezier(0.22,1,0.36,1)',
+          }}
+        >
+          <div
+            className={`w-full h-full mailbox-flag ${flagUp ? 'mailbox-flag-up' : ''}`}
+            style={{
+              background: flagUp ? '#e8b64c' : c.cap,
+              opacity: flagUp ? 1 : 0.75,
+              borderRadius: '0 5px 5px 0',
+              border: `2px solid ${c.dark}`,
+              borderLeft: 'none',
+              transformOrigin: 'left center',
+              transition: 'background 300ms, opacity 300ms',
+            }}
+          />
+        </div>
+      </div>
+    </div>
+  );
+};

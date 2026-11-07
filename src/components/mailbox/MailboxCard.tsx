@@ -1,9 +1,9 @@
 import React, { lazy, Suspense, useState } from 'react';
-import { Mailbox, Flag, PenLine, MailOpen, Landmark, LogIn } from 'lucide-react';
 import { useMailStatus } from '../../lib/mail';
-import { ADMIN_OFFICE } from '../../lib/mailCore';
 import { playSound } from '../../utils/audio';
 import type { PostOfficeView } from './PostOffice';
+import { MailboxIdle } from './MailScenes';
+import { CASTLE_TILE, CASTLE_TILE_LABEL } from '../home/castleTile';
 
 const PostOffice = lazy(() => import('./PostOffice').then(m => ({ default: m.PostOffice })));
 
@@ -13,93 +13,48 @@ interface MailboxCardProps {
   onOpenAuth?: () => void;
 }
 
-/** Kartu "Kotak Pos" di dashboard: alamat pemain, bendera surat baru, buka kotak pos / tulis surat. */
+/** Ubin "Kotak Pos" di Castle: kotak pos merah mini, bendera + angka bila ada surat baru. */
 export const MailboxCard: React.FC<MailboxCardProps> = ({ playerName, soundEnabled, onOpenAuth }) => {
   const status = useMailStatus();
   const [openView, setOpenView] = useState<PostOfficeView | null>(null);
 
-  const open = (v: PostOfficeView) => {
+  const flagUp = status.unread > 0;
+  const adminWaiting = status.isAdmin && status.adminUnread > 0;
+  const badge = status.unread + (status.isAdmin ? status.adminUnread : 0);
+
+  const onClick = () => {
+    if (!status.signedIn) {
+      playSound('click', soundEnabled);
+      onOpenAuth?.();
+      return;
+    }
     playSound('open_modal', soundEnabled);
-    setOpenView(v);
+    setOpenView(adminWaiting && !flagUp ? 'admin' : 'inbox');
   };
 
-  const flagUp = status.unread > 0;
+  const label = !status.signedIn
+    ? 'Kotak Pos: masuk ke akun untuk membuka'
+    : badge > 0
+      ? `Kotak Pos: ${badge} surat baru`
+      : 'Kotak Pos';
 
   return (
-    <section className="panel panel-stitched p-4 sm:p-5" aria-label="Kotak Pos">
-      <div className="flex items-center gap-4">
-        {/* Kotak pos + bendera */}
-        <div className="relative shrink-0">
-          <span className="w-14 h-14 sm:w-16 sm:h-16 ui-icon-box rounded-2xl text-indigo flex items-center justify-center">
-            <Mailbox className="w-8 h-8 sm:w-9 sm:h-9" />
+    <>
+      <button
+        type="button"
+        onClick={onClick}
+        aria-label={label}
+        title={label}
+        className={`${CASTLE_TILE} hover:bg-surface-elevated/40 cursor-pointer`}
+      >
+        <MailboxIdle variant="red" flagUp={flagUp || adminWaiting} size={34} />
+        <span className={`${CASTLE_TILE_LABEL} group-hover:text-gold transition-colors`}>Kotak Pos</span>
+        {badge > 0 && (
+          <span className="absolute top-1.5 right-1.5 min-w-[18px] h-[18px] px-1 rounded-full bg-wine-accent text-white text-[10px] font-black leading-[18px]">
+            {badge > 99 ? '99+' : badge}
           </span>
-          <Flag
-            aria-hidden="true"
-            className={`absolute -top-2 -right-2 w-5 h-5 transition-transform duration-300 origin-bottom-left ${
-              flagUp ? 'text-wine-accent fill-wine-accent rotate-0' : 'text-text-muted rotate-90 opacity-60'
-            }`}
-          />
-        </div>
-
-        <div className="min-w-0 flex-1">
-          <p className="breadcrumb-label text-indigo">Kotak Pos</p>
-          {!status.signedIn ? (
-            <>
-              <p className="text-sm font-bold font-heading text-text-primary">Punya kotak pos sendiri</p>
-              <p className="text-xs text-text-secondary">
-                Masuk ke akun untuk mendapat alamat kotak pos dan berkirim surat dengan admin.
-              </p>
-            </>
-          ) : (
-            <>
-              <p className="text-sm sm:text-base font-bold font-heading text-text-primary truncate">
-                {flagUp ? `${status.unread} surat baru untukmu` : 'Tidak ada surat baru'}
-              </p>
-              <p className="text-[11px] text-text-secondary truncate">
-                Alamat: <span className="font-mono font-bold text-gold-soft">{status.address ?? (status.loaded ? '—' : '…')}</span>
-              </p>
-              {status.isAdmin && status.adminUnread > 0 && (
-                <p className="text-[11px] font-bold text-gold flex items-center gap-1 mt-0.5">
-                  <Landmark className="w-3 h-3" /> {ADMIN_OFFICE}: {status.adminUnread} surat belum dibaca
-                </p>
-              )}
-              {status.error && <p className="text-[10px] text-wine-accent mt-0.5">{status.error}</p>}
-            </>
-          )}
-        </div>
-      </div>
-
-      <div className="mt-3 grid grid-cols-2 gap-2">
-        {!status.signedIn ? (
-          <button
-            type="button"
-            onClick={() => {
-              playSound('click', soundEnabled);
-              onOpenAuth?.();
-            }}
-            className="col-span-2 btn-physical-secondary px-3 py-2 rounded-xl text-xs font-bold inline-flex items-center justify-center gap-1.5 text-indigo"
-          >
-            <LogIn className="w-3.5 h-3.5" /> Masuk untuk membuka kotak pos
-          </button>
-        ) : (
-          <>
-            <button
-              type="button"
-              onClick={() => open(status.isAdmin && status.adminUnread > 0 && !flagUp ? 'admin' : 'inbox')}
-              className="btn-physical-secondary px-3 py-2 rounded-xl text-xs font-bold inline-flex items-center justify-center gap-1.5 text-indigo"
-            >
-              <MailOpen className="w-3.5 h-3.5" /> Buka Kotak Pos
-            </button>
-            <button
-              type="button"
-              onClick={() => open('compose')}
-              className="btn btn-pill text-xs gap-1.5 justify-center"
-            >
-              <PenLine className="w-3.5 h-3.5" /> Tulis Surat
-            </button>
-          </>
         )}
-      </div>
+      </button>
 
       {openView && (
         <Suspense fallback={null}>
@@ -111,6 +66,6 @@ export const MailboxCard: React.FC<MailboxCardProps> = ({ playerName, soundEnabl
           />
         </Suspense>
       )}
-    </section>
+    </>
   );
 };
