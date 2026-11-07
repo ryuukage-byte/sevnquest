@@ -18,6 +18,8 @@ interface Props {
   initialTemplate?: ImmersionTemplate;
   /** Aktifkan "Simpan kalimat ke Recall" (hanya selama transkrip tersimpan yang dipakai). */
   sentenceRecall?: SentenceRecallHooks;
+  /** Video ini belum punya transkrip tersimpan: jangan ambil subtitle dari YouTube, tampilkan "segera hadir". */
+  transcriptComingSoon?: boolean;
 }
 
 const SUB_DUNGEONS: { id: SubDungeon; title: string; icon: React.ComponentType<{ className?: string }>; description: string; placeholder: string }[] = [
@@ -44,7 +46,7 @@ const CAPTION_ERRORS: Record<string, string> = {
   blocked: 'YouTube menolak permintaan dari server. Coba lagi nanti.',
 };
 
-export const ImmersionDungeonModal: React.FC<Props> = ({ onClose, soundEnabled = true, initialVideoId, initialTemplate, sentenceRecall }) => {
+export const ImmersionDungeonModal: React.FC<Props> = ({ onClose, soundEnabled = true, initialVideoId, initialTemplate, sentenceRecall, transcriptComingSoon }) => {
   const [sub, setSub] = useState<SubDungeon | null>(initialVideoId ? 'video' : null);
   const [input, setInput] = useState(initialVideoId ? `https://youtu.be/${initialVideoId}` : '');
   const [videoId, setVideoId] = useState<string | null>(initialVideoId ?? null);
@@ -69,6 +71,10 @@ export const ImmersionDungeonModal: React.FC<Props> = ({ onClose, soundEnabled =
       return;
     }
     setFetched(null);
+    if (transcriptComingSoon && videoId === initialVideoId) {
+      setCaptions({ status: 'error', message: 'Transkrip video ini segera hadir. Untuk sekarang, tonton dan latih pendengaranmu dulu tanpa teks.' });
+      return;
+    }
     const ctrl = new AbortController();
     setCaptions({ status: 'loading' });
     fetch(`/api/captions?v=${videoId}`, { signal: ctrl.signal })
@@ -86,7 +92,7 @@ export const ImmersionDungeonModal: React.FC<Props> = ({ onClose, soundEnabled =
         setCaptions({ status: 'error', message: err instanceof Error && err.message ? err.message : 'Subtitle gagal diambil.' });
       });
     return () => ctrl.abort();
-  }, [videoId, template]);
+  }, [videoId, template, transcriptComingSoon, initialVideoId]);
 
   const backToChoice = () => {
     click();

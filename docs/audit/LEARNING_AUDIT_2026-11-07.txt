@@ -264,3 +264,7 @@ G. LOG PERKEMBANGAN
   hilang (4 pilihan, dinilai sistem; kata target bergilir tiap sesi)
   -> kata, arti, dan terjemahan terbuka. Kalimat tanpa kata kamus tidak
   bisa disimpan karena tidak bisa diuji.
+- Permintaan pengguna: semua video Library Choukai diputar di dalam
+  SevnQuest (bisa layar penuh lewat pemutar), tombol ke YouTube dihapus.
+  Video tanpa transkrip tersimpan: panel transkrip "segera hadir" (tidak
+  lagi memanggil /api/captions yang diblokir).

@@ -1,9 +1,10 @@
 // Jilid Choukai (聴解) — versi minimal: daftar video & channel YouTube berbahasa Jepang
 // untuk latihan mendengar. Data: src/data/choukaiYoutube.ts (diisi manual).
-// Video dibuka di Immersion (pemutar + transkrip Jepang yang bisa dibedah) atau langsung di YouTube.
+// Semua video diputar di dalam SevnQuest (Immersion; layar penuh lewat tombol pemutar). Transkrip tampil bila
+// tersimpan di src/data/choukaiTranscripts; selain itu panel transkrip menampilkan "segera hadir".
 
 import React, { useMemo, useState } from 'react';
-import { BookOpen, ExternalLink, Headphones, PlayCircle, Search, Tv } from 'lucide-react';
+import { BookOpen, Headphones, PlayCircle, Search, Tv } from 'lucide-react';
 import {
   CHOUKAI_CATEGORY_LABELS, CHOUKAI_LEVELS, CHOUKAI_YOUTUBE,
   type ChoukaiCategory, type ChoukaiLevel, type ChoukaiYoutubeEntry,
@@ -33,9 +34,15 @@ export const ChoukaiLibraryView: React.FC<Props> = ({ soundEnabled = true, entri
   const [level, setLevel] = useState<'all' | ChoukaiLevel>('all');
   const [category, setCategory] = useState<'all' | ChoukaiCategory>('all');
   const [query, setQuery] = useState('');
-  const [immersion, setImmersion] = useState<{ videoId: string; template: ImmersionTemplate } | null>(null);
+  const [immersion, setImmersion] = useState<{ videoId: string; template: ImmersionTemplate | null } | null>(null);
   const [loadingId, setLoadingId] = useState<string | null>(null);
   const [loadError, setLoadError] = useState<string | null>(null);
+
+  const openPlain = (videoId: string) => {
+    click();
+    setLoadError(null);
+    setImmersion({ videoId, template: null });
+  };
 
   const openTranscript = async (videoId: string) => {
     click();
@@ -74,12 +81,13 @@ export const ChoukaiLibraryView: React.FC<Props> = ({ soundEnabled = true, entri
       <div className="panel panel-stitched p-5 rounded-3xl border border-border-subtle space-y-2">
         <div className="flex items-center gap-2">
           <Headphones className="w-5 h-5 text-gold" />
-          <h2 className="text-lg font-bold font-heading text-text-primary">Choukai — Library YouTube</h2>
+          <h2 className="text-lg font-bold font-heading text-text-primary">Choukai — Library Video</h2>
         </div>
         <p className="text-sm text-text-secondary">
           Kumpulan video dan channel berbahasa Jepang untuk melatih telinga pada kecepatan bicara asli.
-          Video dengan transkrip tersimpan bisa dibuka lewat <b className="text-text-primary">Tonton + Transkrip</b> untuk
-          memutar kalimat demi kalimat dan membedah kotoba serta pola kalimatnya. Coba dengarkan tanpa membaca dulu, lalu ulangi sambil membaca.
+          Tonton video berbahasa Jepang langsung di sini (bisa layar penuh). Dengarkan dulu tanpa membaca, lalu ulangi.
+          Video bertanda <b className="text-text-primary">Tonton + Transkrip</b> bisa diputar kalimat demi kalimat, dibedah kotoba
+          dan polanya, dan kalimatnya disimpan ke Recall. Transkrip untuk video lain segera hadir.
         </p>
       </div>
 
@@ -145,9 +153,9 @@ export const ChoukaiLibraryView: React.FC<Props> = ({ soundEnabled = true, entri
                     {videoId ? (
                       <button
                         type="button"
-                        onClick={() => (stored ? openTranscript(videoId) : window.open(e.url, '_blank', 'noopener,noreferrer'))}
+                        onClick={() => (stored ? openTranscript(videoId) : openPlain(videoId))}
                         className="relative aspect-video bg-surface-inset cursor-pointer"
-                        aria-label={stored ? `Tonton dengan transkrip: ${e.title}` : `Buka di YouTube: ${e.title}`}
+                        aria-label={`Tonton: ${e.title}`}
                       >
                         <img
                           src={`https://i.ytimg.com/vi/${videoId}/mqdefault.jpg`}
@@ -175,27 +183,20 @@ export const ChoukaiLibraryView: React.FC<Props> = ({ soundEnabled = true, entri
                       {e.author && <div className="text-xs text-text-secondary truncate">{e.author}</div>}
                       {e.note && <p className="text-xs text-text-secondary line-clamp-3">{e.note}</p>}
                       <div className="flex items-center gap-2 pt-1 mt-auto">
-                        {stored ? (
+                        {videoId && (
                           <button
                             type="button"
-                            onClick={() => openTranscript(videoId!)}
+                            onClick={() => (stored ? openTranscript(videoId) : openPlain(videoId))}
                             disabled={loadingId === videoId}
                             className="btn-skeuo-gold flex-1 px-3 py-2 text-xs"
                           >
-                            <BookOpen className="w-4 h-4" /> {loadingId === videoId ? 'Memuat…' : 'Tonton + Transkrip'}
+                            {stored ? <BookOpen className="w-4 h-4" /> : <PlayCircle className="w-4 h-4" />}
+                            {loadingId === videoId ? 'Memuat…' : stored ? 'Tonton + Transkrip' : 'Tonton'}
                           </button>
-                        ) : videoId ? (
-                          <span className="flex-1 text-[10.5px] font-mono text-text-muted">Transkrip belum tersedia</span>
-                        ) : null}
-                        <a
-                          href={e.url}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          onClick={click}
-                          className={`btn-physical-secondary px-3 py-2 text-xs flex items-center justify-center gap-1 ${stored ? '' : videoId ? '' : 'flex-1'}`}
-                        >
-                          YouTube <ExternalLink className="w-3 h-3" />
-                        </a>
+                        )}
+                        {videoId && !stored && (
+                          <span className="text-[10px] font-mono text-text-muted shrink-0">Transkrip segera hadir</span>
+                        )}
                       </div>
                     </div>
                   </div>
@@ -215,8 +216,9 @@ export const ChoukaiLibraryView: React.FC<Props> = ({ soundEnabled = true, entri
           key={immersion.videoId}
           soundEnabled={soundEnabled}
           initialVideoId={immersion.videoId}
-          initialTemplate={immersion.template}
-          sentenceRecall={onRecordInteraction ? {
+          initialTemplate={immersion.template ?? undefined}
+          transcriptComingSoon={!immersion.template}
+          sentenceRecall={onRecordInteraction && immersion.template ? {
             isSaved: id => !!itemMastery?.[id],
             onSave: id => onRecordInteraction(id, 'choukai', 'flashcard'),
           } : undefined}
