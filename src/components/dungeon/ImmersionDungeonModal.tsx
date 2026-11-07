@@ -12,6 +12,8 @@ import type { CaptionState, LyricLine, SubDungeon } from './immersionTypes';
 interface Props {
   onClose: () => void;
   soundEnabled?: boolean;
+  /** Langsung buka Ruang Video dengan video ini (mis. dari Library Choukai). */
+  initialVideoId?: string;
 }
 
 const SUB_DUNGEONS: { id: SubDungeon; title: string; icon: React.ComponentType<{ className?: string }>; description: string; placeholder: string }[] = [
@@ -38,10 +40,10 @@ const CAPTION_ERRORS: Record<string, string> = {
   blocked: 'YouTube menolak permintaan dari server. Coba lagi nanti.',
 };
 
-export const ImmersionDungeonModal: React.FC<Props> = ({ onClose, soundEnabled = true }) => {
-  const [sub, setSub] = useState<SubDungeon | null>(null);
-  const [input, setInput] = useState('');
-  const [videoId, setVideoId] = useState<string | null>(null);
+export const ImmersionDungeonModal: React.FC<Props> = ({ onClose, soundEnabled = true, initialVideoId }) => {
+  const [sub, setSub] = useState<SubDungeon | null>(initialVideoId ? 'video' : null);
+  const [input, setInput] = useState(initialVideoId ? `https://youtu.be/${initialVideoId}` : '');
+  const [videoId, setVideoId] = useState<string | null>(initialVideoId ?? null);
   const [error, setError] = useState(false);
   const [captions, setCaptions] = useState<CaptionState>({ status: 'idle' });
   // Subtitle YouTube yang terambil (dipakai prompt AI) dan template JSON yang dimuat pengguna.

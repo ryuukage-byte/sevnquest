@@ -1,15 +1,16 @@
 // Jilid Choukai (聴解) — versi minimal: daftar video & channel YouTube berbahasa Jepang
 // untuk latihan mendengar. Data: src/data/choukaiYoutube.ts (diisi manual).
-// Video dibuka di YouTube (tab baru); aplikasi tidak menyematkan pemutar di sini.
+// Video dibuka di Immersion (pemutar + transkrip Jepang yang bisa dibedah) atau langsung di YouTube.
 
 import React, { useMemo, useState } from 'react';
-import { ExternalLink, Headphones, PlayCircle, Search, Tv } from 'lucide-react';
+import { BookOpen, ExternalLink, Headphones, PlayCircle, Search, Tv } from 'lucide-react';
 import {
   CHOUKAI_CATEGORY_LABELS, CHOUKAI_LEVELS, CHOUKAI_YOUTUBE,
   type ChoukaiCategory, type ChoukaiLevel, type ChoukaiYoutubeEntry,
 } from '../../data/choukaiYoutube';
 import { parseYouTubeId } from '../../utils/youtube';
 import { playSound } from '../../utils/audio';
+import { ImmersionDungeonModal } from '../dungeon/ImmersionDungeonModal';
 
 interface Props {
   soundEnabled?: boolean;
@@ -27,6 +28,7 @@ export const ChoukaiLibraryView: React.FC<Props> = ({ soundEnabled = true, entri
   const [level, setLevel] = useState<'all' | ChoukaiLevel>('all');
   const [category, setCategory] = useState<'all' | ChoukaiCategory>('all');
   const [query, setQuery] = useState('');
+  const [immersionId, setImmersionId] = useState<string | null>(null);
 
   const click = () => playSound('click', soundEnabled);
 
@@ -54,7 +56,8 @@ export const ChoukaiLibraryView: React.FC<Props> = ({ soundEnabled = true, entri
         </div>
         <p className="text-sm text-text-secondary">
           Kumpulan video dan channel berbahasa Jepang untuk melatih telinga pada kecepatan bicara asli.
-          Pilih sesuai levelmu, tonton tanpa subtitle dulu, lalu ulangi dengan subtitle Jepang.
+          Video di sini sudah punya subtitle Jepang: buka <b className="text-text-primary">Tonton + Transkrip</b> untuk
+          memutar baris demi baris dan membedah kata serta pola kalimatnya. Coba dengarkan tanpa membaca dulu, lalu ulangi sambil membaca.
         </p>
       </div>
 
@@ -112,16 +115,17 @@ export const ChoukaiLibraryView: React.FC<Props> = ({ soundEnabled = true, entri
               {filtered.map(e => {
                 const videoId = e.kind === 'video' ? parseYouTubeId(e.url) : null;
                 return (
-                  <a
+                  <div
                     key={e.id}
-                    href={e.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    onClick={click}
-                    className="panel panel-stitched block text-left rounded-2xl border border-border-subtle hover:border-gold/50 transition-colors overflow-hidden"
+                    className="panel panel-stitched flex flex-col text-left rounded-2xl border border-border-subtle hover:border-gold/50 transition-colors overflow-hidden"
                   >
                     {videoId ? (
-                      <div className="relative aspect-video bg-surface-inset">
+                      <button
+                        type="button"
+                        onClick={() => { click(); setImmersionId(videoId); }}
+                        className="relative aspect-video bg-surface-inset cursor-pointer"
+                        aria-label={`Tonton dengan transkrip: ${e.title}`}
+                      >
                         <img
                           src={`https://i.ytimg.com/vi/${videoId}/mqdefault.jpg`}
                           alt=""
@@ -129,13 +133,13 @@ export const ChoukaiLibraryView: React.FC<Props> = ({ soundEnabled = true, entri
                           className="w-full h-full object-cover"
                         />
                         <PlayCircle className="w-10 h-10 text-white/90 absolute inset-0 m-auto drop-shadow" />
-                      </div>
+                      </button>
                     ) : (
                       <div className="aspect-video bg-surface-inset flex items-center justify-center">
                         <Tv className="w-10 h-10 text-text-muted" />
                       </div>
                     )}
-                    <div className="p-4 space-y-2">
+                    <div className="p-4 space-y-2 flex-1 flex flex-col">
                       <div className="flex items-center justify-between gap-2">
                         <span className="text-[10px] font-mono font-bold px-2 py-0.5 rounded-md bg-surface-inset border border-border-subtle text-text-primary">
                           {e.level === 'Semua' ? 'Campuran' : e.level}
@@ -147,17 +151,42 @@ export const ChoukaiLibraryView: React.FC<Props> = ({ soundEnabled = true, entri
                       <div className="font-jp font-bold text-text-primary leading-snug line-clamp-2">{e.title}</div>
                       {e.author && <div className="text-xs text-text-secondary truncate">{e.author}</div>}
                       {e.note && <p className="text-xs text-text-secondary line-clamp-3">{e.note}</p>}
-                      <div className="flex items-center justify-between text-[10.5px] font-mono text-text-muted">
-                        <span>{e.hasJapaneseSubtitle ? 'Subtitle Jepang tersedia' : ''}</span>
-                        <span className="flex items-center gap-1">Buka di YouTube <ExternalLink className="w-3 h-3" /></span>
+                      <div className="flex items-center gap-2 pt-1 mt-auto">
+                        {videoId && (
+                          <button
+                            type="button"
+                            onClick={() => { click(); setImmersionId(videoId); }}
+                            className="btn-skeuo-gold flex-1 px-3 py-2 text-xs"
+                          >
+                            <BookOpen className="w-4 h-4" /> Tonton + Transkrip
+                          </button>
+                        )}
+                        <a
+                          href={e.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          onClick={click}
+                          className={`btn-physical-secondary px-3 py-2 text-xs flex items-center justify-center gap-1 ${videoId ? '' : 'flex-1'}`}
+                        >
+                          YouTube <ExternalLink className="w-3 h-3" />
+                        </a>
                       </div>
                     </div>
-                  </a>
+                  </div>
                 );
               })}
             </div>
           )}
         </>
+      )}
+
+      {immersionId && (
+        <ImmersionDungeonModal
+          key={immersionId}
+          soundEnabled={soundEnabled}
+          initialVideoId={immersionId}
+          onClose={() => setImmersionId(null)}
+        />
       )}
     </div>
   );
