@@ -13,7 +13,11 @@
 -- Kertas surat: tiap tier membuka kertasnya sendiri + semua kertas tier di bawahnya; divalidasi di server.
 --
 -- Bergantung pada public.letters (20261107b_letters.sql), public.entitlement_for(), public.is_admin().
--- STATUS: BELUM DITERAPKAN ke proyek live. File ini idempoten; aman dijalankan ulang.
+-- STATUS: DITERAPKAN 2026-11-07 ke proyek iokhdhqnpslpwsxspvaj atas persetujuan pemilik,
+-- tercatat di supabase_migrations.schema_migrations sebagai 20261107011729_letter_tiers. Diverifikasi: anon tanpa
+-- akses RPC; fungsi internal mail_plan_for / mail_sent_today / mail_paper_rank tidak bisa dipanggil klien;
+-- authenticated bisa membaca priority tetapi tetap tidak bisa membaca sender_id; paket admin = tanpa batas.
+-- File ini idempoten; aman dijalankan ulang.
 -- ============================================================================
 
 -- --------------------------------------------------------------------------- Kolom baru
