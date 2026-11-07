@@ -45,3 +45,36 @@ export function parseTranscriptPaste(raw: string): CaptionLineInput[] {
   });
   return lines;
 }
+
+// ------------------------------------------------------------------------------
+// SRT / WebVTT (mis. keluaran Whisper: whisper audio.mp3 --language ja --output_format srt)
+// ------------------------------------------------------------------------------
+
+const CUE_TIME_RE = /^\s*((?:\d+:)?\d{1,2}:\d{2}[.,]\d{1,3})\s*-->\s*((?:\d+:)?\d{1,2}:\d{2}[.,]\d{1,3})/;
+
+function cueTimeToMs(t: string): number {
+  const [clock, frac] = t.replace(',', '.').split('.');
+  const parts = clock.split(':').map(Number);
+  while (parts.length < 3) parts.unshift(0);
+  return ((parts[0] * 60 + parts[1]) * 60 + parts[2]) * 1000 + Number((frac ?? '0').padEnd(3, '0').slice(0, 3));
+}
+
+/** True bila teks tampak seperti SRT/VTT (ada baris "00:00:01,000 --> 00:00:03,000"). */
+export function looksLikeSubtitleFile(raw: string): boolean {
+  return raw.split(/\r?\n/).some(l => CUE_TIME_RE.test(l));
+}
+
+export function parseSubtitleFile(raw: string): CaptionLineInput[] {
+  const lines: CaptionLineInput[] = [];
+  for (const block of raw.replace(/\r/g, '').split(/\n\s*\n/)) {
+    const rows = block.split('\n');
+    const idx = rows.findIndex(r => CUE_TIME_RE.test(r));
+    if (idx < 0) continue;
+    const m = CUE_TIME_RE.exec(rows[idx])!;
+    const text = rows.slice(idx + 1).join(' ').replace(/<[^>]*>/g, '').replace(/\s+/g, ' ').trim();
+    const startMs = cueTimeToMs(m[1]);
+    const endMs = cueTimeToMs(m[2]);
+    if (text && endMs > startMs) lines.push({ startMs, endMs, text });
+  }
+  return lines.sort((a, b) => a.startMs - b.startMs);
+}

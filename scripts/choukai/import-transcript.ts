@@ -3,7 +3,8 @@
 // Pakai:
 //   npx tsx scripts/choukai/import-transcript.ts <videoId|URL> <file>
 // <file> berisi salah satu:
-//   - teks yang disalin dari panel "Tampilkan transkrip" YouTube (0:03 + kalimat), atau
+//   - teks yang disalin dari panel "Tampilkan transkrip" YouTube (0:03 + kalimat),
+//   - file .srt / .vtt (mis. hasil Whisper: whisper audio.mp3 --language ja --output_format srt), atau
 //   - JSON template Immersion (schema sevnquest.immersion.v1, mis. hasil "Prompt AI & JSON").
 // Hasil: src/data/choukaiTranscripts/<videoId>.json
 
@@ -11,7 +12,7 @@ import { readFileSync, writeFileSync, mkdirSync } from 'fs';
 import { dirname, join } from 'path';
 import { fileURLToPath } from 'url';
 import { parseYouTubeId } from '../../src/utils/youtube.ts';
-import { parseTranscriptPaste } from '../../src/engine/textStudy/transcriptPaste.ts';
+import { parseTranscriptPaste, parseSubtitleFile, looksLikeSubtitleFile } from '../../src/engine/textStudy/transcriptPaste.ts';
 import { parseImmersionTemplate, TEMPLATE_SCHEMA } from '../../src/engine/textStudy/immersionTemplate.ts';
 
 const [idArg, file] = process.argv.slice(2);
@@ -22,7 +23,7 @@ if (!videoId || !file) {
 }
 
 const raw = readFileSync(file, 'utf8');
-const lines = raw.trim().startsWith('{') ? null : parseTranscriptPaste(raw);
+const lines = raw.trim().startsWith('{') ? null : looksLikeSubtitleFile(raw) ? parseSubtitleFile(raw) : parseTranscriptPaste(raw);
 const candidate = lines ? JSON.stringify({ schema: TEMPLATE_SCHEMA, videoId, lines }) : raw;
 const parsed = parseImmersionTemplate(candidate, videoId);
 if (!parsed.ok) {
