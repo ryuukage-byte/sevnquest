@@ -1,9 +1,10 @@
 import React, { lazy, Suspense, useState } from 'react';
-import { Mailbox, Flag, PenLine, MailOpen, Landmark, LogIn } from 'lucide-react';
+import { PenLine, MailOpen, Landmark, LogIn } from 'lucide-react';
 import { useMailStatus } from '../../lib/mail';
 import { ADMIN_OFFICE } from '../../lib/mailCore';
 import { playSound } from '../../utils/audio';
 import type { PostOfficeView } from './PostOffice';
+import { MailboxIdle } from './MailScenes';
 
 const PostOffice = lazy(() => import('./PostOffice').then(m => ({ default: m.PostOffice })));
 
@@ -26,20 +27,10 @@ export const MailboxCard: React.FC<MailboxCardProps> = ({ playerName, soundEnabl
   const flagUp = status.unread > 0;
 
   return (
-    <section className="panel panel-stitched p-4 sm:p-5" aria-label="Kotak Pos">
-      <div className="flex items-center gap-4">
-        {/* Kotak pos + bendera */}
-        <div className="relative shrink-0">
-          <span className="w-14 h-14 sm:w-16 sm:h-16 ui-icon-box rounded-2xl text-indigo flex items-center justify-center">
-            <Mailbox className="w-8 h-8 sm:w-9 sm:h-9" />
-          </span>
-          <Flag
-            aria-hidden="true"
-            className={`absolute -top-2 -right-2 w-5 h-5 transition-transform duration-300 origin-bottom-left ${
-              flagUp ? 'text-wine-accent fill-wine-accent rotate-0' : 'text-text-muted rotate-90 opacity-60'
-            }`}
-          />
-        </div>
+    <section className="panel panel-stitched p-4 sm:p-5 h-full flex flex-col" aria-label="Kotak Pos">
+      <div className="flex items-center gap-4 flex-1">
+        {/* Kotak pos merah; bendera naik bila ada surat baru */}
+        <MailboxIdle variant="red" flagUp={flagUp} size={76} />
 
         <div className="min-w-0 flex-1">
           <p className="breadcrumb-label text-indigo">Kotak Pos</p>

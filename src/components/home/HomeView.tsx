@@ -16,6 +16,8 @@ import { StartGuideModal, GuidePath } from './StartGuideModal';
 import { FeatureSearch, FeatureTarget } from './FeatureSearch';
 import { AnnouncementBanners } from '../announcements/AnnouncementBanners';
 import { MailboxCard } from '../mailbox/MailboxCard';
+import { SupportCard } from './SupportCard';
+import { CommunityCard } from './CommunityCard';
 
 export interface HomeViewProps {
   stats: PlayerStats;
@@ -338,8 +340,12 @@ export const HomeView: React.FC<HomeViewProps> = ({
         <FeatureSearch onSelect={handleFeatureSelect} />
       </div>
 
-      {/* 5. KOTAK POS: alamat pemain + surat dari/ke admin */}
-      <MailboxCard playerName={stats.playerName || ''} soundEnabled={stats.soundEnabled} onOpenAuth={onOpenAuth} />
+      {/* 5. KOTAK POS + DUKUNG + KOMUNITAS: sejajar di layar lebar, bertumpuk di HP */}
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-3 sm:gap-4">
+        <MailboxCard playerName={stats.playerName || ''} soundEnabled={stats.soundEnabled} onOpenAuth={onOpenAuth} />
+        <SupportCard soundEnabled={stats.soundEnabled} />
+        <CommunityCard soundEnabled={stats.soundEnabled} />
+      </div>
 
       <StartGuideModal
         isOpen={isGuideOpen}

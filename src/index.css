@@ -2687,3 +2687,12 @@ html:not(.ui-a):not(.ui-b) .btn-cta:active:not(:disabled) {
   border-radius: calc(var(--ui-radius) - 4px);
   pointer-events: none;
 }
+
+/* Kotak Pos (dashboard): bendera surat baru bergoyang pelan. */
+@keyframes mailboxFlagWave {
+  0%, 100% { transform: skewY(0deg) scaleX(1); }
+  50% { transform: skewY(-8deg) scaleX(0.9); }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .mailbox-flag-up { animation: mailboxFlagWave 2.4s ease-in-out 600ms infinite; }
+}
