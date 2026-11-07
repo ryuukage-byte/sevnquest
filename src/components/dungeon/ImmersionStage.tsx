@@ -151,6 +151,7 @@ export const ImmersionStage: React.FC<Props> = ({ videoId, captions }) => {
                       view={view}
                       glosses={glosses}
                       onSeek={ms => controlRef.current?.seekToMs(ms)}
+                      followWords={!focusedWords.estimated}
                       className={view === 'word' ? 'text-xl sm:text-2xl' : 'text-2xl sm:text-3xl'}
                     />
                   )}
@@ -159,7 +160,7 @@ export const ImmersionStage: React.FC<Props> = ({ videoId, captions }) => {
                   <p className="text-sm text-text-secondary text-center leading-relaxed">{lines[focused.index].translation}</p>
                 )}
                 {focusedWords?.estimated && (
-                  <p className="text-[10px] text-text-muted text-center">Sorotan kata diperkirakan: subtitle ini tidak membawa waktu per kata.</p>
+                  <p className="text-[10px] text-text-muted text-center">Subtitle ini hanya membawa waktu per kalimat, jadi sorotan mengikuti kalimat, bukan kata.</p>
                 )}
 
                 {showWords && (

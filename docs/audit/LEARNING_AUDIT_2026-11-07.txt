@@ -237,3 +237,8 @@ G. LOG PERKEMBANGAN
   memblokir IP server (LOGIN_REQUIRED) setelah beberapa permintaan.
   Catatan risiko: /api/captions di produksi (Cloudflare) memakai jalur
   yang sama, jadi bisa kena blokir serupa. Perlu dicek manual di preview.
+- Uji pengguna: transkrip muncul, tetapi sorotan per kata tidak pas dengan
+  audio. Penyebab: caption manual hanya membawa waktu per kalimat; waktu
+  kata selama ini diperkirakan dari jumlah mora. Perbaikan: untuk caption
+  tanpa waktu kata, sorotan mengikuti kalimat utuh (karaoke per kata
+  hanya bila YouTube menyediakan waktu kata asli, yaitu caption otomatis).
