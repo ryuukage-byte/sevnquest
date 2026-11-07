@@ -132,10 +132,13 @@ interface PostSceneProps {
   variant?: BoxVariant;
   /** Hasil pengiriman ke server; animasi menunggu ini sebelum amplop masuk ke celah. */
   result: Promise<boolean>;
+  /** Dipanggil sekali: true saat surat sudah masuk kotak pos, false bila gagal. */
   onDone: (ok: boolean) => void;
+  /** Tampil di bawah kotak pos setelah surat diposkan (mis. tombol tutup). Kotak pos tetap terlihat. */
+  footer?: React.ReactNode;
 }
 
-export const PostScene: React.FC<PostSceneProps> = ({ stationery, variant = 'red', result, onDone }) => {
+export const PostScene: React.FC<PostSceneProps> = ({ stationery, variant = 'red', result, onDone, footer }) => {
   const [scope, animate] = useAnimate<HTMLDivElement>();
   const reduce = useReducedMotion();
   const [caption, setCaption] = useState('Melipat surat…');
@@ -149,7 +152,9 @@ export const PostScene: React.FC<PostSceneProps> = ({ stationery, variant = 'red
     };
     (async () => {
       if (reduce) {
-        finish(await result);
+        const ok = await result;
+        if (ok) setCaption('Surat sudah diposkan');
+        finish(ok);
         return;
       }
       const root = scope.current;
@@ -186,8 +191,12 @@ export const PostScene: React.FC<PostSceneProps> = ({ stationery, variant = 'red
       // 6. kotak pos "menelan"
       setCaption('Surat sudah diposkan');
       await animate('.box, .door', { scaleY: [1, 0.96, 1.02, 1], scaleX: [1, 1.03, 0.99, 1] }, { duration: 0.4, ease: 'easeOut' });
-      await wait(350);
+      if (!alive) return;
       finish(true);
+      // 7. diam: kotak pos bergoyang pelan sampai pemain menutupnya
+      await wait(250);
+      if (!alive) return;
+      animate('.box, .door', { y: [0, -5, 0], rotate: [0, -1.2, 0, 1.2, 0] }, { duration: 3.2, ease: 'easeInOut', repeat: Infinity });
     })();
     return () => {
       alive = false;
@@ -198,12 +207,15 @@ export const PostScene: React.FC<PostSceneProps> = ({ stationery, variant = 'red
     <div className="py-4 flex flex-col items-center gap-3 select-none" role="status" aria-live="polite">
       <div ref={scope} className="relative" style={{ width: STAGE_W, height: STAGE_H, perspective: 700 }}>
         <BoxBody variant={variant} hidden={!reduce} />
-        <div className="clip absolute left-0 top-0 overflow-hidden" style={{ width: STAGE_W, height: STAGE_H, zIndex: 2 }}>
-          <Envelope stationery={stationery} flapOpen start="translateY(70px)" letterStartY={-150} />
-        </div>
+        {!reduce && (
+          <div className="clip absolute left-0 top-0 overflow-hidden" style={{ width: STAGE_W, height: STAGE_H, zIndex: 2 }}>
+            <Envelope stationery={stationery} flapOpen start="translateY(70px)" letterStartY={-150} />
+          </div>
+        )}
         <BoxDoor variant={variant} hidden={!reduce} />
       </div>
       <p className="text-sm font-bold font-heading text-text-primary">{caption}</p>
+      {footer}
     </div>
   );
 };

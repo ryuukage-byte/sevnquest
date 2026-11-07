@@ -3,7 +3,7 @@ import { createPortal } from 'react-dom';
 import { motion } from 'motion/react';
 import {
   Mailbox, Mail, MailOpen, Send, PenLine, Archive, ArchiveRestore, Reply, Landmark, X, ArrowLeft,
-  RefreshCw, EyeOff, UserRound, Copy, Check,
+  RefreshCw, EyeOff, UserRound, Copy, Check, Lock, Gauge,
 } from 'lucide-react';
 import {
   ADMIN_ADDRESS,
@@ -22,6 +22,9 @@ import {
   Stationery,
   adminBox,
   categoryLabel,
+  paperUnlocked,
+  priorityLabel,
+  rankLabel,
   playerBox,
   postmark,
   replySubject,
@@ -139,11 +142,17 @@ interface ComposeProps {
   error: string | null;
   onSubmit: () => void;
   onCancel?: () => void;
+  /** Tier pemain (menentukan kertas yang terbuka). Admin: 9. */
+  tierRank: number;
+  /** Info kuota harian (hanya mode pemain). */
+  quota?: { label: string; limit: number | null; sent: number; priority: number } | null;
 }
 
 function ComposeLetter({
-  mode, draft, onDraft, toName, toAddress, note, playerName, address, busy, error, onSubmit, onCancel,
+  mode, draft, onDraft, toName, toAddress, note, playerName, address, busy, error, onSubmit, onCancel, tierRank, quota,
 }: ComposeProps) {
+  const remaining = quota && quota.limit != null ? Math.max(0, quota.limit - quota.sent) : null;
+  const outOfQuota = remaining === 0;
   const set = <K extends keyof LetterDraft>(k: K, v: LetterDraft[K]) => onDraft({ ...draft, [k]: v });
   const s = stationeryStyle(draft.stationery);
   const signature = mode === 'adminReply' ? ADMIN_NAME : signatureOf({ isAnonymous: draft.anonymous, senderName: playerName || null });
@@ -160,6 +169,21 @@ function ComposeLetter({
             <p className={LABEL}>Kepada</p>
             <p className="text-sm font-bold text-text-primary">{ADMIN_NAME} · {ADMIN_OFFICE}</p>
             <p className="text-[10px] text-text-muted">Alamat {ADMIN_ADDRESS}. Untuk saat ini surat hanya bisa dikirim ke admin.</p>
+          </div>
+        </div>
+      )}
+
+      {mode === 'player' && quota && (
+        <div className={`rounded-2xl border p-3 flex items-center gap-3 ${outOfQuota ? 'border-wine-accent/50 bg-wine-accent/5' : 'border-border-subtle bg-surface-inset'}`}>
+          <span className="w-10 h-10 ui-icon-box rounded-xl text-gold shrink-0"><Gauge className="w-5 h-5" /></span>
+          <div className="min-w-0 flex-1">
+            <p className={LABEL}>Kuota hari ini · {quota.label}</p>
+            <p className="text-sm font-bold text-text-primary">
+              {quota.limit == null ? 'Tanpa batas' : `${remaining} dari ${quota.limit} surat tersisa`}
+            </p>
+            <p className="text-[10px] text-text-muted">
+              Layanan: {priorityLabel(quota.priority)}. {outOfQuota ? 'Kuota habis, coba lagi besok (reset pukul 00.00 WIB).' : 'Kuota direset tiap pukul 00.00 WIB.'}
+            </p>
           </div>
         </div>
       )}
@@ -196,17 +220,37 @@ function ComposeLetter({
       <div className="space-y-1.5">
         <span className={LABEL}>Kertas surat</span>
         <div className="flex flex-wrap gap-2">
-          {STATIONERY.map(p => (
-            <button
-              key={p.value}
-              type="button"
-              onClick={() => set('stationery', p.value)}
-              className={`flex items-center gap-2 px-2.5 py-1.5 rounded-xl text-xs font-bold border transition-colors ${draft.stationery === p.value ? CHIP_ON : CHIP_OFF}`}
-            >
-              <span className="w-5 h-5 rounded-md border" style={{ background: p.paper, borderColor: p.rule }} aria-hidden="true" />
-              {p.label}
-            </button>
-          ))}
+          {STATIONERY.map(p => {
+            const open = paperUnlocked(p.value, tierRank);
+            return (
+              <button
+                key={p.value}
+                type="button"
+                onClick={() => open && set('stationery', p.value)}
+                disabled={!open}
+                title={open ? p.label : `Khusus ${rankLabel(p.rank)}`}
+                className={`flex items-center gap-2 px-2.5 py-1.5 rounded-xl text-xs font-bold border transition-colors ${
+                  draft.stationery === p.value ? CHIP_ON : CHIP_OFF
+                } ${open ? '' : 'opacity-60 cursor-not-allowed'}`}
+              >
+                <span
+                  className="w-5 h-5 rounded-md border flex items-center justify-center text-[10px] font-black leading-none"
+                  style={{ background: p.paper, borderColor: p.frame ? '#c8463c' : p.rule, color: p.accent }}
+                  aria-hidden="true"
+                >
+                  {p.emblem?.slice(0, 1)}
+                </span>
+                <span className="text-left leading-tight">
+                  {p.label}
+                  {!open && (
+                    <span className="flex items-center gap-0.5 text-[9px] font-bold text-text-muted">
+                      <Lock className="w-2.5 h-2.5" /> {p.rank === 1 ? 'Premium' : `Super Premium Lv.${p.rank - 1}`}
+                    </span>
+                  )}
+                </span>
+              </button>
+            );
+          })}
         </div>
       </div>
 
@@ -265,7 +309,7 @@ function ComposeLetter({
         <button
           type="button"
           onClick={onSubmit}
-          disabled={busy}
+          disabled={busy || outOfQuota}
           className="btn-physical-secondary px-4 py-2.5 rounded-xl text-sm font-bold inline-flex items-center gap-2 text-indigo disabled:opacity-50"
         >
           <Send className="w-4 h-4" /> {busy ? 'Memposkan…' : mode === 'player' ? 'Poskan Surat' : 'Kirim Balasan'}
@@ -306,10 +350,16 @@ export const PostOffice: React.FC<PostOfficeProps> = ({ initialView, playerName,
   const [replyDraft, setReplyDraft] = useState<LetterDraft>(EMPTY_LETTER);
   const [busy, setBusy] = useState(false);
   const [composeError, setComposeError] = useState<string | null>(null);
-  const [posted, setPosted] = useState(false);
   const [copied, setCopied] = useState(false);
   /** Animasi memposkan yang sedang berjalan. */
-  const [posting, setPosting] = useState<{ stationery: Stationery; result: Promise<boolean>; onDone: (ok: boolean) => void } | null>(null);
+  const [posting, setPosting] = useState<{
+    stationery: Stationery;
+    result: Promise<boolean>;
+    onDone: (ok: boolean) => void;
+    /** Surat sudah masuk kotak pos; adegan tetap tampil sampai pemain menutupnya. */
+    done: boolean;
+    kind: 'letter' | 'reply';
+  } | null>(null);
   /** Animasi mengambil surat dari kotak pos yang sedang berjalan. */
   const [taking, setTaking] = useState<{ stationery: Stationery; variant: BoxVariant; open: () => void } | null>(null);
 
@@ -339,6 +389,14 @@ export const PostOffice: React.FC<PostOfficeProps> = ({ initialView, playerName,
     void load();
   }, [load]);
 
+  // Kertas yang tidak lagi terbuka untuk tier pemain (mis. langganan berakhir) dikembalikan ke Klasik.
+  useEffect(() => {
+    if (status.loaded && !paperUnlocked(draft.stationery, status.tierRank)) {
+      setDraft({ ...draft, stationery: 'classic' });
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [status.loaded, status.tierRank, draft.stationery]);
+
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       if (e.key === 'Escape') onClose();
@@ -361,14 +419,14 @@ export const PostOffice: React.FC<PostOfficeProps> = ({ initialView, playerName,
   const adminUnread = adminLetters.filter(l => !l.archived && !l.readAt).length;
 
   const goto = (v: PostOfficeView) => {
-    if (posting) return; // jangan pindah laci saat surat sedang diposkan
+    if (posting && !posting.done) return; // jangan pindah laci saat surat sedang diposkan
     playSound('click', soundEnabled);
     setTaking(null);
+    setPosting(null);
     setView(v);
     setOpenLetter(null);
     setOpenAdmin(null);
     setReplying(false);
-    setPosted(false);
   };
 
   const readLetter = async (l: Letter) => {
@@ -427,16 +485,18 @@ export const PostOffice: React.FC<PostOfficeProps> = ({ initialView, playerName,
     setPosting({
       stationery: draft.stationery,
       result,
+      done: false,
+      kind: 'letter',
       onDone: ok => {
-        setPosting(null);
         setBusy(false);
         if (!ok) {
+          setPosting(null);
           setComposeError(failure ?? 'Surat gagal diposkan. Coba lagi.');
           return;
         }
         playSound('correct', soundEnabled);
-        setDraft(EMPTY_LETTER);
-        setPosted(true);
+        setDraft({ ...EMPTY_LETTER, stationery: draft.stationery, anonymous: draft.anonymous });
+        setPosting(p => (p ? { ...p, done: true } : p));
         void load();
       },
     });
@@ -459,16 +519,19 @@ export const PostOffice: React.FC<PostOfficeProps> = ({ initialView, playerName,
     setPosting({
       stationery: replyDraft.stationery,
       result,
+      done: false,
+      kind: 'reply',
       onDone: ok => {
-        setPosting(null);
         setBusy(false);
         if (!ok) {
+          setPosting(null);
           setComposeError(failure ?? 'Balasan gagal diposkan. Coba lagi.');
           return;
         }
         playSound('correct', soundEnabled);
         setReplying(false);
         setOpenAdmin(null);
+        setPosting(p => (p ? { ...p, done: true } : p));
         void load();
       },
     });
@@ -614,6 +677,7 @@ export const PostOffice: React.FC<PostOfficeProps> = ({ initialView, playerName,
               error={composeError}
               onSubmit={() => void sendReply()}
               onCancel={() => setReplying(false)}
+              tierRank={9}
             />
           </div>
         );
@@ -637,6 +701,8 @@ export const PostOffice: React.FC<PostOfficeProps> = ({ initialView, playerName,
           />
           </motion.div>
           <div className="flex items-center gap-1.5 flex-wrap">
+            <Pill tone={openAdmin.priority > 0 ? 'gold' : 'muted'}>{priorityLabel(openAdmin.priority)}</Pill>
+            {openAdmin.senderTier && <Pill tone="muted">{openAdmin.senderTier}</Pill>}
             {openAdmin.isAnonymous && <Pill tone="muted">Pengirim anonim</Pill>}
             {openAdmin.repliedAt && <Pill tone="green">Sudah dibalas</Pill>}
           </div>
@@ -687,7 +753,12 @@ export const PostOffice: React.FC<PostOfficeProps> = ({ initialView, playerName,
               date={l.sentAt}
               category={l.category}
               stationery={l.stationery}
-              badge={l.repliedAt ? <Pill tone="green">Dibalas</Pill> : !l.readAt ? <Pill tone="wine">Baru</Pill> : <Pill tone="gold">Belum dibalas</Pill>}
+              badge={
+                <>
+                  {l.priority > 0 && <Pill tone="gold">{priorityLabel(l.priority)}</Pill>}
+                  {l.repliedAt ? <Pill tone="green">Dibalas</Pill> : !l.readAt ? <Pill tone="wine">Baru</Pill> : <Pill tone="muted">Belum dibalas</Pill>}
+                </>
+              }
               onOpen={() => void readAdmin(l)}
             />
           ))}
@@ -697,25 +768,6 @@ export const PostOffice: React.FC<PostOfficeProps> = ({ initialView, playerName,
   };
 
   const renderCompose = () => {
-    if (posted) {
-      return (
-        <div className="text-center py-10 space-y-3">
-          <Send className="w-10 h-10 mx-auto text-indigo" />
-          <p className="text-base font-bold font-heading text-text-primary">Suratmu sudah diposkan</p>
-          <p className="text-xs text-text-secondary max-w-xs mx-auto">
-            Surat sedang menuju {ADMIN_OFFICE}. Balasan admin akan masuk ke kotak posmu, dan bendera kotak pos akan naik.
-          </p>
-          <div className="flex items-center justify-center gap-2 flex-wrap">
-            <button type="button" onClick={() => goto('sent')} className="btn btn-pill text-xs gap-1.5">
-              <Send className="w-3.5 h-3.5" /> Lihat surat terkirim
-            </button>
-            <button type="button" onClick={() => setPosted(false)} className="btn btn-pill text-xs gap-1.5 text-indigo">
-              <PenLine className="w-3.5 h-3.5" /> Tulis surat lain
-            </button>
-          </div>
-        </div>
-      );
-    }
     return (
       <ComposeLetter
         mode="player"
@@ -728,13 +780,49 @@ export const PostOffice: React.FC<PostOfficeProps> = ({ initialView, playerName,
         busy={busy}
         error={composeError}
         onSubmit={() => void post()}
+        tierRank={status.tierRank}
+        quota={status.signedIn ? { label: status.tierLabel, limit: status.dailyLimit, sent: status.sentToday, priority: status.priority } : null}
       />
     );
   };
 
   let content: React.ReactNode;
   if (posting) {
-    content = <PostScene stationery={posting.stationery} result={posting.result} onDone={posting.onDone} />;
+    content = (
+      <PostScene
+        stationery={posting.stationery}
+        result={posting.result}
+        onDone={posting.onDone}
+        footer={posting.done ? (
+          <div className="text-center space-y-3 max-w-sm">
+            <p className="text-xs text-text-secondary">
+              {posting.kind === 'letter'
+                ? `Surat sedang menuju ${ADMIN_OFFICE}. Balasan admin akan masuk ke kotak posmu, dan bendera kotak pos akan naik.`
+                : 'Balasan sedang diantar ke kotak pos pengirim.'}
+            </p>
+            <div className="flex items-center justify-center gap-2 flex-wrap">
+              {posting.kind === 'letter' ? (
+                <>
+                  <button type="button" onClick={() => goto('sent')} className="btn btn-pill text-xs gap-1.5">
+                    <Send className="w-3.5 h-3.5" /> Lihat surat terkirim
+                  </button>
+                  <button type="button" onClick={() => setPosting(null)} className="btn btn-pill text-xs gap-1.5 text-indigo">
+                    <PenLine className="w-3.5 h-3.5" /> Tulis surat lain
+                  </button>
+                </>
+              ) : (
+                <button type="button" onClick={() => setPosting(null)} className="btn btn-pill text-xs gap-1.5 text-indigo">
+                  <Landmark className="w-3.5 h-3.5" /> Kembali ke {ADMIN_OFFICE}
+                </button>
+              )}
+              <button type="button" onClick={onClose} className="btn btn-pill text-xs gap-1.5">
+                <X className="w-3.5 h-3.5" /> Tutup kotak pos
+              </button>
+            </div>
+          </div>
+        ) : null}
+      />
+    );
   } else if (taking) {
     content = (
       <TakeScene
@@ -796,7 +884,7 @@ export const PostOffice: React.FC<PostOfficeProps> = ({ initialView, playerName,
                 type="button"
                 role="tab"
                 aria-selected={view === t.value}
-                disabled={!!posting}
+                disabled={!!posting && !posting.done}
                 onClick={() => goto(t.value)}
                 className={`shrink-0 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-bold border transition-colors ${view === t.value ? CHIP_ON : CHIP_OFF}`}
               >
