@@ -1,0 +1,231 @@
+SEVNQUEST - AUDIT MASALAH BELAJAR & CELAH PRODUK
+Tanggal: 2026-11-07 (HEAD 1e4df13)
+Metode: membaca kode, data, skema Supabase, mesin SRS & kurikulum.
+Tidak dijalankan di browser; tidak membaca data pengguna produksi.
+Perilaku UI nyata yang belum diuji ditandai "Unknown".
+
+======================================================================
+A. RINGKASAN EKSEKUTIF
+======================================================================
+Inti SevnQuest kuat untuk kosakata, kanji, dan grammar sampai tahap
+pemahaman pasif:
+- Konten: 18.353 kosakata, 2.507 kanji, 915 pola grammar, 10.168 kalimat
+  contoh, 2.525 soal grammar, 7.754 soal kanji.
+- Tryout: puluhan arsip soal resmi JLPT N3-N1.
+- Mesin: SRS dengan antrean prioritas + perencana kurikulum yang
+  menghitung celah materi, beban harian, dan retensi
+  (src/engine/curriculum/curriculum.ts).
+- Semua gratis, satu aplikasi. Tidak ditemukan paywall/pembayaran.
+
+Yang BELUM terselesaikan: memakai bahasa Jepang secara aktif.
+- Tidak ada latihan berbicara (tanpa mikrofon / speech recognition).
+- Listening dimatikan (CHOUKAI_ENABLED = false).
+- Dokkai hanya 42 teks, semuanya N3 (di luar bacaan tryout).
+- Recall menguji pengenalan, belum meminta jawaban yang diketik sendiri.
+- Lapisan RPG (Tower, Arcade, Fusion, Dungeon, Kotak Pos, avatar tier)
+  memakan banyak kode dibanding fondasi produksi bahasa.
+
+Kesimpulan: alat pemahaman & hafalan yang sangat baik dengan lapisan
+game tebal; belum menjadi platform yang membuat pengguna MAMPU MEMAKAI
+bahasa Jepang.
+
+======================================================================
+B. PROBLEM COVERAGE MATRIX
+======================================================================
+Format: Masalah | Status | Bukti | Kekurangan
+
+1. Bingung memulai | Partial
+   Bukti: StartGuideModal (Kana Dojo -> Hiragana -> Katakana -> N5),
+   GuidedSetupWizard.
+   Kurang: panduan berupa modal yang bisa dilewati; banyak pintu masuk
+   sejajar (Library, Tower, Arcade, Dungeon, Misi). Unknown: apakah
+   wizard dipaksa saat login pertama.
+
+2. Hafal hiragana/katakana | Covered
+   Bukti: data stroke kana (486 file), canvas menulis, buku Kana.
+
+3. Sulit mengingat kanji | Partial
+   Bukti: 2.507 kanji, KanjiComponentsSection (radikal), relatedWords,
+   hanzi-writer.
+   Kurang: tidak ada fitur kanji mirip bentuk; belum ada mnemonik.
+
+4. Retensi kosakata jangka panjang | Covered (mekanisme)
+   Bukti: SRS [1,2,4,7,14,30] hari, turun satu anak tangga saat salah
+   sebagian, reset saat <60% (src/utils/mastery.ts:27, :278-291), kuota
+   harian.
+   Kurang: interval mentok 30 hari; tidak ada deteksi "leech"; hanya
+   menguji pengenalan.
+
+5. Pola grammar yang mirip | Partial
+   Bukti: kolom "difference" (mis. mitai vs you da) di bunpouMetadata.ts,
+   sekitar 15 entri.
+   Kurang: 15 dari 915 pola. 132 pola N3 (w1-w6) tidak berlabel level di
+   bunpou.json.
+
+6. Fungsi partikel | Partial
+   Bukti: soal grammar + pembahasan.
+   Kurang: tidak ada modul partikel tersendiri (Unknown per item).
+
+7. Bisa soal, tak bisa bicara | Missing
+   Bukti: sentenceBuilderEngine (menyusun kalimat).
+   Kurang: tidak ada speaking, dialog, atau produksi bebas.
+
+8. Listening cepat | Missing -> sedang ditangani (lihat bagian G)
+   Bukti: choukai.ts ada tetapi CHOUKAI_ENABLED=false; hanya TTS
+   (utils/audio.ts) dan engine Recall "listening".
+   Kurang: tidak ada audio native.
+
+9. Teks panjang | Partial
+   Bukti: Dokkai Library, Text Study / Immersion YouTube, tryout.
+   Kurang: 42 teks database N3 saja.
+
+10. Konteks kata | Partial
+    Bukti: collocations, exampleSentence, definitionId pada 9.015 dari
+    18.353 kata; kotobaInsights.ts.
+    Kurang: ~51% kata punya konteks; kebanyakan yang kosong di N1.
+
+11. Formal vs informal | Partial
+    Bukti: catatan nuansa per pola (kasual/formal).
+    Kurang: tidak ada jalur keigo / latihan ubah register.
+
+12. Kesalahan umum | Missing
+    Bukti: questionInsight (pembahasan soal).
+    Kurang: tidak ada data "common mistakes"; weaknessFlags bunpou hanya
+    "conjugation".
+
+13. Materi tersebar | Covered
+    Bukti: kotoba, kanji, bunpou, soal, tryout, deck dalam satu app.
+
+14. Roadmap & prioritas | Partial
+    Bukti: kurikulum inti level target, analisis celah, jatah harian
+    adaptif, evaluasi tiap 7 hari.
+    Kurang: hanya 3 kategori (kotoba/kanji/bunpou), tanpa reading/
+    listening.
+
+15. Sistem pengulangan | Covered
+    Bukti: Recall 10 item/sesi, 40/hari, 10 baru/hari, Latihan Ekstra.
+
+16. Progress objektif | Partial
+    Bukti: itemMastery (LEARNING/COMPLETED/MASTERED), retensi, tryout.
+    Kurang: MASTERED = >=80% dengan >=2 attempt, bisa tercapai dalam
+    hitungan hari. Belum ada skor perkiraan per bagian JLPT.
+
+17. Evaluasi konsisten | Partial
+    Bukti: evaluasi 10 soal / 7 hari, tryout resmi.
+    Kurang: hasil tryout tidak terhubung ke rekomendasi materi (Unknown).
+
+18. Motivasi / konsistensi | Partial
+    Bukti: streak berbasis belajar, misi, ledger EXP.
+    Kurang: leaderboard memakai total_exp kumulatif
+    (lib/supabase.ts:382) sehingga menguntungkan veteran.
+
+19. Bosan | Covered (justru berlebih)
+    Bukti: Arcade, Tower, Fusion.
+
+20. Takut salah / percaya diri bicara | Missing
+
+21. Kembali setelah berhenti | Missing
+    Kurang: tidak ada logika comeback; antrean SRS menumpuk (batas
+    harian 40 hanya meredam).
+
+22. Biaya | Covered
+    Bukti: tanpa paywall; data JMdict sesuai lisensi.
+    Unknown: keberlanjutan biaya (AI deck, Supabase).
+
+======================================================================
+C. PRODUCT GAP ANALYSIS
+======================================================================
+Sudah bagus (pertahankan):
+1. Perencana kurikulum dengan analisis celah + pengurangan materi baru
+   saat retensi turun.
+2. Hubungan kata <-> komponen kanji (16.339 kata) <-> kalimat
+   (sentence_links.json).
+3. Arsip tryout resmi N3-N1.
+4. Ekonomi EXP dengan ledger & idempotensi (PR #14).
+5. Deck AI yang mengambil kosakata dari database asli
+   (api/deck-topic.ts), mengurangi risiko AI keliru.
+
+Ada tetapi kurang efektif:
+- Recall hanya pilihan ganda / fusion / konjugasi / canvas / listening;
+  belum ada jawaban ketik.
+- MASTERED terlalu mudah tercapai.
+- Dokkai database hanya satu level.
+- Perbandingan grammar ~15 entri.
+- Label level 132 pola N3 hilang di data.
+
+Belum ada: speaking, listening native, mode kembali setelah absen,
+kanji mirip, katalog kesalahan umum, jalur keigo, prediksi kesiapan
+JLPT per bagian.
+
+Berpotensi tidak diperlukan / perlu dipangkas: Kotak Pos dengan kertas
+surat per tier, avatar tier, Dungeon/Fusion, banyak mode Arcade; sisa
+kode engine Tower lama (docs/audit/TECHNICAL_DEBT.md).
+
+Hambatan UX: terlalu banyak tujuan sejajar di Home; "apa yang saya
+lakukan hari ini?" bisa kabur tanpa Guided Missions (Unknown sampai diuji
+di browser).
+
+======================================================================
+D. COMPETITIVE ADVANTAGE (didukung bukti)
+======================================================================
+1. Satu sistem yang tahu celah materi pengguna: target level -> materi
+   inti -> jatah harian adaptif -> Recall -> evaluasi. Anki tidak tahu
+   apa yang belum dipelajari; SevnQuest tahu.
+2. Konten berbahasa Indonesia yang saling terhubung, gratis.
+Gamifikasi BUKAN keunggulan yang bisa dipertahankan.
+
+======================================================================
+E. JAWABAN PERTANYAAN KRITIS
+======================================================================
+1. Pemula total: sampai N5/N4 pasif ya; bicara & mendengar tidak.
+2. N3 grammar lemah: sebagian; perbandingan pola minim, tanpa diagnosis
+   per pola.
+3. Tahu 1.000 kata tapi tak bisa bercakap: tidak ada solusi.
+4. Sering lupa: ya, SRS bekerja; batas 30 hari & hanya pengenalan.
+5. 15 menit/hari: ya (minimal 10 menit, sesi Recall 10 item).
+6. Lulus N2: vocab/kanji/grammar/tryout ada; reading N2 & listening
+   belum. Belum tercakup.
+7. Kerja/tinggal di Jepang: minim (229 kata Kaigo, 31 SSW, tryout JFT).
+8. Kembali setelah sebulan: tidak ada mekanisme khusus.
+9. Alasan terkuat: kurikulum adaptif + konten terhubung berbahasa
+   Indonesia, gratis.
+10. Meningkatkan kemampuan? Ya untuk pengetahuan pasif; untuk kemampuan
+    aktif masih lebih banyak pengalaman gamified.
+
+======================================================================
+F. DEVELOPMENT PRIORITY
+======================================================================
+P0
+- Pulihkan Choukai -> DIMULAI: versi minimal = Library YouTube (bag. G).
+  Kompleksitas: S (versi minimal), M (audio soal asli).
+- Perbaiki label level 132 pola grammar N3. (S)
+- Perketat MASTERED (mis. lolos di interval >=14 hari). (S)
+
+P1
+- Mode jawaban ketik di Recall untuk item COMPLETED (wanakana sudah
+  ada). (M)
+- Mode kembali setelah absen. (S-M)
+- Hubungkan hasil tryout/evaluasi ke kurikulum. (M)
+- Perluas "difference" untuk pasangan pola yang sering tertukar. (M,
+  konten)
+- Dokkai N5-N2. (M-L, konten)
+
+P2
+- Home satu tombol "Belajar hari ini"; mode game jadi sekunder. (M)
+- Leaderboard default mingguan berbasis Recall/retensi. (S)
+- Isi konteks kata N1-N3 yang kosong. (L, konten)
+
+P3
+- Kanji mirip, mnemonik, jalur keigo, shadowing/rekam suara. (M-L)
+- Bekukan fitur kosmetik sampai P0-P1 selesai.
+
+======================================================================
+G. LOG PERKEMBANGAN
+======================================================================
+2026-11-07
+- Audit ini dibuat.
+- Choukai versi minimal: Jilid "Choukai" di Library berisi daftar video
+  & channel YouTube Jepang (data: src/data/choukaiYoutube.ts). Daftar
+  dimulai kosong dan diisi manual; setiap link divalidasi oleh tes
+  src/data/choukaiYoutube.test.ts. Soal choukai lama tetap dimatikan
+  (CHOUKAI_ENABLED=false).
