@@ -24,6 +24,23 @@ export function parseYouTubeId(input: string): string | null {
   return id && ID_RE.test(id) ? id : null;
 }
 
+/** True jika URL adalah halaman channel YouTube (/@handle, /channel/UC…, /c/…, /user/…). */
+export function isYouTubeChannelUrl(input: string): boolean {
+  let url: URL;
+  try {
+    url = new URL(input.trim());
+  } catch {
+    return false;
+  }
+  if (url.protocol !== 'https:' || !HOSTS.has(url.hostname.toLowerCase())) return false;
+  const [first, second] = url.pathname.split('/').filter(Boolean);
+  if (!first) return false;
+  if (/^@[A-Za-z0-9._-]{3,30}$/.test(first)) return true;
+  if (first === 'channel') return !!second && /^UC[A-Za-z0-9_-]{22}$/.test(second);
+  if (first === 'c' || first === 'user') return !!second && /^[A-Za-z0-9._-]+$/.test(second);
+  return false;
+}
+
 export function formatMs(ms: number): string {
   const s = Math.max(0, Math.floor(ms / 1000));
   return `${Math.floor(s / 60)}:${String(s % 60).padStart(2, '0')}`;

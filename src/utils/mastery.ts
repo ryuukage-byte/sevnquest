@@ -722,6 +722,8 @@ function calculateItemTrueMastery(
     title = `${KANJI_DATABASE[record.itemId].character}`;
   } else if (record.category === 'dokkai' && DOKKAI_DATABASE[record.itemId]) {
     title = DOKKAI_DATABASE[record.itemId].title;
+  } else if (record.category === 'choukai' && record.itemId.startsWith('cs:')) {
+    title = 'Kalimat Choukai';
   }
 
   // 1. Knowledge (Teori & Formula Familiarity): 0 - 100%
@@ -1147,6 +1149,9 @@ function resolveRecallLabels(r: ItemMasteryRecord, tm?: number): { title: string
   } else if (r.category === 'dokkai') {
     const dk = DOKKAI_DATABASE[r.itemId];
     if (dk) { title = dk.title; subtitle = dk.category; }
+  } else if (r.category === 'choukai' && r.itemId.startsWith('cs:')) {
+    title = 'Kalimat Choukai';
+    subtitle = 'Kalimat yang kamu simpan dari video';
   }
   return { title, subtitle };
 }

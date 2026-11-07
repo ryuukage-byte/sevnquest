@@ -1,5 +1,6 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
-import { Play, Pause, SkipBack, SkipForward, RotateCcw, Plus, Check } from 'lucide-react';
+import { Play, Pause, SkipBack, SkipForward, RotateCcw, Plus, Check, Brain } from 'lucide-react';
+import { choukaiSentenceId, clozeCandidates } from '../../engine/choukaiSentence/choukaiSentence';
 import { analyzeCaptionLines, glossForWord } from '../../engine/textStudy/captionAnalysis';
 import { useSavedWords, type SavedWord } from '../../hooks/useSavedWords';
 import { activeLineIndex, formatMs, nextPause } from '../../utils/youtube';
@@ -9,9 +10,16 @@ import { YouTubePlayer, type PlayerControl } from './YouTubePlayer';
 import { ImmersionSidebar } from './ImmersionSidebar';
 import type { CaptionState, LyricLine } from './immersionTypes';
 
+/** Simpan kalimat ke Recall (hanya untuk transkrip Choukai tersimpan, supaya isinya bisa dibaca ulang). */
+export interface SentenceRecallHooks {
+  isSaved: (sentenceId: string) => boolean;
+  onSave: (sentenceId: string) => void;
+}
+
 interface Props {
   videoId: string;
   captions: CaptionState;
+  sentenceRecall?: SentenceRecallHooks;
 }
 
 const NO_LINES: LyricLine[] = [];
@@ -26,10 +34,11 @@ function loadView(): LyricView {
   }
 }
 
-export const ImmersionStage: React.FC<Props> = ({ videoId, captions }) => {
+export const ImmersionStage: React.FC<Props> = ({ videoId, captions, sentenceRecall }) => {
   const lines = captions.status === 'ready' ? captions.lines : NO_LINES;
   const analysis = useMemo(() => analyzeCaptionLines(lines), [lines]);
   const { saved, toggle } = useSavedWords();
+  const [savedSentences, setSavedSentences] = useState<ReadonlySet<string>>(() => new Set());
 
   const controlRef = useRef<PlayerControl | null>(null);
   const timeStore = useRef(createTimeStore()).current;
@@ -151,6 +160,7 @@ export const ImmersionStage: React.FC<Props> = ({ videoId, captions }) => {
                       view={view}
                       glosses={glosses}
                       onSeek={ms => controlRef.current?.seekToMs(ms)}
+                      followWords={!focusedWords.estimated}
                       className={view === 'word' ? 'text-xl sm:text-2xl' : 'text-2xl sm:text-3xl'}
                     />
                   )}
@@ -158,8 +168,30 @@ export const ImmersionStage: React.FC<Props> = ({ videoId, captions }) => {
                 {showTranslation && lines[focused.index].translation && (
                   <p className="text-sm text-text-secondary text-center leading-relaxed">{lines[focused.index].translation}</p>
                 )}
+                {sentenceRecall && (() => {
+                  const sid = choukaiSentenceId(videoId, lines[focused.index].startMs);
+                  const isSaved = savedSentences.has(sid) || sentenceRecall.isSaved(sid);
+                  const testable = clozeCandidates(focused.text, focused.words.map(w => ({ surface: w.surface, item: w.item }))).length > 0;
+                  return (
+                    <div className="flex justify-center">
+                      <button
+                        type="button"
+                        disabled={isSaved || !testable}
+                        onClick={() => {
+                          sentenceRecall.onSave(sid);
+                          setSavedSentences(prev => new Set(prev).add(sid));
+                        }}
+                        title={testable ? undefined : 'Kalimat ini tidak punya kata dari kamus untuk diuji di Recall.'}
+                        className={`ui-chip px-3 py-1.5 text-xs font-heading font-bold cursor-pointer disabled:cursor-default flex items-center gap-1.5 ${isSaved ? 'is-active' : ''} ${!testable && !isSaved ? 'opacity-50' : ''}`}
+                      >
+                        {isSaved ? <Check className="w-3.5 h-3.5" /> : <Brain className="w-3.5 h-3.5" />}
+                        {isSaved ? 'Tersimpan di Recall' : 'Simpan kalimat ke Recall'}
+                      </button>
+                    </div>
+                  );
+                })()}
                 {focusedWords?.estimated && (
-                  <p className="text-[10px] text-text-muted text-center">Sorotan kata diperkirakan: subtitle ini tidak membawa waktu per kata.</p>
+                  <p className="text-[10px] text-text-muted text-center">Subtitle ini hanya membawa waktu per kalimat, jadi sorotan mengikuti kalimat, bukan kata.</p>
                 )}
 
                 {showWords && (
