@@ -242,3 +242,13 @@ G. LOG PERKEMBANGAN
   kata selama ini diperkirakan dari jumlah mora. Perbaikan: untuk caption
   tanpa waktu kata, sorotan mengikuti kalimat utuh (karaoke per kata
   hanya bila YouTube menyediakan waktu kata asli, yaitu caption otomatis).
+- Uji pengguna: di preview muncul "YouTube menolak permintaan dari server".
+  /api/captions diblokir YouTube dari IP Cloudflare (sama seperti dari
+  server pengembangan). Keputusan: transkrip Choukai disimpan sebagai data
+  statis (src/data/choukaiTranscripts/<videoId>.json, format template
+  Immersion) sehingga tidak ada panggilan API YouTube saat dipakai.
+  Tambah lewat: npx tsx scripts/choukai/import-transcript.ts <videoId> <file>
+  (file = teks salinan "Tampilkan transkrip" YouTube atau JSON template).
+  Kotoba & pola per kalimat dianalisis otomatis dari database; terjemahan
+  per kalimat opsional (lewat "Prompt AI & JSON").
+  Video tanpa transkrip tersimpan hanya menampilkan link YouTube.

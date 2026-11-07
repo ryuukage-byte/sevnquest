@@ -2,6 +2,8 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { CHOUKAI_YOUTUBE, CHOUKAI_LEVELS, CHOUKAI_CATEGORY_LABELS } from './choukaiYoutube.ts';
 import { isYouTubeChannelUrl, parseYouTubeId } from '../utils/youtube.ts';
+import { readdirSync, readFileSync } from 'fs';
+import { parseImmersionTemplate } from '../engine/textStudy/immersionTemplate.ts';
 
 test('isYouTubeChannelUrl: bentuk channel yang sah', () => {
   assert.equal(isYouTubeChannelUrl('https://www.youtube.com/@nihongo_channel'), true);
@@ -36,5 +38,18 @@ test('CHOUKAI_YOUTUBE: setiap entri valid', () => {
     } else {
       assert.ok(isYouTubeChannelUrl(e.url), `${e.id}: URL channel YouTube tidak valid`);
     }
+  }
+});
+
+test('choukaiTranscripts: setiap file valid dan milik video di Library Choukai', () => {
+  const dir = new URL('./choukaiTranscripts/', import.meta.url);
+  const libraryIds = new Set(CHOUKAI_YOUTUBE.map(e => parseYouTubeId(e.url)).filter(Boolean));
+  for (const name of readdirSync(dir).filter(f => f.endsWith('.json'))) {
+    const id = name.replace(/\.json$/, '');
+    const parsed = parseImmersionTemplate(readFileSync(new URL(name, dir), 'utf8'), id);
+    assert.ok(parsed.ok, `${name}: ${parsed.ok ? '' : parsed.error}`);
+    assert.equal(parsed.template.videoId, id, `${name}: videoId tidak cocok dengan nama file`);
+    assert.equal(parsed.dropped, 0, `${name}: ada baris yang dibuang validator`);
+    assert.ok(libraryIds.has(id), `${name}: video tidak ada di CHOUKAI_YOUTUBE`);
   }
 });

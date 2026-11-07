@@ -14,6 +14,8 @@ interface Props {
   soundEnabled?: boolean;
   /** Langsung buka Ruang Video dengan video ini (mis. dari Library Choukai). */
   initialVideoId?: string;
+  /** Transkrip tersimpan untuk video itu: dipakai langsung, tanpa mengambil subtitle dari YouTube. */
+  initialTemplate?: ImmersionTemplate;
 }
 
 const SUB_DUNGEONS: { id: SubDungeon; title: string; icon: React.ComponentType<{ className?: string }>; description: string; placeholder: string }[] = [
@@ -40,7 +42,7 @@ const CAPTION_ERRORS: Record<string, string> = {
   blocked: 'YouTube menolak permintaan dari server. Coba lagi nanti.',
 };
 
-export const ImmersionDungeonModal: React.FC<Props> = ({ onClose, soundEnabled = true, initialVideoId }) => {
+export const ImmersionDungeonModal: React.FC<Props> = ({ onClose, soundEnabled = true, initialVideoId, initialTemplate }) => {
   const [sub, setSub] = useState<SubDungeon | null>(initialVideoId ? 'video' : null);
   const [input, setInput] = useState(initialVideoId ? `https://youtu.be/${initialVideoId}` : '');
   const [videoId, setVideoId] = useState<string | null>(initialVideoId ?? null);
@@ -48,7 +50,7 @@ export const ImmersionDungeonModal: React.FC<Props> = ({ onClose, soundEnabled =
   const [captions, setCaptions] = useState<CaptionState>({ status: 'idle' });
   // Subtitle YouTube yang terambil (dipakai prompt AI) dan template JSON yang dimuat pengguna.
   const [fetched, setFetched] = useState<LyricLine[] | null>(null);
-  const [template, setTemplate] = useState<ImmersionTemplate | null>(null);
+  const [template, setTemplate] = useState<ImmersionTemplate | null>(initialTemplate ?? null);
   const [showAi, setShowAi] = useState(false);
 
   const click = () => playSound('click', soundEnabled);

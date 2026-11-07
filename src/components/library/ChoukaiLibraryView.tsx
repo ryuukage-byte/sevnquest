@@ -11,6 +11,8 @@ import {
 import { parseYouTubeId } from '../../utils/youtube';
 import { playSound } from '../../utils/audio';
 import { ImmersionDungeonModal } from '../dungeon/ImmersionDungeonModal';
+import { hasChoukaiTranscript, loadChoukaiTranscript } from '../../data/choukaiTranscripts';
+import type { ImmersionTemplate } from '../../engine/textStudy/immersionTemplate';
 
 interface Props {
   soundEnabled?: boolean;
@@ -28,7 +30,24 @@ export const ChoukaiLibraryView: React.FC<Props> = ({ soundEnabled = true, entri
   const [level, setLevel] = useState<'all' | ChoukaiLevel>('all');
   const [category, setCategory] = useState<'all' | ChoukaiCategory>('all');
   const [query, setQuery] = useState('');
-  const [immersionId, setImmersionId] = useState<string | null>(null);
+  const [immersion, setImmersion] = useState<{ videoId: string; template: ImmersionTemplate } | null>(null);
+  const [loadingId, setLoadingId] = useState<string | null>(null);
+  const [loadError, setLoadError] = useState<string | null>(null);
+
+  const openTranscript = async (videoId: string) => {
+    click();
+    setLoadError(null);
+    setLoadingId(videoId);
+    try {
+      const template = await loadChoukaiTranscript(videoId);
+      if (template) setImmersion({ videoId, template });
+      else setLoadError('Transkrip video ini gagal dimuat.');
+    } catch {
+      setLoadError('Transkrip video ini gagal dimuat.');
+    } finally {
+      setLoadingId(null);
+    }
+  };
 
   const click = () => playSound('click', soundEnabled);
 
@@ -56,8 +75,8 @@ export const ChoukaiLibraryView: React.FC<Props> = ({ soundEnabled = true, entri
         </div>
         <p className="text-sm text-text-secondary">
           Kumpulan video dan channel berbahasa Jepang untuk melatih telinga pada kecepatan bicara asli.
-          Video di sini sudah punya subtitle Jepang: buka <b className="text-text-primary">Tonton + Transkrip</b> untuk
-          memutar baris demi baris dan membedah kata serta pola kalimatnya. Coba dengarkan tanpa membaca dulu, lalu ulangi sambil membaca.
+          Video dengan transkrip tersimpan bisa dibuka lewat <b className="text-text-primary">Tonton + Transkrip</b> untuk
+          memutar kalimat demi kalimat dan membedah kotoba serta pola kalimatnya. Coba dengarkan tanpa membaca dulu, lalu ulangi sambil membaca.
         </p>
       </div>
 
@@ -114,6 +133,7 @@ export const ChoukaiLibraryView: React.FC<Props> = ({ soundEnabled = true, entri
             <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-3">
               {filtered.map(e => {
                 const videoId = e.kind === 'video' ? parseYouTubeId(e.url) : null;
+                const stored = !!videoId && hasChoukaiTranscript(videoId);
                 return (
                   <div
                     key={e.id}
@@ -122,9 +142,9 @@ export const ChoukaiLibraryView: React.FC<Props> = ({ soundEnabled = true, entri
                     {videoId ? (
                       <button
                         type="button"
-                        onClick={() => { click(); setImmersionId(videoId); }}
+                        onClick={() => (stored ? openTranscript(videoId) : window.open(e.url, '_blank', 'noopener,noreferrer'))}
                         className="relative aspect-video bg-surface-inset cursor-pointer"
-                        aria-label={`Tonton dengan transkrip: ${e.title}`}
+                        aria-label={stored ? `Tonton dengan transkrip: ${e.title}` : `Buka di YouTube: ${e.title}`}
                       >
                         <img
                           src={`https://i.ytimg.com/vi/${videoId}/mqdefault.jpg`}
@@ -152,21 +172,24 @@ export const ChoukaiLibraryView: React.FC<Props> = ({ soundEnabled = true, entri
                       {e.author && <div className="text-xs text-text-secondary truncate">{e.author}</div>}
                       {e.note && <p className="text-xs text-text-secondary line-clamp-3">{e.note}</p>}
                       <div className="flex items-center gap-2 pt-1 mt-auto">
-                        {videoId && (
+                        {stored ? (
                           <button
                             type="button"
-                            onClick={() => { click(); setImmersionId(videoId); }}
+                            onClick={() => openTranscript(videoId!)}
+                            disabled={loadingId === videoId}
                             className="btn-skeuo-gold flex-1 px-3 py-2 text-xs"
                           >
-                            <BookOpen className="w-4 h-4" /> Tonton + Transkrip
+                            <BookOpen className="w-4 h-4" /> {loadingId === videoId ? 'Memuat…' : 'Tonton + Transkrip'}
                           </button>
-                        )}
+                        ) : videoId ? (
+                          <span className="flex-1 text-[10.5px] font-mono text-text-muted">Transkrip belum tersedia</span>
+                        ) : null}
                         <a
                           href={e.url}
                           target="_blank"
                           rel="noopener noreferrer"
                           onClick={click}
-                          className={`btn-physical-secondary px-3 py-2 text-xs flex items-center justify-center gap-1 ${videoId ? '' : 'flex-1'}`}
+                          className={`btn-physical-secondary px-3 py-2 text-xs flex items-center justify-center gap-1 ${stored ? '' : videoId ? '' : 'flex-1'}`}
                         >
                           YouTube <ExternalLink className="w-3 h-3" />
                         </a>
@@ -180,12 +203,17 @@ export const ChoukaiLibraryView: React.FC<Props> = ({ soundEnabled = true, entri
         </>
       )}
 
-      {immersionId && (
+      {loadError && (
+        <div role="alert" className="panel panel-stitched p-3 rounded-2xl border border-border-subtle text-center text-xs text-text-secondary">{loadError}</div>
+      )}
+
+      {immersion && (
         <ImmersionDungeonModal
-          key={immersionId}
+          key={immersion.videoId}
           soundEnabled={soundEnabled}
-          initialVideoId={immersionId}
-          onClose={() => setImmersionId(null)}
+          initialVideoId={immersion.videoId}
+          initialTemplate={immersion.template}
+          onClose={() => setImmersion(null)}
         />
       )}
     </div>
