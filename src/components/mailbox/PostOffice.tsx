@@ -1,5 +1,6 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { createPortal } from 'react-dom';
+import { motion } from 'motion/react';
 import {
   Mailbox, Mail, MailOpen, Send, PenLine, Archive, ArchiveRestore, Reply, Landmark, X, ArrowLeft,
   RefreshCw, EyeOff, UserRound, Copy, Check,
@@ -40,6 +41,14 @@ import {
 } from '../../lib/mail';
 import { playSound } from '../../utils/audio';
 import { LetterPaper } from './LetterPaper';
+import { BoxVariant, PostScene, TakeScene } from './MailScenes';
+
+/** Surat muncul halus setelah diambil dari kotak pos. */
+const REVEAL = {
+  initial: { opacity: 0, y: 28, scale: 0.96 },
+  animate: { opacity: 1, y: 0, scale: 1 },
+  transition: { duration: 0.35, ease: [0.22, 1, 0.36, 1] as const },
+};
 
 export type PostOfficeView = PlayerBox | 'compose' | 'admin';
 
@@ -299,6 +308,10 @@ export const PostOffice: React.FC<PostOfficeProps> = ({ initialView, playerName,
   const [composeError, setComposeError] = useState<string | null>(null);
   const [posted, setPosted] = useState(false);
   const [copied, setCopied] = useState(false);
+  /** Animasi memposkan yang sedang berjalan. */
+  const [posting, setPosting] = useState<{ stationery: Stationery; result: Promise<boolean>; onDone: (ok: boolean) => void } | null>(null);
+  /** Animasi mengambil surat dari kotak pos yang sedang berjalan. */
+  const [taking, setTaking] = useState<{ stationery: Stationery; variant: BoxVariant; open: () => void } | null>(null);
 
   const setDraft = (d: LetterDraft) => {
     savedDraft = d;
@@ -348,7 +361,9 @@ export const PostOffice: React.FC<PostOfficeProps> = ({ initialView, playerName,
   const adminUnread = adminLetters.filter(l => !l.archived && !l.readAt).length;
 
   const goto = (v: PostOfficeView) => {
+    if (posting) return; // jangan pindah laci saat surat sedang diposkan
     playSound('click', soundEnabled);
+    setTaking(null);
     setView(v);
     setOpenLetter(null);
     setOpenAdmin(null);
@@ -358,7 +373,12 @@ export const PostOffice: React.FC<PostOfficeProps> = ({ initialView, playerName,
 
   const readLetter = async (l: Letter) => {
     playSound('open_modal', soundEnabled);
-    setOpenLetter(l);
+    if (l.recipientId === me) {
+      // Surat masuk diambil dari kotak pos dulu.
+      setTaking({ stationery: l.stationery, variant: 'indigo', open: () => setOpenLetter(l) });
+    } else {
+      setOpenLetter(l);
+    }
     if (l.recipientId === me && !l.readAt) {
       const now = new Date().toISOString();
       setLetters(list => list.map(x => (x.id === l.id ? { ...x, readAt: now } : x)));
@@ -368,8 +388,8 @@ export const PostOffice: React.FC<PostOfficeProps> = ({ initialView, playerName,
 
   const readAdmin = async (l: AdminLetter) => {
     playSound('open_modal', soundEnabled);
-    setOpenAdmin(l);
     setReplying(false);
+    setTaking({ stationery: l.stationery, variant: 'red', open: () => setOpenAdmin(l) });
     if (!l.readAt) {
       const now = new Date().toISOString();
       setAdminLetters(list => list.map(x => (x.id === l.id ? { ...x, readAt: now } : x)));
@@ -397,16 +417,29 @@ export const PostOffice: React.FC<PostOfficeProps> = ({ initialView, playerName,
       return;
     }
     setBusy(true);
-    const res = await sendLetter(draft, playerName);
-    setBusy(false);
-    if (!res.ok) {
-      setComposeError(res.error);
-      return;
-    }
-    playSound('correct', soundEnabled);
-    setDraft(EMPTY_LETTER);
-    setPosted(true);
-    await load();
+    setComposeError(null);
+    const request = sendLetter(draft, playerName);
+    let failure: string | null = null;
+    const result = request.then(res => {
+      if (!res.ok) failure = res.error;
+      return res.ok;
+    });
+    setPosting({
+      stationery: draft.stationery,
+      result,
+      onDone: ok => {
+        setPosting(null);
+        setBusy(false);
+        if (!ok) {
+          setComposeError(failure ?? 'Surat gagal diposkan. Coba lagi.');
+          return;
+        }
+        playSound('correct', soundEnabled);
+        setDraft(EMPTY_LETTER);
+        setPosted(true);
+        void load();
+      },
+    });
   };
 
   const sendReply = async () => {
@@ -417,16 +450,28 @@ export const PostOffice: React.FC<PostOfficeProps> = ({ initialView, playerName,
       return;
     }
     setBusy(true);
-    const res = await adminReplyLetter(openAdmin.id, replyDraft.subject, replyDraft.body, replyDraft.stationery);
-    setBusy(false);
-    if (!res.ok) {
-      setComposeError(res.error);
-      return;
-    }
-    playSound('correct', soundEnabled);
-    setReplying(false);
-    setOpenAdmin(null);
-    await load();
+    setComposeError(null);
+    let failure: string | null = null;
+    const result = adminReplyLetter(openAdmin.id, replyDraft.subject, replyDraft.body, replyDraft.stationery).then(res => {
+      if (!res.ok) failure = res.error;
+      return res.ok;
+    });
+    setPosting({
+      stationery: replyDraft.stationery,
+      result,
+      onDone: ok => {
+        setPosting(null);
+        setBusy(false);
+        if (!ok) {
+          setComposeError(failure ?? 'Balasan gagal diposkan. Coba lagi.');
+          return;
+        }
+        playSound('correct', soundEnabled);
+        setReplying(false);
+        setOpenAdmin(null);
+        void load();
+      },
+    });
   };
 
   const copyAddress = async () => {
@@ -463,6 +508,7 @@ export const PostOffice: React.FC<PostOfficeProps> = ({ initialView, playerName,
         <button type="button" onClick={() => setOpenLetter(null)} className="btn btn-pill text-xs gap-1.5">
           <ArrowLeft className="w-3.5 h-3.5" /> Kembali
         </button>
+        <motion.div {...REVEAL}>
         <LetterPaper
           stationery={l.stationery}
           date={l.sentAt}
@@ -475,6 +521,7 @@ export const PostOffice: React.FC<PostOfficeProps> = ({ initialView, playerName,
           signatureAddress={l.fromAdmin ? `${ADMIN_OFFICE} · ${ADMIN_ADDRESS}` : l.senderAddress}
           note={original ? `Membalas suratmu: "${original}"` : null}
         />
+        </motion.div>
         {!incoming && (
           <div className="flex items-center gap-1.5 flex-wrap text-[11px] text-text-secondary">
             {l.isAnonymous && <Pill tone="muted">Dikirim anonim</Pill>}
@@ -576,6 +623,7 @@ export const PostOffice: React.FC<PostOfficeProps> = ({ initialView, playerName,
           <button type="button" onClick={() => setOpenAdmin(null)} className="btn btn-pill text-xs gap-1.5">
             <ArrowLeft className="w-3.5 h-3.5" /> Kembali
           </button>
+          <motion.div {...REVEAL}>
           <LetterPaper
             stationery={openAdmin.stationery}
             date={openAdmin.sentAt}
@@ -587,6 +635,7 @@ export const PostOffice: React.FC<PostOfficeProps> = ({ initialView, playerName,
             signature={fromName}
             signatureAddress={openAdmin.isAnonymous ? null : openAdmin.senderAddress}
           />
+          </motion.div>
           <div className="flex items-center gap-1.5 flex-wrap">
             {openAdmin.isAnonymous && <Pill tone="muted">Pengirim anonim</Pill>}
             {openAdmin.repliedAt && <Pill tone="green">Sudah dibalas</Pill>}
@@ -684,7 +733,20 @@ export const PostOffice: React.FC<PostOfficeProps> = ({ initialView, playerName,
   };
 
   let content: React.ReactNode;
-  if (view === 'compose') content = renderCompose();
+  if (posting) {
+    content = <PostScene stationery={posting.stationery} result={posting.result} onDone={posting.onDone} />;
+  } else if (taking) {
+    content = (
+      <TakeScene
+        stationery={taking.stationery}
+        variant={taking.variant}
+        onDone={() => {
+          taking.open();
+          setTaking(null);
+        }}
+      />
+    );
+  } else if (view === 'compose') content = renderCompose();
   else if (view === 'admin') content = renderAdmin();
   else if (openLetter) content = renderPlayerLetter(openLetter);
   else if (view === 'inbox') content = renderPlayerBox(inbox, 'Kotak posmu masih kosong. Balasan admin akan muncul di sini.');
@@ -734,6 +796,7 @@ export const PostOffice: React.FC<PostOfficeProps> = ({ initialView, playerName,
                 type="button"
                 role="tab"
                 aria-selected={view === t.value}
+                disabled={!!posting}
                 onClick={() => goto(t.value)}
                 className={`shrink-0 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-bold border transition-colors ${view === t.value ? CHIP_ON : CHIP_OFF}`}
               >
