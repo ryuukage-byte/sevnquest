@@ -15,6 +15,7 @@ import { STORAGE_KEY_HOME_GUIDE } from '../../state/storageKeys';
 import { StartGuideModal, GuidePath } from './StartGuideModal';
 import { FeatureSearch, FeatureTarget } from './FeatureSearch';
 import { AnnouncementBanners } from '../announcements/AnnouncementBanners';
+import { MailboxCard } from '../mailbox/MailboxCard';
 
 export interface HomeViewProps {
   stats: PlayerStats;
@@ -22,6 +23,7 @@ export interface HomeViewProps {
   onNavigateTab: (tab: 'maps' | 'daily' | 'weekly' | 'leaderboard' | 'settings' | 'library' | 'deck') => void;
   onStartRecall?: () => void;
   onOpenTower?: () => void;
+  onOpenAuth?: () => void;
 }
 
 export const HomeView: React.FC<HomeViewProps> = ({
@@ -30,6 +32,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
   onNavigateTab,
   onStartRecall,
   onOpenTower,
+  onOpenAuth,
 }) => {
   const { effectiveTierIndex } = getEffectiveTier(stats);
   const displayTierIndex = Math.min(RPG_TIERS.length - 1, Math.max(0, effectiveTierIndex ?? stats.tierIndex ?? 0));
@@ -334,6 +337,9 @@ export const HomeView: React.FC<HomeViewProps> = ({
       <div className="panel p-0 overflow-visible">
         <FeatureSearch onSelect={handleFeatureSelect} />
       </div>
+
+      {/* 5. KOTAK POS: alamat pemain + surat dari/ke admin */}
+      <MailboxCard playerName={stats.playerName || ''} soundEnabled={stats.soundEnabled} onOpenAuth={onOpenAuth} />
 
       <StartGuideModal
         isOpen={isGuideOpen}

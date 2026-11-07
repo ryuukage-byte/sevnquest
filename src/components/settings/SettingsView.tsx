@@ -683,21 +683,10 @@ export const SettingsView: React.FC<SettingsViewProps> = ({
               <div className="text-[10px] text-text-muted">via Trakteer (teer.id)</div>
             </div>
           </a>
-
-          <a
-            href="https://ngl.link/sevnsouls"
-            target="_blank"
-            rel="noopener noreferrer"
-            onClick={() => playSound('click')}
-            className="flex-1 py-3 px-4 rounded-xl bg-surface-inset hover:bg-surface-elevated border border-border-subtle hover:border-border-primary flex flex-col items-center justify-center gap-2 transition-all group shadow-sm"
-          >
-            <MessageCircle className="w-5 h-5 text-indigo group-hover:scale-110 transition-transform" />
-            <div className="text-center">
-              <div className="text-xs font-bold text-text-primary font-heading">Call Center / Lapor Bug</div>
-              <div className="text-[10px] text-text-muted">via NGL Link (ngl.link/sevnsouls)</div>
-            </div>
-          </a>
         </div>
+        <p className="text-[11px] text-text-muted">
+          Punya pertanyaan, laporan bug, atau saran? Kirim surat ke admin lewat Kotak Pos di Castle.
+        </p>
       </div>
 
       {/* Reset Progress Section */}
