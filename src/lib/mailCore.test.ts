@@ -11,6 +11,10 @@ import {
   postmark,
   replySubject,
   signatureOf,
+  STATIONERY,
+  paperUnlocked,
+  priorityLabel,
+  rankLabel,
   stationeryStyle,
   validateLetter,
 } from './mailCore';
@@ -21,7 +25,7 @@ function letter(over: Partial<Letter> = {}): Letter {
   return {
     id: 'l1', fromAdmin: false, isAnonymous: false, senderName: 'Budi', senderAddress: 'SQ-AAAA-BBBB',
     recipientId: null, toAdmin: true, subject: 'S', body: 'B', category: 'general', stationery: 'classic',
-    replyTo: null, sentAt: '2026-11-01T00:00:00Z', readAt: null, repliedAt: null,
+    replyTo: null, priority: 0, sentAt: '2026-11-01T00:00:00Z', readAt: null, repliedAt: null,
     archivedByRecipient: false, archivedBySender: false, ...over,
   };
 }
@@ -30,7 +34,7 @@ function adminLetter(over: Partial<AdminLetter> = {}): AdminLetter {
   return {
     id: 'a1', isAnonymous: false, senderName: 'Budi', senderAddress: 'SQ-AAAA-BBBB', subject: 'S', body: 'B',
     category: 'general', stationery: 'classic', sentAt: '2026-11-01T00:00:00Z', readAt: null, repliedAt: null,
-    archived: false, ...over,
+    archived: false, priority: 0, senderTier: null, ...over,
   };
 }
 
@@ -122,4 +126,43 @@ test('mailError', () => {
   assert.equal(mailError({ code: 'P0001', message: 'Kamu sudah mengirim 10 surat hari ini. Coba lagi besok.' }), 'Kamu sudah mengirim 10 surat hari ini. Coba lagi besok.');
   assert.equal(mailError({ code: '42501', message: 'Harus login untuk mengirim surat.' }), 'Masuk ke akun dulu untuk membuka kotak pos.');
   assert.match(mailError({ message: 'Failed to fetch' }), /kantor pos/);
+});
+
+test('adminBox sorts by priority, then newest', () => {
+  const list = [
+    adminLetter({ id: 'free-new', priority: 0, sentAt: '2026-11-05T00:00:00Z' }),
+    adminLetter({ id: 'fuji-old', priority: 8, sentAt: '2026-11-01T00:00:00Z' }),
+    adminLetter({ id: 'prem', priority: 1, sentAt: '2026-11-02T00:00:00Z' }),
+    adminLetter({ id: 'free-old', priority: 0, sentAt: '2026-11-03T00:00:00Z' }),
+  ];
+  assert.deepEqual(adminBox(list, 'all').map(l => l.id), ['fuji-old', 'prem', 'free-new', 'free-old']);
+});
+
+test('parse priority is clamped and defaults to 0', () => {
+  assert.equal(parseAdminLetterRow({ id: 'a', subject: 's', body: 'b', priority: 42 })?.priority, 9);
+  assert.equal(parseAdminLetterRow({ id: 'a', subject: 's', body: 'b' })?.priority, 0);
+  assert.equal(parseLetterRow({ id: 'a', subject: 's', body: 'b', priority: '3' })?.priority, 3);
+});
+
+test('tier labels mirror the server plan (rank 0..9)', () => {
+  assert.equal(rankLabel(0), 'Free');
+  assert.equal(rankLabel(1), 'Premium');
+  assert.equal(rankLabel(2), 'Super Premium Lv.1 · Sakura');
+  assert.equal(rankLabel(8), 'Super Premium Lv.7 · Fuji');
+  assert.equal(rankLabel(9), 'Admin');
+  assert.equal(priorityLabel(0), 'Pos Biasa');
+  assert.equal(priorityLabel(1), 'Pos Kilat');
+  assert.equal(priorityLabel(6), 'Kilat Khusus · Tsuki');
+});
+
+test('paper ranks match mail_paper_rank on the server', () => {
+  const expected: Record<string, number> = {
+    classic: 0, sakura: 0, night: 0, kilat: 1, hanami: 2, ume: 3, take: 4, matsu: 5, tsuki: 6, taiyou: 7, fuji: 8,
+  };
+  assert.deepEqual(Object.fromEntries(STATIONERY.map(p => [p.value, p.rank])), expected);
+  assert.equal(paperUnlocked('kilat', 0), false);
+  assert.equal(paperUnlocked('kilat', 1), true);
+  assert.equal(paperUnlocked('tsuki', 6), true);
+  assert.equal(paperUnlocked('taiyou', 6), false);
+  assert.equal(paperUnlocked('fuji', 9), true);
 });

@@ -17,7 +17,7 @@ import {
 /** Kolom eksplisit: sender_id sengaja tidak diminta (server juga tidak mengizinkannya). */
 const LETTER_COLUMNS =
   'id,from_admin,is_anonymous,sender_name,sender_address,recipient_id,to_admin,subject,body,category,' +
-  'stationery,reply_to,sent_at,read_at,replied_at,archived_by_recipient,archived_by_sender';
+  'stationery,reply_to,priority,sent_at,read_at,replied_at,archived_by_recipient,archived_by_sender';
 const REFRESH_EVENT = 'nq:mail-refresh';
 const POLL_MS = 3 * 60 * 1000;
 
@@ -54,12 +54,22 @@ export interface MailStatus {
   /** Surat di Kantor Pos Pusat yang belum dibaca (hanya admin). */
   adminUnread: number;
   isAdmin: boolean;
+  /** Tier Kotak Pos: 0 Free, 1 Premium, 2..8 Super Premium Lv.1..7, 9 Admin. */
+  tierRank: number;
+  tierLabel: string;
+  /** Batas surat per hari (null = tanpa batas, mis. admin). */
+  dailyLimit: number | null;
+  /** Surat yang sudah dikirim hari ini (tanggal WIB). */
+  sentToday: number;
+  /** Prioritas surat pemain di Kantor Pos Pusat. */
+  priority: number;
   /** Galat terakhir (mis. migrasi belum dijalankan). */
   error: string | null;
 }
 
 const INITIAL: MailStatus = {
-  signedIn: false, loaded: false, address: null, unread: 0, adminUnread: 0, isAdmin: false, error: null,
+  signedIn: false, loaded: false, address: null, unread: 0, adminUnread: 0, isAdmin: false,
+  tierRank: 0, tierLabel: 'Free', dailyLimit: null, sentToday: 0, priority: 0, error: null,
 };
 let snapshot: MailStatus = INITIAL;
 const listeners = new Set<() => void>();
@@ -87,6 +97,11 @@ async function fetchStatus(): Promise<MailStatus> {
       unread: Math.max(0, Number(row.unread) || 0),
       adminUnread: Math.max(0, Number(row.admin_unread) || 0),
       isAdmin: row.am_admin === true,
+      tierRank: Math.max(0, Number(row.tier_rank) || 0),
+      tierLabel: typeof row.tier_label === 'string' ? row.tier_label : 'Free',
+      dailyLimit: row.daily_limit == null ? null : Math.max(0, Number(row.daily_limit) || 0),
+      sentToday: Math.max(0, Number(row.sent_today) || 0),
+      priority: Math.max(0, Number(row.priority) || 0),
       error: null,
     };
   } catch {
