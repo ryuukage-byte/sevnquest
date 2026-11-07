@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
-import { Coffee, Download, Maximize2, X } from 'lucide-react';
+import { Coffee, Download, X } from 'lucide-react';
 import { playSound } from '../../utils/audio';
+import { CASTLE_TILE, CASTLE_TILE_LABEL } from './castleTile';
 
 /** QRIS yang sama dengan untuk pembayaran (GoPay Merchant: Sevnsoul Store, Digital & Kreatif). */
 export const QRIS_SRC = `${import.meta.env.BASE_URL || './'}qris.png`;
@@ -11,48 +12,30 @@ interface SupportCardProps {
   soundEnabled?: boolean;
 }
 
-/** Kartu "Dukung SevnQuest" di dashboard: QRIS kecil, ketuk untuk memperbesar / menyimpan. */
+/** Ubin "Donasi" di Castle: ketuk untuk membuka QRIS (bisa diperbesar & disimpan). */
 export const SupportCard: React.FC<SupportCardProps> = ({ soundEnabled }) => {
   const [open, setOpen] = useState(false);
 
-  const show = () => {
-    playSound('open_modal', soundEnabled);
-    setOpen(true);
-  };
-
   return (
-    <section className="panel panel-stitched p-4 sm:p-5 h-full flex flex-col" aria-label="Dukung SevnQuest">
-      <div className="flex items-center gap-4 flex-1">
-        <button
-          type="button"
-          onClick={show}
-          className="shrink-0 w-[76px] h-[76px] rounded-xl bg-white p-1.5 border border-border-subtle shadow-sm hover:scale-105 transition-transform cursor-zoom-in"
-          aria-label="Perbesar QRIS"
-        >
-          <img src={QRIS_SRC} alt="" className="w-full h-full [image-rendering:pixelated]" loading="lazy" />
-        </button>
-
-        <div className="min-w-0 flex-1">
-          <p className="breadcrumb-label text-gold">Dukung SevnQuest</p>
-          <p className="text-sm font-bold font-heading text-text-primary">Traktir lewat QRIS</p>
-          <p className="text-xs text-text-secondary">
-            Scan dari GoPay, OVO, DANA, ShopeePay, atau m-banking mana saja.
-          </p>
-        </div>
-      </div>
-
-      <div className="mt-3">
-        <button
-          type="button"
-          onClick={show}
-          className="w-full btn-physical-secondary px-3 py-2 rounded-xl text-xs font-bold inline-flex items-center justify-center gap-1.5 text-gold"
-        >
-          <Maximize2 className="w-3.5 h-3.5" /> Buka QRIS
-        </button>
-      </div>
+    <>
+      <button
+        type="button"
+        onClick={() => {
+          playSound('open_modal', soundEnabled);
+          setOpen(true);
+        }}
+        aria-label="Donasi lewat QRIS"
+        title="Donasi lewat QRIS"
+        className={`${CASTLE_TILE} hover:bg-surface-elevated/40 cursor-pointer`}
+      >
+        <span className="p-2 rounded-xl bg-surface-inset/50 text-gold border border-border-subtle shrink-0">
+          <Coffee className="w-4 h-4 md:w-5 md:h-5" />
+        </span>
+        <span className={`${CASTLE_TILE_LABEL} group-hover:text-gold transition-colors`}>Donasi</span>
+      </button>
 
       {open && <QrisModal soundEnabled={soundEnabled} onClose={() => setOpen(false)} />}
-    </section>
+    </>
   );
 };
 

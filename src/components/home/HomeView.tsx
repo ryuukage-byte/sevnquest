@@ -340,8 +340,8 @@ export const HomeView: React.FC<HomeViewProps> = ({
         <FeatureSearch onSelect={handleFeatureSelect} />
       </div>
 
-      {/* 5. KOTAK POS + DUKUNG + KOMUNITAS: sejajar di layar lebar, bertumpuk di HP */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-3 sm:gap-4">
+      {/* 5. KOTAK POS + DONASI + KOMUNITAS: tiga ubin kecil sebaris */}
+      <div className="grid grid-cols-3 gap-2.5 sm:gap-3 md:gap-4">
         <MailboxCard playerName={stats.playerName || ''} soundEnabled={stats.soundEnabled} onOpenAuth={onOpenAuth} />
         <SupportCard soundEnabled={stats.soundEnabled} />
         <CommunityCard soundEnabled={stats.soundEnabled} />
