@@ -4,7 +4,7 @@ import { motion } from 'motion/react';
 import { X, Headphones, Music, Clapperboard, ChevronRight, ChevronLeft, Play, Bot } from 'lucide-react';
 import { parseYouTubeId } from '../../utils/youtube';
 import { playSound } from '../../utils/audio';
-import { ImmersionStage } from './ImmersionStage';
+import { ImmersionStage, type SentenceRecallHooks } from './ImmersionStage';
 import { ImmersionTemplatePanel } from './ImmersionTemplatePanel';
 import type { ImmersionTemplate } from '../../engine/textStudy/immersionTemplate';
 import type { CaptionState, LyricLine, SubDungeon } from './immersionTypes';
@@ -16,6 +16,8 @@ interface Props {
   initialVideoId?: string;
   /** Transkrip tersimpan untuk video itu: dipakai langsung, tanpa mengambil subtitle dari YouTube. */
   initialTemplate?: ImmersionTemplate;
+  /** Aktifkan "Simpan kalimat ke Recall" (hanya selama transkrip tersimpan yang dipakai). */
+  sentenceRecall?: SentenceRecallHooks;
 }
 
 const SUB_DUNGEONS: { id: SubDungeon; title: string; icon: React.ComponentType<{ className?: string }>; description: string; placeholder: string }[] = [
@@ -42,7 +44,7 @@ const CAPTION_ERRORS: Record<string, string> = {
   blocked: 'YouTube menolak permintaan dari server. Coba lagi nanti.',
 };
 
-export const ImmersionDungeonModal: React.FC<Props> = ({ onClose, soundEnabled = true, initialVideoId, initialTemplate }) => {
+export const ImmersionDungeonModal: React.FC<Props> = ({ onClose, soundEnabled = true, initialVideoId, initialTemplate, sentenceRecall }) => {
   const [sub, setSub] = useState<SubDungeon | null>(initialVideoId ? 'video' : null);
   const [input, setInput] = useState(initialVideoId ? `https://youtu.be/${initialVideoId}` : '');
   const [videoId, setVideoId] = useState<string | null>(initialVideoId ?? null);
@@ -205,7 +207,8 @@ export const ImmersionDungeonModal: React.FC<Props> = ({ onClose, soundEnabled =
                 {showAi && <ImmersionTemplatePanel videoId={videoId} fetchedLines={fetched} onLoad={loadTemplate} />}
               </div>
 
-              {videoId && <ImmersionStage videoId={videoId} captions={captions} />}
+              {videoId && <ImmersionStage videoId={videoId} captions={captions}
+                sentenceRecall={sentenceRecall && initialTemplate && template === initialTemplate && videoId === initialTemplate.videoId ? sentenceRecall : undefined} />}
 
               <p className="text-[11px] text-text-muted leading-relaxed">
                 Pemutar memakai embed resmi YouTube. Subtitle diambil dari YouTube dan hanya ditampilkan untukmu, tidak disimpan di server.

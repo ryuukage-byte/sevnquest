@@ -12,6 +12,8 @@ import { DOKKAI_DATABASE } from '../../data/dokkai';
 import { CHOUKAI_DATABASE } from '../../data/choukai';
 import { KanjiWritingCanvas } from './KanjiWritingCanvas';
 import { KotobaWritingPractice } from './KotobaWritingPractice';
+import { ChoukaiSentenceRecall } from './ChoukaiSentenceRecall';
+import { isChoukaiSentenceId } from '../../engine/choukaiSentence/choukaiSentence';
 import { KOTOBA_DATABASE } from '../../data/kotoba';
 import { KANJI_DATABASE } from '../../data/kanji';
 import { BUNPOU_DATABASE } from '../../data/bunpou';
@@ -243,7 +245,9 @@ export const RecallModule: React.FC<RecallModuleProps> = ({
   const kotobaForCanvas = currentItem.category === 'kotoba' ? KOTOBA_DATABASE[currentItem.itemId] : undefined;
   const kanjiForCanvas = currentItem.category === 'kanji' ? KANJI_DATABASE[currentItem.itemId] : undefined;
   // Jatuh kembali ke soal bila data engine tidak tersedia (mis. materi kustom).
-  const engine = rawEngine === 'canvas' && (kotobaForCanvas || kanjiForCanvas) ? 'canvas'
+  // Kalimat Choukai yang disimpan pemain (id cs:<video>:<ms>) punya kartunya sendiri: potongan video + isian kata.
+  const engine = isChoukaiSentenceId(currentItem.itemId) ? 'sentence'
+    : rawEngine === 'canvas' && (kotobaForCanvas || kanjiForCanvas) ? 'canvas'
     : rawEngine === 'fusion' && fusionStage ? 'fusion' : null;
 
   // Satu jalur pencatatan hasil untuk SEMUA engine (pilihan ganda, canvas, fusion). Setiap hasil berasal dari
@@ -539,12 +543,12 @@ export const RecallModule: React.FC<RecallModuleProps> = ({
               </button>
             )}
 
-            <button
+            {engine !== 'sentence' && <button
               onClick={() => speakJapanese(currentQ.audioPrompt ?? currentQ.prompt, currentItem.exerciseFormat === 'choukai' ? CHOUKAI_DATABASE[currentItem.itemId]?.speechRate : undefined)}
               className="btn-physical-secondary p-1.5 rounded-lg transition-colors"
             >
               <Volume2 className="w-3.5 h-3.5 text-gold" />
-            </button>
+            </button>}
           </div>
         </div>
 
@@ -576,7 +580,16 @@ export const RecallModule: React.FC<RecallModuleProps> = ({
         )}
 
         {/* ENGINE CANVAS: menulis ulang dari ingatan memakai kanvas goresan yang sama dengan Library */}
-        {engine === 'canvas' ? (
+        {engine === 'sentence' ? (
+          <ChoukaiSentenceRecall
+            key={`sentence_${currentItem.itemId}`}
+            itemId={currentItem.itemId}
+            seed={currentItem.masteryRecord?.attemptsCount || 0}
+            isLast={currentIndex >= totalItems - 1}
+            onResult={ok => submitResult(ok, 'quiz', 'sentence')}
+            onNext={handleNext}
+          />
+        ) : engine === 'canvas' ? (
           <div className="space-y-3 pt-2" key={`canvas_${currentItem.itemId}`}>
             <p className="text-xs text-text-secondary text-center">
               {kotobaForCanvas

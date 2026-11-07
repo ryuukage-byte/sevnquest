@@ -4,7 +4,12 @@
 
 import { parseImmersionTemplate, type ImmersionTemplate } from '../engine/textStudy/immersionTemplate';
 
-const FILES = import.meta.glob<{ default: unknown }>('./choukaiTranscripts/*.json');
+// import.meta.glob hanya ada saat dibundel Vite (import.meta.env juga hanya diisi Vite); di tes Node (tsx)
+// dianggap belum ada transkrip.
+type Loader = () => Promise<{ default: unknown }>;
+const FILES: Record<string, Loader> = import.meta.env
+  ? import.meta.glob<{ default: unknown }>('./choukaiTranscripts/*.json')
+  : {};
 const PATH_BY_ID = new Map(Object.keys(FILES).map(p => [p.replace(/^.*\/|\.json$/g, ''), p]));
 
 export function hasChoukaiTranscript(videoId: string): boolean {

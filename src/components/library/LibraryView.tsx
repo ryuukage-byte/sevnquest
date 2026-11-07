@@ -247,7 +247,7 @@ export const LibraryView: React.FC<LibraryViewProps> = ({
       )}
       {visitedTabs.choukai && (
         <div className={libraryTab === 'choukai' ? 'block' : 'hidden'}>
-          <ChoukaiLibraryView soundEnabled={soundEnabled} />
+          <ChoukaiLibraryView soundEnabled={soundEnabled} itemMastery={itemMastery} onRecordInteraction={onRecordInteraction} />
         </div>
       )}
       {visitedTabs.soal && (

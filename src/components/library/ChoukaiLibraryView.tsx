@@ -13,9 +13,12 @@ import { playSound } from '../../utils/audio';
 import { ImmersionDungeonModal } from '../dungeon/ImmersionDungeonModal';
 import { hasChoukaiTranscript, loadChoukaiTranscript } from '../../data/choukaiTranscripts';
 import type { ImmersionTemplate } from '../../engine/textStudy/immersionTemplate';
+import type { ItemMasteryRecord } from '../../types/content';
 
 interface Props {
   soundEnabled?: boolean;
+  itemMastery?: Record<string, ItemMasteryRecord>;
+  onRecordInteraction?: (itemId: string, category: 'choukai', interactionType: 'flashcard') => void;
   /** Daftar entri; default data bawaan. Disediakan untuk pengujian. */
   entries?: readonly ChoukaiYoutubeEntry[];
 }
@@ -25,7 +28,7 @@ const pill = (active: boolean) =>
     active ? 'bg-gold/15 border-gold/60 text-text-primary' : 'bg-surface border-border-subtle text-text-secondary hover:border-gold/40'
   }`;
 
-export const ChoukaiLibraryView: React.FC<Props> = ({ soundEnabled = true, entries = CHOUKAI_YOUTUBE }) => {
+export const ChoukaiLibraryView: React.FC<Props> = ({ soundEnabled = true, entries = CHOUKAI_YOUTUBE, itemMastery, onRecordInteraction }) => {
   const [kind, setKind] = useState<'all' | 'video' | 'channel'>('all');
   const [level, setLevel] = useState<'all' | ChoukaiLevel>('all');
   const [category, setCategory] = useState<'all' | ChoukaiCategory>('all');
@@ -213,6 +216,10 @@ export const ChoukaiLibraryView: React.FC<Props> = ({ soundEnabled = true, entri
           soundEnabled={soundEnabled}
           initialVideoId={immersion.videoId}
           initialTemplate={immersion.template}
+          sentenceRecall={onRecordInteraction ? {
+            isSaved: id => !!itemMastery?.[id],
+            onSave: id => onRecordInteraction(id, 'choukai', 'flashcard'),
+          } : undefined}
           onClose={() => setImmersion(null)}
         />
       )}

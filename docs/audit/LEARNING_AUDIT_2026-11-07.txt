@@ -252,3 +252,15 @@ G. LOG PERKEMBANGAN
   Kotoba & pola per kalimat dianalisis otomatis dari database; terjemahan
   per kalimat opsional (lewat "Prompt AI & JSON").
   Video tanpa transkrip tersimpan hanya menampilkan link YouTube.
+- Riset alat sejenis (Language Reactor, Migaku, asbplayer, Animelon):
+  ekstensi browser membaca subtitle di browser pengguna (tanpa blokir
+  server); layanan server butuh proxy residential berbayar; Animelon
+  memakai konten terkurasi. Keputusan tetap: transkrip tersimpan.
+- Fitur "Simpan kalimat ke Recall" (ala sentence mining asbplayer):
+  di Immersion (video Choukai bertranskrip tersimpan) tiap kalimat bisa
+  disimpan. Masuk Recall sebagai item 'choukai' id cs:<video>:<ms>
+  (tersinkron lewat itemMastery yang sudah ada, tanpa data baru).
+  Kartu Recall: putar potongan video kalimat itu -> pilih kata yang
+  hilang (4 pilihan, dinilai sistem; kata target bergilir tiap sesi)
+  -> kata, arti, dan terjemahan terbuka. Kalimat tanpa kata kamus tidak
+  bisa disimpan karena tidak bisa diuji.
