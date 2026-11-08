@@ -31,6 +31,7 @@ import { usePlayerActions } from './hooks/usePlayerActions';
 import { EntitlementProvider } from './state/entitlement';
 import { ExpiryBanner } from './components/billing/ExpiryBanner';
 import { AdminHeaderButton } from './components/billing/AdminHeaderButton';
+import { DeviceGate } from './components/billing/DeviceGate';
 import { BootSplash } from './components/common/BootSplash';
 
 export default function App() {
@@ -118,6 +119,7 @@ export default function App() {
   }
 
   return (
+    <DeviceGate userId={stats.userId}>
     <EntitlementProvider userId={stats.userId} isAuthenticated={isAuthenticated} soundEnabled={stats.soundEnabled}>
     <div 
       className="min-h-[100dvh] flex flex-col font-sans antialiased bg-surface-base text-text-primary selection:bg-gold selection:text-surface-base md:pl-24"
@@ -238,5 +240,6 @@ export default function App() {
       />
     </div>
     </EntitlementProvider>
+    </DeviceGate>
   );
 }

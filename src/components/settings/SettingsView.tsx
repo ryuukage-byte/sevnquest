@@ -5,6 +5,7 @@ import { speakJapanese, playSound } from '../../utils/audio';
 import { signOut } from '../../lib/supabase';
 import { PwaInstallModal } from '../pwa/PwaInstallModal';
 import { SubscriptionPanel } from '../billing/SubscriptionPanel';
+import { KeysAndDevicesPanel } from '../billing/KeysAndDevicesPanel';
 import { useAccess } from '../../state/entitlement';
 import { checkIsAdmin } from '../../lib/announcements';
 
@@ -667,6 +668,7 @@ export const SettingsView: React.FC<SettingsViewProps> = ({
       </div>
 
       <SubscriptionPanel soundEnabled={stats.soundEnabled} />
+      <KeysAndDevicesPanel soundEnabled={stats.soundEnabled} />
 
       {/* Support & Community Section */}
       <div className="panel panel-stitched p-4 sm:p-5 space-y-4 shadow-md">

@@ -10,8 +10,8 @@ import {
   type Entitlement,
 } from '../../utils/access';
 import {
-  billingErrorMessage, cancelPaymentOrder, createPaymentOrder, fetchOrder, listMyOrders, submitPaymentClaim, uploadPaymentProof,
-  type DonationKind, type PaymentOrder,
+  billingErrorMessage, cancelPaymentOrder, createPaymentOrder, fetchOrder, listMyAccessKeys, listMyOrders, submitPaymentClaim, uploadPaymentProof,
+  type AccessKey, type DonationKind, type PaymentOrder,
 } from '../../lib/billing';
 import type { UpgradeRequest } from '../../state/entitlement';
 
@@ -94,6 +94,8 @@ export const UpgradeModal: React.FC<Props> = ({ request, userId, entitlement, so
   const unitsLeft = lifetimeUnitsLeft(entitlement);
   const [monthlyAmount, setMonthlyAmount] = useState<string>(() => String(Math.max(cfg.monthlyMin, remaining || cfg.monthlyThreshold)));
   const [units, setUnits] = useState(1);
+  // Hadiah: key tidak langsung dipakai di akun pembeli, bisa diberikan ke akun lain.
+  const [asGift, setAsGift] = useState(false);
 
   useBackButton(true, () => {
     if (view.kind !== 'plans') {
@@ -125,7 +127,7 @@ export const UpgradeModal: React.FC<Props> = ({ request, userId, entitlement, so
     setBusy(kind);
     playSound('click', soundEnabled);
     try {
-      const order = await createPaymentOrder(kind, amount);
+      const order = await createPaymentOrder(kind, amount, asGift);
       setView({ kind: 'order', order });
       void reloadOrders();
     } catch (err) {
@@ -139,7 +141,8 @@ export const UpgradeModal: React.FC<Props> = ({ request, userId, entitlement, so
   const monthlyValue = Math.floor(Number(monthlyAmount.replace(/\D/g, '')) || 0);
   const monthlyValid = monthlyValue >= cfg.monthlyMin && monthlyValue <= 10_000_000;
   const afterThis = entitlement.monthTotal + monthlyValue;
-  const unitsSafe = Math.max(1, Math.min(units, unitsLeft || 1));
+  const unitsMax = asGift ? Math.floor(cfg.lifetimeTarget / cfg.lifetimeUnit) : unitsLeft;
+  const unitsSafe = Math.max(1, Math.min(units, unitsMax || 1));
   const lifeAmount = unitsSafe * cfg.lifetimeUnit;
   const badge = badgeForTotal(entitlement.lifetimeTotal);
   const next = nextBadge(entitlement.lifetimeTotal);
@@ -239,6 +242,17 @@ export const UpgradeModal: React.FC<Props> = ({ request, userId, entitlement, so
                   ))}
                 </div>
               )}
+
+              <label className="flex items-start gap-2.5 p-3 rounded-2xl border border-border-subtle bg-surface-inset text-xs cursor-pointer">
+                <input type="checkbox" checked={asGift} onChange={e => setAsGift(e.target.checked)} className="mt-0.5 w-4 h-4 accent-amber-500" />
+                <span>
+                  <b className="text-text-primary">Jadikan key hadiah</b>
+                  <span className="block text-text-muted">
+                    Setelah pembayaran terverifikasi kamu mendapat key (SQ-XXXX-XXXX-XXXX) yang bisa diberikan ke teman dan ditukar
+                    di Pengaturan → Tukar Key. Tanpa centang, donasi langsung aktif di akunmu.
+                  </span>
+                </span>
+              </label>
 
               {/* Tab */}
               <div className="flex gap-1.5 p-1 rounded-2xl bg-surface-inset border border-border-subtle text-xs font-bold">
@@ -356,7 +370,7 @@ export const UpgradeModal: React.FC<Props> = ({ request, userId, entitlement, so
                     })}
                   </div>
 
-                  {!entitlement.isLifetime && unitsLeft > 0 && (
+                  {(asGift || (!entitlement.isLifetime && unitsLeft > 0)) && (
                     <>
                       <div className="flex items-center justify-between gap-3 p-2.5 rounded-xl border border-border-subtle bg-surface-card">
                         <span className="text-xs text-text-secondary">Jumlah setoran</span>
@@ -371,9 +385,9 @@ export const UpgradeModal: React.FC<Props> = ({ request, userId, entitlement, so
                           </button>
                           <span className="font-mono font-bold text-text-primary w-24 text-center">{unitsSafe} × 25 rb</span>
                           <button
-                            onClick={() => setUnits(u => Math.min(unitsLeft, u + 1))}
+                            onClick={() => setUnits(u => Math.min(unitsMax, u + 1))}
                             className="w-7 h-7 rounded-lg border border-border-subtle flex items-center justify-center disabled:opacity-40"
-                            disabled={unitsSafe >= unitsLeft}
+                            disabled={unitsSafe >= unitsMax}
                             title="Tambah"
                           >
                             <Plus className="w-3.5 h-3.5" />
@@ -488,6 +502,32 @@ const QrisCard: React.FC<{ amount?: number }> = ({ amount }) => {
   );
 };
 
+/** Key akses dari pesanan yang sudah lunas. */
+const OrderKey: React.FC<{ orderId: string }> = ({ orderId }) => {
+  const [key, setKey] = useState<AccessKey | null>(null);
+  const [copied, setCopied] = useState(false);
+  useEffect(() => {
+    listMyAccessKeys().then(keys => setKey(keys.find(k => k.order_id === orderId) || null)).catch(() => setKey(null));
+  }, [orderId]);
+  if (!key) return null;
+  return (
+    <div className="space-y-1">
+      <div className="text-[10px] uppercase tracking-wider text-text-muted font-bold">Key akses</div>
+      <button
+        onClick={async () => { try { await navigator.clipboard.writeText(key.code); setCopied(true); setTimeout(() => setCopied(false), 1500); } catch { /* */ } }}
+        className="w-full flex items-center justify-between gap-2 px-3 py-2 rounded-xl border border-border-subtle bg-surface-card font-mono font-bold text-sm text-text-primary"
+        title="Salin key"
+      >
+        {key.code}
+        {copied ? <Check className="w-4 h-4 text-emerald-400" /> : <Copy className="w-4 h-4 opacity-70" />}
+      </button>
+      <div className="text-[11px] text-text-muted">
+        {key.redeemed ? (key.redeemed_by_me ? 'Sudah aktif di akunmu.' : 'Sudah ditukar oleh akun lain.') : 'Belum dipakai. Hanya bisa ditukar sekali.'}
+      </div>
+    </div>
+  );
+};
+
 const OrderView: React.FC<{
   order: PaymentOrder;
   userId: string | null;
@@ -587,8 +627,13 @@ const OrderView: React.FC<{
       </div>
 
       {order.status === 'paid' && (
-        <div className="p-3.5 rounded-2xl border border-emerald-500/40 bg-emerald-500/10 text-xs text-emerald-300">
-          Donasi sudah diverifikasi pada {formatDate(order.verified_at)} dan tercatat di akunmu. Terima kasih sudah mendukung SevnQuest!
+        <div className="p-3.5 rounded-2xl border border-emerald-500/40 bg-emerald-500/10 text-xs text-emerald-300 space-y-2">
+          <p>
+            {order.as_gift
+              ? `Pembayaran terverifikasi pada ${formatDate(order.verified_at)}. Berikan key di bawah kepada penerima hadiah.`
+              : `Donasi sudah diverifikasi pada ${formatDate(order.verified_at)} dan tercatat di akunmu. Terima kasih sudah mendukung SevnQuest!`}
+          </p>
+          <OrderKey orderId={order.id} />
         </div>
       )}
       {order.status === 'rejected' && (

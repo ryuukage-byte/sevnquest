@@ -20,6 +20,7 @@ export interface PaymentOrder {
   verified_at: string | null;
   created_at: string;
   expires_at: string;
+  as_gift?: boolean;
 }
 
 export interface AdminOrder extends PaymentOrder {
@@ -41,6 +42,8 @@ export type DonationKind = 'monthly' | 'lifetime';
 /** Pesan Indonesia untuk kode error dari RPC. */
 export function billingErrorMessage(err: unknown): string {
   const msg = (err && typeof err === 'object' && 'message' in err ? String((err as { message: unknown }).message) : String(err || '')) || '';
+  if (/key_invalid/.test(msg)) return 'Key tidak dikenal. Periksa lagi penulisannya.';
+  if (/key_used/.test(msg)) return 'Key ini sudah dipakai.';
   if (/invalid_amount/.test(msg)) return 'Nominal tidak valid. Donasi bulanan minimal Rp 5.000; setoran lifetime kelipatan Rp 25.000.';
   if (/exceeds_lifetime_target/.test(msg)) return 'Setoran melebihi sisa menuju Rp 700.000. Kurangi jumlah setoran.';
   if (/already_lifetime/.test(msg)) return 'Kamu sudah Lifetime. Terima kasih!';
@@ -64,8 +67,8 @@ export async function fetchEntitlement(): Promise<Entitlement> {
   return parseEntitlement(data);
 }
 
-export async function createPaymentOrder(kind: DonationKind, amountIdr: number): Promise<PaymentOrder> {
-  const { data, error } = await supabase.rpc('create_payment_order', { p_kind: kind, p_amount: Math.round(amountIdr) });
+export async function createPaymentOrder(kind: DonationKind, amountIdr: number, asGift = false): Promise<PaymentOrder> {
+  const { data, error } = await supabase.rpc('create_payment_order', { p_kind: kind, p_amount: Math.round(amountIdr), p_as_gift: asGift });
   if (error) throw error;
   return data as PaymentOrder;
 }
@@ -187,4 +190,52 @@ export async function authHeaders(): Promise<Record<string, string>> {
   } catch {
     return {};
   }
+}
+
+// ---------------------------------------------------------------------------
+// Key akses
+// ---------------------------------------------------------------------------
+export interface AccessKey {
+  code: string;
+  order_id: string;
+  kind: DonationKind;
+  amount_idr: number;
+  created_at: string;
+  as_gift: boolean;
+  redeemed: boolean;
+  redeemed_by_me: boolean;
+}
+
+export async function listMyAccessKeys(): Promise<AccessKey[]> {
+  const { data, error } = await supabase.rpc('list_my_access_keys');
+  if (error) throw error;
+  return (data || []) as AccessKey[];
+}
+
+export async function redeemAccessKey(code: string): Promise<{ code: string; kind: DonationKind; amount_idr: number }> {
+  const { data, error } = await supabase.rpc('redeem_access_key', { p_code: code });
+  if (error) throw error;
+  return data as { code: string; kind: DonationKind; amount_idr: number };
+}
+
+// ---------------------------------------------------------------------------
+// Perangkat
+// ---------------------------------------------------------------------------
+export interface DeviceInfo {
+  device_id: string;
+  label: string | null;
+  last_seen: string;
+  current: boolean;
+}
+
+export async function registerDevice(deviceId: string, label: string): Promise<{ allowed: boolean; devices: DeviceInfo[] }> {
+  const { data, error } = await supabase.rpc('register_device', { p_device_id: deviceId, p_label: label });
+  if (error) throw error;
+  const d = (data || {}) as { allowed?: boolean; devices?: DeviceInfo[] };
+  return { allowed: d.allowed !== false, devices: d.devices || [] };
+}
+
+export async function removeDevice(deviceId: string): Promise<void> {
+  const { error } = await supabase.rpc('remove_device', { p_device_id: deviceId });
+  if (error) throw error;
 }
