@@ -96,6 +96,7 @@ export function MainContent(props: MainContentProps) {
                     onNavigateTab={(tab) => handleTabChange(tab as TabType)}
                     onStartRecall={() => setIsRecallActive(true)}
                     onOpenTower={handleOpenTower}
+                    onOpenAuth={() => setIsAuthModalOpen(true)}
                   />
                   </ModuleBoundary>
                 )}

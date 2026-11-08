@@ -2,7 +2,7 @@ import type { RewardHandler } from '../../engine/reward/types';
 import React, { useMemo, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { motion } from 'motion/react';
-import { X, ScrollText, Sparkles, BookOpen, Languages, Shapes, Swords, ChevronRight, RotateCcw, Check, GraduationCap } from 'lucide-react';
+import { X, ScrollText, Lightbulb, BookOpen, Languages, Shapes, Swords, ChevronRight, RotateCcw, Check, GraduationCap } from 'lucide-react';
 import { analyzeText, MAX_INPUT_CHARS, type TextAnalysis, type WordHit } from '../../engine/textStudy/textAnalyzer';
 import { TextStudyUnderstand } from './TextStudyUnderstand';
 import { buildTextQuiz, type TextQuizQuestion } from '../../engine/textStudy/textQuiz';
@@ -197,7 +197,7 @@ export const TextStudyDungeonModal: React.FC<Props> = ({ onClose, soundEnabled =
                   input.trim() ? 'btn-cta cursor-pointer' : 'bg-surface-inset text-text-muted border border-border-subtle opacity-50 cursor-not-allowed'
                 }`}
               >
-                <Sparkles className="w-4 h-4 text-gold" />
+                <Lightbulb className="w-4 h-4 text-gold" />
                 <span>Bedah Teks Ini</span>
               </button>
               <p className="text-[11px] text-text-muted leading-relaxed">

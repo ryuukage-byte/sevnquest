@@ -664,7 +664,7 @@ const BunpouDetailModalInner: React.FC<BunpouDetailModalProps> = ({
                   >
                     <div className="flex items-center gap-1.5 mb-1.5">
                       <span className="font-heading italic font-bold text-xs text-gold">
-                        ✦ Catatan Kunci (Key Takeaway)
+                        Catatan Kunci (Key Takeaway)
                       </span>
                     </div>
 
@@ -1081,7 +1081,7 @@ const BunpouDetailModalInner: React.FC<BunpouDetailModalProps> = ({
                                   <span>Tepat Sekali! Skill Pola Kalimat Berhasil Diuji.</span>
                                 </div>
                                 <span className="text-xs font-mono font-bold text-gold shrink-0">
-                                  +15 EXP 🌟
+                                  +15 EXP
                                 </span>
                               </div>
                             ) : (

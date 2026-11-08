@@ -39,6 +39,11 @@ interface Props {
   glosses?: (string | null)[];
   /** Klik kartu kata -> loncat ke awal kata itu (tampilan per kata). */
   onSeek?: (ms: number) => void;
+  /**
+   * false: waktu per kata hanya perkiraan (caption manual) -> tanpa sorotan kata demi kata;
+   * seluruh kalimat tampil terang selama baris diputar, dan klik kartu kata loncat ke awal kalimat.
+   */
+  followWords?: boolean;
   className?: string;
 }
 
@@ -46,11 +51,13 @@ interface Props {
 const tone = (i: number, activeIdx: number) => (i < activeIdx ? 'text-text-primary' : i === activeIdx ? 'text-gold' : 'text-text-muted');
 
 /** Lirik dengan sorotan kata demi kata, sebagai satu kalimat atau kartu per kata. */
-export const KaraokeLine: React.FC<Props> = ({ words, store, showFurigana, view = 'sentence', glosses, onSeek, className = '' }) => {
-  const activeIdx = useSyncExternalStore(
+export const KaraokeLine: React.FC<Props> = ({ words, store, showFurigana, view = 'sentence', glosses, onSeek, followWords = true, className = '' }) => {
+  const trackedIdx = useSyncExternalStore(
     store.subscribe,
-    useCallback(() => activeWordIndex(words, store.get()), [words, store])
+    useCallback(() => (followWords ? activeWordIndex(words, store.get()) : -1), [words, store, followWords])
   );
+  // Tanpa waktu kata yang akurat: anggap semua kata "sudah lewat" (terang) dan tidak ada kartu aktif.
+  const activeIdx = followWords ? trackedIdx : words.length;
 
   if (view === 'word') {
     return (
@@ -59,7 +66,7 @@ export const KaraokeLine: React.FC<Props> = ({ words, store, showFurigana, view 
           <button
             key={i}
             type="button"
-            onClick={() => onSeek?.(w.startMs)}
+            onClick={() => onSeek?.(followWords ? w.startMs : words[0].startMs)}
             className={`flex flex-col items-center justify-start min-w-12 max-w-32 px-2.5 py-1.5 rounded-xl border cursor-pointer transition-colors ${
               i === activeIdx ? 'bg-surface-elevated border-border-primary' : 'bg-surface-card border-border-subtle hover:bg-surface-elevated'
             }`}

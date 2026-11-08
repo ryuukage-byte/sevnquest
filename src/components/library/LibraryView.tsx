@@ -3,11 +3,13 @@ import { KotobaLibraryView } from './KotobaLibraryView';
 import { KanjiLibraryView } from './KanjiLibraryView';
 import { BunpouLibraryView } from './BunpouLibraryView';
 import { QuestionLibraryView } from './QuestionLibraryView';
+import { DokkaiLibraryView } from './DokkaiLibraryView';
+import { ChoukaiLibraryView } from './ChoukaiLibraryView';
 import { playSound } from '../../utils/audio';
 import { UserDeck, DeckItemCategory } from '../../types/rpg';
 import { ItemMasteryRecord } from '../../types/content';
 
-export type LibraryTab = 'kotoba' | 'kanji' | 'bunpou' | 'soal';
+export type LibraryTab = 'kotoba' | 'kanji' | 'bunpou' | 'dokkai' | 'choukai' | 'soal';
 
 interface LibraryViewProps {
   soundEnabled?: boolean;
@@ -54,6 +56,8 @@ export const LibraryView: React.FC<LibraryViewProps> = ({
     kotoba: true,
     kanji: false,
     bunpou: false,
+    dokkai: false,
+    choukai: false,
     soal: false,
   });
 
@@ -82,11 +86,11 @@ export const LibraryView: React.FC<LibraryViewProps> = ({
               Perpustakaan & Grimoire Bahasa Jepang
             </h1>
             <p className="text-xs sm:text-sm text-text-secondary font-medium">
-              Ensiklopedia terpadu: Kosakata, Kanji, Pola Kalimat, dan Bank Soal berstandar resmi JLPT (N5〜N1)
+              Ensiklopedia terpadu: Kosakata, Kanji, Pola Kalimat, Dokkai, Choukai, dan Bank Soal berstandar resmi JLPT (N5〜N1)
             </p>
           </div>
 
-          {/* 4 Volume Tab Switcher */}
+          {/* Volume Tab Switcher */}
           <div className="book-tab-nav flex-wrap justify-center sm:justify-start shrink-0">
             {/* Jilid I: Kosakata */}
             <button
@@ -136,7 +140,39 @@ export const LibraryView: React.FC<LibraryViewProps> = ({
               </div>
             </button>
 
-            {/* Jilid IV: Bank Soal JLPT */}
+            {/* Jilid IV: Dokkai */}
+            <button
+              onClick={() => handleTabChange('dokkai')}
+              className={`book-tab-btn ${
+                libraryTab === 'dokkai' ? 'active' : 'inactive'
+              }`}
+            >
+              <div className="w-6 h-6 rounded-lg bg-surface-inset border border-border-subtle flex items-center justify-center text-xs font-jp font-bold text-text-primary">
+                読
+              </div>
+              <div className="text-left">
+                <span className="block text-xs leading-none font-bold">Dokkai</span>
+                <span className="text-[10px] opacity-70 font-mono">Jilid IV</span>
+              </div>
+            </button>
+
+            {/* Jilid V: Choukai (Library YouTube) */}
+            <button
+              onClick={() => handleTabChange('choukai')}
+              className={`book-tab-btn ${
+                libraryTab === 'choukai' ? 'active' : 'inactive'
+              }`}
+            >
+              <div className="w-6 h-6 rounded-lg bg-surface-inset border border-border-subtle flex items-center justify-center text-xs font-jp font-bold text-text-primary">
+                聴
+              </div>
+              <div className="text-left">
+                <span className="block text-xs leading-none font-bold">Choukai</span>
+                <span className="text-[10px] opacity-70 font-mono">Jilid V</span>
+              </div>
+            </button>
+
+            {/* Jilid VI: Bank Soal JLPT */}
             <button
               onClick={() => handleTabChange('soal')}
               className={`book-tab-btn ${
@@ -148,7 +184,7 @@ export const LibraryView: React.FC<LibraryViewProps> = ({
               </div>
               <div className="text-left">
                 <span className="block text-xs leading-none font-bold">Bank Soal</span>
-                <span className="text-[10px] opacity-70 font-mono">Jilid IV (JLPT)</span>
+                <span className="text-[10px] opacity-70 font-mono">Jilid VI (JLPT)</span>
               </div>
             </button>
           </div>
@@ -198,6 +234,20 @@ export const LibraryView: React.FC<LibraryViewProps> = ({
             onRecordInteraction={onRecordInteraction}
             onCompleteStudyItem={onCompleteStudyItem}
           />
+        </div>
+      )}
+      {visitedTabs.dokkai && (
+        <div className={libraryTab === 'dokkai' ? 'block' : 'hidden'}>
+          <DokkaiLibraryView
+            soundEnabled={soundEnabled}
+            onRewardPlayer={onRewardPlayer}
+            onCompleteStudyItem={onCompleteStudyItem}
+          />
+        </div>
+      )}
+      {visitedTabs.choukai && (
+        <div className={libraryTab === 'choukai' ? 'block' : 'hidden'}>
+          <ChoukaiLibraryView soundEnabled={soundEnabled} itemMastery={itemMastery} onRecordInteraction={onRecordInteraction} />
         </div>
       )}
       {visitedTabs.soal && (

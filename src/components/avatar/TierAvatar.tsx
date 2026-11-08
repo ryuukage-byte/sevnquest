@@ -197,7 +197,11 @@ export const TierAvatar: React.FC<TierAvatarProps> = ({
         )}
 
         {/* Alas patung (solid inset, tanpa glow blur) */}
-        <div className="absolute inset-0 rounded-3xl bg-surface-inset/50 border border-border-subtle shadow-inner pointer-events-none" />
+        {/* Bayangan blur di bawah kaki karakter (pengganti alas kotak) */}
+        <div
+          aria-hidden="true"
+          className="absolute left-1/2 -translate-x-1/2 -bottom-[6%] sm:-bottom-[2%] w-[75%] sm:w-[60%] h-[14%] min-h-4 rounded-[50%] bg-black/90 blur-md pointer-events-none"
+        />
 
         {/* Character Visual Image (Splash Art) */}
         <div className="relative w-full h-full flex items-center justify-center pointer-events-none z-10">

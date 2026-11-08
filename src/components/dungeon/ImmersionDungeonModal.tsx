@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { motion } from 'motion/react';
-import { X, Headphones, Music, Clapperboard, ChevronRight, ChevronLeft, Play, Sparkles } from 'lucide-react';
+import { X, Headphones, Music, Clapperboard, ChevronRight, ChevronLeft, Play, Bot } from 'lucide-react';
 import { parseYouTubeId } from '../../utils/youtube';
 import { playSound } from '../../utils/audio';
-import { ImmersionStage } from './ImmersionStage';
+import { ImmersionStage, type SentenceRecallHooks } from './ImmersionStage';
 import { ImmersionTemplatePanel } from './ImmersionTemplatePanel';
 import type { ImmersionTemplate } from '../../engine/textStudy/immersionTemplate';
 import type { CaptionState, LyricLine, SubDungeon } from './immersionTypes';
@@ -13,6 +13,14 @@ import { authHeaders } from '../../lib/billing';
 interface Props {
   onClose: () => void;
   soundEnabled?: boolean;
+  /** Langsung buka Ruang Video dengan video ini (mis. dari Library Choukai). */
+  initialVideoId?: string;
+  /** Transkrip tersimpan untuk video itu: dipakai langsung, tanpa mengambil subtitle dari YouTube. */
+  initialTemplate?: ImmersionTemplate;
+  /** Aktifkan "Simpan kalimat ke Recall" (hanya selama transkrip tersimpan yang dipakai). */
+  sentenceRecall?: SentenceRecallHooks;
+  /** Video ini belum punya transkrip tersimpan: jangan ambil subtitle dari YouTube, tampilkan "segera hadir". */
+  transcriptComingSoon?: boolean;
 }
 
 const SUB_DUNGEONS: { id: SubDungeon; title: string; icon: React.ComponentType<{ className?: string }>; description: string; placeholder: string }[] = [
@@ -42,15 +50,15 @@ const CAPTION_ERRORS: Record<string, string> = {
   entitlement_unavailable: 'Status paket belum bisa dicek. Coba lagi sebentar lagi.',
 };
 
-export const ImmersionDungeonModal: React.FC<Props> = ({ onClose, soundEnabled = true }) => {
-  const [sub, setSub] = useState<SubDungeon | null>(null);
-  const [input, setInput] = useState('');
-  const [videoId, setVideoId] = useState<string | null>(null);
+export const ImmersionDungeonModal: React.FC<Props> = ({ onClose, soundEnabled = true, initialVideoId, initialTemplate, sentenceRecall, transcriptComingSoon }) => {
+  const [sub, setSub] = useState<SubDungeon | null>(initialVideoId ? 'video' : null);
+  const [input, setInput] = useState(initialVideoId ? `https://youtu.be/${initialVideoId}` : '');
+  const [videoId, setVideoId] = useState<string | null>(initialVideoId ?? null);
   const [error, setError] = useState(false);
   const [captions, setCaptions] = useState<CaptionState>({ status: 'idle' });
   // Subtitle YouTube yang terambil (dipakai prompt AI) dan template JSON yang dimuat pengguna.
   const [fetched, setFetched] = useState<LyricLine[] | null>(null);
-  const [template, setTemplate] = useState<ImmersionTemplate | null>(null);
+  const [template, setTemplate] = useState<ImmersionTemplate | null>(initialTemplate ?? null);
   const [showAi, setShowAi] = useState(false);
 
   const click = () => playSound('click', soundEnabled);
@@ -67,6 +75,10 @@ export const ImmersionDungeonModal: React.FC<Props> = ({ onClose, soundEnabled =
       return;
     }
     setFetched(null);
+    if (transcriptComingSoon && videoId === initialVideoId) {
+      setCaptions({ status: 'error', message: 'Transkrip video ini segera hadir. Untuk sekarang, tonton dan latih pendengaranmu dulu tanpa teks.' });
+      return;
+    }
     const ctrl = new AbortController();
     setCaptions({ status: 'loading' });
     authHeaders()
@@ -85,7 +97,7 @@ export const ImmersionDungeonModal: React.FC<Props> = ({ onClose, soundEnabled =
         setCaptions({ status: 'error', message: err instanceof Error && err.message ? err.message : 'Subtitle gagal diambil.' });
       });
     return () => ctrl.abort();
-  }, [videoId, template]);
+  }, [videoId, template, transcriptComingSoon, initialVideoId]);
 
   const backToChoice = () => {
     click();
@@ -201,12 +213,13 @@ export const ImmersionDungeonModal: React.FC<Props> = ({ onClose, soundEnabled =
                   onClick={() => setShowAi(v => !v)}
                   className={`ui-chip px-3 py-1.5 text-xs font-heading font-bold cursor-pointer flex items-center gap-1.5 ${showAi ? 'is-active' : ''}`}
                 >
-                  <Sparkles className="w-3.5 h-3.5" /> Prompt AI &amp; JSON
+                  <Bot className="w-3.5 h-3.5" /> Prompt AI &amp; JSON
                 </button>
                 {showAi && <ImmersionTemplatePanel videoId={videoId} fetchedLines={fetched} onLoad={loadTemplate} />}
               </div>
 
-              {videoId && <ImmersionStage videoId={videoId} captions={captions} />}
+              {videoId && <ImmersionStage videoId={videoId} captions={captions}
+                sentenceRecall={sentenceRecall && initialTemplate && template === initialTemplate && videoId === initialTemplate.videoId ? sentenceRecall : undefined} />}
 
               <p className="text-[11px] text-text-muted leading-relaxed">
                 Pemutar memakai embed resmi YouTube. Subtitle diambil dari YouTube dan hanya ditampilkan untukmu, tidak disimpan di server.

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, lazy, Suspense } from 'react';
 import { Volume2, VolumeX, RotateCcw, ShieldAlert, Settings, BookOpen, User, LogOut, Coffee, MessageCircle, Sun, Moon, RefreshCw, Cloud, Check, Compass, Smartphone, Download, Play } from 'lucide-react';
 import { PlayerStats } from '../../types/rpg';
 import { speakJapanese, playSound } from '../../utils/audio';
@@ -6,6 +6,11 @@ import { signOut } from '../../lib/supabase';
 import { PwaInstallModal } from '../pwa/PwaInstallModal';
 import { SubscriptionPanel } from '../billing/SubscriptionPanel';
 import { useAccess } from '../../state/entitlement';
+import { checkIsAdmin } from '../../lib/announcements';
+
+const AdminBroadcastPanel = lazy(() =>
+  import('../announcements/AdminBroadcastPanel').then(m => ({ default: m.AdminBroadcastPanel })),
+);
 
 interface SettingsViewProps {
   stats: PlayerStats;
@@ -70,6 +75,21 @@ export const SettingsView: React.FC<SettingsViewProps> = ({
     return null;
   });
   const [showInstallGuide, setShowInstallGuide] = useState(false);
+  const [isAdmin, setIsAdmin] = useState(false);
+
+  useEffect(() => {
+    if (!isAuthenticated) {
+      setIsAdmin(false);
+      return;
+    }
+    let cancelled = false;
+    void checkIsAdmin().then(v => {
+      if (!cancelled) setIsAdmin(v);
+    });
+    return () => {
+      cancelled = true;
+    };
+  }, [isAuthenticated]);
   const [isStandalone, setIsStandalone] = useState<boolean>(() => {
     if (typeof window === 'undefined') return false;
     return (
@@ -182,6 +202,13 @@ export const SettingsView: React.FC<SettingsViewProps> = ({
           </div>
         </div>
       </div>
+
+      {/* Broadcast admin (hanya akun di tabel admins; penulisan dijaga RLS) */}
+      {isAdmin && (
+        <Suspense fallback={null}>
+          <AdminBroadcastPanel />
+        </Suspense>
+      )}
 
       {/* Account Section */}
       <div className="panel panel-stitched p-4 sm:p-5 space-y-4 shadow-md">
@@ -659,21 +686,10 @@ export const SettingsView: React.FC<SettingsViewProps> = ({
               <div className="text-[10px] text-text-muted">via QRIS (semua e-wallet & bank)</div>
             </div>
           </button>
-
-          <a
-            href="https://ngl.link/sevnsouls"
-            target="_blank"
-            rel="noopener noreferrer"
-            onClick={() => playSound('click')}
-            className="flex-1 py-3 px-4 rounded-xl bg-surface-inset hover:bg-surface-elevated border border-border-subtle hover:border-border-primary flex flex-col items-center justify-center gap-2 transition-all group shadow-sm"
-          >
-            <MessageCircle className="w-5 h-5 text-indigo group-hover:scale-110 transition-transform" />
-            <div className="text-center">
-              <div className="text-xs font-bold text-text-primary font-heading">Call Center / Lapor Bug</div>
-              <div className="text-[10px] text-text-muted">via NGL Link (ngl.link/sevnsouls)</div>
-            </div>
-          </a>
         </div>
+        <p className="text-[11px] text-text-muted">
+          Punya pertanyaan, laporan bug, atau saran? Kirim surat ke admin lewat Kotak Pos di Castle.
+        </p>
       </div>
 
       {/* Reset Progress Section */}

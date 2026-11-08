@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import {
-  X, Crown, Copy, Check, Loader2, Download, Clock, Heart, Lock, AlertCircle, Upload, Sparkles, ChevronLeft, Minus, Plus,
+  X, Crown, Copy, Check, Loader2, Download, Clock, Heart, Lock, AlertCircle, Upload, ChevronLeft, Minus, Plus,
   Infinity as InfinityIcon,
 } from 'lucide-react';
 import { playSound } from '../../utils/audio';
@@ -385,7 +385,7 @@ export const UpgradeModal: React.FC<Props> = ({ request, userId, entitlement, so
                         onClick={() => donate('lifetime', lifeAmount)}
                         className="btn-cta w-full py-3 text-xs font-heading font-black flex items-center justify-center gap-2 disabled:opacity-50"
                       >
-                        {busy === 'lifetime' ? <Loader2 className="w-4 h-4 animate-spin" /> : <Sparkles className="w-4 h-4" />}
+                        {busy === 'lifetime' ? <Loader2 className="w-4 h-4 animate-spin" /> : <InfinityIcon className="w-4 h-4" />}
                         Setor {formatIdr(lifeAmount)}
                       </button>
                       <p className="text-[10px] text-text-muted">
