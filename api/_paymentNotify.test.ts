@@ -52,3 +52,15 @@ test('notifikasi asli GoPay: uang masuk terbaca, pembayaran keluar diabaikan', a
   await handlePaymentNotify('k', { title: 'Pembayaran berhasil', text: 'Kamu membayar Rp 16.983 ke Toko X' }, {}, fakeFetch(200, { result: 'no_amount' }, out));
   assert.equal(JSON.parse(out.body!).p_amount, null);
 });
+
+test('notifikasi asli tanpa judul (Magic Text judul tidak terisi) tetap terbaca', async () => {
+  const raw = '[notification_title] Rp 4.999 di Sevnsoul Store, Digital &amp; Kreatif.';
+  assert.equal(isIncomingPayment(raw), true);
+  const seen: { body?: string } = {};
+  await handlePaymentNotify('k', { title: '[notification_title]', text: 'Rp 4.999 di Sevnsoul Store, Digital &amp; Kreatif.' }, {}, fakeFetch(200, { result: 'approved' }, seen));
+  const sent = JSON.parse(seen.body!);
+  assert.equal(sent.p_amount, 4999);
+  assert.equal(sent.p_raw, 'Rp 4.999 di Sevnsoul Store, Digital & Kreatif.');
+  // Pembayaran keluar ke merchant lain tetap diabaikan.
+  assert.equal(isIncomingPayment('Rp 16.983 di Indomaret'), false);
+});

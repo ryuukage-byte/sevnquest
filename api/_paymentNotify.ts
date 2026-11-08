@@ -33,9 +33,25 @@ export function parseIdrAmount(text: string | null | undefined): number | null {
 
 /** true untuk notifikasi uang masuk ("Pembayaran QRIS statis diterima", "Uang masuk", "received"). */
 export function isIncomingPayment(text: string): boolean {
-  const t = text.toLowerCase();
+  const t = cleanText(text).toLowerCase();
   if (/(berhasil (dibayar|membayar)|kamu membayar|pembayaran berhasil|transfer ke|top ?up|tarik tunai|cashback)/.test(t)) return false;
-  return /(diterima|uang masuk|dana masuk|menerima|received)/.test(t);
+  if (/(diterima|uang masuk|dana masuk|menerima|received)/.test(t)) return true;
+  // Isi notifikasi QRIS merchant tanpa judul: "Rp 4.999 di Sevnsoul Store, Digital & Kreatif."
+  return new RegExp(`rp\\s?[0-9][0-9.,]*\\s+di\\s+${MERCHANT_KEYWORD}`).test(t);
+}
+
+/** Nama merchant (huruf kecil) yang muncul di notifikasi uang masuk QRIS. */
+export const MERCHANT_KEYWORD = 'sevnsoul store';
+
+/** Rapikan teks notifikasi: entitas HTML (&amp;) dan placeholder Magic Text yang tidak terisi ([notification_title]). */
+export function cleanText(text: string): string {
+  return text
+    .replace(/&amp;/g, '&')
+    .replace(/&lt;/g, '<')
+    .replace(/&gt;/g, '>')
+    .replace(/\[(not_?|notification)[a-z_]*\]/gi, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
 }
 
 export interface NotifyBody {
@@ -61,7 +77,7 @@ export async function handlePaymentNotify(
 
   const title = typeof body?.title === 'string' ? body.title : '';
   const text = typeof body?.text === 'string' ? body.text : '';
-  const raw = `${title} ${text}`.trim().slice(0, 500);
+  const raw = cleanText(`${title} ${text}`).slice(0, 500);
   const explicit = Number(body?.amount);
   // Notifikasi datang dari app GoPay biasa, yang juga memberi tahu pembayaran KELUAR milik admin sendiri.
   // Hanya notifikasi uang MASUK yang boleh menyetujui pesanan; selain itu nominal dikosongkan (tercatat no_amount).
