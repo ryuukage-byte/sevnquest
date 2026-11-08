@@ -92,6 +92,7 @@ export function MainContent(props: MainContentProps) {
                   <ModuleBoundary label="Beranda">
                   <HomeView
                     stats={stats}
+                    dailyMissions={dailyMissions}
                     onOpenStatusModal={() => setIsStatusModalOpen(true)}
                     onNavigateTab={(tab) => handleTabChange(tab as TabType)}
                     onStartRecall={() => setIsRecallActive(true)}

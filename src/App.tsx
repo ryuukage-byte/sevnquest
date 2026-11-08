@@ -26,6 +26,7 @@ import { loadInitialStats, loadStageProgress, loadDailyMissions, loadWeeklyMissi
 import { useToast } from './hooks/useToast';
 import { useAppNavigation } from './hooks/useAppNavigation';
 import { useDailyRollover } from './hooks/useDailyRollover';
+import { useFriendFlameCheckin } from './hooks/useFriendFlameCheckin';
 import { useTheme } from './hooks/useTheme';
 import { usePersistence } from './hooks/usePersistence';
 import { useCloudSync } from './hooks/useCloudSync';
@@ -76,6 +77,7 @@ export default function App() {
   });
 
   useDailyRollover({ setStats, setDailyMissions, setWeeklyMissions });
+  useFriendFlameCheckin(dailyMissions, stats.playerName);
   useTheme(stats.theme);
   usePersistence({
     stats, stageProgress, dailyMissions, weeklyMissions,

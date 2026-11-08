@@ -5,7 +5,7 @@ import { motion } from 'motion/react';
 import { Play, Flame, ChevronRight, Compass, HelpCircle, Castle } from 'lucide-react';
 import { TOWER_ENABLED } from '../../data/featureFlags';
 import { ScrollIcon } from '../ui/EngravingIcons';
-import { PlayerStats } from '../../types/rpg';
+import { PlayerStats, Mission } from '../../types/rpg';
 import { dayProgress } from '../../engine/curriculum/curriculum';
 import { getEffectiveTier } from '../../utils/ascension';
 import { TierAvatar } from '../avatar/TierAvatar';
@@ -18,9 +18,12 @@ import { AnnouncementBanners } from '../announcements/AnnouncementBanners';
 import { MailboxCard } from '../mailbox/MailboxCard';
 import { SupportCard } from './SupportCard';
 import { CommunityCard } from './CommunityCard';
+import { FriendFlameCard } from '../friends/FriendFlameCard';
 
 export interface HomeViewProps {
   stats: PlayerStats;
+  /** Misi harian hari ini: syarat menyalakan Api Bareng. */
+  dailyMissions?: Mission[];
   onOpenStatusModal: () => void;
   onNavigateTab: (tab: 'maps' | 'daily' | 'weekly' | 'leaderboard' | 'settings' | 'library' | 'deck') => void;
   onStartRecall?: () => void;
@@ -30,6 +33,7 @@ export interface HomeViewProps {
 
 export const HomeView: React.FC<HomeViewProps> = ({
   stats,
+  dailyMissions = [],
   onOpenStatusModal,
   onNavigateTab,
   onStartRecall,
@@ -335,12 +339,20 @@ export const HomeView: React.FC<HomeViewProps> = ({
         </button>
       </div>
 
-      {/* 4. SEARCH: pencarian fitur */}
+      {/* 4. API BARENG: streak berdua dengan teman, dinyalakan dengan misi harian */}
+      <FriendFlameCard
+        dailyMissions={dailyMissions}
+        soundEnabled={stats.soundEnabled}
+        onOpenAuth={onOpenAuth}
+        onOpenMissions={() => onNavigateTab('daily')}
+      />
+
+      {/* 5. SEARCH: pencarian fitur */}
       <div className="panel p-0 overflow-visible">
         <FeatureSearch onSelect={handleFeatureSelect} />
       </div>
 
-      {/* 5. KOTAK POS + DONASI + KOMUNITAS: tiga ubin kecil sebaris */}
+      {/* 6. KOTAK POS + DONASI + KOMUNITAS: tiga ubin kecil sebaris */}
       <div className="grid grid-cols-3 gap-2.5 sm:gap-3 md:gap-4">
         <MailboxCard playerName={stats.playerName || ''} soundEnabled={stats.soundEnabled} onOpenAuth={onOpenAuth} />
         <SupportCard soundEnabled={stats.soundEnabled} />
