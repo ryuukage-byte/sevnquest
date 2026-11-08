@@ -2,7 +2,7 @@ import { planRecallSession } from '../../engine/recall/session';
 import { getTodayLocalDate } from '../../utils/time';
 import React, { useState, useCallback } from 'react';
 import { motion } from 'motion/react';
-import { Play, Flame, ChevronRight, Compass, HelpCircle, Castle, Smartphone, Download, Check } from 'lucide-react';
+import { Play, Flame, ChevronRight, Compass, HelpCircle, Castle } from 'lucide-react';
 import { TOWER_ENABLED } from '../../data/featureFlags';
 import { ScrollIcon } from '../ui/EngravingIcons';
 import { PlayerStats } from '../../types/rpg';
@@ -18,8 +18,6 @@ import { AnnouncementBanners } from '../announcements/AnnouncementBanners';
 import { MailboxCard } from '../mailbox/MailboxCard';
 import { SupportCard } from './SupportCard';
 import { CommunityCard } from './CommunityCard';
-import { PwaInstallModal } from '../pwa/PwaInstallModal';
-import { usePwaInstall } from '../../hooks/usePwaInstall';
 
 export interface HomeViewProps {
   stats: PlayerStats;
@@ -68,7 +66,6 @@ export const HomeView: React.FC<HomeViewProps> = ({
     }
   });
   const [isGuideOpen, setIsGuideOpen] = useState(false);
-  const pwa = usePwaInstall(stats.soundEnabled);
 
   const closeGuide = useCallback(() => {
     setIsGuideOpen(false);
@@ -338,42 +335,12 @@ export const HomeView: React.FC<HomeViewProps> = ({
         </button>
       </div>
 
-      {/* 4. APLIKASI WEB (PWA): pasang ke layar utama */}
-      <div className="panel !p-3 sm:!p-4 flex items-center justify-between gap-3">
-        <div className="min-w-0 flex-1 flex items-center gap-3">
-          <div className="p-2.5 rounded-xl bg-surface-inset/50 text-indigo border border-border-subtle shrink-0">
-            <Smartphone className="w-4 h-4 md:w-5 md:h-5" />
-          </div>
-          <div className="min-w-0">
-            <h3 className="text-sm md:text-base font-bold text-text-primary font-heading truncate">Aplikasi Web (PWA)</h3>
-            <p className="text-[11px] md:text-xs text-text-secondary truncate">
-              Pasang di layar utama HP / desktop tanpa bar URL
-            </p>
-          </div>
-        </div>
-        {pwa.isStandalone ? (
-          <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-emerald-500/15 border border-border-subtle text-emerald-700 dark:text-emerald-400 font-bold text-xs shrink-0 whitespace-nowrap shadow-sm">
-            <Check className="w-3.5 h-3.5 stroke-[2.5]" />
-            <span>Terpasang</span>
-          </span>
-        ) : (
-          <button
-            type="button"
-            onClick={pwa.handleInstallClick}
-            className="btn-physical-secondary px-3.5 py-1.5 rounded-xl text-xs font-bold inline-flex items-center gap-1.5 shrink-0 whitespace-nowrap select-none transition-all text-indigo cursor-pointer"
-          >
-            <Download className="w-3.5 h-3.5" />
-            <span>Pasang App</span>
-          </button>
-        )}
-      </div>
-
-      {/* 5. SEARCH: pencarian fitur */}
+      {/* 4. SEARCH: pencarian fitur */}
       <div className="panel p-0 overflow-visible">
         <FeatureSearch onSelect={handleFeatureSelect} />
       </div>
 
-      {/* 6. KOTAK POS + DONASI + KOMUNITAS: tiga ubin kecil sebaris */}
+      {/* 5. KOTAK POS + DONASI + KOMUNITAS: tiga ubin kecil sebaris */}
       <div className="grid grid-cols-3 gap-2.5 sm:gap-3 md:gap-4">
         <MailboxCard playerName={stats.playerName || ''} soundEnabled={stats.soundEnabled} onOpenAuth={onOpenAuth} />
         <SupportCard soundEnabled={stats.soundEnabled} />
@@ -385,15 +352,6 @@ export const HomeView: React.FC<HomeViewProps> = ({
         soundEnabled={stats.soundEnabled}
         onClose={closeGuide}
         onPickPath={handlePickPath}
-      />
-
-      {/* Panduan pemasangan PWA (dipakai bila prompt native tidak tersedia) */}
-      <PwaInstallModal
-        isOpen={pwa.showInstallGuide}
-        onClose={() => pwa.setShowInstallGuide(false)}
-        deferredPrompt={pwa.deferredPrompt}
-        onInstalled={pwa.markInstalled}
-        soundEnabled={stats.soundEnabled}
       />
     </div>
   );

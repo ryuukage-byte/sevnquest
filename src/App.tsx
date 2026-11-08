@@ -5,9 +5,11 @@
 
 import { useState, useRef, useCallback, lazy } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Swords, Cloud } from 'lucide-react';
+import { Swords, Cloud, Download } from 'lucide-react';
 import { PlayerStats, StageClearData, Mission } from './types/rpg';
 import { StudyTimerBadge } from './components/layout/StudyTimerBadge';
+import { PwaInstallModal } from './components/pwa/PwaInstallModal';
+import { usePwaInstall } from './hooks/usePwaInstall';
 import { HomeView } from './components/home/HomeView';
 import { MissionsView } from './components/missions/MissionsView';
 import { BottomNavigation, TabType } from './components/layout/BottomNavigation';
@@ -58,6 +60,9 @@ export default function App() {
 
   // Active Study Tracking (Recall SRS, Library, and Buku Saku)
   const isStudying = Boolean(nav.isRecallActive || activeTab === 'library' || activeTab === 'deck');
+
+  // Tombol "Pasang App" (PWA) di header, di samping lencana waktu belajar.
+  const pwa = usePwaInstall(stats.soundEnabled);
 
   // Pelacak waktu hidup di <StudyTimerBadge> (re-render per detik terisolasi dari App).
   const handleStudyTimeSave = useCallback((todaySec: number, totalSec: number, studyDate: string) => {
@@ -148,6 +153,18 @@ export default function App() {
               lastStudyDate={stats.lastStudyDate}
               onSave={handleStudyTimeSave}
             />
+            {activeTab === 'home' && !pwa.isStandalone && (
+              <button
+                type="button"
+                onClick={pwa.handleInstallClick}
+                title="Pasang SevnQuest sebagai aplikasi"
+                aria-label="Pasang App"
+                className="btn-physical-secondary py-1.5 px-2.5 sm:px-3 rounded-xl text-xs font-bold inline-flex items-center gap-1.5 shrink-0 whitespace-nowrap select-none transition-all text-indigo cursor-pointer"
+              >
+                <Download className="w-3.5 h-3.5" />
+                <span className="hidden sm:inline">Pasang App</span>
+              </button>
+            )}
           </div>
         </div>
       </header>
@@ -165,6 +182,15 @@ export default function App() {
         lastSyncedAt={lastSyncedAt}
         saveToCloud={saveToCloud}
         {...actions}
+      />
+
+      {/* Panduan pemasangan PWA (dipakai bila prompt native tidak tersedia) */}
+      <PwaInstallModal
+        isOpen={pwa.showInstallGuide}
+        onClose={() => pwa.setShowInstallGuide(false)}
+        deferredPrompt={pwa.deferredPrompt}
+        onInstalled={pwa.markInstalled}
+        soundEnabled={stats.soundEnabled}
       />
 
       {/* Character Status Modal (Triggered by Avatar click or HUD click) */}
