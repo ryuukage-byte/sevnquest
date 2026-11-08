@@ -31,6 +31,13 @@ export function parseIdrAmount(text: string | null | undefined): number | null {
   return Number.isInteger(n) && n > 0 && n < 100_000_000 ? n : null;
 }
 
+/** true untuk notifikasi uang masuk ("Pembayaran QRIS statis diterima", "Uang masuk", "received"). */
+export function isIncomingPayment(text: string): boolean {
+  const t = text.toLowerCase();
+  if (/(berhasil (dibayar|membayar)|kamu membayar|pembayaran berhasil|transfer ke|top ?up|tarik tunai|cashback)/.test(t)) return false;
+  return /(diterima|uang masuk|dana masuk|menerima|received)/.test(t);
+}
+
 export interface NotifyBody {
   text?: unknown;
   title?: unknown;
@@ -56,7 +63,11 @@ export async function handlePaymentNotify(
   const text = typeof body?.text === 'string' ? body.text : '';
   const raw = `${title} ${text}`.trim().slice(0, 500);
   const explicit = Number(body?.amount);
-  const amount = Number.isInteger(explicit) && explicit > 0 ? explicit : parseIdrAmount(raw);
+  // Notifikasi datang dari app GoPay biasa, yang juga memberi tahu pembayaran KELUAR milik admin sendiri.
+  // Hanya notifikasi uang MASUK yang boleh menyetujui pesanan; selain itu nominal dikosongkan (tercatat no_amount).
+  const amount = !isIncomingPayment(raw)
+    ? null
+    : Number.isInteger(explicit) && explicit > 0 ? explicit : parseIdrAmount(raw);
 
   const base = (env.SUPABASE_URL || DEFAULT_SUPABASE_URL).replace(/\/$/, '');
   const anon = env.SUPABASE_ANON_KEY || DEFAULT_ANON_KEY;

@@ -108,8 +108,8 @@ export const AutoVerifyPanel: React.FC = () => {
           <details className="space-y-1" open={!status?.configured}>
             <summary className="cursor-pointer font-bold text-text-secondary">Cara memasang di HP (MacroDroid, Android)</summary>
             <ol className="list-decimal pl-5 space-y-1 text-text-secondary mt-1">
-              <li>Pasang <b>MacroDroid</b> dari Play Store di HP yang memakai app GoPay Merchant.</li>
-              <li>Buat Macro baru. <b>Trigger</b>: Notification → Notification Received → pilih app <b>GoPay Merchant</b> → teks berisi <b>Rp</b>.</li>
+              <li>Pasang <b>MacroDroid</b> dari Play Store di HP yang menerima notifikasi pembayaran merchant (app <b>GoPay</b>, judul "Pembayaran QRIS statis diterima").</li>
+              <li>Buat Macro baru. <b>Trigger</b>: Notification → Notification Received → pilih app yang memunculkan notifikasi itu (biasanya <b>GoPay</b>) → teks berisi <b>diterima</b>.</li>
               <li><b>Action</b>: Connectivity → HTTP Request. Metode <b>POST</b>, URL di atas, tipe isi <b>application/json</b>.</li>
               <li>Header: <code>X-Webhook-Key</code> = kunci di atas.</li>
               <li>Body: <code>{'{"title":"[notification_title]","text":"[notification]"}'}</code></li>
@@ -117,8 +117,8 @@ export const AutoVerifyPanel: React.FC = () => {
               <li>Uji dengan donasi kecil. Notifikasi yang masuk tampil di log di bawah.</li>
             </ol>
             <p className="text-text-muted mt-1">
-              Pesanan disetujui otomatis hanya bila nominal cocok dengan tepat satu pesanan terbuka (≤ 48 jam). Selain itu tetap
-              menunggu verifikasi manual di daftar atas.
+              Hanya notifikasi uang masuk ("diterima") yang dihitung; notifikasi pembayaranmu sendiri diabaikan. Pesanan disetujui
+              otomatis bila nominal cocok dengan tepat satu pesanan terbuka (≤ 48 jam); selain itu tetap menunggu verifikasi manual.
             </p>
           </details>
 

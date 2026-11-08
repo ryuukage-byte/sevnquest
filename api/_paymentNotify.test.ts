@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { parseIdrAmount, handlePaymentNotify } from './_paymentNotify';
+import { parseIdrAmount, handlePaymentNotify, isIncomingPayment } from './_paymentNotify';
 
 test('parseIdrAmount: berbagai format notifikasi', () => {
   assert.equal(parseIdrAmount('Kamu menerima pembayaran QRIS Rp16.983 dari GoPay'), 16983);
@@ -34,6 +34,21 @@ test('handlePaymentNotify: kunci salah → 401, field amount eksplisit dipakai',
   const bad = await handlePaymentNotify('x', { amount: 5000 }, {}, fakeFetch(400, { message: 'invalid_key' }));
   assert.equal(bad.status, 401);
   const seen: { body?: string } = {};
-  await handlePaymentNotify('k', { amount: 4999, text: 'Rp1' }, {}, fakeFetch(200, { result: 'unmatched' }, seen));
+  await handlePaymentNotify('k', { amount: 4999, text: 'Pembayaran diterima Rp1' }, {}, fakeFetch(200, { result: 'unmatched' }, seen));
   assert.equal(JSON.parse(seen.body!).p_amount, 4999);
+});
+
+test('notifikasi asli GoPay: uang masuk terbaca, pembayaran keluar diabaikan', async () => {
+  const title = 'Pembayaran QRIS statis diterima';
+  const text = 'Rp 4.000 di Sevnsoul Store, Digital &amp; Kreatif.';
+  assert.equal(isIncomingPayment(`${title} ${text}`), true);
+  assert.equal(parseIdrAmount(`${title} ${text}`), 4000);
+  const seen: { body?: string } = {};
+  await handlePaymentNotify('k', { title, text }, {}, fakeFetch(200, { result: 'unmatched' }, seen));
+  assert.equal(JSON.parse(seen.body!).p_amount, 4000);
+
+  assert.equal(isIncomingPayment('Pembayaran berhasil Rp 16.983 ke Indomaret'), false);
+  const out: { body?: string } = {};
+  await handlePaymentNotify('k', { title: 'Pembayaran berhasil', text: 'Kamu membayar Rp 16.983 ke Toko X' }, {}, fakeFetch(200, { result: 'no_amount' }, out));
+  assert.equal(JSON.parse(out.body!).p_amount, null);
 });
