@@ -6,7 +6,7 @@ import {
 import { playSound } from '../../utils/audio';
 import { useBackButton } from '../../hooks/useBackButton';
 import {
-  BADGES, badgeForTotal, nextBadge, monthlyRemaining, lifetimeUnitsLeft, daysUntil, formatIdr, planLabel,
+  BADGES, badgeForTotal, nextBadge, monthlyRemaining, lifetimeUnitsLeft, monthTierFor, monthTierPerks, daysUntil, formatIdr, planLabel,
   type Entitlement,
 } from '../../utils/access';
 import {
@@ -96,6 +96,9 @@ export const UpgradeModal: React.FC<Props> = ({ request, userId, entitlement, so
   const [units, setUnits] = useState(1);
   // Hadiah: key tidak langsung dipakai di akun pembeli, bisa diberikan ke akun lain.
   const [asGift, setAsGift] = useState(false);
+  const tiers = cfg.monthlyTiers;
+  const [targetTier, setTargetTier] = useState(() => Math.min(tiers.length, Math.max(1, entitlement.monthTier + 1)));
+  const [customOpen, setCustomOpen] = useState(false);
 
   useBackButton(true, () => {
     if (view.kind !== 'plans') {
@@ -138,6 +141,9 @@ export const UpgradeModal: React.FC<Props> = ({ request, userId, entitlement, so
     }
   };
 
+  const tierThreshold = tiers[targetTier - 1] ?? cfg.monthlyThreshold;
+  const tierReached = !asGift && entitlement.monthTier >= targetTier;
+  const tierPay = asGift ? tierThreshold : Math.max(cfg.monthlyMin, tierThreshold - entitlement.monthTotal);
   const monthlyValue = Math.floor(Number(monthlyAmount.replace(/\D/g, '')) || 0);
   const monthlyValid = monthlyValue >= cfg.monthlyMin && monthlyValue <= 10_000_000;
   const afterThis = entitlement.monthTotal + monthlyValue;
@@ -148,10 +154,6 @@ export const UpgradeModal: React.FC<Props> = ({ request, userId, entitlement, so
   const next = nextBadge(entitlement.lifetimeTotal);
   const expiresIn = daysUntil(entitlement.accessExpiresAt);
 
-  const chips = Array.from(new Set([remaining > 0 ? Math.max(cfg.monthlyMin, remaining) : 0, 5000, 10000, cfg.monthlyThreshold, 25000, 50000]))
-    .filter(v => v >= cfg.monthlyMin)
-    .sort((a, b) => a - b)
-    .slice(0, 6);
 
   return (
     <div className="fixed inset-0 z-[60] flex items-start sm:items-center justify-center p-2.5 sm:p-4 bg-black/80 overflow-y-auto">
@@ -243,16 +245,6 @@ export const UpgradeModal: React.FC<Props> = ({ request, userId, entitlement, so
                 </div>
               )}
 
-              <label className="flex items-start gap-2.5 p-3 rounded-2xl border border-border-subtle bg-surface-inset text-xs cursor-pointer">
-                <input type="checkbox" checked={asGift} onChange={e => setAsGift(e.target.checked)} className="mt-0.5 w-4 h-4 accent-amber-500" />
-                <span>
-                  <b className="text-text-primary">Jadikan key hadiah</b>
-                  <span className="block text-text-muted">
-                    Setelah pembayaran terverifikasi kamu mendapat key (SQ-XXXX-XXXX-XXXX) yang bisa diberikan ke teman dan ditukar
-                    di Pengaturan → Tukar Key. Tanpa centang, donasi langsung aktif di akunmu.
-                  </span>
-                </span>
-              </label>
 
               {/* Tab */}
               <div className="flex gap-1.5 p-1 rounded-2xl bg-surface-inset border border-border-subtle text-xs font-bold">
@@ -262,7 +254,7 @@ export const UpgradeModal: React.FC<Props> = ({ request, userId, entitlement, so
                     onClick={() => { setTab(t); playSound('click', soundEnabled); }}
                     className={`flex-1 py-2 rounded-xl transition-all ${tab === t ? 'bg-surface-elevated text-text-primary border border-border-subtle' : 'text-text-muted'}`}
                   >
-                    {t === 'monthly' ? 'Bulanan (nominal bebas)' : 'Lifetime (per Rp 25 rb)'}
+                    {t === 'monthly' ? 'Bulanan (7 tingkat)' : 'Lifetime (per Rp 25 rb)'}
                   </button>
                 ))}
               </div>
@@ -274,64 +266,124 @@ export const UpgradeModal: React.FC<Props> = ({ request, userId, entitlement, so
                       <Heart className="w-4 h-4 text-rose-400" /> Donasi {monthName(entitlement.month)}
                     </h3>
                     <span className="font-mono text-xs text-text-secondary">
-                      {formatIdr(entitlement.monthTotal)} / {formatIdr(cfg.monthlyThreshold)}
+                      {formatIdr(entitlement.monthTotal)}{entitlement.monthTier > 0 ? ` · Tingkat ${entitlement.monthTier}` : ''}
                     </span>
                   </div>
-                  <ProgressBar value={entitlement.monthUnlocked ? cfg.monthlyThreshold : entitlement.monthTotal} max={cfg.monthlyThreshold} />
-                  <p className="text-xs text-text-primary">
-                    {entitlement.monthUnlocked
-                      ? 'Full bulan ini sudah terbuka. Donasi tambahan tetap tercatat sebagai dukungan. Terima kasih!'
-                      : <>Kurang <b className="text-gold">{formatIdr(remaining)}</b> lagi untuk membuka <b>Full {cfg.fullDays} hari</b>.</>}
-                  </p>
                   {claimedMonthly > 0 && (
                     <p className="text-[11px] text-indigo">{formatIdr(claimedMonthly)} sedang menunggu verifikasi dan belum masuk hitungan.</p>
                   )}
-                  <ul className="text-[11px] text-text-secondary space-y-0.5">
-                    {FULL_FEATURES.map(f => <li key={f} className="flex gap-1.5"><Check className="w-3.5 h-3.5 text-emerald-400 shrink-0" />{f}</li>)}
-                  </ul>
 
-                  <div className="flex flex-wrap gap-1.5">
-                    {chips.map(v => (
-                      <button
-                        key={v}
-                        onClick={() => setMonthlyAmount(String(v))}
-                        className={`px-2.5 py-1 rounded-lg border text-[11px] font-mono ${monthlyValue === v ? 'border-gold text-gold bg-gold/10' : 'border-border-subtle text-text-secondary'}`}
-                      >
-                        {formatIdr(v)}{v === remaining && remaining > 0 ? ' (pas)' : ''}
-                      </button>
-                    ))}
-                  </div>
-                  <label className="block space-y-1">
-                    <span className="text-[11px] font-bold text-text-secondary">Nominal (bebas, min. {formatIdr(cfg.monthlyMin)})</span>
-                    <div className="flex items-center gap-2 px-3 py-2 rounded-xl border border-border-subtle bg-surface-card">
-                      <span className="text-xs text-text-muted">Rp</span>
-                      <input
-                        inputMode="numeric"
-                        value={monthlyValue ? monthlyValue.toLocaleString('id-ID') : ''}
-                        onChange={e => setMonthlyAmount(e.target.value)}
-                        className="flex-1 bg-transparent text-sm font-mono text-text-primary focus:outline-none"
-                        placeholder={String(cfg.monthlyThreshold)}
-                      />
+                  {/* Penggeser 7 tingkat */}
+                  <div className="space-y-2">
+                    <input
+                      type="range"
+                      min={1}
+                      max={tiers.length}
+                      step={1}
+                      value={targetTier}
+                      onChange={e => { setTargetTier(Number(e.target.value)); setCustomOpen(false); }}
+                      className="w-full accent-amber-500 cursor-pointer"
+                      aria-label="Pilih tingkat donasi bulanan"
+                    />
+                    <div className="grid text-[10px] font-mono text-center" style={{ gridTemplateColumns: `repeat(${tiers.length}, minmax(0, 1fr))` }}>
+                      {tiers.map((t, i) => {
+                        const reached = !asGift && entitlement.monthTier >= i + 1;
+                        const active = targetTier === i + 1;
+                        return (
+                          <button
+                            key={t}
+                            onClick={() => { setTargetTier(i + 1); setCustomOpen(false); }}
+                            className={`${active ? 'text-gold font-bold' : reached ? 'text-emerald-400' : 'text-text-muted'}`}
+                          >
+                            {t >= 1000 ? `${t / 1000}rb` : t}{i === tiers.length - 1 ? '+' : ''}
+                          </button>
+                        );
+                      })}
                     </div>
-                  </label>
-                  {monthlyValid && !entitlement.monthUnlocked && (
+                  </div>
+
+                  <div className={`rounded-xl border p-3 space-y-1 ${tierReached ? 'border-emerald-500/40 bg-emerald-500/10' : 'border-gold/50 bg-gold/10'}`}>
+                    <div className="flex items-baseline justify-between gap-2">
+                      <span className="font-heading font-black text-text-primary">Tingkat {targetTier}</span>
+                      <span className="font-mono text-xs text-text-secondary">
+                        {formatIdr(tierThreshold)}{targetTier === tiers.length ? ' ke atas' : ''} / bulan
+                      </span>
+                    </div>
+                    <p className="text-xs text-text-primary">{monthTierPerks(targetTier)}</p>
+                    {tierReached ? (
+                      <p className="text-[11px] text-emerald-400">Tingkat ini sudah tercapai bulan ini. Terima kasih!</p>
+                    ) : (
+                      <p className="text-[11px] text-text-secondary">
+                        {asGift || entitlement.monthTotal === 0
+                          ? <>Donasi <b className="text-gold">{formatIdr(tierPay)}</b></>
+                          : <>Kurang <b className="text-gold">{formatIdr(tierPay)}</b> lagi dari total bulan ini</>}
+                      </p>
+                    )}
+                  </div>
+
+                  {targetTier === 1 && (
+                    <ul className="text-[11px] text-text-secondary space-y-0.5">
+                      {FULL_FEATURES.map(f => <li key={f} className="flex gap-1.5"><Check className="w-3.5 h-3.5 text-emerald-400 shrink-0" />{f}</li>)}
+                    </ul>
+                  )}
+                  {targetTier > 1 && (
                     <p className="text-[11px] text-text-muted">
-                      {afterThis >= cfg.monthlyThreshold
-                        ? `Setelah donasi ini diverifikasi, Full ${cfg.fullDays} hari langsung terbuka.`
-                        : `Setelah donasi ini: ${formatIdr(afterThis)} — kurang ${formatIdr(cfg.monthlyThreshold - afterThis)} lagi.`}
+                      Akses sudah maksimal sejak Tingkat 1. Tingkat lebih tinggi menaikkan prioritas: kuota & kertas Kotak Pos, serta urutan
+                      request konten.
                     </p>
                   )}
-                  <button
-                    disabled={!!busy || !monthlyValid}
-                    onClick={() => donate('monthly', monthlyValue)}
-                    className="btn-cta w-full py-3 text-xs font-heading font-black flex items-center justify-center gap-2 disabled:opacity-50"
-                  >
-                    {busy === 'monthly' ? <Loader2 className="w-4 h-4 animate-spin" /> : <Heart className="w-4 h-4" />}
-                    Donasi {monthlyValid ? formatIdr(monthlyValue) : ''}
-                  </button>
+
+                  {!customOpen ? (
+                    <>
+                      <button
+                        disabled={!!busy || tierReached}
+                        onClick={() => donate('monthly', tierPay)}
+                        className="btn-cta w-full py-3 text-xs font-heading font-black flex items-center justify-center gap-2 disabled:opacity-50"
+                      >
+                        {busy === 'monthly' ? <Loader2 className="w-4 h-4 animate-spin" /> : <Heart className="w-4 h-4" />}
+                        {tierReached ? 'Sudah tercapai' : `Donasi ${formatIdr(tierPay)}`}
+                      </button>
+                      <button onClick={() => setCustomOpen(true)} className="w-full text-[11px] text-text-muted hover:text-text-primary">
+                        Nominal lain
+                      </button>
+                    </>
+                  ) : (
+                    <div className="space-y-2">
+                      <label className="block space-y-1">
+                        <span className="text-[11px] font-bold text-text-secondary">Nominal bebas (min. {formatIdr(cfg.monthlyMin)})</span>
+                        <div className="flex items-center gap-2 px-3 py-2 rounded-xl border border-border-subtle bg-surface-card">
+                          <span className="text-xs text-text-muted">Rp</span>
+                          <input
+                            inputMode="numeric"
+                            value={monthlyValue ? monthlyValue.toLocaleString('id-ID') : ''}
+                            onChange={e => setMonthlyAmount(e.target.value)}
+                            className="flex-1 bg-transparent text-sm font-mono text-text-primary focus:outline-none"
+                            placeholder={String(cfg.monthlyThreshold)}
+                            autoFocus
+                          />
+                        </div>
+                      </label>
+                      {monthlyValid && !asGift && (
+                        <p className="text-[11px] text-text-muted">
+                          Setelah donasi ini: total {formatIdr(afterThis)} · Tingkat {monthTierFor(afterThis, tiers)}
+                        </p>
+                      )}
+                      <button
+                        disabled={!!busy || !monthlyValid}
+                        onClick={() => donate('monthly', monthlyValue)}
+                        className="btn-cta w-full py-3 text-xs font-heading font-black flex items-center justify-center gap-2 disabled:opacity-50"
+                      >
+                        {busy === 'monthly' ? <Loader2 className="w-4 h-4 animate-spin" /> : <Heart className="w-4 h-4" />}
+                        Donasi {monthlyValid ? formatIdr(monthlyValue) : ''}
+                      </button>
+                      <button onClick={() => setCustomOpen(false)} className="w-full text-[11px] text-text-muted hover:text-text-primary">
+                        Kembali ke tingkat
+                      </button>
+                    </div>
+                  )}
                   <p className="text-[10px] text-text-muted">
-                    Total dihitung per bulan kalender (WIB) dan kembali ke 0 tiap awal bulan. Full terbuka sekali per bulan, berlaku
-                    {` ${cfg.fullDays}`} hari sejak donasi yang mencapai ambang diverifikasi.
+                    Total dihitung per bulan kalender (WIB) dan kembali ke 0 tiap awal bulan. Full {cfg.fullDays} hari terbuka saat total
+                    mencapai Tingkat 1, sekali per bulan.
                   </p>
                 </div>
               )}
@@ -410,6 +462,19 @@ export const UpgradeModal: React.FC<Props> = ({ request, userId, entitlement, so
                   )}
                 </div>
               )}
+
+              <details className="text-xs" open={asGift}>
+                <summary className="cursor-pointer text-text-muted">Beli untuk orang lain?</summary>
+                <label className="mt-2 flex items-start gap-2.5 p-3 rounded-2xl border border-border-subtle bg-surface-inset cursor-pointer">
+                  <input type="checkbox" checked={asGift} onChange={e => setAsGift(e.target.checked)} className="mt-0.5 w-4 h-4 accent-amber-500" />
+                  <span>
+                    <b className="text-text-primary">Jadikan key hadiah</b>
+                    <span className="block text-text-muted">
+                      Kamu mendapat key (SQ-XXXX-XXXX-XXXX) setelah pembayaran terverifikasi. Penerima menukarnya di Pengaturan → Tukar Key.
+                    </span>
+                  </span>
+                </label>
+              </details>
 
               {orders.some(o => o.status !== 'pending' && o.status !== 'claimed') && (
                 <details className="text-xs">

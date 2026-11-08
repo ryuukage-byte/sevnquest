@@ -23,17 +23,21 @@ test('UpgradeModal bulanan: donasi 5.000 → kurang Rp 12.000 untuk Full', () =>
   assert.match(html, /Rp 17\.000/);
 });
 
-test('UpgradeModal bulanan: Full bulan ini sudah terbuka', () => {
+test('UpgradeModal bulanan: penggeser 7 tingkat, tingkat 1 sudah tercapai → bawaan tingkat 2', () => {
   const html = renderToStaticMarkup(
     <UpgradeModal
       request={{}}
       userId="u1"
-      entitlement={parseEntitlement({ access_tier: 'full', month_total: 20000, month_unlocked: true, access_expires_at: '2099-01-01T00:00:00Z' })}
+      entitlement={parseEntitlement({ access_tier: 'full', month_total: 20000, month_tier: 1, month_unlocked: true, access_expires_at: '2099-01-01T00:00:00Z' })}
       onClose={noop}
       onChanged={noop}
     />
   );
-  assert.match(html, /Full bulan ini sudah terbuka/);
+  assert.match(html, /type="range"/);
+  assert.match(html, /Tingkat 2/);
+  assert.match(html, /prioritas Lv\.1/);
+  assert.match(html, /150rb\+/);
+  assert.match(html, /Kurang .*Rp 5\.000/);
 });
 
 test('UpgradeModal lifetime: tangga badge dan target Rp 700.000', () => {

@@ -61,6 +61,8 @@ export type GatedFeature = keyof typeof FEATURE_TIER;
 
 export interface DonationConfig {
   monthlyThreshold: number;
+  /** Ambang total donasi bulanan untuk tingkat 1..7 (tingkat 1 = membuka Full). */
+  monthlyTiers: number[];
   monthlyMin: number;
   lifetimeUnit: number;
   lifetimeTarget: number;
@@ -69,6 +71,7 @@ export interface DonationConfig {
 
 export const DEFAULT_DONATION_CONFIG: DonationConfig = {
   monthlyThreshold: 17000,
+  monthlyTiers: [17000, 25000, 35000, 50000, 75000, 100000, 150000],
   monthlyMin: 5000,
   lifetimeUnit: 25000,
   lifetimeTarget: 700000,
@@ -90,6 +93,8 @@ export interface Entitlement {
   monthTotal: number;
   /** Full bulan ini sudah dibuka lewat jalur bulanan. */
   monthUnlocked: boolean;
+  /** Tingkat donasi bulan ini (0..7). */
+  monthTier: number;
   config: DonationConfig;
   isAdmin: boolean;
 }
@@ -105,6 +110,7 @@ export const BASIC_ENTITLEMENT: Entitlement = {
   month: null,
   monthTotal: 0,
   monthUnlocked: false,
+  monthTier: 0,
   config: DEFAULT_DONATION_CONFIG,
   isAdmin: false,
 };
@@ -117,8 +123,12 @@ function num(v: unknown, fallback: number, max = 1e9): number {
 function parseConfig(raw: unknown): DonationConfig {
   const r = (raw && typeof raw === 'object' ? raw : {}) as Record<string, unknown>;
   const d = DEFAULT_DONATION_CONFIG;
+  const tiers = Array.isArray(r.monthly_tiers)
+    ? r.monthly_tiers.map(x => num(x, 0)).filter(x => x > 0).sort((a, b) => a - b)
+    : [];
   return {
     monthlyThreshold: num(r.monthly_threshold, d.monthlyThreshold) || d.monthlyThreshold,
+    monthlyTiers: tiers.length ? tiers : d.monthlyTiers,
     monthlyMin: num(r.monthly_min, d.monthlyMin) || d.monthlyMin,
     lifetimeUnit: num(r.lifetime_unit, d.lifetimeUnit) || d.lifetimeUnit,
     lifetimeTarget: num(r.lifetime_target, d.lifetimeTarget) || d.lifetimeTarget,
@@ -143,6 +153,7 @@ export function parseEntitlement(raw: unknown): Entitlement {
     month: str(r.month),
     monthTotal: num(r.month_total, 0),
     monthUnlocked: r.month_unlocked === true,
+    monthTier: num(r.month_tier, 0, 7),
     config: parseConfig(r.config),
     isAdmin: r.is_admin === true,
   };
@@ -188,8 +199,10 @@ function toRaw(e: Entitlement): Record<string, unknown> {
     month: e.month,
     month_total: e.monthTotal,
     month_unlocked: e.monthUnlocked,
+    month_tier: e.monthTier,
     config: {
       monthly_threshold: e.config.monthlyThreshold,
+      monthly_tiers: e.config.monthlyTiers,
       monthly_min: e.config.monthlyMin,
       lifetime_unit: e.config.lifetimeUnit,
       lifetime_target: e.config.lifetimeTarget,
@@ -250,6 +263,18 @@ export function monthlyRemaining(e: Pick<Entitlement, 'monthTotal' | 'monthUnloc
 export function lifetimeUnitsLeft(e: Pick<Entitlement, 'lifetimeTotal' | 'isLifetime' | 'config'>): number {
   if (e.isLifetime) return 0;
   return Math.max(0, Math.floor((e.config.lifetimeTarget - e.lifetimeTotal) / e.config.lifetimeUnit));
+}
+
+/** Tingkat (0..7) untuk total donasi bulanan tertentu. */
+export function monthTierFor(total: number, tiers: number[] = DEFAULT_DONATION_CONFIG.monthlyTiers): number {
+  return tiers.filter(t => total >= t).length;
+}
+
+/** Keuntungan tiap tingkat bulanan. Di atas tingkat 1 yang naik hanya prioritas. */
+export function monthTierPerks(tier: number): string {
+  if (tier <= 0) return 'Belum ada tingkat bulan ini';
+  if (tier === 1) return 'Akses Full 30 hari';
+  return `Akses Full 30 hari + prioritas Lv.${tier - 1}${tier === 7 ? ' (maksimal)' : ''}`;
 }
 
 export function planLabel(tierCode: string, baseAmount: number): string {

@@ -112,3 +112,17 @@ test('jatah Bedah Soal harian: 3 soal berbeda, buka ulang gratis, reset esok har
   assert.equal(parseAllowance(stored, '2026-11-06').ids.length, 0);
   assert.equal(parseAllowance('{rusak', '2026-11-06').ids.length, 0);
 });
+
+test('tingkat donasi bulanan 1..7', async () => {
+  const { monthTierFor, parseEntitlement, monthTierPerks } = await import('./access');
+  assert.equal(monthTierFor(5000), 0);
+  assert.equal(monthTierFor(17000), 1);
+  assert.equal(monthTierFor(34999), 2);
+  assert.equal(monthTierFor(50000), 4);
+  assert.equal(monthTierFor(150000), 7);
+  assert.equal(monthTierFor(999999), 7);
+  const e = parseEntitlement({ month_tier: 3, config: { monthly_tiers: [17000, 25000, 35000, 50000, 75000, 100000, 150000] } });
+  assert.equal(e.monthTier, 3);
+  assert.equal(e.config.monthlyTiers.length, 7);
+  assert.match(monthTierPerks(7), /maksimal/);
+});
