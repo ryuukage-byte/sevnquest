@@ -103,3 +103,31 @@ export const DRAGON_SKINS: DragonSkin[] = [
     },
   },
 ];
+
+/**
+ * Nada tinta per tier untuk gaya Tinta Sumi (indeks = DragonTier.index). Tier tetap satu gaya;
+ * yang berubah adalah warna lapisan tinta (wash), iris, tanduk, dan aksen.
+ */
+export interface InkTone {
+  /** Warna lapisan tinta di sayap, jambul ekor, bayangan. */
+  wash: string;
+  /** Warna iris mata. */
+  iris: string;
+  /** Warna tanduk & duri. */
+  horn: string;
+  /** Aksen kedua (kumis, halo, permata). */
+  accent: string;
+}
+
+export const INK_TIER_TONES: InkTone[] = [
+  { wash: '#4a4540', iris: '#2a2622', horn: '#2a2622', accent: '#a82025' }, // Hatchling: sumi
+  { wash: '#2f4f86', iris: '#2f4f86', horn: '#2a2622', accent: '#a82025' }, // Juvenile: aizome (indigo)
+  { wash: '#a82025', iris: '#7e1d23', horn: '#2a2622', accent: '#d9a54a' }, // Young: hanko
+  { wash: '#5b4389', iris: '#5b4389', horn: '#2a2622', accent: '#d9a54a' }, // Adult: fuji (ungu)
+  { wash: '#1f2f55', iris: '#1f2f55', horn: '#1c1a17', accent: '#d9a54a' }, // Elder: indigo tua + emas
+  { wash: '#6e1a1a', iris: '#6e1a1a', horn: '#1c1a17', accent: '#d9a54a' }, // Ancient: merah tua + segel
+  { wash: '#b0832a', iris: '#8a6418', horn: '#b0832a', accent: '#e8b84a' }, // Celestial: emas + ensō
+];
+
+/** Gaya naga yang aktif di aplikasi (dipilih pemilik: Tinta Sumi). */
+export const ACTIVE_DRAGON_SKIN: DragonSkin = DRAGON_SKINS.find(s => s.id === 'tinta-sumi')!;

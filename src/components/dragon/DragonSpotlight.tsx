@@ -2,7 +2,10 @@ import React, { useCallback, useEffect, useLayoutEffect, useState } from 'react'
 import { createPortal } from 'react-dom';
 import { motion, useReducedMotion } from 'motion/react';
 import { ChevronDown, ChevronUp } from 'lucide-react';
-import { DragonSprite } from './DragonSprite';
+import { DragonSprite as BaseSprite, type DragonSpriteProps } from './DragonSprite';
+import { ACTIVE_DRAGON_SKIN } from '../../data/dragon/skins';
+
+const DragonSprite: React.FC<DragonSpriteProps> = (p) => <BaseSprite skin={ACTIVE_DRAGON_SKIN} {...p} />;
 import type { DragonTier } from '../../data/dragon/tiers';
 import type { TourStep } from '../../engine/dragon/tours';
 
