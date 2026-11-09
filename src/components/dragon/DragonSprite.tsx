@@ -1,6 +1,7 @@
 import React, { useId } from 'react';
 import { motion, useReducedMotion, type TargetAndTransition } from 'motion/react';
 import type { DragonTier } from '../../data/dragon/tiers';
+import type { DragonSkin } from '../../data/dragon/skins';
 
 export type DragonMood = 'idle' | 'greeting' | 'thinking' | 'talking' | 'happy' | 'pointing' | 'evolving';
 
@@ -11,6 +12,8 @@ interface DragonSpriteProps {
   className?: string;
   /** Matikan semua gerak berulang (mis. pratinjau kecil di daftar tier). */
   still?: boolean;
+  /** Gaya visual (palet + tekstur). Tanpa skin: palet tier, gradasi halus. */
+  skin?: DragonSkin;
 }
 
 /** Titik putar dalam koordinat viewBox (0..120). */
@@ -22,15 +25,27 @@ const loop = (duration: number, extra: Record<string, unknown> = {}) => ({ durat
  * Naga chibi berbasis SVG: satu gambar, bagian tubuh dianimasikan terpisah dengan motion.
  * Perbedaan tier = palet + aksesori (tanduk, duri, kumis, permata, halo). Tanpa aset gambar.
  */
-export const DragonSprite: React.FC<DragonSpriteProps> = ({ tier, mood = 'idle', size = 96, className, still }) => {
+export const DragonSprite: React.FC<DragonSpriteProps> = ({ tier, mood = 'idle', size = 96, className, still, skin }) => {
   const uid = useId().replace(/:/g, '');
   const reduce = useReducedMotion();
   const animated = !still && !reduce;
-  const p = tier.palette;
+  const sp = skin?.palette;
+  const p = sp ?? tier.palette;
   const t = tier.index;
+  const finish = skin?.finish;
+  // "metal" & "pixel": bidang dipahat dua nada seperti bilah logo (batas tajam di tengah, bukan gradasi halus).
+  const faceted = finish === 'metal' || finish === 'pixel';
+  const hornShade = sp?.hornShade ?? p.horn;
+  const cheek = sp ? sp.cheek : '#ff8f8f';
+  const edge = sp?.trim ?? p.outline;
+  const lineW = finish === 'ink' ? 2.6 : finish === 'lacquer' ? 2.2 : 2;
 
   const bodyGrad = `dg-body-${uid}`;
   const auraGrad = `dg-aura-${uid}`;
+  const hornGrad = `dg-horn-${uid}`;
+  const wingGrad = `dg-wing-${uid}`;
+  const glossGrad = `dg-gloss-${uid}`;
+  const inkFilter = `dg-ink-${uid}`;
 
   // ------------------------------------------------------------------ gerak per mood
   const root: TargetAndTransition = !animated ? {} : (() => {
@@ -81,7 +96,7 @@ export const DragonSprite: React.FC<DragonSpriteProps> = ({ tier, mood = 'idle',
   const Horn = (
     <path
       d={`M41 28 Q${hornTipX - 1} ${hornTipY + hornLen * 0.55} ${hornTipX} ${hornTipY} Q${hornTipX + 7} ${hornTipY + hornLen * 0.5} 51 23 Z`}
-      fill={p.horn}
+      fill={faceted || finish === 'lacquer' ? `url(#${hornGrad})` : p.horn}
       stroke={p.outline}
       strokeWidth={1.6}
       strokeLinejoin="round"
@@ -92,7 +107,7 @@ export const DragonSprite: React.FC<DragonSpriteProps> = ({ tier, mood = 'idle',
     <g transform={`translate(40 70) scale(${tier.wing}) translate(-40 -70)`}>
       <path
         d="M40 70 C30 55 16 51 7 55 C13 59 13 64 11 68 C17 66 21 69 21 74 C27 72 31 74 35 80 Z"
-        fill={p.wingMembrane}
+        fill={faceted ? `url(#${wingGrad})` : p.wingMembrane}
         stroke={p.outline}
         strokeWidth={1.6}
         strokeLinejoin="round"
@@ -125,10 +140,54 @@ export const DragonSprite: React.FC<DragonSpriteProps> = ({ tier, mood = 'idle',
       style={{ overflow: 'visible' }}
     >
       <defs>
-        <linearGradient id={bodyGrad} x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stopColor={p.body} />
-          <stop offset="100%" stopColor={p.bodyShade} />
+        {faceted ? (
+          // Bidang dipahat: terang di kiri-atas, gelap di kanan-bawah, batas tajam.
+          <linearGradient id={bodyGrad} x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stopColor={p.body} />
+            <stop offset="54%" stopColor={p.body} />
+            <stop offset="54%" stopColor={p.bodyShade} />
+            <stop offset="100%" stopColor={p.bodyShade} />
+          </linearGradient>
+        ) : finish === 'lacquer' ? (
+          <radialGradient id={bodyGrad} cx="35%" cy="30%" r="75%">
+            <stop offset="0%" stopColor={p.body} />
+            <stop offset="70%" stopColor={p.bodyShade} />
+            <stop offset="100%" stopColor={p.bodyShade} />
+          </radialGradient>
+        ) : finish === 'ink' ? (
+          <linearGradient id={bodyGrad} x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stopColor={p.body} />
+            <stop offset="100%" stopColor={p.body} />
+          </linearGradient>
+        ) : (
+          <linearGradient id={bodyGrad} x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stopColor={p.body} />
+            <stop offset="100%" stopColor={p.bodyShade} />
+          </linearGradient>
+        )}
+        <linearGradient id={hornGrad} x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0%" stopColor={p.horn} />
+          <stop offset="50%" stopColor={p.horn} />
+          <stop offset="50%" stopColor={hornShade} />
+          <stop offset="100%" stopColor={hornShade} />
         </linearGradient>
+        <linearGradient id={wingGrad} x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stopColor={p.wingMembrane} />
+          <stop offset="50%" stopColor={p.wingMembrane} />
+          <stop offset="50%" stopColor={p.wing} />
+          <stop offset="100%" stopColor={p.wing} />
+        </linearGradient>
+        <radialGradient id={glossGrad} cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stopColor="#ffffff" stopOpacity={0.75} />
+          <stop offset="100%" stopColor="#ffffff" stopOpacity={0} />
+        </radialGradient>
+        {finish === 'ink' && (
+          // Sama dengan ikon navigasi (EngravingIcons): garis tinta bergetar seperti ukiran.
+          <filter id={inkFilter} x="-10%" y="-10%" width="120%" height="120%">
+            <feTurbulence type="fractalNoise" baseFrequency="0.06" numOctaves="2" result="noise" />
+            <feDisplacementMap in="SourceGraphic" in2="noise" scale="1.6" xChannelSelector="R" yChannelSelector="G" />
+          </filter>
+        )}
         <radialGradient id={auraGrad} cx="50%" cy="50%" r="50%">
           <stop offset="0%" stopColor={p.glow} stopOpacity={0.55} />
           <stop offset="100%" stopColor={p.glow} stopOpacity={0} />
@@ -158,7 +217,7 @@ export const DragonSprite: React.FC<DragonSpriteProps> = ({ tier, mood = 'idle',
       {/* Bayangan */}
       <ellipse cx={60} cy={114} rx={26} ry={4} fill="#000" opacity={0.18} />
 
-      <motion.g animate={root} style={pivot(60, 112)}>
+      <motion.g animate={root} style={pivot(60, 112)} filter={finish === 'ink' ? `url(#${inkFilter})` : undefined}>
         {/* Ekor */}
         <motion.g animate={tail} style={pivot(82, 98)}>
           <path d="M80 98 C98 104 108 92 102 80" fill="none" stroke={p.outline} strokeWidth={11} strokeLinecap="round" />
@@ -176,10 +235,11 @@ export const DragonSprite: React.FC<DragonSpriteProps> = ({ tier, mood = 'idle',
         <path
           d="M60 62 C79 62 87 78 87 90 C87 104 75 110 60 110 C45 110 33 104 33 90 C33 78 41 62 60 62 Z"
           fill={`url(#${bodyGrad})`}
-          stroke={p.outline}
-          strokeWidth={2}
+          stroke={edge}
+          strokeWidth={lineW}
         />
         <path d="M60 72 C70 72 75 82 75 92 C75 102 68 106 60 106 C52 106 45 102 45 92 C45 82 50 72 60 72 Z" fill={p.belly} />
+        {faceted && <path d="M41 78 Q44 70 52 66" fill="none" stroke="#ffffff" strokeOpacity={0.6} strokeWidth={1.8} strokeLinecap="round" />}
         <path d="M48 85 Q60 89 72 85 M46.5 95 Q60 99 73.5 95" fill="none" stroke={p.bodyShade} strokeWidth={1.3} opacity={0.55} strokeLinecap="round" />
 
         {/* Kaki */}
@@ -205,7 +265,12 @@ export const DragonSprite: React.FC<DragonSpriteProps> = ({ tier, mood = 'idle',
           {EarFin}
           <g transform="translate(120 0) scale(-1 1)">{EarFin}</g>
 
-          <ellipse cx={60} cy={42} rx={30} ry={25} fill={`url(#${bodyGrad})`} stroke={p.outline} strokeWidth={2} />
+          <ellipse cx={60} cy={42} rx={30} ry={25} fill={`url(#${bodyGrad})`} stroke={edge} strokeWidth={lineW} />
+          {/* Kilau: garis pantul tajam (logam) atau kilap lembut (pernis) */}
+          {faceted && (
+            <path d="M38 28 Q48 20 62 19" fill="none" stroke="#ffffff" strokeOpacity={0.7} strokeWidth={2} strokeLinecap="round" />
+          )}
+          {finish === 'lacquer' && <ellipse cx={46} cy={28} rx={10} ry={5} fill={`url(#${glossGrad})`} transform="rotate(-20 46 28)" />}
 
           {/* Corak kuno (Ancient ke atas) */}
           {t >= 5 && (
@@ -218,8 +283,12 @@ export const DragonSprite: React.FC<DragonSpriteProps> = ({ tier, mood = 'idle',
           <ellipse cx={65} cy={50.5} rx={1.5} ry={1.1} fill={p.outline} />
 
           {/* Pipi */}
-          <ellipse cx={36} cy={50} rx={5} ry={3} fill="#ff8f8f" opacity={0.45} />
-          <ellipse cx={84} cy={50} rx={5} ry={3} fill="#ff8f8f" opacity={0.45} />
+          {cheek && (
+            <>
+              <ellipse cx={36} cy={50} rx={5} ry={3} fill={cheek} opacity={finish === 'ink' ? 0.7 : 0.45} />
+              <ellipse cx={84} cy={50} rx={5} ry={3} fill={cheek} opacity={finish === 'ink' ? 0.7 : 0.45} />
+            </>
+          )}
 
           {/* Mata */}
           {happyEyes ? (
