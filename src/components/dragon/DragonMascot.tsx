@@ -6,7 +6,7 @@ import { DragonEgg, DragonSprite, type DragonMood } from './DragonSprite';
 import { DragonSpotlight, findTarget, measureTarget } from './DragonSpotlight';
 import { TOURS, singleStepTour, stepNeedsSpotlight, type DragonTour } from '../../engine/dragon/tours';
 import { DRAGON_DEFAULT_NAME, DRAGON_TIERS, dragonTierForRank, type DragonTier } from '../../data/dragon/tiers';
-import { interpret, STARTER_CHOICES, type AppCommand, type DragonAwait, type DragonChoice, type DragonCommand, type DragonSection, type ReplyMood } from '../../engine/dragon/intent';
+import { interpret, replyForTopic, STARTER_CHOICES, type AppCommand, type DragonAwait, type DragonChoice, type DragonCommand, type DragonSection, type ReplyMood } from '../../engine/dragon/intent';
 import { loadDragonState, saveDragonState, type DragonState } from '../../state/dragonState';
 import { useMailStatus } from '../../lib/mail';
 import { useBackButton } from '../../hooks/useBackButton';
@@ -214,7 +214,7 @@ export const DragonMascot: React.FC<DragonMascotProps> = ({ hidden, soundEnabled
     afterHistoryUnwind(() => onCommand(cmd));
   };
 
-  const send = (raw: string) => {
+  const send = (raw: string, topicId?: string) => {
     const text = raw.trim();
     if (!text || busy) return;
     playSound('click', soundEnabled);
@@ -223,7 +223,7 @@ export const DragonMascot: React.FC<DragonMascotProps> = ({ hidden, soundEnabled
     setInput('');
     setBusy(true);
     setMood('thinking');
-    const reply = interpret(text, { awaiting, name: NAME });
+    const reply = topicId ? replyForTopic(topicId) : interpret(text, { awaiting, name: NAME });
     later(() => {
       setAwaiting(reply.awaiting);
       pushDragon(reply.text, reply.choices, reply.mood, reply.sections);
@@ -233,6 +233,7 @@ export const DragonMascot: React.FC<DragonMascotProps> = ({ hidden, soundEnabled
   const pickChoice = (c: DragonChoice) => {
     if (busy) return;
     if (c.command) runCommand(c.command);
+    else if (c.topic) send(c.label, c.topic);
     else if (c.say) send(c.say);
   };
 

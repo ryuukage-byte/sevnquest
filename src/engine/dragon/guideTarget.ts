@@ -45,6 +45,10 @@ export function guideTargetFor(cmd: DragonCommand, activeTab?: string): GuideTar
       return sameTab('deck', activeTab) ? null : nav('deck', 'Buku Resmi ada di dalam Buku Saku.');
     case 'deck_ai':
       return sameTab('deck', activeTab) ? null : nav('deck', 'Isian deck-mu sudah kusiapkan di sana.');
+    case 'install':
+      return activeTab === 'home' || !activeTab
+        ? { selector: '[data-tour="pwa-install"]', label: 'Pasang App', detail: 'Ikuti petunjuk yang muncul untuk memasang SevnQuest.' }
+        : null;
     case 'status':
       return activeTab === 'home' || !activeTab
         ? { selector: '[data-tour="hero-card"]', label: 'kartu karaktermu', detail: 'Lembar Status ada di sana.' }

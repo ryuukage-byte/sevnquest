@@ -26,7 +26,7 @@ test('jawaban topik melengkapi isian deck', () => {
 
 test('pertanyaan lain saat menunggu topik tidak dianggap topik', () => {
   const ask = interpret('Aku mau bikin flashcard');
-  assert.equal(interpret('Apa itu Recall?', { awaiting: ask.awaiting }).intent, 'explain');
+  assert.equal(interpret('Apa itu Recall?', { awaiting: ask.awaiting }).intent, 'topic:recall');
   assert.equal(interpret('Aku mau bikin flashcard', { awaiting: ask.awaiting }).intent, 'create_deck_ask');
   assert.equal(interpret('batal', { awaiting: ask.awaiting }).intent, 'cancel');
 });
@@ -48,24 +48,31 @@ test('tema siap pakai dikenali dari kata kunci', () => {
 
 test('penjelasan fitur memakai teks data, plus tombol buka', () => {
   const r = interpret('apa itu recall?');
-  assert.equal(r.intent, 'explain');
+  assert.equal(r.intent, 'topic:recall');
   assert.deepEqual(cmds(r)[0], { type: 'recall' });
+  assert.ok((r.sections || []).length > 0, 'penjelasan rinci, bukan cuma tombol');
   const tower = interpret('Apa itu Menara?');
   assert.deepEqual(cmds(tower)[0], { type: 'tower' });
 });
 
 test('navigasi: kata kunci membawa ke sub-tab Library yang tepat', () => {
-  assert.deepEqual(rankFeatures('kamus kanji')[0].command, { type: 'library', tab: 'kanji' });
-  assert.deepEqual(rankFeatures('latihan soal')[0].command, { type: 'library', tab: 'soal' });
+  assert.equal(rankFeatures('kamus kanji')[0].id, 'kanji');
+  assert.deepEqual(cmds(interpret('kamus kanji'))[0], { type: 'library', tab: 'kanji' });
+  assert.equal(rankFeatures('latihan soal')[0].id, 'soal');
+  assert.deepEqual(cmds(interpret('latihan soal'))[0], { type: 'library', tab: 'soal' });
   const r = interpret('misi harian');
-  assert.equal(r.intent, 'navigate');
+  assert.equal(r.intent, 'topic:misi-harian');
   assert.deepEqual(cmds(r)[0], { type: 'tab', tab: 'daily' });
 });
 
 test('sapaan, pemula, dan tidak dikenal', () => {
   assert.equal(interpret('halo').intent, 'greeting');
-  assert.equal(interpret('aku pemula, mulai dari mana?').intent, 'beginner');
-  assert.equal(interpret('qwerty zzz').intent, 'unknown');
+  assert.equal(interpret('aku pemula, mulai dari mana?').intent, 'topic:pemula');
+  const unknown = interpret('qwerty zzz');
+  assert.equal(unknown.intent, 'unknown');
+  // Tidak boleh buntu: daftar semua topik + pilihan populer.
+  assert.ok((unknown.sections || []).length >= 4);
+  assert.ok(unknown.choices.length >= 3);
   assert.equal(interpret('   ').intent, 'empty');
 });
 
@@ -126,4 +133,65 @@ test('tur menulis kanji: urutan langkah sampai kanvas, langkah tab dilewati bila
   assert.equal(stepNeedsSpotlight(steps[1], 'library'), true);
   assert.equal(singleStepTour({ type: 'tab', tab: 'deck' }, 'home')?.steps.length, 1);
   assert.equal(singleStepTour({ type: 'tab', tab: 'deck' }, 'deck'), null);
+});
+
+test('pertanyaan sehari-hari dipetakan ke topik yang tepat', () => {
+  const cases: [string, string][] = [
+    ['Download gimana', 'pasang-app'],
+    ['cara install aplikasinya', 'pasang-app'],
+    ['dowload aplikasi', 'pasang-app'],          // salah ketik
+    ['bisa diinstal di iphone?', 'pasang-app'],
+    ['gimana cara login', 'akun'],
+    ['ganti hp progres hilang gak?', 'akun'],
+    ['lapor bug', 'kotak-pos'],
+    ['tulis surat ke admin', 'kotak-pos'],       // bukan latihan menulis
+    ['ganti tema gelap', 'pengaturan'],
+    ['matikan suara', 'pengaturan'],
+    ['ganti nama', 'profil'],
+    ['hp ku habis', 'hp-mp'],
+    ['cara dapat exp', 'koin'],
+    ['rank mingguan reset kapan', 'peringkat'],
+    ['streak ku putus', 'streak'],
+    ['choukai kok gak ada', 'choukai'],
+    ['dungeon kaigo', 'dungeon'],
+    ['ada game apa aja', 'arcade'],
+    ['naik tier gimana', 'status'],
+    ['donasi', 'donasi'],
+    ['grup komunitas', 'komunitas'],
+    ['bacaan dokkai', 'dokkai'],
+    ['simpan kata favorit', 'bookmark'],
+    ['buku resmi', 'buku-resmi'],
+    ['kurikulum belajar', 'misi-harian'],
+    ['menara', 'menara'],
+    ['flashcard', 'flashcard'],
+  ];
+  for (const [q, id] of cases) assert.equal(interpret(q).intent, `topic:${id}`, q);
+});
+
+test('semua topik: jawaban lengkap, tombol valid, dan bisa ditemukan', async () => {
+  const { KNOWLEDGE } = await import('../../data/dragon/knowledge');
+  const { TOURS } = await import('./tours');
+  const { replyForTopic } = await import('./intent');
+  const ids = new Set(KNOWLEDGE.map(t => t.id));
+  assert.equal(ids.size, KNOWLEDGE.length, 'id topik unik');
+  for (const t of KNOWLEDGE) {
+    const r = replyForTopic(t.id);
+    assert.ok(r.text.length > 20, t.id);
+    assert.ok(r.choices.some(c => c.command), `${t.id}: punya tombol tindakan`);
+    for (const c of t.actions) {
+      if (c.command?.type === 'guide_tour') assert.ok(TOURS[c.command.tour], `${t.id}: tur ${c.command.tour} ada`);
+    }
+    for (const rel of t.related || []) assert.ok(ids.has(rel), `${t.id}: topik terkait ${rel} ada`);
+    // Kata kunci utama topik harus membawa ke topik itu sendiri.
+    assert.equal(rankFeatures(t.keywords[0])[0]?.id, t.id, `"${t.keywords[0]}" → ${t.id}`);
+  }
+});
+
+test('pencocokan toleran salah ketik', async () => {
+  const { editDistance } = await import('./intent');
+  assert.equal(editDistance('dowload', 'download'), 1);
+  assert.equal(editDistance('pengaturan', 'pengaturan'), 0);
+  assert.ok(editDistance('abc', 'xyzxyz') > 2);
+  assert.equal(interpret('peringakt').intent, 'topic:peringkat');
+  assert.equal(interpret('leaderbord').intent, 'topic:peringkat');
 });

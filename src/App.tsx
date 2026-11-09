@@ -109,8 +109,9 @@ export default function App() {
       case 'tour': handleReplayOnboarding(); break;
       case 'official_books': nav.handleNavigateToOfficialBooks(); break;
       case 'deck_ai': nav.handleOpenDeckAi(cmd.prefill); break;
+      case 'install': pwa.handleInstallClick(); break;
     }
-  }, [handleTabChange, nav, setIsStatusModalOpen, setIsRecallActive, handleReplayOnboarding]);
+  }, [handleTabChange, nav, setIsStatusModalOpen, setIsRecallActive, handleReplayOnboarding, pwa]);
   const dragonHidden = nav.isRecallActive || isOnboardingActive || (activeTab === 'maps' && nav.worldNavView !== 'world_hub');
 
 
@@ -179,6 +180,7 @@ export default function App() {
               <button
                 type="button"
                 onClick={pwa.handleInstallClick}
+                data-tour="pwa-install"
                 title="Pasang SevnQuest sebagai aplikasi"
                 aria-label="Pasang App"
                 className="btn-physical-secondary py-1.5 px-2.5 sm:px-3 rounded-xl text-xs font-bold inline-flex items-center gap-1.5 shrink-0 whitespace-nowrap select-none transition-all text-indigo cursor-pointer"

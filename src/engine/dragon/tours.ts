@@ -26,14 +26,99 @@ export interface TourStep {
   action: TourAction;
 }
 
-export type TourId = 'menulis-kanji';
+export type TourId = 'menulis-kanji' | 'login' | 'kotak-pos' | 'donasi' | 'panduan' | 'arcade' | 'dungeon';
 
 export interface DragonTour {
   id: string;
   steps: TourStep[];
 }
 
+/** Langkah pembuka: pindah ke sebuah tab (dilewati otomatis bila pemain sudah di tab itu). */
+const goTab = (tab: 'home' | 'maps' | 'settings', label: string, text: string): TourStep => ({
+  selector: `[data-tour="nav-${tab}"]`,
+  label,
+  text,
+  action: { kind: 'command', command: { type: 'tab', tab } },
+});
+
 export const TOURS: Record<TourId, DragonTour> = {
+  login: {
+    id: 'login',
+    steps: [
+      goTab('settings', 'Menu', 'Pengaturan akun ada di Menu. Ketuk di sini.'),
+      {
+        selector: '[data-tour="settings-account"]',
+        label: 'kartu akun',
+        text: 'Di kartu ini kamu bisa login atau melihat status Cloud Save.',
+        points: [
+          'Masuk dengan Google, atau dengan email & password.',
+          'Daftar baru memakai alamat @gmail.com, lalu verifikasi lewat email.',
+          'Setelah login, progresmu tersimpan ke cloud otomatis.',
+        ],
+        action: { kind: 'info', button: 'Mengerti' },
+      },
+    ],
+  },
+  'kotak-pos': {
+    id: 'kotak-pos',
+    steps: [
+      goTab('home', 'Castle', 'Kotak Pos ada di Castle. Ketuk di sini.'),
+      {
+        selector: '[data-tour="castle-mailbox"]',
+        label: 'Kotak Pos',
+        text: 'Ketuk Kotak Pos untuk menulis surat ke admin atau membaca balasannya. Perlu login dulu.',
+        action: { kind: 'click' },
+      },
+    ],
+  },
+  donasi: {
+    id: 'donasi',
+    steps: [
+      goTab('home', 'Castle', 'Ubin Donasi ada di Castle. Ketuk di sini.'),
+      {
+        selector: '[data-tour="castle-donasi"]',
+        label: 'Donasi',
+        text: 'Ketuk Donasi untuk membuka QRIS. Terima kasih sudah mau mendukung SevnQuest!',
+        action: { kind: 'click' },
+      },
+    ],
+  },
+  panduan: {
+    id: 'panduan',
+    steps: [
+      goTab('home', 'Castle', 'Panduan ada di Castle. Ketuk di sini.'),
+      {
+        selector: '[data-tour="castle-guide"]',
+        label: 'Panduan',
+        text: 'Ketuk Panduan untuk membaca apa itu SevnQuest dan jalur belajar yang disarankan.',
+        action: { kind: 'click' },
+      },
+    ],
+  },
+  arcade: {
+    id: 'arcade',
+    steps: [
+      goTab('maps', 'World', 'Arena Arcade ada di World. Ketuk di sini.'),
+      {
+        selector: '[data-tour="world-arcade"]',
+        label: 'Arena Arcade',
+        text: 'Ketuk Arena Arcade untuk melihat semua game kilat: Kanji Speed Rush, Sudden Death, Kotoba Guess, dan lainnya.',
+        action: { kind: 'click' },
+      },
+    ],
+  },
+  dungeon: {
+    id: 'dungeon',
+    steps: [
+      goTab('maps', 'World', 'Mode Dungeon ada di World. Ketuk di sini.'),
+      {
+        selector: '[data-tour="world-dungeon"]',
+        label: 'Mode Dungeon',
+        text: 'Ketuk Mode Dungeon, pilih dungeon-nya, atur level dan jumlah lantai, lalu mulai.',
+        action: { kind: 'click' },
+      },
+    ],
+  },
   'menulis-kanji': {
     id: 'menulis-kanji',
     steps: [

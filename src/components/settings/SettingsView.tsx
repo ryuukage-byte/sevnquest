@@ -130,7 +130,7 @@ export const SettingsView: React.FC<SettingsViewProps> = ({
       )}
 
       {/* Account Section */}
-      <div className="panel panel-stitched p-4 sm:p-5 space-y-4 shadow-md">
+      <div data-tour="settings-account" className="panel panel-stitched p-4 sm:p-5 space-y-4 shadow-md">
         <h3 className="text-xs font-bold uppercase tracking-wider text-text-secondary flex items-center gap-1.5 font-heading">
           <User className="w-4 h-4 text-indigo" /> Akun SevnQuest
         </h3>

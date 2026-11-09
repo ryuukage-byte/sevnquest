@@ -5,7 +5,7 @@
  * Tindakan berupa DragonCommand yang dijalankan App (navigasi / membuka fitur); mesin ini tidak
  * menyentuh state pemain atau logika belajar apa pun.
  */
-import { FEATURES, type FeatureEntry } from '../../data/appFeatures';
+import { GROUP_LABEL, KNOWLEDGE, topicById, type KnowledgeTopic, type TopicGroup } from '../../data/dragon/knowledge';
 import { DECK_THEMES } from '../../data/deckThemes';
 import type { DeckAiPrefill } from '../deck/deckPrefill';
 import type { DeckType } from '../../types/rpg';
@@ -23,6 +23,8 @@ export type DragonCommand =
   | { type: 'tour' }
   | { type: 'official_books' }
   | { type: 'deck_ai'; prefill: DeckAiPrefill }
+  /** Pasang aplikasi (PWA): dialog pasang bawaan, atau panduan pasang bila tidak tersedia. */
+  | { type: 'install' }
   /** Ditangani panel naga sendiri (tidak berpindah halaman). */
   | { type: 'dragon_tiers' }
   /** Tur bertahap: naga menyorot langkah demi langkah sampai tujuan. */
@@ -37,6 +39,8 @@ export interface DragonChoice {
   command?: DragonCommand;
   /** Atau: kirim teks ini sebagai pesan pemain berikutnya. */
   say?: string;
+  /** Atau: tampilkan penjelasan topik basis pengetahuan ini (id). */
+  topic?: string;
 }
 
 export type ReplyMood = 'talking' | 'happy' | 'pointing' | 'greeting';
@@ -152,70 +156,162 @@ export function matchTheme(topic: string): string | undefined {
   return undefined;
 }
 
-// --------------------------------------------------------------------------- Pencocokan fitur
+// --------------------------------------------------------------------------- Pencocokan topik
 
-interface DragonFeature {
-  id: string;
-  title: string;
-  keywords: string[];
-  explain: string;
-  command: DragonCommand;
+/** Kata umum yang tidak membedakan topik. */
+const MATCH_STOP = new Set([
+  'aku', 'saya', 'gue', 'gw', 'mau', 'ingin', 'pengen', 'apa', 'itu', 'ini', 'gimana', 'bagaimana', 'cara', 'caranya',
+  'dan', 'yang', 'di', 'ke', 'dari', 'buat', 'untuk', 'bisa', 'gak', 'ga', 'nggak', 'tidak', 'ya', 'dong', 'sih', 'nih',
+  'kak', 'min', 'tolong', 'bantu', 'kalau', 'kalo', 'aja', 'saja', 'ada', 'kok', 'kenapa', 'mana', 'buka', 'lihat', 'liat',
+  'tatsu', 'naga', 'jelaskan', 'jelasin', 'maksudnya', 'fitur', 'menu', 'tentang', 'soal', 'nya', 'deh', 'lagi',
+]);
+// "naga", "menu", "soal" tetap dicocokkan lewat frasa/kata kunci topik masing-masing (lihat scoreTopic).
+const STOP_EXEMPT_FOR: Record<string, string[]> = { naga: ['naga'], menu: ['pengaturan'], soal: ['soal'] };
+
+/**
+ * Jarak edit Damerau (OSA): sisip, hapus, ganti, dan tukar dua huruf bersebelahan masing-masing 1.
+ * Salah ketik tersering di HP adalah huruf tertukar ("peringakt"), jadi ini lebih adil dari Levenshtein.
+ */
+export function editDistance(a: string, b: string, max = 2): number {
+  if (Math.abs(a.length - b.length) > max) return max + 1;
+  const d: number[][] = Array.from({ length: a.length + 1 }, (_, i) => [i, ...Array(b.length).fill(0)]);
+  for (let j = 1; j <= b.length; j++) d[0][j] = j;
+  for (let i = 1; i <= a.length; i++) {
+    let rowMin = Infinity;
+    for (let j = 1; j <= b.length; j++) {
+      const cost = a[i - 1] === b[j - 1] ? 0 : 1;
+      let v = Math.min(d[i - 1][j] + 1, d[i][j - 1] + 1, d[i - 1][j - 1] + cost);
+      if (i > 1 && j > 1 && a[i - 1] === b[j - 2] && a[i - 2] === b[j - 1]) v = Math.min(v, d[i - 2][j - 2] + 1);
+      d[i][j] = v;
+      if (v < rowMin) rowMin = v;
+    }
+    if (rowMin > max) return max + 1;
+  }
+  return d[a.length][b.length];
 }
 
-/** Ubah target Pencarian Fitur ke perintah naga (dengan sub-tab Library yang tepat). */
-function toCommand(f: FeatureEntry): DragonCommand {
-  if (f.id === 'kotoba' || f.id === 'kanji' || f.id === 'bunpou') return { type: 'library', tab: f.id };
-  const t = f.target;
-  if (t.type === 'tab') return { type: 'tab', tab: t.tab };
-  if (t.type === 'status') return { type: 'status' };
-  if (t.type === 'recall') return { type: 'recall' };
-  return { type: 'tour' };
+const PREFIXES = ['meng', 'meny', 'mem', 'men', 'me', 'di', 'ber', 'ter', 'ke', 'pe', 'se'];
+const SUFFIXES = ['nya', 'kan', 'lah', 'in', 'an', 'ku', 'mu', 'i'];
+
+/** Bentuk dasar kasar sebuah kata Indonesia: "diinstal" → "instal", "aplikasinya" → "aplikasi". */
+export function stemVariants(t: string): string[] {
+  const out = new Set([t]);
+  const strip = (w: string) => {
+    for (const suf of SUFFIXES) if (w.length - suf.length >= 4 && w.endsWith(suf)) out.add(w.slice(0, -suf.length));
+  };
+  strip(t);
+  for (const pre of PREFIXES) {
+    if (t.length - pre.length >= 4 && t.startsWith(pre)) {
+      const base = t.slice(pre.length);
+      out.add(base);
+      strip(base);
+    }
+  }
+  return [...out];
 }
 
-const EXTRA_FEATURES: DragonFeature[] = [
-  { id: 'menara', title: 'Menara Nihongo', keywords: ['menara', 'tower', 'lantai'], command: { type: 'tower' },
-    explain: 'Menara Nihongo adalah jalur belajar bertahap per lantai. Setiap lantai membuka materi berikutnya.' },
-  { id: 'soal', title: 'Bank Soal', keywords: ['soal', 'latihan soal', 'kuis', 'quiz', 'ujian', 'tryout', 'test', 'tes'], command: { type: 'library', tab: 'soal' },
-    explain: 'Bank Soal di Library berisi latihan soal bergaya JLPT lengkap dengan pembahasan.' },
-  { id: 'buku-resmi', title: 'Buku Resmi', keywords: ['buku', 'resmi', 'official', 'bab', 'kana', 'dojo', 'hiragana', 'katakana'], command: { type: 'official_books' },
-    explain: 'Buku Resmi di Buku Saku berisi materi tersusun per bab, termasuk Kuil Aksara Kana Dojo untuk pemula.' },
-  { id: 'naga', title: 'Tier Naga', keywords: ['naga', 'dragon', 'tier', 'evolusi', 'berevolusi', 'evolve', 'unlock', 'donasi', 'dukung', 'premium'], command: { type: 'dragon_tiers' },
-    explain: 'Aku punya 7 tier: Hatchling sampai Celestial. Tier lebih tinggi terbuka dari dukungan (Donasi) dan hanya mengubah penampilanku, bukan materi belajarmu.' },
-];
+/** Skor satu kata terhadap satu kata kunci: persis 3, awalan 2, salah ketik 3/2/1 (makin panjang makin yakin). */
+function wordScore(t: string, kw: string): number {
+  if (t === kw) return 3;
+  if (t.length >= 4 && kw.length >= 4 && (kw.startsWith(t) || t.startsWith(kw))) return 2;
+  if (t.length >= 5 && kw.length >= 5) {
+    const d = editDistance(t, kw, 2);
+    if (d <= 1) return t.length >= 6 ? 3 : 2;
+    if (d === 2 && t.length >= 8) return 1;
+  }
+  return 0;
+}
 
-/** Fitur khusus naga ditaruh di depan: menang bila skornya seri (mis. "menara" vs World). */
-export const DRAGON_FEATURES: DragonFeature[] = [
-  ...EXTRA_FEATURES,
-  ...FEATURES.map(f => ({
-    id: f.id,
-    title: f.title,
-    keywords: [...tokenize(f.title), ...f.keywords.split(' ')],
-    explain: f.explain,
-    command: toCommand(f),
-  })),
-];
-
-const STEM_STOP = new Set(['dan', 'yang', 'cara', 'mau', 'aku', 'apa', 'itu', 'buka', 'ke', 'di', 'mana']);
-
-/** Skor kecocokan: kata utuh = 2, awalan (≥4 huruf) = 1. */
-function scoreFeature(tokens: string[], f: DragonFeature): number {
+export function scoreTopic(n: string, toks: string[], topic: KnowledgeTopic): number {
   let s = 0;
-  for (const t of tokens) {
-    if (t.length < 2 || STEM_STOP.has(t)) continue;
-    if (f.keywords.includes(t)) s += 2;
-    else if (t.length >= 4 && f.keywords.some(k => k.length >= 4 && (k.startsWith(t) || t.startsWith(k)))) s += 1;
+  const padded = ` ${n} `;
+  const singles: string[] = [];
+  for (const kw of topic.keywords) {
+    if (kw.includes(' ')) {
+      if (padded.includes(` ${kw} `)) s += 3 + kw.split(' ').length;
+    } else singles.push(kw);
+  }
+  const titleToks = tokenize(topic.title);
+  for (const t of toks) {
+    if (t.length < 2) continue;
+    if (MATCH_STOP.has(t) && !(STOP_EXEMPT_FOR[t] || []).includes(topic.id)) continue;
+    let best = 0;
+    for (const v of stemVariants(t)) {
+      for (const kw of singles) {
+        const w = wordScore(v, kw);
+        if (w > best) best = w;
+        if (best === 3) break;
+      }
+      if (best === 3) break;
+    }
+    s += best;
+    if (titleToks.includes(t)) s += 1;
   }
   return s;
 }
 
-export function rankFeatures(text: string, limit = 3): DragonFeature[] {
-  const toks = tokenize(text);
-  return DRAGON_FEATURES
-    .map(f => ({ f, s: scoreFeature(toks, f) }))
-    .filter(x => x.s > 0)
-    .sort((a, b) => b.s - a.s)
-    .slice(0, limit)
-    .map(x => x.f);
+export function matchTopics(text: string, limit = 3): { topic: KnowledgeTopic; score: number }[] {
+  const n = normalize(text);
+  const toks = tokenize(n);
+  return KNOWLEDGE
+    .map(topic => ({ topic, score: scoreTopic(n, toks, topic) }))
+    .filter(x => x.score > 0)
+    .sort((a, b) => b.score - a.score)
+    .slice(0, limit);
+}
+
+/** Topik terbaik untuk teks (urut skor); dipakai juga oleh tes. */
+export function rankFeatures(text: string, limit = 3): KnowledgeTopic[] {
+  return matchTopics(text, limit).map(x => x.topic);
+}
+
+/** Skor minimal agar naga yakin (setara satu kata kunci persis). */
+const CONFIDENT = 3;
+
+/** Jawaban lengkap untuk satu topik: penjelasan, bagian rinci, tombol tindakan, dan topik terkait. */
+export function replyForTopic(id: string): DragonReply {
+  if (id === 'menulis') return writingGuide(false);
+  const topic = topicById(id);
+  if (!topic) return fallbackReply();
+  const related = (topic.related || [])
+    .map(r => topicById(r))
+    .filter((t): t is KnowledgeTopic => Boolean(t))
+    .map(t => ({ label: t.title, topic: t.id }));
+  return {
+    intent: `topic:${topic.id}`,
+    mood: 'pointing',
+    text: topic.text,
+    sections: topic.sections,
+    choices: [...topic.actions, ...related].slice(0, 4),
+  };
+}
+
+/** Daftar semua topik per kelompok: dipakai untuk "bisa bantu apa" dan saat naga belum paham. */
+function topicMenuSections(): DragonSection[] {
+  return (Object.keys(GROUP_LABEL) as TopicGroup[]).map(g => ({
+    title: GROUP_LABEL[g],
+    items: KNOWLEDGE.filter(t => t.group === g).map(t => t.title),
+  }));
+}
+
+const POPULAR_TOPICS = ['pemula', 'flashcard', 'recall', 'pasang-app'];
+
+function fallbackReply(suggestions: KnowledgeTopic[] = []): DragonReply {
+  if (suggestions.length) {
+    return {
+      intent: 'suggest',
+      mood: 'talking',
+      text: 'Aku belum yakin maksudmu. Mungkin salah satu ini?',
+      choices: suggestions.map(t => ({ label: t.title, topic: t.id })),
+    };
+  }
+  return {
+    intent: 'unknown',
+    mood: 'talking',
+    text: 'Aku belum menemukan topik itu. Ini semua hal yang bisa kujelaskan; ketik salah satu judulnya, atau pakai kata lain.',
+    sections: topicMenuSections(),
+    choices: POPULAR_TOPICS.map(id => topicById(id)!).map(t => ({ label: t.title, topic: t.id })),
+  };
 }
 
 // --------------------------------------------------------------------------- Balasan
@@ -277,15 +373,6 @@ function cleanPrefill(s: DeckSlots): DeckAiPrefill {
   return out;
 }
 
-function explainFeature(f: DragonFeature): DragonReply {
-  return {
-    intent: 'explain',
-    mood: 'pointing',
-    text: f.explain,
-    choices: [{ label: `Buka ${f.title}`, command: f.command }],
-  };
-}
-
 // --------------------------------------------------------------------------- Panduan topik
 
 const RE_WRITE = /\b(nulis|menulis|tulis|nulisin|writing|goresan|stroke|urutan goresan)\b/;
@@ -332,7 +419,7 @@ export function writingGuide(kana: boolean): DragonReply {
     choices: [
       { label: 'Pandu aku sampai kanvas', command: { type: 'guide_tour', tour: 'menulis-kanji' } },
       { label: 'Latihan dari deck', command: { type: 'tab', tab: 'deck' } },
-      { label: 'Kanji Speed Rush', command: { type: 'tab', tab: 'maps' } },
+      { label: 'Kanji Speed Rush', command: { type: 'guide_tour', tour: 'arcade' } },
       { label: 'Bikin deck kanji', say: 'Aku mau bikin flashcard kanji' },
     ],
   };
@@ -345,7 +432,6 @@ const RE_CREATE = /\b(bikin|bikinin|bikinkan|buat|buatin|buatkan|membuat|susun|s
 const RE_DECKWORD = /\b(flashcard|flashcards|flash card|deck|dek|kartu|hafalan)\b/;
 const RE_TOPICWORD = /\b(tentang|tema|bertema|topik|seputar|mengenai)\b/;
 const RE_EXPLAIN = /\b(apa itu|apaan|jelaskan|jelasin|terangkan|gimana cara|bagaimana cara|cara pakai|cara menggunakan|fungsi|maksudnya|maksud)\b/;
-const RE_BEGINNER = /\b(pemula|mulai dari mana|mulai darimana|baru mulai|dari nol|newbie|belum bisa apa)\b/;
 const RE_CANCEL = /^(batal|gak jadi|ga jadi|nggak jadi|tidak jadi|cancel|skip)\b/;
 const RE_ANY = /^(terserah|bebas|apa aja|apa saja|random|acak)\b/;
 
@@ -400,18 +486,22 @@ export function interpret(text: string, ctx: DragonContext = {}): DragonReply {
     return {
       intent: 'help',
       mood: 'talking',
-      text: `Aku ${name}. Aku bisa mengantarmu ke fitur mana pun, menjelaskan cara pakainya, dan menyiapkan deck flashcard sesuai topik yang kamu mau. Coba tanya, misalnya "apa itu Recall?".`,
+      text: `Aku ${name}. Aku bisa menjelaskan semua fitur SevnQuest, menunjukkan letaknya langsung di layar, dan menyiapkan deck flashcard untukmu. Ini topik yang kupahami; tanya saja dengan kalimatmu sendiri.`,
+      sections: topicMenuSections(),
       choices: [
         { label: 'Bikin flashcard', say: 'Aku mau bikin flashcard' },
-        { label: 'Apa itu Recall?', say: 'Apa itu Recall?' },
-        { label: 'Apa itu Menara?', say: 'Apa itu Menara?' },
-        { label: 'Tier naga', command: { type: 'dragon_tiers' } },
+        ...POPULAR_TOPICS.slice(0, 3).map(id => topicById(id)!).map(t => ({ label: t.title, topic: t.id })),
       ],
     };
   }
 
+  const matches = matchTopics(n);
+  const top = matches[0];
+
   // Latihan menulis (kanji / kana): panduan lengkap, bukan sekadar menunjuk satu menu.
-  if (has(n, RE_WRITE) && !wantsDeck) {
+  // Kecuali jelas topik lain ("tulis surat ke admin", "tulis nama").
+  const otherWritingTopic = top && top.score >= CONFIDENT && ['kotak-pos', 'profil', 'akun', 'pengaturan'].includes(top.topic.id);
+  if (has(n, RE_WRITE) && !wantsDeck && !otherWritingTopic) {
     return writingGuide(has(n, RE_KANA) && !/\bkanji\b/.test(n));
   }
 
@@ -422,47 +512,11 @@ export function interpret(text: string, ctx: DragonContext = {}): DragonReply {
     return slots.hasTopic ? deckReady(prefill) : askDeckTopic(prefill);
   }
 
-  if (has(n, RE_BEGINNER)) {
-    return {
-      intent: 'beginner',
-      mood: 'pointing',
-      text: 'Mulai dari aksara dulu: buka Buku Resmi, lalu Kuil Aksara Kana Dojo untuk hiragana dan katakana. Kalau mau kenalan dengan menu SevnQuest, ikuti tur singkatnya.',
-      choices: [
-        { label: 'Buka Buku Resmi', command: { type: 'official_books' } },
-        { label: 'Tur singkat', command: { type: 'tour' } },
-      ],
-    };
-  }
+  // Topik basis pengetahuan: jawaban lengkap + tombol tindakan.
+  if (top && top.score >= CONFIDENT) return replyForTopic(top.topic.id);
 
-  const ranked = rankFeatures(n);
+  // Cocok tipis (mis. salah ketik jauh): tawarkan kandidat, bukan jalan buntu.
+  if (matches.length) return fallbackReply(matches.map(m => m.topic));
 
-  if (has(n, RE_EXPLAIN)) {
-    if (ranked[0]) return explainFeature(ranked[0]);
-    return {
-      intent: 'explain_unknown',
-      mood: 'talking',
-      text: 'Fitur mana yang mau kujelaskan?',
-      choices: ['Flashcard', 'Recall', 'Menara', 'Misi Harian'].map(t => ({ label: t, say: `Apa itu ${t}?` })),
-    };
-  }
-
-  if (ranked.length) {
-    const [top, ...rest] = ranked;
-    return {
-      intent: 'navigate',
-      mood: 'pointing',
-      text: `Sepertinya kamu mencari ${top.title}. ${top.explain}`,
-      choices: [
-        { label: `Buka ${top.title}`, command: top.command },
-        ...rest.map(f => ({ label: f.title, command: f.command })),
-      ],
-    };
-  }
-
-  return {
-    intent: 'unknown',
-    mood: 'talking',
-    text: 'Hmm, aku belum paham maksudmu. Coba pakai kata lain, atau pilih salah satu ini.',
-    choices: STARTER_CHOICES,
-  };
+  return fallbackReply();
 }
