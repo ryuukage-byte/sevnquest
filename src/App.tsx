@@ -247,7 +247,7 @@ export default function App() {
       {DRAGON_ENABLED && (
         <ErrorBoundary fallback={<></>} label="Naga Pemandu">
           <Suspense fallback={null}>
-            <DragonMascot hidden={dragonHidden} soundEnabled={stats.soundEnabled} onCommand={handleDragonCommand} />
+            <DragonMascot hidden={dragonHidden} soundEnabled={stats.soundEnabled} activeTab={activeTab} onCommand={handleDragonCommand} />
           </Suspense>
         </ErrorBoundary>
       )}

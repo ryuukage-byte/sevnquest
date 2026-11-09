@@ -77,3 +77,17 @@ test('pemetaan rank dukungan ke tier naga', () => {
   ];
   for (const [rank, id] of expect) assert.equal(dragonTierForRank(rank).id, id, `rank ${rank}`);
 });
+
+test('sorotan: perintah dipetakan ke elemen navigasi, kecuali sudah di tab itu', async () => {
+  const { guideTargetFor } = await import('./guideTarget');
+  assert.equal(guideTargetFor({ type: 'tab', tab: 'deck' }, 'home')?.selector, '[data-tour="nav-deck"]');
+  assert.equal(guideTargetFor({ type: 'tab', tab: 'weekly' }, 'home')?.selector, '[data-tour="nav-daily"]');
+  assert.equal(guideTargetFor({ type: 'deck_ai', prefill: {} }, 'home')?.label, 'Buku Saku');
+  assert.equal(guideTargetFor({ type: 'library', tab: 'kanji' }, 'home')?.selector, '[data-tour="nav-library"]');
+  assert.equal(guideTargetFor({ type: 'tab', tab: 'deck' }, 'deck'), null);
+  assert.equal(guideTargetFor({ type: 'deck_ai', prefill: {} }, 'deck'), null);
+  assert.equal(guideTargetFor({ type: 'status' }, 'home')?.selector, '[data-tour="hero-card"]');
+  assert.equal(guideTargetFor({ type: 'status' }, 'library'), null);
+  assert.equal(guideTargetFor({ type: 'tour' }, 'home'), null);
+  assert.equal(guideTargetFor({ type: 'recall' }, 'home'), null);
+});

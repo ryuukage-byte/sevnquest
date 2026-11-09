@@ -3,6 +3,8 @@ import { createPortal } from 'react-dom';
 import { AnimatePresence, motion } from 'motion/react';
 import { ArrowLeft, Check, Lock, Minus, Send, X } from 'lucide-react';
 import { DragonEgg, DragonSprite, type DragonMood } from './DragonSprite';
+import { DragonSpotlight, measureTarget } from './DragonSpotlight';
+import { guideTargetFor, type GuideTarget } from '../../engine/dragon/guideTarget';
 import { DRAGON_DEFAULT_NAME, DRAGON_TIERS, dragonTierForRank, type DragonTier } from '../../data/dragon/tiers';
 import { interpret, STARTER_CHOICES, type DragonAwait, type DragonChoice, type DragonCommand, type ReplyMood } from '../../engine/dragon/intent';
 import { loadDragonState, saveDragonState, type DragonState } from '../../state/dragonState';
@@ -21,6 +23,8 @@ interface DragonMascotProps {
   /** Disembunyikan sementara (mis. selama Recall, tur, atau di dalam dungeon/menara). */
   hidden?: boolean;
   soundEnabled?: boolean;
+  /** Tab aktif: naga tidak menyorot tab tempat pemain sudah berada. */
+  activeTab?: string;
   /** Dijalankan App: navigasi / membuka fitur. */
   onCommand: (cmd: Exclude<DragonCommand, { type: 'dragon_tiers' }>) => void;
 }
@@ -32,13 +36,31 @@ const THINK_MS = 550;
 /** Posisi jangkar: di atas navigasi bawah (ponsel), pojok kanan bawah (desktop). */
 const ANCHOR = 'fixed right-3 md:right-6 bottom-[calc(4.75rem+env(safe-area-inset-bottom))] md:bottom-6';
 
+/**
+ * Jalankan `fn` setelah entri riwayat milik naga selesai dilepas. Menutup panel/sorotan memanggil
+ * history.back() (asinkron); bila navigasi tab langsung mendorong entri baru di detik yang sama,
+ * keduanya berbalapan dan tombol back berikutnya bisa keluar dari app.
+ */
+function afterHistoryUnwind(fn: () => void): void {
+  let done = false;
+  const run = () => {
+    if (done) return;
+    done = true;
+    window.removeEventListener('popstate', onPop);
+    fn();
+  };
+  const onPop = () => window.setTimeout(run, 0);
+  window.addEventListener('popstate', onPop);
+  window.setTimeout(run, 400); // cadangan bila browser tidak mengirim popstate
+}
+
 function greetingText(): string {
   const h = new Date().getHours();
   const time = h < 11 ? 'Selamat pagi' : h < 15 ? 'Selamat siang' : h < 18 ? 'Selamat sore' : 'Selamat malam';
   return `${time}! Aku ${NAME}. Mau belajar apa hari ini? Ketik saja, misalnya "aku mau bikin flashcard".`;
 }
 
-export const DragonMascot: React.FC<DragonMascotProps> = ({ hidden, soundEnabled = true, onCommand }) => {
+export const DragonMascot: React.FC<DragonMascotProps> = ({ hidden, soundEnabled = true, activeTab, onCommand }) => {
   const mail = useMailStatus();
   const tier = useMemo(() => dragonTierForRank(mail.signedIn ? mail.tierRank : 0), [mail.signedIn, mail.tierRank]);
 
@@ -56,6 +78,8 @@ export const DragonMascot: React.FC<DragonMascotProps> = ({ hidden, soundEnabled
   const [view, setView] = useState<'chat' | 'tiers'>('chat');
   const [hatchOpen, setHatchOpen] = useState(false);
   const [evolution, setEvolution] = useState<{ from: DragonTier; to: DragonTier } | null>(null);
+  /** Sorotan aktif: naga menunjukkan elemen tujuan sebelum pemain berpindah halaman. */
+  const [guide, setGuide] = useState<{ cmd: Exclude<DragonCommand, { type: 'dragon_tiers' }>; target: GuideTarget } | null>(null);
 
   const [mood, setMood] = useState<DragonMood>(hatched ? 'greeting' : 'idle');
   const [messages, setMessages] = useState<ChatMessage[]>([]);
@@ -126,7 +150,6 @@ export const DragonMascot: React.FC<DragonMascotProps> = ({ hidden, soundEnabled
     setView('chat');
   }, []);
 
-  useBackButton(open, closePanel, 'dragon_mascot_panel');
 
   useEffect(() => {
     if (!open) return;
@@ -151,16 +174,29 @@ export const DragonMascot: React.FC<DragonMascotProps> = ({ hidden, soundEnabled
     }
   };
 
+  // Sorotan dibatalkan bila naga disembunyikan (mis. Recall dimulai).
+  useEffect(() => {
+    if (hidden) setGuide(null);
+  }, [hidden]);
+
   const runCommand = (cmd: DragonCommand) => {
     playSound('click', soundEnabled);
     if (cmd.type === 'dragon_tiers') {
       setView('tiers');
       return;
     }
+    // Tujuan terlihat di layar → tunjukkan dulu dengan sorotan; pemain yang mengetuknya.
+    const target = guideTargetFor(cmd, activeTab);
+    if (target && measureTarget(target.selector)) {
+      closePanel();
+      setMood('pointing');
+      setGuide({ cmd, target });
+      return;
+    }
     setMood('pointing');
     later(() => setMood(m => (m === 'pointing' ? 'idle' : m)), 1800);
     closePanel();
-    onCommand(cmd);
+    afterHistoryUnwind(() => onCommand(cmd));
   };
 
   const send = (raw: string) => {
@@ -184,6 +220,28 @@ export const DragonMascot: React.FC<DragonMascotProps> = ({ hidden, soundEnabled
     if (c.command) runCommand(c.command);
     else if (c.say) send(c.say);
   };
+
+  const goGuide = useCallback(() => {
+    if (!guide) return;
+    playSound('click', soundEnabled);
+    setGuide(null);
+    const cmd = guide.cmd;
+    afterHistoryUnwind(() => onCommand(cmd));
+    setMood('happy');
+    later(() => setMood(m => (m === 'happy' ? 'idle' : m)), 1800);
+  }, [guide, onCommand, soundEnabled, later]);
+
+  const cancelGuide = useCallback(() => {
+    setGuide(null);
+    setMood('idle');
+  }, []);
+
+  // Satu entri tombol back untuk panel DAN sorotan: perpindahan panel → sorotan tidak menutup lalu
+  // membuka entri riwayat di detik yang sama (history.back() yang asinkron bisa melompat keluar app).
+  useBackButton(open || Boolean(guide), () => {
+    if (guide) cancelGuide();
+    else closePanel();
+  }, 'dragon_mascot');
 
   const finishHatch = () => {
     updateDs({ hatchedAt: new Date().toISOString(), lastSeenTier: 0, minimized: false });
@@ -214,7 +272,7 @@ export const DragonMascot: React.FC<DragonMascotProps> = ({ hidden, soundEnabled
   return (
     <>
       {/* ------------------------------------------------------------ Tombol naga */}
-      {!hidden && !open && (
+      {!hidden && !open && !guide && (
         ds.minimized && hatched ? (
           <button
             type="button"
@@ -247,7 +305,21 @@ export const DragonMascot: React.FC<DragonMascotProps> = ({ hidden, soundEnabled
         )
       )}
 
-      {/* ------------------------------------------------------------ Panel */}
+      {/* ------------------------------------------------------------ Panel (latar di-blur) */}
+      <AnimatePresence>
+        {open && !hidden && (
+          <motion.div
+            key="dragon-backdrop"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.18 }}
+            onClick={closePanel}
+            aria-hidden="true"
+            className="fixed inset-0 z-[44] bg-slate-950/45 backdrop-blur-sm"
+          />
+        )}
+      </AnimatePresence>
       <AnimatePresence>
         {open && !hidden && (
           <motion.section
@@ -378,6 +450,9 @@ export const DragonMascot: React.FC<DragonMascotProps> = ({ hidden, soundEnabled
         )}
       </AnimatePresence>
 
+      {/* ------------------------------------------------------------ Sorotan */}
+      {guide && !hidden && <DragonSpotlight target={guide.target} tier={tier} onGo={goGuide} onCancel={cancelGuide} />}
+
       {/* ------------------------------------------------------------ Menetas */}
       {hatchOpen && <HatchOverlay tier={DRAGON_TIERS[0]} soundEnabled={soundEnabled} onDone={finishHatch} onClose={() => setHatchOpen(false)} />}
 
@@ -438,7 +513,7 @@ const TierList: React.FC<{ current: DragonTier; onDonate: () => void }> = ({ cur
 
 const Overlay: React.FC<{ children: React.ReactNode; label: string }> = ({ children, label }) =>
   createPortal(
-    <div className="fixed inset-0 z-[90] flex items-center justify-center p-4 bg-slate-950/80" role="dialog" aria-modal="true" aria-label={label}>
+    <div className="fixed inset-0 z-[90] flex items-center justify-center p-4 bg-slate-950/70 backdrop-blur-sm" role="dialog" aria-modal="true" aria-label={label}>
       <motion.div
         initial={{ opacity: 0, scale: 0.94 }}
         animate={{ opacity: 1, scale: 1 }}
