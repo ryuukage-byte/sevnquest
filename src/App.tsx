@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { useState, useRef, useCallback, lazy } from 'react';
+import { useState, useRef, useCallback, Suspense } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Swords, Cloud, Download } from 'lucide-react';
 import { PlayerStats, StageClearData, Mission } from './types/rpg';
@@ -30,6 +30,13 @@ import { useTheme } from './hooks/useTheme';
 import { usePersistence } from './hooks/usePersistence';
 import { useCloudSync } from './hooks/useCloudSync';
 import { usePlayerActions } from './hooks/usePlayerActions';
+import { ErrorBoundary } from './components/ErrorBoundary';
+import { lazyWithRetry } from './utils/lazyWithRetry';
+import { DRAGON_ENABLED, TOWER_ENABLED } from './data/featureFlags';
+import type { DragonCommand } from './engine/dragon/intent';
+
+// Naga Pemandu di-lazy-load: tidak menambah chunk awal.
+const DragonMascot = lazyWithRetry(() => import('./components/dragon/DragonMascot').then(m => ({ default: m.DragonMascot })));
 
 export default function App() {
   // State inti (diinisialisasi dari localStorage lewat state/loadPlayerState.ts)
@@ -90,6 +97,21 @@ export default function App() {
   const {
     handleAllocateStat, handleAscendTier, handleUpdateName, handleUpdateSignature,
   } = actions;
+
+  // Perintah dari Naga Pemandu → navigasi yang sudah ada (tidak mengubah logika fitur).
+  const handleDragonCommand = useCallback((cmd: Exclude<DragonCommand, { type: 'dragon_tiers' }>) => {
+    switch (cmd.type) {
+      case 'tab': handleTabChange(cmd.tab); break;
+      case 'library': nav.handleOpenLibraryTab(cmd.tab); break;
+      case 'recall': setIsStatusModalOpen(false); setIsRecallActive(true); break;
+      case 'tower': if (TOWER_ENABLED) nav.handleOpenTower(); else handleTabChange('maps'); break;
+      case 'status': setIsStatusModalOpen(true); break;
+      case 'tour': handleReplayOnboarding(); break;
+      case 'official_books': nav.handleNavigateToOfficialBooks(); break;
+      case 'deck_ai': nav.handleOpenDeckAi(cmd.prefill); break;
+    }
+  }, [handleTabChange, nav, setIsStatusModalOpen, setIsRecallActive, handleReplayOnboarding]);
+  const dragonHidden = nav.isRecallActive || isOnboardingActive || (activeTab === 'maps' && nav.worldNavView !== 'world_hub');
 
 
   return (
@@ -220,6 +242,15 @@ export default function App() {
 
       {/* Pengumuman broadcast admin (ditahan selama tur onboarding) */}
       <AnnouncementPopupHost suppressed={isOnboardingActive} soundEnabled={stats.soundEnabled} />
+
+      {/* Naga Pemandu (maskot + navigator fitur) */}
+      {DRAGON_ENABLED && (
+        <ErrorBoundary fallback={<></>} label="Naga Pemandu">
+          <Suspense fallback={null}>
+            <DragonMascot hidden={dragonHidden} soundEnabled={stats.soundEnabled} onCommand={handleDragonCommand} />
+          </Suspense>
+        </ErrorBoundary>
+      )}
 
       {/* Interactive Spotlight Onboarding Tour */}
       <SpotlightOnboarding

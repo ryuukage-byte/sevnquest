@@ -8,3 +8,6 @@ export const TOWER_ENABLED = true;
 
 /** Choukai (聴解) di Library: disembunyikan sampai masalah audio selesai. Data soal tetap utuh. */
 export const CHOUKAI_ENABLED = false;
+
+/** Naga Pemandu (maskot + pemandu fitur, lokal tanpa AI). */
+export const DRAGON_ENABLED = true;

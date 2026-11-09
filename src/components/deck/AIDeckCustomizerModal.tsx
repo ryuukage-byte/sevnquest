@@ -16,6 +16,7 @@ import {
   parseGeminiDeckJson,
   convertAiDeckToUserDeck,
 } from '../../utils/aiDeckPrompt';
+import type { DeckAiRequest } from '../../engine/deck/deckPrefill';
 
 type Icon = React.ComponentType<{ className?: string }>;
 
@@ -57,6 +58,8 @@ interface AIDeckCustomizerModalProps {
   onClose: () => void;
   onSaveDeck: (newDeck: UserDeck) => void;
   soundEnabled?: boolean;
+  /** Isian awal (mis. disiapkan Naga Pemandu). Diterapkan sekali per nilai `n`. */
+  prefillRequest?: DeckAiRequest;
 }
 
 interface BuiltDeck {
@@ -73,6 +76,7 @@ export const AIDeckCustomizerModal: React.FC<AIDeckCustomizerModalProps> = ({
   onClose,
   onSaveDeck,
   soundEnabled = true,
+  prefillRequest,
 }) => {
   useBackButton(isOpen, onClose, 'ai_deck_customizer_modal');
 
@@ -94,6 +98,23 @@ export const AIDeckCustomizerModal: React.FC<AIDeckCustomizerModalProps> = ({
   useEffect(() => {
     try { localStorage.setItem(PREFS_KEY, JSON.stringify({ type: focus, levels, count })); } catch { /* tidak kritis */ }
   }, [focus, levels, count]);
+
+  // Isian awal: hanya mengisi form; pemain tetap menekan tombol susun & simpan sendiri.
+  useEffect(() => {
+    if (!prefillRequest) return;
+    const p = prefillRequest.prefill;
+    const theme = getTheme(p.themeId);
+    setBuilt(null);
+    setShowImport(false);
+    setThemeId(theme?.id);
+    setTopic(p.topic || theme?.title || '');
+    if (p.focus && FOCUS_OPTIONS.some(f => f.type === p.focus)) setFocus(p.focus);
+    if (p.levels?.length) {
+      const lv = p.levels.filter(l => JLPT_LEVELS.includes(l));
+      if (lv.length) setLevels(lv);
+    }
+    if (p.count && ITEM_COUNTS.includes(p.count)) setCount(p.count);
+  }, [prefillRequest]);
 
   const click = () => playSound('click', soundEnabled);
 
