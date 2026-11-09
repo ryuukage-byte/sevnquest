@@ -133,6 +133,7 @@ export const KanjiDetailCard: React.FC<KanjiDetailCardProps> = ({
             Detail & Arti
           </button>
           <button
+            data-tour="kanji-write-tab"
             onClick={() => {
               setDetailSubTab('writing');
               playSound('click', soundEnabled);

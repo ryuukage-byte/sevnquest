@@ -852,6 +852,7 @@ const KanjiCardItem: React.FC<{
 
   return (
     <div
+      data-tour="kanji-item"
       onClick={() => {
         onSelect(item);
         playSound('click', soundEnabled);

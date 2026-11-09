@@ -9,6 +9,7 @@ import { FEATURES, type FeatureEntry } from '../../data/appFeatures';
 import { DECK_THEMES } from '../../data/deckThemes';
 import type { DeckAiPrefill } from '../deck/deckPrefill';
 import type { DeckType } from '../../types/rpg';
+import type { TourId } from './tours';
 
 export type DragonTab = 'home' | 'maps' | 'daily' | 'weekly' | 'leaderboard' | 'library' | 'deck' | 'settings';
 export type LibrarySubTab = 'kotoba' | 'kanji' | 'bunpou' | 'soal';
@@ -23,7 +24,12 @@ export type DragonCommand =
   | { type: 'official_books' }
   | { type: 'deck_ai'; prefill: DeckAiPrefill }
   /** Ditangani panel naga sendiri (tidak berpindah halaman). */
-  | { type: 'dragon_tiers' };
+  | { type: 'dragon_tiers' }
+  /** Tur bertahap: naga menyorot langkah demi langkah sampai tujuan. */
+  | { type: 'guide_tour'; tour: TourId };
+
+/** Perintah yang dijalankan App (navigasi); sisanya ditangani panel naga sendiri. */
+export type AppCommand = Exclude<DragonCommand, { type: 'dragon_tiers' } | { type: 'guide_tour' }>;
 
 export interface DragonChoice {
   label: string;
@@ -35,6 +41,12 @@ export interface DragonChoice {
 
 export type ReplyMood = 'talking' | 'happy' | 'pointing' | 'greeting';
 
+/** Bagian penjelasan terstruktur di bawah balon (mis. "Tempat latihan", "Cara penilaian"). */
+export interface DragonSection {
+  title: string;
+  items: string[];
+}
+
 export type DragonAwait = { kind: 'deck_topic'; prefill: DeckAiPrefill };
 
 export interface DragonReply {
@@ -42,6 +54,7 @@ export interface DragonReply {
   text: string;
   mood: ReplyMood;
   choices: DragonChoice[];
+  sections?: DragonSection[];
   /** Naga menunggu jawaban lanjutan (mis. topik deck). */
   awaiting?: DragonAwait;
 }
@@ -89,6 +102,7 @@ const STOPWORDS = new Set([
   'kosakata', 'kosa', 'vocab', 'vocabulary', 'kanji', 'bunpou', 'bunpo', 'grammar', 'pola', 'kalimat', 'tata', 'bahasa', 'tatabahasa',
   'campur', 'campuran', 'mixed', 'semua', 'jenis', 'n1', 'n2', 'n3', 'n4', 'n5', 'latihan', 'belajar', 'jepang', 'nihongo', 'dan', 'atau', 'di', 'ke',
   'naga', 'tatsu', 'kak', 'min', 'bang', 'kamu', 'bisa', 'gak', 'nggak', 'ga', 'apa', 'aja', 'saja',
+  'nulis', 'menulis', 'tulis', 'writing', 'hafal', 'menghafal', 'ngafal',
 ]);
 
 export interface DeckSlots extends DeckAiPrefill {
@@ -272,6 +286,58 @@ function explainFeature(f: DragonFeature): DragonReply {
   };
 }
 
+// --------------------------------------------------------------------------- Panduan topik
+
+const RE_WRITE = /\b(nulis|menulis|tulis|nulisin|writing|goresan|stroke|urutan goresan)\b/;
+const RE_KANA = /\b(hiragana|katakana|kana)\b/;
+
+/** Panduan lengkap latihan menulis: tempat, cara penilaian, bonus EXP, dan tur bertahap. */
+export function writingGuide(kana: boolean): DragonReply {
+  return {
+    intent: 'guide_writing',
+    mood: 'pointing',
+    text: kana
+      ? 'Bisa! Hiragana dan katakana dilatih di tempat yang sama dengan kanji. Ini rangkumannya:'
+      : 'Bisa! Ada beberapa tempat untuk latihan menulis kanji. Ini rangkumannya:',
+    sections: [
+      {
+        title: 'Tempat latihan',
+        items: [
+          kana
+            ? 'Library → Kanji → filter Hiragana/Katakana → pilih huruf → Latihan Menulis.'
+            : 'Library → Kanji → pilih kanji → Latihan Menulis. Cocok untuk satu per satu.',
+          'Buku Saku → buka deck → Latihan Menulis. Menulis semua isi deck berurutan.',
+          'Library → Kotoba → buka kata → Latih dengan Menulis. Menulis kata utuh dari ingatan.',
+          'World → Arena Arcade → Kanji Speed Rush. Tulis sebanyak mungkin dalam 60 detik.',
+          ...(kana ? ['Untuk pemula: Buku Saku → Buku Resmi → Kuil Aksara Kana Dojo.'] : []),
+        ],
+      },
+      {
+        title: 'Cara penilaian',
+        items: [
+          'Nilai mulai 100, berkurang 15 setiap goresan salah (paling rendah 0).',
+          'Nilai 60 ke atas dihitung lulus: tercatat ke mastery dan skor peringkat.',
+          'Salah 2 kali di goresan yang sama, petunjuk goresannya muncul.',
+          'Tombol Animasi memutar urutan goresan; Ulangi membersihkan kanvas.',
+        ],
+      },
+      {
+        title: 'Bonus EXP',
+        items: [
+          'Watermark OFF +35%, tanpa Animasi +25%, tanpa salah +25%, waktu wajar +10%.',
+          'Memutar Animasi lebih dari sekali atau salah 3 kali atau lebih mengurangi bonus.',
+        ],
+      },
+    ],
+    choices: [
+      { label: 'Pandu aku sampai kanvas', command: { type: 'guide_tour', tour: 'menulis-kanji' } },
+      { label: 'Latihan dari deck', command: { type: 'tab', tab: 'deck' } },
+      { label: 'Kanji Speed Rush', command: { type: 'tab', tab: 'maps' } },
+      { label: 'Bikin deck kanji', say: 'Aku mau bikin flashcard kanji' },
+    ],
+  };
+}
+
 const RE_GREET = /^(halo|hallo|hai|hi|hello|hey|hei|pagi|siang|sore|malam|ohayou|ohayo|konnichiwa|konbanwa|selamat (pagi|siang|sore|malam)|assalamualaikum|permisi)\b/;
 const RE_THANKS = /\b(makasih|makasi|terima ?kasih|thanks|thank you|thx|arigatou|arigato|mantap|keren)\b/;
 const RE_HELP = /\b(bisa apa|bisa bantu apa|kamu siapa|siapa kamu|bantuan|help|fitur apa saja|fitur apa aja|apa saja fiturnya)\b/;
@@ -342,6 +408,11 @@ export function interpret(text: string, ctx: DragonContext = {}): DragonReply {
         { label: 'Tier naga', command: { type: 'dragon_tiers' } },
       ],
     };
+  }
+
+  // Latihan menulis (kanji / kana): panduan lengkap, bukan sekadar menunjuk satu menu.
+  if (has(n, RE_WRITE) && !wantsDeck) {
+    return writingGuide(has(n, RE_KANA) && !/\bkanji\b/.test(n));
   }
 
   // Membuat deck / flashcard.

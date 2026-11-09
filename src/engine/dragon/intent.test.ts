@@ -91,3 +91,39 @@ test('sorotan: perintah dipetakan ke elemen navigasi, kecuali sudah di tab itu',
   assert.equal(guideTargetFor({ type: 'tour' }, 'home'), null);
   assert.equal(guideTargetFor({ type: 'recall' }, 'home'), null);
 });
+
+test('belajar menulis kanji: panduan lengkap (tempat, nilai, bonus) + tur bertahap', () => {
+  const r = interpret('mau belajar nulis kanji');
+  assert.equal(r.intent, 'guide_writing');
+  const titles = (r.sections || []).map(s => s.title);
+  assert.deepEqual(titles, ['Tempat latihan', 'Cara penilaian', 'Bonus EXP']);
+  assert.ok(r.sections![0].items.length >= 4, 'minimal 4 tempat latihan');
+  assert.ok(r.sections![1].items.some(i => i.includes('15') && i.includes('100')), 'aturan nilai disebut');
+  assert.deepEqual(r.choices[0].command, { type: 'guide_tour', tour: 'menulis-kanji' });
+  // Variasi kalimat
+  assert.equal(interpret('gimana cara latihan menulis?').intent, 'guide_writing');
+  assert.equal(interpret('urutan goresan kanji').intent, 'guide_writing');
+});
+
+test('menulis kana menyebut Kana Dojo; membuat deck tetap diutamakan', () => {
+  const kana = interpret('aku mau latihan nulis hiragana');
+  assert.equal(kana.intent, 'guide_writing');
+  assert.ok(kana.sections![0].items.some(i => i.includes('Kana Dojo')));
+  assert.ok(!interpret('mau nulis kanji').sections![0].items.some(i => i.includes('Kana Dojo')));
+  assert.equal(interpret('bikin deck kanji buat latihan nulis').intent, 'create_deck_ask');
+});
+
+test('tur menulis kanji: urutan langkah sampai kanvas, langkah tab dilewati bila sudah di Library', async () => {
+  const { TOURS, stepNeedsSpotlight, singleStepTour } = await import('./tours');
+  const steps = TOURS['menulis-kanji'].steps;
+  assert.deepEqual(steps.map(s => s.selector), [
+    '[data-tour="nav-library"]', '[data-tour="kanji-item"]', '[data-tour="kanji-write-tab"]', '[data-tour="writing-canvas"]',
+  ]);
+  assert.deepEqual(steps.map(s => s.action.kind), ['command', 'click', 'click', 'info']);
+  assert.ok(steps[3].points!.some(p => p.includes('60')));
+  assert.equal(stepNeedsSpotlight(steps[0], 'home'), true);
+  assert.equal(stepNeedsSpotlight(steps[0], 'library'), false);
+  assert.equal(stepNeedsSpotlight(steps[1], 'library'), true);
+  assert.equal(singleStepTour({ type: 'tab', tab: 'deck' }, 'home')?.steps.length, 1);
+  assert.equal(singleStepTour({ type: 'tab', tab: 'deck' }, 'deck'), null);
+});

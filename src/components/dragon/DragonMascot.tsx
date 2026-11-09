@@ -3,10 +3,10 @@ import { createPortal } from 'react-dom';
 import { AnimatePresence, motion } from 'motion/react';
 import { ArrowLeft, Check, Lock, Minus, Send, X } from 'lucide-react';
 import { DragonEgg, DragonSprite, type DragonMood } from './DragonSprite';
-import { DragonSpotlight, measureTarget } from './DragonSpotlight';
-import { guideTargetFor, type GuideTarget } from '../../engine/dragon/guideTarget';
+import { DragonSpotlight, findTarget, measureTarget } from './DragonSpotlight';
+import { TOURS, singleStepTour, stepNeedsSpotlight, type DragonTour } from '../../engine/dragon/tours';
 import { DRAGON_DEFAULT_NAME, DRAGON_TIERS, dragonTierForRank, type DragonTier } from '../../data/dragon/tiers';
-import { interpret, STARTER_CHOICES, type DragonAwait, type DragonChoice, type DragonCommand, type ReplyMood } from '../../engine/dragon/intent';
+import { interpret, STARTER_CHOICES, type AppCommand, type DragonAwait, type DragonChoice, type DragonCommand, type DragonSection, type ReplyMood } from '../../engine/dragon/intent';
 import { loadDragonState, saveDragonState, type DragonState } from '../../state/dragonState';
 import { useMailStatus } from '../../lib/mail';
 import { useBackButton } from '../../hooks/useBackButton';
@@ -17,6 +17,7 @@ interface ChatMessage {
   from: 'dragon' | 'user';
   text: string;
   choices?: DragonChoice[];
+  sections?: DragonSection[];
 }
 
 interface DragonMascotProps {
@@ -26,7 +27,7 @@ interface DragonMascotProps {
   /** Tab aktif: naga tidak menyorot tab tempat pemain sudah berada. */
   activeTab?: string;
   /** Dijalankan App: navigasi / membuka fitur. */
-  onCommand: (cmd: Exclude<DragonCommand, { type: 'dragon_tiers' }>) => void;
+  onCommand: (cmd: AppCommand) => void;
 }
 
 const NAME = DRAGON_DEFAULT_NAME;
@@ -78,8 +79,12 @@ export const DragonMascot: React.FC<DragonMascotProps> = ({ hidden, soundEnabled
   const [view, setView] = useState<'chat' | 'tiers'>('chat');
   const [hatchOpen, setHatchOpen] = useState(false);
   const [evolution, setEvolution] = useState<{ from: DragonTier; to: DragonTier } | null>(null);
-  /** Sorotan aktif: naga menunjukkan elemen tujuan sebelum pemain berpindah halaman. */
-  const [guide, setGuide] = useState<{ cmd: Exclude<DragonCommand, { type: 'dragon_tiers' }>; target: GuideTarget } | null>(null);
+  /**
+   * Tur aktif: naga menyorot elemen demi elemen. `ready` = elemen langkah ini sudah tampil di layar
+   * (halaman baru / modal bisa butuh waktu untuk dimuat).
+   */
+  const [tour, setTour] = useState<{ tour: DragonTour; index: number; ready: boolean } | null>(null);
+  const guide = tour;
 
   const [mood, setMood] = useState<DragonMood>(hatched ? 'greeting' : 'idle');
   const [messages, setMessages] = useState<ChatMessage[]>([]);
@@ -90,6 +95,8 @@ export const DragonMascot: React.FC<DragonMascotProps> = ({ hidden, soundEnabled
   const [pendingMood, setPendingMood] = useState<ReplyMood | null>(null);
 
   const nextId = useRef(1);
+  const onCommandRef = useRef(onCommand);
+  onCommandRef.current = onCommand;
   const timers = useRef<number[]>([]);
   const listRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
@@ -137,9 +144,9 @@ export const DragonMascot: React.FC<DragonMascotProps> = ({ hidden, soundEnabled
     listRef.current?.scrollTo({ top: listRef.current.scrollHeight, behavior: 'smooth' });
   }, [messages, reveal?.len, view]);
 
-  const pushDragon = useCallback((text: string, choices: DragonChoice[] | undefined, after: ReplyMood) => {
+  const pushDragon = useCallback((text: string, choices: DragonChoice[] | undefined, after: ReplyMood, sections?: DragonSection[]) => {
     const id = nextId.current++;
-    setMessages(ms => [...ms.slice(-40), { id, from: 'dragon', text, choices }]);
+    setMessages(ms => [...ms.slice(-40), { id, from: 'dragon', text, choices, sections }]);
     setMood('talking');
     setPendingMood(after);
     setReveal({ id, len: 0 });
@@ -174,10 +181,16 @@ export const DragonMascot: React.FC<DragonMascotProps> = ({ hidden, soundEnabled
     }
   };
 
-  // Sorotan dibatalkan bila naga disembunyikan (mis. Recall dimulai).
+  // Tur dihentikan bila naga disembunyikan (mis. Recall dimulai).
   useEffect(() => {
-    if (hidden) setGuide(null);
+    if (hidden) setTour(null);
   }, [hidden]);
+
+  const startTour = (t: DragonTour) => {
+    closePanel();
+    setMood('pointing');
+    setTour({ tour: t, index: 0, ready: false });
+  };
 
   const runCommand = (cmd: DragonCommand) => {
     playSound('click', soundEnabled);
@@ -185,12 +198,14 @@ export const DragonMascot: React.FC<DragonMascotProps> = ({ hidden, soundEnabled
       setView('tiers');
       return;
     }
+    if (cmd.type === 'guide_tour') {
+      startTour(TOURS[cmd.tour]);
+      return;
+    }
     // Tujuan terlihat di layar → tunjukkan dulu dengan sorotan; pemain yang mengetuknya.
-    const target = guideTargetFor(cmd, activeTab);
-    if (target && measureTarget(target.selector)) {
-      closePanel();
-      setMood('pointing');
-      setGuide({ cmd, target });
+    const single = singleStepTour(cmd, activeTab);
+    if (single && measureTarget(single.steps[0].selector)) {
+      startTour(single);
       return;
     }
     setMood('pointing');
@@ -211,7 +226,7 @@ export const DragonMascot: React.FC<DragonMascotProps> = ({ hidden, soundEnabled
     const reply = interpret(text, { awaiting, name: NAME });
     later(() => {
       setAwaiting(reply.awaiting);
-      pushDragon(reply.text, reply.choices, reply.mood);
+      pushDragon(reply.text, reply.choices, reply.mood, reply.sections);
     }, THINK_MS);
   };
 
@@ -221,25 +236,61 @@ export const DragonMascot: React.FC<DragonMascotProps> = ({ hidden, soundEnabled
     else if (c.say) send(c.say);
   };
 
-  const goGuide = useCallback(() => {
-    if (!guide) return;
-    playSound('click', soundEnabled);
-    setGuide(null);
-    const cmd = guide.cmd;
-    afterHistoryUnwind(() => onCommand(cmd));
+  const endTour = useCallback((finalCmd?: AppCommand) => {
+    setTour(null);
+    // Perintah terakhir dijalankan setelah entri riwayat naga dilepas (lihat afterHistoryUnwind).
+    if (finalCmd) afterHistoryUnwind(() => onCommand(finalCmd));
     setMood('happy');
     later(() => setMood(m => (m === 'happy' ? 'idle' : m)), 1800);
-  }, [guide, onCommand, soundEnabled, later]);
+  }, [onCommand, later]);
+
+  /** Langkah aktif selesai: jalankan perintahnya (bila ada), lalu lanjut atau akhiri tur. */
+  const advanceTour = useCallback(() => {
+    if (!tour) return;
+    const step = tour.tour.steps[tour.index];
+    const cmd = step.action.kind === 'command' ? step.action.command : undefined;
+    playSound('click', soundEnabled);
+    if (tour.index >= tour.tour.steps.length - 1) {
+      endTour(cmd);
+      return;
+    }
+    if (cmd) onCommand(cmd);
+    setTour({ ...tour, index: tour.index + 1, ready: false });
+  }, [tour, soundEnabled, endTour, onCommand]);
 
   const cancelGuide = useCallback(() => {
-    setGuide(null);
+    setTour(null);
     setMood('idle');
   }, []);
 
+  // Siapkan langkah: lewati langkah "command" yang tujuannya sudah terbuka, lalu tunggu elemennya tampil.
+  useEffect(() => {
+    if (!tour || tour.ready) return;
+    const step = tour.tour.steps[tour.index];
+    if (!stepNeedsSpotlight(step, activeTab)) {
+      if (step.action.kind === 'command') onCommandRef.current(step.action.command);
+      if (tour.index >= tour.tour.steps.length - 1) setTour(null);
+      else setTour({ ...tour, index: tour.index + 1, ready: false });
+      return;
+    }
+    const started = Date.now();
+    const poll = window.setInterval(() => {
+      if (findTarget(step.selector)) {
+        clearInterval(poll);
+        setTour(t => (t && t.index === tour.index ? { ...t, ready: true } : t));
+      } else if (Date.now() - started > 8000) {
+        clearInterval(poll); // elemen tidak muncul (mis. daftar kosong): hentikan tur dengan tenang
+        setTour(null);
+        setMood('idle');
+      }
+    }, 150);
+    return () => clearInterval(poll);
+  }, [tour, activeTab]);
+
   // Satu entri tombol back untuk panel DAN sorotan: perpindahan panel → sorotan tidak menutup lalu
   // membuka entri riwayat di detik yang sama (history.back() yang asinkron bisa melompat keluar app).
-  useBackButton(open || Boolean(guide), () => {
-    if (guide) cancelGuide();
+  useBackButton(open || Boolean(tour), () => {
+    if (tour) cancelGuide();
     else closePanel();
   }, 'dragon_mascot');
 
@@ -395,6 +446,23 @@ export const DragonMascot: React.FC<DragonMascotProps> = ({ hidden, soundEnabled
                           {text}
                           {revealing && <span className="inline-block w-1.5 h-3.5 ml-0.5 align-middle bg-text-secondary/60 animate-pulse" />}
                         </p>
+                        {m.from === 'dragon' && !revealing && m.sections?.length ? (
+                          <div className="max-w-[92%] space-y-2">
+                            {m.sections.map(sec => (
+                              <div key={sec.title} className="rounded-2xl border border-border-subtle bg-surface-card/60 px-3 py-2">
+                                <p className="text-[10px] font-mono tracking-wider text-gold mb-1">{sec.title.toUpperCase()}</p>
+                                <ul className="space-y-1">
+                                  {sec.items.map(it => (
+                                    <li key={it} className="flex gap-1.5 text-xs text-text-secondary font-body leading-snug">
+                                      <span className="text-gold shrink-0">•</span>
+                                      <span>{it}</span>
+                                    </li>
+                                  ))}
+                                </ul>
+                              </div>
+                            ))}
+                          </div>
+                        ) : null}
                         {showChoices ? (
                           <div className="flex flex-wrap gap-1.5">
                             {m.choices!.map((c, i) => (
@@ -451,7 +519,16 @@ export const DragonMascot: React.FC<DragonMascotProps> = ({ hidden, soundEnabled
       </AnimatePresence>
 
       {/* ------------------------------------------------------------ Sorotan */}
-      {guide && !hidden && <DragonSpotlight target={guide.target} tier={tier} onGo={goGuide} onCancel={cancelGuide} />}
+      {tour?.ready && !hidden && (
+        <DragonSpotlight
+          step={tour.tour.steps[tour.index]}
+          stepNo={tour.index + 1}
+          stepTotal={tour.tour.steps.length}
+          tier={tier}
+          onAdvance={advanceTour}
+          onCancel={cancelGuide}
+        />
+      )}
 
       {/* ------------------------------------------------------------ Menetas */}
       {hatchOpen && <HatchOverlay tier={DRAGON_TIERS[0]} soundEnabled={soundEnabled} onDone={finishHatch} onClose={() => setHatchOpen(false)} />}

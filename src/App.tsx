@@ -33,7 +33,7 @@ import { usePlayerActions } from './hooks/usePlayerActions';
 import { ErrorBoundary } from './components/ErrorBoundary';
 import { lazyWithRetry } from './utils/lazyWithRetry';
 import { DRAGON_ENABLED, TOWER_ENABLED } from './data/featureFlags';
-import type { DragonCommand } from './engine/dragon/intent';
+import type { AppCommand } from './engine/dragon/intent';
 
 // Naga Pemandu di-lazy-load: tidak menambah chunk awal.
 const DragonMascot = lazyWithRetry(() => import('./components/dragon/DragonMascot').then(m => ({ default: m.DragonMascot })));
@@ -99,7 +99,7 @@ export default function App() {
   } = actions;
 
   // Perintah dari Naga Pemandu → navigasi yang sudah ada (tidak mengubah logika fitur).
-  const handleDragonCommand = useCallback((cmd: Exclude<DragonCommand, { type: 'dragon_tiers' }>) => {
+  const handleDragonCommand = useCallback((cmd: AppCommand) => {
     switch (cmd.type) {
       case 'tab': handleTabChange(cmd.tab); break;
       case 'library': nav.handleOpenLibraryTab(cmd.tab); break;
