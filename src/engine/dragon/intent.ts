@@ -9,10 +9,10 @@ import { GROUP_LABEL, KNOWLEDGE, topicById, type KnowledgeTopic, type TopicGroup
 import { DECK_THEMES } from '../../data/deckThemes';
 import type { DeckAiPrefill } from '../deck/deckPrefill';
 import type { DeckType } from '../../types/rpg';
-import type { TourId } from './tours';
+import { DEEP_GUIDES, type TourId } from './tours';
 
 export type DragonTab = 'home' | 'maps' | 'daily' | 'weekly' | 'leaderboard' | 'library' | 'deck' | 'settings';
-export type LibrarySubTab = 'kotoba' | 'kanji' | 'bunpou' | 'soal';
+export type LibrarySubTab = 'kotoba' | 'kanji' | 'bunpou' | 'dokkai' | 'choukai' | 'soal';
 
 export type DragonCommand =
   | { type: 'tab'; tab: DragonTab }
@@ -269,8 +269,20 @@ export function rankFeatures(text: string, limit = 3): KnowledgeTopic[] {
 const CONFIDENT = 3;
 
 /** Jawaban lengkap untuk satu topik: penjelasan, bagian rinci, tombol tindakan, dan topik terkait. */
+/** Menu panduan lengkap: satu tombol per panduan mendalam (lebih dari batas 4 tombol topik biasa). */
+function deepGuideMenu(): DragonReply {
+  const topic = topicById('panduan-lengkap');
+  return {
+    intent: 'topic:panduan-lengkap',
+    mood: 'pointing',
+    text: topic ? topic.text : 'Pilih fitur yang mau kujelaskan.',
+    choices: DEEP_GUIDES.map(g => ({ label: g.label, command: { type: 'guide_tour', tour: g.tour } as DragonCommand })),
+  };
+}
+
 export function replyForTopic(id: string): DragonReply {
   if (id === 'menulis') return writingGuide(false);
+  if (id === 'panduan-lengkap') return deepGuideMenu();
   const topic = topicById(id);
   if (!topic) return fallbackReply();
   const related = (topic.related || [])

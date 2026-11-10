@@ -111,7 +111,9 @@ export default function App() {
       case 'install': pwa.handleInstallClick(); break;
     }
   }, [handleTabChange, nav, setIsStatusModalOpen, setIsRecallActive, handleReplayOnboarding, pwa]);
-  const dragonHidden = nav.isRecallActive || (activeTab === 'maps' && nav.worldNavView !== 'world_hub');
+  const dragonHidden = nav.isRecallActive;
+  // Di dalam hub Dungeon/Menara naga diredam (tombolnya hilang), tetapi tur yang sedang jalan tetap boleh masuk.
+  const dragonQuiet = activeTab === 'maps' && nav.worldNavView !== 'world_hub';
 
 
   return (
@@ -248,7 +250,7 @@ export default function App() {
       {DRAGON_ENABLED && (
         <ErrorBoundary fallback={<></>} label="Naga Pemandu">
           <Suspense fallback={null}>
-            <DragonMascot hidden={dragonHidden} soundEnabled={stats.soundEnabled} activeTab={activeTab} onCommand={handleDragonCommand} autoTour={isOnboardingActive} onAutoTourDone={handleCompleteOnboarding} />
+            <DragonMascot hidden={dragonHidden} quiet={dragonQuiet} soundEnabled={stats.soundEnabled} activeTab={activeTab} onCommand={handleDragonCommand} autoTour={isOnboardingActive} onAutoTourDone={handleCompleteOnboarding} />
           </Suspense>
         </ErrorBoundary>
       )}

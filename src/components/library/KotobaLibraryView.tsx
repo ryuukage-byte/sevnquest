@@ -441,6 +441,7 @@ export const KotobaLibraryView: React.FC<KotobaLibraryViewProps> = ({
           return (
             <div
               key={item.id}
+              data-tour="kotoba-item"
               onClick={() => {
                 setSelectedItem(item);
                 playSound('click', soundEnabled);

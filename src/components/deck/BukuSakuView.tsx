@@ -490,7 +490,7 @@ export const BukuSakuView: React.FC<BukuSakuViewProps> = ({
               </div>
 
               <div data-tour="deck-actions" className="flex items-center gap-2.5 shrink-0 flex-wrap">
-                <button
+                <button data-tour="deck-ai"
                   type="button"
                   onClick={() => {
                     setIsAiCustomizerOpen(true);
@@ -501,7 +501,7 @@ export const BukuSakuView: React.FC<BukuSakuViewProps> = ({
                   <span>Buat Deck AI</span>
                 </button>
 
-                <button
+                <button data-tour="deck-new"
                   type="button"
                   onClick={() => {
                     setEditingDeck(null);
@@ -549,6 +549,7 @@ export const BukuSakuView: React.FC<BukuSakuViewProps> = ({
               return (
                 <div
                   key={deck.id}
+                  data-tour="deck-card"
                   onClick={() => {
                     setSelectedDeckId(deck.id);
                     setCategoryFilter('all');

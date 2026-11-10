@@ -45,7 +45,8 @@ interface DungeonSetupModalProps {
 const DUNGEON_META: Record<
   DungeonType,
   {
-    title: string;    subtitle: string;
+    title: string;
+    subtitle: string;
     iconEmoji: string;
     requirementHint: string;
     themeColor: string;
@@ -53,56 +54,64 @@ const DUNGEON_META: Record<
   }
 > = {
   writing: {
-    title: 'Dungeon Menulis Aksara',    subtitle: 'Latihan menulis aksara goresan demi goresan',
+    title: 'Dungeon Menulis Aksara',
+    subtitle: 'Latihan menulis aksara goresan demi goresan',
     iconEmoji: '✍️',
     requirementHint: 'Memerlukan materi aksara (Kanji atau Kosakata)',
     themeColor: 'border-border-subtle text-wine-accent',
     glowColor: 'rgba(226, 85, 91, 0.25)',
   },
   flashcard: {
-    title: 'Dungeon Gerbang Ingatan',    subtitle: 'Hafalan kilat bolak-balik arti, bacaan & audio',
+    title: 'Dungeon Gerbang Ingatan',
+    subtitle: 'Hafalan kilat bolak-balik arti, bacaan & audio',
     iconEmoji: '🎴',
     requirementHint: 'Mendukung semua tipe materi (Kanji, Kosakata, Tata Bahasa)',
     themeColor: 'border-border-subtle text-teal',
     glowColor: 'rgba(38, 166, 154, 0.25)',
   },
   sakubun: {
-    title: 'Dungeon Kuil Tata Bahasa',    subtitle: 'Menyusun potongan kata dan pola menjadi kalimat utuh',
+    title: 'Dungeon Kuil Tata Bahasa',
+    subtitle: 'Menyusun potongan kata dan pola menjadi kalimat utuh',
     iconEmoji: '🧩',
     requirementHint: 'Memerlukan materi pola tata bahasa (Bunpou)',
     themeColor: 'border-border-subtle text-gold',
     glowColor: 'rgba(240, 190, 82, 0.25)',
   },
   conjugation: {
-    title: 'Dungeon Altar Konjugasi',    subtitle: 'Latihan cepat mengubah bentuk kata kerja & kata sifat',
+    title: 'Dungeon Altar Konjugasi',
+    subtitle: 'Latihan cepat mengubah bentuk kata kerja & kata sifat',
     iconEmoji: '⚡',
     requirementHint: 'Memerlukan materi kosakata kata kerja/sifat (Kotoba)',
     themeColor: 'border-border-subtle text-indigo',
     glowColor: 'rgba(111, 147, 207, 0.25)',
   },
   quiz: {
-    title: 'Dungeon Arena Kuis Cepat',    subtitle: 'Latihan kuis pilihan ganda acak standar JLPT',
+    title: 'Dungeon Arena Kuis Cepat',
+    subtitle: 'Latihan kuis pilihan ganda acak standar JLPT',
     iconEmoji: '🎯',
     requirementHint: 'Mendukung materi Kanji, Kosakata, atau Tata Bahasa',
     themeColor: 'border-border-subtle text-emerald-400',
     glowColor: 'rgba(79, 174, 134, 0.25)',
   },
   extreme: {
-    title: 'Dungeon Gerbang Kanji Extreme',    subtitle: 'Tantangan 3.000 soal tebak Onyomi & Kunyomi dari 100 stage bertingkat',
+    title: 'Dungeon Gerbang Kanji Extreme',
+    subtitle: 'Tantangan 3.000 soal tebak Onyomi & Kunyomi dari 100 stage bertingkat',
     iconEmoji: '🔥',
     requirementHint: 'Tersedia 100 stage penuh terstruktur (30 soal per stage)',
     themeColor: 'border-border-subtle text-rose-400',
     glowColor: 'rgba(244, 63, 94, 0.25)',
   },
   sentence_creation: {
-    title: 'Dungeon Kreasi Kalimat Pola',    subtitle: 'Rangkai kalimat bebas bahasa Jepang menggunakan pola tata bahasa yang ditentukan',
+    title: 'Dungeon Kreasi Kalimat Pola',
+    subtitle: 'Rangkai kalimat bebas bahasa Jepang menggunakan pola tata bahasa yang ditentukan',
     iconEmoji: '📜',
     requirementHint: 'Memerlukan materi pola tata bahasa (Bunpou)',
     themeColor: 'border-border-subtle text-violet-400',
     glowColor: 'rgba(139, 92, 246, 0.25)',
   },
   blackboard: {
-    title: 'Dungeon Papan Tulis Pola',    subtitle: 'Laboratorium visual bebas mengamati hasil transformasi kata dengan aneka pola kalimat',
+    title: 'Dungeon Papan Tulis Pola',
+    subtitle: 'Laboratorium visual bebas mengamati hasil transformasi kata dengan aneka pola kalimat',
     iconEmoji: '🏫',
     requirementHint: 'Mendukung kata kerja (Kotoba) dan pola kalimat (Bunpou)',
     themeColor: 'border-border-subtle text-teal',
@@ -336,7 +345,7 @@ export const DungeonSetupModal: React.FC<DungeonSetupModalProps> = ({
         {/* ================= SCROLLABLE SETUP CONTENT ================= */}
         <div className="relative z-10 p-4 sm:p-6 space-y-6 overflow-y-auto scrollbar-thin flex-1">
           {/* SECTION 1: MATERI TANTANGAN (PRESET VS DECK VS EXTREME STAGES) */}
-          <div className="space-y-3">
+          <div data-tour="dungeon-s1" className="space-y-3">
             {dungeonType === 'extreme' ? (
               <div className="space-y-3 p-4 rounded-2xl bg-surface-inset border border-border-subtle">
                 <div className="flex items-center justify-between">
@@ -983,7 +992,7 @@ export const DungeonSetupModal: React.FC<DungeonSetupModalProps> = ({
           </div>
 
           {/* SECTION 2: JUMLAH SOAL / KEDALAMAN LANTAI (CARVED TOKEN STONES) */}
-          <div className="space-y-2.5">
+          <div data-tour="dungeon-s2" className="space-y-2.5">
             <label className="text-xs font-bold uppercase tracking-wider text-text-muted font-heading flex items-center gap-1.5">
               <Layers className="w-3.5 h-3.5 text-gold" />
               <span>2. Kedalaman Lantai Dungeon (Jumlah Soal):</span>
@@ -1019,7 +1028,7 @@ export const DungeonSetupModal: React.FC<DungeonSetupModalProps> = ({
           </div>
 
           {/* SECTION 3: MODE EKSPLORASI (TACTILE ENGRAVED COIN CARDS) */}
-          <div className="space-y-2.5">
+          <div data-tour="dungeon-s3" className="space-y-2.5">
             <label className="text-xs font-bold uppercase tracking-wider text-text-muted font-heading flex items-center gap-1.5">
               <Flame className="w-3.5 h-3.5 text-gold" />
               <span>3. Mode Eksplorasi:</span>

@@ -72,7 +72,7 @@ export const ArcadeSourceSelector = <T extends string>({
   return (
     <div className="space-y-3.5">
       {/* 1. TOP SEGMENTED CONTROL: Tingkatan JLPT vs Rak Buku Template */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2.5">
+      <div data-tour="arcade-source-tabs" className="flex flex-col sm:flex-row sm:items-center justify-between gap-2.5">
         <label className="text-xs font-bold text-text-primary font-heading flex items-center gap-1.5">
           <Layers className="w-3.5 h-3.5 text-text-muted" />
           <span>Pilih Sumber Soal Tantangan:</span>
@@ -263,7 +263,7 @@ export const ArcadeSourceSelector = <T extends string>({
       )}
 
       {/* 4. ACTIVE SOURCE SUMMARY BANNER */}
-      <div className="p-3.5 rounded-2xl bg-surface-inset border border-border-subtle flex items-center justify-between shadow-inner">
+      <div data-tour="arcade-source-summary" className="p-3.5 rounded-2xl bg-surface-inset border border-border-subtle flex items-center justify-between shadow-inner">
         <div className="flex items-center gap-3 min-w-0">
           <div className="w-8 h-8 rounded-xl bg-surface-elevated border border-border-subtle flex items-center justify-center font-bold text-xs font-mono text-text-primary shadow-xs shrink-0">
             {sourceType === 'LEVEL' ? (

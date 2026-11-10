@@ -30,6 +30,8 @@ interface ChatMessage {
 interface DragonMascotProps {
   /** Disembunyikan sementara (mis. selama Recall, tur, atau di dalam dungeon/menara). */
   hidden?: boolean;
+  /** Diredam: tombol naga disembunyikan (mis. di hub Dungeon/Menara), tapi tur yang sedang jalan tetap tampil. */
+  quiet?: boolean;
   soundEnabled?: boolean;
   /** Tab aktif: naga tidak menyorot tab tempat pemain sudah berada. */
   activeTab?: string;
@@ -72,7 +74,7 @@ function greetingText(): string {
   return `${time}! Aku ${NAME}. Mau belajar apa hari ini? Ketik saja, misalnya "aku mau bikin flashcard".`;
 }
 
-export const DragonMascot: React.FC<DragonMascotProps> = ({ hidden, soundEnabled = true, activeTab, onCommand, autoTour, onAutoTourDone }) => {
+export const DragonMascot: React.FC<DragonMascotProps> = ({ hidden, quiet, soundEnabled = true, activeTab, onCommand, autoTour, onAutoTourDone }) => {
   const mail = useMailStatus();
   const tier = useMemo(() => dragonTierForRank(mail.signedIn ? mail.tierRank : 0), [mail.signedIn, mail.tierRank]);
 
@@ -96,6 +98,7 @@ export const DragonMascot: React.FC<DragonMascotProps> = ({ hidden, soundEnabled
    */
   const [tour, setTour] = useState<{ tour: DragonTour; index: number; ready: boolean; paused?: boolean; tab?: string } | null>(null);
   const guide = tour;
+  const covered = Boolean(hidden || (quiet && !tour));
 
   const [mood, setMood] = useState<DragonMood>(hatched ? 'greeting' : 'idle');
   const [messages, setMessages] = useState<ChatMessage[]>([]);
@@ -127,11 +130,11 @@ export const DragonMascot: React.FC<DragonMascotProps> = ({ hidden, soundEnabled
   // Evolusi: tier naik melebihi tier tertinggi yang pernah dilihat.
   useEffect(() => {
     // Ditunda selama naga disembunyikan (Recall, tur, dungeon/menara) agar tidak memotong sesi belajar.
-    if (!hatched || !mail.loaded || evolution || hatchOpen || hidden) return;
+    if (!hatched || !mail.loaded || evolution || hatchOpen || covered) return;
     if (tier.index > ds.lastSeenTier) {
       setEvolution({ from: DRAGON_TIERS[Math.min(ds.lastSeenTier, DRAGON_TIERS.length - 1)], to: tier });
     }
-  }, [hatched, mail.loaded, tier, ds.lastSeenTier, evolution, hatchOpen, hidden]);
+  }, [hatched, mail.loaded, tier, ds.lastSeenTier, evolution, hatchOpen, covered]);
 
   // Animasi ketik pesan naga terakhir.
   useEffect(() => {
@@ -288,6 +291,17 @@ export const DragonMascot: React.FC<DragonMascotProps> = ({ hidden, soundEnabled
     later(() => setMood(m => (m === 'happy' ? 'idle' : m)), 1800);
   }, [onCommand, later]);
 
+  /** Setelah tur pembuka selesai: Tatsu menawarkan panduan mendalam per fitur lewat obrolan. */
+  const offerDeepGuides = useCallback(() => {
+    afterHistoryUnwind(() => {
+      setOpen(true);
+      setView('chat');
+      setBusy(true);
+      const r = replyForTopic('panduan-lengkap');
+      pushDragon('Itu tadi pengenalan singkatnya. Mau kujelaskan salah satu fitur sampai ke cara memakainya? Pilih di bawah, atau tanya aku kapan saja.', r.choices, 'happy');
+    });
+  }, [pushDragon]);
+
   /** Langkah aktif selesai: jalankan perintahnya (bila ada), lalu lanjut atau akhiri tur. */
   const advanceTour = useCallback(() => {
     if (!tour) return;
@@ -295,12 +309,14 @@ export const DragonMascot: React.FC<DragonMascotProps> = ({ hidden, soundEnabled
     const cmd = step.action.kind === 'command' ? step.action.command : undefined;
     playSound('click', soundEnabled);
     if (tour.index >= tour.tour.steps.length - 1) {
+      const wasWelcome = tour.tour.id === 'welcome';
       endTour(cmd);
+      if (wasWelcome) offerDeepGuides();
       return;
     }
     if (cmd) onCommand(cmd);
     setTour({ ...tour, index: tour.index + 1, ready: false });
-  }, [tour, soundEnabled, endTour, onCommand]);
+  }, [tour, soundEnabled, endTour, onCommand, offerDeepGuides]);
 
   /** Target hilang (pemain pindah halaman / membuka sesuatu): tur dijeda dan menunggu, tidak dibatalkan. */
   const pauseTour = useCallback(() => {
@@ -387,14 +403,14 @@ export const DragonMascot: React.FC<DragonMascotProps> = ({ hidden, soundEnabled
     later(() => setMood(m => (m === 'happy' ? 'idle' : m)), 2400);
   };
 
-  if (hidden && !hatchOpen && !evolution) return null;
+  if (covered && !hatchOpen && !evolution) return null;
 
   const lastDragonId = [...messages].reverse().find(m => m.from === 'dragon')?.id;
 
   return (
     <>
       {/* ------------------------------------------------------------ Tombol naga */}
-      {!hidden && !open && !guide && (
+      {!covered && !open && !guide && (
         ds.minimized && hatched ? (
           <button
             type="button"
@@ -429,7 +445,7 @@ export const DragonMascot: React.FC<DragonMascotProps> = ({ hidden, soundEnabled
 
       {/* ------------------------------------------------------------ Panel (latar di-blur) */}
       <AnimatePresence>
-        {open && !hidden && (
+        {open && !covered && (
           <motion.div
             key="dragon-backdrop"
             initial={{ opacity: 0 }}
@@ -443,7 +459,7 @@ export const DragonMascot: React.FC<DragonMascotProps> = ({ hidden, soundEnabled
         )}
       </AnimatePresence>
       <AnimatePresence>
-        {open && !hidden && (
+        {open && !covered && (
           <motion.section
             role="dialog"
             aria-label={`${NAME}, naga pemandu`}

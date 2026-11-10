@@ -229,7 +229,7 @@ export const GuidedSetupWizard: React.FC<GuidedSetupWizardProps> = ({ initial, h
   return (
     <div className="grid gap-3 lg:grid-cols-2 lg:items-start">
       {/* Formulir */}
-      <div className="panel panel-stitched p-4 sm:p-5 border border-border-subtle shadow-md space-y-3.5">
+      <div data-tour="missions-wizard" className="panel panel-stitched p-4 sm:p-5 border border-border-subtle shadow-md space-y-3.5">
         <div className="relative z-10">
           <h3 className="text-base font-bold font-heading text-text-primary flex items-center gap-2">
             <Compass className="w-5 h-5 text-gold" /> {hasActivePlan ? 'Ubah Kurikulum' : 'Susun Kurikulum Belajarmu'}
@@ -304,7 +304,7 @@ export const GuidedSetupWizard: React.FC<GuidedSetupWizardProps> = ({ initial, h
       </div>
 
       {/* Analisis: kelayakan dulu, baru rinciannya */}
-      <div className="panel panel-stitched p-4 sm:p-5 border border-border-subtle shadow-md space-y-3">
+      <div data-tour="missions-analysis" className="panel panel-stitched p-4 sm:p-5 border border-border-subtle shadow-md space-y-3">
         <div
           className="rounded-2xl border p-3.5 relative z-10"
           style={{ borderColor: toneColor, background: 'var(--color-surface-inset)' }}

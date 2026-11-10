@@ -180,6 +180,7 @@ export const WorldView: React.FC<WorldViewProps> = ({
         {/* TAB 4: MENARA 1.000 */}
         <button
           type="button"
+          data-tour="world-tower"
           onClick={() => handleSwitchMode('tower')}
           disabled={!TOWER_ENABLED}
           aria-disabled={!TOWER_ENABLED}

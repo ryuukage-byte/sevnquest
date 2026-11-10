@@ -28,7 +28,9 @@ export interface TourStep {
   action: TourAction;
 }
 
-export type TourId = 'welcome' | 'menulis-kanji' | 'login' | 'kotak-pos' | 'donasi' | 'panduan' | 'arcade' | 'dungeon';
+export type TourId =
+  | 'welcome' | 'menulis-kanji' | 'login' | 'kotak-pos' | 'donasi' | 'panduan' | 'arcade' | 'dungeon'
+  | 'status' | 'kotoba' | 'bunpou' | 'konjugasi' | 'dokkai' | 'deck-baru' | 'deck-ai' | 'deck-isi' | 'menara' | 'misi' | 'pengaturan';
 
 export interface DragonTour {
   id: string;
@@ -38,12 +40,46 @@ export interface DragonTour {
 }
 
 /** Langkah pembuka: pindah ke sebuah tab (dilewati otomatis bila pemain sudah di tab itu). */
-const goTab = (tab: 'home' | 'maps' | 'settings', label: string, text: string): TourStep => ({
+const goTab = (tab: 'home' | 'maps' | 'daily' | 'deck' | 'settings', label: string, text: string): TourStep => ({
   selector: `[data-tour="nav-${tab}"]`,
   label,
   text,
   action: { kind: 'command', command: { type: 'tab', tab } },
 });
+
+/** Pembuka: ke Library lalu langsung ke sebuah tab (dilewati otomatis bila sudah di tab itu). */
+const goLibrary = (tab: 'kotoba' | 'kanji' | 'bunpou' | 'dokkai' | 'choukai' | 'soal', name: string): TourStep => ({
+  selector: '[data-tour="nav-library"]',
+  label: 'Library',
+  text: `Ketuk Library di sini, aku langsung bukakan tab ${name}.`,
+  action: { kind: 'command', command: { type: 'library', tab } },
+});
+
+const info = (selector: string, label: string, text: string, points?: string[], button?: string): TourStep => ({
+  selector, label, text, ...(points ? { points } : {}), action: { kind: 'info', ...(button ? { button } : {}) },
+});
+
+const tapStep = (selector: string, label: string, text: string): TourStep => ({
+  selector, label, text, action: { kind: 'click' },
+});
+
+/** Panduan mendalam per fitur: dipilih lewat Tatsu (obrolan). Urutan = urutan tombol pilihan. */
+export const DEEP_GUIDES: { tour: TourId; label: string }[] = [
+  { tour: 'status', label: 'Lembar Status' },
+  { tour: 'kotoba', label: 'Kosakata' },
+  { tour: 'menulis-kanji', label: 'Kanji & Menulis' },
+  { tour: 'bunpou', label: 'Tata Bahasa' },
+  { tour: 'konjugasi', label: 'Konjugasi' },
+  { tour: 'dokkai', label: 'Dokkai (Membaca)' },
+  { tour: 'deck-baru', label: 'Buat Deck' },
+  { tour: 'deck-ai', label: 'Deck AI' },
+  { tour: 'deck-isi', label: 'Isi & Latih Deck' },
+  { tour: 'arcade', label: 'Arena Arcade' },
+  { tour: 'dungeon', label: 'Mode Dungeon' },
+  { tour: 'menara', label: 'Menara Nihongo' },
+  { tour: 'misi', label: 'Misi Harian' },
+  { tour: 'pengaturan', label: 'Pengaturan' },
+];
 
 export const TOURS: Record<TourId, DragonTour> = {
   welcome: {
@@ -57,7 +93,7 @@ export const TOURS: Record<TourId, DragonTour> = {
         text: 'Halo, aku Tatsu! Kuantar kamu keliling SevnQuest. Ini Castle, rumah belajarmu, dan kartu karaktermu.',
         points: [
           'Level, EXP, dan HP naik setiap kamu belajar.',
-          'Ketuk kartu ini untuk membuka Lembar Status: bagi stat, ganti nama dan avatar, lihat titik lemahmu.',
+          'Ketuk kartu ini untuk membuka Lembar Status: kondisi HP dan MP, syarat naik tier, statistik belajar, mastery, dan streak. Nama dan avatar diganti di Menu.',
         ],
         action: { kind: 'info', button: 'Mulai tur' },
       },
@@ -131,7 +167,7 @@ export const TOURS: Record<TourId, DragonTour> = {
         text: 'Library punya enam jilid. Ketuk jilidnya untuk berpindah:',
         points: [
           'Kosakata, Kanji, dan Tata Bahasa: kamus lengkap.',
-          'Dokkai untuk latihan membaca, Choukai untuk latihan mendengar.',
+          'Dokkai untuk latihan membaca. Choukai (video dan transkrip untuk mendengar) sedang disiapkan.',
           'Bank Soal: latihan soal JLPT N5 sampai N1.',
         ],
         action: { kind: 'info' },
@@ -444,25 +480,180 @@ export const TOURS: Record<TourId, DragonTour> = {
   arcade: {
     id: 'arcade',
     steps: [
-      goTab('maps', 'World', 'Arena Arcade ada di World. Ketuk di sini.'),
-      {
-        selector: '[data-tour="world-arcade"]',
-        label: 'Arena Arcade',
-        text: 'Ketuk Arena Arcade untuk melihat semua game kilat: Kanji Speed Rush, Sudden Death, Kotoba Guess, dan lainnya.',
-        action: { kind: 'click' },
-      },
+      goTab('maps', 'World', 'Arena Arcade ada di World. Ketuk World di sini.'),
+      tapStep('[data-tour="world-arcade"]', 'Arena Arcade', 'Ketuk tombol Arena Arcade.'),
+      info('[data-tour="arcade-games"]', 'Arena Arcade', 'Ini kelima game kilat. Tiap kartu punya tombol Mulai, dan rekor terbaikmu tercatat:', [
+        'Kanji Speed Rush: tulis kanji sebanyak mungkin dalam 60 detik.',
+        'Sudden Death 3 Nyawa: salah tiga kali, permainan selesai.',
+        'Kotoba Guess Relay: tebak arti kata dari suaranya.',
+        'Altar Konjugasi Kilat: ubah bentuk kata kerja dalam 60 detik.',
+        'Susun Bintang Kilat: susun kalimat dan temukan kata di posisi bintang.',
+      ]),
+      tapStep('[data-tour="arcade-sudden"]', 'Mulai', 'Coba Sudden Death. Ketuk tombol Mulai di kartunya.'),
+      info('[data-tour="arcade-source-tabs"]', 'Sumber soal', 'Sebelum main, pilih sumber soalnya:', [
+        'Tingkatan JLPT: soal dari level yang kamu pilih (N5 sampai N1).',
+        'Rak Buku Template: soal dari buku kurikulum, pilih satu buku.',
+      ]),
+      info('[data-tour="arcade-source-summary"]', 'Ringkasan sumber', 'Kotak ini merangkum sumber yang sedang aktif. Setelah cocok, tekan tombol mulai di bagian bawah jendela.', undefined, 'Mengerti'),
     ],
   },
   dungeon: {
     id: 'dungeon',
     steps: [
-      goTab('maps', 'World', 'Mode Dungeon ada di World. Ketuk di sini.'),
-      {
-        selector: '[data-tour="world-dungeon"]',
-        label: 'Mode Dungeon',
-        text: 'Ketuk Mode Dungeon, pilih dungeon-nya, atur level dan jumlah lantai, lalu mulai.',
-        action: { kind: 'click' },
-      },
+      goTab('maps', 'World', 'Mode Dungeon ada di World. Ketuk World di sini.'),
+      tapStep('[data-tour="world-dungeon"]', 'Mode Dungeon', 'Ketuk tombol Mode Dungeon.'),
+      info('[data-tour="dungeon-gate"]', 'Gerbang', 'Tiap kartu adalah satu gerbang latihan bebas, dari menulis aksara sampai kuis cepat, kanji extreme, perpustakaan teks, dan imersi lagu atau video. Ketuk sebuah gerbang untuk menyiapkannya.', undefined, 'Buka gerbang pertama'),
+      tapStep('[data-tour="dungeon-gate"]', 'Gerbang', 'Ketuk gerbang ini untuk membuka pengaturannya.'),
+      info('[data-tour="dungeon-s1"]', 'Materi', 'Bagian 1: pilih tingkat atau kategori yang diujikan. Ada dua tab: Kategori Kurikulum (Semua Level, JLPT N5 sampai N1, Kaigo, dan lainnya) atau Pilih Deck milikmu. Isi bagian ini bisa berbeda di tiap gerbang.'),
+      info('[data-tour="dungeon-s2"]', 'Kedalaman lantai', 'Bagian 2: Kedalaman Lantai, yaitu jumlah soal. Pilih 5, 10, 15, atau 20 lantai; perkiraan lamanya tertera di tiap pilihan.'),
+      info('[data-tour="dungeon-s3"]', 'Mode Eksplorasi', 'Bagian 3: Mode Eksplorasi. Mode Santai (Standard) tanpa batas waktu, cocok untuk memperdalam ingatan. Mode Survival (Timer) memberi batas waktu per soal untuk melatih refleks. Setelah semua diatur, tekan tombol mulai di bagian bawah jendela.', undefined, 'Mengerti'),
+    ],
+  },
+  menara: {
+    id: 'menara',
+    steps: [
+      goTab('maps', 'World', 'Menara Nihongo ada di World. Ketuk World di sini.'),
+      tapStep('[data-tour="world-tower"]', 'Menara Nihongo', 'Ketuk tombol Menara Nihongo.'),
+      info('[data-tour="tower-tabs"]', 'Dua menara', 'Pilih menara lewat tab ini:', [
+        'Menara 1 (lantai 001-016): belajar MELIHAT bahasa Jepang lewat aksara, bunyi, dan susunan kalimat.',
+        'Menara 2 (lantai 017-100): belajar MEMAKAINYA, dari N5 menuju N4. Tiap kelipatan sepuluh dijaga ujian campuran.',
+      ]),
+      info('[data-tour="tower-recommended"]', 'Lantai berikutnya', 'Tombol ini membuka lantai yang disarankan berikutnya, jadi pemain baru tinggal ketuk untuk mulai. Kamu juga bisa memilih lantai tertentu dari peta di bawahnya. Bintang dan progresmu tersimpan.', undefined, 'Mengerti'),
+    ],
+  },
+  status: {
+    id: 'status',
+    steps: [
+      goTab('home', 'Castle', 'Lembar Status dibuka dari Castle. Ketuk Castle di sini.'),
+      tapStep('[data-tour="hero-card"]', 'kartu karakter', 'Ketuk kartu karakter ini untuk membuka Lembar Status.'),
+      info('[data-tour="status-recovery"]', 'Kondisi Petualang', 'Kondisi Petualang: HP, MP, dan Koin-mu.', [
+        'Gunakan Potion untuk memulihkan 30% HP (bila kamu punya).',
+        'Istirahat di Dojo memulihkan HP dan MP dengan biaya Koin.',
+      ]),
+      info('[data-tour="status-tier"]', 'Ujian Ascend Tier', 'Ascend Tier: untuk naik tingkat, kategori Kanji, Kotoba, dan Bunpou masing-masing harus mencapai minimal 75%.', [
+        'Lencana di kartu ini menunjukkan keadaanmu: Persiapan Ujian, Siap Ascend, Tertahan (di bawah 75%), atau Tercapai.',
+      ]),
+      info('[data-tour="status-stats"]', 'Statistik belajar', 'Statistik belajar: jumlah Flashcards, Questions, Kanji Writing, dan Try Outs yang sudah kamu kerjakan.'),
+      info('[data-tour="status-mastery"]', 'Mastery dan Coverage', 'Per level N5 sampai N1 ada dua ukuran:', [
+        'Mastery (kedalaman): seberapa kuat kamu menguasai materi.',
+        'Coverage (cakupan): seberapa banyak materi yang sudah kamu sentuh.',
+      ]),
+      info('[data-tour="status-streak"]', 'Streak', 'Terakhir, streak: rentetan hari belajarmu sekarang dan rekor terpanjangmu. Tutup jendela ini kapan saja lewat tombol X.', undefined, 'Selesai'),
+    ],
+  },
+  kotoba: {
+    id: 'kotoba',
+    steps: [
+      goLibrary('kotoba', 'Kosakata'),
+      tapStep('[data-tour="kotoba-item"]', 'kartu kata', 'Ketuk salah satu kata untuk membuka detailnya.'),
+      info('[data-tour="kotoba-word"]', 'Detail kata', 'Bagian atas menampilkan level dan kategori kata, kata beserta cara bacanya, dan tombol Dengarkan untuk memutar suaranya. Di bawahnya ada arti dan penjelasan makna.', ['Kotak Flashcard, Ditulis, dan Lv menunjukkan seberapa sering kamu sudah melatih kata ini.']),
+      info('[data-tour="kotoba-write"]', 'Latih Menulis', 'Tombol Latih dengan Menulis melatih ingatanmu: kamu menulis kata itu sendiri dari ingatan.'),
+      info('[data-tour="kotoba-sentences"]', 'Contoh Kalimat', 'Contoh Kalimat disertai terjemahan, dengan tombol Putar Audio untuk mendengarnya. Kalau kata punya kanji penyusun, ketuk kanjinya untuk melihat detail.', undefined, 'Selesai'),
+    ],
+  },
+  bunpou: {
+    id: 'bunpou',
+    steps: [
+      goLibrary('bunpou', 'Tata Bahasa'),
+      tapStep('[data-tour="bunpou-item"]', 'kartu pola', 'Ketuk salah satu pola kalimat untuk membuka catatannya.'),
+      info('[data-tour="bunpou-tabs"]', 'Lima tab catatan', 'Satu pola dijelaskan dalam lima tab. Ketuk tabnya, atau geser:', [
+        'Inti Makna: maksud pola dan logika berpikirnya.',
+        'Rumus & Pola: cara membentuknya.',
+        'Fungsi & Nuansa: kapan dipakai, dan beda dengan pola mirip.',
+        'Contoh Nyata: kalimat contoh.',
+        'Latihan Kuis: uji pemahamanmu.',
+      ], 'Selesai'),
+    ],
+  },
+  konjugasi: {
+    id: 'konjugasi',
+    steps: [
+      goLibrary('bunpou', 'Tata Bahasa'),
+      tapStep('[data-tour="bunpou-conj-tab"]', 'Perubahan Bentuk Kata', 'Konjugasi ada di dalam Tata Bahasa. Ketuk tab Perubahan Bentuk Kata.'),
+      info('[data-tour="conj-tabs"]', 'Dojo Konjugasi', 'Dojo ini punya empat tab:', [
+        'Bentuk Utama: Te, Nai, Ta, Masu.',
+        'Bentuk Lanjutan: potensial, pasif, tara, dan lainnya.',
+        'Golongan Verba: Godan, Ichidan, Irregular.',
+        'Sifat & Benda: i-keiyoushi, na, dan meishi.',
+      ]),
+      info('[data-tour="conj-start"]', 'Mulai Latihan', 'Tombol Mulai Latihan Konjugasi menguji semua bentuk secara acak. Untuk satu bentuk saja, buka bentuknya dan tekan Latih Bentuk Ini.', undefined, 'Selesai'),
+    ],
+  },
+  dokkai: {
+    id: 'dokkai',
+    steps: [
+      goLibrary('dokkai', 'Dokkai'),
+      tapStep('[data-tour="dokkai-item"]', 'bacaan', 'Ketuk salah satu bacaan untuk membukanya.'),
+      info('[data-tour="dokkai-guide"]', 'Cara membaca', 'Baca teksnya sampai selesai dulu. Setelah itu kamu punya dua pilihan di bagian bawah.'),
+      info('[data-tour="dokkai-nav"]', 'Dua pilihan', 'Pilih salah satu:', [
+        'Kerjakan soal: langsung menjawab soal bacaan.',
+        'Bahas bacaan: bacaan dibedah per paragraf, kosakata, kanji, pola, dan intinya. Saat dibahas, ketuk sebuah kalimat untuk melihat arti, kata, dan polanya.',
+      ], 'Selesai'),
+    ],
+  },
+  'deck-baru': {
+    id: 'deck-baru',
+    steps: [
+      goTab('deck', 'Buku Saku', 'Deck dibuat di Buku Saku. Ketuk Buku Saku di sini.'),
+      tapStep('[data-tour="deck-new"]', 'Buat Deck Baru', 'Ketuk Buat Deck Baru.'),
+      info('[data-tour="deck-form-title"]', 'Nama dan ikon', 'Isi judul deck. Di bawahnya ada pilihan ikon sampul dan jenis deck (Campuran, Flashcard Drill, atau Latihan Menulis).'),
+      info('[data-tour="deck-form-content"]', 'Isi awal deck', 'Lalu pilih isi awal deck. Tombol Buka Studio AI di atasnya membuat deck otomatis dari topik.', [
+        'Kosong: deck kosong, materi ditambah nanti.',
+        'Otomatis: terisi sesuai preset level JLPT.',
+        'Bookmark: isi dari kata yang sudah kamu tandai.',
+        'Pilih Sendiri: cari dan pilih materinya manual.',
+      ]),
+      info('[data-tour="deck-form-footer"]', 'Simpan', 'Terakhir, tekan tombol di bagian bawah untuk membuat deck-nya.', undefined, 'Selesai'),
+    ],
+  },
+  'deck-ai': {
+    id: 'deck-ai',
+    steps: [
+      goTab('deck', 'Buku Saku', 'Deck AI ada di Buku Saku. Ketuk Buku Saku di sini.'),
+      tapStep('[data-tour="deck-ai"]', 'Buat Deck AI', 'Ketuk Buat Deck AI.'),
+      info('[data-tour="deck-ai-body"]', 'Studio Deck Otomatis', 'Isi formulirnya, dan deck tersusun otomatis:', [
+        'Topik deck: ketik topiknya, atau ketuk tema cepat seperti Kuliner, Kerja, Medis, dan Kaigo.',
+        'Fokus materi: kosakata, kanji, atau pola kalimat.',
+        'Level JLPT dan jumlah kartu.',
+        'Nama deck.',
+        'Punya JSON dari AI lain? Ada jalur impor manual di bagian bawah.',
+      ], 'Selesai'),
+    ],
+  },
+  'deck-isi': {
+    id: 'deck-isi',
+    steps: [
+      goTab('deck', 'Buku Saku', 'Ketuk Buku Saku di sini.'),
+      tapStep('[data-tour="deck-card"]', 'deck', 'Ketuk salah satu deck untuk membukanya.'),
+      info('[data-tour="deck-practice"]', 'Latih deck', 'Tombol-tombol di sini:', [
+        'Mulai Flashcard: menghafal dengan kartu bolak-balik.',
+        'Latihan Menulis: berlatih goresan kanji dan kana dari deck ini. Angka di kurung adalah jumlah materi yang bisa ditulis.',
+        'Cari Materi: mencari dan menambah materi ke deck.',
+      ]),
+      info('[data-tour="deck-tools"]', 'Alat deck', 'Di baris ini ada jalan pintas:', [
+        'Isi Preset JLPT: isi otomatis sesuai level.',
+        'Impor Bookmark: masukkan kata yang sudah kamu tandai (ada di deck buatanmu sendiri).',
+        'Kosongkan: hapus semua materi, muncul saat deck sudah berisi.',
+      ]),
+      info('[data-tour="deck-library"]', 'Tambah dari Library', 'Pilih jilid Kosakata, Kanji, atau Tata Bahasa untuk melihat isi deck, dan tambah materi dari Library mini ini.', undefined, 'Selesai'),
+    ],
+  },
+  misi: {
+    id: 'misi',
+    steps: [
+      goTab('daily', 'Misi', 'Misi ada di sini. Ketuk Misi.'),
+      info('[data-tour="missions-wizard"]', 'Susun Kurikulum', 'Misi Harian dibuat dari kurikulum yang kamu susun di formulir ini: pilih jenis program, level saat ini, target level, dan tenggatnya.'),
+      info('[data-tour="missions-analysis"]', 'Analisis', 'Di sebelahnya, aplikasi menghitung beban belajarmu: kira-kira berapa menit per hari yang dibutuhkan, dan berapa materi yang harus dipelajari. Kalau sudah cocok, tekan Mulai Program.', undefined, 'Selesai'),
+    ],
+  },
+  pengaturan: {
+    id: 'pengaturan',
+    steps: [
+      goTab('settings', 'Menu', 'Pengaturan ada di Menu. Ketuk Menu di sini.'),
+      info('[data-tour="settings-account"]', 'Akun', 'Kartu akun: login supaya progresmu tersimpan di Cloud.'),
+      info('[data-tour="settings-profile"]', 'Profil Pemain', 'Profil Pemain: ganti Nama Petualang, tipe karakter, dan avatar.'),
+      info('[data-tour="settings-audio"]', 'Audio', 'Audio: nyalakan atau matikan efek suara game (SFX), dan coba suara bahasa Jepang (TTS) lewat tombol Uji Suara.'),
+      info('[data-tour="settings-study"]', 'Pengaturan Belajar', 'Pengaturan belajar: pilih tema gelap atau terang, atur Bantuan Furigana & Kanji, dan ulangi tur pembuka kapan saja lewat Ulangi Tur.', undefined, 'Selesai'),
     ],
   },
   'menulis-kanji': {

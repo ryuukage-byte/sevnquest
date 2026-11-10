@@ -36,7 +36,7 @@ export function guideTargetFor(cmd: DragonCommand, activeTab?: string): GuideTar
     case 'tab':
       return sameTab(cmd.tab, activeTab) ? null : nav(cmd.tab);
     case 'library': {
-      const sub = { kotoba: 'Kotoba', kanji: 'Kanji', bunpou: 'Pola Kalimat', soal: 'Soal' }[cmd.tab];
+      const sub = { kotoba: 'Kotoba', kanji: 'Kanji', bunpou: 'Pola Kalimat', dokkai: 'Dokkai', choukai: 'Choukai', soal: 'Soal' }[cmd.tab];
       return sameTab('library', activeTab) ? null : nav('library', `Aku langsung bukakan tab ${sub}.`);
     }
     case 'tower':
