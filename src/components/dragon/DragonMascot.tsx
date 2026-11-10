@@ -13,7 +13,7 @@ const DragonEgg = ACTIVE_DRAGON_SKIN.finish === 'image' ? DragonArtEgg : ACTIVE_
 import { DragonSpotlight, findTarget, measureTarget } from './DragonSpotlight';
 import { TOURS, singleStepTour, stepNeedsSpotlight, type DragonTour } from '../../engine/dragon/tours';
 import { DRAGON_DEFAULT_NAME, DRAGON_TIERS, dragonTierForRank, type DragonTier } from '../../data/dragon/tiers';
-import { interpret, replyForTopic, STARTER_CHOICES, type AppCommand, type DragonAwait, type DragonChoice, type DragonCommand, type DragonSection, type ReplyMood } from '../../engine/dragon/intent';
+import { interpret, replyForTopic, STARTER_CHOICES, type AppCommand, type DragonAwait, type DragonTab, type DragonChoice, type DragonCommand, type DragonSection, type ReplyMood } from '../../engine/dragon/intent';
 import { loadDragonState, saveDragonState, type DragonState } from '../../state/dragonState';
 import { useMailStatus } from '../../lib/mail';
 import { useBackButton } from '../../hooks/useBackButton';
@@ -35,6 +35,10 @@ interface DragonMascotProps {
   activeTab?: string;
   /** Dijalankan App: navigasi / membuka fitur. */
   onCommand: (cmd: AppCommand) => void;
+  /** True saat pemain baru: Tatsu otomatis memandu tur perkenalan. */
+  autoTour?: boolean;
+  /** Dipanggil saat tur perkenalan selesai atau dihentikan. */
+  onAutoTourDone?: () => void;
 }
 
 const NAME = DRAGON_DEFAULT_NAME;
@@ -68,7 +72,7 @@ function greetingText(): string {
   return `${time}! Aku ${NAME}. Mau belajar apa hari ini? Ketik saja, misalnya "aku mau bikin flashcard".`;
 }
 
-export const DragonMascot: React.FC<DragonMascotProps> = ({ hidden, soundEnabled = true, activeTab, onCommand }) => {
+export const DragonMascot: React.FC<DragonMascotProps> = ({ hidden, soundEnabled = true, activeTab, onCommand, autoTour, onAutoTourDone }) => {
   const mail = useMailStatus();
   const tier = useMemo(() => dragonTierForRank(mail.signedIn ? mail.tierRank : 0), [mail.signedIn, mail.tierRank]);
 
@@ -90,7 +94,7 @@ export const DragonMascot: React.FC<DragonMascotProps> = ({ hidden, soundEnabled
    * Tur aktif: naga menyorot elemen demi elemen. `ready` = elemen langkah ini sudah tampil di layar
    * (halaman baru / modal bisa butuh waktu untuk dimuat).
    */
-  const [tour, setTour] = useState<{ tour: DragonTour; index: number; ready: boolean } | null>(null);
+  const [tour, setTour] = useState<{ tour: DragonTour; index: number; ready: boolean; paused?: boolean; tab?: string } | null>(null);
   const guide = tour;
 
   const [mood, setMood] = useState<DragonMood>(hatched ? 'greeting' : 'idle');
@@ -193,6 +197,38 @@ export const DragonMascot: React.FC<DragonMascotProps> = ({ hidden, soundEnabled
     if (hidden) setTour(null);
   }, [hidden]);
 
+  // Perkenalan otomatis (pemain baru / ulang dari Menu): telur menetas dulu bila belum, lalu Tatsu memandu tur.
+  const welcomeRunning = useRef(false);
+  const hatchThenTour = useRef(false);
+  const onAutoTourDoneRef = useRef(onAutoTourDone);
+  onAutoTourDoneRef.current = onAutoTourDone;
+  const startWelcome = useCallback(() => {
+    hatchThenTour.current = false;
+    welcomeRunning.current = true;
+    setOpen(false);
+    setMood('pointing');
+    setTour({ tour: TOURS.welcome, index: 0, ready: false });
+  }, []);
+  useEffect(() => {
+    if (!autoTour || hidden || tour || welcomeRunning.current || hatchThenTour.current || hatchOpen || evolution) return;
+    const t = window.setTimeout(() => {
+      if (hatched) {
+        startWelcome();
+      } else {
+        hatchThenTour.current = true;
+        setOpen(false);
+        setHatchOpen(true);
+      }
+    }, 600);
+    return () => clearTimeout(t);
+  }, [autoTour, hidden, tour, hatched, hatchOpen, evolution, startWelcome]);
+  useEffect(() => {
+    if (!tour && welcomeRunning.current) {
+      welcomeRunning.current = false;
+      onAutoTourDoneRef.current?.();
+    }
+  }, [tour]);
+
   const startTour = (t: DragonTour) => {
     closePanel();
     setMood('pointing');
@@ -266,6 +302,25 @@ export const DragonMascot: React.FC<DragonMascotProps> = ({ hidden, soundEnabled
     setTour({ ...tour, index: tour.index + 1, ready: false });
   }, [tour, soundEnabled, endTour, onCommand]);
 
+  /** Target hilang (pemain pindah halaman / membuka sesuatu): tur dijeda dan menunggu, tidak dibatalkan. */
+  const pauseTour = useCallback(() => {
+    setTour(t => (t && t.ready ? { ...t, ready: false, paused: true } : t));
+  }, []);
+
+  /** "Lanjutkan": kembali ke halaman tempat langkah ini tadi, lalu sorotan muncul lagi otomatis. */
+  const resumeTour = () => {
+    if (!tour) return;
+    playSound('click', soundEnabled);
+    if (tour.tab && tour.tab !== activeTab) onCommand({ type: 'tab', tab: tour.tab as DragonTab });
+  };
+
+  const skipPausedStep = () => {
+    if (!tour) return;
+    playSound('click', soundEnabled);
+    if (tour.index >= tour.tour.steps.length - 1) endTour();
+    else setTour({ ...tour, index: tour.index + 1, ready: false, paused: false });
+  };
+
   const cancelGuide = useCallback(() => {
     setTour(null);
     setMood('idle');
@@ -275,7 +330,7 @@ export const DragonMascot: React.FC<DragonMascotProps> = ({ hidden, soundEnabled
   useEffect(() => {
     if (!tour || tour.ready) return;
     const step = tour.tour.steps[tour.index];
-    if (!stepNeedsSpotlight(step, activeTab)) {
+    if (!tour.paused && !stepNeedsSpotlight(step, activeTab)) {
       if (step.action.kind === 'command') onCommandRef.current(step.action.command);
       if (tour.index >= tour.tour.steps.length - 1) setTour(null);
       else setTour({ ...tour, index: tour.index + 1, ready: false });
@@ -285,9 +340,13 @@ export const DragonMascot: React.FC<DragonMascotProps> = ({ hidden, soundEnabled
     const poll = window.setInterval(() => {
       if (findTarget(step.selector)) {
         clearInterval(poll);
-        setTour(t => (t && t.index === tour.index ? { ...t, ready: true } : t));
-      } else if (Date.now() - started > 8000) {
+        setTour(t => (t && t.index === tour.index ? { ...t, ready: true, paused: false, tab: activeTab } : t));
+      } else if (!tour.paused && Date.now() - started > 8000) {
         clearInterval(poll); // elemen tidak muncul (mis. daftar kosong): hentikan tur dengan tenang
+        if (tour.tour.skipMissing && tour.index < tour.tour.steps.length - 1) {
+          setTour(t => (t && t.index === tour.index ? { ...t, index: t.index + 1, ready: false } : t)); // tur perkenalan: lewati saja
+          return;
+        }
         setTour(null);
         setMood('idle');
       }
@@ -307,6 +366,10 @@ export const DragonMascot: React.FC<DragonMascotProps> = ({ hidden, soundEnabled
     setHatchOpen(false);
     setMood('happy');
     later(() => setMood(m => (m === 'happy' ? 'idle' : m)), 2400);
+    if (hatchThenTour.current) {
+      startWelcome(); // pemain baru: lanjut ke tur perkenalan, bukan obrolan
+      return;
+    }
     setOpen(true);
     setBusy(true);
     pushDragon(
@@ -535,11 +598,32 @@ export const DragonMascot: React.FC<DragonMascotProps> = ({ hidden, soundEnabled
           tier={tier}
           onAdvance={advanceTour}
           onCancel={cancelGuide}
+          onLost={pauseTour}
         />
       )}
 
+      {/* ------------------------------------------------------------ Tur dijeda */}
+      {tour?.paused && !tour.ready && !hidden && createPortal(
+        <div className="fixed inset-x-3 bottom-24 z-[9985] flex justify-center pointer-events-none" role="status">
+          <div className="pointer-events-auto flex items-center gap-2.5 max-w-sm w-full rounded-2xl panel border border-border-subtle shadow-2xl p-2.5">
+            <div className="shrink-0 w-12 h-12">
+              <DragonSprite tier={tier} mood="idle" size={48} />
+            </div>
+            <div className="flex-1 min-w-0 space-y-1.5">
+              <p className="text-xs text-text-primary font-body leading-snug">Tur dijeda. Kembali ke halaman tadi, atau tutup yang sedang terbuka.</p>
+              <div className="flex gap-1.5">
+                <button type="button" onClick={resumeTour} className="flex-1 py-1.5 rounded-xl btn-physical-primary text-xs font-bold cursor-pointer">Lanjutkan</button>
+                <button type="button" onClick={skipPausedStep} className="px-2.5 py-1.5 rounded-xl bg-surface-card border border-border-subtle text-xs font-bold text-text-secondary cursor-pointer">Lewati</button>
+                <button type="button" onClick={cancelGuide} className="px-2.5 py-1.5 rounded-xl bg-surface-card border border-border-subtle text-xs font-bold text-text-secondary cursor-pointer">Berhenti</button>
+              </div>
+            </div>
+          </div>
+        </div>,
+        document.body,
+      )}
+
       {/* ------------------------------------------------------------ Menetas */}
-      {hatchOpen && <HatchOverlay tier={DRAGON_TIERS[0]} soundEnabled={soundEnabled} onDone={finishHatch} onClose={() => setHatchOpen(false)} />}
+      {hatchOpen && <HatchOverlay tier={DRAGON_TIERS[0]} soundEnabled={soundEnabled} onDone={finishHatch} onClose={() => { setHatchOpen(false); if (hatchThenTour.current) startWelcome(); }} />}
 
       {/* ------------------------------------------------------------ Evolusi */}
       {evolution && <EvolutionOverlay from={evolution.from} to={evolution.to} soundEnabled={soundEnabled} onDone={finishEvolution} />}

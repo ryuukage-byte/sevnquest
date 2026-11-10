@@ -229,6 +229,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
 
       {/* 2. NEXT STEP: LANGKAH BERIKUTNYA (adaptif; pemain baru diarahkan ke panduan) */}
       <motion.button
+        data-tour="castle-next"
         animate={isNewcomer && !guideSeen ? { y: [0, -4, 0] } : {}}
         transition={isNewcomer && !guideSeen ? { repeat: Infinity, duration: 2, ease: "easeInOut" } : {}}
         whileHover={{ scale: 1.01 }}
@@ -259,7 +260,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
       </motion.button>
 
       {/* 3. QUICK ACTIVITIES: tiga kartu sejajar, ukuran seragam */}
-      <div className="grid grid-cols-3 gap-2.5 sm:gap-3 md:gap-4">
+      <div data-tour="castle-quick" className="grid grid-cols-3 gap-2.5 sm:gap-3 md:gap-4">
         {/* Recall Memori (SRS) */}
         <button
           type="button"
@@ -338,12 +339,12 @@ export const HomeView: React.FC<HomeViewProps> = ({
       </div>
 
       {/* 4. SEARCH: pencarian fitur */}
-      <div className="panel p-0 overflow-visible">
+      <div data-tour="castle-search" className="panel p-0 overflow-visible">
         <FeatureSearch onSelect={handleFeatureSelect} />
       </div>
 
       {/* 5. KOTAK POS + DONASI + KOMUNITAS: tiga ubin kecil sebaris */}
-      <div className="grid grid-cols-3 gap-2.5 sm:gap-3 md:gap-4">
+      <div data-tour="castle-tiles" className="grid grid-cols-3 gap-2.5 sm:gap-3 md:gap-4">
         <MailboxCard playerName={stats.playerName || ''} soundEnabled={stats.soundEnabled} onOpenAuth={onOpenAuth} />
         <SupportCard soundEnabled={stats.soundEnabled} />
         <CommunityCard soundEnabled={stats.soundEnabled} />

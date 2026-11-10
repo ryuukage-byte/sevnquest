@@ -146,11 +146,6 @@ export function useAppNavigation() {
     }
   }, []);
 
-  const handleOpenAuthFromOnboarding = useCallback(() => {
-    handleCompleteOnboarding();
-    setIsAuthModalOpen(true);
-  }, [handleCompleteOnboarding]);
-
   const handleReplayOnboarding = useCallback(() => {
     setIsRecallActive(false);
     setActiveTab('home');
@@ -167,6 +162,6 @@ export function useAppNavigation() {
     handleTabChange, handleOpenTower, handleNavigateToOfficialBooks,
     libraryTabRequest, handleOpenLibraryTab,
     deckAiRequest, handleOpenDeckAi,
-    isOnboardingActive, handleCompleteOnboarding, handleOpenAuthFromOnboarding, handleReplayOnboarding,
+    isOnboardingActive, handleCompleteOnboarding, handleReplayOnboarding,
   };
 }

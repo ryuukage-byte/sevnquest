@@ -91,7 +91,7 @@ export const LibraryView: React.FC<LibraryViewProps> = ({
           </div>
 
           {/* Volume Tab Switcher */}
-          <div className="book-tab-nav flex-wrap justify-center sm:justify-start shrink-0">
+          <div data-tour="library-tabs" className="book-tab-nav flex-wrap justify-center sm:justify-start shrink-0">
             {/* Jilid I: Kosakata */}
             <button
               onClick={() => handleTabChange('kotoba')}

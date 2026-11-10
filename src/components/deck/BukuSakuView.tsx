@@ -384,7 +384,7 @@ export const BukuSakuView: React.FC<BukuSakuViewProps> = ({
       {!activeDeck ? (
         <div className="space-y-6">
           {/* Sub-Tab Navigation Bar: Buku Saku Saya vs Buku Kurikulum Resmi */}
-          <div className="panel p-1.5 rounded-2xl bg-surface-inset border border-border-subtle flex items-center gap-2 shadow-inner">
+          <div data-tour="deck-subtabs" className="panel p-1.5 rounded-2xl bg-surface-inset border border-border-subtle flex items-center gap-2 shadow-inner">
             <button
               type="button"
               onClick={() => {
@@ -489,7 +489,7 @@ export const BukuSakuView: React.FC<BukuSakuViewProps> = ({
                 </p>
               </div>
 
-              <div className="flex items-center gap-2.5 shrink-0 flex-wrap">
+              <div data-tour="deck-actions" className="flex items-center gap-2.5 shrink-0 flex-wrap">
                 <button
                   type="button"
                   onClick={() => {

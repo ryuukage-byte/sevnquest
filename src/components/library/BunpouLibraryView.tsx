@@ -211,7 +211,7 @@ export const BunpouLibraryView: React.FC<BunpouLibraryViewProps> = ({
       ) : (
         <>
           {/* Search & Level Filter */}
-          <div className="flex flex-col sm:flex-row gap-3">
+          <div data-tour="bunpou-search" className="flex flex-col sm:flex-row gap-3">
         <JapaneseSearchInput
           value={searchQuery}
           onChange={(v) => { setSearchQuery(v); setVisibleCount(40); }}
