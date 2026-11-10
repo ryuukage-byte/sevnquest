@@ -263,6 +263,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
         {/* Recall Memori (SRS) */}
         <button
           type="button"
+          data-tour="castle-recall"
           onClick={() => {
             if (onStartRecall && recallClickable) {
               playSound('click', stats.soundEnabled);
@@ -322,6 +323,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
         {/* Panduan SevnQuest (selalu bisa dibuka ulang) */}
         <button
           type="button"
+          data-tour="castle-guide"
           onClick={openGuide}
           className="panel !p-3 flex flex-col items-center justify-center gap-1.5 text-center min-w-0 min-h-[100px] md:min-h-[140px] lg:min-h-[160px] md:gap-2.5 hover:bg-surface-elevated/40 cursor-pointer transition-all group"
         >

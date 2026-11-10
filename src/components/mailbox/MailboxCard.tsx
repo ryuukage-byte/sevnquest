@@ -45,6 +45,7 @@ export const MailboxCard: React.FC<MailboxCardProps> = ({ playerName, soundEnabl
         onClick={onClick}
         aria-label={label}
         title={label}
+        data-tour="castle-mailbox"
         className={`${CASTLE_TILE} hover:bg-surface-elevated/40 cursor-pointer`}
       >
         <MailboxIdle variant="red" flagUp={flagUp || adminWaiting} size={34} />

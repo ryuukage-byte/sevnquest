@@ -1625,7 +1625,7 @@ export const KanjiWritingCanvas: React.FC<KanjiWritingCanvasProps> = ({
       </div>
 
       {/* Interactive Writing Canvas with Japanese Grid */}
-      <div className="relative w-full aspect-square max-w-[320px] sm:max-w-[340px] rounded-3xl overflow-hidden border border-border-subtle shadow-2xl bg-surface-inset touch-none">
+      <div data-tour="writing-canvas" className="relative w-full aspect-square max-w-[320px] sm:max-w-[340px] rounded-3xl overflow-hidden border border-border-subtle shadow-2xl bg-surface-inset touch-none">
         {/* Background Grid Canvas */}
         <canvas
           ref={gridCanvasRef}

@@ -52,6 +52,7 @@ import { KotobaDetailModal } from '../library/KotobaDetailModal';
 import { KanjiDetailModal } from '../library/KanjiDetailModal';
 import { recordKanjiWriting } from '../../utils/kanjiWritingRecord';
 import { BunpouDetailModal } from '../library/BunpouDetailModal';
+import type { DeckAiRequest } from '../../engine/deck/deckPrefill';
 
 
 interface BukuSakuViewProps {
@@ -83,6 +84,8 @@ interface BukuSakuViewProps {
   furiganaEnabled?: boolean;
   initialSubTab?: 'my_pocket' | 'official_books';
   onSubTabChange?: (tab: 'my_pocket' | 'official_books') => void;
+  /** Permintaan membuka Penyusun Deck dengan isian awal (mis. dari Naga Pemandu). */
+  aiRequest?: DeckAiRequest;
 }
 
 export const BukuSakuView: React.FC<BukuSakuViewProps> = ({
@@ -106,6 +109,7 @@ export const BukuSakuView: React.FC<BukuSakuViewProps> = ({
   furiganaEnabled = true,
   initialSubTab,
   onSubTabChange,
+  aiRequest,
 }) => {
   const decks = useMemo(() => ensureUserDecks(userDecks), [userDecks]);
 
@@ -143,6 +147,18 @@ export const BukuSakuView: React.FC<BukuSakuViewProps> = ({
   }, [resetSignal]);
   const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
   const [isAiCustomizerOpen, setIsAiCustomizerOpen] = useState(false);
+  // Dideklarasikan sesudah efek reset di atas: navigasi ke tab ini menaikkan resetSignal (menutup modal),
+  // lalu efek ini membukanya lagi dengan isian awal.
+  const [aiPrefillRequest, setAiPrefillRequest] = useState<DeckAiRequest | undefined>();
+  const handledAiRequest = React.useRef(0);
+  useEffect(() => {
+    if (!aiRequest || aiRequest.n === handledAiRequest.current) return;
+    handledAiRequest.current = aiRequest.n;
+    setSelectedDeckId(null);
+    setActiveSubTab('my_pocket');
+    setAiPrefillRequest(aiRequest);
+    setIsAiCustomizerOpen(true);
+  }, [aiRequest]);
   const [editingDeck, setEditingDeck] = useState<UserDeck | null>(null);
   const [isAddItemModalOpen, setIsAddItemModalOpen] = useState(false);
   const [activeRunner, setActiveRunner] = useState<'flashcard' | 'writing' | null>(null);
@@ -685,6 +701,7 @@ export const BukuSakuView: React.FC<BukuSakuViewProps> = ({
       <AIDeckCustomizerModal
         isOpen={isAiCustomizerOpen}
         onClose={() => setIsAiCustomizerOpen(false)}
+        prefillRequest={aiPrefillRequest}
         onSaveDeck={(newDeck) => {
           const currentDecks = ensureUserDecks(userDecks);
           const updated = [newDeck, ...currentDecks];
