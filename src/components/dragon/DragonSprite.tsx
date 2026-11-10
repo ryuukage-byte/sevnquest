@@ -20,6 +20,7 @@ export interface DragonSpriteProps {
 
 import { dragonMotion, loop, pivot } from './dragonMotion';
 import { DragonInk } from './DragonInk';
+import { DragonArt } from './DragonArt';
 
 /**
  * Naga chibi berbasis SVG: satu gambar, bagian tubuh dianimasikan terpisah dengan motion.
@@ -27,7 +28,9 @@ import { DragonInk } from './DragonInk';
  */
 /** Gaya "ink" (Tinta Sumi) punya ilustrasi sendiri; gaya lain memakai gambar dasar dengan palet/tekstur. */
 export const DragonSprite: React.FC<DragonSpriteProps> = (props) =>
-  props.skin?.finish === 'ink' ? <DragonInk {...props} /> : <DragonClassic {...props} />;
+  props.skin?.finish === 'image' ? <DragonArt {...props} />
+    : props.skin?.finish === 'ink' ? <DragonInk {...props} />
+      : <DragonClassic {...props} />;
 
 const DragonClassic: React.FC<DragonSpriteProps> = ({ tier, mood = 'idle', size = 96, className, still, skin }) => {
   const uid = useId().replace(/:/g, '');

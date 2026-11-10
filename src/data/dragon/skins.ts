@@ -8,10 +8,11 @@
  *  - lacquer : pernis mengilap dengan pinggiran emas (urushi).
  *  - ink     : kertas washi + garis tinta sumi bergaya ukiran (sama seperti ikon navigasi).
  *  - pixel   : versi logam yang dirender pixel art, senada dengan avatar karakter.
+ *  - image   : ilustrasi jadi milik pemilik (src/assets/dragon/tatsu.webp), dianimasikan utuh.
  */
 import type { DragonPalette } from './tiers';
 
-export type DragonFinish = 'metal' | 'lacquer' | 'ink' | 'pixel';
+export type DragonFinish = 'metal' | 'lacquer' | 'ink' | 'pixel' | 'image';
 
 export interface DragonSkinPalette extends DragonPalette {
   /** Sisi gelap tanduk (bidang tak terkena cahaya). */
@@ -102,6 +103,37 @@ export const DRAGON_SKINS: DragonSkin[] = [
       horn: '#f6d27a', hornShade: '#a97c16', eye: '#f0be52', outline: '#0b0d12', glow: '#f0be52', cheek: null,
     },
   },
+  {
+    id: 'tatsu-navy',
+    name: 'Tatsu Navy',
+    inspiration: 'Ilustrasi resmi Tatsu dari pemilik: navy dengan bilah perak, senada logo SevnQuest.',
+    finish: 'image',
+    palette: {
+      body: '#1e2647', bodyShade: '#141a33', belly: '#efe9e2', wing: '#1e2647', wingMembrane: '#e6e0d8',
+      horn: '#d5d6da', hornShade: '#9a9da6', eye: '#2a3358', outline: '#0e1226', glow: '#c9d2e6', cheek: null,
+    },
+  },
+];
+
+/**
+ * Tampilan per tier untuk gaya 'image' (indeks = DragonTier.index). Gambarnya satu; tier dibedakan
+ * lewat rona badan (filter CSS; bagian perak/krem nyaris tidak berubah), warna tepi cahaya, aura, dan halo.
+ */
+export interface ArtTierLook {
+  /** Filter CSS untuk gambar ('' = warna asli). */
+  filter: string;
+  /** Warna tepi cahaya & aura. */
+  accent: string;
+}
+
+export const ART_TIER_LOOKS: ArtTierLook[] = [
+  { filter: '', accent: '#c9d2e6' },                                              // Hatchling: navy asli
+  { filter: 'hue-rotate(-38deg) saturate(1.7) brightness(1.2)', accent: '#7fd0e0' }, // Juvenile: biru laut
+  { filter: 'hue-rotate(128deg) saturate(1.8) brightness(1.2)', accent: '#f08a8f' }, // Young: merah hanko
+  { filter: 'hue-rotate(48deg) saturate(1.7) brightness(1.2)', accent: '#b79cf0' },  // Adult: ungu fuji
+  { filter: 'hue-rotate(-82deg) saturate(1.7) brightness(1.2)', accent: '#7fd9a8' }, // Elder: hijau giok + aura
+  { filter: 'hue-rotate(165deg) saturate(2) brightness(1.25)', accent: '#f0be52' },  // Ancient: tembaga + aura emas
+  { filter: '', accent: '#f0be52' },                                              // Celestial: navy asli + halo & aura emas
 ];
 
 /**
@@ -129,5 +161,5 @@ export const INK_TIER_TONES: InkTone[] = [
   { wash: '#b0832a', iris: '#8a6418', horn: '#b0832a', accent: '#e8b84a' }, // Celestial: emas + ensō
 ];
 
-/** Gaya naga yang aktif di aplikasi (dipilih pemilik: Tinta Sumi). */
-export const ACTIVE_DRAGON_SKIN: DragonSkin = DRAGON_SKINS.find(s => s.id === 'tinta-sumi')!;
+/** Gaya naga yang aktif di aplikasi (dipilih pemilik: ilustrasi Tatsu Navy). */
+export const ACTIVE_DRAGON_SKIN: DragonSkin = DRAGON_SKINS.find(s => s.id === 'tatsu-navy')!;

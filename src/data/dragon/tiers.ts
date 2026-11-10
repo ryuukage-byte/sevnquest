@@ -47,37 +47,37 @@ export const DRAGON_TIERS: DragonTier[] = [
     id: 'juvenile', index: 1, name: 'Juvenile', minRank: 1, requirement: 'Premium',
     palette: { body: '#6fb1e0', bodyShade: '#4c8fc2', belly: '#f4efdc', wing: '#4c8fc2', wingMembrane: '#b8daf2', horn: '#f3e3b5', eye: '#244e72', outline: '#22384f', glow: '#b8daf2' },
     horn: 0.45, wing: 0.8,
-    perks: ['Tinta aizome (indigo)', 'Tanduk tumbuh'],
+    perks: ['Sisik biru laut'],
   },
   {
     id: 'young', index: 2, name: 'Young Dragon', minRank: 2, requirement: 'Super Premium Lv.1',
     palette: { body: '#e98c8c', bodyShade: '#c96a6e', belly: '#fbeedd', wing: '#c96a6e', wingMembrane: '#f6c7c2', horn: '#fff1cf', eye: '#6b2a33', outline: '#4d232a', glow: '#f6c7c2' },
     horn: 0.6, wing: 0.9,
-    perks: ['Tinta hanko (merah)', 'Jambul duri'],
+    perks: ['Sisik merah hanko'],
   },
   {
     id: 'adult', index: 3, name: 'Adult Dragon', minRank: 3, requirement: 'Super Premium Lv.2',
     palette: { body: '#8e7cd6', bodyShade: '#6c5ab8', belly: '#f1ead9', wing: '#6c5ab8', wingMembrane: '#cdc3f0', horn: '#fbe6b0', eye: '#3a2c74', outline: '#2c2450', glow: '#cdc3f0' },
     horn: 0.75, wing: 1,
-    perks: ['Tinta fuji (ungu)', 'Sayap dewasa'],
+    perks: ['Sisik ungu fuji'],
   },
   {
     id: 'elder', index: 4, name: 'Elder Dragon', minRank: 5, requirement: 'Super Premium Lv.4',
     palette: { body: '#3f8f88', bodyShade: '#2d6f69', belly: '#efe4c4', wing: '#2d6f69', wingMembrane: '#9fd3cb', horn: '#f0d58c', eye: '#1d4844', outline: '#173936', glow: '#9fd3cb' },
     horn: 0.85, wing: 1.05,
-    perks: ['Kumis emas', 'Aura tinta'],
+    perks: ['Sisik hijau giok', 'Aura'],
   },
   {
     id: 'ancient', index: 5, name: 'Ancient Dragon', minRank: 7, requirement: 'Super Premium Lv.6',
     palette: { body: '#b5523b', bodyShade: '#8e3b28', belly: '#f3dfb7', wing: '#8e3b28', wingMembrane: '#e8a98a', horn: '#f4cf6b', eye: '#4a1a10', outline: '#3a160d', glow: '#f4cf6b' },
     horn: 1, wing: 1.1,
-    perks: ['Batu segel di dahi', 'Tinta merah tua'],
+    perks: ['Sisik tembaga', 'Aura emas'],
   },
   {
     id: 'celestial', index: 6, name: 'Celestial Dragon', minRank: 8, requirement: 'Super Premium Lv.7',
     palette: { body: '#f2f0fa', bodyShade: '#c9c3e6', belly: '#fff8e6', wing: '#c9c3e6', wingMembrane: '#e6e1ff', horn: '#f0be52', eye: '#4b3f8f', outline: '#3d3566', glow: '#f0be52' },
     horn: 1, wing: 1.2,
-    perks: ['Halo ensō emas', 'Tanduk emas'],
+    perks: ['Halo emas', 'Aura emas'],
   },
 ];
 

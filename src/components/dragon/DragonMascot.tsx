@@ -4,11 +4,12 @@ import { AnimatePresence, motion } from 'motion/react';
 import { ArrowLeft, Check, Lock, Minus, Send, X } from 'lucide-react';
 import { DragonEgg as ClassicEgg, DragonSprite as BaseSprite, type DragonMood, type DragonSpriteProps } from './DragonSprite';
 import { DragonInkEgg } from './DragonInk';
+import { DragonArtEgg } from './DragonArt';
 import { ACTIVE_DRAGON_SKIN } from '../../data/dragon/skins';
 
 /** Semua naga di panel memakai gaya aktif (Tinta Sumi). */
 const DragonSprite: React.FC<DragonSpriteProps> = (p) => <BaseSprite skin={ACTIVE_DRAGON_SKIN} {...p} />;
-const DragonEgg = ACTIVE_DRAGON_SKIN.finish === 'ink' ? DragonInkEgg : ClassicEgg;
+const DragonEgg = ACTIVE_DRAGON_SKIN.finish === 'image' ? DragonArtEgg : ACTIVE_DRAGON_SKIN.finish === 'ink' ? DragonInkEgg : ClassicEgg;
 import { DragonSpotlight, findTarget, measureTarget } from './DragonSpotlight';
 import { TOURS, singleStepTour, stepNeedsSpotlight, type DragonTour } from '../../engine/dragon/tours';
 import { DRAGON_DEFAULT_NAME, DRAGON_TIERS, dragonTierForRank, type DragonTier } from '../../data/dragon/tiers';
