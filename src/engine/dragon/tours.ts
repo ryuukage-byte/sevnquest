@@ -21,6 +21,8 @@ export interface TourStep {
   /** Nama elemen untuk balon teks. */
   label: string;
   text: string;
+  /** Nama bagian tur (mis. "Library"), ditampilkan di label langkah. */
+  chapter?: string;
   /** Poin tambahan (mis. aturan nilai) di bawah teks. */
   points?: string[];
   action: TourAction;
@@ -31,6 +33,8 @@ export type TourId = 'welcome' | 'menulis-kanji' | 'login' | 'kotak-pos' | 'dona
 export interface DragonTour {
   id: string;
   steps: TourStep[];
+  /** Elemen langkah tidak muncul (mis. fitur tidak tersedia): lewati langkahnya, jangan hentikan tur. */
+  skipMissing?: boolean;
 }
 
 /** Langkah pembuka: pindah ke sebuah tab (dilewati otomatis bila pemain sudah di tab itu). */
@@ -44,62 +48,180 @@ const goTab = (tab: 'home' | 'maps' | 'settings', label: string, text: string): 
 export const TOURS: Record<TourId, DragonTour> = {
   welcome: {
     id: 'welcome',
+    skipMissing: true,
     steps: [
       {
+        chapter: 'Castle',
         selector: '[data-tour="hero-card"]',
         label: 'Karakter',
-        text: 'Halo, aku Tatsu! Kuantar kamu keliling SevnQuest. Mulai dari Castle, rumah belajarmu. Kartu ini menunjukkan level, EXP, dan HP.',
+        text: 'Halo, aku Tatsu! Kuantar kamu keliling SevnQuest. Ini Castle, rumah belajarmu, dan kartu karaktermu.',
         points: [
-          'Ketuk kartu ini untuk membagi stat atau melihat Lembar Status.',
+          'Level, EXP, dan HP naik setiap kamu belajar.',
+          'Ketuk kartu ini untuk membuka Lembar Status: bagi stat, ganti nama dan avatar, lihat titik lemahmu.',
         ],
         action: { kind: 'info', button: 'Mulai tur' },
       },
       {
-        selector: '[data-tour="castle-recall"]',
-        label: 'Recall Memori',
-        text: 'Recall Memori mengulang kata yang mulai terlupa.',
+        chapter: 'Castle',
+        selector: '[data-tour="castle-next"]',
+        label: 'Langkah Berikutnya',
+        text: 'Tombol besar ini adalah Langkah Berikutnya.',
         points: [
-          'Ketuk kartu Recall Memori, lalu jawab kartunya satu per satu.',
-          'Kalau tertulis "Kosong", belum ada yang perlu diulang.',
+          'Aplikasi memilihkan apa yang sebaiknya kamu kerjakan sekarang.',
+          'Ketuk untuk langsung mengerjakannya. Pemain baru diarahkan ke Panduan dulu.',
         ],
         action: { kind: 'info' },
       },
       {
+        chapter: 'Castle',
+        selector: '[data-tour="castle-quick"]',
+        label: 'Jalan pintas',
+        text: 'Tiga jalan pintas belajar:',
+        points: [
+          'Recall Memori: ulang kata yang mulai terlupa. Ketuk, lalu jawab kartunya satu per satu. Tulisan "Kosong" berarti belum ada yang perlu diulang.',
+          'Misi Harian: lihat target hari ini dan klaim hadiahnya.',
+          'Panduan: penjelasan SevnQuest dan jalur belajar yang disarankan.',
+        ],
+        action: { kind: 'info' },
+      },
+      {
+        chapter: 'Castle',
+        selector: '[data-tour="castle-search"]',
+        label: 'Pencarian fitur',
+        text: 'Lupa fitur ada di mana?',
+        points: [
+          'Ketik namanya di kolom ini, misalnya "flashcard" atau "kanji".',
+          'Ketuk hasilnya, dan aplikasi langsung membukakan fiturnya.',
+        ],
+        action: { kind: 'info' },
+      },
+      {
+        chapter: 'Castle',
+        selector: '[data-tour="castle-tiles"]',
+        label: 'Kotak Pos, Donasi, Komunitas',
+        text: 'Tiga ubin ini:',
+        points: [
+          'Kotak Pos: tulis surat ke admin dan baca balasannya (perlu login).',
+          'Donasi: ketuk untuk membuka QRIS dan mendukung SevnQuest. Dukungan juga membuka tier naga.',
+          'Komunitas: grup belajar bersama, segera hadir.',
+        ],
+        action: { kind: 'info' },
+      },
+      {
+        chapter: 'Castle',
+        selector: '[data-tour="pwa-install"]',
+        label: 'Pasang App',
+        text: 'Tombol Pasang App memasang SevnQuest ke layar utama supaya terbuka seperti aplikasi.',
+        points: [
+          'Ketuk, lalu ikuti petunjuk yang muncul.',
+        ],
+        action: { kind: 'info' },
+      },
+      {
+        chapter: 'Library',
         selector: '[data-tour="nav-library"]',
         label: 'Library',
         text: 'Sekarang Library, kamus lengkapmu. Ketuk Library di sini.',
         action: { kind: 'command', command: { type: 'library', tab: 'kotoba' } },
       },
       {
+        chapter: 'Library',
         selector: '[data-tour="library-tabs"]',
         label: 'Library',
-        text: 'Pilih jilid yang kamu mau:',
+        text: 'Library punya enam jilid. Ketuk jilidnya untuk berpindah:',
         points: [
-          'Kosakata: 18.000+ kata. Ketik di kolom cari (kanji, kana, romaji, atau Indonesia), lalu ketuk kata untuk melihat arti dan contoh kalimat.',
-          'Kanji: 2.500+ kanji. Ketuk satu kanji untuk bacaan, arti, dan goresan, lalu buka tab Latihan Menulis.',
-          'Tata Bahasa: 900+ pola dengan rumus dan contoh.',
-          'Dokkai (baca) dan Choukai (dengar) untuk latihan JLPT.',
-          'Bank Soal: 10.000+ soal N5 sampai N1.',
+          'Kosakata, Kanji, dan Tata Bahasa: kamus lengkap.',
+          'Dokkai untuk latihan membaca, Choukai untuk latihan mendengar.',
+          'Bank Soal: latihan soal JLPT N5 sampai N1.',
         ],
         action: { kind: 'info' },
       },
       {
+        chapter: 'Library',
+        selector: '[data-tour="kotoba-search"]',
+        label: 'Kosakata',
+        text: 'Kosakata: 18.000+ kata.',
+        points: [
+          'Ketik kata di kolom cari (kanji, kana, romaji, atau arti Indonesia).',
+          'Ketuk tombol filter untuk memilih level: N5 sampai N1, Kaigo (caregiver), atau SSW dan istilah kerja.',
+          'Ketuk sebuah kata untuk melihat arti, bacaan, dan contoh kalimat. Ikon bookmark menyimpannya untuk deck.',
+        ],
+        action: { kind: 'info' },
+      },
+      {
+        chapter: 'Library',
+        selector: '[data-tour="nav-library"]',
+        label: 'Kanji',
+        text: 'Membuka tab Kanji.',
+        action: { kind: 'command', command: { type: 'library', tab: 'kanji' } },
+      },
+      {
+        chapter: 'Library',
+        selector: '[data-tour="kanji-item"]',
+        label: 'Kanji',
+        text: 'Kanji: 2.500+ kanji N5 sampai N1. Hiragana dan katakana ada lewat filter kategori. Ketuk satu kanji untuk melihat:',
+        points: [
+          'Onyomi, kunyomi, arti, dan komponen penyusunnya.',
+          'Tab Latihan Menulis di dalamnya, untuk berlatih urutan goresan.',
+        ],
+        action: { kind: 'info' },
+      },
+      {
+        chapter: 'Library',
+        selector: '[data-tour="nav-library"]',
+        label: 'Tata Bahasa',
+        text: 'Membuka tab Tata Bahasa.',
+        action: { kind: 'command', command: { type: 'library', tab: 'bunpou' } },
+      },
+      {
+        chapter: 'Library',
+        selector: '[data-tour="bunpou-search"]',
+        label: 'Tata Bahasa',
+        text: 'Tata Bahasa: 900+ pola kalimat.',
+        points: [
+          'Cari rumus atau arti di kolom ini, atau saring berdasarkan level.',
+          'Ketuk sebuah pola untuk melihat rumus, arti, dan contoh kalimat.',
+        ],
+        action: { kind: 'info' },
+      },
+      {
+        chapter: 'Library',
+        selector: '[data-tour="nav-library"]',
+        label: 'Bank Soal',
+        text: 'Membuka tab Bank Soal.',
+        action: { kind: 'command', command: { type: 'library', tab: 'soal' } },
+      },
+      {
+        chapter: 'Library',
+        selector: '[data-tour="soal-modes"]',
+        label: 'Bank Soal',
+        text: 'Bank Soal: 10.000+ soal JLPT.',
+        points: [
+          'Latihan Harian: 10 soal acak, lengkap dengan pembahasan setelah selesai.',
+          'Simulasi Ujian Nyata: soal bergaya ujian sungguhan.',
+        ],
+        action: { kind: 'info' },
+      },
+      {
+        chapter: 'Buku Saku',
         selector: '[data-tour="nav-deck"]',
         label: 'Buku Saku',
-        text: 'Berikutnya Buku Saku, tempat hafalanmu. Ketuk Buku Saku di sini.',
+        text: 'Sekarang Buku Saku, tempat hafalanmu. Ketuk Buku Saku di sini.',
         action: { kind: 'command', command: { type: 'tab', tab: 'deck' } },
       },
       {
+        chapter: 'Buku Saku',
         selector: '[data-tour="deck-subtabs"]',
         label: 'Buku Saku',
         text: 'Ada dua rak di sini:',
         points: [
           'Buku Saku Saya: deck milikmu sendiri.',
-          'Buku Kurikulum Resmi: Soumatome, Minna no Nihongo, dan lainnya. Ketuk sebuah buku, pilih bab, lalu salin isinya ke deck-mu.',
+          'Buku Kurikulum Resmi: buku seperti Soumatome dan Minna no Nihongo.',
         ],
         action: { kind: 'info' },
       },
       {
+        chapter: 'Buku Saku',
         selector: '[data-tour="deck-actions"]',
         label: 'Buat Deck',
         text: 'Cara membuat dan memakai deck:',
@@ -111,52 +233,124 @@ export const TOURS: Record<TourId, DragonTour> = {
         action: { kind: 'info' },
       },
       {
+        chapter: 'Buku Saku',
+        selector: '[data-tour="nav-deck"]',
+        label: 'Buku Resmi',
+        text: 'Membuka Buku Kurikulum Resmi.',
+        action: { kind: 'command', command: { type: 'official_books' } },
+      },
+      {
+        chapter: 'Buku Saku',
+        selector: '[data-tour="book-list"]',
+        label: 'Buku Resmi',
+        text: 'Buku Kurikulum Resmi:',
+        points: [
+          'Ketuk sebuah buku untuk melihat bab-babnya.',
+          'Salin isi bab ke Buku Saku Saya, lalu hafalkan lewat flashcard.',
+        ],
+        action: { kind: 'info' },
+      },
+      {
+        chapter: 'World',
         selector: '[data-tour="nav-maps"]',
         label: 'World',
         text: 'Waktunya bermain. Ketuk World di sini.',
         action: { kind: 'command', command: { type: 'tab', tab: 'maps' } },
       },
       {
-        selector: '[data-tour="world-modes"]',
-        label: 'World',
-        text: 'Pilih mode lewat tombol-tombol ini:',
+        chapter: 'World',
+        selector: '[data-tour="world-arcade"]',
+        label: 'Arena Arcade',
+        text: 'Pertama, Arena Arcade. Ketuk tombol ini.',
+        action: { kind: 'click' },
+      },
+      {
+        chapter: 'World',
+        selector: '[data-tour="arcade-games"]',
+        label: 'Arena Arcade',
+        text: 'Lima game kilat. Ketuk satu kartu untuk bermain, rekormu tercatat:',
         points: [
-          'Arena Arcade: pilih satu game kilat (Kanji Speed Rush, Sudden Death, dll), atur sumber soal, lalu main.',
-          'Mode Dungeon: pilih dungeon, atur level dan jumlah lantai, lalu Mulai.',
-          'Menara Nihongo (Tower): pilih lantai dan naik satu per satu.',
+          'Kanji Speed Rush: tulis kanji sebanyak mungkin dalam 60 detik.',
+          'Sudden Death 3 Nyawa: salah tiga kali, permainan selesai.',
+          'Kotoba Guess Relay: tebak arti kata dari suaranya.',
+          'Altar Konjugasi Kilat: ubah bentuk kata kerja dalam 60 detik.',
+          'Susun Bintang Kilat: susun kalimat dan temukan kata di posisi bintang.',
         ],
         action: { kind: 'info' },
       },
       {
+        chapter: 'World',
+        selector: '[data-tour="world-modes"]',
+        label: 'Mode Dungeon',
+        text: 'Tombol Dungeon: sebelas gerbang latihan bebas. Ketuk Dungeon, pilih satu gerbang, atur level dan jumlah lantai, lalu Mulai.',
+        points: [
+          'Menulis Aksara dan Gerbang Ingatan (flashcard).',
+          'Kuil Tata Bahasa, Altar Konjugasi, dan Kuis Cepat.',
+          'Gerbang Kanji Extreme: tebak bacaan, stage makin sulit.',
+          'Perpustakaan Teks: tempel teksmu sendiri, lalu dibedah dan dilatih.',
+          'Dungeon Imersi: belajar dari lagu dan video YouTube.',
+        ],
+        action: { kind: 'info' },
+      },
+      {
+        chapter: 'World',
+        selector: '[data-tour="world-modes"]',
+        label: 'Menara Nihongo',
+        text: 'Tombol Tower: Menara Nihongo, didaki lantai demi lantai sampai Lantai 100. Ketuk Tower, pilih menara, lalu ketuk sebuah lantai.',
+        points: [
+          'Menara 1 (001-016): belajar MELIHAT bahasa Jepang lewat aksara, bunyi, dan susunan kalimat.',
+          'Menara 2 (017-100): belajar MEMAKAINYA, dari N5 menuju N4, dengan ujian campuran tiap kelipatan sepuluh.',
+          'Bintang dan progresmu tersimpan.',
+        ],
+        action: { kind: 'info' },
+      },
+      {
+        chapter: 'Misi',
         selector: '[data-tour="nav-daily"]',
         label: 'Misi',
         text: 'Satu lagi: Misi. Ketuk Misi di sini.',
         action: { kind: 'command', command: { type: 'tab', tab: 'daily' } },
       },
       {
+        chapter: 'Misi',
         selector: '[data-tour="missions-tabs"]',
         label: 'Misi',
         text: 'Dua jenis misi:',
         points: [
-          'Misi Harian: kerjakan targetnya, lalu ketuk Klaim untuk EXP dan Koin.',
-          'Mandat Mingguan: tab di sebelahnya, hadiahnya lebih besar.',
-          'Belajar tiap hari menjaga streak-mu.',
+          'Misi Harian: kerjakan targetnya, lalu ketuk KLAIM untuk EXP dan Koin.',
+          'Mandat Mingguan: target seminggu dengan hadiah lebih besar.',
+          'Belajar setiap hari menjaga streak-mu.',
         ],
         action: { kind: 'info' },
       },
       {
+        chapter: 'Rank',
         selector: '[data-tour="nav-leaderboard"]',
         label: 'Rank',
-        text: 'Rank adalah papan peringkat semua pemain. Ketuk Rank kapan saja untuk melihat posisimu, sepanjang masa atau mingguan.',
+        text: 'Ketuk Rank untuk melihat papan peringkat.',
+        action: { kind: 'command', command: { type: 'tab', tab: 'leaderboard' } },
+      },
+      {
+        chapter: 'Rank',
+        selector: '[data-tour="rank-tabs"]',
+        label: 'Rank',
+        text: 'Dua papan peringkat:',
+        points: [
+          'Hall of Fame: total EXP seumur hidup.',
+          'Weekly Arena: skor Quiz dan Kanji minggu ini, direset tiap hari Senin.',
+          'Ketuk nama pemain untuk melihat profilnya.',
+        ],
         action: { kind: 'info' },
       },
       {
+        chapter: 'Menu',
         selector: '[data-tour="nav-settings"]',
         label: 'Menu',
         text: 'Terakhir, Menu. Ketuk Menu di sini.',
         action: { kind: 'command', command: { type: 'tab', tab: 'settings' } },
       },
       {
+        chapter: 'Menu',
         selector: '[data-tour="settings-account"]',
         label: 'kartu akun',
         text: 'Login di kartu ini supaya progresmu tersimpan di Cloud:',
@@ -167,6 +361,26 @@ export const TOURS: Record<TourId, DragonTour> = {
         action: { kind: 'info' },
       },
       {
+        chapter: 'Menu',
+        selector: '[data-tour="settings-profile"]',
+        label: 'Profil Pemain',
+        text: 'Profil Pemain: ganti nama petualang, tipe karakter, dan avatarmu di sini.',
+        action: { kind: 'info' },
+      },
+      {
+        chapter: 'Menu',
+        selector: '[data-tour="settings-study"]',
+        label: 'Pengaturan Belajar',
+        text: 'Pengaturan belajar:',
+        points: [
+          'Tema Visual: pilih gelap atau terang.',
+          'Bantuan Furigana dan Kanji: atur bantuan cara baca.',
+          'Ulangi Tur: putar lagi tur ini kapan saja.',
+        ],
+        action: { kind: 'info' },
+      },
+      {
+        chapter: 'Menu',
         selector: '[data-tour="nav-home"]',
         label: 'Castle',
         text: 'Selesai! Ketuk Castle untuk kembali. Kalau butuh bantuan, ketuk aku dan ketik saja apa yang mau kamu lakukan.',

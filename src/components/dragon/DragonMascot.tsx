@@ -324,6 +324,10 @@ export const DragonMascot: React.FC<DragonMascotProps> = ({ hidden, soundEnabled
         setTour(t => (t && t.index === tour.index ? { ...t, ready: true } : t));
       } else if (Date.now() - started > 8000) {
         clearInterval(poll); // elemen tidak muncul (mis. daftar kosong): hentikan tur dengan tenang
+        if (tour.tour.skipMissing && tour.index < tour.tour.steps.length - 1) {
+          setTour(t => (t && t.index === tour.index ? { ...t, index: t.index + 1, ready: false } : t)); // tur perkenalan: lewati saja
+          return;
+        }
         setTour(null);
         setMood('idle');
       }

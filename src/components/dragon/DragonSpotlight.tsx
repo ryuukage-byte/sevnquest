@@ -128,9 +128,13 @@ export const DragonSpotlight: React.FC<DragonSpotlightProps> = ({ step, stepNo, 
   const groupW = Math.min(GROUP_MAX_W, vp.w - 24);
   const cx = rect.left + rect.width / 2;
   const left = Math.max(12, Math.min(cx - groupW / 2, vp.w - groupW - 12));
-  const groupStyle: React.CSSProperties = above
-    ? { left, bottom: Math.max(12, vp.h - rect.top + GAP), width: groupW, maxHeight: room }
-    : { left, top: Math.min(vp.h - 140, rect.top + rect.height + GAP), width: groupW, maxHeight: room };
+  // Target hampir sebesar layar: tak ada ruang di atas/bawahnya, jadi balon ditempel di bawah layar (di atas navigasi).
+  const docked = room < 200;
+  const groupStyle: React.CSSProperties = docked
+    ? { left, bottom: 84, width: groupW, maxHeight: Math.round(vp.h * 0.5) }
+    : above
+      ? { left, bottom: Math.max(12, vp.h - rect.top + GAP), width: groupW, maxHeight: room }
+      : { left, top: Math.min(vp.h - 140, rect.top + rect.height + GAP), width: groupW, maxHeight: room };
   const arrowLeft = Math.max(rect.left + 4, Math.min(cx - 12, rect.left + rect.width - 28));
   const Arrow = above ? ChevronDown : ChevronUp;
   const bottomOf = rect.top + rect.height;
@@ -162,20 +166,20 @@ export const DragonSpotlight: React.FC<DragonSpotlightProps> = ({ step, stepNo, 
         />
       )}
 
-      {/* Panah ke target */}
-      <motion.div
+      {/* Panah ke target (disembunyikan saat balon ditempel di bawah layar) */}
+      {!docked && <motion.div
         className="fixed text-gold"
         style={above ? { left: arrowLeft, top: rect.top - 28 } : { left: arrowLeft, top: bottomOf + 4 }}
         animate={reduce ? {} : { y: above ? [0, 5, 0] : [0, -5, 0] }}
         transition={{ duration: 0.9, repeat: Infinity, ease: 'easeInOut' }}
       >
         <Arrow className="w-6 h-6 stroke-[3]" />
-      </motion.div>
+      </motion.div>}
 
       {/* Naga + balon teks */}
       <motion.div
         key={stepNo}
-        className={`fixed flex gap-2 pointer-events-auto ${above ? 'items-end' : 'items-start'}`}
+        className={`fixed flex gap-2 pointer-events-auto ${above || docked ? 'items-end' : 'items-start'}`}
         style={groupStyle}
         initial={{ opacity: 0, y: above ? 12 : -12 }}
         animate={{ opacity: 1, y: 0 }}
@@ -186,7 +190,7 @@ export const DragonSpotlight: React.FC<DragonSpotlightProps> = ({ step, stepNo, 
         </div>
         <div className="flex-1 min-w-0 max-h-full overflow-y-auto rounded-2xl panel border border-border-subtle shadow-2xl p-3 space-y-2">
           {multi && (
-            <p className="text-[10px] font-mono tracking-wider text-gold">LANGKAH {stepNo}/{stepTotal}</p>
+            <p className="text-[10px] font-mono tracking-wider text-gold">{step.chapter ? `${step.chapter.toUpperCase()} · ` : ''}LANGKAH {stepNo}/{stepTotal}</p>
           )}
           <p className="text-sm text-text-primary font-body leading-snug">{step.text}</p>
           {step.points?.length ? (

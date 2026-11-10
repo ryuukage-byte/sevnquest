@@ -280,7 +280,7 @@ export const LeaderboardView: React.FC<LeaderboardViewProps> = ({
       </div>
 
       {/* Tabs as Skeuomorphic Pills */}
-      <div className="skeuo-tier-row mb-4">
+      <div data-tour="rank-tabs" className="skeuo-tier-row mb-4">
         <button
           onClick={() => {
             setActiveTab('all-time');

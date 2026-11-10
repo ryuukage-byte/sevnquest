@@ -225,7 +225,7 @@ export const BookshelfView: React.FC<BookshelfViewProps> = ({
       </div>
 
       {/* Grid of Books */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-5">
+      <div data-tour="book-list" className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-5">
         {filteredBooks.map((book) => {
           const { totalItems, pct } = getBookStats(book);
           const isThematic = book.category === 'thematic' || book.level === 'TEMATIK';

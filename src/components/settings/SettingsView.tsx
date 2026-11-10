@@ -211,7 +211,7 @@ export const SettingsView: React.FC<SettingsViewProps> = ({
       </div>
 
       {/* Profile & Avatar Section */}
-      <div className="panel panel-stitched p-4 sm:p-5 space-y-5 shadow-md">
+      <div data-tour="settings-profile" className="panel panel-stitched p-4 sm:p-5 space-y-5 shadow-md">
         <h3 className="text-xs font-bold uppercase tracking-wider text-text-secondary flex items-center gap-1.5 font-heading">
           <User className="w-4 h-4 text-indigo" /> Profil Pemain
         </h3>
@@ -361,7 +361,7 @@ export const SettingsView: React.FC<SettingsViewProps> = ({
       </div>
 
       {/* Audio & Sound Effects Section */}
-      <div className="panel panel-stitched p-4 sm:p-5 space-y-4 shadow-md">
+      <div data-tour="settings-audio" className="panel panel-stitched p-4 sm:p-5 space-y-4 shadow-md">
         <h3 className="text-xs font-bold uppercase tracking-wider text-text-secondary flex items-center gap-1.5 font-heading">
           <Volume2 className="w-4 h-4 text-indigo" /> Audio & Mantra Suara
         </h3>
@@ -458,7 +458,7 @@ export const SettingsView: React.FC<SettingsViewProps> = ({
       </div>
 
       {/* Learning Preferences */}
-      <div className="panel panel-stitched p-4 sm:p-5 space-y-4 shadow-md">
+      <div data-tour="settings-study" className="panel panel-stitched p-4 sm:p-5 space-y-4 shadow-md">
         <h3 className="text-xs font-bold uppercase tracking-wider text-text-secondary flex items-center gap-2 font-mono">
           <BookOpen className="w-4 h-4 text-indigo" />
           <span>Pengaturan Belajar</span>

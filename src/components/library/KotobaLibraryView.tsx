@@ -273,7 +273,7 @@ export const KotobaLibraryView: React.FC<KotobaLibraryViewProps> = ({
       )}
 
       {/* Filters and Search */}
-      <div className="flex flex-col sm:flex-row gap-3">
+      <div data-tour="kotoba-search" className="flex flex-col sm:flex-row gap-3">
         <JapaneseSearchInput
           value={searchQuery}
           onChange={(v) => { setSearchQuery(v); setVisibleCount(50); }}

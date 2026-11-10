@@ -864,7 +864,7 @@ export const QuestionLibraryView: React.FC<QuestionLibraryViewProps> = ({
       </div>
 
       {/* Hero Action Modes Grid (Latihan Harian 10 Soal + Simulasi Ujian Nyata) */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div data-tour="soal-modes" className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {/* Mode 1: Latihan Harian (10 Soal) */}
         <div className="panel panel-stitched p-5 sm:p-6 rounded-3xl border border-border-subtle shadow-sm flex flex-col justify-between space-y-4 hover:border-border-primary transition-colors">
           <div className="space-y-2">
