@@ -66,6 +66,19 @@ function captionsDevApi(): Plugin {
   };
 }
 
+// Di dev, /api/lyrics memakai handler yang sama dengan fungsi Vercel (api/lyrics.ts).
+function lyricsDevApi(): Plugin {
+  return {
+    name: 'lyrics-dev-api',
+    configureServer(server) {
+      server.middlewares.use('/api/lyrics', async (req, res) => {
+        const mod = await server.ssrLoadModule('/api/lyrics.ts');
+        await mod.default(req, res);
+      });
+    },
+  };
+}
+
 export default defineConfig(({mode}) => {
   const env = loadEnv(mode, process.cwd(), '');
   // Target proxy dev/preview. Bisa diganti lewat VITE_SUPABASE_URL tanpa mengubah kode.
@@ -81,7 +94,7 @@ export default defineConfig(({mode}) => {
 
   return {
     base: './',
-    plugins: [react(), tailwindcss(), deckAiDevApi(env), captionsDevApi()],
+    plugins: [react(), tailwindcss(), deckAiDevApi(env), captionsDevApi(), lyricsDevApi()],
     resolve: {
       dedupe: ['react', 'react-dom'],
       alias: {

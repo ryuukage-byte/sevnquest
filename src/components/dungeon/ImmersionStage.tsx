@@ -249,6 +249,11 @@ export const ImmersionStage: React.FC<Props> = ({ videoId, captions, sentenceRec
           {captions.status === 'ready' && captions.kind === 'auto' && (
             <p className="text-[11px] text-text-muted text-center">Subtitle dibuat otomatis oleh YouTube, jadi bisa ada salah dengar.</p>
           )}
+          {captions.status === 'ready' && captions.kind === 'lrclib' && (
+            <p className="text-[11px] text-text-muted text-center">
+              Lirik dari <a href="https://lrclib.net" target="_blank" rel="noreferrer" className="underline">LRCLIB</a>. Waktu tiap baris dibuat pengguna LRCLIB, jadi bisa sedikit meleset dari audio.
+            </p>
+          )}
 
           <div className="flex items-center justify-center gap-2 sm:gap-3">
             <button type="button" aria-label="Ulang baris ini" disabled={activeIdx < 0} onClick={() => jump(activeIdx)} className={iconBtn}>
