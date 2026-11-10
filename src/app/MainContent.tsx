@@ -47,7 +47,7 @@ export function MainContent(props: MainContentProps) {
     setIsStatusModalOpen, isRecallActive, setIsRecallActive,
     isAuthModalOpen, setIsAuthModalOpen,
     worldNavView, setWorldNavView, worldResetCount, deckResetCount, deckInitialSubTab, setDeckInitialSubTab,
-    handleTabChange, handleOpenTower, libraryTabRequest, handleOpenLibraryTab,
+    handleTabChange, handleOpenTower, libraryTabRequest, handleOpenLibraryTab, deckAiRequest,
     handleRewardPlayer, handleStudyComplete, handleRecordItemInteraction, handleTowerMastery,
     handleStartRemediationRecall, handleItemReviewed, handleCompleteRecallSession, handleUseMp,
     handleClaimMission, handleGameOver, handleHpDamage, handleResetData,
@@ -223,6 +223,7 @@ export function MainContent(props: MainContentProps) {
                     resetSignal={deckResetCount}
                     initialSubTab={deckInitialSubTab}
                     onSubTabChange={(subTab) => setDeckInitialSubTab(subTab)}
+                    aiRequest={deckAiRequest}
                     onUpdateDecks={handleUpdateDecks}
                     onRewardPlayer={handleRewardPlayer}
                     onCompleteStudyItem={handleStudyComplete}

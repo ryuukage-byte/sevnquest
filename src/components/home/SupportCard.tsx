@@ -25,6 +25,7 @@ export const SupportCard: React.FC<SupportCardProps> = ({ soundEnabled }) => {
           setOpen(true);
         }}
         aria-label="Donasi lewat QRIS"
+        data-tour="castle-donasi"
         title="Donasi lewat QRIS"
         className={`${CASTLE_TILE} hover:bg-surface-elevated/40 cursor-pointer`}
       >

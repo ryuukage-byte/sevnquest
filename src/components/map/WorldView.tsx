@@ -144,6 +144,7 @@ export const WorldView: React.FC<WorldViewProps> = ({
         {/* TAB 1: ARENA ARCADE */}
         <button
           type="button"
+          data-tour="world-arcade"
           onClick={() => handleSwitchMode('arcade')}
           className={`flex-1 flex items-center justify-center gap-1.5 sm:gap-2 py-2.5 px-2.5 sm:px-3 rounded-xl text-xs sm:text-sm font-bold font-sans transition-all whitespace-nowrap ${
             worldMode === 'arcade'
@@ -161,6 +162,7 @@ export const WorldView: React.FC<WorldViewProps> = ({
         {/* TAB 2: MODE DUNGEON */}
         <button
           type="button"
+          data-tour="world-dungeon"
           onClick={() => handleSwitchMode('dungeon')}
           className={`flex-1 flex items-center justify-center gap-1.5 sm:gap-2 py-2.5 px-2.5 sm:px-3 rounded-xl text-xs sm:text-sm font-bold font-sans transition-all whitespace-nowrap ${
             worldMode === 'dungeon'

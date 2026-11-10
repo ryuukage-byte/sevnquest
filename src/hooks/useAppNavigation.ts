@@ -3,6 +3,7 @@ import type { TabType } from '../components/layout/BottomNavigation';
 import type { WorldNavView } from '../components/map/WorldView';
 import { useBackButton } from './useBackButton';
 import { STORAGE_KEY_ONBOARDING } from '../state/storageKeys';
+import type { DeckAiPrefill, DeckAiRequest } from '../engine/deck/deckPrefill';
 
 /**
  * Navigasi tab, overlay (recall), tombol back sistem, dan onboarding.
@@ -32,6 +33,8 @@ export function useAppNavigation() {
   const [tabHistory, setTabHistory] = useState<TabType[]>([]);
   // Permintaan membuka tab tertentu di Library (mis. misi evaluasi kurikulum -> Soal).
   const [libraryTabRequest, setLibraryTabRequest] = useState<{ tab: 'kotoba' | 'kanji' | 'bunpou' | 'soal'; n: number } | undefined>();
+  // Permintaan membuka Penyusun Deck di Buku Saku dengan isian awal (mis. dari Naga Pemandu).
+  const [deckAiRequest, setDeckAiRequest] = useState<DeckAiRequest | undefined>();
 
   // Hardware / System Back Button Handlers
   useBackButton(isRecallActive, () => {
@@ -116,6 +119,12 @@ export function useAppNavigation() {
     handleTabChange('library');
   }, [handleTabChange]);
 
+  const handleOpenDeckAi = useCallback((prefill: DeckAiPrefill) => {
+    setDeckAiRequest(prev => ({ prefill, n: (prev?.n || 0) + 1 }));
+    setDeckInitialSubTab('my_pocket');
+    handleTabChange('deck');
+  }, [handleTabChange]);
+
   const handleNavigateToOfficialBooks = useCallback(() => {
     setDeckInitialSubTab('official_books');
     handleTabChange('deck');
@@ -157,6 +166,7 @@ export function useAppNavigation() {
     deckResetCount, deckInitialSubTab, setDeckInitialSubTab,
     handleTabChange, handleOpenTower, handleNavigateToOfficialBooks,
     libraryTabRequest, handleOpenLibraryTab,
+    deckAiRequest, handleOpenDeckAi,
     isOnboardingActive, handleCompleteOnboarding, handleOpenAuthFromOnboarding, handleReplayOnboarding,
   };
 }
