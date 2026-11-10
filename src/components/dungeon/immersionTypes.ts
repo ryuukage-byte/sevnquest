@@ -5,7 +5,7 @@ export type LyricLine = CaptionLineInput;
 export type CaptionState =
   | { status: 'idle' }
   | { status: 'loading' }
-  | { status: 'ready'; lines: LyricLine[]; kind: 'manual' | 'auto' | 'template' }
+  | { status: 'ready'; lines: LyricLine[]; kind: 'manual' | 'auto' | 'template' | 'lrclib' }
   | { status: 'error'; message: string };
 
 export type SubDungeon = 'music' | 'video';

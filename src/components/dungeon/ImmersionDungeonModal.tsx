@@ -8,6 +8,7 @@ import { ImmersionStage, type SentenceRecallHooks } from './ImmersionStage';
 import { ImmersionTemplatePanel } from './ImmersionTemplatePanel';
 import type { ImmersionTemplate } from '../../engine/textStudy/immersionTemplate';
 import type { CaptionState, LyricLine, SubDungeon } from './immersionTypes';
+import { fetchLrclibCaptions, type LrclibQuery } from './lrclibCaptions';
 
 interface Props {
   onClose: () => void;
@@ -56,6 +57,10 @@ export const ImmersionDungeonModal: React.FC<Props> = ({ onClose, soundEnabled =
   const [fetched, setFetched] = useState<LyricLine[] | null>(null);
   const [template, setTemplate] = useState<ImmersionTemplate | null>(initialTemplate ?? null);
   const [showAi, setShowAi] = useState(false);
+  // Ruang Musik bisa memakai lirik dari LRCLIB untuk lagu yang sama dengan audio YouTube.
+  const [lyricSource, setLyricSource] = useState<'youtube' | 'lrclib'>('youtube');
+  const [lrclibDraft, setLrclibDraft] = useState({ title: '', artist: '' });
+  const [lrclibQuery, setLrclibQuery] = useState<LrclibQuery | null>(null);
 
   const click = () => playSound('click', soundEnabled);
   const current = SUB_DUNGEONS.find(s => s.id === sub);
@@ -65,6 +70,19 @@ export const ImmersionDungeonModal: React.FC<Props> = ({ onClose, soundEnabled =
       setCaptions({ status: 'idle' });
       setFetched(null);
       return;
+    }
+    if (sub === 'music' && lyricSource === 'lrclib') {
+      setFetched(null);
+      if (!lrclibQuery) {
+        setCaptions({ status: 'idle' });
+        return;
+      }
+      const ctrl = new AbortController();
+      setCaptions({ status: 'loading' });
+      fetchLrclibCaptions(lrclibQuery, ctrl.signal)
+        .then(state => setCaptions(state))
+        .catch(() => { /* dibatalkan karena lagu atau sumber berganti */ });
+      return () => ctrl.abort();
     }
     if (template && template.videoId === videoId) {
       setCaptions({ status: 'ready', lines: template.lines, kind: 'template' });
@@ -92,7 +110,7 @@ export const ImmersionDungeonModal: React.FC<Props> = ({ onClose, soundEnabled =
         setCaptions({ status: 'error', message: err instanceof Error && err.message ? err.message : 'Subtitle gagal diambil.' });
       });
     return () => ctrl.abort();
-  }, [videoId, template, transcriptComingSoon, initialVideoId]);
+  }, [videoId, template, transcriptComingSoon, initialVideoId, sub, lyricSource, lrclibQuery]);
 
   const backToChoice = () => {
     click();
@@ -102,6 +120,9 @@ export const ImmersionDungeonModal: React.FC<Props> = ({ onClose, soundEnabled =
     setTemplate(null);
     setShowAi(false);
     setError(false);
+    setLyricSource('youtube');
+    setLrclibDraft({ title: '', artist: '' });
+    setLrclibQuery(null);
   };
 
   const handleLoad = () => {
@@ -212,6 +233,63 @@ export const ImmersionDungeonModal: React.FC<Props> = ({ onClose, soundEnabled =
                 </button>
                 {showAi && <ImmersionTemplatePanel videoId={videoId} fetchedLines={fetched} onLoad={loadTemplate} />}
               </div>
+
+              {videoId && sub === 'music' && (
+                <div className="space-y-2">
+                  <div className="flex flex-wrap items-center gap-2">
+                    <span className="text-xs font-heading font-bold text-text-secondary">Sumber lirik</span>
+                    <button
+                      type="button"
+                      onClick={() => { click(); setLyricSource('youtube'); }}
+                      className={`ui-chip px-3 py-1.5 text-xs font-heading font-bold cursor-pointer ${lyricSource === 'youtube' ? 'is-active' : ''}`}
+                    >
+                      Subtitle YouTube
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => { click(); setLyricSource('lrclib'); }}
+                      className={`ui-chip px-3 py-1.5 text-xs font-heading font-bold cursor-pointer ${lyricSource === 'lrclib' ? 'is-active' : ''}`}
+                    >
+                      LRCLIB (lirik berwaktu)
+                    </button>
+                  </div>
+                  {lyricSource === 'lrclib' && (
+                    <form
+                      onSubmit={e => {
+                        e.preventDefault();
+                        const title = lrclibDraft.title.trim();
+                        const artist = lrclibDraft.artist.trim();
+                        if (!title || !artist) return;
+                        click();
+                        setLrclibQuery({ title, artist });
+                      }}
+                      className="flex flex-col sm:flex-row gap-2"
+                    >
+                      <input
+                        type="text"
+                        value={lrclibDraft.title}
+                        onChange={e => setLrclibDraft(d => ({ ...d, title: e.target.value }))}
+                        placeholder="Judul lagu, misal アイドル"
+                        className="flex-1 min-w-0 px-4 py-3 bg-surface-inset border border-border-subtle rounded-2xl text-sm font-body text-text-primary placeholder:text-text-muted focus:outline-hidden focus:border-border-primary shadow-inner"
+                      />
+                      <input
+                        type="text"
+                        value={lrclibDraft.artist}
+                        onChange={e => setLrclibDraft(d => ({ ...d, artist: e.target.value }))}
+                        placeholder="Artis, misal YOASOBI"
+                        className="flex-1 min-w-0 px-4 py-3 bg-surface-inset border border-border-subtle rounded-2xl text-sm font-body text-text-primary placeholder:text-text-muted focus:outline-hidden focus:border-border-primary shadow-inner"
+                      />
+                      <button
+                        type="submit"
+                        disabled={!lrclibDraft.title.trim() || !lrclibDraft.artist.trim()}
+                        className="btn-physical-primary shrink-0 px-5 py-3 rounded-2xl font-heading font-black text-sm cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+                      >
+                        Muat lirik
+                      </button>
+                    </form>
+                  )}
+                </div>
+              )}
 
               {videoId && <ImmersionStage videoId={videoId} captions={captions}
                 sentenceRecall={sentenceRecall && initialTemplate && template === initialTemplate && videoId === initialTemplate.videoId ? sentenceRecall : undefined} />}
