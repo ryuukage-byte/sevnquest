@@ -52,7 +52,7 @@ export const MissionsView: React.FC<MissionsViewProps> = ({
       </div>
 
       {/* Tabs as Skeuomorphic Pills */}
-      <div className="skeuo-tier-row mb-3">
+      <div data-tour="missions-tabs" className="skeuo-tier-row mb-3">
         <button
           onClick={() => {
             setActiveTab('daily');

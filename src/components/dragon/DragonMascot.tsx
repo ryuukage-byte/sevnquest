@@ -197,20 +197,31 @@ export const DragonMascot: React.FC<DragonMascotProps> = ({ hidden, soundEnabled
     if (hidden) setTour(null);
   }, [hidden]);
 
-  // Tur perkenalan otomatis (pemain baru / ulang dari Menu): Tatsu yang menjelaskan.
+  // Perkenalan otomatis (pemain baru / ulang dari Menu): telur menetas dulu bila belum, lalu Tatsu memandu tur.
   const welcomeRunning = useRef(false);
+  const hatchThenTour = useRef(false);
   const onAutoTourDoneRef = useRef(onAutoTourDone);
   onAutoTourDoneRef.current = onAutoTourDone;
+  const startWelcome = useCallback(() => {
+    hatchThenTour.current = false;
+    welcomeRunning.current = true;
+    setOpen(false);
+    setMood('pointing');
+    setTour({ tour: TOURS.welcome, index: 0, ready: false });
+  }, []);
   useEffect(() => {
-    if (!autoTour || hidden || tour || welcomeRunning.current || hatchOpen || evolution) return;
+    if (!autoTour || hidden || tour || welcomeRunning.current || hatchThenTour.current || hatchOpen || evolution) return;
     const t = window.setTimeout(() => {
-      welcomeRunning.current = true;
-      setOpen(false);
-      setMood('pointing');
-      setTour({ tour: TOURS.welcome, index: 0, ready: false });
+      if (hatched) {
+        startWelcome();
+      } else {
+        hatchThenTour.current = true;
+        setOpen(false);
+        setHatchOpen(true);
+      }
     }, 600);
     return () => clearTimeout(t);
-  }, [autoTour, hidden, tour, hatchOpen, evolution]);
+  }, [autoTour, hidden, tour, hatched, hatchOpen, evolution, startWelcome]);
   useEffect(() => {
     if (!tour && welcomeRunning.current) {
       welcomeRunning.current = false;
@@ -332,6 +343,10 @@ export const DragonMascot: React.FC<DragonMascotProps> = ({ hidden, soundEnabled
     setHatchOpen(false);
     setMood('happy');
     later(() => setMood(m => (m === 'happy' ? 'idle' : m)), 2400);
+    if (hatchThenTour.current) {
+      startWelcome(); // pemain baru: lanjut ke tur perkenalan, bukan obrolan
+      return;
+    }
     setOpen(true);
     setBusy(true);
     pushDragon(
@@ -564,7 +579,7 @@ export const DragonMascot: React.FC<DragonMascotProps> = ({ hidden, soundEnabled
       )}
 
       {/* ------------------------------------------------------------ Menetas */}
-      {hatchOpen && <HatchOverlay tier={DRAGON_TIERS[0]} soundEnabled={soundEnabled} onDone={finishHatch} onClose={() => setHatchOpen(false)} />}
+      {hatchOpen && <HatchOverlay tier={DRAGON_TIERS[0]} soundEnabled={soundEnabled} onDone={finishHatch} onClose={() => { setHatchOpen(false); if (hatchThenTour.current) startWelcome(); }} />}
 
       {/* ------------------------------------------------------------ Evolusi */}
       {evolution && <EvolutionOverlay from={evolution.from} to={evolution.to} soundEnabled={soundEnabled} onDone={finishEvolution} />}

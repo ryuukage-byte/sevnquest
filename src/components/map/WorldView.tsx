@@ -139,7 +139,7 @@ export const WorldView: React.FC<WorldViewProps> = ({
       </div>
 
       {/* 2. FOUR-MODE SWITCHER BAR */}
-      <div className="panel p-1.5 rounded-2xl bg-surface-inset border border-border-subtle flex items-center gap-1.5 sm:gap-2 shadow-inner overflow-x-auto scrollbar-none">
+      <div data-tour="world-modes" className="panel p-1.5 rounded-2xl bg-surface-inset border border-border-subtle flex items-center gap-1.5 sm:gap-2 shadow-inner overflow-x-auto scrollbar-none">
         
         {/* TAB 1: ARENA ARCADE */}
         <button
