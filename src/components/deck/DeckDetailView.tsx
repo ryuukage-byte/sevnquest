@@ -236,7 +236,7 @@ export const DeckDetailView: React.FC<DeckDetailViewProps> = ({
           </div>
 
           {/* Action Buttons: Practice Launchers & Deck Controls */}
-          <div className="flex items-center gap-2 flex-wrap w-full md:w-auto justify-start md:justify-end">
+          <div data-tour="deck-practice" className="flex items-center gap-2 flex-wrap w-full md:w-auto justify-start md:justify-end">
             {/* Flashcard Button */}
             <button
               type="button"
@@ -311,7 +311,7 @@ export const DeckDetailView: React.FC<DeckDetailViewProps> = ({
 
         {/* 3. Secondary Bar for User Deck: Quick Preset, Import Bookmarks, Clear Deck */}
         {!isTemplate && (
-          <div className="pt-3 border-t border-border-subtle flex flex-wrap items-center justify-between gap-3">
+          <div data-tour="deck-tools" className="pt-3 border-t border-border-subtle flex flex-wrap items-center justify-between gap-3">
             <div className="flex items-center gap-2 flex-wrap">
               {onOpenQuickPresetModal && (
                 <button
@@ -356,7 +356,7 @@ export const DeckDetailView: React.FC<DeckDetailViewProps> = ({
         )}
 
         {/* 4. Mini Library Grimoire Volume Switcher (Matching Perpustakaan & Grimoire Architecture) */}
-        <div className="pt-3 border-t border-border-subtle flex flex-wrap items-center justify-between gap-3">
+        <div data-tour="deck-library" className="pt-3 border-t border-border-subtle flex flex-wrap items-center justify-between gap-3">
           <div className="book-tab-nav flex-wrap">
             {/* Jilid I: Kosakata */}
             <button

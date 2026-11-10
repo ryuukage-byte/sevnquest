@@ -199,6 +199,7 @@ export const DungeonPortalHub: React.FC<DungeonPortalHubProps> = ({
           return (
             <motion.div
               key={gate.type}
+              data-tour="dungeon-gate"
               whileHover={{ scale: 1.015, y: -2 }}
               whileTap={{ scale: 0.985 }}
               onClick={() => {

@@ -394,7 +394,7 @@ export const BunpouDetailModal: React.FC<BunpouDetailModalProps> = ({
         {/* ======================================================== */}
         <div className="relative pt-2.5 sm:pt-3 px-2 sm:px-4 bg-surface-inset border-b border-border-subtle flex items-end justify-between gap-1.5 select-none overflow-hidden">
           {/* Scrollable & Draggable Tabs Area */}
-          <div className="relative flex-1 min-w-0 overflow-hidden">
+          <div data-tour="bunpou-tabs" className="relative flex-1 min-w-0 overflow-hidden">
             {/* Left Fade Overflow Indicator */}
             {canScrollLeft && (
               <div className="absolute left-0 top-0 bottom-0 w-8 bg-gradient-to-r from-surface-inset via-surface-inset/80 to-transparent z-40 pointer-events-none" />

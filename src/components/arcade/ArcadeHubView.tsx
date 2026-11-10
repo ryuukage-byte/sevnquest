@@ -179,7 +179,7 @@ export const ArcadeHubView: React.FC<ArcadeHubViewProps> = ({
             </div>
           </div>
 
-          <button
+          <button data-tour="arcade-sudden"
             type="button"
             onClick={() => {
               playSound('click', soundEnabled);

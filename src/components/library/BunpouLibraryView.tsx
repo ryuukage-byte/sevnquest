@@ -170,7 +170,7 @@ export const BunpouLibraryView: React.FC<BunpouLibraryViewProps> = ({
 
       {/* Sub-Section Switcher: Kamus Pola Kalimat vs Perubahan Bentuk Kata */}
       <div className="flex items-center gap-2 p-1.5 bg-surface-card border border-border-subtle rounded-2xl">
-        <button
+        <button data-tour="bunpou-pola-tab"
           type="button"
           onClick={() => {
             setSubSection('dictionary');
@@ -186,7 +186,7 @@ export const BunpouLibraryView: React.FC<BunpouLibraryViewProps> = ({
           <span>Kamus Pola Kalimat ({allBunpou.length.toLocaleString()})</span>
         </button>
 
-        <button
+        <button data-tour="bunpou-conj-tab"
           type="button"
           onClick={() => {
             setSubSection('conjugation');
@@ -363,6 +363,7 @@ export const BunpouLibraryView: React.FC<BunpouLibraryViewProps> = ({
             return (
               <div
                 key={item.id}
+                data-tour="bunpou-item"
                 onClick={() => {
                   setSelectedItem(item);
                   playSound('click', soundEnabled);
@@ -438,6 +439,7 @@ export const BunpouLibraryView: React.FC<BunpouLibraryViewProps> = ({
             return (
               <div
                 key={item.id}
+                data-tour="bunpou-item"
                 onClick={() => {
                   setSelectedItem(item);
                   playSound('click', soundEnabled);

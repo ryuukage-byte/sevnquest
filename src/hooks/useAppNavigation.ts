@@ -32,7 +32,7 @@ export function useAppNavigation() {
   const [deckInitialSubTab, setDeckInitialSubTab] = useState<'my_pocket' | 'official_books'>('my_pocket');
   const [tabHistory, setTabHistory] = useState<TabType[]>([]);
   // Permintaan membuka tab tertentu di Library (mis. misi evaluasi kurikulum -> Soal).
-  const [libraryTabRequest, setLibraryTabRequest] = useState<{ tab: 'kotoba' | 'kanji' | 'bunpou' | 'soal'; n: number } | undefined>();
+  const [libraryTabRequest, setLibraryTabRequest] = useState<{ tab: 'kotoba' | 'kanji' | 'bunpou' | 'dokkai' | 'choukai' | 'soal'; n: number } | undefined>();
   // Permintaan membuka Penyusun Deck di Buku Saku dengan isian awal (mis. dari Naga Pemandu).
   const [deckAiRequest, setDeckAiRequest] = useState<DeckAiRequest | undefined>();
 
@@ -114,7 +114,7 @@ export function useAppNavigation() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }, [activeTab]);
 
-  const handleOpenLibraryTab = useCallback((tab: 'kotoba' | 'kanji' | 'bunpou' | 'soal') => {
+  const handleOpenLibraryTab = useCallback((tab: 'kotoba' | 'kanji' | 'bunpou' | 'dokkai' | 'choukai' | 'soal') => {
     setLibraryTabRequest(prev => ({ tab, n: (prev?.n || 0) + 1 }));
     handleTabChange('library');
   }, [handleTabChange]);

@@ -160,7 +160,7 @@ export const Tower1View: React.FC<Props> = ({ soundEnabled = true, onRewardPlaye
   return (
     <div className="w-full space-y-4">
       <div className="panel panel-stitched rounded-3xl p-4 sm:p-5 border border-border-subtle shadow-md space-y-4">
-        <div className="flex gap-1.5" role="tablist" aria-label="Pilih menara">
+        <div data-tour="tower-tabs" className="flex gap-1.5" role="tablist" aria-label="Pilih menara">
           {([1, 2] as const).map(t => (
             <button
               key={t}
@@ -194,6 +194,7 @@ export const Tower1View: React.FC<Props> = ({ soundEnabled = true, onRewardPlaye
         {recommended ? (
           <button
             type="button"
+            data-tour="tower-recommended"
             onClick={() => openFloor(recommended.id)}
             className="btn-physical-primary w-full py-3 rounded-2xl font-bold text-sm font-heading flex items-center justify-between gap-3 px-4"
           >

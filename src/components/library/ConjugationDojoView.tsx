@@ -143,7 +143,7 @@ export const ConjugationDojoView: React.FC<ConjugationDojoViewProps> = ({
         </div>
 
         {/* CTA Latihan Konjugasi */}
-        <button
+        <button data-tour="conj-start"
           type="button"
           onClick={() => handleStartDrill('all')}
           className="btn-skeuo-indigo self-stretch md:self-auto justify-center text-xs py-2.5 px-5 transition-all"
@@ -391,7 +391,7 @@ export const ConjugationDojoView: React.FC<ConjugationDojoViewProps> = ({
       ) : null}
 
       {/* 3. NAVIGASI TAB ENSIKLOPEDIA */}
-      <div className="book-tab-nav max-w-full overflow-x-auto no-scrollbar flex-nowrap justify-start py-1 px-1.5 gap-1.5 sm:gap-2">
+      <div data-tour="conj-tabs" className="book-tab-nav max-w-full overflow-x-auto no-scrollbar flex-nowrap justify-start py-1 px-1.5 gap-1.5 sm:gap-2">
         <button
           type="button"
           onClick={() => {

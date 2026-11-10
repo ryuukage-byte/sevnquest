@@ -193,7 +193,7 @@ export const CharacterStatusModal: React.FC<CharacterStatusModalProps> = ({
             </div>
 
             {/* 1b. PEMULIHAN: Istirahat di Dojo & Potion */}
-            <div className="p-3.5 sm:p-4 rounded-3xl bg-surface-inset border border-border-subtle shadow-inner space-y-3">
+            <div data-tour="status-recovery" className="p-3.5 sm:p-4 rounded-3xl bg-surface-inset border border-border-subtle shadow-inner space-y-3">
               <div className="flex items-center justify-between gap-3">
                 <span className="text-xs font-bold font-heading uppercase tracking-wider text-text-secondary">Kondisi Petualang</span>
                 <span className="text-xs font-mono font-bold text-text-primary">
@@ -224,7 +224,7 @@ export const CharacterStatusModal: React.FC<CharacterStatusModalProps> = ({
             </div>
 
             {/* 2. ASCENSION TIER PROGRESSION CARD */}
-            <div className="p-3.5 sm:p-4 rounded-3xl bg-surface-inset border border-border-subtle space-y-3.5 sm:space-y-4 shadow-sm relative overflow-hidden">
+            <div data-tour="status-tier" className="p-3.5 sm:p-4 rounded-3xl bg-surface-inset border border-border-subtle space-y-3.5 sm:space-y-4 shadow-sm relative overflow-hidden">
               {/* Header */}
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2.5">
                 <div className="flex items-center gap-2.5 min-w-0">
@@ -398,7 +398,7 @@ export const CharacterStatusModal: React.FC<CharacterStatusModalProps> = ({
             </div>
 
             {/* 3. STUDY STATISTICS (TOTAL VS UNIQUE) */}
-            <div className="space-y-2.5 sm:space-y-3">
+            <div data-tour="status-stats" className="space-y-2.5 sm:space-y-3">
               <h3 className="text-xs font-bold uppercase tracking-widest text-text-secondary flex items-center gap-2 font-heading">
                 <BookOpen className="w-4 h-4 text-indigo" />
                 Study Statistics
@@ -456,7 +456,7 @@ export const CharacterStatusModal: React.FC<CharacterStatusModalProps> = ({
             </div>
 
             {/* 3. MASTERY VS COVERAGE (N5 - N1) */}
-            <div className="space-y-2.5 sm:space-y-3">
+            <div data-tour="status-mastery" className="space-y-2.5 sm:space-y-3">
               <h3 className="text-xs font-bold uppercase tracking-widest text-text-secondary flex items-center gap-2 font-heading">
                 <Target className="w-4 h-4 text-gold" />
                 Mastery vs Coverage (N5 - N1)
@@ -517,7 +517,7 @@ export const CharacterStatusModal: React.FC<CharacterStatusModalProps> = ({
             </div>
 
             {/* 4. STREAK & ACHIEVEMENTS */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div data-tour="status-streak" className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {/* Streak */}
               <div className="space-y-3">
                 <h3 className="text-xs font-bold uppercase tracking-widest text-text-secondary flex items-center gap-2 font-heading">

@@ -85,7 +85,10 @@ export const KNOWLEDGE: KnowledgeTopic[] = [
         'Reset progres: mengembalikan EXP, level, dan stage ke awal. Tidak bisa dibatalkan.',
       ] },
     ],
-    actions: [{ label: 'Buka Menu', command: { type: 'tab', tab: 'settings' } }],
+    actions: [
+      { label: 'Buka Menu', command: { type: 'tab', tab: 'settings' } },
+      { label: 'Tunjukkan di layar', command: { type: 'guide_tour', tour: 'pengaturan' } },
+    ],
     related: ['akun', 'profil'],
   },
   {
@@ -180,6 +183,15 @@ export const KNOWLEDGE: KnowledgeTopic[] = [
     related: ['misi-harian', 'recall'],
   },
   {
+    id: 'panduan-lengkap',
+    title: 'Panduan lengkap per fitur',
+    group: 'mulai',
+    keywords: ['panduan lengkap', 'tutorial lengkap', 'panduan per fitur', 'ajari aku', 'ajarin aku', 'cara pakai fitur', 'pelajari fitur', 'tunjukkan caranya', 'jelaskan lengkap'],
+    text: 'Pilih fitur yang mau kujelaskan. Aku menyorot langsung di layar: apa yang diketuk, apa yang muncul, dan apa gunanya. Kamu tinggal mengikuti.',
+    actions: [],
+    related: ['panduan'],
+  },
+  {
     id: 'panduan',
     title: 'Panduan & tur aplikasi',
     group: 'mulai',
@@ -188,6 +200,7 @@ export const KNOWLEDGE: KnowledgeTopic[] = [
     actions: [
       { label: 'Mulai tur aplikasi', command: { type: 'tour' } },
       { label: 'Tunjukkan ubin Panduan', command: { type: 'guide_tour', tour: 'panduan' } },
+      { label: 'Panduan per fitur', topic: 'panduan-lengkap' },
     ],
     related: ['pemula'],
   },
@@ -214,7 +227,10 @@ export const KNOWLEDGE: KnowledgeTopic[] = [
         '"Pemahaman Kotoba" (bila tersedia) membedah struktur dan bacaan khusus kata itu.',
       ] },
     ],
-    actions: [{ label: 'Buka Kamus Kotoba', command: { type: 'library', tab: 'kotoba' } }],
+    actions: [
+      { label: 'Buka Kamus Kotoba', command: { type: 'library', tab: 'kotoba' } },
+      { label: 'Tunjukkan caranya', command: { type: 'guide_tour', tour: 'kotoba' } },
+    ],
     related: ['bookmark', 'menulis'],
   },
   {
@@ -229,7 +245,10 @@ export const KNOWLEDGE: KnowledgeTopic[] = [
         'Tab "Latihan Menulis" untuk berlatih menulis di kanvas.',
       ] },
     ],
-    actions: [{ label: 'Buka Kamus Kanji', command: { type: 'library', tab: 'kanji' } }],
+    actions: [
+      { label: 'Buka Kamus Kanji', command: { type: 'library', tab: 'kanji' } },
+      { label: 'Tunjukkan Kanji & Menulis', command: { type: 'guide_tour', tour: 'menulis-kanji' } },
+    ],
     related: ['menulis'],
   },
   {
@@ -244,7 +263,11 @@ export const KNOWLEDGE: KnowledgeTopic[] = [
         'Di World ada "Altar Konjugasi Kilat" (60 detik) dan Dungeon Altar Konjugasi.',
       ] },
     ],
-    actions: [{ label: 'Buka Tata Bahasa', command: { type: 'library', tab: 'bunpou' } }],
+    actions: [
+      { label: 'Buka Tata Bahasa', command: { type: 'library', tab: 'bunpou' } },
+      { label: 'Tunjukkan Tata Bahasa', command: { type: 'guide_tour', tour: 'bunpou' } },
+      { label: 'Tunjukkan Konjugasi', command: { type: 'guide_tour', tour: 'konjugasi' } },
+    ],
     related: ['arcade', 'dungeon'],
   },
   {
@@ -261,7 +284,10 @@ export const KNOWLEDGE: KnowledgeTopic[] = [
         'Ingin membedah teks sendiri? Pakai Dungeon Perpustakaan Teks di World.',
       ] },
     ],
-    actions: [{ label: 'Buka Library', command: { type: 'tab', tab: 'library' } }],
+    actions: [
+      { label: 'Buka Library', command: { type: 'tab', tab: 'library' } },
+      { label: 'Tunjukkan caranya', command: { type: 'guide_tour', tour: 'dokkai' } },
+    ],
     related: ['dungeon', 'soal'],
   },
   {
@@ -317,6 +343,8 @@ export const KNOWLEDGE: KnowledgeTopic[] = [
     actions: [
       { label: 'Buka Buku Saku', command: { type: 'tab', tab: 'deck' } },
       { label: 'Bikin deck sekarang', say: 'Aku mau bikin flashcard' },
+      { label: 'Tunjukkan cara buat deck', command: { type: 'guide_tour', tour: 'deck-baru' } },
+      { label: 'Tunjukkan isi deck', command: { type: 'guide_tour', tour: 'deck-isi' } },
     ],
     related: ['flashcard', 'bookmark', 'buku-resmi'],
   },
@@ -336,6 +364,7 @@ export const KNOWLEDGE: KnowledgeTopic[] = [
     actions: [
       { label: 'Buka Buku Saku', command: { type: 'tab', tab: 'deck' } },
       { label: 'Bikin deck flashcard', say: 'Aku mau bikin flashcard' },
+      { label: 'Tunjukkan isi & latih deck', command: { type: 'guide_tour', tour: 'deck-isi' } },
     ],
     related: ['buku-saku', 'recall'],
   },
@@ -410,7 +439,10 @@ export const KNOWLEDGE: KnowledgeTopic[] = [
         'Setiap kelipatan sepuluh di Menara 2 dijaga satu ujian campuran.',
       ] },
     ],
-    actions: [{ label: 'Buka Menara', command: { type: 'tower' } }],
+    actions: [
+      { label: 'Buka Menara', command: { type: 'tower' } },
+      { label: 'Tunjukkan Menara', command: { type: 'guide_tour', tour: 'menara' } },
+    ],
     related: ['dungeon', 'arcade'],
   },
   {
@@ -449,7 +481,10 @@ export const KNOWLEDGE: KnowledgeTopic[] = [
         'Klaim hadiah EXP & Koin setelah misi selesai.',
       ] },
     ],
-    actions: [{ label: 'Buka Misi Harian', command: { type: 'tab', tab: 'daily' } }],
+    actions: [
+      { label: 'Buka Misi Harian', command: { type: 'tab', tab: 'daily' } },
+      { label: 'Tunjukkan Susun Kurikulum', command: { type: 'guide_tour', tour: 'misi' } },
+    ],
     related: ['misi-mingguan', 'recall'],
   },
   {
@@ -479,7 +514,10 @@ export const KNOWLEDGE: KnowledgeTopic[] = [
         'Coverage = seberapa luas materi yang sudah kamu sentuh.',
       ] },
     ],
-    actions: [{ label: 'Buka Lembar Status', command: { type: 'status' } }],
+    actions: [
+      { label: 'Buka Lembar Status', command: { type: 'status' } },
+      { label: 'Tunjukkan Lembar Status', command: { type: 'guide_tour', tour: 'status' } },
+    ],
     related: ['hp-mp', 'koin'],
   },
   {
@@ -494,7 +532,10 @@ export const KNOWLEDGE: KnowledgeTopic[] = [
         'Potion: memulihkan 30% HP maksimal. Pemain baru mendapat satu.',
       ] },
     ],
-    actions: [{ label: 'Buka Lembar Status', command: { type: 'status' } }],
+    actions: [
+      { label: 'Buka Lembar Status', command: { type: 'status' } },
+      { label: 'Tunjukkan Lembar Status', command: { type: 'guide_tour', tour: 'status' } },
+    ],
     related: ['koin', 'recall'],
   },
   {

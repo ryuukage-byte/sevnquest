@@ -578,7 +578,7 @@ const PlainReading: React.FC<{ study: DokkaiStudy; soundEnabled: boolean }> = ({
           </p>
         ))}
       </article>
-      <p className="text-xs text-text-muted border-t border-border-subtle pt-3">
+      <p data-tour="dokkai-guide" className="text-xs text-text-muted border-t border-border-subtle pt-3">
         Baca sampai selesai dulu. Setelah itu tekan <b className="text-text-secondary">Bahas bacaan</b> untuk membedah paragraf, kosakata, kanji, pola, dan intinya, atau <b className="text-text-secondary">Kerjakan soal</b> untuk langsung menguji pemahamanmu.
       </p>
     </div>
@@ -791,7 +791,7 @@ export const DokkaiStudyModal: React.FC<Props> = ({
 
         {/* Navigasi: bacaan polos */}
         {mode === 'plain' && (
-          <div className="flex items-center justify-end gap-2 px-4 py-3 sm:px-5 border-t border-border-subtle bg-surface-inset">
+          <div data-tour="dokkai-nav" className="flex items-center justify-end gap-2 px-4 py-3 sm:px-5 border-t border-border-subtle bg-surface-inset">
             <button type="button" onClick={() => startStudy('soal')} className="btn-physical-secondary px-4 py-2 text-xs">
               <Target className="w-4 h-4" /> Kerjakan soal
             </button>
