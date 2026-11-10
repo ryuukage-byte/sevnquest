@@ -59,7 +59,7 @@ export function MainContent(props: MainContentProps) {
   return (
     <>
         {/* Main Content Area */}
-        <main className="flex-1 max-w-4xl lg:max-w-6xl w-full mx-auto px-3.5 sm:px-4 py-4 sm:py-5">
+        <main className="flex-1 max-w-4xl lg:max-w-6xl xl:max-w-7xl w-full mx-auto px-3.5 sm:px-4 py-4 sm:py-5">
           {isRecallActive && (
             <ModuleBoundary label="Recall SRS" onReset={() => setIsRecallActive(false)}>
             <RecallModule

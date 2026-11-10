@@ -432,7 +432,7 @@ export const QuestionLibraryView: React.FC<QuestionLibraryViewProps> = ({
       }
 
       return (
-        <div className="w-full max-w-4xl mx-auto space-y-6 animate-fade-in">
+        <div className="w-full max-w-4xl lg:max-w-6xl mx-auto space-y-6 animate-fade-in">
           {/* Result Card */}
           <div className="panel panel-stitched p-6 sm:p-8 rounded-3xl border border-border-subtle shadow-md text-center space-y-6">
             <div className="w-16 h-16 mx-auto rounded-2xl bg-surface-inset border border-border-subtle flex items-center justify-center">
@@ -593,7 +593,7 @@ export const QuestionLibraryView: React.FC<QuestionLibraryViewProps> = ({
     const isCorrectCurrent = selectedAns === currentQ?.correctIndex;
 
     return (
-      <div className="w-full max-w-4xl mx-auto space-y-6 animate-fade-in">
+      <div className="w-full max-w-4xl lg:max-w-6xl mx-auto space-y-6 animate-fade-in">
         {/* Drill Progress & Control Header */}
         <div className="panel panel-stitched p-4 sm:p-5 rounded-3xl border border-border-subtle shadow-sm space-y-3">
           <div className="flex items-center justify-between gap-3 text-xs">

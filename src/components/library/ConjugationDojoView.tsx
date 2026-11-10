@@ -117,7 +117,7 @@ export const ConjugationDojoView: React.FC<ConjugationDojoViewProps> = ({
   const advancedForms = CONJUGATION_FORMS_INFO.filter(f => !['te', 'nai', 'ta', 'masu'].includes(f.id));
 
   return (
-    <div className="w-full max-w-5xl mx-auto space-y-6 animate-fade-in pb-12">
+    <div className="w-full max-w-5xl lg:max-w-none mx-auto space-y-6 animate-fade-in pb-12">
       {/* 1. HEADER BANNER */}
       <div className="panel panel-stitched p-5 sm:p-6 rounded-3xl border border-border-subtle shadow-md bg-surface-card flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
         <div className="flex items-center gap-3.5">

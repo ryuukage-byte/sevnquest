@@ -2696,3 +2696,28 @@ html:not(.ui-a):not(.ui-b) .btn-cta:active:not(:disabled) {
 @media (prefers-reduced-motion: no-preference) {
   .mailbox-flag-up { animation: mailboxFlagWave 2.4s ease-in-out 600ms infinite; }
 }
+
+
+/* ==========================================================================
+   SKALA LAYAR LEBAR (tablet / desktop)
+   Seluruh ukuran Tailwind berbasis rem, jadi menaikkan font-size akar memperbesar
+   teks, ikon, dan jarak secara proporsional. Layar HP tidak berubah.
+   ========================================================================== */
+@media (min-width: 768px) {
+  html { font-size: 17px; }
+}
+@media (min-width: 1280px) {
+  html { font-size: 18px; }
+}
+@media (min-width: 1920px) {
+  html { font-size: 20px; }
+}
+
+/* Teks berukuran piksel tetap (text-[9px] s.d. text-[11px]) tidak ikut skala rem dan jadi terlalu kecil
+   di layar lebar: naikkan ke batas bawah yang terbaca. */
+@media (min-width: 768px) {
+  [class*="text-[8px]"],
+  [class*="text-[9px]"] { font-size: 0.6875rem; }
+  [class*="text-[10px]"] { font-size: 0.75rem; }
+  [class*="text-[11px]"] { font-size: 0.8125rem; }
+}

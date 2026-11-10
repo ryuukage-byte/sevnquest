@@ -104,7 +104,7 @@ export const SettingsView: React.FC<SettingsViewProps> = ({
   };
 
   return (
-    <div className="w-full max-w-2xl mx-auto space-y-5 pb-6">
+    <div className="w-full max-w-2xl lg:max-w-6xl mx-auto space-y-5 pb-6 lg:space-y-0 lg:columns-2 lg:gap-5 [&>*]:break-inside-avoid lg:[&>*]:mb-5">
       {/* Header */}
       <div className="panel panel-stitched p-4 flex items-center justify-between gap-3 shadow-md mb-4">
         <div className="flex items-center gap-2.5">

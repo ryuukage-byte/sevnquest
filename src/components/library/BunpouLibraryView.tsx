@@ -144,7 +144,7 @@ export const BunpouLibraryView: React.FC<BunpouLibraryViewProps> = ({
   };
 
   return (
-    <div className="w-full max-w-5xl mx-auto space-y-6 animate-fade-in pb-10">
+    <div className="w-full max-w-5xl lg:max-w-none mx-auto space-y-6 animate-fade-in pb-10">
       {/* Header Banner */}
       {!hideHeader && (
         <div className="panel panel-stitched p-4 sm:p-5 rounded-3xl border border-border-subtle shadow-sm flex items-center justify-between gap-4">
@@ -429,7 +429,7 @@ export const BunpouLibraryView: React.FC<BunpouLibraryViewProps> = ({
         </div>
       ) : (
         /* Clean & Elegant Cards Grid */
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-3.5 sm:gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-3.5 sm:gap-4">
           {displayedBunpou.map((item) => {
             const titleInfo = getGrammarTitleInfo(item);
             const categoryTags = getBunpouCategoryTags(item);
