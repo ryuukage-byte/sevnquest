@@ -35,6 +35,10 @@ interface DragonMascotProps {
   activeTab?: string;
   /** Dijalankan App: navigasi / membuka fitur. */
   onCommand: (cmd: AppCommand) => void;
+  /** True saat pemain baru: Tatsu otomatis memandu tur perkenalan. */
+  autoTour?: boolean;
+  /** Dipanggil saat tur perkenalan selesai atau dihentikan. */
+  onAutoTourDone?: () => void;
 }
 
 const NAME = DRAGON_DEFAULT_NAME;
@@ -68,7 +72,7 @@ function greetingText(): string {
   return `${time}! Aku ${NAME}. Mau belajar apa hari ini? Ketik saja, misalnya "aku mau bikin flashcard".`;
 }
 
-export const DragonMascot: React.FC<DragonMascotProps> = ({ hidden, soundEnabled = true, activeTab, onCommand }) => {
+export const DragonMascot: React.FC<DragonMascotProps> = ({ hidden, soundEnabled = true, activeTab, onCommand, autoTour, onAutoTourDone }) => {
   const mail = useMailStatus();
   const tier = useMemo(() => dragonTierForRank(mail.signedIn ? mail.tierRank : 0), [mail.signedIn, mail.tierRank]);
 
@@ -192,6 +196,27 @@ export const DragonMascot: React.FC<DragonMascotProps> = ({ hidden, soundEnabled
   useEffect(() => {
     if (hidden) setTour(null);
   }, [hidden]);
+
+  // Tur perkenalan otomatis (pemain baru / ulang dari Menu): Tatsu yang menjelaskan.
+  const welcomeRunning = useRef(false);
+  const onAutoTourDoneRef = useRef(onAutoTourDone);
+  onAutoTourDoneRef.current = onAutoTourDone;
+  useEffect(() => {
+    if (!autoTour || hidden || tour || welcomeRunning.current || hatchOpen || evolution) return;
+    const t = window.setTimeout(() => {
+      welcomeRunning.current = true;
+      setOpen(false);
+      setMood('pointing');
+      setTour({ tour: TOURS.welcome, index: 0, ready: false });
+    }, 600);
+    return () => clearTimeout(t);
+  }, [autoTour, hidden, tour, hatchOpen, evolution]);
+  useEffect(() => {
+    if (!tour && welcomeRunning.current) {
+      welcomeRunning.current = false;
+      onAutoTourDoneRef.current?.();
+    }
+  }, [tour]);
 
   const startTour = (t: DragonTour) => {
     closePanel();

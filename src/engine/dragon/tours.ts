@@ -26,7 +26,7 @@ export interface TourStep {
   action: TourAction;
 }
 
-export type TourId = 'menulis-kanji' | 'login' | 'kotak-pos' | 'donasi' | 'panduan' | 'arcade' | 'dungeon';
+export type TourId = 'welcome' | 'menulis-kanji' | 'login' | 'kotak-pos' | 'donasi' | 'panduan' | 'arcade' | 'dungeon';
 
 export interface DragonTour {
   id: string;
@@ -42,6 +42,55 @@ const goTab = (tab: 'home' | 'maps' | 'settings', label: string, text: string): 
 });
 
 export const TOURS: Record<TourId, DragonTour> = {
+  welcome: {
+    id: 'welcome',
+    steps: [
+      {
+        selector: '[data-tour="hero-card"]',
+        label: 'Karakter',
+        text: 'Halo, aku Tatsu! Ini pusat status pahlawanmu. EXP, level, HP, dan MP-mu bertambah setiap kamu belajar dan menuntaskan materi.',
+        points: ['Ketuk karakter kapan saja untuk membagi stat (STR, AGI, INT, VIT).'],
+        action: { kind: 'info', button: 'Lanjut' },
+      },
+      {
+        selector: '[data-tour="nav-maps"]',
+        label: 'World',
+        text: 'World berisi Arena Arcade, Mode Dungeon, dan Menara Nihongo: latihan seru dari materi belajarmu.',
+        action: { kind: 'info', button: 'Lanjut' },
+      },
+      {
+        selector: '[data-tour="nav-library"]',
+        label: 'Library',
+        text: 'Library adalah kamus dan ensiklopedia: 8.300+ kosakata (termasuk istilah Kaigo), Kanji N5-N1, tata bahasa, dan Dojo Konjugasi.',
+        action: { kind: 'info', button: 'Lanjut' },
+      },
+      {
+        selector: '[data-tour="nav-deck"]',
+        label: 'Buku Saku',
+        text: 'Di Buku Saku ada Rak Buku kurikulum resmi dan deck pribadimu untuk flashcard serta latihan menulis.',
+        action: { kind: 'info', button: 'Lanjut' },
+      },
+      {
+        selector: '[data-tour="nav-daily"]',
+        label: 'Misi',
+        text: 'Selesaikan misi harian dan mingguan untuk Gold, EXP ekstra, dan menjaga streak belajarmu.',
+        action: { kind: 'info', button: 'Lanjut' },
+      },
+      {
+        selector: '[data-tour="nav-leaderboard"]',
+        label: 'Rank',
+        text: 'Bandingkan EXP-mu dengan petualang lain di papan peringkat mingguan dan sepanjang masa.',
+        action: { kind: 'info', button: 'Lanjut' },
+      },
+      {
+        selector: '[data-tour="nav-settings"]',
+        label: 'Menu',
+        text: 'Terakhir: login lewat Menu supaya progresmu tersimpan di Cloud dan aman saat ganti perangkat. Kapan saja butuh bantuan, ketuk aku!',
+        points: ['Tur ini bisa diulang dari Menu.'],
+        action: { kind: 'info', button: 'Mengerti' },
+      },
+    ],
+  },
   login: {
     id: 'login',
     steps: [

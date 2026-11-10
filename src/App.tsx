@@ -19,7 +19,6 @@ import { applyDojoRest, applyPotion } from './utils/recovery';
 import { recordStudyActivity } from './utils/activity';
 import { AuthModal } from './components/auth/AuthModal';
 import { ModuleBoundary } from './components/common/ModuleBoundary';
-import { SpotlightOnboarding } from './components/tutorial/SpotlightOnboarding';
 import { AnnouncementPopupHost } from './components/announcements/AnnouncementModal';
 import { MainContent } from './app/MainContent';
 import { loadInitialStats, loadStageProgress, loadDailyMissions, loadWeeklyMissions } from './state/loadPlayerState';
@@ -62,7 +61,7 @@ export default function App() {
     activeTab, setActiveTab,
     isStatusModalOpen, setIsStatusModalOpen, setIsRecallActive,
     handleTabChange,
-    isOnboardingActive, handleCompleteOnboarding, handleOpenAuthFromOnboarding, handleReplayOnboarding,
+    isOnboardingActive, handleCompleteOnboarding, handleReplayOnboarding,
   } = nav;
 
   // Active Study Tracking (Recall SRS, Library, and Buku Saku)
@@ -112,7 +111,7 @@ export default function App() {
       case 'install': pwa.handleInstallClick(); break;
     }
   }, [handleTabChange, nav, setIsStatusModalOpen, setIsRecallActive, handleReplayOnboarding, pwa]);
-  const dragonHidden = nav.isRecallActive || isOnboardingActive || (activeTab === 'maps' && nav.worldNavView !== 'world_hub');
+  const dragonHidden = nav.isRecallActive || (activeTab === 'maps' && nav.worldNavView !== 'world_hub');
 
 
   return (
@@ -242,25 +241,18 @@ export default function App() {
         soundEnabled={stats.soundEnabled}
       />
 
-      {/* Pengumuman broadcast admin (ditahan selama tur onboarding) */}
+      {/* Pengumuman broadcast admin (ditahan selama tur perkenalan Tatsu) */}
       <AnnouncementPopupHost suppressed={isOnboardingActive} soundEnabled={stats.soundEnabled} />
 
       {/* Naga Pemandu (maskot + navigator fitur) */}
       {DRAGON_ENABLED && (
         <ErrorBoundary fallback={<></>} label="Naga Pemandu">
           <Suspense fallback={null}>
-            <DragonMascot hidden={dragonHidden} soundEnabled={stats.soundEnabled} activeTab={activeTab} onCommand={handleDragonCommand} />
+            <DragonMascot hidden={dragonHidden} soundEnabled={stats.soundEnabled} activeTab={activeTab} onCommand={handleDragonCommand} autoTour={isOnboardingActive} onAutoTourDone={handleCompleteOnboarding} />
           </Suspense>
         </ErrorBoundary>
       )}
 
-      {/* Interactive Spotlight Onboarding Tour */}
-      <SpotlightOnboarding
-        isOpen={isOnboardingActive}
-        onComplete={handleCompleteOnboarding}
-        onOpenAuth={handleOpenAuthFromOnboarding}
-        soundEnabled={stats.soundEnabled}
-      />
     </div>
   );
 }
