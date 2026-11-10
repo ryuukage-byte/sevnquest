@@ -49,6 +49,8 @@ interface DragonSpotlightProps {
   /** Langkah selesai (target diketuk, atau tombol info ditekan). */
   onAdvance: () => void;
   onCancel: () => void;
+  /** Target hilang cukup lama (pemain pindah halaman / membuka sesuatu): tur dijeda, bukan dibatalkan. */
+  onLost?: () => void;
 }
 
 /**
@@ -57,11 +59,23 @@ interface DragonSpotlightProps {
  *  - click   : lubang terbuka; ketukan diteruskan ke elemen asli, lalu tur lanjut.
  *  - info    : lubang terbuka (mis. kanvas tetap bisa dipakai) + tombol lanjut di balon.
  */
-export const DragonSpotlight: React.FC<DragonSpotlightProps> = ({ step, stepNo, stepTotal, tier, onAdvance, onCancel }) => {
+export const DragonSpotlight: React.FC<DragonSpotlightProps> = ({ step, stepNo, stepTotal, tier, onAdvance, onCancel, onLost }) => {
   const reduce = useReducedMotion();
   const [rect, setRect] = useState<Rect | null>(() => measureTarget(step.selector));
   const [vp, setVp] = useState({ w: window.innerWidth, h: window.innerHeight });
   const kind = step.action.kind;
+  // Ketukan di luar sorotan tidak mengeluarkan pemain dari tur: naga mengingatkan untuk mengikuti petunjuk.
+  const [nudge, setNudge] = useState(0);
+  const [hint, setHint] = useState(false);
+  const onOutside = useCallback(() => {
+    setNudge(n => n + 1);
+    setHint(true);
+  }, []);
+  useEffect(() => {
+    if (!hint) return;
+    const t = window.setTimeout(() => setHint(false), 2600);
+    return () => clearTimeout(t);
+  }, [hint, nudge]);
 
   const remeasure = useCallback(() => {
     setVp({ w: window.innerWidth, h: window.innerHeight });
@@ -114,9 +128,9 @@ export const DragonSpotlight: React.FC<DragonSpotlightProps> = ({ step, stepNo, 
   // Target hilang cukup lama (mis. pemain menutup modal): hentikan tur.
   useEffect(() => {
     if (rect) return;
-    const t = window.setTimeout(() => { if (!findTarget(step.selector)) onCancel(); }, 1500);
+    const t = window.setTimeout(() => { if (!findTarget(step.selector)) (onLost ?? onCancel)(); }, 1500);
     return () => clearTimeout(t);
-  }, [rect, step.selector, onCancel]);
+  }, [rect, step.selector, onCancel, onLost]);
 
   if (!rect) return null;
 
@@ -143,11 +157,11 @@ export const DragonSpotlight: React.FC<DragonSpotlightProps> = ({ step, stepNo, 
 
   return createPortal(
     <div className="fixed inset-0 z-[9985] pointer-events-none" role="dialog" aria-label={`${tier.name} menunjukkan ${step.label}`}>
-      {/* Empat panel blur di sekitar lubang; mengetuknya menghentikan sorotan. */}
-      <div className={`${BLUR} pointer-events-auto`} style={{ top: 0, left: 0, right: 0, height: Math.max(0, rect.top) }} onClick={onCancel} />
-      <div className={`${BLUR} pointer-events-auto`} style={{ top: bottomOf, left: 0, right: 0, bottom: 0 }} onClick={onCancel} />
-      <div className={`${BLUR} pointer-events-auto`} style={{ top: rect.top, left: 0, width: Math.max(0, rect.left), height: rect.height }} onClick={onCancel} />
-      <div className={`${BLUR} pointer-events-auto`} style={{ top: rect.top, left: rightOf, right: 0, height: rect.height }} onClick={onCancel} />
+      {/* Empat panel blur di sekitar lubang; mengetuknya hanya mengingatkan pemain (tur tidak berhenti). */}
+      <div className={`${BLUR} pointer-events-auto`} style={{ top: 0, left: 0, right: 0, height: Math.max(0, rect.top) }} onClick={onOutside} />
+      <div className={`${BLUR} pointer-events-auto`} style={{ top: bottomOf, left: 0, right: 0, bottom: 0 }} onClick={onOutside} />
+      <div className={`${BLUR} pointer-events-auto`} style={{ top: rect.top, left: 0, width: Math.max(0, rect.left), height: rect.height }} onClick={onOutside} />
+      <div className={`${BLUR} pointer-events-auto`} style={{ top: rect.top, left: rightOf, right: 0, height: rect.height }} onClick={onOutside} />
 
       {/* Bingkai berdenyut */}
       <motion.div
@@ -188,7 +202,17 @@ export const DragonSpotlight: React.FC<DragonSpotlightProps> = ({ step, stepNo, 
         <div className="shrink-0" style={{ width: DRAGON, height: DRAGON }}>
           <DragonSprite tier={tier} mood={kind === 'info' ? 'talking' : 'pointing'} size={DRAGON} />
         </div>
-        <div className="flex-1 min-w-0 max-h-full overflow-y-auto rounded-2xl panel border border-border-subtle shadow-2xl p-3 space-y-2">
+        <motion.div
+          key={nudge}
+          animate={nudge > 0 && !reduce ? { x: [0, -7, 7, -5, 5, 0] } : {}}
+          transition={{ duration: 0.4 }}
+          className="flex-1 min-w-0 max-h-full overflow-y-auto rounded-2xl panel border border-border-subtle shadow-2xl p-3 space-y-2"
+        >
+          {hint && (
+            <p className="text-[11px] font-body font-bold text-gold leading-snug">
+              Ikuti petunjukku dulu ya, ketuk bagian yang menyala. Tekan {multi ? 'Berhenti' : 'Nanti'} kalau mau keluar.
+            </p>
+          )}
           {multi && (
             <p className="text-[10px] font-mono tracking-wider text-gold">{step.chapter ? `${step.chapter.toUpperCase()} · ` : ''}LANGKAH {stepNo}/{stepTotal}</p>
           )}
@@ -222,7 +246,7 @@ export const DragonSpotlight: React.FC<DragonSpotlightProps> = ({ step, stepNo, 
               {multi ? 'Berhenti' : 'Nanti'}
             </button>
           </div>
-        </div>
+        </motion.div>
       </motion.div>
     </div>,
     document.body,
