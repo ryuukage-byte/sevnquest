@@ -125,10 +125,12 @@ export const HomeView: React.FC<HomeViewProps> = ({
   };
 
   return (
-    <div className="w-full max-w-lg md:max-w-2xl lg:max-w-4xl mx-auto space-y-4 md:space-y-5 pb-20 sm:pb-8 px-2 sm:px-0">
+    <div className="w-full max-w-lg md:max-w-3xl lg:max-w-none mx-auto space-y-4 md:space-y-5 pb-20 sm:pb-8 px-2 sm:px-0">
       {/* 0. PENGUMUMAN dari admin (tetap tampil selama aktif) */}
       <AnnouncementBanners soundEnabled={stats.soundEnabled} />
 
+      {/* Baris atas: karakter + (langkah berikutnya & jalan pintas); satu kolom di HP, dua kolom di layar lebar */}
+      <div className="space-y-4 md:space-y-5 lg:space-y-0 lg:grid lg:grid-cols-12 lg:gap-5 lg:items-stretch">
       {/* 1. CHARACTER AREA: karakter (kiri, fokus visual) + info pemain (kanan) */}
       <motion.div
         data-tour="hero-card"
@@ -139,7 +141,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
           playSound('open_modal', stats.soundEnabled);
           onOpenStatusModal();
         }}
-        className="panel panel-stitched cursor-pointer overflow-hidden group hover:scale-[1.01] transition-transform"
+        className="panel panel-stitched cursor-pointer overflow-hidden group hover:scale-[1.01] transition-transform lg:col-span-6 xl:col-span-7"
       >
         <div className="relative z-10 flex items-center gap-3 sm:gap-5 md:gap-8 min-h-[150px] sm:min-h-[180px] md:min-h-[260px] lg:min-h-[320px]">
           {/* Karakter ±40% */}
@@ -227,6 +229,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
         </div>
       </motion.div>
 
+      <div className="space-y-4 md:space-y-5 lg:col-span-6 xl:col-span-5 lg:flex lg:flex-col lg:gap-5 lg:space-y-0">
       {/* 2. NEXT STEP: LANGKAH BERIKUTNYA (adaptif; pemain baru diarahkan ke panduan) */}
       <motion.button
         data-tour="castle-next"
@@ -260,7 +263,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
       </motion.button>
 
       {/* 3. QUICK ACTIVITIES: tiga kartu sejajar, ukuran seragam */}
-      <div data-tour="castle-quick" className="grid grid-cols-3 gap-2.5 sm:gap-3 md:gap-4">
+      <div data-tour="castle-quick" className="grid grid-cols-3 gap-2.5 sm:gap-3 md:gap-4 lg:flex-1">
         {/* Recall Memori (SRS) */}
         <button
           type="button"
@@ -336,6 +339,9 @@ export const HomeView: React.FC<HomeViewProps> = ({
           </span>
           <span className="text-[10px] md:text-xs text-text-secondary font-mono w-full truncate">SevnQuest</span>
         </button>
+      </div>
+
+      </div>
       </div>
 
       {/* 4. SEARCH: pencarian fitur */}

@@ -352,7 +352,7 @@ export const BukuSakuView: React.FC<BukuSakuViewProps> = ({
   }, [resolvedItems]);
 
   return (
-    <div className="w-full max-w-6xl mx-auto space-y-6 animate-fade-in pb-16">
+    <div className="w-full max-w-6xl xl:max-w-none mx-auto space-y-6 animate-fade-in pb-16">
       {/* Runner Modes */}
       {activeRunner === 'flashcard' && (virtualRunnerDeck || activeDeck) && (
         <DeckFlashcardRunner

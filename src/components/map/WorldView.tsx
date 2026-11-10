@@ -100,7 +100,7 @@ export const WorldView: React.FC<WorldViewProps> = ({
   };
 
   return (
-    <div className="w-full max-w-4xl mx-auto space-y-6 pb-20 sm:pb-12 animate-fade-in px-2 sm:px-0">
+    <div className="w-full max-w-4xl lg:max-w-none mx-auto space-y-6 pb-20 sm:pb-12 animate-fade-in px-2 sm:px-0">
       {/* 1. HEADER UTAMA: WORLD */}
       <div className="panel panel-stitched p-4 sm:p-5 rounded-2xl sm:rounded-3xl shadow-md border border-border-subtle flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
         <div className="flex items-center gap-3.5">

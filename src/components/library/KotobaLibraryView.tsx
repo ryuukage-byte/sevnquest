@@ -248,7 +248,7 @@ export const KotobaLibraryView: React.FC<KotobaLibraryViewProps> = ({
   };
 
   return (
-    <div className="w-full max-w-5xl mx-auto space-y-6 animate-fade-in pb-10">
+    <div className="w-full max-w-5xl lg:max-w-none mx-auto space-y-6 animate-fade-in pb-10">
       {/* Header Banner */}
       {!hideHeader && (
         <div className="panel panel-stitched p-4 sm:p-5 rounded-3xl border border-border-subtle shadow-sm flex items-center justify-between gap-4">
@@ -430,7 +430,7 @@ export const KotobaLibraryView: React.FC<KotobaLibraryViewProps> = ({
       )}
 
       {/* Dictionary List: Clean Standard Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-3.5 sm:gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-3.5 sm:gap-4">
         {displayedKotoba.map((item) => {
           const priority = getKotobaPriority(item);
           const isKaigoTagged = item.tags?.includes('Kaigo');
