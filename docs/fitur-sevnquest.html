@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Daftar Fitur SevnQuest</title>
+<style>
+:root{--bg:#f6f5f1;--card:#fff;--ink:#1c1b19;--mut:#6b675f;--line:#e2dfd6;--acc:#b3261e;--acc2:#1f6f5c;--chip:#efece3}
+@media (prefers-color-scheme:dark){:root{--bg:#161513;--card:#1f1e1b;--ink:#efece3;--mut:#9d988c;--line:#33312c;--acc:#ff7a6e;--acc2:#5fc9ae;--chip:#2a2824}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.55 system-ui,-apple-system,"Segoe UI",sans-serif}
+.wrap{max-width:980px;margin:0 auto;padding:20px 16px 80px}
+h1{font-size:26px;margin:8px 0 4px}
+.sub{color:var(--mut);margin:0 0 16px}
+.bar{position:sticky;top:0;background:var(--bg);padding:10px 0;z-index:5;border-bottom:1px solid var(--line);display:grid;gap:8px}
+.bar input,.bar select{width:100%;padding:10px 12px;border:1px solid var(--line);border-radius:10px;background:var(--card);color:var(--ink);font:inherit}
+.row{display:flex;gap:8px;flex-wrap:wrap}
+.row>*{flex:1 1 180px}
+.tabs{display:flex;gap:6px;overflow-x:auto;padding-bottom:2px}
+.tabs button{white-space:nowrap;border:1px solid var(--line);background:var(--card);color:var(--ink);padding:6px 12px;border-radius:99px;cursor:pointer;font:inherit;font-size:13px}
+.tabs button.on{background:var(--ink);color:var(--bg)}
+h2{font-size:18px;margin:28px 0 4px}
+.gdesc{color:var(--mut);margin:0 0 10px;font-size:13px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 16px;margin:10px 0}
+.card h3{margin:0 0 6px;font-size:16px;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.tag{font-size:11px;padding:2px 8px;border-radius:99px;background:var(--chip);color:var(--mut);font-weight:500}
+.tag.p{color:#a15c00}.tag.u{color:var(--acc)}
+dl{margin:8px 0;display:grid;grid-template-columns:90px 1fr;gap:4px 10px;font-size:14px}
+dt{color:var(--mut)}dd{margin:0}
+ol{margin:0;padding-left:18px}
+code{background:var(--chip);padding:1px 5px;border-radius:5px;font-size:12px;word-break:break-all}
+.btn{margin-top:8px;border:0;background:var(--acc);color:#fff;padding:9px 16px;border-radius:10px;font:inherit;font-weight:600;cursor:pointer}
+.btn.ok{background:var(--acc2)}
+.btn.ghost{background:var(--chip);color:var(--ink);margin-left:6px}
+details{margin-top:8px}summary{cursor:pointer;color:var(--mut);font-size:13px}
+pre{white-space:pre-wrap;background:var(--chip);padding:10px;border-radius:8px;font-size:13px;margin:6px 0 0}
+.cnt{color:var(--mut);font-size:13px}
+@media(max-width:520px){dl{grid-template-columns:1fr}dt{margin-top:4px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<h1>Daftar Fitur SevnQuest</h1>
+<p class="sub">Nihongo Quest RPG — fitur lengkap beserta lokasi, fungsi, cara pakai, dan detail teknis. Klik <b>Buat Konten</b> untuk menyalin prompt siap tempel ke AI.</p>
+<div class="bar">
+  <input id="q" type="search" placeholder="Cari fitur, mis. 'tower', 'kanji', 'SRS'…">
+  <div class="row">
+    <select id="fmt">
+      <option value="skrip video pendek (TikTok/Reels/Shorts, 30–45 detik)">Format: Skrip video pendek</option>
+      <option value="caption Instagram/Threads yang menarik">Format: Caption sosmed</option>
+      <option value="thread X/Twitter 5–7 tweet">Format: Thread</option>
+      <option value="artikel blog singkat 300 kata">Format: Artikel blog</option>
+      <option value="skrip tutorial langkah demi langkah untuk YouTube">Format: Tutorial YouTube</option>
+    </select>
+    <select id="tone">
+      <option value="santai dan ramah">Gaya: Santai</option>
+      <option value="semangat dan memotivasi">Gaya: Semangat</option>
+      <option value="informatif dan jelas">Gaya: Informatif</option>
+      <option value="lucu dan relatable">Gaya: Lucu</option>
+    </select>
+  </div>
+  <div class="tabs" id="tabs"></div>
+  <div class="cnt" id="cnt"></div>
+</div>
+<div id="list"></div>
+</div>
+
+<script>
+// Setiap fitur: n=nama, w=lokasi (urutan klik), f=fungsi, s=langkah, d=detail, st=status (C lengkap / P parsial)
+const G=[
+{g:"Shell & Navigasi",d:"Kerangka aplikasi dan navigasi utama.",i:[
+{n:"Navigasi Bawah 7 Tab",w:["Buka SevnQuest","lihat bar navigasi di bawah layar"],f:"berpindah cepat antar Castle, World, Misi, Rank, Library, Buku Saku, dan Menu; tab tetap aktif (keep-alive) sehingga perpindahan terasa instan",s:["Buka SevnQuest","Ketuk salah satu dari 7 ikon di bawah layar"],d:"Tab: Castle, World, Misi, Rank, Library, Buku Saku, Menu. Komponen: layout/BottomNavigation."},
+{n:"Timer Belajar Harian",w:["Buka SevnQuest","lihat badge timer di header"],f:"mencatat berapa lama kamu benar-benar belajar hari ini",s:["Buka SevnQuest","Masuk ke Recall, Library, atau Buku Saku","Timer di header otomatis berjalan"],d:"Hanya berjalan saat Recall/Library/Buku Saku aktif. Dasar perhitungan streak belajar."},
+{n:"Onboarding & Panduan Awal",w:["Buka SevnQuest untuk pertama kali"],f:"memandu pengguna baru lewat tur spotlight dan panduan mulai cepat",s:["Buka SevnQuest pertama kali","Ikuti tur spotlight yang muncul","Buka kembali panduan lewat modal Start Guide di Castle"],d:"tutorial/SpotlightOnboarding, home/StartGuideModal."},
+{n:"Pasang sebagai Aplikasi (PWA)",w:["Buka SevnQuest di browser","muncul dialog pasang aplikasi"],f:"memasang SevnQuest ke layar utama HP agar dibuka seperti aplikasi native",s:["Buka SevnQuest lewat browser HP","Ikuti dialog Pasang Aplikasi","Buka dari ikon di layar utama"],d:"pwa/PwaInstallModal + service worker public/sw.js."}]},
+
+{g:"Castle (Beranda)",d:"Halaman utama.",i:[
+{n:"Dashboard Castle",w:["Buka SevnQuest","tab Castle"],f:"melihat sapaan, EXP, streak belajar, dan jumlah antrean Recall hari ini sekaligus tombol langsung ke Recall",s:["Buka SevnQuest","Tab Castle terbuka otomatis","Ketuk tombol Recall untuk mulai mengulang"],d:"home/HomeView. Streak berbasis aktivitas belajar nyata."},
+{n:"Pencarian Fitur & Materi Universal",w:["Buka SevnQuest","tab Castle","kolom pencarian"],f:"mencari fitur sekaligus materi (kotoba, kanji, pola tata bahasa) dari satu kolom",s:["Buka SevnQuest","Di Castle ketik kata kunci di kolom pencarian","Pilih hasil untuk membuka detailnya"],d:"home/FeatureSearch + engine/search/universalSearch (ada tes)."}]},
+
+{g:"Karakter & Profil",d:"Sisi RPG: level, atribut, avatar.",i:[
+{n:"Status Karakter",w:["Buka SevnQuest","ketuk avatar/profil karakter"],f:"melihat level, EXP, HP/MP, gold, dan atribut karakter",s:["Buka SevnQuest","Ketuk avatar karakter","Modal status terbuka"],d:"modals/CharacterStatusModal."},
+{n:"Alokasi Poin Atribut",w:["Buka SevnQuest","Status Karakter","bagian atribut"],f:"membagi poin atribut STR/AGI/INT/VIT yang didapat tiap naik level (3 poin/level)",s:["Buka Status Karakter","Tekan + pada atribut yang diinginkan"],d:"Saat ini INT menambah bonus kuis, VIT/INT menambah maxHP/MP; STR/AGI belum berefek. Status: parsial."},
+{n:"Ascension Tier",w:["Buka SevnQuest","Status Karakter","tombol Ascension"],f:"naik tier N5→N4→N3→N2→N1 setelah menguasai materi",s:["Pelajari kanji, kotoba, bunpou level saat ini","Capai penguasaan 75% di ketiganya","Buka Status Karakter lalu tekan Ascend"],d:"Gerbang 75% kanji/kotoba/bunpou; N1 tanpa gerbang. utils/ascension."},
+{n:"Avatar Tier",w:["Buka SevnQuest","Menu","Profil/Avatar"],f:"avatar berubah mengikuti tier (10 tier, pilihan gender laki-laki/perempuan)",s:["Buka Menu","Pilih pengaturan profil/avatar","Pilih gender avatar"],d:"avatar/TierAvatar, public/avatars."},
+{n:"Nama & Signature",w:["Buka SevnQuest","Menu","Profil"],f:"mengganti nama tampilan dan signature yang terlihat di Leaderboard",s:["Buka Menu","Ubah nama (maks 30 karakter) dan signature (maks 60)"],d:"handleUpdateName / handleUpdateSignature."},
+{n:"Potion HP & Istirahat Dojo",w:["Buka SevnQuest","Status Karakter","pemulihan"],f:"memulihkan HP dengan membayar gold",s:["Buka Status Karakter","Pilih Potion atau Istirahat"],d:"utils/recovery. Parsial: HP jarang turun di UI aktif."}]},
+
+{g:"Misi",d:"Kurikulum personal dan misi mingguan.",i:[
+{n:"Guided Learning (Misi Harian Adaptif)",w:["Buka SevnQuest","tab Misi"],f:"membuat rencana belajar personal menuju target level JLPT, lengkap jatah materi harian yang menyesuaikan sisa hari dan retensi",s:["Buka tab Misi","Jalankan wizard setup: pilih level target dan mode","Kerjakan misi harian dan klaim hadiah"],d:"Tiga mode: Kejar Tenggat, Waktu Tetap, Atur Keduanya. Urutan: kanji→kotoba, bunpou sesuai tahap. Analisis gap & kelayakan (analyzePlan), misi harian (planDay), evaluasi 10 soal tiap 7 hari. engine/curriculum/*."},
+{n:"Setup Wizard Rencana Belajar",w:["Buka SevnQuest","tab Misi","Setup Wizard"],f:"menghitung apakah target dan waktu belajarmu realistis dan berapa lama durasi yang dibutuhkan",s:["Buka tab Misi","Pilih level target","Isi jumlah hari dan/atau menit belajar per hari","Simpan rencana"],d:"missions/GuidedSetupWizard; state PlayerStats.guidedPlan."},
+{n:"Evaluasi Mingguan",w:["Buka SevnQuest","tab Misi","misi evaluasi"],f:"menguji capaian tiap 7 hari dengan 10 soal level target",s:["Buka tab Misi","Kerjakan misi Evaluasi lewat Library → Soal","Selesaikan 10 soal"],d:"Satu simulasi ujian juga memenuhi. Ringkasan program menampilkan cakupan, retensi, penguasaan."},
+{n:"Misi Mingguan & Klaim Hadiah",w:["Buka SevnQuest","tab Misi","misi mingguan"],f:"mengklaim EXP/gold dari misi (mis. streak 5 hari)",s:["Buka tab Misi","Selesaikan syarat misi","Tekan Klaim"],d:"Klaim via ledger mission_claim, sekali per misi per periode. Reset harian lokal & mingguan ISO-week."}]},
+
+{g:"Library (Perpustakaan)",d:"Ensiklopedia materi: 4 volume.",i:[
+{n:"Library Kotoba",w:["Buka SevnQuest","tab Library","Kotoba"],f:"menjelajah 18.353 kosakata (N5–N1, Kaigo, SSW) dengan arti, bacaan, audio, dan latihan menulis",s:["Buka tab Library","Pilih Kotoba","Filter level/cari kata lalu ketuk untuk detail","Gunakan bookmark untuk masuk ke deck"],d:"N5 700 · N4 731 · N3 1.960 · N2 3.333 · N1 11.369 · Kaigo 229 · SSW 31. library/KotobaLibraryView, KotobaDetailModal."},
+{n:"Library Kanji & Kanvas Menulis",w:["Buka SevnQuest","tab Library","Kanji"],f:"belajar 2.507 kanji dan berlatih menulis dengan urutan goresan (stroke order), petunjuk, watermark, dan stopwatch",s:["Buka tab Library","Pilih Kanji","Ketuk kanji","Buka kanvas menulis dan ikuti goresan"],d:"N5 80 · N4 167 · N3 366 · N2 378 · N1 1.373 · KANA 143. Menggunakan hanzi-writer + data public/data/kana-strokes."},
+{n:"Library Bunpou (Tata Bahasa)",w:["Buka SevnQuest","tab Library","Bunpou"],f:"memahami 915 pola tata bahasa lewat rumus, sub-formula, contoh kalimat, animasi, dan kuis kecil",s:["Buka tab Library","Pilih Bunpou","Pilih pola","Baca rumus & contoh, lalu coba kuis kecil"],d:"N5 119 · N4 189 · N3 132 · N2 208 · N1 267. Termasuk GrammarAnimation."},
+{n:"Dojo Konjugasi & Sandbox",w:["Buka SevnQuest","tab Library","Bunpou","Dojo Konjugasi"],f:"melatih perubahan bentuk kata kerja dan kata sifat, serta bereksperimen di sandbox",s:["Buka Library → Bunpou","Masuk Dojo Konjugasi","Pilih kata dan bentuk yang ingin dilatih"],d:"Mesin J-LIE morphology/inflectionEngine (ada tes)."},
+{n:"Library Soal & Simulasi Ujian JLPT",w:["Buka SevnQuest","tab Library","Soal"],f:"latihan soal dan simulasi ujian JLPT (Moji-Goi, Bunpou-Dokkai)",s:["Buka tab Library","Pilih Soal","Pilih drill atau simulasi ujian"],d:"Bank soal: kanji 7.754, bunpou 2.525; tryout 27 resmi + 10 dalam-app. Choukai disembunyikan (flag CHOUKAI_ENABLED=false)."},
+{n:"Kotoba Insight",w:["Buka SevnQuest","tab Library","Kotoba","detail kata","Insight"],f:"membedah satu kata lebih dalam (komponen dan konteks)",s:["Buka Library → Kotoba","Ketuk kata","Buka Insight"],d:"library/KotobaInsightModal + engine/kotobaInsight (ada tes)."}]},
+
+{g:"Recall (SRS)",d:"Pengulangan berjarak.",i:[
+{n:"Recall / Spaced Repetition",w:["Buka SevnQuest","tab Castle","tombol Recall"],f:"mengulang materi yang hampir lupa dengan sistem SRS sehingga hafalan bertahan lama",s:["Buka SevnQuest","Ketuk tombol Recall di Castle","Jawab 10 soal per sesi","Lihat hasil EXP"],d:"Antrean ≤30 (CRITICAL/WEAK/REVIEW/MAINTAIN + NEW_UNTESTED), 40 jawaban/hari, 10 materi baru/hari, Latihan Ekstra 5 soal tanpa batas putaran. Soal: pilihan ganda, konteks, canvas menulis, Grammar Fusion, konjugasi, listening. Hasil dinilai sistem, bukan self-rating."}]},
+
+{g:"Buku Saku (Deck)",d:"Koleksi dan deck belajar pribadi.",i:[
+{n:"Deck Bookmark & Deck Kustom",w:["Buka SevnQuest","tab Buku Saku"],f:"mengumpulkan materi favorit ke deck sendiri, lalu mengulangnya",s:["Bookmark materi dari Library","Buka tab Buku Saku","Buat deck baru atau impor bookmark"],d:"deck/BukuSakuView, CreateDeckModal, utils/decks."},
+{n:"Preset Otomatis & Deck dari Topik",w:["Buka SevnQuest","tab Buku Saku","Buat Deck"],f:"membuat deck otomatis berdasarkan topik tanpa menyusun manual",s:["Buka Buku Saku","Buat Deck","Pilih preset atau ketik topik"],d:"engine/deckBuilder tanpa LLM (ada tes)."},
+{n:"Deck AI",w:["Buka SevnQuest","tab Buku Saku","Buat Deck","Deck AI"],f:"memperluas kata kunci topik dengan AI; isi materi tetap diambil dari database",s:["Buka Buku Saku","Pilih Deck AI","Ketik topik yang diinginkan"],d:"AI hanya memperluas kata kunci. Tanpa konfigurasi server (503) otomatis fallback ke pembuatan lokal."},
+{n:"Rak Buku Resmi & Tematik",w:["Buka SevnQuest","tab Buku Saku","sub-tab Buku Resmi"],f:"belajar mengikuti urutan 43 buku ajar resmi dan buku tematik",s:["Buka Buku Saku","Pilih sub-tab Buku Resmi","Pilih buku lalu bab"],d:"deck/BookshelfView, BookDetailView, data/officialBooks."},
+{n:"Flashcard Runner",w:["Buka SevnQuest","tab Buku Saku","pilih deck","Flashcard"],f:"mengulang isi deck dengan kartu bolak-balik",s:["Buka deck","Tekan mulai Flashcard","Balik kartu, lanjut Next"],d:"deck/DeckFlashcardRunner."},
+{n:"Writing Runner",w:["Buka SevnQuest","tab Buku Saku","pilih deck","Menulis"],f:"berlatih menulis seluruh isi deck",s:["Buka deck","Pilih mode Menulis"],d:"Parsial: mengirim '1/1 benar' tanpa skor nyata."}]},
+
+{g:"World · Arcade",d:"5 mode permainan cepat. Lokasi: World → Arcade.",i:[
+{n:"Kanji Speed Rush",w:["Buka SevnQuest","tab World","Arcade","Kanji Speed Rush"],f:"menulis kanji sebanyak mungkin dalam 60 detik",s:["Buka World → Arcade","Pilih sumber materi","Mulai dan tulis kanji di kanvas"],d:"Reward max(1, round(base·0,35)) per benar."},
+{n:"Kotoba Guess",w:["Buka SevnQuest","tab World","Arcade","Kotoba Guess"],f:"menebak kosakata dengan cepat",s:["Buka World → Arcade","Pilih Kotoba Guess","Jawab tebakan"],d:"Reward sama dengan Kanji Speed Rush."},
+{n:"Sudden Death Streak",w:["Buka SevnQuest","tab World","Arcade","Sudden Death Streak"],f:"menjawab beruntun dengan hanya 3 nyawa; makin panjang streak makin besar hadiah",s:["Buka World → Arcade","Pilih Sudden Death","Jawab tanpa salah sebanyak mungkin"],d:"Reward round(base·0,35)+min(streak,10), gold 5+streak/2."},
+{n:"Conjugation Speed Rush",w:["Buka SevnQuest","tab World","Arcade","Conjugation Speed Rush"],f:"mengubah bentuk kata kerja/sifat secepat mungkin dalam 60 detik",s:["Buka World → Arcade","Mulai Conjugation Speed Rush"],d:"Hadiah akhir max(30, benar·30+combo·10)."},
+{n:"Star Sentence Rush",w:["Buka SevnQuest","tab World","Arcade","Star Sentence Rush"],f:"menyusun kalimat dan mengejar peringkat C hingga SSS",s:["Buka World → Arcade","Mulai Star Sentence Rush"],d:"Hadiah 30/60/90/120/160/200 sesuai peringkat."}]},
+
+{g:"World · Dungeon",d:"11 jenis dungeon. Lokasi: World → Dungeon. Mode standar atau survival (timer 15–60 detik per lantai), 5–30 lantai.",i:[
+{n:"Dungeon Menulis Aksara",w:["Buka SevnQuest","tab World","Dungeon","Menulis Aksara"],f:"menulis kanji dan kosakata goresan demi goresan",s:["Buka World → Dungeon","Pilih Menulis Aksara","Atur lantai di Setup, lalu masuk"],d:"Reward lantai dibayar sekali di akhir; lantai salah tetap memberi hadiah partisipasi."},
+{n:"Dungeon Gerbang Ingatan",w:["Buka SevnQuest","tab World","Dungeon","Gerbang Ingatan"],f:"menghafal arti dan bacaan dengan kartu bolak-balik",s:["Buka World → Dungeon","Pilih Gerbang Ingatan"],d:"Flashcard bertingkat lantai."},
+{n:"Dungeon Kuil Tata Bahasa",w:["Buka SevnQuest","tab World","Dungeon","Kuil Tata Bahasa"],f:"menyusun potongan kata menjadi kalimat yang benar (sakubun)",s:["Buka World → Dungeon","Pilih Kuil Tata Bahasa"],d:"Latihan urutan kata."},
+{n:"Dungeon Altar Konjugasi",w:["Buka SevnQuest","tab World","Dungeon","Altar Konjugasi"],f:"mengubah bentuk kata kerja dan kata sifat",s:["Buka World → Dungeon","Pilih Altar Konjugasi"],d:"Memakai mesin inflectionEngine."},
+{n:"Dungeon Arena Kuis Cepat",w:["Buka SevnQuest","tab World","Dungeon","Arena Kuis Cepat"],f:"kuis pilihan ganda acak ala JLPT",s:["Buka World → Dungeon","Pilih Arena Kuis Cepat"],d:"Soal acak dari bank soal."},
+{n:"Dungeon Gerbang Kanji Extreme",w:["Buka SevnQuest","tab World","Dungeon","Gerbang Kanji Extreme"],f:"menebak bacaan kanji stage demi stage (100 stage) yang makin sulit",s:["Buka World → Dungeon","Pilih Kanji Extreme"],d:"100 stage progresif."},
+{n:"Dungeon Kreasi Kalimat Pola",w:["Buka SevnQuest","tab World","Dungeon","Kreasi Kalimat Pola"],f:"menulis kalimat sendiri memakai pola tata bahasa",s:["Buka World → Dungeon","Pilih Kreasi Kalimat Pola","Pilih pola lalu tulis kalimat"],d:"Sentence builder / synthesizer."},
+{n:"Dungeon Papan Tulis Pola",w:["Buka SevnQuest","tab World","Dungeon","Papan Tulis Pola"],f:"melihat bagaimana kata berubah di berbagai pola kalimat",s:["Buka World → Dungeon","Pilih Papan Tulis Pola"],d:"BlackboardPlaygroundModule."},
+{n:"Bunpou Dungeon: Grammar Fusion",w:["Buka SevnQuest","tab World","Dungeon","Grammar Fusion"],f:"melebur komponen tata bahasa ke kata dasar, mis. 食べる menjadi 食べないでください",s:["Buka World → Dungeon","Pilih Grammar Fusion","Susun komponen ke kata dasar"],d:"1 stage tertulis (60 EXP/30 gold) + mode bebas; clear ulang 40%. Progres di localStorage, tidak ikut cloud."},
+{n:"Dungeon Perpustakaan Teks (Text Study)",w:["Buka SevnQuest","tab World","Dungeon","Perpustakaan Teks"],f:"menempel teks Jepang (kalimat, paragraf, dokkai) lalu dibedah jadi kotoba, pola, dan kanji dan dilatih lewat kuis",s:["Buka World → Dungeon","Pilih Perpustakaan Teks","Tempel teks","Pelajari hasil bedah lalu kerjakan kuis"],d:"engine/textStudy; reward per entitas per hari (ledger)."},
+{n:"Dungeon Imersi (YouTube Karaoke)",w:["Buka SevnQuest","tab World","Dungeon","Imersi"],f:"belajar dari lagu atau video YouTube Jepang dengan karaoke per kata (ruang Musik dan Video)",s:["Buka World → Dungeon","Pilih Imersi","Tempel link YouTube","Ikuti lirik/teks per kata dan simpan kata baru"],d:"Caption via api/captions (endpoint tidak resmi, bisa diblokir), template JSON dari AI eksternal divalidasi, kata tersimpan (useSavedWords)."}]},
+
+{g:"World · Tower (Menara Nihongo)",d:"100 lantai.",i:[
+{n:"Menara 1 (Lantai 1–16)",w:["Buka SevnQuest","tab World","Tower","Menara 1"],f:"melatih cara MELIHAT bahasa Jepang: aksara, bunyi, dan kata dasar",s:["Buka World → Tower","Pilih Menara 1","Ketuk lantai 001 lalu mulai"],d:"Tutorial 16 lantai. Tipe room: lesson, choice, pair, build, pick."},
+{n:"Menara 2 (Lantai 17–100)",w:["Buka SevnQuest","tab World","Tower","Menara 2"],f:"melatih MEMAKAI bahasa Jepang: kotoba N5/N4, kanji, pola, konjugasi, dengan penjaga di tiap kelipatan 10",s:["Buka World → Tower","Pilih Menara 2","Pilih lantai yang terbuka"],d:"Graf prasyarat (DAG) + rekomendasi lantai. Hadiah clear pertama saja (total 23.098 EXP / 11.549 gold). Progres ikut cloud. Tidak memengaruhi mastery/Recall."}]},
+
+{g:"Rank & Akun",d:"Kompetisi dan pengaturan.",i:[
+{n:"Leaderboard",w:["Buka SevnQuest","tab Rank"],f:"melihat peringkat top 100 all-time dan mingguan beserta posisimu, dan membuka profil pemain lain",s:["Buka tab Rank","Pilih tab All-time atau Mingguan","Ketuk pemain untuk melihat profil"],d:"Supabase; skor mingguan bertambah dari menulis kanji; cache lokal bila jaringan gagal."},
+{n:"Akun & Cloud Sync",w:["Buka SevnQuest","tab Menu","Akun"],f:"login (email/Google) agar progres tersimpan di cloud dan bisa dipakai di banyak perangkat",s:["Buka Menu","Pilih Login/Daftar","Masuk dengan email atau Google"],d:"auth/AuthModal; Google bila VITE_GOOGLE_AUTH=true. Merge cloud (utils/cloudMerge)."},
+{n:"Pengaturan (Audio, Furigana, Tema)",w:["Buka SevnQuest","tab Menu"],f:"mengatur audio, tampilan furigana, tema, dan melihat dukungan",s:["Buka Menu","Ubah toggle sesuai kebutuhan"],d:"settings/SettingsView."},
+{n:"Reset Progres",w:["Buka SevnQuest","tab Menu","Reset"],f:"mengulang dari awal tanpa kehilangan akun",s:["Buka Menu","Pilih Reset progres","Konfirmasi"],d:"userId dipertahankan."}]},
+
+{g:"Mesin & Alat Bantu",d:"Fitur pendukung lintas modul.",i:[
+{n:"Audio TTS & Efek Suara",w:["Buka SevnQuest","ikon speaker di detail kata/soal"],f:"mendengar pelafalan kata Jepang",s:["Buka materi di Library","Ketuk ikon speaker"],d:"Web Speech TTS."},
+{n:"Furigana & Input IME Jepang",w:["Buka SevnQuest","kolom pencarian/jawaban"],f:"mengetik romaji otomatis menjadi kana, dan menampilkan furigana di atas kanji",s:["Ketik romaji di kolom input","Atur furigana di Menu"],d:"wanakana, utils/furiganaUtils, imeEngine."}]}
+];
+
+const $=s=>document.querySelector(s);
+const st=(x)=>x==="P"?'<span class="tag p">Parsial</span>':'';
+function prompt(f,g){
+  const fmt=$('#fmt').value,tone=$('#tone').value;
+  const loc=f.w.join(" → ");
+  const steps=f.s.map((x,i)=>`${i+1}. ${x}`).join("\n");
+  return `Buatkan ${fmt} dengan gaya ${tone}, dalam bahasa Indonesia, untuk mempromosikan aplikasi belajar bahasa Jepang "SevnQuest" (Nihongo Quest RPG).
+
+Topik: fitur "${f.n}" (kategori ${g}).
+
+Gambaran isi konten: "Kamu bisa menggunakan fitur ${f.n} di SevnQuest untuk ${f.f}. Caranya, ${f.s.map((x,i)=>(i?`lalu `:'')+x.charAt(0).toLowerCase()+x.slice(1)).join(", ")}."
+
+Informasi fitur:
+- Lokasi di aplikasi: ${loc}
+- Fungsi: ${f.f}
+- Cara pakai:
+${steps}
+- Detail tambahan: ${f.d}
+
+Ketentuan:
+- Buka dengan hook yang menarik di kalimat pertama.
+- Jelaskan lokasi fitur dan langkahnya dengan jelas agar mudah diikuti.
+- Hanya pakai informasi di atas, jangan mengarang fitur atau angka lain.
+- Akhiri dengan ajakan (CTA) untuk mencoba SevnQuest.`;
+}
+let cat="Semua",all=[];
+G.forEach(c=>c.i.forEach(f=>all.push({...f,g:c.g})));
+function tabs(){
+  $('#tabs').innerHTML=["Semua",...G.map(c=>c.g)].map(t=>`<button class="${t===cat?'on':''}" data-t="${t}">${t}</button>`).join("");
+  $('#tabs').querySelectorAll('button').forEach(b=>b.onclick=()=>{cat=b.dataset.t;tabs();render()});
+}
+function render(){
+  const q=$('#q').value.toLowerCase().trim();let n=0,h="";
+  G.forEach(c=>{
+    if(cat!=="Semua"&&cat!==c.g)return;
+    const its=c.i.filter(f=>!q||JSON.stringify(f).toLowerCase().includes(q)||c.g.toLowerCase().includes(q));
+    if(!its.length)return;n+=its.length;
+    h+=`<h2>${c.g}</h2><p class="gdesc">${c.d}</p>`;
+    its.forEach(f=>{const id=all.indexOf(all.find(a=>a.n===f.n));
+      h+=`<div class="card"><h3>${f.n} ${st(f.st||(/Parsial/.test(f.d)?'P':''))}</h3>
+<dl><dt>Lokasi</dt><dd>${f.w.join(" → ")}</dd><dt>Fungsi</dt><dd>${f.f}</dd>
+<dt>Cara pakai</dt><dd><ol>${f.s.map(x=>`<li>${x}</li>`).join("")}</ol></dd>
+<dt>Detail</dt><dd>${f.d}</dd></dl>
+<button class="btn" data-i="${id}">Buat Konten</button><button class="btn ghost" data-p="${id}">Lihat prompt</button>
+<details id="pv${id}"><summary>Pratinjau prompt</summary><pre></pre></details></div>`;});
+  });
+  $('#list').innerHTML=h||'<p class="sub">Tidak ada fitur yang cocok.</p>';
+  $('#cnt').textContent=n+" fitur";
+  document.querySelectorAll('[data-i]').forEach(b=>b.onclick=async()=>{
+    const f=all[b.dataset.i],t=prompt(f,f.g);
+    try{await navigator.clipboard.writeText(t)}catch(e){const a=document.createElement('textarea');a.value=t;document.body.appendChild(a);a.select();document.execCommand('copy');a.remove()}
+    const o=b.textContent;b.textContent="✓ Prompt tersalin";b.classList.add('ok');
+    setTimeout(()=>{b.textContent=o;b.classList.remove('ok')},1800);
+  });
+  document.querySelectorAll('[data-p]').forEach(b=>b.onclick=()=>{
+    const f=all[b.dataset.p],d=$('#pv'+b.dataset.p);d.querySelector('pre').textContent=prompt(f,f.g);d.open=!d.open;
+  });
+}
+$('#q').oninput=render;
+tabs();render();
+</script>
+</body>
+</html>
