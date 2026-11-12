@@ -44,19 +44,31 @@ function getSupabaseUrl(): string {
   return canUseSameOriginProxy() ? `${window.location.origin}/supabase-proxy` : directUrl;
 }
 
-/** true setelah proxy terbukti tidak tersedia (404 / HTML / error jaringan) -> langsung ke supabase.co. */
+/** true setelah proxy terbukti tidak tersedia (HTML / galat gateway / error jaringan) -> langsung ke supabase.co. */
 let proxyBroken = false;
 const PROXY_PREFIX_RE = /^https?:\/\/[^/]+(\/[^/]+)*\/supabase-proxy/;
 
 const supabaseUrl = getSupabaseUrl();
 
 /**
- * Resilient Fetch wrapper:
- * 1. Enforces a 7-second timeout so network requests never hang indefinitely.
- * 2. Detects non-API HTML responses (e.g. SPA servers returning index.html) and errors,
- *    automatically falling back to directUrl (supabase.co).
+ * Respons yang menandakan PROXY-nya yang rusak, bukan jawaban Supabase: HTML (rute SPA / halaman galat)
+ * atau galat non-JSON dari gateway. Galat JSON PostgREST (400 RPC yang melempar, 401, 404 fungsi belum
+ * ada, dst.) adalah jawaban sah dari Supabase lewat proxy, sehingga TIDAK boleh dianggap proxy rusak.
  */
-async function resilientFetch(input: RequestInfo | URL, init?: RequestInit): Promise<Response> {
+export function isProxyFailureResponse(res: Pick<Response, 'ok' | 'headers'>): boolean {
+  const contentType = res.headers.get('content-type') || '';
+  if (contentType.includes('text/html')) return true;
+  return !res.ok && !contentType.includes('application/json');
+}
+
+/**
+ * Resilient Fetch wrapper:
+ * 1. Enforces a timeout so network requests never hang indefinitely.
+ * 2. Bila proxy same-origin rusak (HTML / galat gateway / error jaringan), otomatis jatuh ke
+ *    directUrl (supabase.co) dan mengingatnya (proxyBroken). Respons JSON dari Supabase, termasuk
+ *    galat aplikasi, diteruskan apa adanya.
+ */
+export async function resilientFetch(input: RequestInfo | URL, init?: RequestInit): Promise<Response> {
   let urlStr = typeof input === 'string' ? input : input instanceof URL ? input.toString() : (input as Request).url;
   if (proxyBroken && urlStr.includes('/supabase-proxy')) {
     urlStr = urlStr.replace(PROXY_PREFIX_RE, directUrl);
@@ -80,11 +92,8 @@ async function resilientFetch(input: RequestInfo | URL, init?: RequestInit): Pro
     const res = await fetch(input, { ...init, signal: controller.signal });
     clearTimeout(timer);
 
-    const contentType = res.headers.get('content-type') || '';
-    const isHtml = contentType.includes('text/html');
-
-    // If reverse proxy returned 404, server error, or served HTML instead of JSON
-    if ((!res.ok || isHtml) && urlStr.includes('/supabase-proxy')) {
+    // Reverse proxy rusak (HTML SPA / galat gateway non-JSON): ulangi lewat supabase.co.
+    if (isProxyFailureResponse(res) && urlStr.includes('/supabase-proxy')) {
       const fallbackUrl = urlStr.replace(/^https?:\/\/[^/]+(\/[^/]+)*\/supabase-proxy/, directUrl);
       const fbController = new AbortController();
       const fbTimer = setTimeout(() => fbController.abort(), 12000);
