@@ -77,6 +77,9 @@ import { DOKKAI_DATABASE } from '../../data/dokkai';
 import { recordItemAttempt } from '../../utils/mastery';
 import { getTodayLocalDate } from '../../utils/time';
 
+// Item yang salah dijadwalkan ulang besok; untuk uji tampilan anggap jadwalnya sudah tiba.
+const dueNow = <T extends { nextReviewDue: string }>(r: T): T => ({ ...r, nextReviewDue: new Date(Date.now() - 60_000).toISOString() });
+
 test('target harian tercapai: tampil pesan kuota + Latihan Ekstra, bukan soal / "semua segar"', () => {
   const kotoba = Object.values(KOTOBA_DATABASE).slice(40, 60);
   const mastery: Record<string, any> = {};
@@ -96,7 +99,7 @@ test('target harian tercapai: tampil pesan kuota + Latihan Ekstra, bukan soal / 
 test('sesi memakai kuota: maksimal 10 soal per sesi dari antrean yang lebih panjang', () => {
   const kotoba = Object.values(KOTOBA_DATABASE).slice(70, 100);
   const mastery: Record<string, any> = {};
-  for (const k of kotoba) mastery[k.id] = recordItemAttempt(undefined, k.id, 'kotoba', 0, 1, undefined, false, 'quiz', 'x');
+  for (const k of kotoba) mastery[k.id] = dueNow(recordItemAttempt(undefined, k.id, 'kotoba', 0, 1, undefined, false, 'quiz', 'x'));
   const queue = buildSmartRecallQueue(mastery);
   assert.ok(queue.length > 10);
   const html = render({ recallQueue: queue });
@@ -105,7 +108,7 @@ test('sesi memakai kuota: maksimal 10 soal per sesi dari antrean yang lebih panj
 
 test('engine dokkai menampilkan wacana', () => {
   const dk = Object.values(DOKKAI_DATABASE)[0];
-  const q = buildSmartRecallQueue({ [dk.id]: recordItemAttempt(undefined, dk.id, 'dokkai' as any, 0, 3, undefined, true, 'quiz', 'dokkai') });
+  const q = buildSmartRecallQueue({ [dk.id]: dueNow(recordItemAttempt(undefined, dk.id, 'dokkai' as any, 0, 3, undefined, true, 'quiz', 'dokkai')) });
   const html = render({ recallQueue: q });
   assert.ok(html.includes(dk.text.slice(0, 12)));
 });
