@@ -135,3 +135,12 @@ test('arti: sinonim sehari-hari ("capek" → 疲れる) tanpa salah tangkap "men
   assert.ok(r.includes('疲れる'), r.join(','));
   assert.ok(!r.includes('達する'));
 });
+
+test('tampilan arti: sinonim sehari-hari ditambahkan ("Hangus" → "Hangus/gosong")', async () => {
+  const { meaningWithSynonyms } = await import('./indonesianText');
+  assert.equal(meaningWithSynonyms('Hangus'), 'Hangus/gosong');
+  assert.equal(meaningWithSynonyms('Uang; urusan keuangan'), 'Uang/duit; urusan keuangan');
+  assert.equal(meaningWithSynonyms('Mengantuk'), 'Mengantuk', 'bentuk lain kata yang sama tidak ditambahkan');
+  assert.equal(meaningWithSynonyms('Bisa'), 'Bisa', 'kata bermakna ganda dilewati');
+  assert.equal(meaningWithSynonyms('quick; fast'), 'quick; fast', 'arti bahasa Inggris tidak diubah');
+});

@@ -14,6 +14,7 @@ import { hasKotobaInsight } from '../../engine/kotobaInsight/readingSplit';
 import { UserDeck } from '../../types/rpg';
 import { isItemBookmarked } from '../../utils/decks';
 import { searchJapanese, createSubsetIndex, warmMeaningIndex } from '../../engine/search/universalSearch';
+import { meaningWithSynonyms } from '../../engine/search/indonesianText';
 import { JapaneseSearchInput } from '../common/JapaneseSearchInput';
 import { parseReadingVariations } from '../../utils/readingHighlightUtils';
 import { DeckBookmarkPicker } from '../deck/DeckBookmarkPicker';
@@ -488,7 +489,7 @@ export const KotobaLibraryView: React.FC<KotobaLibraryViewProps> = ({
                       <RubyText japanese={item.word} reading={listReading} showFurigana={true} />
                     </h3>
                     <p className="text-xs sm:text-sm font-semibold text-text-secondary transition-colors leading-snug">
-                      {item.meaningId}
+                      {meaningWithSynonyms(item.meaningId)}
                     </p>
                     {hasKotobaInsight(item) && (
                       <button

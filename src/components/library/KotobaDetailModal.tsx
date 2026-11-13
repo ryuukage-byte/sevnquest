@@ -1,6 +1,7 @@
 import { getWordTypeLabel } from '../../utils/wordType';
 import React, { useMemo, useState, useEffect, Suspense } from 'react';
 import { createPortal } from 'react-dom';
+import { meaningWithSynonyms } from '../../engine/search/indonesianText';
 import { motion } from 'motion/react';
 import { X, Volume2, Link as LinkIcon, Network, Edit3, ChevronLeft, ChevronRight, Zap, AlertTriangle, ArrowLeft, Layers } from 'lucide-react';
 import { BookIcon } from '../ui/EngravingIcons';
@@ -477,7 +478,7 @@ const KotobaDetailModalInner: React.FC<KotobaDetailModalProps> = ({
 
               <div className="space-y-2 bg-surface-inset p-4 rounded-2xl w-full border border-border-subtle text-left sm:text-center">
                 <h2 className="text-xl font-black text-text-primary font-heading leading-snug">
-                  {effectiveItem.meaningId}
+                  {meaningWithSynonyms(effectiveItem.meaningId)}
                 </h2>
                 {(effectiveItem.definitionId || effectiveItem.meaningJaId) && (
                   <p className="text-xs text-indigo-400 dark:text-indigo-300 leading-relaxed font-medium">

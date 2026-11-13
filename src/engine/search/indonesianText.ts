@@ -29,13 +29,16 @@ function stripPrefix(w: string, out: Set<string>) {
       if (VOWEL.test(r)) add('k' + r);     // meng+kirim → ngirim → kirim
     } else if (rest.startsWith('ny')) {
       add('s' + rest.slice(2));            // meny+sapu
+      add(rest);                           // me+nyanyi
     } else if (rest.startsWith('m')) {
       const r = rest.slice(1);
       add(r);                              // mem+beli
+      add(rest);                           // me+makan
       if (VOWEL.test(r)) add('p' + r);     // mem+pakai
     } else if (rest.startsWith('n')) {
       const r = rest.slice(1);
       add(r);                              // men+dengar
+      add(rest);                           // me+nikah
       if (VOWEL.test(r)) add('t' + r);     // men+tulis
     } else {
       add(rest);                           // me+lihat, pe+lari
@@ -106,7 +109,7 @@ export function englishStems(word: string): string[] {
 // Kata sehari-hari / gaul / regional diarahkan ke kata kamus, dan sebaliknya.
 // ------------------------------------------------------------------------------
 const SYNONYM_GROUPS: string[][] = [
-  ['hangus', 'gosong', 'terbakar', 'burn', 'scorch'],
+  ['hangus', 'gosong', 'burn', 'scorch'],
   ['bakar', 'panggang', 'sangrai', 'burn', 'roast', 'grill'],
   ['makan', 'santap', 'eat'],
   ['minum', 'teguk', 'drink'],
@@ -139,9 +142,11 @@ const SYNONYM_GROUPS: string[][] = [
   ['mahal', 'expensive'],
   ['murah', 'cheap'],
   ['panas', 'gerah', 'hot'],
-  ['dingin', 'sejuk', 'cold', 'cool'],
+  ['dingin', 'cold'],
+  ['sejuk', 'adem', 'cool'],
   ['hangat', 'warm'],
-  ['basah', 'lembap', 'lembab', 'wet', 'damp'],
+  ['basah', 'wet'],
+  ['lembap', 'lembab', 'damp'],
   ['kering', 'dry'],
   ['kotor', 'jorok', 'dekil', 'dirty'],
   ['bersih', 'clean'],
@@ -163,7 +168,8 @@ const SYNONYM_GROUPS: string[][] = [
   ['salah', 'keliru', 'wrong', 'mistake'],
   ['rusak', 'hancur', 'broken', 'break'],
   ['baru', 'new'],
-  ['lama', 'tua', 'kuno', 'old'],
+  ['tua', 'old'],
+  ['kuno', 'antik', 'ancient'],
   ['muda', 'young'],
   ['jauh', 'far'],
   ['dekat', 'near', 'close'],
@@ -198,11 +204,13 @@ const SYNONYM_GROUPS: string[][] = [
   ['lihat', 'tengok', 'pandang', 'tonton', 'see', 'look', 'watch'],
   ['dengar', 'hear', 'listen'],
   ['bicara', 'omong', 'cakap', 'ngobrol', 'speak', 'talk'],
-  ['kata', 'bilang', 'ucap', 'say'],
+  ['berkata', 'bilang', 'ucap', 'say'],
   ['tanya', 'ask'],
   ['jawab', 'answer', 'reply'],
-  ['ajar', 'belajar', 'study', 'learn', 'teach'],
-  ['tahu', 'kenal', 'know'],
+  ['belajar', 'study', 'learn'],
+  ['mengajar', 'teach'],
+  ['mengetahui', 'tahu', 'know'],
+  ['kenal', 'mengenal', 'know'],
   ['lupa', 'forget'],
   ['ingat', 'remember'],
   ['pikir', 'kira', 'think'],
@@ -351,6 +359,15 @@ const SYNONYM_GROUPS: string[][] = [
   ['tempat tidur', 'kasur', 'ranjang', 'bed'],
 ];
 
+/** Kata bahasa Inggris di kelompok sinonim (dipakai untuk pencarian, tidak ditampilkan). */
+const ENGLISH_WORDS = new Set('burn scorch roast grill eat drink sleep wake sleepy drowsy hungry thirsty tired pain sick hurt dizzy headache happy glad sad angry afraid scared embarrassed shy surprised worry anxious beautiful pretty handsome ugly bad good big large small little many much few fast quick slow expensive cheap hot cold cool warm wet damp dry dirty clean empty full dark bright clever smart stupid foolish diligent lazy brave arrogant friendly kind difficult hard easy correct right wrong mistake broken break new old ancient young far near close tall high low short heavy light strong weak busy quiet noisy crowded delicious tasty sweet salty bitter sour spicy rotten smell go leave come arrive return enter exit walk run flee jump fall sit stand see look watch hear listen speak talk say ask answer reply study learn teach know forget remember think want like love hate buy sell pay money work job play write read open close shut take give receive borrow lend search seek find meet wait help wash cook cut wear use throw live alive die dead born win lose cry laugh smile scold lie steal child kid father mother older younger husband wife friend person people house home room school office shop store road street car bicycle train airplane doctor medicine rice water fire rain wind sky sun moon month star mountain sea ocean river tree flower dog cat bird fish clothes shoes book glass mirror morning noon daytime night evening day week year time now before past tomorrow yesterday always sometimes often seldom rarely very all not no yes why how what who where when can able must maybe perhaps almost already yet also but because if quarrel fight marry marriage divorce holiday vacation travel trip photo picture song sing dance earthquake flood injury wound fever cough cold vomit itch swell bathe bath restroom chair table desk bed'.split(' '));
+
+/**
+ * Kata bermakna ganda: tidak diberi tambahan sinonim di tampilan arti
+ * ("bisa" = dapat / racun, "tahu" = mengetahui / tofu, "lama" = kuno / durasi, dst).
+ */
+const DISPLAY_AMBIGUOUS = new Set(['bisa', 'kasih', 'tahu', 'kata', 'lama', 'masa', 'saat', 'bulan', 'jalan', 'main', 'balik', 'sampai', 'raya', 'mana', 'kira', 'ya', 'bagai', 'tak', 'udah', 'kali', 'senang', 'suka', 'baik', 'cari', 'beri', 'orang', 'hari', 'waktu', 'semua', 'lihat', 'bagus', 'besar', 'kecil', 'banyak', 'sedikit', 'tidak', 'bukan', 'sudah', 'belum', 'juga', 'tetapi', 'karena', 'jika', 'seperti', 'harus', 'mungkin', 'hampir', 'apa', 'siapa', 'kapan', 'dimana', 'kenapa', 'bagaimana', 'selalu', 'sering', 'jarang', 'kadang', 'sangat', 'sekarang', 'dulu', 'besok', 'kemarin', 'ingin', 'mau', 'dapat', 'buang', 'pakai', 'ambil', 'buka', 'tutup', 'baru', 'muda', 'jauh', 'dekat', 'tinggi', 'rendah', 'pendek', 'berat', 'ringan', 'kuat', 'lemah', 'benar', 'salah', 'pagi', 'siang', 'malam', 'minggu', 'tahun', 'kaca', 'air', 'api', 'kembali', 'pulang', 'perih', 'sayang', 'kilat']);
+
 let synonymIndex: Map<string, string[]> | null = null;
 
 /** Kata lain yang semakna (tanpa kata itu sendiri). */
@@ -374,4 +391,36 @@ export function synonymsOf(word: string): string[] {
     for (const syn of synonymIndex.get(s) || []) if (!out.includes(syn)) out.push(syn);
   }
   return out;
+}
+
+/** Sinonim bahasa Indonesia saja (tanpa kata Inggris), urut sesuai kelompok. */
+export function indonesianSynonymsOf(word: string): string[] {
+  synonymsOf('');
+  return (synonymIndex!.get(word.toLowerCase()) || []).filter(w => !ENGLISH_WORDS.has(w));
+}
+
+/**
+ * Tampilkan arti beserta sinonim sehari-harinya: "Hangus" → "Hangus/gosong".
+ * Hanya potongan arti yang SELURUHNYA satu kata/frasa di kelompok sinonim yang diberi
+ * tambahan (maks. `max`), kata bermakna ganda dilewati, dan sinonim yang sudah tertulis
+ * di arti tidak diulang.
+ */
+export function meaningWithSynonyms(meaning: string, max = 1): string {
+  if (!meaning) return meaning;
+  const lowerAll = ` ${tokenizeLatin(meaning).join(' ')} `;
+  const used = new Set<string>();
+  return meaning.split(/([;,])/).map(part => {
+    if (part === ';' || part === ',') return part;
+    const core = part.trim();
+    const key = core.toLowerCase();
+    if (!key || key.includes('(') || DISPLAY_AMBIGUOUS.has(key) || ENGLISH_WORDS.has(key)) return part;
+    // Lewati bentuk lain dari kata yang sama ("Mengantuk" tidak perlu "/ngantuk/kantuk").
+    const coreStems = new Set(indonesianStems(key));
+    const extra = indonesianSynonymsOf(key)
+      .filter(w => !used.has(w) && !lowerAll.includes(` ${w} `) && !indonesianStems(w).some(st => coreStems.has(st)))
+      .slice(0, max);
+    if (extra.length === 0) return part;
+    for (const w of extra) used.add(w);
+    return part.replace(core, `${core}/${extra.join('/')}`);
+  }).join('');
 }
