@@ -83,7 +83,8 @@ begin
 end;
 $$;
 
--- Deck AI: selama monetisasi belum tampil, semua pengguna login boleh memakai (tanpa kuota paket).
+-- Deck AI: selama monetisasi belum tampil, semua pengguna login boleh memakai (tanpa cek paket),
+-- tetapi kuota harian tetap berlaku supaya biaya AI terkendali.
 create or replace function public.consume_ai_quota(p_limit int default 30) returns jsonb
 language plpgsql security definer set search_path = public as $$
 declare
@@ -92,8 +93,7 @@ declare
   v_count int;
 begin
   if v_uid is null then return jsonb_build_object('allowed', false, 'reason', 'not_authenticated'); end if;
-  if not monetization_public() then return jsonb_build_object('allowed', true, 'reason', 'monetization_hidden'); end if;
-  if entitlement_for(v_uid)->>'access_tier' <> 'full' then
+  if monetization_public() and entitlement_for(v_uid)->>'access_tier' <> 'full' then
     return jsonb_build_object('allowed', false, 'reason', 'tier');
   end if;
   insert into ai_usage (user_id, day, count) values (v_uid, v_day, 1)
