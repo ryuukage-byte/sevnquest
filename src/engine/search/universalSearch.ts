@@ -125,6 +125,7 @@ interface MeaningTerms {
   en: Set<string>;    // token + stem dari arti Inggris
   extra: Set<string>; // token + akar kata dari definisi / kolokasi / contoh
   segments: string[]; // potongan arti ("Makan; santapan" → ["makan", "santapan"])
+  segTokens: string[][]; // token per potongan arti (untuk peran kata: inti vs keterangan)
 }
 interface KotobaDoc extends BaseDoc { item: KotobaItem }
 interface KanjiDoc extends BaseDoc { item: KanjiItem; readings: string[] }
@@ -165,7 +166,7 @@ function buildKotobaDoc(item: KotobaItem): KotobaDoc {
     meaning: `${item.meaningId || ''} ${item.meaningEn || ''} ${item.meaningJa || ''} ${item.unitName || ''}`.toLowerCase(),
     aliases: [item.id.toLowerCase(), ...getAliasesFor(item.id)],
     rank: rankOf(item.jlpt),
-    meaningIdSrc: `${item.meaningId || ''} ${item.unitName || ''}`,
+    meaningIdSrc: `${item.meaningId || ''};${item.unitName || ''}`,
     meaningEnSrc: item.meaningEn || '',
     extraSrc: `${item.definitionId || ''} ${(item.collocations || []).join(' ')} ${item.exampleSentence?.meaningId || ''}`,
   };
@@ -319,7 +320,7 @@ const SCORE = {
   /** Query muncul di definisi / kolokasi / contoh kalimat saja. */
   meaningExtra: 0.36,
   /** Bonus kecil bila arti utama cocok DAN query juga muncul di definisi/contoh. */
-  extraBonus: 0.03,
+  extraBonus: 0.01,
   meaning: 0.5,
   containsText: 0.45,
   containsReading: 0.4,
@@ -418,7 +419,7 @@ function termsOf(d: BaseDoc): MeaningTerms {
     addTerms(en, d.meaningEnSrc, englishStems);
     if (d.extraSrc) addTerms(extra, d.extraSrc, indonesianStems);
     const segments = `${d.meaningIdSrc};${d.meaningEnSrc}`.toLowerCase().split(/[;,]/).map(x => x.replace(/^\s*(to|a|an|the)\s+/, '').replace(/\([^)]*\)/g, '').trim()).filter(Boolean);
-    d.terms = { idRaw, id, en, extra, segments };
+    d.terms = { idRaw, id, en, extra, segments, segTokens: segments.map(seg => headTokens(tokenizeLatin(seg))) };
   }
   return d.terms;
 }
@@ -448,6 +449,39 @@ function prepareMeaningQuery(text: string): MeaningQuery {
   return lastMeaningQuery;
 }
 
+/** Kata pengantar yang bukan inti: "Menjadi lelah" berintikan "lelah", "Sangat lapar" → "lapar". */
+const LEAD_WORDS = new Set(['menjadi', 'jadi', 'sangat', 'amat', 'agak', 'rasa', 'merasa', 'sedang', 'sudah', 'telah', 'masih', 'tidak', 'tak', 'belum', 'sering', 'mudah', 'cepat', 'to', 'be', 'get', 'become', 'feel', 'very', 'a', 'an', 'the']);
+function headTokens(toks: string[]): string[] {
+  let i = 0;
+  while (i < toks.length - 1 && LEAD_WORDS.has(toks[i])) i++;
+  return i ? toks.slice(i) : toks;
+}
+
+/**
+ * Peran kata query di potongan arti. Bahasa Indonesia menaruh INTI di depan:
+ * "Kentang goreng" adalah kentang, bukan menggoreng. Jadi untuk query "goreng":
+ *   - potongan = query persis ("Goreng")            → paling tinggi
+ *   - potongan = satu kata berakar sama ("Menggoreng", "Gorengan")
+ *   - query adalah kata pertama/inti ("Goreng tepung")
+ *   - query hanya keterangan ("Kentang goreng") / hanya di dalam kurung → dikurangi
+ * Potongan pertama (arti utama) sedikit diutamakan.
+ */
+function roleBonus(terms: MeaningTerms, text: string, mq: Pick<MeaningQuery, 'tokens' | 'idStems' | 'enStems'>): number {
+  const exactIdx = terms.segments.indexOf(text);
+  if (exactIdx >= 0) return exactIdx === 0 ? 0.04 : 0.03;
+  if (mq.tokens.length !== 1) return 0;
+  const stems = new Set(mq.idStems[0].concat(mq.enStems[0]));
+  const matches = (tok: string) => tok === text || indonesianStems(tok).some(s => stems.has(s)) || englishStems(tok).some(s => stems.has(s));
+  let best = -0.03; // tidak ada di potongan mana pun (mis. hanya di dalam kurung)
+  terms.segTokens.forEach((toks, i) => {
+    const first = i === 0 ? 0.005 : 0;
+    if (toks.length === 1 && matches(toks[0])) best = Math.max(best, 0.025 + first);
+    else if (toks.length > 1 && matches(toks[0])) best = Math.max(best, first);
+    else if (toks.some(matches)) best = Math.max(best, -0.015);
+  });
+  return best;
+}
+
 const anyIn = (set: Set<string>, words: string[]) => words.some(w => set.has(w));
 
 function matchMeaning(d: BaseDoc, q: NormalizedQuery): Hit | null {
@@ -456,9 +490,8 @@ function matchMeaning(d: BaseDoc, q: NormalizedQuery): Hit | null {
   const terms = termsOf(d);
   const inExtra = terms.extra.size > 0 && mq.tokens.every((_, i) => anyIn(terms.extra, mq.idStems[i]));
   // Arti yang PERSIS sama dengan query (mis. "Lapar", bukan "Menjadi kosong; lapar") diutamakan.
-  const segIdx = terms.segments.indexOf(q.text);
-  const segBonus = segIdx === 0 ? 0.02 : segIdx > 0 ? 0.01 : 0;
-  const withBonus = (score: number) => hit(score + segBonus + (inExtra ? SCORE.extraBonus : 0), 'meaning', 'meaning');
+  // Dihitung hanya bila dokumen memang cocok (bukan untuk 18 ribu dokumen per ketikan).
+  const withBonus = (score: number, bonus = roleBonus(terms, q.text, mq)) => hit(score + bonus + (inExtra ? SCORE.extraBonus : 0), 'meaning', 'meaning');
   const m = d.meaning;
 
   // a. Frasa / kata utuh persis
@@ -476,18 +509,27 @@ function matchMeaning(d: BaseDoc, q: NormalizedQuery): Hit | null {
   if (mq.synonyms.some(list => list.length > 0)) {
     let best = Infinity;
     let ok = true;
+    let bestSyn = '';
     for (let i = 0; i < mq.tokens.length && ok; i++) {
       if (anyIn(terms.id, mq.idStems[i]) || anyIn(terms.en, mq.enStems[i])) { best = Math.min(best, SCORE.meaningSynonymMain); continue; }
       let s = 0;
       for (const syn of mq.synonyms[i]) {
         // Sinonim sebagai kata utuh sedikit di atas sinonim yang hanya cocok lewat akar kata.
+        const before = s;
         if (terms.id.has(syn.word)) s = Math.max(s, (syn.main ? SCORE.meaningSynonymMain : SCORE.meaningSynonym) - (terms.idRaw.has(syn.word) ? 0 : 0.005));
         else if (s < SCORE.meaningSynonymEn && terms.en.has(syn.word)) s = SCORE.meaningSynonymEn;
+        if (s > before && !bestSyn) bestSyn = syn.word;
       }
       if (s === 0) ok = false;
       else best = Math.min(best, s);
     }
-    if (ok && Number.isFinite(best)) return withBonus(best);
+    if (ok && Number.isFinite(best)) {
+      // Peran kata dinilai memakai sinonim yang cocok ("gosong" → posisi "hangus" di arti).
+      const bonus = mq.tokens.length === 1 && bestSyn
+        ? roleBonus(terms, bestSyn, { tokens: [bestSyn], idStems: [indonesianStems(bestSyn)], enStems: [englishStems(bestSyn)] })
+        : 0;
+      return withBonus(best, bonus);
+    }
   }
 
   // e. Hanya ada di definisi / kolokasi / contoh kalimat

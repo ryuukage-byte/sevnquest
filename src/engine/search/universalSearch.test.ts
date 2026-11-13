@@ -112,6 +112,7 @@ test('performa: pencarian Kotoba pada indeks hangat < 50ms', () => {
 // ------------------------------------------------------------------------------
 // Arti bahasa Indonesia: kata utuh, akar kata, sinonim
 // ------------------------------------------------------------------------------
+const kotoba = (q: string, n = 5) => searchJapanese(q, { entityTypes: ['kotoba'], limit: n });
 const kotobaWords = (q: string, n = 5) => searchJapanese(q, { entityTypes: ['kotoba'], limit: n }).map(r => r.primaryText);
 
 test('arti: "gosong" menemukan 焦げる (Hangus), bukan 退去 lewat "pen-gosong-an"', () => {
@@ -143,4 +144,19 @@ test('tampilan arti: sinonim sehari-hari ditambahkan ("Hangus" → "Hangus/goson
   assert.equal(meaningWithSynonyms('Mengantuk'), 'Mengantuk', 'bentuk lain kata yang sama tidak ditambahkan');
   assert.equal(meaningWithSynonyms('Bisa'), 'Bisa', 'kata bermakna ganda dilewati');
   assert.equal(meaningWithSynonyms('quick; fast'), 'quick; fast', 'arti bahasa Inggris tidak diubah');
+});
+
+test('arti: kata inti di atas keterangan ("goreng" → 揚げる "Menggoreng" di atas "Kentang goreng")', () => {
+  const r = kotoba('goreng', 10).map(x => x.primaryText);
+  assert.equal(r[0], '揚げる', r.join(','));
+  assert.ok(r.indexOf('揚げる') < r.indexOf('ポテト'));
+});
+
+test('arti: "Menjadi lelah" berintikan "lelah" (capek → 疲れる di 5 teratas)', () => {
+  assert.ok(kotobaWords('capek', 5).includes('疲れる'));
+});
+
+test('data: 没収 berarti Penyitaan (bukan Hangus)', () => {
+  const item = Object.values(KOTOBA_DATABASE).find(k => k.word === '没収');
+  assert.equal(item?.meaningId, 'Penyitaan');
 });
