@@ -108,3 +108,30 @@ test('performa: pencarian Kotoba pada indeks hangat < 50ms', () => {
   for (let i = 0; i < 10; i++) searchJapanese('nomu', { entityTypes: ['kotoba'] });
   assert.ok((performance.now() - t) / 10 < 50);
 });
+
+// ------------------------------------------------------------------------------
+// Arti bahasa Indonesia: kata utuh, akar kata, sinonim
+// ------------------------------------------------------------------------------
+const kotobaWords = (q: string, n = 5) => searchJapanese(q, { entityTypes: ['kotoba'], limit: n }).map(r => r.primaryText);
+
+test('arti: "gosong" menemukan 焦げる (Hangus), bukan 退去 lewat "pen-gosong-an"', () => {
+  const r = searchJapanese('gosong', { entityTypes: ['kotoba'], limit: Infinity });
+  assert.ok(r.slice(0, 3).some(x => x.primaryText === '焦げる'), 'top-3: ' + r.slice(0, 3).map(x => x.primaryText));
+  assert.ok(!r.some(x => x.primaryText === '退去'), 'substring di tengah kata tidak boleh cocok');
+});
+
+test('arti: akar kata Indonesia ("hangus" → Menghanguskan, "ngantuk" → Mengantuk)', () => {
+  assert.ok(kotobaWords('hangus').includes('焦がす'));
+  assert.ok(kotobaWords('ngantuk').includes('眠い'));
+  assert.ok(kotobaWords('membakar', 10).includes('燃やす'));
+});
+
+test('arti: kata yang artinya persis query diurutkan di atas ("makan" → 食べる)', () => {
+  assert.equal(kotobaWords('makan', 1)[0], '食べる');
+});
+
+test('arti: sinonim sehari-hari ("capek" → 疲れる) tanpa salah tangkap "mencapai"', () => {
+  const r = kotobaWords('capek', 10);
+  assert.ok(r.includes('疲れる'), r.join(','));
+  assert.ok(!r.includes('達する'));
+});

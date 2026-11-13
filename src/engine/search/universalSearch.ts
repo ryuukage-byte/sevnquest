@@ -18,6 +18,7 @@ import { KOTOBA_ID_ALIASES } from '../../data/entityIds';
 import { matchBunpouItem } from '../../utils/bunpouSearchUtils';
 import { getCanonicalGrammarTitle } from '../../utils/bunpouTitleUtils';
 import type { KotobaItem, KanjiItem, BunpouItem } from '../../types/content';
+import { tokenizeLatin, indonesianStems, englishStems, synonymsOf } from './indonesianText';
 
 export type SearchEntityType = 'kotoba' | 'kanji' | 'bunpou';
 
@@ -110,6 +111,20 @@ interface BaseDoc {
   meaning: string;   // arti + info pendukung, huruf kecil
   aliases: string[]; // ID lama / alias resmi dari database alias
   rank: number;      // tie-break deterministik (JLPT lebih mudah dulu)
+  /** Sumber teks arti per bahasa (untuk indeks kata utuh + akar kata, dibangun malas). */
+  meaningIdSrc: string;
+  meaningEnSrc: string;
+  /** Teks pendukung: definisi, kolokasi, terjemahan contoh kalimat (bukti tambahan). */
+  extraSrc: string;
+  terms?: MeaningTerms;
+}
+
+interface MeaningTerms {
+  idRaw: Set<string>; // kata utuh (tanpa stem) dari arti Indonesia
+  id: Set<string>;    // token + akar kata dari arti Indonesia
+  en: Set<string>;    // token + stem dari arti Inggris
+  extra: Set<string>; // token + akar kata dari definisi / kolokasi / contoh
+  segments: string[]; // potongan arti ("Makan; santapan" → ["makan", "santapan"])
 }
 interface KotobaDoc extends BaseDoc { item: KotobaItem }
 interface KanjiDoc extends BaseDoc { item: KanjiItem; readings: string[] }
@@ -150,6 +165,9 @@ function buildKotobaDoc(item: KotobaItem): KotobaDoc {
     meaning: `${item.meaningId || ''} ${item.meaningEn || ''} ${item.meaningJa || ''} ${item.unitName || ''}`.toLowerCase(),
     aliases: [item.id.toLowerCase(), ...getAliasesFor(item.id)],
     rank: rankOf(item.jlpt),
+    meaningIdSrc: `${item.meaningId || ''} ${item.unitName || ''}`,
+    meaningEnSrc: item.meaningEn || '',
+    extraSrc: `${item.definitionId || ''} ${(item.collocations || []).join(' ')} ${item.exampleSentence?.meaningId || ''}`,
   };
 }
 
@@ -179,6 +197,9 @@ function buildKanjiDoc(item: KanjiItem): KanjiDoc {
     meaning: `${item.meaningId || ''} ${item.meaningEn || ''} ${item.radical || ''} ${item.radicalName || ''}`.toLowerCase(),
     aliases: [(item.id || item.character).toLowerCase()],
     rank: rankOf(item.jlpt),
+    meaningIdSrc: `${item.meaningId || ''} ${item.radicalName || ''}`,
+    meaningEnSrc: item.meaningEn || '',
+    extraSrc: '',
   };
 }
 
@@ -196,6 +217,9 @@ function buildBunpouDoc(item: BunpouItem): BunpouDoc {
     meaning: `${item.meaningId || ''} ${item.meaningEn || ''}`.toLowerCase(),
     aliases: [item.id.toLowerCase()],
     rank: rankOf(item.level),
+    meaningIdSrc: item.meaningId || '',
+    meaningEnSrc: item.meaningEn || '',
+    extraSrc: '',
   };
 }
 
@@ -250,6 +274,14 @@ function getAllKotoba(): KotobaItem[] {
   return allKotobaCache;
 }
 
+/**
+ * Siapkan indeks arti (kata utuh + akar kata) di waktu senggang supaya pencarian
+ * pertama di Library tidak tersendat. Aman dipanggil berkali-kali.
+ */
+export function warmMeaningIndex(index: UniversalSearchIndex = getUniversalIndex(), types: SearchEntityType[] = ['kotoba']): void {
+  for (const t of types) for (const d of index[t] as BaseDoc[]) termsOf(d);
+}
+
 /** Indeks untuk subset materi (mis. Library dengan prop `items`). Sumber data tetap sama. */
 export function createSubsetIndex(parts: { kotoba?: readonly KotobaItem[]; kanji?: readonly KanjiItem[]; bunpou?: readonly BunpouItem[] }): UniversalSearchIndex {
   // Dokumen dibangun MALAS (saat pertama kali dicari) dan di-cache per array sumber,
@@ -276,7 +308,18 @@ const SCORE = {
   prefixRomaji: 0.6,
   formula: 0.6,
   meaningExact: 0.62,
-  meaningPrefix: 0.58,
+  /** Akar kata sama ("hangus" ↔ "menghanguskan", "burn" ↔ "burned"). */
+  meaningStem: 0.61,
+  /** Awal kata di arti ("makan" → "makanan"). Tidak pernah di tengah kata. */
+  meaningPrefix: 0.56,
+  /** Sinonim / kata sehari-hari ("gosong" → arti "Hangus"). */
+  meaningSynonymMain: 0.55,
+  meaningSynonym: 0.53,
+  meaningSynonymEn: 0.49,
+  /** Query muncul di definisi / kolokasi / contoh kalimat saja. */
+  meaningExtra: 0.36,
+  /** Bonus kecil bila arti utama cocok DAN query juga muncul di definisi/contoh. */
+  extraBonus: 0.03,
   meaning: 0.5,
   containsText: 0.45,
   containsReading: 0.4,
@@ -315,12 +358,18 @@ function matchBase(d: BaseDoc, q: NormalizedQuery, readings: string[]): Hit | nu
   // Ketikan romaji yang belum lengkap ("nom" belum jadi のむ) dibandingkan di sisi romaji.
   if (q.isLatin && q.romaji && d.romaji.startsWith(q.romaji)) return hit(SCORE.prefixRomaji, 'prefix-reading', 'romaji');
 
-  // 5. Arti (di bawah identitas)
+  // 5. Arti (di bawah identitas). Query Latin dicocokkan per KATA UTUH / akar kata / sinonim,
+  //    bukan substring: "gosong" tidak boleh cocok dengan "pen-gosong-an" (akarnya "kosong").
   if (q.text && d.meaning) {
-    const m = d.meaning;
-    if (m === q.text || meaningWordRegExp(q.text).test(m)) return hit(SCORE.meaningExact, 'meaning', 'meaning');
-    if (m.startsWith(q.text)) return hit(SCORE.meaningPrefix, 'meaning', 'meaning');
-    if (m.includes(q.text)) return hit(SCORE.meaning, 'meaning', 'meaning');
+    if (q.isLatin) {
+      const mh = matchMeaning(d, q);
+      if (mh) return mh;
+    } else {
+      const m = d.meaning;
+      if (m === q.text || meaningWordRegExp(q.text).test(m)) return hit(SCORE.meaningExact, 'meaning', 'meaning');
+      if (m.startsWith(q.text)) return hit(SCORE.meaningPrefix, 'meaning', 'meaning');
+      if (m.includes(q.text)) return hit(SCORE.meaning, 'meaning', 'meaning');
+    }
   }
 
   // 6. Contains pada teks / reading
@@ -349,6 +398,101 @@ function meaningWordRegExp(text: string): RegExp {
     lastMeaningRe = new RegExp(`(^|[\\s;,/()])${escapeRegExp(text)}($|[\\s;,/()])`);
   }
   return lastMeaningRe;
+}
+
+// ------------------------------------------------------------------------------
+// ARTI: kata utuh + akar kata + sinonim
+// ------------------------------------------------------------------------------
+
+function addTerms(set: Set<string>, src: string, stem: (w: string) => string[]) {
+  for (const t of tokenizeLatin(src)) for (const s of stem(t)) set.add(s);
+}
+
+function termsOf(d: BaseDoc): MeaningTerms {
+  if (!d.terms) {
+    const idRaw = new Set<string>(tokenizeLatin(d.meaningIdSrc));
+    const id = new Set<string>();
+    const en = new Set<string>();
+    const extra = new Set<string>();
+    addTerms(id, d.meaningIdSrc, indonesianStems);
+    addTerms(en, d.meaningEnSrc, englishStems);
+    if (d.extraSrc) addTerms(extra, d.extraSrc, indonesianStems);
+    const segments = `${d.meaningIdSrc};${d.meaningEnSrc}`.toLowerCase().split(/[;,]/).map(x => x.replace(/^\s*(to|a|an|the)\s+/, '').replace(/\([^)]*\)/g, '').trim()).filter(Boolean);
+    d.terms = { idRaw, id, en, extra, segments };
+  }
+  return d.terms;
+}
+
+interface MeaningQuery {
+  text: string;
+  tokens: string[];
+  idStems: string[][];
+  enStems: string[][];
+  /** Per token: sinonim utama (kata pertama kelompok) & sinonim lain. */
+  synonyms: { word: string; main: boolean }[][];
+  wordStart: RegExp;
+}
+
+let lastMeaningQuery: MeaningQuery | null = null;
+function prepareMeaningQuery(text: string): MeaningQuery {
+  if (lastMeaningQuery && lastMeaningQuery.text === text) return lastMeaningQuery;
+  const tokens = tokenizeLatin(text);
+  lastMeaningQuery = {
+    text,
+    tokens,
+    idStems: tokens.map(indonesianStems),
+    enStems: tokens.map(englishStems),
+    synonyms: tokens.map(t => synonymsOf(t).map((w, i) => ({ word: w, main: i === 0 }))),
+    wordStart: new RegExp(`(^|[^a-z0-9])${escapeRegExp(text)}`),
+  };
+  return lastMeaningQuery;
+}
+
+const anyIn = (set: Set<string>, words: string[]) => words.some(w => set.has(w));
+
+function matchMeaning(d: BaseDoc, q: NormalizedQuery): Hit | null {
+  const mq = prepareMeaningQuery(q.text);
+  if (mq.tokens.length === 0) return null;
+  const terms = termsOf(d);
+  const inExtra = terms.extra.size > 0 && mq.tokens.every((_, i) => anyIn(terms.extra, mq.idStems[i]));
+  // Arti yang PERSIS sama dengan query (mis. "Lapar", bukan "Menjadi kosong; lapar") diutamakan.
+  const segIdx = terms.segments.indexOf(q.text);
+  const segBonus = segIdx === 0 ? 0.02 : segIdx > 0 ? 0.01 : 0;
+  const withBonus = (score: number) => hit(score + segBonus + (inExtra ? SCORE.extraBonus : 0), 'meaning', 'meaning');
+  const m = d.meaning;
+
+  // a. Frasa / kata utuh persis
+  if (m === q.text || meaningWordRegExp(q.text).test(m)) return withBonus(SCORE.meaningExact);
+
+  // b. Setiap kata query cocok dengan kata/akar kata di arti (ID atau EN)
+  if (mq.tokens.every((_, i) => anyIn(terms.id, mq.idStems[i]) || anyIn(terms.en, mq.enStems[i]))) {
+    return withBonus(SCORE.meaningStem);
+  }
+
+  // c. Awal kata (ketikan belum selesai: "makan" → "makanan"), minimal 3 huruf
+  if (q.compact.length >= 3 && mq.wordStart.test(m)) return withBonus(SCORE.meaningPrefix);
+
+  // d. Sinonim (tiap kata query: dirinya sendiri atau salah satu sinonimnya ada di arti)
+  if (mq.synonyms.some(list => list.length > 0)) {
+    let best = Infinity;
+    let ok = true;
+    for (let i = 0; i < mq.tokens.length && ok; i++) {
+      if (anyIn(terms.id, mq.idStems[i]) || anyIn(terms.en, mq.enStems[i])) { best = Math.min(best, SCORE.meaningSynonymMain); continue; }
+      let s = 0;
+      for (const syn of mq.synonyms[i]) {
+        // Sinonim sebagai kata utuh sedikit di atas sinonim yang hanya cocok lewat akar kata.
+        if (terms.id.has(syn.word)) s = Math.max(s, (syn.main ? SCORE.meaningSynonymMain : SCORE.meaningSynonym) - (terms.idRaw.has(syn.word) ? 0 : 0.005));
+        else if (s < SCORE.meaningSynonymEn && terms.en.has(syn.word)) s = SCORE.meaningSynonymEn;
+      }
+      if (s === 0) ok = false;
+      else best = Math.min(best, s);
+    }
+    if (ok && Number.isFinite(best)) return withBonus(best);
+  }
+
+  // e. Hanya ada di definisi / kolokasi / contoh kalimat
+  if (inExtra) return hit(SCORE.meaningExtra, 'meaning', 'meaning');
+  return null;
 }
 
 /** Jarak edit ≤ 1 (substitusi/sisip/hapus). Cukup untuk salah ketik kecil. */
