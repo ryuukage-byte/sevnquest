@@ -17,6 +17,8 @@ import { Tower1Map } from './Tower1Map';
 import { SKILL_ICON } from './parts';
 import { FloorDetailModal } from './FloorDetailModal';
 import { FinishInfo, FloorRunner } from './FloorRunner';
+import { useAccess } from '../../state/entitlement';
+import { requiredTierForTowerFloor } from '../../utils/access';
 
 interface Props {
   soundEnabled?: boolean;
@@ -108,8 +110,10 @@ export const Tower1View: React.FC<Props> = ({ soundEnabled = true, onRewardPlaye
   const info = TOWER_INFO[tower];
   const allDone = recommendedId === null && ALL_FLOORS.every(f => progress.cleared[f.id]);
 
+  const { guardTier } = useAccess();
   const openFloor = (id: number) => {
     playSound('click', soundEnabled);
+    if (!guardTier(requiredTierForTowerFloor(id), `Lantai ${ALL_FLOOR_MAP[id]?.code ?? id}`)) return;
     setSelectedId(null);
     setActiveId(id);
   };

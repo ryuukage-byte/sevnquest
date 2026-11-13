@@ -49,6 +49,8 @@ export function useCloudSync({
   showToast,
 }: Params) {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  // true setelah sesi tersimpan selesai dibaca; sebelum itu layar login wajib belum boleh tampil.
+  const [authChecked, setAuthChecked] = useState(false);
 const [cloudSyncStatus, setCloudSyncStatus] = useState<CloudSyncStatus>('idle');
   // Hanya terisi setelah sinkron BERHASIL di sesi ini. Dulu dibaca dari localStorage sehingga jam
   // sesi lama tampil di Pengaturan walau sinkron sekarang gagal.
@@ -245,6 +247,7 @@ const [cloudSyncStatus, setCloudSyncStatus] = useState<CloudSyncStatus>('idle');
     getSession().then((session) => {
       if (cancelled) return;
       setIsAuthenticated(!!session);
+      setAuthChecked(true);
       if (session?.user) {
         setStats(prev => ({ ...prev, userId: session.user.id }));
         reconcile(session.user.id);
@@ -255,6 +258,7 @@ const [cloudSyncStatus, setCloudSyncStatus] = useState<CloudSyncStatus>('idle');
 
     const { data: { subscription } } = supabase.auth.onAuthStateChange((event: AuthChangeEvent, session: Session | null) => {
       setIsAuthenticated(!!session);
+      setAuthChecked(true);
       if (session?.user) {
         setStats(prev => ({ ...prev, userId: session.user.id }));
         if (event === 'SIGNED_IN' || event === 'INITIAL_SESSION' || event === 'USER_UPDATED') {
@@ -319,5 +323,5 @@ const [cloudSyncStatus, setCloudSyncStatus] = useState<CloudSyncStatus>('idle');
     return () => clearTimeout(timerId);
   }, [stats.totalExp, stats.playerName, stats.userId, cloudHydrated]);
 
-  return { isAuthenticated, setIsAuthenticated, cloudSyncStatus, lastSyncedAt, saveToCloud };
+  return { isAuthenticated, setIsAuthenticated, authChecked, cloudSyncStatus, lastSyncedAt, saveToCloud };
 }

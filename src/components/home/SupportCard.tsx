@@ -3,6 +3,8 @@ import { createPortal } from 'react-dom';
 import { Coffee, Download, X } from 'lucide-react';
 import { playSound } from '../../utils/audio';
 import { CASTLE_TILE, CASTLE_TILE_LABEL } from './castleTile';
+import { useAccess } from '../../state/entitlement';
+import { formatIdr, monthlyRemaining } from '../../utils/access';
 
 /** QRIS yang sama dengan untuk pembayaran (GoPay Merchant: Sevnsoul Store, Digital & Kreatif). */
 export const QRIS_SRC = `${import.meta.env.BASE_URL || './'}qris.png`;
@@ -12,8 +14,13 @@ interface SupportCardProps {
   soundEnabled?: boolean;
 }
 
-/** Ubin "Donasi" di Castle: ketuk untuk membuka QRIS (bisa diperbesar & disimpan). */
+/**
+ * Ubin "Donasi" di Castle: membuka halaman Dukung SevnQuest (donasi bulanan / lifetime dengan QRIS bernominal),
+ * supaya donasi tercatat ke akun dan membuka akses Full. QRIS polos tetap tersedia lewat QrisModal.
+ */
 export const SupportCard: React.FC<SupportCardProps> = ({ soundEnabled }) => {
+  const { openUpgrade, entitlement, monetizationVisible } = useAccess();
+  const remaining = monthlyRemaining(entitlement);
   const [open, setOpen] = useState(false);
 
   return (
@@ -22,11 +29,13 @@ export const SupportCard: React.FC<SupportCardProps> = ({ soundEnabled }) => {
         type="button"
         onClick={() => {
           playSound('open_modal', soundEnabled);
-          setOpen(true);
+          // Monetisasi belum ditampilkan ke pengguna: tetap QRIS polos seperti biasa.
+          if (monetizationVisible) openUpgrade();
+          else setOpen(true);
         }}
         aria-label="Donasi lewat QRIS"
         data-tour="castle-donasi"
-        title="Donasi lewat QRIS"
+        title={!monetizationVisible ? 'Donasi lewat QRIS' : entitlement.isLifetime ? 'Kamu Lifetime. Terima kasih!' : remaining > 0 ? `Kurang ${formatIdr(remaining)} untuk Full bulan ini` : 'Donasi lewat QRIS'}
         className={`${CASTLE_TILE} hover:bg-surface-elevated/40 cursor-pointer`}
       >
         <span className="p-2 rounded-xl bg-surface-inset/50 text-gold border border-border-subtle shrink-0">
@@ -40,7 +49,8 @@ export const SupportCard: React.FC<SupportCardProps> = ({ soundEnabled }) => {
   );
 };
 
-const QrisModal: React.FC<{ soundEnabled?: boolean; onClose: () => void }> = ({ soundEnabled, onClose }) => {
+/** Modal QRIS polos (nominal bebas, tidak tercatat ke akun). */
+export const QrisModal: React.FC<{ soundEnabled?: boolean; onClose: () => void }> = ({ soundEnabled, onClose }) => {
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       if (e.key === 'Escape') onClose();

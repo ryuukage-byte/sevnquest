@@ -6,6 +6,7 @@
 // ==============================================================================
 
 import type { IncomingMessage, ServerResponse } from 'http';
+import { checkAccess, type GateEnv } from './_entitlement';
 
 export interface CaptionWord {
   text: string;
@@ -166,6 +167,8 @@ export default async function handler(
     res.end(JSON.stringify(body));
   };
   if (req.method !== 'GET') return send(405, { error: 'method_not_allowed' });
+  const gate = await checkAccess(req.headers.authorization, 'immersion', process.env as GateEnv);
+  if (!gate.ok) return send(gate.status, { error: gate.error });
   const v = new URL(req.url ?? '', 'http://x').searchParams.get('v') ?? '';
   try {
     send(200, await fetchCaptions(v));

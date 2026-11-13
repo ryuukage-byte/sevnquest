@@ -21,6 +21,7 @@ import { hasKotobaInsight } from '../../engine/kotobaInsight/readingSplit';
 
 import { UserDeck } from '../../types/rpg';
 import { DeckBookmarkPicker } from '../deck/DeckBookmarkPicker';
+import { withLevelGate } from '../billing/AccessGate';
 
 // Modal Pemahaman Kotoba memuat data kurasi yang besar: baru diunduh saat dibuka.
 const KotobaInsightModal = lazy(() => import('./KotobaInsightModal').then(m => ({ default: m.KotobaInsightModal })));
@@ -59,7 +60,7 @@ interface KotobaDetailModalProps {
   ) => void;
 }
 
-export const KotobaDetailModal: React.FC<KotobaDetailModalProps> = ({
+const KotobaDetailModalInner: React.FC<KotobaDetailModalProps> = ({
   isOpen,
   onClose,
   item,
@@ -680,3 +681,5 @@ export const KotobaDetailModal: React.FC<KotobaDetailModalProps> = ({
     document.body
   );
 };
+
+export const KotobaDetailModal = withLevelGate(KotobaDetailModalInner, { getLevel: p => p.item?.jlpt, isOpen: p => p.isOpen, getClose: p => p.onClose, labelPrefix: 'Kotoba' });

@@ -8,6 +8,11 @@ import {
   ArrowLeft, Layers, Compass, Clock, Flame, ScanSearch
 } from 'lucide-react';
 import { ALL_TRYOUTS } from '../../data/tryouts';
+import { useAccess } from '../../state/entitlement';
+import { LockBadge } from '../billing/AccessGate';
+import { requiredTierForLevel, FREE_DAILY_INSIGHTS, parseAllowance, consumeDailyAllowance } from '../../utils/access';
+import { safeGetItem, safeSetItem } from '../../utils/storage';
+import { getTodayLocalDate } from '../../utils/time';
 import { TryOutData } from '../../types/content';
 import { CHOUKAI_ENABLED } from '../../data/featureFlags';
 import {
@@ -26,6 +31,7 @@ import { calculateQuizReward } from '../../utils/rewards';
 import { smartSample } from '../../utils/smartRandomizer';
 
 const DungeonBattleModule = lazy(() => import('../dungeon/DungeonBattleModule').then(m => ({ default: m.DungeonBattleModule })));
+const INSIGHT_USAGE_KEY = 'sevnquest_insight_usage';
 const QuestionInsightModal = lazy(() => import('./QuestionInsightModal').then(m => ({ default: m.QuestionInsightModal })));
 
 /** Beberapa paket menandai kata yang diuji di kalimat pilihan dengan @@kata@@; penanda tidak ditampilkan. */
@@ -135,7 +141,14 @@ export const QuestionLibraryView: React.FC<QuestionLibraryViewProps> = ({
   const [insightTarget, setInsightTarget] = useState<{ q: UnifiedQuestionItem; answer?: number } | null>(null);
 
   // Daftar terpadu (tryout + Dokkai/Choukai + seluruh Bank Kanji & Tata Bahasa) — lihat data/questionLibrary.
-  const allQuestions: UnifiedQuestionItem[] = useMemo(() => getQuestionLibrary(), []);
+  const allQuestionsRaw: UnifiedQuestionItem[] = useMemo(() => getQuestionLibrary(), []);
+
+  // Gating lunak (PRD 6.4): soal di atas paket pengguna tidak ikut daftar/drill.
+  const { canAccessLevel, guardLevel, openUpgrade, canAccessTier } = useAccess();
+  const allQuestions = useMemo(
+    () => allQuestionsRaw.filter(q => canAccessLevel(q.level)),
+    [allQuestionsRaw, canAccessLevel]
+  );
 
   // Section & Level Filter Counts
   const countsBySection = useMemo(() => {
@@ -236,8 +249,9 @@ export const QuestionLibraryView: React.FC<QuestionLibraryViewProps> = ({
 
   // Filtered Tryouts for Tryout tab & Hero Section
   const filteredTryouts = useMemo(() => {
-    if (levelFilter === 'all') return ALL_TRYOUTS;
-    return ALL_TRYOUTS.filter(t => t.level === levelFilter);
+    const open = ALL_TRYOUTS.filter(t => canAccessLevel(t.level));
+    if (levelFilter === 'all') return open;
+    return open.filter(t => t.level === levelFilter);
   }, [levelFilter]);
 
   const displayedQuestions = filteredQuestions.slice(0, visibleCount);
@@ -350,9 +364,24 @@ export const QuestionLibraryView: React.FC<QuestionLibraryViewProps> = ({
     }
   };
 
+  // Bedah Soal: akses Gratis mendapat 3 soal per hari (buka ulang soal yang sama tidak dihitung); Full tanpa batas.
+  const unlimitedInsight = canAccessTier('full');
+  const [insightUsage, setInsightUsage] = useState(() => parseAllowance(safeGetItem(INSIGHT_USAGE_KEY), getTodayLocalDate()));
+  const insightLeft = Math.max(0, FREE_DAILY_INSIGHTS - (insightUsage.day === getTodayLocalDate() ? insightUsage.ids.length : 0));
+
   const openInsight = (q: UnifiedQuestionItem, answer?: number) => {
-    setInsightTarget({ q, answer });
     playSound('click', soundEnabled);
+    if (!unlimitedInsight) {
+      const current = parseAllowance(safeGetItem(INSIGHT_USAGE_KEY), getTodayLocalDate());
+      const res = consumeDailyAllowance(current, q.id, FREE_DAILY_INSIGHTS);
+      if (!res.allowed) {
+        openUpgrade({ requiredTier: 'full', label: `Bedah Soal tanpa batas (gratis ${FREE_DAILY_INSIGHTS} soal per hari)` });
+        return;
+      }
+      safeSetItem(INSIGHT_USAGE_KEY, JSON.stringify(res.next));
+      setInsightUsage(res.next);
+    }
+    setInsightTarget({ q, answer });
   };
 
   const insightModal = insightTarget ? (
@@ -382,6 +411,9 @@ export const QuestionLibraryView: React.FC<QuestionLibraryViewProps> = ({
       >
         <ScanSearch className="w-3.5 h-3.5 text-gold" />
         Bedah Soal
+        {!unlimitedInsight && !insightUsage.ids.includes(q.id) && (
+          <span className="text-[10px] font-mono font-normal text-text-muted">{insightLeft > 0 ? `${insightLeft}/${FREE_DAILY_INSIGHTS}` : 'Full'}</span>
+        )}
       </button>
     ) : null;
 
@@ -815,18 +847,31 @@ export const QuestionLibraryView: React.FC<QuestionLibraryViewProps> = ({
             <button
               key={opt.value}
               onClick={() => {
+                playSound('click', soundEnabled);
+                if (opt.value !== 'all' && !guardLevel(opt.value, `Soal ${opt.label}`)) return;
                 setLevelFilter(opt.value);
                 setVisibleCount(30);
-                playSound('click', soundEnabled);
               }}
               className={`ui-chip px-3 py-1 text-xs font-medium shrink-0 ${levelFilter === opt.value ? 'is-active font-bold' : ''}`}
             >
               <span>{opt.label}</span>
+              {opt.value !== 'all' && !canAccessLevel(opt.value) ? (
+                <LockBadge tier={requiredTierForLevel(opt.value)} />
+              ) : (
               <span className="font-mono text-[10px] opacity-60">
                 {opt.value === 'all' ? allQuestions.length : countsByLevel[opt.value] || 0}
               </span>
+              )}
             </button>
           ))}
+          {!canAccessTier('full') && (
+            <button
+              onClick={() => openUpgrade({ requiredTier: 'full', label: 'Soal & tryout level lanjut' })}
+              className="text-[11px] text-gold font-bold underline-offset-2 hover:underline shrink-0"
+            >
+              Buka level lain
+            </button>
+          )}
         </div>
 
         {/* Sub-Category Format Quick Badges (When not in Tryout) */}

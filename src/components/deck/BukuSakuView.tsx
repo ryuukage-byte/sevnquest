@@ -43,6 +43,7 @@ import {
 import { playSound } from '../../utils/audio';
 import { CreateDeckModal } from './CreateDeckModal';
 import { AIDeckCustomizerModal } from './AIDeckCustomizerModal';
+import { useAccess } from '../../state/entitlement';
 import { DeckAddItemModal } from './DeckAddItemModal';
 import { DeckFlashcardRunner } from './DeckFlashcardRunner';
 import { DeckWritingRunner } from './DeckWritingRunner';
@@ -147,6 +148,7 @@ export const BukuSakuView: React.FC<BukuSakuViewProps> = ({
   }, [resetSignal]);
   const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
   const [isAiCustomizerOpen, setIsAiCustomizerOpen] = useState(false);
+  const { guardFeature } = useAccess();
   // Dideklarasikan sesudah efek reset di atas: navigasi ke tab ini menaikkan resetSignal (menutup modal),
   // lalu efek ini membukanya lagi dengan isian awal.
   const [aiPrefillRequest, setAiPrefillRequest] = useState<DeckAiRequest | undefined>();
@@ -493,7 +495,7 @@ export const BukuSakuView: React.FC<BukuSakuViewProps> = ({
                 <button data-tour="deck-ai"
                   type="button"
                   onClick={() => {
-                    setIsAiCustomizerOpen(true);
+                    if (guardFeature('deckAi', 'Deck AI')) setIsAiCustomizerOpen(true);
                     playSound('click', soundEnabled);
                   }}
                   className="btn-physical-primary py-2.5 px-4 rounded-2xl text-xs font-heading font-bold flex items-center gap-2 cursor-pointer"
@@ -695,7 +697,7 @@ export const BukuSakuView: React.FC<BukuSakuViewProps> = ({
         soundEnabled={soundEnabled}
         onOpenAiCustomizer={() => {
           setIsCreateModalOpen(false);
-          setIsAiCustomizerOpen(true);
+          if (guardFeature('deckAi', 'Deck AI')) setIsAiCustomizerOpen(true);
         }}
       />
 

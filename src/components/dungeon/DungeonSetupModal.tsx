@@ -1,5 +1,8 @@
 import React, { useState, useMemo } from 'react';
 import { createPortal } from 'react-dom';
+import { useAccess } from '../../state/entitlement';
+import { LockBadge } from '../billing/AccessGate';
+import { requiredTierForLevel } from '../../utils/access';
 import { motion } from 'motion/react';
 import {
   X,
@@ -198,6 +201,7 @@ export const DungeonSetupModal: React.FC<DungeonSetupModalProps> = ({
 
   const [sourceType, setSourceType] = useState<'preset' | 'deck'>('preset');
   const [selectedCategory, setSelectedCategory] = useState<DungeonLevelCategory>('N5');
+  const { guardLevel, canAccessLevel } = useAccess();
   const [selectedDeckId, setSelectedDeckId] = useState<string | null>(() => compatibleDecks[0]?.deck.id || null);
   const [selectedFloorCount, setSelectedFloorCount] = useState<number>(10);
   const [mode, setMode] = useState<'standard' | 'survival'>('standard');
@@ -246,6 +250,7 @@ export const DungeonSetupModal: React.FC<DungeonSetupModalProps> = ({
 
   const handleStart = () => {
     if (sourceType === 'deck' && !selectedDeckId) return;
+    if (sourceType === 'preset' && dungeonType !== 'extreme' && !guardLevel(selectedCategory, `Dungeon ${selectedCategory}`)) return;
     if (dungeonType === 'flashcard' && selectedFlashcardTypes.length === 0) return;
     if (dungeonType === 'conjugation' && conjugationMode === 'custom' && selectedConjugationForms.length === 0) return;
 
@@ -841,6 +846,7 @@ export const DungeonSetupModal: React.FC<DungeonSetupModalProps> = ({
                           type="button"
                           onClick={() => {
                             playSound('click', soundEnabled);
+                            if (!guardLevel(opt.id, `Dungeon ${opt.label}`)) return;
                             setSelectedCategory(opt.id);
                           }}
                           className={`p-2.5 sm:p-3 rounded-2xl text-left transition-all relative flex flex-col justify-between min-h-[74px] sm:min-h-[78px] select-none cursor-pointer overflow-hidden ${
@@ -853,6 +859,7 @@ export const DungeonSetupModal: React.FC<DungeonSetupModalProps> = ({
                             <span className={`text-xs font-heading font-black tracking-wide truncate ${isSelected ? 'text-gold' : 'text-text-primary'}`}>
                               {opt.label}
                             </span>
+                            {!canAccessLevel(opt.id) && <LockBadge tier={requiredTierForLevel(opt.id)} />}
                             {isSelected ? (
                               <div className="w-4 h-4 rounded-full bg-gold/20 border border-border-subtle text-gold flex items-center justify-center shrink-0 shadow-xs">
                                 <Check className="w-2.5 h-2.5 stroke-[3]" />

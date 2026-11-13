@@ -24,6 +24,7 @@ import { OFFICIAL_BOOKS } from '../../data/officialBooks';
 import { getKotobaPoolForBook } from '../../utils/arcadeSourceUtils';
 import { ArcadeSourceSelector } from './ArcadeSourceSelector';
 import { calcEngineExp, getKotobaBaseExp } from '../../utils/rewards';
+import { useArcadeGuard } from './useArcadeGuard';
 
 interface KotobaGuessModalProps {
   isOpen: boolean;
@@ -78,6 +79,7 @@ export const KotobaGuessModal: React.FC<KotobaGuessModalProps> = ({
   onCompleteStudyItem,
 }) => {
   const [sourceType, setSourceType] = useState<'LEVEL' | 'TEMPLATE_BOOK'>('LEVEL');
+  const guardArcade = useArcadeGuard();
   const [selectedLevel, setSelectedLevel] = useState<LevelFilter>('N5');
   const [selectedBookId, setSelectedBookId] = useState<string>('book_theme_body');
   const [gameState, setGameState] = useState<'ready' | 'playing' | 'finished'>('ready');
@@ -194,6 +196,7 @@ export const KotobaGuessModal: React.FC<KotobaGuessModalProps> = ({
 
   // Start game
   const handleStartGame = () => {
+    if (!guardArcade(sourceType, selectedLevel, selectedBookId)) return;
     playSound('attack', soundEnabled);
     setTimeLeft(45);
     setScore(0);

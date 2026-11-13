@@ -190,11 +190,35 @@ export const supabase = initSupabase();
 // AUTHENTICATION HELPERS
 // ==========================================
 
+/**
+ * Token akses yang dibuat saat user_metadata masih berisi save besar bisa berukuran ratusan KB dan ditolak gateway
+ * Supabase (520/400) untuk SEMUA permintaan. Setelah metadata dibersihkan (migrasi 20261105), cukup minta token baru:
+ * refresh hanya mengirim refresh_token kecil, dan token baru dibuat dari metadata yang sudah ramping.
+ */
+const OVERSIZED_TOKEN_CHARS = 8000;
+let oversizedRefreshTried = false;
+
+async function refreshIfOversized(session: { access_token?: string } | null) {
+  if (!session?.access_token || session.access_token.length <= OVERSIZED_TOKEN_CHARS || oversizedRefreshTried) return session;
+  oversizedRefreshTried = true;
+  try {
+    const { data, error } = await supabase.auth.refreshSession();
+    if (error) {
+      console.warn('Refresh token besar gagal:', error.message);
+      return session;
+    }
+    return data?.session || session;
+  } catch (err) {
+    console.warn('Refresh token besar gagal:', err);
+    return session;
+  }
+}
+
 export async function getSession() {
   try {
     const { data, error } = await supabase.auth.getSession();
     if (error) console.warn('Warning getting session:', error.message);
-    return data?.session || null;
+    return (await refreshIfOversized(data?.session || null)) as typeof data.session;
   } catch (err) {
     console.warn('Supabase offline or unreachable:', err);
     return null;
@@ -583,8 +607,7 @@ export async function saveGameToCloud(saveData: CloudSavePayload): Promise<boole
       return false;
     }
 
-    // 1. Simpan save penuh. Utama: tabel user_saves (tidak ikut JWT). Fallback: user_metadata
-    //    (dipakai selama migrasi SQL belum dijalankan / tabel belum ada).
+    // 1. Simpan save penuh ke tabel user_saves (tidak ikut JWT).
     let metadataSaved = false;
     const { error: saveError } = await supabase
       .from('user_saves')
@@ -600,19 +623,10 @@ export async function saveGameToCloud(saveData: CloudSavePayload): Promise<boole
         if (clearError) console.warn('Failed to clear legacy cloud_save metadata:', clearError.message);
       }
     } else {
-      if (!isMissingRelation(saveError)) {
-        console.warn('Failed to upsert user_saves, falling back to metadata:', saveError.message);
-      }
-      const { error: updateError } = await supabase.auth.updateUser({
-        data: {
-          cloud_save: saveData,
-          cloud_save_updated_at: saveData.updatedAt
-        }
-      });
-      if (updateError) {
-        console.warn('Failed to update cloud_save metadata:', updateError.message);
-      }
-      metadataSaved = !updateError;
+      // JANGAN kembali menulis save ke user_metadata: metadata ikut ke dalam JWT, dan save 50-400 KB membuat
+      // token terlalu besar sehingga gateway Supabase menolak SEMUA permintaan akun itu (520/400).
+      // Tabel user_saves sudah ada di semua lingkungan; gagal simpan cukup dicoba lagi pada autosave berikutnya.
+      console.warn('Failed to upsert user_saves:', saveError.message);
     }
 
     // 2. Also ensure leaderboard row is synced

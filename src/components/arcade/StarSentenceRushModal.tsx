@@ -27,6 +27,7 @@ import {
   JLPT_STAR_QUESTIONS, 
   getRandomStarQuestions 
 } from '../../data/starQuestionsData';
+import { useAccess } from '../../state/entitlement';
 
 interface StarSentenceRushModalProps {
   isOpen: boolean;
@@ -79,6 +80,7 @@ export const StarSentenceRushModal: React.FC<StarSentenceRushModalProps> = ({
   onCompleteStudyItem,
 }) => {
   const [selectedLevel, setSelectedLevel] = useState<StarLevelFilter>('ALL');
+  const { guardLevel } = useAccess();
   const [gameState, setGameState] = useState<'ready' | 'playing' | 'finished'>('ready');
 
   // Timer & Score
@@ -135,6 +137,7 @@ export const StarSentenceRushModal: React.FC<StarSentenceRushModalProps> = ({
 
   // Start game session
   const handleStartGame = () => {
+    if (!guardLevel(selectedLevel, 'Star Sentence Rush')) return;
     playSound('start_game', soundEnabled);
     const shuffled = [...filteredQuestions].sort(() => Math.random() - 0.5);
     const firstQ = shuffled.shift() || null;
