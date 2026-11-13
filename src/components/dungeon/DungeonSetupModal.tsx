@@ -350,7 +350,7 @@ export const DungeonSetupModal: React.FC<DungeonSetupModalProps> = ({
         {/* ================= SCROLLABLE SETUP CONTENT ================= */}
         <div className="relative z-10 p-4 sm:p-6 space-y-6 overflow-y-auto scrollbar-thin flex-1">
           {/* SECTION 1: MATERI TANTANGAN (PRESET VS DECK VS EXTREME STAGES) */}
-          <div className="space-y-3">
+          <div data-tour="dungeon-s1" className="space-y-3">
             {dungeonType === 'extreme' ? (
               <div className="space-y-3 p-4 rounded-2xl bg-surface-inset border border-border-subtle">
                 <div className="flex items-center justify-between">
@@ -999,7 +999,7 @@ export const DungeonSetupModal: React.FC<DungeonSetupModalProps> = ({
           </div>
 
           {/* SECTION 2: JUMLAH SOAL / KEDALAMAN LANTAI (CARVED TOKEN STONES) */}
-          <div className="space-y-2.5">
+          <div data-tour="dungeon-s2" className="space-y-2.5">
             <label className="text-xs font-bold uppercase tracking-wider text-text-muted font-heading flex items-center gap-1.5">
               <Layers className="w-3.5 h-3.5 text-gold" />
               <span>2. Kedalaman Lantai Dungeon (Jumlah Soal):</span>
@@ -1035,7 +1035,7 @@ export const DungeonSetupModal: React.FC<DungeonSetupModalProps> = ({
           </div>
 
           {/* SECTION 3: MODE EKSPLORASI (TACTILE ENGRAVED COIN CARDS) */}
-          <div className="space-y-2.5">
+          <div data-tour="dungeon-s3" className="space-y-2.5">
             <label className="text-xs font-bold uppercase tracking-wider text-text-muted font-heading flex items-center gap-1.5">
               <Flame className="w-3.5 h-3.5 text-gold" />
               <span>3. Mode Eksplorasi:</span>

@@ -70,11 +70,9 @@ test('LockedOverlay menyebut akses yang dibutuhkan', () => {
   assert.match(html, /Full/);
 });
 
-test('withLevelGate: tanpa provider (Basic) N5 terbuka, N4 terkunci', () => {
+test('withLevelGate: tanpa provider (saklar monetisasi mati) semua level terbuka', () => {
   const Inner: React.FC<{ isOpen: boolean; level: string; onClose: () => void }> = ({ level }) => <div>ISI {level}</div>;
   const Gated = withLevelGate(Inner, { getLevel: p => p.level, isOpen: p => p.isOpen, getClose: p => p.onClose, labelPrefix: 'Kotoba' });
   assert.match(renderToStaticMarkup(<Gated isOpen level="N5" onClose={noop} />), /ISI N5/);
-  const locked = renderToStaticMarkup(<Gated isOpen level="N4" onClose={noop} />);
-  assert.doesNotMatch(locked, /ISI N4/);
-  assert.match(locked, /Kotoba N4 terkunci/);
+  assert.match(renderToStaticMarkup(<Gated isOpen level="N1" onClose={noop} />), /ISI N1/);
 });

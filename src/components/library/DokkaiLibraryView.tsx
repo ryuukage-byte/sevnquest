@@ -137,7 +137,7 @@ export const DokkaiLibraryView: React.FC<Props> = ({ soundEnabled = true, onComp
       </div>
 
       {/* Filter */}
-      <div className="panel panel-stitched p-4 rounded-3xl border border-border-subtle space-y-3">
+      <div data-tour="dokkai-search" className="panel panel-stitched p-4 rounded-3xl border border-border-subtle space-y-3">
         <div className="flex flex-col sm:flex-row gap-2">
           <div className="relative flex-1">
             <Search className="w-4 h-4 text-text-muted absolute left-3 top-1/2 -translate-y-1/2" />
@@ -172,6 +172,7 @@ export const DokkaiLibraryView: React.FC<Props> = ({ soundEnabled = true, onComp
           {filtered.slice(0, limit).map(p => (
             <button
               key={p.id}
+              data-tour="dokkai-item"
               type="button"
               onClick={() => { click(); setActive(p); }}
               className="panel panel-stitched text-left p-4 rounded-2xl border border-border-subtle hover:border-gold/50 transition-colors cursor-pointer space-y-2"

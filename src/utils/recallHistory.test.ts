@@ -33,6 +33,14 @@ function answerInRecall(m: Mastery, id: string, cat: 'kotoba' | 'kanji' | 'bunpo
   return { ...m, [id]: recordItemAttempt(m[id], id, cat, correct ? 7 : 4, 7, undefined, false, 'quiz', 'recall') };
 }
 
+// Simulasi waktu berlalu: semua jadwal & waktu latihan mundur `days` hari (mis. 1 = "keesokan harinya").
+function later(m: Mastery, days = 1): Mastery {
+  const shift = (iso: string) => new Date(Date.parse(iso) - days * DAY).toISOString();
+  const out: Mastery = {};
+  for (const [k, r] of Object.entries(m)) out[k] = { ...r, nextReviewDue: shift(r.nextReviewDue), lastReviewedAt: shift(r.lastReviewedAt) };
+  return out;
+}
+
 // Simulasi refresh: simpan seperti usePersistence (tanpa data turunan) lalu baca ulang dari JSON.
 function refresh(m: Mastery): Mastery {
   const persisted = JSON.stringify(stripDerivedStats({ itemMastery: m }));
@@ -90,7 +98,7 @@ test('4. kanji dan bunpou: item serta content type yang benar terambil', () => {
   let m: Mastery = {};
   m = writeWithScore(m, KANJI.id, 'kanji');
   m = { ...m, [BUNPOU.id]: recordItemAttempt(undefined, BUNPOU.id, 'bunpou', 0, 1, undefined, false, 'quiz', 'bunpou') };
-  const q = buildSmartRecallQueue(refresh(m));
+  const q = buildSmartRecallQueue(later(refresh(m), 2));
   const kj = q.find(i => i.itemId === KANJI.id);
   const bp = q.find(i => i.itemId === BUNPOU.id);
   assert.equal(kj?.category, 'kanji');
@@ -155,6 +163,7 @@ test('7. beberapa item layak: urutan mengikuti prioritas, bukan satu soal tetap'
   // baru dilatih, belum diuji
   m = interact(m, kotoba[2].id, 'kotoba', 'writing');
   m = interact(m, kotoba[3].id, 'kotoba', 'flashcard');
+  m = later(m); // keesokan harinya: item yang kemarin salah jatuh tempo lagi
   const q = buildSmartRecallQueue(m);
   const tiers = q.map(i => i.priorityTier);
   assert.equal(q[0].itemId, kotoba[0].id);
@@ -219,15 +228,15 @@ test('10. perilaku Recall/SRS yang ada tetap: jadwal, kritis, penguatan', () => 
   let w: Mastery = {};
   for (let i = 0; i < 3; i++) w = answerInRecall(w, b.id, 'kotoba', false);
   w = answerInRecall(w, c.id, 'kotoba', false);
-  const wq = buildSmartRecallQueue(w);
+  const wq = buildSmartRecallQueue(later(w));
   assert.equal(wq.find(i => i.itemId === b.id)!.priorityTier, 'CRITICAL');
   assert.equal(typeof wq.find(i => i.itemId === c.id)!.trueMasteryScore, 'number');
 
   // batas jumlah item
   const many: Mastery = {};
   for (const k of Object.values(KOTOBA_DATABASE).slice(30, 50)) many[k.id] = answerInRecall({}, k.id, 'kotoba', false)[k.id];
-  assert.equal(buildSmartRecallQueue(many, 10).length, 10);
-  assert.equal(buildSmartRecallQueue(many, 3).length, 3);
+  assert.equal(buildSmartRecallQueue(later(many), 10).length, 10);
+  assert.equal(buildSmartRecallQueue(later(many), 3).length, 3);
 });
 
 test('regresi: sekali buka + sekali menulis tidak langsung MASTERED (paparan bukan percobaan)', () => {
@@ -305,7 +314,7 @@ test('engine bunpou: Grammar Fusion untuk pola V+akhiran, konjugasi dari conjuga
   const formats = new Set<string>();
   for (let n = 0; n < 4; n++) {
     m = { ...m, [PATTERN_BUNPOU.id]: recordItemAttempt(m[PATTERN_BUNPOU.id], PATTERN_BUNPOU.id, 'bunpou', 4, 7, undefined, false, 'quiz', 'recall') };
-    const it = buildSmartRecallQueue(m).find(i => i.itemId === PATTERN_BUNPOU.id)!;
+    const it = buildSmartRecallQueue(later(m)).find(i => i.itemId === PATTERN_BUNPOU.id)!;
     formats.add(it.exerciseFormat!);
     if (it.exerciseFormat === 'conjugation') {
       const q = it.sampleQuestion!;
@@ -319,7 +328,7 @@ test('engine bunpou: Grammar Fusion untuk pola V+akhiran, konjugasi dari conjuga
   assert.ok(formats.has('fusion') && formats.has('conjugation'), `format: ${[...formats]}`);
 
   // bunpou tanpa pola Fusion: tidak ada engine fusion
-  const plain = buildSmartRecallQueue({ [PLAIN_BUNPOU.id]: recordItemAttempt(undefined, PLAIN_BUNPOU.id, 'bunpou', 0, 1, undefined, false, 'quiz', 'bunpou') })[0];
+  const plain = buildSmartRecallQueue(later({ [PLAIN_BUNPOU.id]: recordItemAttempt(undefined, PLAIN_BUNPOU.id, 'bunpou', 0, 1, undefined, false, 'quiz', 'bunpou') }))[0];
   assert.ok(plain.exerciseFormat !== 'fusion' && plain.exerciseFormat !== 'conjugation');
   assert.equal(plain.fusion, undefined);
 });
@@ -334,7 +343,7 @@ test('engine lain: listening (kotoba), dokkai, choukai', () => {
   let sawListening = false;
   for (let n = 0; n < 6 && !sawListening; n++) {
     m = { ...m, [k.id]: recordItemAttempt(m[k.id], k.id, 'kotoba', 4, 7, undefined, false, 'quiz', 'recall') };
-    const it = buildSmartRecallQueue(m).find(i => i.itemId === k.id)!;
+    const it = buildSmartRecallQueue(later(m)).find(i => i.itemId === k.id)!;
     if (it.exerciseFormat === 'listening') {
       sawListening = true;
       const q = it.sampleQuestion!;
@@ -348,14 +357,14 @@ test('engine lain: listening (kotoba), dokkai, choukai', () => {
 
   // dokkai: soal kurasi dari wacana
   const dk = Object.values(DOKKAI_DATABASE)[0];
-  const dkItem = buildSmartRecallQueue({ [dk.id]: recordItemAttempt(undefined, dk.id, 'dokkai' as any, 0, 3, undefined, true, 'quiz', 'dokkai') }).find(i => i.itemId === dk.id)!;
+  const dkItem = buildSmartRecallQueue(later({ [dk.id]: recordItemAttempt(undefined, dk.id, 'dokkai' as any, 0, 3, undefined, true, 'quiz', 'dokkai') })).find(i => i.itemId === dk.id)!;
   assert.equal(dkItem.exerciseFormat, 'dokkai');
   assert.ok(dkItem.sampleQuestion!.prompt.startsWith('【Dokkai'));
   assert.ok(dk.questions.some(q => dkItem.sampleQuestion!.prompt.includes(q.prompt)));
 
   // choukai: audio dialog + soal
   const ck = Object.values(CHOUKAI_DATABASE)[0];
-  const ckItem = buildSmartRecallQueue({ [ck.id]: recordItemAttempt(undefined, ck.id, 'choukai' as any, 0, 3, undefined, false, 'quiz', 'choukai') }).find(i => i.itemId === ck.id)!;
+  const ckItem = buildSmartRecallQueue(later({ [ck.id]: recordItemAttempt(undefined, ck.id, 'choukai' as any, 0, 3, undefined, false, 'quiz', 'choukai') })).find(i => i.itemId === ck.id)!;
   assert.equal(ckItem.exerciseFormat, 'choukai');
   assert.equal(ckItem.sampleQuestion!.audioPrompt, ck.audioText);
 });
@@ -365,4 +374,36 @@ test('soal kurasi level 5 (kanji/dokkai) tidak pernah memakai mode susun-kalimat
   const rec = { ...recordItemAttempt(undefined, kj.id, 'kanji', 3, 3, undefined, false, 'quiz', 'x'), masteryLevel: 5 as const };
   const q = buildSmartRecallQueue({ [kj.id]: { ...rec, consecutivePerfects: 9, decayFactor: 1, mistakeCount: 3 } }).find(i => i.itemId === kj.id);
   if (q?.sampleQuestion) assert.ok(q.sampleQuestion.difficultyLevel !== 5 || (q.sampleQuestion.scrambleWords?.length ?? 0) > 0);
+});
+
+test('salah -> diulang keesokan harinya saja; benar di hari itu -> besok tidak muncul lagi', () => {
+  const [bad, other] = Object.values(KOTOBA_DATABASE).slice(120, 122);
+  let m: Mastery = {};
+  // salah 3x (CRITICAL, mastery rendah): hari itu juga TIDAK diulang lagi
+  for (let i = 0; i < 3; i++) m = answerInRecall(m, bad.id, 'kotoba', false);
+  assert.ok(!ids(buildSmartRecallQueue(m)).includes(bad.id), 'hari yang sama: tidak diulang');
+
+  // keesokan harinya: muncul (kritis, di urutan teratas)
+  m = later(m);
+  const day2 = buildSmartRecallQueue(m);
+  assert.equal(day2[0].itemId, bad.id);
+  assert.equal(day2[0].priorityTier, 'CRITICAL');
+
+  // dijawab benar di hari itu -> besok tidak muncul, walau mastery masih rendah & riwayat salahnya banyak
+  m = answerInRecall(m, bad.id, 'kotoba', true);
+  assert.ok(!ids(buildSmartRecallQueue(later(m, 1))).includes(bad.id), 'benar -> besok tidak diulang');
+  // ...tetapi tetap kembali sesuai jadwal SRS berikutnya
+  assert.ok(ids(buildSmartRecallQueue(later(m, 2))).includes(bad.id), 'kembali sesuai jadwal SRS');
+
+  // kalau besoknya salah lagi -> cukup keesokan harinya lagi, tidak setiap hari selamanya
+  m = later(m, 2);
+  m = answerInRecall(m, bad.id, 'kotoba', false);
+  assert.ok(!ids(buildSmartRecallQueue(m)).includes(bad.id));
+  assert.ok(ids(buildSmartRecallQueue(later(m))).includes(bad.id));
+
+  // item lemah yang belum jatuh tempo tidak memenuhi sesi: materi lain tetap kebagian giliran
+  let n: Mastery = {};
+  n = answerInRecall(n, bad.id, 'kotoba', false);
+  n = interact(n, other.id, 'kotoba', 'flashcard');
+  assert.deepEqual(ids(buildSmartRecallQueue(n)), [other.id]);
 });

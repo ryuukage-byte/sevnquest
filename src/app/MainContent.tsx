@@ -47,7 +47,7 @@ export function MainContent(props: MainContentProps) {
     setIsStatusModalOpen, isRecallActive, setIsRecallActive,
     isAuthModalOpen, setIsAuthModalOpen,
     worldNavView, setWorldNavView, worldResetCount, deckResetCount, deckInitialSubTab, setDeckInitialSubTab,
-    handleTabChange, handleOpenTower, libraryTabRequest, handleOpenLibraryTab,
+    handleTabChange, handleOpenTower, libraryTabRequest, handleOpenLibraryTab, deckAiRequest,
     handleRewardPlayer, handleStudyComplete, handleRecordItemInteraction, handleTowerMastery,
     handleStartRemediationRecall, handleItemReviewed, handleCompleteRecallSession, handleUseMp,
     handleClaimMission, handleGameOver, handleHpDamage, handleResetData,
@@ -59,7 +59,7 @@ export function MainContent(props: MainContentProps) {
   return (
     <>
         {/* Main Content Area */}
-        <main className="flex-1 max-w-4xl lg:max-w-6xl w-full mx-auto px-3.5 sm:px-4 py-4 sm:py-5">
+        <main className="flex-1 max-w-4xl lg:max-w-6xl xl:max-w-7xl w-full mx-auto px-3.5 sm:px-4 py-4 sm:py-5">
           {isRecallActive && (
             <ModuleBoundary label="Recall SRS" onReset={() => setIsRecallActive(false)}>
             <RecallModule
@@ -223,6 +223,7 @@ export function MainContent(props: MainContentProps) {
                     resetSignal={deckResetCount}
                     initialSubTab={deckInitialSubTab}
                     onSubTabChange={(subTab) => setDeckInitialSubTab(subTab)}
+                    aiRequest={deckAiRequest}
                     onUpdateDecks={handleUpdateDecks}
                     onRewardPlayer={handleRewardPlayer}
                     onCompleteStudyItem={handleStudyComplete}

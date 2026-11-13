@@ -96,6 +96,8 @@ export interface Entitlement {
   /** Tingkat donasi bulan ini (0..7). */
   monthTier: number;
   config: DonationConfig;
+  /** Saklar admin: false = premium belum ditampilkan ke pengguna dan tidak ada yang dikunci. */
+  monetizationPublic: boolean;
   isAdmin: boolean;
 }
 
@@ -112,6 +114,7 @@ export const BASIC_ENTITLEMENT: Entitlement = {
   monthUnlocked: false,
   monthTier: 0,
   config: DEFAULT_DONATION_CONFIG,
+  monetizationPublic: false,
   isAdmin: false,
 };
 
@@ -155,6 +158,7 @@ export function parseEntitlement(raw: unknown): Entitlement {
     monthUnlocked: r.month_unlocked === true,
     monthTier: num(r.month_tier, 0, 7),
     config: parseConfig(r.config),
+    monetizationPublic: r.monetization_public === true,
     isAdmin: r.is_admin === true,
   };
 }
@@ -208,6 +212,7 @@ function toRaw(e: Entitlement): Record<string, unknown> {
       lifetime_target: e.config.lifetimeTarget,
       full_days: e.config.fullDays,
     },
+    monetization_public: e.monetizationPublic,
     is_admin: e.isAdmin,
   };
 }

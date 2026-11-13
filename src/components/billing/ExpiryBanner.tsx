@@ -8,11 +8,11 @@ const DISMISS_KEY = 'sevnquest_expiry_banner_dismissed';
 
 /** Pengingat H-3/H-1 dan masa tenggang (PRD 6.5). Bisa ditutup, muncul lagi esok hari. */
 export const ExpiryBanner: React.FC = () => {
-  const { entitlement, openUpgrade } = useAccess();
+  const { entitlement, openUpgrade, monetizationVisible } = useAccess();
   const today = new Date().toISOString().slice(0, 10);
   const [dismissed, setDismissed] = useState(() => safeGetItem(DISMISS_KEY) === today);
 
-  if (dismissed || entitlement.isLifetime || entitlement.accessTier === 'basic' || !entitlement.accessExpiresAt) return null;
+  if (!monetizationVisible || dismissed || entitlement.isLifetime || entitlement.accessTier === 'basic' || !entitlement.accessExpiresAt) return null;
   const days = daysUntil(entitlement.accessExpiresAt);
   if (days === null || (days > 3 && !entitlement.accessInGrace)) return null;
 

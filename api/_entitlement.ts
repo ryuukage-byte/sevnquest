@@ -74,7 +74,9 @@ export async function checkAccess(
     const res = await rpc(env, token, 'get_my_entitlement', {}, fetchImpl);
     if (res.status === 401) return { ok: false, status: 401, error: 'login_required' };
     if (!res.ok) return { ok: false, status: 503, error: 'entitlement_unavailable' };
-    const data = (await res.json()) as { access_tier?: string };
+    const data = (await res.json()) as { access_tier?: string; monetization_public?: boolean };
+    // Saklar monetisasi mati: Imersi terbuka untuk semua yang login.
+    if (data?.monetization_public === false) return { ok: true };
     return data?.access_tier === 'full' ? { ok: true } : { ok: false, status: 403, error: 'tier_required' };
   } catch {
     return { ok: false, status: 503, error: 'entitlement_unavailable' };

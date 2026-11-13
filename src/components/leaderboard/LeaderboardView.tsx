@@ -13,6 +13,7 @@ import {
   Heart
 } from 'lucide-react';
 import { DonorBoard } from '../billing/DonorBoard';
+import { useAccess } from '../../state/entitlement';
 import {
   getLeaderboard,
   getWeeklyLeaderboard,
@@ -56,6 +57,7 @@ export const LeaderboardView: React.FC<LeaderboardViewProps> = ({
 }) => {
   const [activeTab, setActiveTab] = useState<LeaderboardTab>('all-time');
   const [showDonors, setShowDonors] = useState(false);
+  const { monetizationVisible } = useAccess();
 
   // Muat cache (bila ada) agar tampil instan; tanpa cache daftar kosong sampai data server tiba
   const [allTimeEntries, setAllTimeEntries] = useState<LeaderboardEntry[]>(() => {
@@ -283,7 +285,7 @@ export const LeaderboardView: React.FC<LeaderboardViewProps> = ({
       </div>
 
       {/* Tabs as Skeuomorphic Pills */}
-      <div className="skeuo-tier-row mb-4">
+      <div data-tour="rank-tabs" className="skeuo-tier-row mb-4">
         <button
           onClick={() => {
             setActiveTab('all-time');
@@ -306,6 +308,7 @@ export const LeaderboardView: React.FC<LeaderboardViewProps> = ({
           <Flame className="w-4 h-4" />
           Weekly Arena
         </button>
+        {monetizationVisible && (
         <button
           onClick={() => {
             setShowDonors(true);
@@ -316,9 +319,10 @@ export const LeaderboardView: React.FC<LeaderboardViewProps> = ({
           <Heart className="w-4 h-4" />
           Donatur
         </button>
+        )}
       </div>
 
-      {showDonors ? <DonorBoard /> : (<>
+      {showDonors && monetizationVisible ? <DonorBoard /> : (<>
       {/* Description Context & Connection Status */}
       <div className="px-3.5 py-2.5 text-xs text-center text-text-secondary bg-surface-inset rounded-xl border border-border-subtle flex flex-col sm:flex-row items-center justify-between gap-1.5 shadow-inner">
         <span className="font-medium">

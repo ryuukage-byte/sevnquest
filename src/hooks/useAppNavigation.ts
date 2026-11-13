@@ -3,6 +3,7 @@ import type { TabType } from '../components/layout/BottomNavigation';
 import type { WorldNavView } from '../components/map/WorldView';
 import { useBackButton } from './useBackButton';
 import { STORAGE_KEY_ONBOARDING } from '../state/storageKeys';
+import type { DeckAiPrefill, DeckAiRequest } from '../engine/deck/deckPrefill';
 
 /**
  * Navigasi tab, overlay (recall), tombol back sistem, dan onboarding.
@@ -31,7 +32,9 @@ export function useAppNavigation() {
   const [deckInitialSubTab, setDeckInitialSubTab] = useState<'my_pocket' | 'official_books'>('my_pocket');
   const [tabHistory, setTabHistory] = useState<TabType[]>([]);
   // Permintaan membuka tab tertentu di Library (mis. misi evaluasi kurikulum -> Soal).
-  const [libraryTabRequest, setLibraryTabRequest] = useState<{ tab: 'kotoba' | 'kanji' | 'bunpou' | 'soal'; n: number } | undefined>();
+  const [libraryTabRequest, setLibraryTabRequest] = useState<{ tab: 'kotoba' | 'kanji' | 'bunpou' | 'dokkai' | 'choukai' | 'soal'; n: number } | undefined>();
+  // Permintaan membuka Penyusun Deck di Buku Saku dengan isian awal (mis. dari Naga Pemandu).
+  const [deckAiRequest, setDeckAiRequest] = useState<DeckAiRequest | undefined>();
 
   // Hardware / System Back Button Handlers
   useBackButton(isRecallActive, () => {
@@ -111,9 +114,15 @@ export function useAppNavigation() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }, [activeTab]);
 
-  const handleOpenLibraryTab = useCallback((tab: 'kotoba' | 'kanji' | 'bunpou' | 'soal') => {
+  const handleOpenLibraryTab = useCallback((tab: 'kotoba' | 'kanji' | 'bunpou' | 'dokkai' | 'choukai' | 'soal') => {
     setLibraryTabRequest(prev => ({ tab, n: (prev?.n || 0) + 1 }));
     handleTabChange('library');
+  }, [handleTabChange]);
+
+  const handleOpenDeckAi = useCallback((prefill: DeckAiPrefill) => {
+    setDeckAiRequest(prev => ({ prefill, n: (prev?.n || 0) + 1 }));
+    setDeckInitialSubTab('my_pocket');
+    handleTabChange('deck');
   }, [handleTabChange]);
 
   const handleNavigateToOfficialBooks = useCallback(() => {
@@ -137,11 +146,6 @@ export function useAppNavigation() {
     }
   }, []);
 
-  const handleOpenAuthFromOnboarding = useCallback(() => {
-    handleCompleteOnboarding();
-    setIsAuthModalOpen(true);
-  }, [handleCompleteOnboarding]);
-
   const handleReplayOnboarding = useCallback(() => {
     setIsRecallActive(false);
     setActiveTab('home');
@@ -157,6 +161,7 @@ export function useAppNavigation() {
     deckResetCount, deckInitialSubTab, setDeckInitialSubTab,
     handleTabChange, handleOpenTower, handleNavigateToOfficialBooks,
     libraryTabRequest, handleOpenLibraryTab,
-    isOnboardingActive, handleCompleteOnboarding, handleOpenAuthFromOnboarding, handleReplayOnboarding,
+    deckAiRequest, handleOpenDeckAi,
+    isOnboardingActive, handleCompleteOnboarding, handleReplayOnboarding,
   };
 }

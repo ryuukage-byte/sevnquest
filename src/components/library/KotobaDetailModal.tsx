@@ -357,7 +357,7 @@ const KotobaDetailModalInner: React.FC<KotobaDetailModalProps> = ({
             ) : (
               <>
                 {/* Top Area: Word, Reading, Meaning, Badges */}
-                <div className="flex flex-col items-center text-center space-y-4">
+                <div data-tour="kotoba-word" className="flex flex-col items-center text-center space-y-4">
               <div className="flex gap-2 justify-center flex-wrap">
                 <span className="px-2.5 py-1 rounded-lg bg-surface-inset text-text-primary text-xs font-mono font-bold border border-border-subtle shadow-sm">
                   {effectiveItem.jlpt.startsWith('N') ? `JLPT ${effectiveItem.jlpt}` : effectiveItem.jlpt}
@@ -493,7 +493,7 @@ const KotobaDetailModalInner: React.FC<KotobaDetailModalProps> = ({
                 )}
               </div>
 
-              <button
+              <button data-tour="kotoba-write"
                 onClick={() => {
                   setIsWritingMode(true);
                   playSound('click', soundEnabled);
@@ -542,7 +542,7 @@ const KotobaDetailModalInner: React.FC<KotobaDetailModalProps> = ({
             )}
 
             {/* Example Sentences */}
-            <div className="space-y-3">
+            <div data-tour="kotoba-sentences" className="space-y-3">
               <h4 className="text-xs font-bold text-text-muted uppercase tracking-wider">Contoh Kalimat</h4>
               {effectiveItem.exampleSentence ? (
                 <div className="p-3.5 rounded-2xl bg-surface-inset border border-border-subtle space-y-2">

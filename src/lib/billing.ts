@@ -102,6 +102,13 @@ export async function adminGatewayStatus(): Promise<GatewayStatus> {
 }
 
 /** Buat kunci webhook baru (kunci lama langsung tidak berlaku). Kunci hanya ditampilkan sekali. */
+/** Saklar admin: tampilkan monetisasi (donasi, tingkat, gembok) ke semua pengguna. */
+export async function adminSetMonetizationPublic(enabled: boolean): Promise<boolean> {
+  const { data, error } = await supabase.rpc('admin_set_monetization_public', { p_enabled: enabled });
+  if (error) throw error;
+  return data === true;
+}
+
 export async function adminRotateGatewayKey(): Promise<string> {
   const { data, error } = await supabase.rpc('admin_rotate_gateway_key');
   if (error) throw error;

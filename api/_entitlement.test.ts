@@ -45,3 +45,10 @@ test('JWT kedaluwarsa → 401, server error → 503', async () => {
   const boom = (async () => { throw new Error('net'); }) as unknown as typeof fetch;
   assert.equal((await checkAccess('Bearer t', 'deckAi', {}, boom) as { status: number }).status, 503);
 });
+
+test('checkAccess imersi: saklar monetisasi mati → terbuka walau Basic', async () => {
+  const r = await checkAccess('Bearer abc.def.ghi', 'immersion', {}, fakeFetch(200, { access_tier: 'basic', monetization_public: false }));
+  assert.deepEqual(r, { ok: true });
+  const r2 = await checkAccess('Bearer abc.def.ghi', 'immersion', {}, fakeFetch(200, { access_tier: 'basic', monetization_public: true }));
+  assert.equal(r2.ok, false);
+});

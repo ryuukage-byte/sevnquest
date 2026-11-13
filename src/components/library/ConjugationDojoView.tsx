@@ -117,7 +117,7 @@ export const ConjugationDojoView: React.FC<ConjugationDojoViewProps> = ({
   const advancedForms = CONJUGATION_FORMS_INFO.filter(f => !['te', 'nai', 'ta', 'masu'].includes(f.id));
 
   return (
-    <div className="w-full max-w-5xl mx-auto space-y-6 animate-fade-in pb-12">
+    <div className="w-full max-w-5xl lg:max-w-none mx-auto space-y-6 animate-fade-in pb-12">
       {/* 1. HEADER BANNER */}
       <div className="panel panel-stitched p-5 sm:p-6 rounded-3xl border border-border-subtle shadow-md bg-surface-card flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
         <div className="flex items-center gap-3.5">
@@ -143,7 +143,7 @@ export const ConjugationDojoView: React.FC<ConjugationDojoViewProps> = ({
         </div>
 
         {/* CTA Latihan Konjugasi */}
-        <button
+        <button data-tour="conj-start"
           type="button"
           onClick={() => handleStartDrill('all')}
           className="btn-skeuo-indigo self-stretch md:self-auto justify-center text-xs py-2.5 px-5 transition-all"
@@ -391,7 +391,7 @@ export const ConjugationDojoView: React.FC<ConjugationDojoViewProps> = ({
       ) : null}
 
       {/* 3. NAVIGASI TAB ENSIKLOPEDIA */}
-      <div className="book-tab-nav max-w-full overflow-x-auto no-scrollbar flex-nowrap justify-start py-1 px-1.5 gap-1.5 sm:gap-2">
+      <div data-tour="conj-tabs" className="book-tab-nav max-w-full overflow-x-auto no-scrollbar flex-nowrap justify-start py-1 px-1.5 gap-1.5 sm:gap-2">
         <button
           type="button"
           onClick={() => {

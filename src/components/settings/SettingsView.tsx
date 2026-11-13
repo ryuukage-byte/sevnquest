@@ -1,10 +1,10 @@
 import React, { useState, useEffect, lazy, Suspense } from 'react';
-import { Volume2, VolumeX, RotateCcw, ShieldAlert, Settings, BookOpen, User, LogOut, Coffee, MessageCircle, Sun, Moon, RefreshCw, Cloud, Check, Compass, Smartphone, Download, Play } from 'lucide-react';
+import { Volume2, VolumeX, RotateCcw, ShieldAlert, Settings, BookOpen, User, LogOut, Coffee, MessageCircle, Sun, Moon, RefreshCw, Cloud, Check, Compass, Play } from 'lucide-react';
 import { PlayerStats } from '../../types/rpg';
 import { speakJapanese, playSound } from '../../utils/audio';
 import { signOut } from '../../lib/supabase';
-import { PwaInstallModal } from '../pwa/PwaInstallModal';
 import { SubscriptionPanel } from '../billing/SubscriptionPanel';
+import { QrisModal } from '../home/SupportCard';
 import { KeysAndDevicesPanel } from '../billing/KeysAndDevicesPanel';
 import { useAccess } from '../../state/entitlement';
 import { checkIsAdmin } from '../../lib/announcements';
@@ -66,16 +66,10 @@ export const SettingsView: React.FC<SettingsViewProps> = ({
   onUpdateName,
   onReplayTutorial,
 }) => {
-  const { openUpgrade } = useAccess();
+  const { openUpgrade, monetizationVisible } = useAccess();
+  const [qrisOpen, setQrisOpen] = useState(false);
   const [playerNameInput, setPlayerNameInput] = useState(stats.playerName || '');
   const [isNameSaved, setIsNameSaved] = useState(false);
-  const [deferredPrompt, setDeferredPrompt] = useState<any>(() => {
-    if (typeof window !== 'undefined') {
-      return (window as any).__pwaInstallPrompt || null;
-    }
-    return null;
-  });
-  const [showInstallGuide, setShowInstallGuide] = useState(false);
   const [isAdmin, setIsAdmin] = useState(false);
 
   useEffect(() => {
@@ -91,76 +85,6 @@ export const SettingsView: React.FC<SettingsViewProps> = ({
       cancelled = true;
     };
   }, [isAuthenticated]);
-  const [isStandalone, setIsStandalone] = useState<boolean>(() => {
-    if (typeof window === 'undefined') return false;
-    return (
-      window.matchMedia('(display-mode: standalone)').matches ||
-      (window.navigator as any).standalone === true ||
-      document.referrer.includes('android-app://')
-    );
-  });
-
-  useEffect(() => {
-    if (typeof window !== 'undefined' && (window as any).__pwaInstallPrompt && !deferredPrompt) {
-      setDeferredPrompt((window as any).__pwaInstallPrompt);
-    }
-
-    const handleBeforeInstall = (e: Event) => {
-      e.preventDefault();
-      (window as any).__pwaInstallPrompt = e;
-      setDeferredPrompt(e);
-    };
-
-    const handlePromptReady = () => {
-      if ((window as any).__pwaInstallPrompt) {
-        setDeferredPrompt((window as any).__pwaInstallPrompt);
-      }
-    };
-
-    const handleAppInstalled = () => {
-      setDeferredPrompt(null);
-      if (typeof window !== 'undefined') {
-        (window as any).__pwaInstallPrompt = null;
-      }
-      setIsStandalone(true);
-    };
-
-    window.addEventListener('beforeinstallprompt', handleBeforeInstall);
-    window.addEventListener('pwa-prompt-ready', handlePromptReady);
-    window.addEventListener('appinstalled', handleAppInstalled);
-
-    return () => {
-      window.removeEventListener('beforeinstallprompt', handleBeforeInstall);
-      window.removeEventListener('pwa-prompt-ready', handlePromptReady);
-      window.removeEventListener('appinstalled', handleAppInstalled);
-    };
-  }, [deferredPrompt]);
-
-  const handleInstallClick = async () => {
-    playSound('click', stats.soundEnabled);
-    const prompt = deferredPrompt || (typeof window !== 'undefined' && (window as any).__pwaInstallPrompt);
-
-    if (prompt && typeof prompt.prompt === 'function') {
-      try {
-        prompt.prompt();
-        const { outcome } = await prompt.userChoice;
-        if (outcome === 'accepted') {
-          playSound('fanfare', stats.soundEnabled);
-          setDeferredPrompt(null);
-          if (typeof window !== 'undefined') {
-            (window as any).__pwaInstallPrompt = null;
-          }
-          setIsStandalone(true);
-        }
-        return;
-      } catch (err) {
-        console.debug('Native prompt error, fallback to guide modal', err);
-      }
-    }
-
-    // Fallback: Show interactive device-specific installation guide
-    setShowInstallGuide(true);
-  };
 
   useEffect(() => {
     if (stats.playerName) {
@@ -186,7 +110,7 @@ export const SettingsView: React.FC<SettingsViewProps> = ({
   };
 
   return (
-    <div className="w-full max-w-2xl mx-auto space-y-5 pb-6">
+    <div className="w-full max-w-2xl lg:max-w-6xl mx-auto space-y-5 pb-6 lg:space-y-0 lg:columns-2 lg:gap-5 [&>*]:break-inside-avoid lg:[&>*]:mb-5">
       {/* Header */}
       <div className="panel panel-stitched p-4 flex items-center justify-between gap-3 shadow-md mb-4">
         <div className="flex items-center gap-2.5">
@@ -212,7 +136,7 @@ export const SettingsView: React.FC<SettingsViewProps> = ({
       )}
 
       {/* Account Section */}
-      <div className="panel panel-stitched p-4 sm:p-5 space-y-4 shadow-md">
+      <div data-tour="settings-account" className="panel panel-stitched p-4 sm:p-5 space-y-4 shadow-md">
         <h3 className="text-xs font-bold uppercase tracking-wider text-text-secondary flex items-center gap-1.5 font-heading">
           <User className="w-4 h-4 text-indigo" /> Akun SevnQuest
         </h3>
@@ -293,7 +217,7 @@ export const SettingsView: React.FC<SettingsViewProps> = ({
       </div>
 
       {/* Profile & Avatar Section */}
-      <div className="panel panel-stitched p-4 sm:p-5 space-y-5 shadow-md">
+      <div data-tour="settings-profile" className="panel panel-stitched p-4 sm:p-5 space-y-5 shadow-md">
         <h3 className="text-xs font-bold uppercase tracking-wider text-text-secondary flex items-center gap-1.5 font-heading">
           <User className="w-4 h-4 text-indigo" /> Profil Pemain
         </h3>
@@ -443,7 +367,7 @@ export const SettingsView: React.FC<SettingsViewProps> = ({
       </div>
 
       {/* Audio & Sound Effects Section */}
-      <div className="panel panel-stitched p-4 sm:p-5 space-y-4 shadow-md">
+      <div data-tour="settings-audio" className="panel panel-stitched p-4 sm:p-5 space-y-4 shadow-md">
         <h3 className="text-xs font-bold uppercase tracking-wider text-text-secondary flex items-center gap-1.5 font-heading">
           <Volume2 className="w-4 h-4 text-indigo" /> Audio & Mantra Suara
         </h3>
@@ -540,7 +464,7 @@ export const SettingsView: React.FC<SettingsViewProps> = ({
       </div>
 
       {/* Learning Preferences */}
-      <div className="panel panel-stitched p-4 sm:p-5 space-y-4 shadow-md">
+      <div data-tour="settings-study" className="panel panel-stitched p-4 sm:p-5 space-y-4 shadow-md">
         <h3 className="text-xs font-bold uppercase tracking-wider text-text-secondary flex items-center gap-2 font-mono">
           <BookOpen className="w-4 h-4 text-indigo" />
           <span>Pengaturan Belajar</span>
@@ -637,38 +561,11 @@ export const SettingsView: React.FC<SettingsViewProps> = ({
             </button>
           </div>
 
-          {/* 4. Aplikasi Web (PWA) */}
-          <div className="py-3.5 first:pt-1 last:pb-0 flex items-center justify-between gap-3">
-            <div className="min-w-0 flex-1 pr-3">
-              <h4 className="text-sm font-bold text-text-primary font-heading flex items-center gap-2 tracking-normal">
-                <Smartphone className="w-4 h-4 text-indigo shrink-0" />
-                <span>Aplikasi Web (PWA)</span>
-              </h4>
-              <p className="text-xs text-text-secondary mt-0.5 leading-relaxed">
-                Pasang di layar utama HP / desktop tanpa bar URL
-              </p>
-            </div>
-            {isStandalone ? (
-              <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-emerald-500/15 border border-border-subtle text-emerald-700 dark:text-emerald-400 font-bold text-xs shrink-0 whitespace-nowrap shadow-sm">
-                <Check className="w-3.5 h-3.5 stroke-[2.5]" />
-                <span>Terpasang</span>
-              </span>
-            ) : (
-              <button
-                type="button"
-                onClick={handleInstallClick}
-                className="btn-physical-secondary px-3.5 py-1.5 rounded-xl text-xs font-bold inline-flex items-center gap-1.5 shrink-0 whitespace-nowrap select-none transition-all text-indigo cursor-pointer"
-              >
-                <Download className="w-3.5 h-3.5" />
-                <span>Pasang App</span>
-              </button>
-            )}
-          </div>
         </div>
       </div>
 
-      <SubscriptionPanel soundEnabled={stats.soundEnabled} />
-      <KeysAndDevicesPanel soundEnabled={stats.soundEnabled} />
+      {monetizationVisible && <SubscriptionPanel soundEnabled={stats.soundEnabled} />}
+      <KeysAndDevicesPanel soundEnabled={stats.soundEnabled} showKeys={monetizationVisible} />
 
       {/* Support & Community Section */}
       <div className="panel panel-stitched p-4 sm:p-5 space-y-4 shadow-md">
@@ -679,7 +576,7 @@ export const SettingsView: React.FC<SettingsViewProps> = ({
         <div className="flex flex-col sm:flex-row gap-3">
           <button
             type="button"
-            onClick={() => { playSound('click'); openUpgrade(); }}
+            onClick={() => { playSound('click'); if (monetizationVisible) openUpgrade(); else setQrisOpen(true); }}
             className="flex-1 py-3 px-4 rounded-xl bg-surface-inset hover:bg-surface-elevated border border-border-subtle hover:border-border-primary flex flex-col items-center justify-center gap-2 transition-all group shadow-sm"
           >
             <Coffee className="w-5 h-5 text-gold group-hover:scale-110 transition-transform" />
@@ -689,6 +586,7 @@ export const SettingsView: React.FC<SettingsViewProps> = ({
             </div>
           </button>
         </div>
+        {qrisOpen && <QrisModal soundEnabled={stats.soundEnabled} onClose={() => setQrisOpen(false)} />}
         <p className="text-[11px] text-text-muted">
           Punya pertanyaan, laporan bug, atau saran? Kirim surat ke admin lewat Kotak Pos di Castle.
         </p>
@@ -715,15 +613,6 @@ export const SettingsView: React.FC<SettingsViewProps> = ({
           <span>Reset Progres Petualangan</span>
         </button>
       </div>
-
-      {/* PWA Installation Guide Modal */}
-      <PwaInstallModal
-        isOpen={showInstallGuide}
-        onClose={() => setShowInstallGuide(false)}
-        deferredPrompt={deferredPrompt || (typeof window !== 'undefined' && (window as any).__pwaInstallPrompt)}
-        onInstalled={() => setIsStandalone(true)}
-        soundEnabled={stats.soundEnabled}
-      />
     </div>
   );
 };

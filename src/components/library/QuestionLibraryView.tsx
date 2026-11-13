@@ -144,7 +144,7 @@ export const QuestionLibraryView: React.FC<QuestionLibraryViewProps> = ({
   const allQuestionsRaw: UnifiedQuestionItem[] = useMemo(() => getQuestionLibrary(), []);
 
   // Gating lunak (PRD 6.4): soal di atas paket pengguna tidak ikut daftar/drill.
-  const { canAccessLevel, guardLevel, openUpgrade, entitlement } = useAccess();
+  const { canAccessLevel, guardLevel, openUpgrade, canAccessTier } = useAccess();
   const allQuestions = useMemo(
     () => allQuestionsRaw.filter(q => canAccessLevel(q.level)),
     [allQuestionsRaw, canAccessLevel]
@@ -365,7 +365,7 @@ export const QuestionLibraryView: React.FC<QuestionLibraryViewProps> = ({
   };
 
   // Bedah Soal: akses Gratis mendapat 3 soal per hari (buka ulang soal yang sama tidak dihitung); Full tanpa batas.
-  const unlimitedInsight = entitlement.accessTier === 'full';
+  const unlimitedInsight = canAccessTier('full');
   const [insightUsage, setInsightUsage] = useState(() => parseAllowance(safeGetItem(INSIGHT_USAGE_KEY), getTodayLocalDate()));
   const insightLeft = Math.max(0, FREE_DAILY_INSIGHTS - (insightUsage.day === getTodayLocalDate() ? insightUsage.ids.length : 0));
 
@@ -464,7 +464,7 @@ export const QuestionLibraryView: React.FC<QuestionLibraryViewProps> = ({
       }
 
       return (
-        <div className="w-full max-w-4xl mx-auto space-y-6 animate-fade-in">
+        <div className="w-full max-w-4xl lg:max-w-6xl mx-auto space-y-6 animate-fade-in">
           {/* Result Card */}
           <div className="panel panel-stitched p-6 sm:p-8 rounded-3xl border border-border-subtle shadow-md text-center space-y-6">
             <div className="w-16 h-16 mx-auto rounded-2xl bg-surface-inset border border-border-subtle flex items-center justify-center">
@@ -625,7 +625,7 @@ export const QuestionLibraryView: React.FC<QuestionLibraryViewProps> = ({
     const isCorrectCurrent = selectedAns === currentQ?.correctIndex;
 
     return (
-      <div className="w-full max-w-4xl mx-auto space-y-6 animate-fade-in">
+      <div className="w-full max-w-4xl lg:max-w-6xl mx-auto space-y-6 animate-fade-in">
         {/* Drill Progress & Control Header */}
         <div className="panel panel-stitched p-4 sm:p-5 rounded-3xl border border-border-subtle shadow-sm space-y-3">
           <div className="flex items-center justify-between gap-3 text-xs">
@@ -864,7 +864,7 @@ export const QuestionLibraryView: React.FC<QuestionLibraryViewProps> = ({
               )}
             </button>
           ))}
-          {entitlement.accessTier !== 'full' && (
+          {!canAccessTier('full') && (
             <button
               onClick={() => openUpgrade({ requiredTier: 'full', label: 'Soal & tryout level lanjut' })}
               className="text-[11px] text-gold font-bold underline-offset-2 hover:underline shrink-0"
@@ -909,7 +909,7 @@ export const QuestionLibraryView: React.FC<QuestionLibraryViewProps> = ({
       </div>
 
       {/* Hero Action Modes Grid (Latihan Harian 10 Soal + Simulasi Ujian Nyata) */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div data-tour="soal-modes" className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {/* Mode 1: Latihan Harian (10 Soal) */}
         <div className="panel panel-stitched p-5 sm:p-6 rounded-3xl border border-border-subtle shadow-sm flex flex-col justify-between space-y-4 hover:border-border-primary transition-colors">
           <div className="space-y-2">

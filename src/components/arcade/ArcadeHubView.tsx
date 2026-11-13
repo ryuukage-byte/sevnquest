@@ -117,7 +117,7 @@ export const ArcadeHubView: React.FC<ArcadeHubViewProps> = ({
       )}
 
       {/* 2. ARCADE GAME CARDS GRID */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+      <div data-tour="arcade-games" className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
         
         {/* GAME 1: KANJI SPEED RUSH (60s) */}
         <motion.div
@@ -179,7 +179,7 @@ export const ArcadeHubView: React.FC<ArcadeHubViewProps> = ({
             </div>
           </div>
 
-          <button
+          <button data-tour="arcade-sudden"
             type="button"
             onClick={() => {
               playSound('click', soundEnabled);

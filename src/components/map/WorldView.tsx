@@ -102,7 +102,7 @@ export const WorldView: React.FC<WorldViewProps> = ({
   };
 
   return (
-    <div className="w-full max-w-4xl mx-auto space-y-6 pb-20 sm:pb-12 animate-fade-in px-2 sm:px-0">
+    <div className="w-full max-w-4xl lg:max-w-none mx-auto space-y-6 pb-20 sm:pb-12 animate-fade-in px-2 sm:px-0">
       {/* 1. HEADER UTAMA: WORLD */}
       <div className="panel panel-stitched p-4 sm:p-5 rounded-2xl sm:rounded-3xl shadow-md border border-border-subtle flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
         <div className="flex items-center gap-3.5">
@@ -141,11 +141,12 @@ export const WorldView: React.FC<WorldViewProps> = ({
       </div>
 
       {/* 2. FOUR-MODE SWITCHER BAR */}
-      <div className="panel p-1.5 rounded-2xl bg-surface-inset border border-border-subtle flex items-center gap-1.5 sm:gap-2 shadow-inner overflow-x-auto scrollbar-none">
+      <div data-tour="world-modes" className="panel p-1.5 rounded-2xl bg-surface-inset border border-border-subtle flex items-center gap-1.5 sm:gap-2 shadow-inner overflow-x-auto scrollbar-none">
         
         {/* TAB 1: ARENA ARCADE */}
         <button
           type="button"
+          data-tour="world-arcade"
           onClick={() => handleSwitchMode('arcade')}
           className={`flex-1 flex items-center justify-center gap-1.5 sm:gap-2 py-2.5 px-2.5 sm:px-3 rounded-xl text-xs sm:text-sm font-bold font-sans transition-all whitespace-nowrap ${
             worldMode === 'arcade'
@@ -163,6 +164,7 @@ export const WorldView: React.FC<WorldViewProps> = ({
         {/* TAB 2: MODE DUNGEON */}
         <button
           type="button"
+          data-tour="world-dungeon"
           onClick={() => handleSwitchMode('dungeon')}
           className={`flex-1 flex items-center justify-center gap-1.5 sm:gap-2 py-2.5 px-2.5 sm:px-3 rounded-xl text-xs sm:text-sm font-bold font-sans transition-all whitespace-nowrap ${
             worldMode === 'dungeon'
@@ -180,6 +182,7 @@ export const WorldView: React.FC<WorldViewProps> = ({
         {/* TAB 4: MENARA 1.000 */}
         <button
           type="button"
+          data-tour="world-tower"
           onClick={() => handleSwitchMode('tower')}
           disabled={!TOWER_ENABLED}
           aria-disabled={!TOWER_ENABLED}

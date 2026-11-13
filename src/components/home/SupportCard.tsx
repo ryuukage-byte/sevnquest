@@ -19,25 +19,33 @@ interface SupportCardProps {
  * supaya donasi tercatat ke akun dan membuka akses Full. QRIS polos tetap tersedia lewat QrisModal.
  */
 export const SupportCard: React.FC<SupportCardProps> = ({ soundEnabled }) => {
-  const { openUpgrade, entitlement } = useAccess();
+  const { openUpgrade, entitlement, monetizationVisible } = useAccess();
   const remaining = monthlyRemaining(entitlement);
+  const [open, setOpen] = useState(false);
 
   return (
-    <button
-      type="button"
-      onClick={() => {
-        playSound('open_modal', soundEnabled);
-        openUpgrade();
-      }}
-      aria-label="Donasi lewat QRIS"
-      title={entitlement.isLifetime ? 'Kamu Lifetime. Terima kasih!' : remaining > 0 ? `Kurang ${formatIdr(remaining)} untuk Full bulan ini` : 'Donasi lewat QRIS'}
-      className={`${CASTLE_TILE} hover:bg-surface-elevated/40 cursor-pointer`}
-    >
-      <span className="p-2 rounded-xl bg-surface-inset/50 text-gold border border-border-subtle shrink-0">
-        <Coffee className="w-4 h-4 md:w-5 md:h-5" />
-      </span>
-      <span className={`${CASTLE_TILE_LABEL} group-hover:text-gold transition-colors`}>Donasi</span>
-    </button>
+    <>
+      <button
+        type="button"
+        onClick={() => {
+          playSound('open_modal', soundEnabled);
+          // Monetisasi belum ditampilkan ke pengguna: tetap QRIS polos seperti biasa.
+          if (monetizationVisible) openUpgrade();
+          else setOpen(true);
+        }}
+        aria-label="Donasi lewat QRIS"
+        data-tour="castle-donasi"
+        title={!monetizationVisible ? 'Donasi lewat QRIS' : entitlement.isLifetime ? 'Kamu Lifetime. Terima kasih!' : remaining > 0 ? `Kurang ${formatIdr(remaining)} untuk Full bulan ini` : 'Donasi lewat QRIS'}
+        className={`${CASTLE_TILE} hover:bg-surface-elevated/40 cursor-pointer`}
+      >
+        <span className="p-2 rounded-xl bg-surface-inset/50 text-gold border border-border-subtle shrink-0">
+          <Coffee className="w-4 h-4 md:w-5 md:h-5" />
+        </span>
+        <span className={`${CASTLE_TILE_LABEL} group-hover:text-gold transition-colors`}>Donasi</span>
+      </button>
+
+      {open && <QrisModal soundEnabled={soundEnabled} onClose={() => setOpen(false)} />}
+    </>
   );
 };
 

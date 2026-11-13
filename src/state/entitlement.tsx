@@ -25,6 +25,8 @@ export interface UpgradeRequest {
 
 interface EntitlementContextValue {
   entitlement: Entitlement;
+  /** Premium (halaman donasi, tingkat, badge, gembok) boleh tampil: saklar publik menyala, atau pengguna admin. */
+  monetizationVisible: boolean;
   /** true sampai entitlement pertama (cache atau server) siap. */
   loading: boolean;
   refresh: (force?: boolean) => Promise<void>;
@@ -43,18 +45,21 @@ interface EntitlementContextValue {
 
 const noopFalse = () => false as const;
 
+// Di luar provider (tes, render terpisah): perilaku sama dengan saklar monetisasi mati, yaitu tidak ada yang dikunci.
+const allowAll = () => true;
 const EntitlementContext = createContext<EntitlementContextValue>({
   entitlement: BASIC_ENTITLEMENT,
+  monetizationVisible: false,
   loading: false,
   refresh: async () => {},
-  canAccessLevel: level => canAccessLevelPure('basic', level),
-  canAccessTier: tier => tier === 'basic',
-  canAccessTowerFloor: floor => requiredTierForTowerFloor(floor) === 'basic',
-  canUseFeature: () => false,
+  canAccessLevel: allowAll,
+  canAccessTier: allowAll,
+  canAccessTowerFloor: allowAll,
+  canUseFeature: allowAll,
   openUpgrade: noopFalse,
-  guardLevel: level => canAccessLevelPure('basic', level),
-  guardTier: tier => tier === 'basic',
-  guardFeature: () => false,
+  guardLevel: allowAll,
+  guardTier: allowAll,
+  guardFeature: allowAll,
   openAdmin: () => {},
 });
 
@@ -116,14 +121,18 @@ export function EntitlementProvider({ userId, isAuthenticated, soundEnabled = tr
   }, [refresh]);
 
   const value = useMemo<EntitlementContextValue>(() => {
-    const tier = entitlement.accessTier;
+    // Saklar monetisasi mati: tidak ada gating sama sekali (semua materi & fitur terbuka seperti sebelum monetisasi).
+    const gating = entitlement.monetizationPublic;
+    const monetizationVisible = gating || entitlement.isAdmin;
+    const tier = gating ? entitlement.accessTier : 'full';
     const openUpgrade = (req?: UpgradeRequest) => {
-      setUpgradeRequest(req || {});
+      if (monetizationVisible) setUpgradeRequest(req || {});
       return false as const;
     };
     const canAccessTier = (t: AccessTier) => tierAtLeast(tier, t);
     return {
       entitlement,
+      monetizationVisible,
       loading,
       refresh,
       canAccessLevel: level => canAccessLevelPure(tier, level),

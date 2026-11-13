@@ -1172,14 +1172,19 @@ export function buildSmartRecallQueue(
 ): RecallQueueItem[] {
   const records = Object.values(itemMastery);
   const now = new Date().getTime();
+  const endOfTodayDate = new Date(now);
+  endOfTodayDate.setHours(23, 59, 59, 999);
+  const endOfToday = endOfTodayDate.getTime();
   const queue: RecallQueueItem[] = [];
 
   for (const r of records) {
     try {
       if (!r || !r.itemId || !hasPracticed(r)) continue;
 
+      // Jatuh tempo dihitung per HARI kalender lokal: item yang dijadwalkan "besok jam 20.00" sudah boleh muncul
+      // sejak besok pagi. Tanggal tidak valid (data lama) dianggap jatuh tempo agar materi tidak hilang.
       const dueDate = new Date(r.nextReviewDue).getTime();
-      const isDue = dueDate <= now;
+      const isDue = !Number.isFinite(dueDate) || dueDate <= endOfToday;
       const daysSinceLastReview = (now - new Date(r.lastReviewedAt).getTime()) / (1000 * 60 * 60 * 24);
 
       let urgencyScore = 0;
@@ -1203,6 +1208,14 @@ export function buildSmartRecallQueue(
         const trueMasteryBreakdown = calculateItemTrueMastery(r, itemMastery);
         tm = trueMasteryBreakdown.trueMastery;
         levelTier = trueMasteryBreakdown.levelTier;
+
+        // Jadwal SRS-nya belum tiba: item lemah/kritis TIDAK diulang dulu. Salah -> jadwal 1 hari (muncul lagi
+        // besok); benar -> jadwal naik (>= 2 hari) sehingga besok tidak muncul. Dulu item lemah/kritis (mis. pernah
+        // salah 3x) masuk antrean SETIAP hari tanpa melihat jadwal, sehingga sesi Recall penuh berisi soal yang
+        // sama terus dan materi lain tidak pernah kebagian giliran. Hanya MAINTAIN (materi yang sudah dikuasai,
+        // prioritas terendah) yang boleh muncul sebelum jatuh tempo.
+        const isWeakOrCritical = r.weaknessFlags?.includes('dokkai_context_fail') || r.mistakeCount >= 3 || tm < 70 || r.status === 'LEARNING';
+        if (!isDue && isWeakOrCritical) continue;
 
         // 🔴 1. CRITICAL PRIORITY: Consecutive mistakes or Dokkai Contextual failure
         if (r.weaknessFlags?.includes('dokkai_context_fail') || r.mistakeCount >= 3 || tm < 45) {

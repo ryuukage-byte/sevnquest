@@ -280,7 +280,7 @@ export const CreateDeckModal: React.FC<CreateDeckModalProps> = ({
               {/* Scrollable Form Body */}
               <div className="p-4 sm:p-5 overflow-y-auto space-y-4 flex-1 min-h-0">
             {/* Title */}
-            <div>
+            <div data-tour="deck-form-title">
               <label className="block text-xs font-bold font-heading uppercase tracking-wider text-text-secondary mb-1">
                 Judul Deck <span className="text-wine-accent">*</span>
               </label>
@@ -378,7 +378,7 @@ export const CreateDeckModal: React.FC<CreateDeckModalProps> = ({
 
             {/* Deck Content Customization (Only for new deck creation) */}
             {!editingDeck && (
-              <div className="pt-3 border-t border-border-subtle space-y-3">
+              <div data-tour="deck-form-content" className="pt-3 border-t border-border-subtle space-y-3">
                 {onOpenAiCustomizer && (
                   <div className="p-3 rounded-2xl bg-surface-inset border border-border-subtle flex items-center justify-between gap-3">
                     <div className="flex items-center gap-2.5">
@@ -633,7 +633,7 @@ export const CreateDeckModal: React.FC<CreateDeckModalProps> = ({
           </div>
 
           {/* Fixed Footer Actions */}
-          <div className="p-3.5 sm:p-4 border-t border-border-subtle flex items-center justify-end gap-2.5 bg-surface-inset shrink-0">
+          <div data-tour="deck-form-footer" className="p-3.5 sm:p-4 border-t border-border-subtle flex items-center justify-end gap-2.5 bg-surface-inset shrink-0">
             <button
               type="button"
               onClick={() => {

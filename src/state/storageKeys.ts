@@ -11,3 +11,6 @@ export const STORAGE_KEY_LAST_WEEKLY_RESET = 'n3quest_last_weekly_reset';
 
 /** Jeda minimum antar-simpan cloud (autosave). */
 export const CLOUD_SAVE_MIN_INTERVAL_MS = 30_000;
+
+/** Naga Pemandu: status menetas & tier terakhir yang dilihat (kosmetik, di luar PlayerStats). */
+export const STORAGE_KEY_DRAGON = 'nihongo_quest_dragon_v1';

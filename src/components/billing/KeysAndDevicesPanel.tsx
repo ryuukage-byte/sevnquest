@@ -16,7 +16,7 @@ const keyLabel = (k: Pick<AccessKey, 'kind' | 'amount_idr'>) =>
   `${k.kind === 'lifetime' ? 'Setoran lifetime' : 'Donasi bulanan'} ${formatIdr(k.amount_idr)}`;
 
 /** Pengaturan: tukar key, daftar key milik sendiri, dan perangkat yang login. */
-export const KeysAndDevicesPanel: React.FC<{ soundEnabled?: boolean }> = ({ soundEnabled = true }) => {
+export const KeysAndDevicesPanel: React.FC<{ soundEnabled?: boolean; showKeys?: boolean }> = ({ soundEnabled = true, showKeys = true }) => {
   const { refresh } = useAccess();
   const [code, setCode] = useState('');
   const [busy, setBusy] = useState(false);
@@ -65,7 +65,8 @@ export const KeysAndDevicesPanel: React.FC<{ soundEnabled?: boolean }> = ({ soun
 
   return (
     <div className="panel panel-stitched p-4 sm:p-5 space-y-4 shadow-md text-xs">
-      {/* Tukar key */}
+      {/* Tukar key (hanya bila monetisasi ditampilkan) */}
+      {showKeys && (<>
       <div className="space-y-2">
         <h3 className="text-xs font-bold uppercase tracking-wider text-text-secondary flex items-center gap-1.5 font-heading">
           <KeyRound className="w-4 h-4 text-gold" /> Tukar Key
@@ -91,7 +92,7 @@ export const KeysAndDevicesPanel: React.FC<{ soundEnabled?: boolean }> = ({ soun
         <p className="text-text-muted">Key hanya bisa dipakai sekali dan terkunci ke akun yang menukarnya.</p>
       </div>
 
-      {giftKeys.length > 0 && (
+      {showKeys && giftKeys.length > 0 && (
         <div className="space-y-1.5">
           <div className="font-bold text-text-secondary">Key hadiah milikmu</div>
           {giftKeys.map(k => (
@@ -113,6 +114,8 @@ export const KeysAndDevicesPanel: React.FC<{ soundEnabled?: boolean }> = ({ soun
           ))}
         </div>
       )}
+
+      </>)}
 
       {/* Perangkat (batas sengaja tidak ditampilkan) */}
       <div className="space-y-1.5">

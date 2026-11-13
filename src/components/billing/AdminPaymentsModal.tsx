@@ -4,6 +4,7 @@ import { playSound } from '../../utils/audio';
 import { useBackButton } from '../../hooks/useBackButton';
 import { formatIdr, planLabel } from '../../utils/access';
 import { AutoVerifyPanel } from './AutoVerifyPanel';
+import { MonetizationSwitch } from './MonetizationSwitch';
 import {
   adminApprove, adminListOrders, adminProofUrl, adminReject, billingErrorMessage, type AdminOrder, type OrderStatus,
 } from '../../lib/billing';
@@ -138,6 +139,7 @@ export const AdminPaymentsModal: React.FC<{ onClose: () => void; soundEnabled?: 
             GoPay Merchant, cocokkan <b>nominal persis</b> dan jam bayar, lalu setujui. Jangan menyetujui hanya dari screenshot.
           </p>
 
+          <MonetizationSwitch />
           <AutoVerifyPanel />
 
           <div className="flex gap-1.5 text-xs font-bold">

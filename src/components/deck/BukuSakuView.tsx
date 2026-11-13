@@ -53,6 +53,7 @@ import { KotobaDetailModal } from '../library/KotobaDetailModal';
 import { KanjiDetailModal } from '../library/KanjiDetailModal';
 import { recordKanjiWriting } from '../../utils/kanjiWritingRecord';
 import { BunpouDetailModal } from '../library/BunpouDetailModal';
+import type { DeckAiRequest } from '../../engine/deck/deckPrefill';
 
 
 interface BukuSakuViewProps {
@@ -84,6 +85,8 @@ interface BukuSakuViewProps {
   furiganaEnabled?: boolean;
   initialSubTab?: 'my_pocket' | 'official_books';
   onSubTabChange?: (tab: 'my_pocket' | 'official_books') => void;
+  /** Permintaan membuka Penyusun Deck dengan isian awal (mis. dari Naga Pemandu). */
+  aiRequest?: DeckAiRequest;
 }
 
 export const BukuSakuView: React.FC<BukuSakuViewProps> = ({
@@ -107,6 +110,7 @@ export const BukuSakuView: React.FC<BukuSakuViewProps> = ({
   furiganaEnabled = true,
   initialSubTab,
   onSubTabChange,
+  aiRequest,
 }) => {
   const decks = useMemo(() => ensureUserDecks(userDecks), [userDecks]);
 
@@ -145,6 +149,18 @@ export const BukuSakuView: React.FC<BukuSakuViewProps> = ({
   const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
   const [isAiCustomizerOpen, setIsAiCustomizerOpen] = useState(false);
   const { guardFeature } = useAccess();
+  // Dideklarasikan sesudah efek reset di atas: navigasi ke tab ini menaikkan resetSignal (menutup modal),
+  // lalu efek ini membukanya lagi dengan isian awal.
+  const [aiPrefillRequest, setAiPrefillRequest] = useState<DeckAiRequest | undefined>();
+  const handledAiRequest = React.useRef(0);
+  useEffect(() => {
+    if (!aiRequest || aiRequest.n === handledAiRequest.current) return;
+    handledAiRequest.current = aiRequest.n;
+    setSelectedDeckId(null);
+    setActiveSubTab('my_pocket');
+    setAiPrefillRequest(aiRequest);
+    setIsAiCustomizerOpen(true);
+  }, [aiRequest]);
   const [editingDeck, setEditingDeck] = useState<UserDeck | null>(null);
   const [isAddItemModalOpen, setIsAddItemModalOpen] = useState(false);
   const [activeRunner, setActiveRunner] = useState<'flashcard' | 'writing' | null>(null);
@@ -338,7 +354,7 @@ export const BukuSakuView: React.FC<BukuSakuViewProps> = ({
   }, [resolvedItems]);
 
   return (
-    <div className="w-full max-w-6xl mx-auto space-y-6 animate-fade-in pb-16">
+    <div className="w-full max-w-6xl xl:max-w-none mx-auto space-y-6 animate-fade-in pb-16">
       {/* Runner Modes */}
       {activeRunner === 'flashcard' && (virtualRunnerDeck || activeDeck) && (
         <DeckFlashcardRunner
@@ -370,7 +386,7 @@ export const BukuSakuView: React.FC<BukuSakuViewProps> = ({
       {!activeDeck ? (
         <div className="space-y-6">
           {/* Sub-Tab Navigation Bar: Buku Saku Saya vs Buku Kurikulum Resmi */}
-          <div className="panel p-1.5 rounded-2xl bg-surface-inset border border-border-subtle flex items-center gap-2 shadow-inner">
+          <div data-tour="deck-subtabs" className="panel p-1.5 rounded-2xl bg-surface-inset border border-border-subtle flex items-center gap-2 shadow-inner">
             <button
               type="button"
               onClick={() => {
@@ -475,8 +491,8 @@ export const BukuSakuView: React.FC<BukuSakuViewProps> = ({
                 </p>
               </div>
 
-              <div className="flex items-center gap-2.5 shrink-0 flex-wrap">
-                <button
+              <div data-tour="deck-actions" className="flex items-center gap-2.5 shrink-0 flex-wrap">
+                <button data-tour="deck-ai"
                   type="button"
                   onClick={() => {
                     if (guardFeature('deckAi', 'Deck AI')) setIsAiCustomizerOpen(true);
@@ -487,7 +503,7 @@ export const BukuSakuView: React.FC<BukuSakuViewProps> = ({
                   <span>Buat Deck AI</span>
                 </button>
 
-                <button
+                <button data-tour="deck-new"
                   type="button"
                   onClick={() => {
                     setEditingDeck(null);
@@ -535,6 +551,7 @@ export const BukuSakuView: React.FC<BukuSakuViewProps> = ({
               return (
                 <div
                   key={deck.id}
+                  data-tour="deck-card"
                   onClick={() => {
                     setSelectedDeckId(deck.id);
                     setCategoryFilter('all');
@@ -687,6 +704,7 @@ export const BukuSakuView: React.FC<BukuSakuViewProps> = ({
       <AIDeckCustomizerModal
         isOpen={isAiCustomizerOpen}
         onClose={() => setIsAiCustomizerOpen(false)}
+        prefillRequest={aiPrefillRequest}
         onSaveDeck={(newDeck) => {
           const currentDecks = ensureUserDecks(userDecks);
           const updated = [newDeck, ...currentDecks];
