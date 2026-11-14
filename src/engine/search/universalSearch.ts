@@ -88,10 +88,16 @@ const SEPARATORS = /[\s　・、，,.。:;'"`´\-_/／+＋()（）[\]【】「�
 export function normalizeJapaneseQuery(raw: string): NormalizedQuery {
   const text = (raw || '').normalize('NFKC').trim().toLowerCase().replace(/\s+/g, ' ');
   const compact = text.replace(SEPARATORS, '');
+  const isLatin = /[a-z]/.test(compact);
+  // Ketikan Latin yang mustahil romaji (c tanpa h, l, q, v, x: "cuci", "baca", "lipat")
+  // adalah kata Indonesia/Inggris. Jangan diubah jadi kana: "cuci" bukan くき, "baca" bukan ばか.
+  if (isLatin && /c(?!h)|[lqvx]/.test(compact)) {
+    return { raw, text, compact, hira: '', kata: '', romaji: '', isLatin };
+  }
   const hira = wanakana.toHiragana(compact, { IMEMode: false });
   const kata = wanakana.toKatakana(hira);
   const romaji = wanakana.toRomaji(hira);
-  return { raw, text, compact, hira, kata, romaji, isLatin: /[a-z]/.test(compact) };
+  return { raw, text, compact, hira, kata, romaji, isLatin };
 }
 
 /** Kana apa pun → hiragana, huruf Latin → huruf kecil, untuk disimpan di dokumen indeks. */
@@ -343,7 +349,7 @@ function matchBase(d: BaseDoc, q: NormalizedQuery, readings: string[]): Hit | nu
       return q.isLatin ? hit(SCORE.exactRomaji, 'exact-romaji', 'romaji') : hit(SCORE.exactReading, 'exact-reading', 'reading');
     }
   }
-  if (q.isLatin && d.romaji && d.romaji === q.romaji) return hit(SCORE.exactRomaji, 'exact-romaji', 'romaji');
+  if (q.isLatin && q.romaji && d.romaji && d.romaji === q.romaji) return hit(SCORE.exactRomaji, 'exact-romaji', 'romaji');
 
   // 3. Alias resmi (ID lama / ID kanonik)
   const aliasKey = q.text.replace(/s+/g, '');
@@ -382,7 +388,7 @@ function matchBase(d: BaseDoc, q: NormalizedQuery, readings: string[]): Hit | nu
   }
 
   // 7. Query Latin → kana yang muncul di teks arti / definisi Jepang (paling bawah)
-  if (q.hira !== q.text && d.meaning && (d.meaning.includes(q.hira) || d.meaning.includes(q.kata.toLowerCase()))) {
+  if (q.hira && q.hira !== q.text && d.meaning && (d.meaning.includes(q.hira) || d.meaning.includes(q.kata.toLowerCase()))) {
     return hit(SCORE.meaningKana, 'meaning', 'meaning');
   }
   return null;
@@ -475,7 +481,9 @@ function roleBonus(terms: MeaningTerms, text: string, mq: Pick<MeaningQuery, 'to
   let best = -0.03; // tidak ada di potongan mana pun (mis. hanya di dalam kurung)
   terms.segTokens.forEach((toks, i) => {
     const first = i === 0 ? 0.005 : 0;
-    if (toks.length === 1 && matches(toks[0])) best = Math.max(best, 0.025 + first);
+    // Akar kata yang dicari = tindakannya: kata kerja me-/ber- ("Membakar", "Memasak")
+    // sedikit di atas kata benda turunannya ("Kebakaran", "Masakan").
+    if (toks.length === 1 && matches(toks[0])) best = Math.max(best, 0.025 + first + (toks[0] !== text && /^(me|ber)/.test(toks[0]) ? 0.004 : 0));
     else if (toks.length > 1 && matches(toks[0])) best = Math.max(best, first);
     else if (toks.some(matches)) best = Math.max(best, -0.015);
   });
@@ -598,8 +606,8 @@ export function searchJapanese(rawQuery: string, options: SearchOptions = {}): S
   if (types.includes('bunpou')) {
     for (const d of index.bunpou) {
       let h: Hit | null = null;
-      if (d.title === q.compact || d.text === q.compact || (q.isLatin && (d.title === q.hira || d.text === q.hira))) h = hit(SCORE.exactText, 'exact-text', 'text');
-      else if (d.title.startsWith(q.compact) || d.text.startsWith(q.compact) || (q.isLatin && (d.title.startsWith(q.hira) || d.text.startsWith(q.hira)))) h = hit(SCORE.prefixText, 'prefix-text', 'text');
+      if (d.title === q.compact || d.text === q.compact || (q.isLatin && q.hira && (d.title === q.hira || d.text === q.hira))) h = hit(SCORE.exactText, 'exact-text', 'text');
+      else if (d.title.startsWith(q.compact) || d.text.startsWith(q.compact) || (q.isLatin && q.hira && (d.title.startsWith(q.hira) || d.text.startsWith(q.hira)))) h = hit(SCORE.prefixText, 'prefix-text', 'text');
       else h = matchBase(d, q, d.reading ? [d.reading] : []);
       // Kemampuan lama Bunpou (rumus, variasi spasi/operator, token, fungsi) tetap dipakai.
       if (!h && matchBunpouItem(d.item, rawQuery)) h = hit(SCORE.formula, 'formula', 'formula');
@@ -612,7 +620,7 @@ export function searchJapanese(rawQuery: string, options: SearchOptions = {}): S
   if (scored.length === 0 && q.compact.length >= 4) {
     if (types.includes('kotoba')) {
       for (const d of index.kotoba) {
-        if (d.reading && (withinOneEdit(d.reading, q.hira) || (q.isLatin && withinOneEdit(d.romaji, q.romaji)))) {
+        if (d.reading && q.hira && (withinOneEdit(d.reading, q.hira) || (q.isLatin && withinOneEdit(d.romaji, q.romaji)))) {
           scored.push({ result: toResult('kotoba', d, hit(SCORE.fuzzy, 'fuzzy', 'reading')), rank: d.rank, len: d.text.length, order: order++ });
         }
       }

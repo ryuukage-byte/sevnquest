@@ -160,3 +160,14 @@ test('data: 没収 berarti Penyitaan (bukan Hangus)', () => {
   const item = Object.values(KOTOBA_DATABASE).find(k => k.word === '没収');
   assert.equal(item?.meaningId, 'Penyitaan');
 });
+
+test('arti: kata Indonesia yang mustahil romaji tidak dibaca sebagai kana ("cuci" bukan くき, "baca" bukan ばか)', () => {
+  assert.equal(kotobaWords('cuci', 1)[0], '洗う');
+  assert.equal(kotobaWords('baca', 1)[0], '読む');
+});
+
+test('arti: kata kerja me- di atas kata benda turunan (bakar → Membakar di atas Kebakaran, masak → Memasak)', () => {
+  const bakar = kotobaWords('bakar', 5);
+  assert.ok(bakar.indexOf('燃やす') >= 0 && bakar.indexOf('燃やす') < bakar.indexOf('火事'), bakar.join(','));
+  assert.ok(['炊事', '調理'].includes(kotobaWords('masak', 1)[0]));
+});
