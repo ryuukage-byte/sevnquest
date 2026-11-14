@@ -1,5 +1,5 @@
 // Cloudflare Pages Function: POST /api/payment-notify (logika di api/_paymentNotify.ts).
-// Dipanggil HP admin (MacroDroid) saat notifikasi uang masuk GoPay Merchant muncul.
+// Dipanggil HP admin (aplikasi SevnQuest Notifier, atau MacroDroid) saat notifikasi uang masuk GoPay muncul.
 import { handlePaymentNotify, type NotifyBody } from '../../api/_paymentNotify';
 import type { GateEnv } from '../../api/_entitlement';
 
@@ -17,7 +17,10 @@ export const onRequest = async ({ request, env }: { request: Request; env: GateE
     const textBody = await request.text().catch(() => '');
     if (ct.includes('application/x-www-form-urlencoded')) {
       const p = new URLSearchParams(textBody);
-      body = { text: p.get('text') ?? '', title: p.get('title') ?? '', amount: p.get('amount') ?? undefined, key: p.get('key') ?? undefined };
+      body = {
+        text: p.get('text') ?? '', title: p.get('title') ?? '', amount: p.get('amount') ?? undefined, key: p.get('key') ?? undefined,
+        package: p.get('package') ?? undefined, posted_at: p.get('posted_at') ?? undefined,
+      };
     } else {
       body = { text: textBody };
     }
