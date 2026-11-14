@@ -108,3 +108,66 @@ test('performa: pencarian Kotoba pada indeks hangat < 50ms', () => {
   for (let i = 0; i < 10; i++) searchJapanese('nomu', { entityTypes: ['kotoba'] });
   assert.ok((performance.now() - t) / 10 < 50);
 });
+
+// ------------------------------------------------------------------------------
+// Arti bahasa Indonesia: kata utuh, akar kata, sinonim
+// ------------------------------------------------------------------------------
+const kotoba = (q: string, n = 5) => searchJapanese(q, { entityTypes: ['kotoba'], limit: n });
+const kotobaWords = (q: string, n = 5) => searchJapanese(q, { entityTypes: ['kotoba'], limit: n }).map(r => r.primaryText);
+
+test('arti: "gosong" menemukan 焦げる (Hangus), bukan 退去 lewat "pen-gosong-an"', () => {
+  const r = searchJapanese('gosong', { entityTypes: ['kotoba'], limit: Infinity });
+  assert.ok(r.slice(0, 3).some(x => x.primaryText === '焦げる'), 'top-3: ' + r.slice(0, 3).map(x => x.primaryText));
+  assert.ok(!r.some(x => x.primaryText === '退去'), 'substring di tengah kata tidak boleh cocok');
+});
+
+test('arti: akar kata Indonesia ("hangus" → Menghanguskan, "ngantuk" → Mengantuk)', () => {
+  assert.ok(kotobaWords('hangus').includes('焦がす'));
+  assert.ok(kotobaWords('ngantuk').includes('眠い'));
+  assert.ok(kotobaWords('membakar', 10).includes('燃やす'));
+});
+
+test('arti: kata yang artinya persis query diurutkan di atas ("makan" → 食べる)', () => {
+  assert.equal(kotobaWords('makan', 1)[0], '食べる');
+});
+
+test('arti: sinonim sehari-hari ("capek" → 疲れる) tanpa salah tangkap "mencapai"', () => {
+  const r = kotobaWords('capek', 10);
+  assert.ok(r.includes('疲れる'), r.join(','));
+  assert.ok(!r.includes('達する'));
+});
+
+test('tampilan arti: sinonim sehari-hari ditambahkan ("Hangus" → "Hangus/gosong")', async () => {
+  const { meaningWithSynonyms } = await import('./indonesianText');
+  assert.equal(meaningWithSynonyms('Hangus'), 'Hangus/gosong');
+  assert.equal(meaningWithSynonyms('Uang; urusan keuangan'), 'Uang/duit; urusan keuangan');
+  assert.equal(meaningWithSynonyms('Mengantuk'), 'Mengantuk', 'bentuk lain kata yang sama tidak ditambahkan');
+  assert.equal(meaningWithSynonyms('Bisa'), 'Bisa', 'kata bermakna ganda dilewati');
+  assert.equal(meaningWithSynonyms('quick; fast'), 'quick; fast', 'arti bahasa Inggris tidak diubah');
+});
+
+test('arti: kata inti di atas keterangan ("goreng" → 揚げる "Menggoreng" di atas "Kentang goreng")', () => {
+  const r = kotoba('goreng', 10).map(x => x.primaryText);
+  assert.equal(r[0], '揚げる', r.join(','));
+  assert.ok(r.indexOf('揚げる') < r.indexOf('ポテト'));
+});
+
+test('arti: "Menjadi lelah" berintikan "lelah" (capek → 疲れる di 5 teratas)', () => {
+  assert.ok(kotobaWords('capek', 5).includes('疲れる'));
+});
+
+test('data: 没収 berarti Penyitaan (bukan Hangus)', () => {
+  const item = Object.values(KOTOBA_DATABASE).find(k => k.word === '没収');
+  assert.equal(item?.meaningId, 'Penyitaan');
+});
+
+test('arti: kata Indonesia yang mustahil romaji tidak dibaca sebagai kana ("cuci" bukan くき, "baca" bukan ばか)', () => {
+  assert.equal(kotobaWords('cuci', 1)[0], '洗う');
+  assert.equal(kotobaWords('baca', 1)[0], '読む');
+});
+
+test('arti: kata kerja me- di atas kata benda turunan (bakar → Membakar di atas Kebakaran, masak → Memasak)', () => {
+  const bakar = kotobaWords('bakar', 5);
+  assert.ok(bakar.indexOf('燃やす') >= 0 && bakar.indexOf('燃やす') < bakar.indexOf('火事'), bakar.join(','));
+  assert.ok(['炊事', '調理'].includes(kotobaWords('masak', 1)[0]));
+});

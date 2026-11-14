@@ -1,5 +1,5 @@
 import { getWordTypeLabel } from '../../utils/wordType';
-import React, { useState, useMemo, useDeferredValue, Suspense } from 'react';
+import React, { useState, useMemo, useDeferredValue, useEffect, Suspense } from 'react';
 import type { DeckItemCategory } from '../../types/rpg';
 import { AnimatePresence } from 'motion/react';
 import { Volume2, Filter, ChevronDown, Bookmark, Trash2 } from 'lucide-react';
@@ -13,7 +13,8 @@ import { lazyWithRetry as lazy } from '../../utils/lazyWithRetry';
 import { hasKotobaInsight } from '../../engine/kotobaInsight/readingSplit';
 import { UserDeck } from '../../types/rpg';
 import { isItemBookmarked } from '../../utils/decks';
-import { searchJapanese, createSubsetIndex } from '../../engine/search/universalSearch';
+import { searchJapanese, createSubsetIndex, warmMeaningIndex } from '../../engine/search/universalSearch';
+import { meaningWithSynonyms } from '../../engine/search/indonesianText';
 import { JapaneseSearchInput } from '../common/JapaneseSearchInput';
 import { parseReadingVariations } from '../../utils/readingHighlightUtils';
 import { DeckBookmarkPicker } from '../deck/DeckBookmarkPicker';
@@ -167,6 +168,18 @@ export const KotobaLibraryView: React.FC<KotobaLibraryViewProps> = ({
   }, [allKotoba]);
 
   const kotobaSearchIndex = useMemo(() => createSubsetIndex({ kotoba: allKotoba }), [allKotoba]);
+
+  // Indeks arti (kata utuh + akar kata) disiapkan saat senggang agar ketikan pertama tidak tersendat.
+  useEffect(() => {
+    const w = window as Window & { requestIdleCallback?: (cb: () => void) => number; cancelIdleCallback?: (id: number) => void };
+    const run = () => warmMeaningIndex(kotobaSearchIndex);
+    if (w.requestIdleCallback) {
+      const id = w.requestIdleCallback(run);
+      return () => w.cancelIdleCallback?.(id);
+    }
+    const t = window.setTimeout(run, 300);
+    return () => window.clearTimeout(t);
+  }, [kotobaSearchIndex]);
   const entryById = useMemo(() => new Map(searchIndex.map(e => [e.item.id, e])), [searchIndex]);
 
   const filteredKotoba = useMemo(() => {
@@ -476,7 +489,7 @@ export const KotobaLibraryView: React.FC<KotobaLibraryViewProps> = ({
                       <RubyText japanese={item.word} reading={listReading} showFurigana={true} />
                     </h3>
                     <p className="text-xs sm:text-sm font-semibold text-text-secondary transition-colors leading-snug">
-                      {item.meaningId}
+                      {meaningWithSynonyms(item.meaningId)}
                     </p>
                     {hasKotobaInsight(item) && (
                       <button
