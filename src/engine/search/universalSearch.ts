@@ -81,6 +81,8 @@ export interface NormalizedQuery {
   romaji: string;
   /** Query mengandung huruf Latin (dibaca sebagai romaji / arti). */
   isLatin: boolean;
+  /** Kunci pencocokan alias (dihitung sekali per query, bukan per dokumen). */
+  aliasKey: string;
 }
 
 const SEPARATORS = /[\s　・、，,.。:;'"`´\-_/／+＋()（）[\]【】「」『』~～〜]+/g;
@@ -92,13 +94,16 @@ export function normalizeJapaneseQuery(raw: string): NormalizedQuery {
   // Ketikan Latin yang mustahil romaji (c tanpa h, l, q, v, x: "cuci", "baca", "lipat")
   // adalah kata Indonesia/Inggris. Jangan diubah jadi kana: "cuci" bukan くき, "baca" bukan ばか.
   if (isLatin && /c(?!h)|[lqvx]/.test(compact)) {
-    return { raw, text, compact, hira: '', kata: '', romaji: '', isLatin };
+    return { raw, text, compact, hira: '', kata: '', romaji: '', isLatin, aliasKey: aliasKeyOf(text) };
   }
   const hira = wanakana.toHiragana(compact, { IMEMode: false });
   const kata = wanakana.toKatakana(hira);
   const romaji = wanakana.toRomaji(hira);
-  return { raw, text, compact, hira, kata, romaji, isLatin };
+  return { raw, text, compact, hira, kata, romaji, isLatin, aliasKey: aliasKeyOf(text) };
 }
+
+// Perilaku lama dipertahankan apa adanya (menghapus huruf "s" berurutan).
+const aliasKeyOf = (text: string) => text.replace(/s+/g, '');
 
 /** Kana apa pun → hiragana, huruf Latin → huruf kecil, untuk disimpan di dokumen indeks. */
 function toSearchKana(s: string): string {
@@ -133,9 +138,9 @@ interface MeaningTerms {
   segments: string[]; // potongan arti ("Makan; santapan" → ["makan", "santapan"])
   segTokens: string[][]; // token per potongan arti (untuk peran kata: inti vs keterangan)
 }
-interface KotobaDoc extends BaseDoc { item: KotobaItem }
+interface KotobaDoc extends BaseDoc { item: KotobaItem; readings: string[] }
 interface KanjiDoc extends BaseDoc { item: KanjiItem; readings: string[] }
-interface BunpouDoc extends BaseDoc { item: BunpouItem; title: string }
+interface BunpouDoc extends BaseDoc { item: BunpouItem; title: string; readings: string[] }
 
 export interface UniversalSearchIndex {
   kotoba: KotobaDoc[];
@@ -168,6 +173,7 @@ function buildKotobaDoc(item: KotobaItem): KotobaDoc {
     id: item.id,
     text,
     reading,
+    readings: reading ? [reading] : [],
     romaji: wanakana.toRomaji(reading),
     meaning: `${item.meaningId || ''} ${item.meaningEn || ''} ${item.meaningJa || ''} ${item.unitName || ''}`.toLowerCase(),
     aliases: [item.id.toLowerCase(), ...getAliasesFor(item.id)],
@@ -214,12 +220,14 @@ const stripTilde = (s: string) => s.normalize('NFKC').toLowerCase().replace(/[~�
 
 function buildBunpouDoc(item: BunpouItem): BunpouDoc {
   const title = getCanonicalGrammarTitle(item);
+  const reading = toSearchKana(item.reading || '');
   return {
     item,
     id: item.id,
     title: stripTilde(title),
     text: stripTilde(item.title),
-    reading: toSearchKana(item.reading || ''),
+    reading,
+    readings: reading ? [reading] : [],
     romaji: (item.reading || '').toLowerCase().replace(SEPARATORS, ''),
     meaning: `${item.meaningId || ''} ${item.meaningEn || ''}`.toLowerCase(),
     aliases: [item.id.toLowerCase()],
@@ -286,7 +294,7 @@ function getAllKotoba(): KotobaItem[] {
  * pertama di Library tidak tersendat. Aman dipanggil berkali-kali.
  */
 export function warmMeaningIndex(index: UniversalSearchIndex = getUniversalIndex(), types: SearchEntityType[] = ['kotoba']): void {
-  for (const t of types) for (const d of index[t] as BaseDoc[]) termsOf(d);
+  for (const t of types) meaningPostings(index[t] as BaseDoc[]);
 }
 
 /** Indeks untuk subset materi (mis. Library dengan prop `items`). Sumber data tetap sama. */
@@ -339,7 +347,7 @@ interface Hit { score: number; matchType: SearchMatchType; matchedField: SearchM
 const hit = (score: number, matchType: SearchMatchType, matchedField: SearchMatchedField): Hit => ({ score, matchType, matchedField });
 
 /** Pencocokan identitas (teks/kana/romaji/alias) umum untuk semua jenis entity. */
-function matchBase(d: BaseDoc, q: NormalizedQuery, readings: string[]): Hit | null {
+function matchBase(d: BaseDoc, q: NormalizedQuery, readings: string[], meaningCandidate = true): Hit | null {
   // 1. Teks kanonik
   if (d.text === q.compact || (q.compact && d.text === q.text)) return hit(SCORE.exactText, 'exact-text', 'text');
 
@@ -352,7 +360,7 @@ function matchBase(d: BaseDoc, q: NormalizedQuery, readings: string[]): Hit | nu
   if (q.isLatin && q.romaji && d.romaji && d.romaji === q.romaji) return hit(SCORE.exactRomaji, 'exact-romaji', 'romaji');
 
   // 3. Alias resmi (ID lama / ID kanonik)
-  const aliasKey = q.text.replace(/s+/g, '');
+  const aliasKey = q.aliasKey;
   if (aliasKey && d.aliases.includes(aliasKey)) return hit(SCORE.exactAlias, 'exact-alias', 'alias');
 
   // 4. Prefix
@@ -369,7 +377,9 @@ function matchBase(d: BaseDoc, q: NormalizedQuery, readings: string[]): Hit | nu
   //    bukan substring: "gosong" tidak boleh cocok dengan "pen-gosong-an" (akarnya "kosong").
   if (q.text && d.meaning) {
     if (q.isLatin) {
-      const mh = matchMeaning(d, q);
+      // Pra-saring lewat indeks terbalik: dokumen yang tidak punya kata/akar/sinonim query
+      // dan tidak memuat teks query sama sekali PASTI tidak cocok di matchMeaning.
+      const mh = meaningCandidate || d.meaning.includes(q.text) ? matchMeaning(d, q) : null;
       if (mh) return mh;
     } else {
       const m = d.meaning;
@@ -545,6 +555,58 @@ function matchMeaning(d: BaseDoc, q: NormalizedQuery): Hit | null {
   return null;
 }
 
+// ------------------------------------------------------------------------------
+// INDEKS TERBALIK ARTI: kata/akar kata → nomor dokumen (dibangun sekali per array dokumen)
+// matchMeaning hanya bisa cocok bila (a) teks query muncul di d.meaning, atau (b) kata pertama
+// query (atau akar/sinonimnya) ada di himpunan arti ID/EN/pendukung dokumen. Kasus (b) dijawab
+// indeks ini, sehingga ~18 ribu dokumen tidak perlu dinilai satu per satu tiap ketikan.
+// ------------------------------------------------------------------------------
+
+const postingsCache = new WeakMap<readonly BaseDoc[], Map<string, number[]>>();
+
+function meaningPostings(docs: readonly BaseDoc[]): Map<string, number[]> {
+  let map = postingsCache.get(docs);
+  if (!map) {
+    map = new Map();
+    const add = (term: string, i: number) => {
+      const list = map!.get(term);
+      if (!list) map!.set(term, [i]);
+      else if (list[list.length - 1] !== i) list.push(i);
+    };
+    for (let i = 0; i < docs.length; i++) {
+      const t = termsOf(docs[i]);
+      for (const w of t.id) add(w, i);
+      for (const w of t.en) add(w, i);
+      for (const w of t.extra) add(w, i);
+    }
+    postingsCache.set(docs, map);
+  }
+  return map;
+}
+
+let lastCandDocs: readonly BaseDoc[] | null = null;
+let lastCandText = '';
+let lastCand: Uint8Array | null = null;
+
+/** Penanda per dokumen: 1 = mungkin cocok lewat kata/akar/sinonim (superset, tidak pernah kurang). */
+function meaningCandidates(docs: readonly BaseDoc[], q: NormalizedQuery): Uint8Array {
+  if (lastCand && lastCandDocs === docs && lastCandText === q.text) return lastCand;
+  const flags = new Uint8Array(docs.length);
+  const mq = prepareMeaningQuery(q.text);
+  if (mq.tokens.length > 0) {
+    const postings = meaningPostings(docs);
+    const words = new Set<string>([...mq.idStems[0], ...mq.enStems[0], ...mq.synonyms[0].map(s => s.word)]);
+    for (const w of words) {
+      const list = postings.get(w);
+      if (list) for (const i of list) flags[i] = 1;
+    }
+  }
+  lastCandDocs = docs;
+  lastCandText = q.text;
+  lastCand = flags;
+  return flags;
+}
+
 /** Jarak edit ≤ 1 (substitusi/sisip/hapus). Cukup untuk salah ketik kecil. */
 function withinOneEdit(a: string, b: string): boolean {
   if (Math.abs(a.length - b.length) > 1) return false;
@@ -590,25 +652,34 @@ export function searchJapanese(rawQuery: string, options: SearchOptions = {}): S
   let order = 0;
 
   if (types.includes('kotoba')) {
-    for (const d of index.kotoba) {
-      const h = matchBase(d, q, d.reading ? [d.reading] : []);
+    const docs = index.kotoba;
+    const cand = q.isLatin ? meaningCandidates(docs, q) : null;
+    for (let i = 0; i < docs.length; i++) {
+      const d = docs[i];
+      const h = matchBase(d, q, d.readings, cand === null || cand[i] === 1);
       if (h) scored.push({ result: toResult('kotoba', d, h), rank: d.rank, len: d.text.length, order: order++ });
       else order++;
     }
   }
   if (types.includes('kanji')) {
-    for (const d of index.kanji) {
-      const h = matchBase(d, q, d.readings);
+    const docs = index.kanji;
+    const cand = q.isLatin ? meaningCandidates(docs, q) : null;
+    for (let i = 0; i < docs.length; i++) {
+      const d = docs[i];
+      const h = matchBase(d, q, d.readings, cand === null || cand[i] === 1);
       if (h) scored.push({ result: toResult('kanji', d, h), rank: d.rank, len: d.text.length, order: order++ });
       else order++;
     }
   }
   if (types.includes('bunpou')) {
-    for (const d of index.bunpou) {
+    const docs = index.bunpou;
+    const cand = q.isLatin ? meaningCandidates(docs, q) : null;
+    for (let i = 0; i < docs.length; i++) {
+      const d = docs[i];
       let h: Hit | null = null;
       if (d.title === q.compact || d.text === q.compact || (q.isLatin && q.hira && (d.title === q.hira || d.text === q.hira))) h = hit(SCORE.exactText, 'exact-text', 'text');
       else if (d.title.startsWith(q.compact) || d.text.startsWith(q.compact) || (q.isLatin && q.hira && (d.title.startsWith(q.hira) || d.text.startsWith(q.hira)))) h = hit(SCORE.prefixText, 'prefix-text', 'text');
-      else h = matchBase(d, q, d.reading ? [d.reading] : []);
+      else h = matchBase(d, q, d.readings, cand === null || cand[i] === 1);
       // Kemampuan lama Bunpou (rumus, variasi spasi/operator, token, fungsi) tetap dipakai.
       if (!h && matchBunpouItem(d.item, rawQuery)) h = hit(SCORE.formula, 'formula', 'formula');
       if (h) scored.push({ result: toResult('bunpou', d, h), rank: d.rank, len: d.title.length, order: order++ });
