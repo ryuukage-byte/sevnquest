@@ -30,6 +30,8 @@ interface WorldViewProps {
   onRewardPlayer?: (exp: number, gold: number) => void;
   /** Hasil lantai Tower (masteryGain per itemId) -> mastery/SRS pemain. */
   onTowerMastery?: (masteryGain: Record<string, number>) => void;
+  /** Lantai Menara selesai -> misi mingguan. */
+  onTowerFloorCleared?: () => void;
   onCompleteStudyItem?: (
     moduleId: 'bunpou' | 'kotoba' | 'kanji' | 'dokkai' | 'choukai' | 'boss' | 'questions' | 'tryOuts',
     expGained: number,
@@ -49,6 +51,7 @@ export const WorldView: React.FC<WorldViewProps> = ({
   onUpdateDecks,
   onRewardPlayer,
   onTowerMastery,
+  onTowerFloorCleared,
   onCompleteStudyItem,
   playerLevel = 1,
   playerTierIndex = 0,
@@ -260,7 +263,7 @@ export const WorldView: React.FC<WorldViewProps> = ({
 
       {TOWER_ENABLED && worldMode === 'tower' && (
         /* MODE 3: MENARA NIHONGO (Menara 1 Tutorial + Menara 2 Rangkai, lantai 001–100) */
-        <Tower1View soundEnabled={soundEnabled} onRewardPlayer={onRewardPlayer} />
+        <Tower1View soundEnabled={soundEnabled} onRewardPlayer={onRewardPlayer} onFloorCleared={onTowerFloorCleared} />
       )}
 
       {/* MODAL 3: DUNGEON SETUP MODAL */}

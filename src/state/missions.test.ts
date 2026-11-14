@@ -1,3 +1,4 @@
+import { getMissionAction } from './missionActions';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { INITIAL_DAILY_MISSIONS, INITIAL_WEEKLY_MISSIONS } from '../data/missions';
@@ -50,14 +51,17 @@ test('M4. flashcard kanji tidak memajukan misi kanji; menulis kanji memajukan', 
 test('M5. daftar misi tanpa pemicu hidup eksplisit & benar-benar tak bisa maju lewat kategori yang ada', () => {
   const categories: MissionCategory[] = ['bunpou', 'kotoba', 'kanji', 'dokkai', 'choukai', 'streak', 'stage_clear', 'boss', 'quiz'];
   // Pemicu hidup = kategori yang dihasilkan getStudyMissionAdvances untuk modul yang masih terpasang di UI.
-  const liveModules = ['bunpou', 'kotoba', 'kanji', 'questions', 'tryOuts'] as const;
+  const liveModules = ['bunpou', 'kotoba', 'kanji', 'dokkai', 'questions', 'tryOuts'] as const;
   const live = new Set<string>();
   for (const moduleId of liveModules) {
     for (const interaction of ['writing', 'flashcard', 'quiz'] as const) {
       for (const a of getStudyMissionAdvances({ moduleId, interaction, score: 1, total: 1 })) live.add(a.category);
     }
   }
+  // Sesi Dungeon tuntas (DungeonSessionRunner mengirim ID agregat dungeon_<tipe>_<waktu>).
+  for (const a of getStudyMissionAdvances({ moduleId: 'kotoba', interaction: 'quiz', score: 5, total: 5, itemId: 'dungeon_quiz_1' })) live.add(a.category);
   live.add('streak'); // via syncStreakMission
+  live.add('stage_clear'); // via Tower1View onFloorCleared -> advanceMissions('stage_clear')
   const daily = INITIAL_DAILY_MISSIONS.map(m => m.id);
   const weekly = INITIAL_WEEKLY_MISSIONS.map(m => m.id);
   const reachable = (id: string): boolean => categories.some(cat => {
@@ -140,4 +144,26 @@ test('S7. misi streak mingguan = hari berurutan dalam minggu ini (bukan seluruh 
   // progres tidak turun
   const d = syncStreakMission(a, { streakDays: 1, lastActiveDate: '2026-10-14' }, '2026-10-14', wed);
   assert.equal(prog(d, 'wm_02'), 3);
+});
+
+// ------------------------------------------------------------ tombol "Kerjakan"
+
+test('K1. setiap misi mingguan punya tombol "Kerjakan" yang menuju fitur pemicunya', () => {
+  for (const m of INITIAL_WEEKLY_MISSIONS) {
+    assert.ok(getMissionAction(m.id), `${m.id} tanpa tujuan "Kerjakan"`);
+  }
+  assert.equal(getMissionAction('wm_01')?.target, 'tower');
+  assert.equal(getMissionAction('wm_03')?.target, 'dokkai');
+  assert.equal(getMissionAction('wm_04')?.target, 'dungeon');
+});
+
+test('K2. lantai Menara memajukan wm_01; sesi Dungeon tuntas memajukan wm_04', () => {
+  const afterTower = advanceWeeklyMissions(INITIAL_WEEKLY_MISSIONS, 'stage_clear', 1);
+  assert.equal(prog(afterTower, 'wm_01'), 1);
+  assert.equal(prog(afterTower, 'wm_04'), 0, 'lantai Menara bukan Dungeon');
+  const dungeon = getStudyMissionAdvances({ moduleId: 'kotoba', interaction: 'quiz', score: 3, total: 5, itemId: 'dungeon_quiz_123' });
+  let w = INITIAL_WEEKLY_MISSIONS;
+  for (const a of dungeon) w = advanceWeeklyMissions(w, a.category, a.amount, a.extra);
+  assert.equal(prog(w, 'wm_04'), 1);
+  assert.deepEqual(getStudyMissionAdvances({ moduleId: 'kotoba', interaction: 'quiz', score: 1, total: 1, itemId: 'kt_001' }).map(a => a.category), ['kotoba', 'quiz']);
 });

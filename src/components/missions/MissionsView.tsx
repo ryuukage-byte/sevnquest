@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import { motion } from 'motion/react';
-import { Calendar, CheckCircle2, Trophy, Clock } from 'lucide-react';
+import { Calendar, CheckCircle2, Trophy, Clock, ArrowRight } from 'lucide-react';
 import confetti from 'canvas-confetti';
 import { ScrollIcon } from '../ui/EngravingIcons';
 import { Mission } from '../../types/rpg';
 import { playSound } from '../../utils/audio';
 import { GuidedMissionsPanel, type GuidedMissionsPanelProps } from './GuidedMissionsPanel';
+import { INITIAL_WEEKLY_MISSIONS } from '../../data/missions';
+import { getMissionAction, type MissionGoTarget } from '../../state/missionActions';
 
 interface MissionsViewProps {
   weeklyMissions: Mission[];
@@ -13,6 +15,8 @@ interface MissionsViewProps {
   soundEnabled?: boolean;
   /** Misi harian = misi kurikulum personal (Guided Learning). */
   guided: GuidedMissionsPanelProps;
+  /** Tombol "Kerjakan": buka fitur yang memajukan misi (Menara, Dungeon, Dokkai). */
+  onGoToMission?: (target: Exclude<MissionGoTarget, 'daily'>) => void;
 }
 
 export const MissionsView: React.FC<MissionsViewProps> = ({
@@ -20,10 +24,25 @@ export const MissionsView: React.FC<MissionsViewProps> = ({
   onClaimReward,
   soundEnabled = true,
   guided,
+  onGoToMission,
 }) => {
   const [activeTab, setActiveTab] = useState<'daily' | 'weekly'>('daily');
 
-  const currentList = weeklyMissions;
+  // Judul/deskripsi diambil dari definisi terbaru (data tersimpan bisa memuat teks lama).
+  const currentList = weeklyMissions.map(m => {
+    const def = INITIAL_WEEKLY_MISSIONS.find(d => d.id === m.id);
+    return def ? { ...m, title: def.title, description: def.description } : m;
+  });
+
+  const handleGo = (target: MissionGoTarget) => {
+    playSound('click', soundEnabled);
+    if (target === 'daily') {
+      setActiveTab('daily');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      return;
+    }
+    onGoToMission?.(target);
+  };
 
   const handleClaim = (mission: Mission) => {
     playSound('coin', soundEnabled);
@@ -159,14 +178,26 @@ export const MissionsView: React.FC<MissionsViewProps> = ({
                     <Trophy className="w-4 h-4" />
                     KLAIM HADIAH!
                   </button>
-                ) : (
-                  <button
-                    disabled
-                    className="skeuo-btn-disabled w-full sm:w-auto"
-                  >
-                    Belum Selesai
-                  </button>
-                )}
+                ) : (() => {
+                  const action = getMissionAction(mission.id);
+                  if (!action || (action.target !== 'daily' && !onGoToMission)) {
+                    return (
+                      <button disabled className="skeuo-btn-disabled w-full sm:w-auto">
+                        Belum Selesai
+                      </button>
+                    );
+                  }
+                  return (
+                    <button
+                      onClick={() => handleGo(action.target)}
+                      className="btn-physical-primary w-full sm:w-auto flex items-center justify-center gap-1.5 py-2.5 px-5 rounded-xl text-xs font-bold"
+                      aria-label={`Kerjakan misi: ${mission.title}`}
+                    >
+                      Kerjakan: {action.label}
+                      <ArrowRight className="w-4 h-4" />
+                    </button>
+                  );
+                })()}
               </div>
             </motion.div>
           );

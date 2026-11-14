@@ -71,8 +71,8 @@ export const INITIAL_DAILY_MISSIONS: Mission[] = [
 export const INITIAL_WEEKLY_MISSIONS: Mission[] = [
   {
     id: 'wm_01',
-    title: 'Penjelajah Dunia (Weekly)',
-    description: 'Taklukkan minimal 5 Stage di peta perjalanan.',
+    title: 'Pendaki Menara (Weekly)',
+    description: 'Selesaikan 5 lantai Menara Nihongo (boleh mengulang lantai yang sama).',
     progress: 0,
     target: 5,
     rewardExp: 400,
@@ -98,7 +98,7 @@ export const INITIAL_WEEKLY_MISSIONS: Mission[] = [
   {
     id: 'wm_03',
     title: 'Master Pembaca Dokkai',
-    description: 'Selesaikan 3 teks membaca Dokkai dengan skor sempurna.',
+    description: 'Selesaikan 3 bacaan Dokkai di Library dengan skor sempurna.',
     progress: 0,
     target: 3,
     rewardExp: 450,
@@ -110,8 +110,8 @@ export const INITIAL_WEEKLY_MISSIONS: Mission[] = [
   },
   {
     id: 'wm_04',
-    title: 'Penebas Boss Wilayah',
-    description: 'Kalahkan minimal 1 Boss Stage pada Map.',
+    title: 'Penakluk Dungeon',
+    description: 'Selesaikan 1 sesi Dungeon sampai lantai terakhir.',
     progress: 0,
     target: 1,
     rewardExp: 600,

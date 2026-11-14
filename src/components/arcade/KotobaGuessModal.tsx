@@ -25,6 +25,7 @@ import { getKotobaPoolForBook } from '../../utils/arcadeSourceUtils';
 import { ArcadeSourceSelector } from './ArcadeSourceSelector';
 import { calcEngineExp, getKotobaBaseExp } from '../../utils/rewards';
 import { useArcadeGuard } from './useArcadeGuard';
+import { pickUniqueDistractors } from '../../utils/quizOptions';
 
 interface KotobaGuessModalProps {
   isOpen: boolean;
@@ -132,22 +133,21 @@ export const KotobaGuessModal: React.FC<KotobaGuessModalProps> = ({
   }, [sourceType, selectedBookId, selectedLevel]);
 
   // Generate word question
-  const generateWord = useCallback((): GuessWord | null => {
+  const generateWordOnce = useCallback((): GuessWord | null => {
     if (!filteredPool || filteredPool.length < 4) return null;
 
     const randomIndex = Math.floor(Math.random() * filteredPool.length);
     const target = filteredPool[randomIndex];
     const correctMeaning = target.meaningId || target.meaningEn || 'Arti';
 
-    const distractors: string[] = [];
-    const used = new Set<number>([randomIndex]);
-    while (distractors.length < 3 && distractors.length < filteredPool.length - 1) {
-      const idx = Math.floor(Math.random() * filteredPool.length);
-      if (!used.has(idx)) {
-        used.add(idx);
-        distractors.push(filteredPool[idx].meaningId || filteredPool[idx].meaningEn || 'Lainnya');
-      }
-    }
+    const distractors = pickUniqueDistractors(
+      correctMeaning,
+      [...filteredPool.slice(0, randomIndex), ...filteredPool.slice(randomIndex + 1)]
+        .sort(() => Math.random() - 0.5)
+        .map(k => k.meaningId || k.meaningEn),
+      3
+    );
+    if (distractors.length < 3) return null;
 
     const options = [correctMeaning, ...distractors].sort(() => Math.random() - 0.5);
 
@@ -160,6 +160,15 @@ export const KotobaGuessModal: React.FC<KotobaGuessModalProps> = ({
       correctIndex: options.indexOf(correctMeaning)
     };
   }, [filteredPool]);
+
+  // Coba beberapa kali: satu target bisa gagal kalau kolam tidak punya 3 pengecoh yang unik.
+  const generateWord = useCallback((): GuessWord | null => {
+    for (let attempt = 0; attempt < 8; attempt++) {
+      const q = generateWordOnce();
+      if (q) return q;
+    }
+    return null;
+  }, [generateWordOnce]);
 
   // Reset state whenever modal is opened
   useEffect(() => {

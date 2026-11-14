@@ -104,15 +104,17 @@ export function useAppNavigation() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }, [activeTab, isRecallActive]);
 
-  // Pintasan langsung ke Menara (tidak lewat reset hub World di handleTabChange)
-  const handleOpenTower = useCallback(() => {
+  // Pintasan langsung ke Menara / Dungeon (tidak lewat reset hub World di handleTabChange)
+  const openWorldView = useCallback((view: 'tower' | 'dungeon') => {
     if (activeTab !== 'maps') setTabHistory(prev => [...prev.filter(t => t !== 'maps'), activeTab]);
     setIsRecallActive(false);
     setIsStatusModalOpen(false);
-    setWorldNavView('tower');
+    setWorldNavView(view);
     setActiveTab('maps');
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }, [activeTab]);
+  const handleOpenTower = useCallback(() => openWorldView('tower'), [openWorldView]);
+  const handleOpenDungeon = useCallback(() => openWorldView('dungeon'), [openWorldView]);
 
   const handleOpenLibraryTab = useCallback((tab: 'kotoba' | 'kanji' | 'bunpou' | 'dokkai' | 'choukai' | 'soal') => {
     setLibraryTabRequest(prev => ({ tab, n: (prev?.n || 0) + 1 }));
@@ -159,7 +161,7 @@ export function useAppNavigation() {
     isAuthModalOpen, setIsAuthModalOpen,
     worldNavView, setWorldNavView, worldResetCount,
     deckResetCount, deckInitialSubTab, setDeckInitialSubTab,
-    handleTabChange, handleOpenTower, handleNavigateToOfficialBooks,
+    handleTabChange, handleOpenTower, handleOpenDungeon, handleNavigateToOfficialBooks,
     libraryTabRequest, handleOpenLibraryTab,
     deckAiRequest, handleOpenDeckAi,
     isOnboardingActive, handleCompleteOnboarding, handleReplayOnboarding,
