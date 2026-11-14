@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">SevnQuest Notifier</string>
+    <string name="listener_label">SevnQuest Notifier: penerus notifikasi pembayaran</string>
+    <string name="app_subtitle">Meneruskan notifikasi uang masuk GoPay ke SevnQuest secara otomatis.</string>
+
+    <string name="summary_ready">Siap. Notifikasi pembayaran dari %1$d aplikasi akan diteruskan.</string>
+    <string name="summary_disabled">Penerusan dimatikan.</string>
+    <string name="summary_need_access">Belum siap: akses notifikasi belum diizinkan.</string>
+    <string name="summary_need_config">Belum siap: belum terhubung ke server SevnQuest.</string>
+    <string name="summary_auth_blocked">Terhenti: kunci ditolak server.</string>
+    <string name="summary_no_packages">Belum siap: daftar aplikasi yang dipantau kosong.</string>
+
+    <string name="banner_auth">Kunci ditolak server (%1$s). Pengiriman dihentikan dan notifikasi ditahan di antrean. Buat kunci baru di halaman admin Verifikasi Pembayaran, lalu hubungkan ulang atau tempel kuncinya di bagian Koneksi server.</string>
+
+    <string name="card_forward_title">Penerusan</string>
+    <string name="switch_enabled">Teruskan notifikasi pembayaran</string>
+
+    <string name="card_access_title">Akses notifikasi</string>
+    <string name="access_granted_connected">Diizinkan, layanan aktif.</string>
+    <string name="access_granted_waiting">Diizinkan, menunggu layanan tersambung.</string>
+    <string name="access_denied">Belum diizinkan. Tanpa izin ini aplikasi tidak bisa membaca notifikasi GoPay.</string>
+    <string name="access_hint">Jika pilihan SevnQuest Notifier berwarna abu-abu dan tidak bisa dinyalakan (Android 13 ke atas): buka Info aplikasi, ketuk menu titik tiga di kanan atas, pilih Izinkan setelan terbatas, lalu coba lagi.</string>
+    <string name="btn_open_access">Buka pengaturan akses notifikasi</string>
+    <string name="btn_app_info">Buka Info aplikasi</string>
+
+    <string name="card_battery_title">Optimasi baterai</string>
+    <string name="battery_exempt">Dikecualikan. Sistem tidak akan menidurkan aplikasi ini.</string>
+    <string name="battery_optimized">Masih dioptimalkan. Sistem bisa mematikan layanan saat HP lama tidak dipakai.</string>
+    <string name="btn_battery">Minta pengecualian</string>
+
+    <string name="card_conn_title">Koneksi server</string>
+    <string name="conn_endpoint">URL: %1$s</string>
+    <string name="conn_key">Kunci: %1$s</string>
+    <string name="conn_none">Belum terhubung. Buka halaman admin Verifikasi Pembayaran di HP ini, buat kunci, lalu ketuk tombol hubungkan. Bisa juga ditempel manual lewat tombol di bawah.</string>
+    <string name="btn_edit_conn">Ubah URL dan kunci</string>
+    <string name="btn_test">Kirim uji</string>
+    <string name="test_sending">Mengirim uji…</string>
+    <string name="test_need_config">Hubungkan ke server dulu sebelum mengirim uji.</string>
+    <string name="test_ok">Uji berhasil: server menerima kiriman dan kunci valid (%1$s).</string>
+    <string name="test_auth">Uji gagal: kunci ditolak server (%1$s). Buat kunci baru di halaman admin lalu pasang di sini.</string>
+    <string name="test_network">Uji gagal: tidak bisa menghubungi server. Periksa koneksi internet dan URL.</string>
+    <string name="test_http">Uji gagal: server menjawab HTTP %1$d. Coba lagi nanti atau periksa URL.</string>
+    <string name="test_bad_response">Uji gagal: jawaban server tidak dikenali. Kemungkinan URL salah (harus berakhiran /api/payment-notify).</string>
+    <string name="test_rejected">Uji gagal: permintaan ditolak server (HTTP %1$d).</string>
+    <string name="test_last">Uji terakhir (%1$s): %2$s</string>
+
+    <string name="dialog_conn_title">Koneksi server</string>
+    <string name="hint_endpoint">https://domain-anda/api/payment-notify</string>
+    <string name="label_endpoint">URL endpoint</string>
+    <string name="label_key">Kunci webhook</string>
+    <string name="hint_key_new">Tempel kunci di sini</string>
+    <string name="hint_key_keep">Kosongkan untuk tetap memakai kunci tersimpan</string>
+    <string name="btn_save">Simpan</string>
+    <string name="btn_cancel">Batal</string>
+    <string name="btn_close">Tutup</string>
+    <string name="btn_default">Bawaan</string>
+    <string name="saved">Tersimpan.</string>
+
+    <string name="err_url_missing">URL endpoint belum diisi.</string>
+    <string name="err_key_missing">Kunci belum diisi.</string>
+    <string name="err_url_https">URL harus diawali https://</string>
+    <string name="err_url_invalid">URL tidak valid.</string>
+    <string name="err_key_invalid">Kunci tidak valid (tidak boleh mengandung spasi atau karakter khusus non-ASCII).</string>
+    <string name="err_not_setup_link">Tautan ini bukan tautan pemasangan SevnQuest Notifier.</string>
+
+    <string name="card_packages_title">Aplikasi yang dipantau</string>
+    <string name="packages_note">Hanya notifikasi dari aplikasi di daftar ini yang dibaca, dan hanya yang memuat nominal rupiah yang diteruskan. Notifikasi aplikasi lain tidak pernah dibaca atau dikirim.</string>
+    <string name="packages_empty">(kosong)</string>
+    <string name="package_installed">%1$s (terpasang)</string>
+    <string name="btn_edit_packages">Ubah daftar</string>
+    <string name="dialog_packages_title">Nama paket yang dipantau</string>
+    <string name="dialog_packages_message">Satu nama paket per baris, misalnya com.gojek.gopaymerchant. Nama paket terlihat di alamat halaman Play Store aplikasi tersebut (setelah id=).</string>
+    <string name="err_packages_invalid">Nama paket tidak valid: %1$s</string>
+    <string name="err_packages_empty">Isi minimal satu nama paket.</string>
+
+    <string name="card_queue_title">Antrean</string>
+    <string name="queue_empty">Tidak ada kiriman tertunda.</string>
+    <string name="queue_pending">Tertunda: %1$d notifikasi. Dikirim otomatis saat jaringan tersedia.</string>
+    <string name="queue_blocked">Tertahan: %1$d notifikasi menunggu kunci diperbaiki.</string>
+    <string name="btn_send_now">Kirim sekarang</string>
+
+    <string name="card_log_title">Log (50 kejadian terakhir)</string>
+    <string name="log_empty">Belum ada kejadian.</string>
+    <string name="btn_clear_log">Hapus log</string>
+    <string name="log_line_source">%1$s  ·  %2$s</string>
+    <string name="log_line_result_amount">%1$s  ·  %2$s</string>
+    <string name="log_source_test">uji koneksi</string>
+
+    <string name="result_approved">Disetujui</string>
+    <string name="result_approved_code">Disetujui (%1$s)</string>
+    <string name="result_unmatched">Tidak ada pesanan yang cocok</string>
+    <string name="result_ambiguous">Lebih dari satu pesanan cocok, perlu dicek manual</string>
+    <string name="result_no_amount">Bukan uang masuk atau tanpa nominal</string>
+    <string name="result_test_ok">Uji koneksi berhasil, kunci valid</string>
+    <string name="result_retry_network">Tertunda, jaringan bermasalah. Akan dicoba lagi</string>
+    <string name="result_retry_http">Tertunda, server menjawab %1$s. Akan dicoba lagi</string>
+    <string name="result_retry_bad_response">Tertunda, jawaban server tidak dikenali. Periksa URL</string>
+    <string name="result_auth_failed">Kunci ditolak server (%1$s)</string>
+    <string name="result_rejected">Ditolak server (HTTP %1$s), dibuang</string>
+    <string name="result_expired">Lebih dari 48 jam tidak terkirim, dibuang</string>
+    <string name="result_queue_full">Antrean penuh, %1$s kiriman lama dibuang</string>
+
+    <string name="setup_title">Hubungkan ke SevnQuest?</string>
+    <string name="setup_message">Notifikasi pembayaran dari aplikasi yang dipantau akan dikirim ke server berikut. Lanjutkan hanya jika Anda sendiri yang membuka tautan ini dari halaman admin SevnQuest dan alamat servernya benar.</string>
+    <string name="setup_host_label">Server tujuan</string>
+    <string name="setup_url_label">URL lengkap</string>
+    <string name="setup_key_label">Kunci</string>
+    <string name="setup_replace_warning">Perhatian: ini akan mengganti koneksi yang sekarang (%1$s).</string>
+    <string name="setup_invalid_title">Tautan tidak bisa dipakai</string>
+    <string name="btn_connect">Hubungkan</string>
+    <string name="setup_done">Terhubung. Lanjutkan dengan mengizinkan akses notifikasi.</string>
+
+    <string name="err_open_settings">Tidak bisa membuka halaman pengaturan. Buka lewat aplikasi Setelan.</string>
+</resources>
