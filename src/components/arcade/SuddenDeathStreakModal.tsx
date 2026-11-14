@@ -25,6 +25,7 @@ import { getKotobaPoolForBook } from '../../utils/arcadeSourceUtils';
 import { ArcadeSourceSelector } from './ArcadeSourceSelector';
 import { calcEngineExp, getEntityBaseExp } from '../../utils/rewards';
 import { useArcadeGuard } from './useArcadeGuard';
+import { pickUniqueDistractors } from '../../utils/quizOptions';
 
 interface SuddenDeathStreakModalProps {
   isOpen: boolean;
@@ -126,7 +127,7 @@ export const SuddenDeathStreakModal: React.FC<SuddenDeathStreakModalProps> = ({
   }, [sourceType, selectedBookId, selectedLevel]);
 
   // Generator for fresh multiple-choice question
-  const generateQuestion = useCallback((): QuizQuestion | null => {
+  const generateQuestionOnce = useCallback((): QuizQuestion | null => {
     if (!filteredPool || filteredPool.length < 4) return null;
 
     const randomIndex = Math.floor(Math.random() * filteredPool.length);
@@ -135,23 +136,15 @@ export const SuddenDeathStreakModal: React.FC<SuddenDeathStreakModalProps> = ({
     // Choose between meaning question or reading question
     const isMeaningQuestion = Math.random() > 0.35 || !targetItem.reading;
     
-    // Pick 3 distractor items
-    const distractors: any[] = [];
-    const usedIndices = new Set<number>([randomIndex]);
-    while (distractors.length < 3 && distractors.length < filteredPool.length - 1) {
-      const idx = Math.floor(Math.random() * filteredPool.length);
-      if (!usedIndices.has(idx)) {
-        usedIndices.add(idx);
-        distractors.push(filteredPool[idx]);
-      }
-    }
+    // Pengecoh diambil dari kolam teracak; teks opsi dijaga unik di bawah (tanpa dua jawaban kembar).
+    const distractors: any[] = [...filteredPool.slice(0, randomIndex), ...filteredPool.slice(randomIndex + 1)]
+      .sort(() => Math.random() - 0.5);
 
     if (isMeaningQuestion) {
       const correctText = targetItem.meaningId || targetItem.meaningEn || 'Arti';
-      const options = [
-        correctText,
-        ...distractors.map(d => d.meaningId || d.meaningEn || 'Pilihan lain')
-      ].sort(() => Math.random() - 0.5);
+      const wrong = pickUniqueDistractors(correctText, distractors.map(d => d.meaningId || d.meaningEn), 3);
+      if (wrong.length < 3) return null;
+      const options = [correctText, ...wrong].sort(() => Math.random() - 0.5);
 
       return {
         id: targetItem.id || `q_${Date.now()}`,
@@ -165,10 +158,9 @@ export const SuddenDeathStreakModal: React.FC<SuddenDeathStreakModalProps> = ({
       };
     } else {
       const correctText = targetItem.reading;
-      const options = [
-        correctText,
-        ...distractors.map(d => d.reading || d.word)
-      ].sort(() => Math.random() - 0.5);
+      const wrong = pickUniqueDistractors(correctText, distractors.map(d => d.reading || d.word), 3);
+      if (wrong.length < 3) return null;
+      const options = [correctText, ...wrong].sort(() => Math.random() - 0.5);
 
       return {
         id: targetItem.id || `q_${Date.now()}`,
@@ -182,6 +174,15 @@ export const SuddenDeathStreakModal: React.FC<SuddenDeathStreakModalProps> = ({
       };
     }
   }, [filteredPool]);
+
+  // Coba beberapa kali: satu target bisa gagal kalau kolam tidak punya 3 pengecoh yang unik.
+  const generateQuestion = useCallback((): QuizQuestion | null => {
+    for (let attempt = 0; attempt < 8; attempt++) {
+      const q = generateQuestionOnce();
+      if (q) return q;
+    }
+    return null;
+  }, [generateQuestionOnce]);
 
   // Reset state whenever modal is opened
   useEffect(() => {

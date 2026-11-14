@@ -113,7 +113,7 @@ export function usePlayerActions({
       rewardDecision = handleRewardPlayer(expGained, goldGained, meta);
     }
 
-    for (const adv of getStudyMissionAdvances({ moduleId, interaction, score, total })) {
+    for (const adv of getStudyMissionAdvances({ moduleId, interaction, score, total, itemId })) {
       advanceMissions(adv.category, adv.amount, adv.extra);
     }
 

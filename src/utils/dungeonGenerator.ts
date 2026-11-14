@@ -13,6 +13,8 @@ import {
   VerbItem
 } from '../data/conjugationRules';
 import { fisherYatesShuffle, smartSample } from './smartRandomizer';
+import { pickUniqueDistractors } from './quizOptions';
+import { isKanaItem } from './kanaQuiz';
 import { Question, BunpouItem } from '../types/content';
 import {
   KANJI_QUESTION_BANK as kanjiQuestionsDb,
@@ -633,27 +635,27 @@ export function generateDungeonSession(config: DungeonConfig, userDecks?: UserDe
         const item = KANJI_DATABASE[kRef.id];
         if (item?.questions?.length) {
           questions.push(...item.questions);
-        } else if (item) {
-          const onyomiStr = (item.onyomi || []).join(', ');
-          const meaningStr = item.meaningId || item.meaningEn || 'Arti kanji';
-          const targetOpt = `${meaningStr} (${onyomiStr || item.character})`;
-          const rawOptions = [
-            targetOpt,
-            'Air dan sungai (Mizu)',
-            'Gunung tinggi (Yama)',
-            'Langit biru (Sora)',
-          ];
-          const options = shuffleArray(rawOptions);
-          questions.push({
-            id: `q_k_${item.id}_synth_${Math.random().toString(36).slice(2, 6)}`,
-            instruction: 'Pilihlah arti dan cara baca yang tepat:',
-            prompt: `Apa arti dan cara baca dari Kanji "${item.character}"?`,
-            options,
-            correctIndex: options.indexOf(targetOpt),
-            explanation: `Kanji ${item.character} memiliki arti "${meaningStr}" dengan On'yomi: ${onyomiStr || '-'}.`,
-            category: 'kanji',
-            difficulty: item.jlpt || 'N5',
-          });
+        } else if (item && item.meaningId) {
+          // Kanji tanpa soal kurasi: pengecoh dari arti kanji lain (bukan teks statis acak).
+          const meaningStr = item.meaningId;
+          const wrong = pickUniqueDistractors(
+            meaningStr,
+            fisherYatesShuffle(Object.values(KANJI_DATABASE).filter(k => k && k.character !== item.character && !isKanaItem(k)).map(k => k.meaningId)),
+            3
+          );
+          if (wrong.length === 3) {
+            const options = shuffleArray([meaningStr, ...wrong]);
+            questions.push({
+              id: `q_k_${item.id}_synth_${Math.random().toString(36).slice(2, 6)}`,
+              instruction: 'Pilihlah arti yang tepat:',
+              prompt: `Apa arti dari Kanji "${item.character}"?`,
+              options,
+              correctIndex: options.indexOf(meaningStr),
+              explanation: `Kanji ${item.character} memiliki arti "${meaningStr}"${item.onyomi?.length ? ` dengan On'yomi: ${item.onyomi.join(', ')}` : ''}.`,
+              category: 'kanji',
+              difficulty: item.jlpt || 'N5',
+            });
+          }
         }
       });
 
@@ -664,15 +666,12 @@ export function generateDungeonSession(config: DungeonConfig, userDecks?: UserDe
         const item = KOTOBA_DATABASE[koRef.id];
         if (!item) return;
 
-        const distractors = fisherYatesShuffle(
-          allKotobaList.filter(k => k.id !== item.id && k.meaningId && k.meaningId !== item.meaningId)
-        )
-          .slice(0, 3)
-          .map(k => k.meaningId);
-
-        while (distractors.length < 3) {
-          distractors.push(`Arti kosakata alternatif ${distractors.length + 1}`);
-        }
+        const distractors = pickUniqueDistractors(
+          item.meaningId,
+          fisherYatesShuffle(allKotobaList.filter(k => k.id !== item.id)).map(k => k.meaningId),
+          3
+        );
+        if (!item.meaningId || distractors.length < 3) return;
 
         const options = shuffleArray([item.meaningId, ...distractors]);
         questions.push({

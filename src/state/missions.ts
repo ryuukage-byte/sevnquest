@@ -31,9 +31,11 @@ export function advanceWeeklyMissions(
   extra?: { isPerfect?: boolean }
 ): Mission[] {
   return missions.map(m => {
+    // wm_01 = lantai Menara selesai (Tower1View -> 'stage_clear').
     if (m.id === 'wm_01' && category === 'stage_clear') return bump(m, amount);
     if (m.id === 'wm_03' && category === 'dokkai' && extra?.isPerfect) return bump(m, amount);
-    if (m.id === 'wm_04' && (category === 'boss' || category === 'stage_clear')) return bump(m, amount);
+    // wm_04 = sesi Dungeon tuntas (ID agregat dungeon_ -> 'boss', lihat getStudyMissionAdvances).
+    if (m.id === 'wm_04' && category === 'boss') return bump(m, amount);
     return m;
   });
 }
@@ -79,7 +81,4 @@ function dayBefore(day: string): string {
  */
 export const MISSIONS_WITHOUT_LIVE_TRIGGER: Readonly<Record<string, string>> = {
   dm_04: 'Choukai dinonaktifkan (CHOUKAI_ENABLED=false)',
-  wm_01: 'Peta Stage tidak ada; tidak ada pemanggil advanceMissions("stage_clear")',
-  wm_03: 'Dokkai sempurna: DokkaiModule (dihapus) satu-satunya pemanggil; Library memakai "questions"',
-  wm_04: 'Boss Battle: BossBattleModule (dihapus) satu-satunya pemanggil',
 };

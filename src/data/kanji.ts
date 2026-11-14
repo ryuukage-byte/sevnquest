@@ -2,6 +2,7 @@ import kanjiDb from './db/kanji.json';
 import { KANJI_QUESTION_BANK as kanjiQuestionsDb } from './questionBank';
 import { KanjiItem } from '../types/content';
 import { defineLookupAlias } from './entityIds';
+import { buildKanaQuestions, isKanaItem } from '../utils/kanaQuiz';
 
 const STATIC_KANJI: Record<string, KanjiItem> = {
   kanji_001: {
@@ -196,10 +197,13 @@ if (Array.isArray(kanjiQuestionsDb)) {
 const indexedDb: Record<string, KanjiItem> = {};
 for (const k of rawKanjiList) {
   if (k && k.id) {
-    const itemCopy = {
-      ...k,
-      questions: kanjiQuestionsMap.get(k.id) || k.questions || []
-    };
+    let questions = kanjiQuestionsMap.get(k.id) || k.questions || [];
+    // Huruf kana tanpa soal kurasi: bangun soal bunyi dari data kana, bukan soal "arti" kanji
+    // (yang dulu memunculkan pilihan bahasa Indonesia acak).
+    if (questions.length === 0 && isKanaItem(k)) {
+      questions = buildKanaQuestions(k, rawKanjiList);
+    }
+    const itemCopy = { ...k, questions };
     indexedDb[k.id] = itemCopy;
     // Alias pencarian per karakter (non-enumerable) agar Object.values() tidak menggandakan kanji.
     if (k.character) {

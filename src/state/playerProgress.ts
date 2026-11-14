@@ -78,9 +78,11 @@ export type MissionAdvance = {
 };
 
 /** Misi yang maju akibat satu hasil belajar. Flashcard kanji bukan "lembar menulis". */
-export function getStudyMissionAdvances(c: Pick<StudyCompletion, 'moduleId' | 'interaction' | 'score' | 'total'>): MissionAdvance[] {
+export function getStudyMissionAdvances(c: Pick<StudyCompletion, 'moduleId' | 'interaction' | 'score' | 'total'> & { itemId?: string }): MissionAdvance[] {
   const out: MissionAdvance[] = [];
-  const { moduleId, interaction, score, total } = c;
+  const { moduleId, interaction, score, total, itemId } = c;
+  // Sesi Dungeon yang tuntas sampai lantai terakhir (ID agregat `dungeon_<tipe>_<waktu>`) = misi "Penakluk Dungeon".
+  if (itemId && itemId.startsWith('dungeon_')) out.push({ category: 'boss', amount: 1 });
   if (interaction === 'writing' || (moduleId === 'kanji' && interaction !== 'flashcard')) out.push({ category: 'kanji', amount: 1 });
   if (moduleId === 'bunpou') out.push({ category: 'bunpou', amount: 1 });
   else if (moduleId === 'kotoba' && interaction !== 'writing') out.push({ category: 'kotoba', amount: 1 });

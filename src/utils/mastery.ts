@@ -21,6 +21,7 @@ import { DOKKAI_DATABASE } from '../data/dokkai';
 import { CHOUKAI_DATABASE } from '../data/choukai';
 import { PlayerStats } from '../types/rpg';
 import { fisherYatesShuffle } from './smartRandomizer';
+import { isKanaItem } from './kanaQuiz';
 import { getFusionPatternForBunpou, pickRecallVerb, buildConjugationQuestion } from '../engine/recall/bunpouEngines';
 
 // SRS Interval progression (in days)
@@ -1028,7 +1029,7 @@ function generateAdaptiveQuestion(
     if (kj && kj.meaningId) {
       // Kanji tanpa soal kurasi: uji arti dengan pengecoh dari kanji lain, bukan teks statis.
       const others = Object.values(KANJI_DATABASE)
-        .filter(k => k && k.character !== kj.character && k.meaningId && k.meaningId !== kj.meaningId);
+        .filter(k => k && k.character !== kj.character && k.meaningId && k.meaningId !== kj.meaningId && !isKanaItem(k));
       const wrong: string[] = [];
       for (let i = 0; i < 40 && wrong.length < 3 && others.length > 0; i++) {
         const m = others[Math.floor(Math.random() * others.length)].meaningId;

@@ -23,6 +23,8 @@ import { requiredTierForTowerFloor } from '../../utils/access';
 interface Props {
   soundEnabled?: boolean;
   onRewardPlayer?: RewardHandler;
+  /** Dipanggil tiap lantai selesai (termasuk mengulang): memajukan misi mingguan "Pendaki Menara". */
+  onFloorCleared?: () => void;
 }
 
 const TOWER_INFO = {
@@ -92,7 +94,7 @@ const ActiveFloor: React.FC<{
   );
 };
 
-export const Tower1View: React.FC<Props> = ({ soundEnabled = true, onRewardPlayer }) => {
+export const Tower1View: React.FC<Props> = ({ soundEnabled = true, onRewardPlayer, onFloorCleared }) => {
   const [progress, setProgress] = useState<Tower1Progress>(() => loadTower1Progress());
   const [selectedId, setSelectedId] = useState<number | null>(null);
   const [activeId, setActiveId] = useState<number | null>(null);
@@ -130,10 +132,11 @@ export const Tower1View: React.FC<Props> = ({ soundEnabled = true, onRewardPlaye
       const nextId = getRecommendedFloor(ALL_FLOORS, res.progress);
       const nextSpec = nextId ? ALL_FLOOR_MAP[nextId] : null;
       const stars = starsForAccuracy(accuracy);
+      onFloorCleared?.();
       if (res.firstClear) onRewardPlayer?.(spec.reward.exp, spec.reward.gold, { source: 'tower_floor', ref: String(floorId), note: spec.name });
       return { stars, accuracy, firstClear: res.firstClear, exp: spec.reward.exp, gold: spec.reward.gold, unlocked, next: nextSpec ? { id: nextSpec.id, code: nextSpec.code, name: nextSpec.name } : null };
     },
-    [progress, onRewardPlayer]
+    [progress, onRewardPlayer, onFloorCleared]
   );
 
   // --------------------------------------------------------------------------

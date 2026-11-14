@@ -47,8 +47,8 @@ export function MainContent(props: MainContentProps) {
     setIsStatusModalOpen, isRecallActive, setIsRecallActive,
     isAuthModalOpen, setIsAuthModalOpen,
     worldNavView, setWorldNavView, worldResetCount, deckResetCount, deckInitialSubTab, setDeckInitialSubTab,
-    handleTabChange, handleOpenTower, libraryTabRequest, handleOpenLibraryTab, deckAiRequest,
-    handleRewardPlayer, handleStudyComplete, handleRecordItemInteraction, handleTowerMastery,
+    handleTabChange, handleOpenTower, handleOpenDungeon, libraryTabRequest, handleOpenLibraryTab, deckAiRequest,
+    handleRewardPlayer, advanceMissions, handleStudyComplete, handleRecordItemInteraction, handleTowerMastery,
     handleStartRemediationRecall, handleItemReviewed, handleCompleteRecallSession, handleUseMp,
     handleClaimMission, handleGameOver, handleHpDamage, handleResetData,
     handleUpdateName, handleUpdateSignature, handleToggleBookmark, handleUpdateDecks, handleReplayOnboarding,
@@ -124,6 +124,7 @@ export function MainContent(props: MainContentProps) {
                       onRewardPlayer={handleRewardPlayer}
                       onCompleteStudyItem={handleStudyComplete}
                       onTowerMastery={handleTowerMastery}
+                      onTowerFloorCleared={() => advanceMissions('stage_clear')}
                       itemMastery={stats.itemMastery || {}}
                     />
                   </ModuleBoundary>
@@ -143,6 +144,11 @@ export function MainContent(props: MainContentProps) {
                     weeklyMissions={weeklyMissions}
                     onClaimReward={handleClaimMission}
                     soundEnabled={stats.soundEnabled}
+                    onGoToMission={(target) => {
+                      if (target === 'tower') handleOpenTower();
+                      else if (target === 'dungeon') handleOpenDungeon();
+                      else if (target === 'dokkai') handleOpenLibraryTab('dokkai');
+                    }}
                     guided={{
                       stats,
                       soundEnabled: stats.soundEnabled,
