@@ -1,0 +1,35 @@
+{
+  "id": "n5-grammar-002",
+  "level": "N5",
+  "category": "grammar",
+  "title": "Partikel は dan を",
+  "summary": "Dua partikel pertama yang menentukan peran kata dalam kalimat.",
+  "minutes": 5,
+  "scenes": [
+    { "id": "scene-01", "type": "introduction", "duration": 4000,
+      "content": { "title": "助詞", "subtitle": "Partikel: penanda peran kata" } },
+    { "id": "scene-02", "type": "transformation",
+      "content": {
+        "heading": "Partikel menempel di belakang kata",
+        "caption": "Urutan boleh berpindah, partikel memberi tahu peran tiap kata.",
+        "tokens": [
+          { "id": "s", "ja": "ともだちは", "id_text": "Teman", "role": "subject" },
+          { "id": "o", "ja": "ほんを", "id_text": "buku", "role": "object" },
+          { "id": "v", "ja": "よみます", "id_text": "membaca", "role": "verb" }
+        ],
+        "from": ["s", "v", "o"], "to": ["s", "o", "v"] } },
+    { "id": "scene-03", "type": "comparison",
+      "content": { "leftLabel": "INDONESIA", "left": "Teman membaca buku.", "rightLabel": "JAPANESE", "right": "ともだちは ほんを よみます。" } },
+    { "id": "scene-04", "type": "practice",
+      "content": {
+        "prompt": "Susun kalimat: \"Ibu makan nasi.\"",
+        "tokens": [
+          { "id": "o", "ja": "ごはんを", "id_text": "nasi", "role": "object" },
+          { "id": "v", "ja": "たべます", "id_text": "makan", "role": "verb" },
+          { "id": "s", "ja": "おかあさんは", "id_text": "Ibu", "role": "subject" }
+        ],
+        "answer": ["s", "o", "v"] } },
+    { "id": "scene-05", "type": "summary",
+      "content": { "heading": "Rangkuman", "points": ["は menandai topik.", "を menandai objek langsung dari kata kerja."] } }
+  ]
+}

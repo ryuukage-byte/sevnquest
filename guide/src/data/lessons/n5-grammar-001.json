@@ -1,0 +1,43 @@
+{
+  "id": "n5-grammar-001",
+  "level": "N5",
+  "category": "grammar",
+  "title": "Struktur Kalimat Dasar",
+  "summary": "Kenapa kalimat Jepang menaruh kata kerja di paling akhir.",
+  "minutes": 6,
+  "scenes": [
+    { "id": "scene-01", "type": "introduction", "duration": 5000,
+      "content": { "title": "日本語の文法", "subtitle": "Memahami tata bahasa Jepang dari strukturnya" } },
+    { "id": "scene-02", "type": "structure",
+      "content": { "heading": "Pola bahasa Indonesia", "caption": "Kita terbiasa dengan urutan Subjek, Kata kerja, lalu Objek.", "pattern": ["subject", "verb", "object"], "language": "id" } },
+    { "id": "scene-03", "type": "structure",
+      "content": { "heading": "Pola bahasa Jepang", "caption": "Bahasa Jepang menaruh kata kerja di akhir: Subjek, Objek, lalu Kata kerja.", "pattern": ["subject", "object", "verb"], "language": "ja" } },
+    { "id": "scene-04", "type": "transformation",
+      "content": {
+        "heading": "Dari kalimat kita ke kalimat Jepang",
+        "caption": "Ketuk Ubah untuk melihat tiap bagian berpindah tempat. Partikel は dan を menandai peran kata.",
+        "tokens": [
+          { "id": "s", "ja": "わたしは", "id_text": "Saya", "role": "subject" },
+          { "id": "v", "ja": "たべます", "id_text": "makan", "role": "verb" },
+          { "id": "o", "ja": "りんごを", "id_text": "apel", "role": "object" }
+        ],
+        "from": ["s", "v", "o"], "to": ["s", "o", "v"] } },
+    { "id": "scene-05", "type": "comparison",
+      "content": { "leftLabel": "INDONESIA", "left": "Saya makan apel.", "rightLabel": "JAPANESE", "right": "わたしは りんごを たべます。" } },
+    { "id": "scene-06", "type": "practice",
+      "content": {
+        "prompt": "Susun kalimat: \"Saya minum air.\"",
+        "tokens": [
+          { "id": "v", "ja": "のみます", "id_text": "minum", "role": "verb" },
+          { "id": "s", "ja": "わたしは", "id_text": "Saya", "role": "subject" },
+          { "id": "o", "ja": "みずを", "id_text": "air", "role": "object" }
+        ],
+        "answer": ["s", "o", "v"] } },
+    { "id": "scene-07", "type": "summary",
+      "content": { "heading": "Rangkuman", "points": [
+        "Urutan dasar kalimat Jepang: Subjek + Objek + Kata kerja.",
+        "は menandai topik/subjek, を menandai objek.",
+        "Kata kerja selalu di akhir kalimat."
+      ] } }
+  ]
+}
