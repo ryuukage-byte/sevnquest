@@ -2,18 +2,13 @@ import { useMemo, useState } from 'react';
 import { AlertTriangle, CalendarCheck, Save } from 'lucide-react';
 import { generatePlan, isPlanError, LIMITS } from '../planner/planner';
 import { savePlan } from '../lib/storage';
+import { PRODUCT } from '../products';
 import type { Focus, Goal, PlanInput, StartLevel } from '../planner/types';
 
-const GOALS: { v: Goal; l: string }[] = [
-  { v: 'N5', l: 'JLPT N5' }, { v: 'N4', l: 'JLPT N4' }, { v: 'N3', l: 'JLPT N3' }, { v: 'N2', l: 'JLPT N2' }, { v: 'N1', l: 'JLPT N1' },
-  { v: 'JFT', l: 'JFT-Basic' }, { v: 'SSW2', l: 'SSW 2' },
-];
-const STARTS: { v: StartLevel; l: string }[] = [
-  { v: 'none', l: 'Dari nol' }, { v: 'N5', l: 'Sudah N5' }, { v: 'N4', l: 'Sudah N4' }, { v: 'N3', l: 'Sudah N3' }, { v: 'N2', l: 'Sudah N2' },
-];
-const FOCUS: { v: Focus; l: string }[] = [
-  { v: 'balanced', l: 'Seimbang' }, { v: 'kotoba', l: 'Kosakata' }, { v: 'kanji', l: 'Kanji' }, { v: 'bunpou', l: 'Tata bahasa' },
-];
+const { goals: GOALS, starts: STARTS, focuses, defaults } = PRODUCT.planner;
+const FOCUS_LABEL: Record<Focus, string> = { balanced: 'Seimbang', kotoba: 'Kosakata', kanji: 'Kanji', bunpou: 'Tata bahasa' };
+const FOCUS = focuses.map(v => ({ v, l: FOCUS_LABEL[v] }));
+
 
 const todayIso = () => new Date().toISOString().slice(0, 10);
 const num = (v: string, fallback: number) => (Number.isFinite(parseInt(v, 10)) ? parseInt(v, 10) : fallback);
@@ -21,8 +16,8 @@ const num = (v: string, fallback: number) => (Number.isFinite(parseInt(v, 10)) ?
 export default function Planner({ query }: { query: string }) {
   const q = new URLSearchParams(query).get('goal') as Goal | null;
   const [input, setInput] = useState<PlanInput>({
-    goal: q && GOALS.some(g => g.v === q) ? q : 'N3',
-    startLevel: 'N4', durationDays: 180, dailyMinutes: 45, daysPerWeek: 6, startDate: todayIso(), focus: 'balanced',
+    goal: q && GOALS.some(g => g.v === q) ? q : GOALS[0].v,
+    startLevel: STARTS[0].v, ...defaults, startDate: todayIso(), focus: 'balanced',
   });
   const [saved, setSaved] = useState(false);
   const set = <K extends keyof PlanInput>(k: K, v: PlanInput[K]) => { setInput(p => ({ ...p, [k]: v })); setSaved(false); };

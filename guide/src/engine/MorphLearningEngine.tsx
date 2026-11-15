@@ -127,6 +127,40 @@ function SceneView({ scene }: { scene: Scene }) {
       );
     case 'practice':
       return <Practice scene={scene} />;
+    case 'kana':
+      return (
+        <div className="flex flex-col items-center text-center gap-4">
+          <h2 className="text-heading-section">{scene.content.heading}</h2>
+          <div className="grid grid-cols-3 sm:grid-cols-5 gap-3 w-full max-w-xl">
+            {scene.content.items.map((it, i) => (
+              <motion.div key={it.char} className="sq-token !min-w-0" initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.04 * i }}>
+                <span className="font-jp text-4xl font-bold">{it.char}</span>
+                <small>{it.romaji}</small>
+              </motion.div>
+            ))}
+          </div>
+          {scene.content.caption && <p className="text-body-regular max-w-md">{scene.content.caption}</p>}
+        </div>
+      );
+    case 'vocab':
+      return (
+        <div className="flex flex-col items-center gap-4 w-full">
+          <h2 className="text-heading-section">{scene.content.heading}</h2>
+          <ul className="list-none p-0 m-0 w-full max-w-xl flex flex-col gap-3">
+            {scene.content.items.map((it, i) => (
+              <motion.li key={it.ja} className="sq-token !flex-row !justify-between !items-center !text-left gap-4" initial={{ opacity: 0, x: -14 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.08 * i }}>
+                <span className="flex flex-col">
+                  <span className="font-jp text-2xl font-bold">{it.ja}</span>
+                  <small>{it.reading}</small>
+                </span>
+                <span className="text-body-regular !text-right">{it.id_text}</span>
+              </motion.li>
+            ))}
+          </ul>
+        </div>
+      );
+    case 'quiz':
+      return <Quiz scene={scene} />;
     case 'summary':
       return (
         <div className="flex flex-col items-center text-center gap-4">
@@ -208,6 +242,42 @@ function Practice({ scene }: { scene: Extract<Scene, { type: 'practice' }> }) {
         <p role="status" className={`text-sm font-bold ${correct ? 'text-state-success' : 'text-state-danger'}`}>
           {correct ? 'Tepat! Subjek, objek, lalu kata kerja.' : 'Belum tepat. Ingat: kata kerja selalu di akhir.'}
         </p>
+      )}
+    </div>
+  );
+}
+
+function Quiz({ scene }: { scene: Extract<Scene, { type: 'quiz' }> }) {
+  const { question, big, options, answer, explanation } = scene.content;
+  const [picked, setPicked] = useState<number | null>(null);
+  const done = picked !== null;
+  return (
+    <div className="flex flex-col items-center text-center gap-4">
+      <h2 className="text-heading-section">{question}</h2>
+      {big && <div className="font-jp text-6xl font-bold text-text-primary">{big}</div>}
+      <div className="flex flex-col gap-3 w-full max-w-sm">
+        {options.map((o, i) => {
+          const state = !done ? '' : i === answer ? 'ok' : i === picked ? 'bad' : '';
+          return (
+            <button
+              key={o}
+              disabled={done}
+              onClick={() => setPicked(i)}
+              className={`sq-token !flex-row !justify-center font-jp ${state === 'ok' ? 'role-particle' : state === 'bad' ? 'role-verb' : ''}`}
+            >
+              {o}
+            </button>
+          );
+        })}
+      </div>
+      {done && (
+        <p role="status" className={`text-sm font-bold ${picked === answer ? 'text-state-success' : 'text-state-danger'}`}>
+          {picked === answer ? 'Tepat!' : `Belum tepat. Jawabannya: ${options[answer]}`}
+          {explanation ? ` ${explanation}` : ''}
+        </p>
+      )}
+      {done && picked !== answer && (
+        <button className="skeuo-btn gap-1.5" onClick={() => setPicked(null)}><RotateCcw size={14} aria-hidden /> COBA LAGI</button>
       )}
     </div>
   );

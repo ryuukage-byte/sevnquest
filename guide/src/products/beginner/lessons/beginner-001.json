@@ -1,0 +1,132 @@
+{
+  "id": "beginner-001",
+  "level": "BEGINNER",
+  "category": "kana",
+  "title": "Hiragana: Baris A dan K",
+  "summary": "Lima vokal dan baris K, huruf pertama yang perlu kamu kenal.",
+  "minutes": 6,
+  "scenes": [
+    {
+      "id": "scene-01",
+      "type": "introduction",
+      "duration": 4000,
+      "content": {
+        "title": "ひらがな",
+        "subtitle": "Hiragana: huruf dasar untuk menulis bunyi bahasa Jepang"
+      }
+    },
+    {
+      "id": "scene-02",
+      "type": "kana",
+      "content": {
+        "heading": "Lima vokal",
+        "items": [
+          {
+            "char": "あ",
+            "romaji": "a"
+          },
+          {
+            "char": "い",
+            "romaji": "i"
+          },
+          {
+            "char": "う",
+            "romaji": "u"
+          },
+          {
+            "char": "え",
+            "romaji": "e"
+          },
+          {
+            "char": "お",
+            "romaji": "o"
+          }
+        ],
+        "caption": "Setiap huruf mewakili satu bunyi. Tidak ada huruf mati seperti di alfabet Latin."
+      }
+    },
+    {
+      "id": "scene-03",
+      "type": "quiz",
+      "content": {
+        "question": "Bagaimana cara membaca huruf ini?",
+        "options": [
+          "a",
+          "i",
+          "u"
+        ],
+        "answer": 1,
+        "big": "い"
+      }
+    },
+    {
+      "id": "scene-04",
+      "type": "kana",
+      "content": {
+        "heading": "Baris K: konsonan K + vokal",
+        "items": [
+          {
+            "char": "か",
+            "romaji": "ka"
+          },
+          {
+            "char": "き",
+            "romaji": "ki"
+          },
+          {
+            "char": "く",
+            "romaji": "ku"
+          },
+          {
+            "char": "け",
+            "romaji": "ke"
+          },
+          {
+            "char": "こ",
+            "romaji": "ko"
+          }
+        ],
+        "caption": "Pola yang sama: K + a, i, u, e, o."
+      }
+    },
+    {
+      "id": "scene-05",
+      "type": "quiz",
+      "content": {
+        "question": "Bagaimana cara membaca huruf ini?",
+        "options": [
+          "ka",
+          "ku",
+          "ko"
+        ],
+        "answer": 2,
+        "big": "こ"
+      }
+    },
+    {
+      "id": "scene-06",
+      "type": "quiz",
+      "content": {
+        "question": "Huruf mana yang dibaca \"u\"?",
+        "options": [
+          "あ",
+          "う",
+          "え"
+        ],
+        "answer": 1
+      }
+    },
+    {
+      "id": "scene-07",
+      "type": "summary",
+      "content": {
+        "heading": "Rangkuman",
+        "points": [
+          "Hiragana mewakili bunyi, bukan huruf tunggal.",
+          "Vokal: あ い う え お.",
+          "Baris K: か き く け こ."
+        ]
+      }
+    }
+  ]
+}

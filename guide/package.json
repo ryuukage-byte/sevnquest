@@ -8,7 +8,7 @@
     "build": "vite build",
     "preview": "vite preview",
     "lint": "tsc --noEmit",
-    "test": "tsx --test src/planner/planner.test.ts src/engine/lessonSchema.test.ts src/noSparkle.test.ts src/designSync.test.ts",
+    "test": "tsx --test src/planner/planner.test.ts src/products/products.test.ts src/engine/lessonSchema.test.ts src/noSparkle.test.ts src/designSync.test.ts",
     "sync-design": "node scripts/sync-design.mjs"
   },
   "dependencies": {

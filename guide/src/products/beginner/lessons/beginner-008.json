@@ -1,0 +1,125 @@
+{
+  "id": "beginner-008",
+  "level": "BEGINNER",
+  "category": "vocabulary",
+  "title": "Angka 1 sampai 10",
+  "summary": "Menghitung dan menyebut angka dasar.",
+  "minutes": 5,
+  "scenes": [
+    {
+      "id": "scene-01",
+      "type": "introduction",
+      "duration": 4000,
+      "content": {
+        "title": "かず",
+        "subtitle": "Angka 1 sampai 10"
+      }
+    },
+    {
+      "id": "scene-02",
+      "type": "vocab",
+      "content": {
+        "heading": "Satu sampai lima",
+        "items": [
+          {
+            "ja": "いち",
+            "reading": "ichi",
+            "id_text": "1"
+          },
+          {
+            "ja": "に",
+            "reading": "ni",
+            "id_text": "2"
+          },
+          {
+            "ja": "さん",
+            "reading": "san",
+            "id_text": "3"
+          },
+          {
+            "ja": "し / よん",
+            "reading": "shi / yon",
+            "id_text": "4"
+          },
+          {
+            "ja": "ご",
+            "reading": "go",
+            "id_text": "5"
+          }
+        ]
+      }
+    },
+    {
+      "id": "scene-03",
+      "type": "vocab",
+      "content": {
+        "heading": "Enam sampai sepuluh",
+        "items": [
+          {
+            "ja": "ろく",
+            "reading": "roku",
+            "id_text": "6"
+          },
+          {
+            "ja": "しち / なな",
+            "reading": "shichi / nana",
+            "id_text": "7"
+          },
+          {
+            "ja": "はち",
+            "reading": "hachi",
+            "id_text": "8"
+          },
+          {
+            "ja": "きゅう",
+            "reading": "kyuu",
+            "id_text": "9"
+          },
+          {
+            "ja": "じゅう",
+            "reading": "juu",
+            "id_text": "10"
+          }
+        ]
+      }
+    },
+    {
+      "id": "scene-04",
+      "type": "quiz",
+      "content": {
+        "question": "Berapa angka ini?",
+        "big": "ろく",
+        "options": [
+          "5",
+          "6",
+          "8"
+        ],
+        "answer": 1
+      }
+    },
+    {
+      "id": "scene-05",
+      "type": "quiz",
+      "content": {
+        "question": "Mana tulisan untuk angka 3?",
+        "options": [
+          "さん",
+          "ご",
+          "はち"
+        ],
+        "answer": 0
+      }
+    },
+    {
+      "id": "scene-06",
+      "type": "summary",
+      "content": {
+        "heading": "Rangkuman",
+        "points": [
+          "4 bisa し atau よん, 7 bisa しち atau なな.",
+          "Angka 1-10: いち に さん よん ご ろく なな はち きゅう じゅう."
+        ]
+      }
+    }
+  ]
+}

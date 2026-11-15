@@ -3,6 +3,15 @@
 PRD lengkap ada di diskusi produk; dokumen ini mencatat **apa yang sudah dibangun**, **hasil audit**, dan **keputusan yang masih menunggu**.
 Kode: [`guide/`](../../guide/README.md). Aplikasi utama SevnQuest **tidak diubah**.
 
+## Model produk: satu produk = satu sub-situs
+
+Setiap produk (Pemula, JFT-Basic, JLPT N5..N1, SSW 2) di-build sebagai situs terpisah dari basis kode yang sama:
+`VITE_PRODUCT=<id> npm run build` memilih `guide/src/products/<id>/` (konfigurasi + materi JSON) lewat alias `@product`.
+Bundle sebuah situs hanya berisi materi produknya, dan UI (beranda, peta belajar, planner) mengikuti konfigurasi itu.
+**Produk pertama: Pemula** (8 materi: hiragana, sapaan, perkenalan, struktur kalimat, partikel, angka).
+Menambah produk = folder baru di `products/` + proyek deploy sendiri. **Pembatasan akses setelah pembelian** (hanya pembeli
+produk itu yang masuk) belum dibuat: butuh entitlement per produk di backend (lihat sistem monetisasi/`api/_entitlement.ts`).
+
 ## Status fase
 
 | Fase | Cakupan | Status |

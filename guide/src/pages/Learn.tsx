@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 import { ArrowLeft, Clock } from 'lucide-react';
-import { getLesson, LESSONS } from '../data/catalog';
+import { getLesson, LESSONS } from '../products';
 import MorphLearningEngine from '../engine/MorphLearningEngine';
 import { loadProgress, saveLessonProgress } from '../lib/storage';
 

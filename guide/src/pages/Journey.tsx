@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Trash2 } from 'lucide-react';
-import { LESSONS } from '../data/catalog';
+import { LESSONS } from '../products';
 import { deletePlan, loadPlans, loadProgress } from '../lib/storage';
 import { generatePlan, isPlanError } from '../planner/planner';
 

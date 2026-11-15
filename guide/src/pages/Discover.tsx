@@ -1,28 +1,38 @@
-import { PATHS, LESSONS } from '../data/catalog';
+import { getLesson, PRODUCT } from '../products';
+import { loadProgress } from '../lib/storage';
 
 export default function Discover({ go }: { go: (to: string) => void }) {
+  const progress = loadProgress();
   return (
     <section className="flex flex-col gap-4 pt-4">
       <div>
-        <h1 className="text-heading-page">Discover</h1>
-        <p className="text-body-regular">Pilih jalur belajar. Materi interaktif tersedia bertahap.</p>
+        <h1 className="text-heading-page">Peta Belajar</h1>
+        <p className="text-body-regular">{PRODUCT.tagline}</p>
       </div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-        {PATHS.map(p => {
-          const n = p.lessonLevel ? LESSONS.filter(l => l.level === p.lessonLevel).length : 0;
-          return (
-            <article key={p.id} className="panel flex flex-col gap-2 items-start">
-              <h2 className="text-card-title font-heading text-base">{p.title}</h2>
-              <p className="text-body-regular">{p.subtitle}</p>
-              <span className={n > 0 ? 'rpg-badge-status' : 'rpg-badge'}>{n > 0 ? `${n} materi interaktif` : 'Materi segera hadir'}</span>
-              <div className="flex gap-2 flex-wrap mt-1">
-                {n > 0 && <button className="skeuo-btn-gold" onClick={() => go('/learn')}>BELAJAR</button>}
-                <button className="skeuo-btn" onClick={() => go(`/planner?goal=${p.goal}`)}>BUAT RENCANA</button>
-              </div>
-            </article>
-          );
-        })}
-      </div>
+      {PRODUCT.modules.map((m, mi) => (
+        <div key={m.id} className="panel flex flex-col gap-3">
+          <div>
+            <span className="rpg-badge font-mono">MODUL {mi + 1}</span>
+            <h2 className="text-heading-section mt-2">{m.title}</h2>
+            <p className="text-body-regular">{m.subtitle}</p>
+          </div>
+          <ul className="list-none p-0 m-0 flex flex-col gap-2">
+            {m.lessonIds.map(id => {
+              const l = getLesson(id);
+              if (!l) return null;
+              const done = progress[id]?.completed;
+              return (
+                <li key={id}>
+                  <button className="rpg-card-interactive !p-3 w-full text-left flex items-center justify-between gap-3" onClick={() => go(`/learn/${id}`)}>
+                    <span className="text-card-title">{l.title}</span>
+                    <span className={done ? 'rpg-badge-status' : 'rpg-badge'}>{done ? 'Selesai' : `${l.minutes} menit`}</span>
+                  </button>
+                </li>
+              );
+            })}
+          </ul>
+        </div>
+      ))}
     </section>
   );
 }
