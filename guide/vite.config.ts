@@ -8,6 +8,7 @@ export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd(), 'VITE_');
   const product = env.VITE_PRODUCT || 'beginner';
   return {
+    base: process.env.GUIDE_BASE ?? '/',
     plugins: [react(), tailwindcss()],
     resolve: { alias: { '@product': path.resolve(__dirname, `src/products/${product}`) } },
   };
