@@ -8,14 +8,16 @@ export default function Learn({ lessonId, go }: { lessonId?: string; go: (to: st
   const progress = useMemo(loadProgress, [lessonId]);
   const lesson = lessonId ? getLesson(lessonId) : undefined;
 
-  if (lessonId && !lesson) return <section className="block"><p>Materi tidak ditemukan.</p><button className="btn ghost" onClick={() => go('/learn')}>Kembali</button></section>;
+  if (lessonId && !lesson) {
+    return <section className="panel mt-4 flex flex-col gap-3 items-start"><p className="text-body-regular">Materi tidak ditemukan.</p><button className="skeuo-btn" onClick={() => go('/learn')}>KEMBALI</button></section>;
+  }
 
   if (lesson) {
     const last = progress[lesson.id]?.lastScene ?? 0;
     return (
-      <section className="block">
-        <button className="btn ghost" onClick={() => go('/learn')}><ArrowLeft size={16} aria-hidden /> Semua materi</button>
-        <h1>{lesson.title}</h1>
+      <section className="flex flex-col gap-3 pt-4">
+        <button className="skeuo-btn self-start gap-1.5" onClick={() => go('/learn')}><ArrowLeft size={14} aria-hidden /> SEMUA MATERI</button>
+        <h1 className="text-heading-page">{lesson.title}</h1>
         <MorphLearningEngine
           lesson={lesson}
           initialScene={progress[lesson.id]?.completed ? 0 : last}
@@ -27,18 +29,22 @@ export default function Learn({ lessonId, go }: { lessonId?: string; go: (to: st
   }
 
   return (
-    <section className="block">
-      <h1>Learn</h1>
-      <p className="muted">Materi dibagi menjadi scene yang saling bertransisi, bukan artikel panjang.</p>
-      <div className="grid">
+    <section className="flex flex-col gap-4 pt-4">
+      <div>
+        <h1 className="text-heading-page">Learn</h1>
+        <p className="text-body-regular">Materi dibagi menjadi scene yang saling bertransisi, bukan artikel panjang.</p>
+      </div>
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
         {LESSONS.map(l => {
           const p = progress[l.id];
+          const pct = p?.completed ? 100 : p ? Math.round(((p.lastScene + 1) / l.scenes.length) * 100) : 0;
           return (
-            <button key={l.id} className="card" onClick={() => go(`/learn/${l.id}`)}>
-              <span className="tag">{l.level} / {l.category}</span>
-              <strong>{l.title}</strong>
-              <span className="muted">{l.summary}</span>
-              <span className="meta"><Clock size={14} aria-hidden /> {l.minutes} menit · {p?.completed ? 'Selesai' : p ? `Scene ${p.lastScene + 1}/${l.scenes.length}` : 'Belum dimulai'}</span>
+            <button key={l.id} className="rpg-card-interactive text-left flex flex-col gap-2 items-start" onClick={() => go(`/learn/${l.id}`)}>
+              <span className="rpg-badge font-mono">{l.level} / {l.category}</span>
+              <span className="text-card-title font-heading text-base">{l.title}</span>
+              <span className="text-body-regular">{l.summary}</span>
+              <div className="rpg-progress-track"><div className="rpg-progress-fill" style={{ width: `${pct}%` }} /></div>
+              <span className="text-caption-meta inline-flex items-center gap-1.5"><Clock size={12} aria-hidden /> {l.minutes} menit · {p?.completed ? 'Selesai' : p ? `Scene ${p.lastScene + 1}/${l.scenes.length}` : 'Belum dimulai'}</span>
             </button>
           );
         })}

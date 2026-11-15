@@ -14,3 +14,9 @@ npm run build
 - `src/planner/` — generator rencana deterministik (tanpa AI/random/waktu sistem); `planFingerprint` jadi kunci idempotensi import.
 - `db-proposal/` — usulan migrasi Supabase, **belum diterapkan**.
 - Mode tamu: progres dan rencana di `localStorage`. Login/impor ke SevnQuest menunggu Fase 5-6.
+
+## Design system
+Tampilan memakai design system SevnQuest apa adanya: `guide/src/sevnquest.css` adalah salinan utuh `src/index.css`
+(token, font, kelas `panel`, `rpg-card-interactive`, `skeuo-*`, `notebook-filter-tab`, mode gelap/terang).
+Setelah `src/index.css` berubah, jalankan `npm run sync-design`; tes `designSync.test.ts` gagal bila salinan tertinggal.
+`guide.css` hanya berisi gaya khas scene engine, dan memakai token yang sama.

@@ -1,10 +1,33 @@
 <!doctype html>
-<html lang="id">
+<html lang="id" class="dark">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#12151d" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="color-scheme" content="dark light" />
+    <meta name="theme-color" content="#12151d" id="meta-theme-color" />
     <title>SevnQuest Guide</title>
+    <meta name="description" content="Panduan belajar bahasa Jepang interaktif dengan rencana belajar personal." />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@600;700&family=Noto+Sans+JP:wght@500;700&family=Noto+Serif+JP:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Zen+Old+Mincho:wght@600;700;900&display=swap" rel="stylesheet">
+    <style>
+      :root { color-scheme: dark; }
+      html.theme-light { color-scheme: light; background-color: #eae7de; }
+      html { background-color: #12151d; -webkit-text-size-adjust: 100%; overscroll-behavior-y: none; }
+      body { margin: 0; min-height: 100dvh; -webkit-tap-highlight-color: transparent; }
+      #root { isolation: isolate; }
+    </style>
+    <script>
+      (function () {
+        try {
+          if (localStorage.getItem('sqg_theme') === 'light') {
+            var h = document.documentElement;
+            h.classList.add('theme-light'); h.classList.remove('dark'); h.style.colorScheme = 'light';
+            document.getElementById('meta-theme-color').setAttribute('content', '#eae7de');
+          }
+        } catch (e) {}
+      })();
+    </script>
   </head>
   <body>
     <div id="root"></div>

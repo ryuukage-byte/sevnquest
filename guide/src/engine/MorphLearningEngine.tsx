@@ -48,18 +48,18 @@ export default function MorphLearningEngine({ lesson, initialScene = 0, onSceneC
   }, [auto, scene, index, total, go]);
 
   return (
-    <section className="engine" aria-label={lesson.title}>
-      <div className="engine-progress" role="progressbar" aria-valuemin={1} aria-valuemax={total} aria-valuenow={index + 1}>
+    <section className="panel flex flex-col gap-4" aria-label={lesson.title}>
+      <div className="flex gap-1.5 justify-center" role="progressbar" aria-valuemin={1} aria-valuemax={total} aria-valuenow={index + 1}>
         {lesson.scenes.map((s, i) => (
-          <button key={s.id} className={i === index ? 'dot on' : i < index ? 'dot done' : 'dot'} onClick={() => go(i)} aria-label={`Scene ${i + 1}`} />
+          <button key={s.id} className={`h-1.5 w-6 rounded-full border-0 p-0 ${i === index ? 'bg-gold' : i < index ? 'bg-indigo' : 'bg-surface-elevated'}`} onClick={() => go(i)} aria-label={`Scene ${i + 1}`} />
         ))}
       </div>
 
-      <div className="stage">
+      <div className="engine-stage">
         <AnimatePresence mode="wait" custom={dir}>
           <motion.div
             key={scene.id}
-            className="scene"
+            className="w-full py-3"
             custom={dir}
             initial={{ opacity: 0, x: 40 * dir }}
             animate={{ opacity: 1, x: 0 }}
@@ -71,13 +71,13 @@ export default function MorphLearningEngine({ lesson, initialScene = 0, onSceneC
         </AnimatePresence>
       </div>
 
-      <div className="engine-controls">
-        <button className="btn ghost" onClick={() => go(index - 1)} disabled={index === 0}><ArrowLeft size={16} aria-hidden /> Sebelumnya</button>
-        <button className="btn ghost icon" onClick={() => setAuto(a => !a)} aria-pressed={auto} aria-label={auto ? 'Jeda otomatis' : 'Putar otomatis'}>
+      <div className="flex items-center justify-between gap-2 flex-wrap">
+        <button className="skeuo-btn gap-1.5" onClick={() => go(index - 1)} disabled={index === 0}><ArrowLeft size={16} aria-hidden /> Sebelumnya</button>
+        <button className="skeuo-btn" onClick={() => setAuto(a => !a)} aria-pressed={auto} aria-label={auto ? 'Jeda otomatis' : 'Putar otomatis'}>
           {auto ? <Pause size={16} aria-hidden /> : <Play size={16} aria-hidden />}
         </button>
-        <span className="count">{index + 1} / {total}</span>
-        <button className="btn primary" onClick={() => go(index + 1)} disabled={index === total - 1}>Lanjut <ArrowRight size={16} aria-hidden /></button>
+        <span className="text-caption-meta font-mono">{index + 1} / {total}</span>
+        <button className="skeuo-btn-gold gap-1.5" onClick={() => go(index + 1)} disabled={index === total - 1}>Lanjut <ArrowRight size={16} aria-hidden /></button>
       </div>
     </section>
   );
@@ -87,41 +87,41 @@ function SceneView({ scene }: { scene: Scene }) {
   switch (scene.type) {
     case 'introduction':
       return (
-        <div className="center">
-          <motion.h1 className="jp-hero" initial={{ opacity: 0, scale: 0.9, letterSpacing: '0.4em' }} animate={{ opacity: 1, scale: 1, letterSpacing: '0.08em' }} transition={{ duration: 0.9 }}>
+        <div className="flex flex-col items-center text-center gap-4">
+          <motion.h1 className="font-jp text-5xl sm:text-6xl font-bold text-text-primary m-0" initial={{ opacity: 0, scale: 0.9, letterSpacing: '0.4em' }} animate={{ opacity: 1, scale: 1, letterSpacing: '0.08em' }} transition={{ duration: 0.9 }}>
             {scene.content.title}
           </motion.h1>
-          <motion.p className="muted lead" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.6 }}>
+          <motion.p className="text-body-regular text-base" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.6 }}>
             {scene.content.subtitle}
           </motion.p>
         </div>
       );
     case 'structure':
       return (
-        <div className="center">
-          <h2>{scene.content.heading}</h2>
-          <div className="row">
+        <div className="flex flex-col items-center text-center gap-4">
+          <h2 className="text-heading-section">{scene.content.heading}</h2>
+          <div className="flex gap-3 flex-wrap justify-center items-center">
             {scene.content.pattern.map((r, i) => (
-              <motion.div key={`${r}${i}`} className={`chip role-${r}`} initial={{ opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.15 * i + 0.1 }}>
+              <motion.div key={`${r}${i}`} className={`sq-token role-${r} font-mono !text-xs tracking-widest font-bold`} initial={{ opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.15 * i + 0.1 }}>
                 {ROLE_LABEL[r]}
               </motion.div>
             ))}
           </div>
-          <p className="muted">{scene.content.caption}</p>
+          <p className="text-body-regular max-w-md">{scene.content.caption}</p>
         </div>
       );
     case 'transformation':
       return <Transformation scene={scene} />;
     case 'comparison':
       return (
-        <div className="compare">
-          <motion.div className="panel" initial={{ opacity: 0, x: -24 }} animate={{ opacity: 1, x: 0 }}>
-            <small>{scene.content.leftLabel ?? 'A'}</small>
-            <p className="big">{scene.content.left}</p>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <motion.div className="panel !bg-surface-inset" initial={{ opacity: 0, x: -24 }} animate={{ opacity: 1, x: 0 }}>
+            <small className="text-caption-meta font-mono tracking-widest">{scene.content.leftLabel ?? 'A'}</small>
+            <p className="text-xl font-bold text-text-primary mt-2">{scene.content.left}</p>
           </motion.div>
-          <motion.div className="panel accent" initial={{ opacity: 0, x: 24 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.25 }}>
-            <small>{scene.content.rightLabel ?? 'B'}</small>
-            <p className="big jp">{scene.content.right}</p>
+          <motion.div className="panel !border-gold" initial={{ opacity: 0, x: 24 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.25 }}>
+            <small className="text-caption-meta font-mono tracking-widest">{scene.content.rightLabel ?? 'B'}</small>
+            <p className="text-xl font-bold font-jp text-text-primary mt-2">{scene.content.right}</p>
           </motion.div>
         </div>
       );
@@ -129,12 +129,12 @@ function SceneView({ scene }: { scene: Scene }) {
       return <Practice scene={scene} />;
     case 'summary':
       return (
-        <div className="center">
-          <h2>{scene.content.heading}</h2>
-          <ul className="points">
+        <div className="flex flex-col items-center text-center gap-4">
+          <h2 className="text-heading-section">{scene.content.heading}</h2>
+          <ul className="list-none p-0 m-0 flex flex-col gap-3 text-left">
             {scene.content.points.map((p, i) => (
               <motion.li key={p} initial={{ opacity: 0, x: -12 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.2 * i }}>
-                <Check size={16} aria-hidden /> {p}
+                <Check size={16} className="text-state-success shrink-0 mt-0.5" aria-hidden /> {p}
               </motion.li>
             ))}
           </ul>
@@ -145,10 +145,10 @@ function SceneView({ scene }: { scene: Scene }) {
 
 function TokenCard({ t, showJa }: { t: Token; showJa: boolean }) {
   return (
-    <motion.div layout transition={SPRING} className={`token role-${t.role}`}>
+    <motion.div layout transition={SPRING} className={`sq-token role-${t.role}`}>
       <small>{ROLE_LABEL[t.role]}</small>
       <AnimatePresence mode="wait" initial={false}>
-        <motion.span key={showJa ? 'ja' : 'id'} className={showJa ? 'jp' : ''} initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -6 }} transition={{ duration: 0.15 }}>
+        <motion.span key={showJa ? 'ja' : 'id'} className={showJa ? 'font-jp' : ''} initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -6 }} transition={{ duration: 0.15 }}>
           {showJa ? t.ja : t.id_text}
         </motion.span>
       </AnimatePresence>
@@ -162,13 +162,13 @@ function Transformation({ scene }: { scene: Extract<Scene, { type: 'transformati
   const byId = useMemo(() => new Map(tokens.map(t => [t.id, t])), [tokens]);
   const order = (morphed ? to : from).map(id => byId.get(id)!);
   return (
-    <div className="center">
-      <h2>{heading}</h2>
-      <div className="row morph" aria-live="polite">
+    <div className="flex flex-col items-center text-center gap-4">
+      <h2 className="text-heading-section">{heading}</h2>
+      <div className="flex gap-3 flex-wrap justify-center items-center min-h-24" aria-live="polite">
         {order.map(t => <TokenCard key={t.id} t={t} showJa={morphed} />)}
       </div>
-      <p className="muted">{caption}</p>
-      <button className="btn primary" onClick={() => setMorphed(m => !m)}>
+      <p className="text-body-regular max-w-md">{caption}</p>
+      <button className="btn rpg-btn rpg-btn-primary" onClick={() => setMorphed(m => !m)}>
         {morphed ? <><RotateCcw size={16} aria-hidden /> Kembali</> : <><Shuffle size={16} aria-hidden /> Ubah ke bahasa Jepang</>}
       </button>
     </div>
@@ -183,29 +183,29 @@ function Practice({ scene }: { scene: Extract<Scene, { type: 'practice' }> }) {
   const correct = picked.length === answer.length && picked.every((id, i) => id === answer[i]);
   const pool = tokens.filter(t => !picked.includes(t.id));
   return (
-    <div className="center">
-      <h2>{prompt}</h2>
-      <div className={`slots ${checked ? (correct ? 'ok' : 'bad') : ''}`} aria-label="Jawaban">
-        {picked.length === 0 && <span className="muted">Ketuk kata di bawah sesuai urutan</span>}
+    <div className="flex flex-col items-center text-center gap-4">
+      <h2 className="text-heading-section">{prompt}</h2>
+      <div className={`sq-slots ${checked ? (correct ? 'ok' : 'bad') : ''}`} aria-label="Jawaban">
+        {picked.length === 0 && <span className="text-caption-meta">Ketuk kata di bawah sesuai urutan</span>}
         {picked.map(id => (
-          <button key={id} className={`token role-${byId.get(id)!.role}`} onClick={() => { setPicked(p => p.filter(x => x !== id)); setChecked(false); }}>
-            <span className="jp">{byId.get(id)!.ja}</span>
+          <button key={id} className={`sq-token role-${byId.get(id)!.role}`} onClick={() => { setPicked(p => p.filter(x => x !== id)); setChecked(false); }}>
+            <span className="font-jp">{byId.get(id)!.ja}</span>
           </button>
         ))}
       </div>
-      <div className="row">
+      <div className="flex gap-3 flex-wrap justify-center items-center">
         {pool.map(t => (
-          <button key={t.id} className={`token role-${t.role}`} onClick={() => { setPicked(p => [...p, t.id]); setChecked(false); }}>
-            <small>{t.id_text}</small><span className="jp">{t.ja}</span>
+          <button key={t.id} className={`sq-token role-${t.role}`} onClick={() => { setPicked(p => [...p, t.id]); setChecked(false); }}>
+            <small>{t.id_text}</small><span className="font-jp">{t.ja}</span>
           </button>
         ))}
       </div>
-      <div className="row">
-        <button className="btn primary" disabled={picked.length !== answer.length} onClick={() => setChecked(true)}>Periksa</button>
-        <button className="btn ghost" onClick={() => { setPicked([]); setChecked(false); }}><RotateCcw size={16} aria-hidden /> Ulang</button>
+      <div className="flex gap-3 flex-wrap justify-center items-center">
+        <button className="btn rpg-btn rpg-btn-primary disabled:opacity-50" disabled={picked.length !== answer.length} onClick={() => setChecked(true)}>Periksa</button>
+        <button className="skeuo-btn gap-1.5" onClick={() => { setPicked([]); setChecked(false); }}><RotateCcw size={16} aria-hidden /> Ulang</button>
       </div>
       {checked && (
-        <p role="status" className={correct ? 'good' : 'warn'}>
+        <p role="status" className={`text-sm font-bold ${correct ? 'text-state-success' : 'text-state-danger'}`}>
           {correct ? 'Tepat! Subjek, objek, lalu kata kerja.' : 'Belum tepat. Ingat: kata kerja selalu di akhir.'}
         </p>
       )}

@@ -1,0 +1,18 @@
+/* Hanya bagian khas Guide (engine scene). Semua warna/bayangan memakai token SevnQuest. */
+.engine-stage { min-height: 340px; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+.sq-token {
+  display: flex; flex-direction: column; align-items: center; gap: 2px; min-width: 96px;
+  padding: 12px 18px; border-radius: 14px; font-size: 1.15rem; color: var(--text-primary);
+  background: var(--color-surface-inset); border: 2px solid var(--color-border-subtle);
+  box-shadow: inset 2px 2px 5px var(--neu-d), inset -2px -2px 5px var(--neu-l);
+}
+button.sq-token { cursor: pointer; background: var(--color-surface-card); box-shadow: 3px 3px 8px var(--neu-d), -3px -3px 8px var(--neu-l); }
+.sq-token small { font-family: var(--font-mono); font-size: 10px; letter-spacing: .1em; color: var(--text-muted); }
+.role-subject { border-color: var(--color-kotoba); }
+.role-object { border-color: var(--color-bunpou); }
+.role-verb { border-color: var(--color-kanji); }
+.role-particle { border-color: var(--color-kana); }
+.sq-slots { min-height: 64px; width: 100%; max-width: 520px; border: 2px dashed var(--thread); border-radius: 16px; padding: 10px; display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; align-items: center; }
+.sq-slots.ok { border-color: var(--color-state-success); }
+.sq-slots.bad { border-color: var(--color-state-danger); }
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
