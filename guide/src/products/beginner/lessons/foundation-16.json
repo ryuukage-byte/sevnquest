@@ -1,0 +1,309 @@
+{
+  "id": "foundation-16",
+  "level": "BEGINNER",
+  "category": "concept",
+  "title": "Evaluasi Foundation",
+  "summary": "Uji pemahamanmu dari seluruh bab Foundation.",
+  "minutes": 15,
+  "scenes": [
+    {
+      "id": "scene-01",
+      "type": "introduction",
+      "section": "introduction",
+      "duration": 4000,
+      "content": {
+        "title": "総復習",
+        "subtitle": "Chapter 16: Evaluasi Foundation"
+      }
+    },
+    {
+      "id": "scene-02",
+      "type": "explain",
+      "section": "introduction",
+      "content": {
+        "heading": "Cara memakai evaluasi ini",
+        "paragraphs": [
+          "Ada 12 pertanyaan yang mencakup seluruh bab. Jawablah dari pemahaman, bukan hafalan.",
+          "Jika salah, baca penjelasan yang muncul, lalu coba lagi. Tidak ada nilai yang dicatat; tujuannya mengetahui bagian mana yang masih perlu diulang."
+        ]
+      }
+    },
+    {
+      "id": "scene-03",
+      "type": "quiz",
+      "section": "exercises",
+      "content": {
+        "question": "Urutan dasar kalimat Jepang adalah...",
+        "options": [
+          "Subjek, Kata kerja, Objek",
+          "Subjek, Objek, Kata kerja",
+          "Objek, Subjek, Kata kerja"
+        ],
+        "answer": 1,
+        "why": [
+          "Itu urutan bahasa Indonesia.",
+          null,
+          "Pola dasar menaruh subjek lebih dulu."
+        ]
+      }
+    },
+    {
+      "id": "scene-04",
+      "type": "quiz",
+      "section": "exercises",
+      "content": {
+        "question": "Aksara untuk kata serapan seperti テレビ adalah...",
+        "options": [
+          "Kanji",
+          "Hiragana",
+          "Katakana"
+        ],
+        "answer": 2,
+        "why": [
+          "Kanji untuk makna inti.",
+          "Hiragana untuk tata bahasa.",
+          null
+        ]
+      }
+    },
+    {
+      "id": "scene-05",
+      "type": "quiz",
+      "section": "exercises",
+      "content": {
+        "question": "Bagaimana membaca し?",
+        "options": [
+          "si",
+          "shi",
+          "chi"
+        ],
+        "answer": 1,
+        "big": "し",
+        "why": [
+          "Di baris S, し dibaca \"shi\".",
+          null,
+          "Itu ち."
+        ]
+      }
+    },
+    {
+      "id": "scene-06",
+      "type": "quiz",
+      "section": "exercises",
+      "content": {
+        "question": "Apa fungsi partikel を?",
+        "options": [
+          "Menandai topik",
+          "Menandai objek",
+          "Menandai pertanyaan"
+        ],
+        "answer": 1,
+        "why": [
+          "Itu は.",
+          null,
+          "Itu か."
+        ]
+      }
+    },
+    {
+      "id": "scene-07",
+      "type": "quiz",
+      "section": "exercises",
+      "content": {
+        "question": "Untuk menjawab \"Siapa yang datang?\", partikel yang dipakai setelah nama orang adalah...",
+        "options": [
+          "は",
+          "が",
+          "を"
+        ],
+        "answer": 1,
+        "why": [
+          "は menandai topik yang sudah diketahui.",
+          null,
+          "を menandai objek."
+        ]
+      }
+    },
+    {
+      "id": "scene-08",
+      "type": "quiz",
+      "section": "exercises",
+      "content": {
+        "question": "Bentuk lampau dari のみます adalah...",
+        "options": [
+          "のみません",
+          "のみました",
+          "のむ"
+        ],
+        "answer": 1,
+        "why": [
+          "Itu penyangkalan.",
+          null,
+          "Itu bentuk kamus."
+        ]
+      }
+    },
+    {
+      "id": "scene-09",
+      "type": "quiz",
+      "section": "exercises",
+      "content": {
+        "question": "Mana yang kata sifat な?",
+        "options": [
+          "たかい",
+          "おおきい",
+          "しずか"
+        ],
+        "answer": 2,
+        "why": [
+          "Kata sifat い.",
+          "Kata sifat い.",
+          null
+        ]
+      }
+    },
+    {
+      "id": "scene-10",
+      "type": "quiz",
+      "section": "exercises",
+      "content": {
+        "question": "Mana bentuk sopan?",
+        "options": [
+          "たべる",
+          "たべます",
+          "たべろ"
+        ],
+        "answer": 1,
+        "why": [
+          "Itu bentuk biasa.",
+          null,
+          "Itu bentuk perintah."
+        ]
+      }
+    },
+    {
+      "id": "scene-11",
+      "type": "quiz",
+      "section": "exercises",
+      "content": {
+        "question": "Partikel apa yang menandai tempat aksi?",
+        "options": [
+          "で",
+          "へ",
+          "の"
+        ],
+        "answer": 0,
+        "why": [
+          null,
+          "へ menandai tujuan.",
+          "の menandai milik."
+        ]
+      }
+    },
+    {
+      "id": "scene-12",
+      "type": "quiz",
+      "section": "exercises",
+      "content": {
+        "question": "Mana kalimat yang benar?",
+        "options": [
+          "わたしは たべます ごはんを",
+          "わたしは ごはんを たべます",
+          "ごはんを たべます わたしは"
+        ],
+        "answer": 1,
+        "why": [
+          "Kata kerja di tengah.",
+          null,
+          "Kata kerja harus di akhir."
+        ]
+      }
+    },
+    {
+      "id": "scene-13",
+      "type": "practice",
+      "section": "exercises",
+      "content": {
+        "prompt": "Susun: \"Saya membaca buku.\"",
+        "tokens": [
+          {
+            "id": "v",
+            "ja": "よみます",
+            "id_text": "membaca",
+            "role": "verb"
+          },
+          {
+            "id": "o",
+            "ja": "ほんを",
+            "id_text": "buku",
+            "role": "object"
+          },
+          {
+            "id": "s",
+            "ja": "わたしは",
+            "id_text": "Saya",
+            "role": "subject"
+          }
+        ],
+        "answer": [
+          "s",
+          "o",
+          "v"
+        ]
+      }
+    },
+    {
+      "id": "scene-14",
+      "type": "practice",
+      "section": "exercises",
+      "content": {
+        "prompt": "Susun: \"Kemarin saya makan sushi.\"",
+        "tokens": [
+          {
+            "id": "v",
+            "ja": "たべました",
+            "id_text": "makan",
+            "role": "verb"
+          },
+          {
+            "id": "t",
+            "ja": "きのう",
+            "id_text": "kemarin",
+            "role": "other"
+          },
+          {
+            "id": "o",
+            "ja": "すしを",
+            "id_text": "sushi",
+            "role": "object"
+          },
+          {
+            "id": "s",
+            "ja": "わたしは",
+            "id_text": "Saya",
+            "role": "subject"
+          }
+        ],
+        "answer": [
+          "t",
+          "s",
+          "o",
+          "v"
+        ]
+      }
+    },
+    {
+      "id": "scene-15",
+      "type": "summary",
+      "section": "summary",
+      "content": {
+        "heading": "Rangkuman",
+        "points": [
+          "Kalau masih ada yang salah, ulangi bab terkait.",
+          "Langkah berikutnya: Hiragana Mastery, lalu Katakana Mastery.",
+          "Jangan sekadar menghafal bahasa Jepang. Pahami logika di baliknya."
+        ]
+      }
+    }
+  ]
+}

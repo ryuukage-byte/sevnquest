@@ -1,0 +1,362 @@
+{
+  "id": "foundation-10",
+  "level": "BEGINNER",
+  "category": "grammar",
+  "title": "Mengenal Kata Kerja",
+  "summary": "Kata kerja bentuk sopan: bentuk kamus, ます, ません, ました, dan ませんでした.",
+  "minutes": 12,
+  "scenes": [
+    {
+      "id": "scene-01",
+      "type": "introduction",
+      "section": "introduction",
+      "duration": 4000,
+      "content": {
+        "title": "動詞",
+        "subtitle": "Chapter 10: Mengenal kata kerja"
+      }
+    },
+    {
+      "id": "scene-02",
+      "type": "explain",
+      "section": "definition",
+      "content": {
+        "heading": "Kata kerja dalam bahasa Jepang",
+        "paragraphs": [
+          "Kata kerja disebut 動詞 (doushi). Di kamus, semua kata kerja berakhir dengan bunyi \"u\", misalnya たべる (taberu, makan) dan のむ (nomu, minum). Bentuk ini disebut bentuk kamus.",
+          "Dalam percakapan sopan, kita memakai bentuk ます (masu). Contoh: たべる menjadi たべます, のむ menjadi のみます.",
+          "Kata kerja Jepang tidak berubah menurut siapa pelakunya. \"Saya makan\" dan \"dia makan\" sama-sama たべます."
+        ],
+        "terms": [
+          {
+            "term": "動詞",
+            "reading": "doushi",
+            "meaning": "kata kerja"
+          },
+          {
+            "term": "辞書形",
+            "reading": "jishokei",
+            "meaning": "bentuk kamus"
+          }
+        ]
+      }
+    },
+    {
+      "id": "scene-03",
+      "type": "vocab",
+      "section": "explanation",
+      "content": {
+        "heading": "Lima kata kerja pertama",
+        "items": [
+          {
+            "ja": "たべる / たべます",
+            "reading": "taberu / tabemasu",
+            "id_text": "makan"
+          },
+          {
+            "ja": "のむ / のみます",
+            "reading": "nomu / nomimasu",
+            "id_text": "minum"
+          },
+          {
+            "ja": "みる / みます",
+            "reading": "miru / mimasu",
+            "id_text": "melihat, menonton"
+          },
+          {
+            "ja": "いく / いきます",
+            "reading": "iku / ikimasu",
+            "id_text": "pergi"
+          },
+          {
+            "ja": "よむ / よみます",
+            "reading": "yomu / yomimasu",
+            "id_text": "membaca"
+          }
+        ]
+      }
+    },
+    {
+      "id": "scene-04",
+      "type": "explain",
+      "section": "concept",
+      "content": {
+        "heading": "Empat bentuk waktu dan penyangkalan",
+        "paragraphs": [
+          "Bahasa Jepang hanya membedakan dua waktu: sekarang/akan datang (non-lampau) dan lampau. Bentuk ます juga bisa berarti kebiasaan atau rencana.",
+          "1. たべます (tabemasu) = makan / akan makan.",
+          "2. たべません (tabemasen) = tidak makan.",
+          "3. たべました (tabemashita) = sudah makan.",
+          "4. たべませんでした (tabemasendeshita) = tidak makan (di masa lampau)."
+        ],
+        "analogy": "Anggap ます sebagai \"dasar\", lalu ganti ujungnya: ません untuk \"tidak\", ました untuk \"sudah\", ませんでした untuk \"tidak (waktu lalu)\"."
+      }
+    },
+    {
+      "id": "scene-05",
+      "type": "explain",
+      "section": "logic",
+      "content": {
+        "heading": "Mengapa kata kerja memuat begitu banyak informasi?",
+        "paragraphs": [
+          "Karena kata kerja berada di akhir kalimat dan subjek sering dihilangkan, ujung kata kerja menjadi tempat informasi penting: waktu, penyangkalan, dan kesopanan.",
+          "Itu sebabnya kamu perlu membaca sampai akhir kalimat sebelum benar-benar paham maksudnya."
+        ]
+      }
+    },
+    {
+      "id": "scene-06",
+      "type": "example",
+      "section": "examples",
+      "content": {
+        "parts": [
+          {
+            "ja": "きのう",
+            "reading": "きのう",
+            "romaji": "kinou",
+            "id_text": "kemarin",
+            "role": "other"
+          },
+          {
+            "ja": "わたし",
+            "reading": "わたし",
+            "romaji": "watashi",
+            "id_text": "saya",
+            "role": "subject"
+          },
+          {
+            "ja": "は",
+            "reading": "は",
+            "romaji": "wa",
+            "id_text": "penanda topik",
+            "role": "particle"
+          },
+          {
+            "ja": "さかな",
+            "reading": "さかな",
+            "romaji": "sakana",
+            "id_text": "ikan",
+            "role": "object"
+          },
+          {
+            "ja": "を",
+            "reading": "を",
+            "romaji": "o",
+            "id_text": "penanda objek",
+            "role": "particle"
+          },
+          {
+            "ja": "たべました",
+            "reading": "たべました",
+            "romaji": "tabemashita",
+            "id_text": "sudah makan",
+            "role": "verb"
+          }
+        ],
+        "translation": "Kemarin saya makan ikan.",
+        "heading": "Kata kerja lampau"
+      }
+    },
+    {
+      "id": "scene-07",
+      "type": "example",
+      "section": "examples",
+      "content": {
+        "parts": [
+          {
+            "ja": "わたし",
+            "reading": "わたし",
+            "romaji": "watashi",
+            "id_text": "saya",
+            "role": "subject"
+          },
+          {
+            "ja": "は",
+            "reading": "は",
+            "romaji": "wa",
+            "id_text": "penanda topik",
+            "role": "particle"
+          },
+          {
+            "ja": "コーヒー",
+            "reading": "こおひい",
+            "romaji": "koohii",
+            "id_text": "kopi",
+            "role": "object"
+          },
+          {
+            "ja": "を",
+            "reading": "を",
+            "romaji": "o",
+            "id_text": "penanda objek",
+            "role": "particle"
+          },
+          {
+            "ja": "のみません",
+            "reading": "のみません",
+            "romaji": "nomimasen",
+            "id_text": "tidak minum",
+            "role": "verb"
+          }
+        ],
+        "translation": "Saya tidak minum kopi.",
+        "heading": "Kata kerja negatif"
+      }
+    },
+    {
+      "id": "scene-08",
+      "type": "example",
+      "section": "usage",
+      "content": {
+        "parts": [
+          {
+            "ja": "わたし",
+            "reading": "わたし",
+            "romaji": "watashi",
+            "id_text": "saya",
+            "role": "subject"
+          },
+          {
+            "ja": "は",
+            "reading": "は",
+            "romaji": "wa",
+            "id_text": "penanda topik",
+            "role": "particle"
+          },
+          {
+            "ja": "がっこう",
+            "reading": "がっこう",
+            "romaji": "gakkou",
+            "id_text": "sekolah",
+            "role": "other"
+          },
+          {
+            "ja": "へ",
+            "reading": "へ",
+            "romaji": "e",
+            "id_text": "menuju",
+            "role": "particle"
+          },
+          {
+            "ja": "いきます",
+            "reading": "いきます",
+            "romaji": "ikimasu",
+            "id_text": "pergi",
+            "role": "verb"
+          }
+        ],
+        "translation": "Saya pergi ke sekolah.",
+        "heading": "Partikel へ untuk arah",
+        "note": "へ ditulis \"he\" tetapi dibaca \"e\" sebagai partikel arah (ke...)."
+      }
+    },
+    {
+      "id": "scene-09",
+      "type": "explain",
+      "section": "usage",
+      "content": {
+        "heading": "Dua kata kerja tak beraturan",
+        "paragraphs": [
+          "Hampir semua kata kerja mengikuti pola yang teratur. Dua yang paling terkenal adalah する (suru, melakukan) menjadi します, dan くる (kuru, datang) menjadi きます.",
+          "Keduanya sangat sering dipakai. Kamu akan menemukan する pada banyak kata, misalnya べんきょうします (belajar)."
+        ]
+      }
+    },
+    {
+      "id": "scene-10",
+      "type": "mistakes",
+      "section": "mistakes",
+      "content": {
+        "heading": "Kesalahan yang sering dilakukan pemula",
+        "items": [
+          {
+            "wrong": "たべますです",
+            "right": "たべます",
+            "why": "ます sudah membuat kalimat sopan. Menambahkan です di belakang kata kerja ます salah."
+          },
+          {
+            "wrong": "Mengira kata kerja berubah untuk \"saya\", \"kamu\", dan \"dia\"",
+            "right": "Kata kerja tetap sama untuk semua pelaku",
+            "why": "Tidak ada konjugasi menurut orang."
+          },
+          {
+            "wrong": "Memakai たべます untuk \"sudah makan\"",
+            "right": "たべました",
+            "why": "Gunakan ました untuk kejadian yang sudah lewat."
+          }
+        ]
+      }
+    },
+    {
+      "id": "scene-11",
+      "type": "quiz",
+      "section": "exercises",
+      "content": {
+        "question": "Bentuk lampau dari たべます adalah...",
+        "options": [
+          "たべません",
+          "たべました",
+          "たべる"
+        ],
+        "answer": 1,
+        "why": [
+          "Itu bentuk penyangkalan.",
+          null,
+          "Itu bentuk kamus."
+        ]
+      }
+    },
+    {
+      "id": "scene-12",
+      "type": "quiz",
+      "section": "exercises",
+      "content": {
+        "question": "\"Saya tidak minum kopi\" memakai kata kerja...",
+        "options": [
+          "のみます",
+          "のみません",
+          "のみました"
+        ],
+        "answer": 1,
+        "why": [
+          "Itu tanpa penyangkalan.",
+          null,
+          "Itu bentuk lampau."
+        ]
+      }
+    },
+    {
+      "id": "scene-13",
+      "type": "quiz",
+      "section": "exercises",
+      "content": {
+        "question": "Partikel へ pada がっこうへ いきます dibaca...",
+        "options": [
+          "he",
+          "e",
+          "wa"
+        ],
+        "answer": 1,
+        "why": [
+          "Sebagai partikel へ dibaca \"e\".",
+          null,
+          "Itu bacaan は sebagai partikel."
+        ]
+      }
+    },
+    {
+      "id": "scene-14",
+      "type": "summary",
+      "section": "summary",
+      "content": {
+        "heading": "Rangkuman",
+        "points": [
+          "Bentuk kamus berakhir \"u\", bentuk sopan memakai ます.",
+          "ます / ません / ました / ませんでした.",
+          "Kata kerja tidak berubah menurut pelaku.",
+          "へ (dibaca \"e\") menandai arah."
+        ]
+      }
+    }
+  ]
+}

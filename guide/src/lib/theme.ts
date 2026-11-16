@@ -16,6 +16,10 @@ export function useTheme(): [Theme, () => void] {
     root.classList.toggle('theme-light', light);
     root.classList.toggle('dark', !light);
     root.style.colorScheme = light ? 'light' : 'dark';
+    // Latar dipasang inline agar tetap benar di bingkai yang menimpa gaya html/body (mis. pratinjau artifact).
+    const bg = light ? '#eae7de' : '#12151d';
+    root.style.backgroundColor = bg;
+    document.body.style.backgroundColor = bg;
     document.getElementById('meta-theme-color')?.setAttribute('content', light ? '#eae7de' : '#12151d');
     try { localStorage.setItem(KEY, theme); } catch { /* abaikan */ }
   }, [theme]);

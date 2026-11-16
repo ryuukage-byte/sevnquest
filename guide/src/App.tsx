@@ -34,7 +34,7 @@ export default function App() {
   const section = parts[0] ?? '';
 
   return (
-    <div className="min-h-dvh flex flex-col">
+    <div className="min-h-dvh flex flex-col bg-bg-page text-text-primary overflow-x-hidden">
       <div className="sticky top-0 z-20 px-3 pt-3 pb-2 pt-safe">
         <header className="skeuo-header max-w-4xl mx-auto !flex-wrap gap-2">
           <a href="#/" className="crumb font-mono text-[11px] font-bold uppercase tracking-[0.12em] text-text-primary no-underline relative z-10">

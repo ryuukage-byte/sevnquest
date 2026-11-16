@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Trash2 } from 'lucide-react';
+import { Check, Trash2 } from 'lucide-react';
 import { LESSONS } from '../products';
 import { deletePlan, loadPlans, loadProgress } from '../lib/storage';
 import { generatePlan, isPlanError } from '../planner/planner';
@@ -20,7 +20,7 @@ export default function Journey({ go }: { go: (to: string) => void }) {
         <h2 className="text-heading-section">Materi selesai ({done.length}/{LESSONS.length})</h2>
         {done.length === 0
           ? <p className="text-body-regular">Belum ada. <a className="text-gold" href="#/learn">Mulai belajar</a>.</p>
-          : <ul className="m-0 pl-5 text-body-regular">{done.map(l => <li key={l.id}>{l.title}</li>)}</ul>}
+          : <ul className="list-none p-0 m-0 flex flex-col gap-2">{done.map(l => <li key={l.id} className="text-body-regular flex items-center gap-2"><Check size={14} className="text-state-success shrink-0" aria-hidden /> {l.title}</li>)}</ul>}
       </div>
 
       <h2 className="text-heading-section">Rencana belajar tersimpan</h2>
