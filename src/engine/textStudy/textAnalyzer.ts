@@ -302,7 +302,7 @@ function getGrammarKeys(): GrammarKey[] {
 // PARTIKEL
 // ------------------------------------------------------------------------------
 
-const PARTICLE_FN: Record<string, string> = {
+export const PARTICLE_FN: Record<string, string> = {
   は: 'Penanda topik: hal yang sedang dibicarakan.',
   が: 'Penanda subjek: pelaku/hal yang melakukan atau mengalami.',
   を: 'Penanda objek langsung dari kata kerja.',

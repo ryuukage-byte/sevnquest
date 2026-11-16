@@ -26,6 +26,8 @@ export const FEATURES: FeatureEntry[] = [
     explain: 'Latihan Menulis melatih urutan goresan kanji dan kana langsung di layar. Mulai dari deck di Buku Saku.' },
   { id: 'buku-saku', title: 'Buku Saku & Deck', hint: 'Kumpulan deck kata, kanji, dan pola milikmu', keywords: 'buku saku deck bookmark simpan koleksi bikin buat', target: { type: 'tab', tab: 'deck' },
     explain: 'Buku Saku menyimpan deck milikmu dan buku resmi. Kamu bisa membuat deck sendiri, menyusun deck dari topik, atau menyalin bab buku resmi.' },
+  { id: 'writing-companion', title: 'Writing Companion', hint: 'Library → Menulis: salin paragraf di kertas, ketuk bagian untuk goresan & penjelasan', keywords: 'writing companion menulis tangan salin paragraf buku kertas goresan stroke penjelasan romaji partikel', target: { type: 'tab', tab: 'library' },
+    explain: 'Writing Companion menemanimu menyalin paragraf Jepang di buku. Ketuk kata, kanji, atau frasa untuk melihat urutan goresan (Writing) dan penjelasannya (Explanation). Ada di Library, tab Menulis.' },
   { id: 'kotoba', title: 'Kamus Kotoba', hint: 'Library → Kotoba: cari kata, arti, dan contoh kalimat', keywords: 'kotoba kosakata kata vocab kamus arti', target: { type: 'tab', tab: 'library' },
     explain: 'Kamus Kotoba berisi kosakata lengkap dengan arti, cara baca, dan contoh kalimat. Ada di Library, tab Kotoba.' },
   { id: 'kanji', title: 'Kamus Kanji', hint: 'Library → Kanji: bacaan, arti, urutan goresan', keywords: 'kanji onyomi kunyomi goresan huruf', target: { type: 'tab', tab: 'library' },

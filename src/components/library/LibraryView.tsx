@@ -5,11 +5,12 @@ import { BunpouLibraryView } from './BunpouLibraryView';
 import { QuestionLibraryView } from './QuestionLibraryView';
 import { DokkaiLibraryView } from './DokkaiLibraryView';
 import { ChoukaiLibraryView } from './ChoukaiLibraryView';
+import { WritingCompanionView } from './WritingCompanionView';
 import { playSound } from '../../utils/audio';
 import { UserDeck, DeckItemCategory } from '../../types/rpg';
 import { ItemMasteryRecord } from '../../types/content';
 
-export type LibraryTab = 'kotoba' | 'kanji' | 'bunpou' | 'dokkai' | 'choukai' | 'soal';
+export type LibraryTab = 'kotoba' | 'kanji' | 'bunpou' | 'dokkai' | 'choukai' | 'soal' | 'menulis';
 
 interface LibraryViewProps {
   soundEnabled?: boolean;
@@ -59,6 +60,7 @@ export const LibraryView: React.FC<LibraryViewProps> = ({
     dokkai: false,
     choukai: false,
     soal: false,
+    menulis: false,
   });
 
   useEffect(() => {
@@ -86,7 +88,7 @@ export const LibraryView: React.FC<LibraryViewProps> = ({
               Perpustakaan & Grimoire Bahasa Jepang
             </h1>
             <p className="text-xs sm:text-sm text-text-secondary font-medium">
-              Ensiklopedia terpadu: Kosakata, Kanji, Pola Kalimat, Dokkai, Choukai, dan Bank Soal berstandar resmi JLPT (N5〜N1)
+              Ensiklopedia terpadu: Kosakata, Kanji, Pola Kalimat, Dokkai, Choukai, Bank Soal, dan Writing Companion berstandar resmi JLPT (N5〜N1)
             </p>
           </div>
 
@@ -187,6 +189,21 @@ export const LibraryView: React.FC<LibraryViewProps> = ({
                 <span className="text-[10px] opacity-70 font-mono">Jilid VI (JLPT)</span>
               </div>
             </button>
+            {/* Jilid VII: Writing Companion (menyalin dengan tangan) */}
+            <button
+              onClick={() => handleTabChange('menulis')}
+              className={`book-tab-btn ${
+                libraryTab === 'menulis' ? 'active' : 'inactive'
+              }`}
+            >
+              <div className="w-6 h-6 rounded-lg bg-surface-inset border border-border-subtle flex items-center justify-center text-xs font-jp font-bold text-text-primary">
+                書
+              </div>
+              <div className="text-left">
+                <span className="block text-xs leading-none font-bold">Menulis</span>
+                <span className="text-[10px] opacity-70 font-mono">Jilid VII</span>
+              </div>
+            </button>
           </div>
         </div>
       </div>
@@ -261,6 +278,11 @@ export const LibraryView: React.FC<LibraryViewProps> = ({
             onRecordStudy={onRecordStudy as any}
             onCompleteStudyItem={onCompleteStudyItem}
           />
+        </div>
+      )}
+      {visitedTabs.menulis && (
+        <div className={libraryTab === 'menulis' ? 'block' : 'hidden'}>
+          <WritingCompanionView soundEnabled={soundEnabled} />
         </div>
       )}
     </div>
