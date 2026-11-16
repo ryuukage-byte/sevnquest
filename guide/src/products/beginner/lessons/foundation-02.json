@@ -3,8 +3,8 @@
   "level": "BEGINNER",
   "category": "concept",
   "title": "Mengenal Tiga Sistem Penulisan",
-  "summary": "Hiragana, katakana, dan kanji: apa tugas masing-masing dan kenapa semuanya dipakai.",
-  "minutes": 9,
+  "summary": "Hiragana, katakana, dan kanji: apa bedanya, dengan cara yang gampang.",
+  "minutes": 6,
   "scenes": [
     {
       "id": "scene-01",
@@ -12,8 +12,8 @@
       "section": "introduction",
       "duration": 4000,
       "content": {
-        "title": "漢字・ひらがな・カタカナ",
-        "subtitle": "Chapter 02: Tiga sistem penulisan"
+        "title": "ひらがな カタカナ 漢字",
+        "subtitle": "Tiga jenis tulisan Jepang"
       }
     },
     {
@@ -21,167 +21,70 @@
       "type": "explain",
       "section": "definition",
       "content": {
-        "heading": "Tiga sistem tulis",
+        "heading": "Ada tiga jenis tulisan",
         "paragraphs": [
-          "Bahasa Jepang ditulis dengan tiga jenis aksara sekaligus, bahkan sering dalam satu kalimat.",
-          "Kanji (漢字) adalah aksara yang berasal dari Tiongkok. Satu kanji membawa makna, misalnya 水 berarti \"air\".",
-          "Hiragana (ひらがな) dan katakana (カタカナ) masing-masing punya 46 huruf dasar. Keduanya mewakili bunyi, bukan makna.",
-          "Selain itu ada rōmaji (ローマ字), yaitu huruf Latin. Kamu akan melihatnya di papan stasiun dan di buku pelajaran ini sebagai alat bantu baca."
-        ],
-        "terms": [
-          {
-            "term": "漢字",
-            "reading": "kanji",
-            "meaning": "aksara bermakna"
-          },
-          {
-            "term": "ひらがな",
-            "reading": "hiragana",
-            "meaning": "aksara bunyi untuk tata bahasa"
-          },
-          {
-            "term": "カタカナ",
-            "reading": "katakana",
-            "meaning": "aksara bunyi untuk kata serapan"
-          }
+          "1. Hiragana: huruf dasar. Bunyinya sederhana.",
+          "2. Katakana: huruf untuk kata dari luar negeri.",
+          "3. Kanji: tulisan yang punya arti, bentuknya seperti gambar."
         ]
       }
     },
     {
       "id": "scene-03",
-      "type": "explain",
-      "section": "concept",
-      "content": {
-        "heading": "Pembagian tugas",
-        "paragraphs": [
-          "Kanji dipakai untuk inti makna: kata benda dan bagian utama kata kerja atau kata sifat.",
-          "Hiragana dipakai untuk bagian tata bahasa: partikel seperti は dan を, serta akhiran kata kerja seperti ます.",
-          "Katakana dipakai untuk kata serapan dari bahasa asing (テレビ, \"televisi\"), nama asing, dan terkadang untuk memberi penekanan."
-        ],
-        "analogy": "Bayangkan membangun rumah. Kanji adalah batu bata yang membawa bentuk dan isi, hiragana adalah semen yang merekatkan, dan katakana adalah perabot impor yang diberi tampilan khusus."
-      }
-    },
-    {
-      "id": "scene-04",
-      "type": "explain",
-      "section": "logic",
-      "content": {
-        "heading": "Kenapa harus tiga?",
-        "paragraphs": [
-          "Orang Jepang meminjam kanji dari Tiongkok. Masalahnya, tata bahasa Jepang berbeda dari bahasa Tiongkok: ada partikel dan akhiran kata kerja yang tidak punya kanji.",
-          "Karena itu dibuatlah hiragana, yang berkembang dari bentuk kanji yang ditulis cepat, untuk menulis bagian-bagian itu. Katakana berkembang dari potongan kanji dan kini dipakai untuk bunyi asing.",
-          "Jadi ketiganya bukan pengulangan. Masing-masing mengisi tugas yang tidak bisa dilakukan yang lain."
-        ]
-      }
-    },
-    {
-      "id": "scene-05",
-      "type": "example",
-      "section": "examples",
-      "content": {
-        "parts": [
-          {
-            "ja": "私",
-            "reading": "わたし",
-            "romaji": "watashi",
-            "id_text": "saya",
-            "role": "subject"
-          },
-          {
-            "ja": "は",
-            "reading": "は",
-            "romaji": "wa",
-            "id_text": "penanda topik",
-            "role": "particle"
-          },
-          {
-            "ja": "コーヒー",
-            "reading": "こおひい",
-            "romaji": "koohii",
-            "id_text": "kopi",
-            "role": "object"
-          },
-          {
-            "ja": "を",
-            "reading": "を",
-            "romaji": "o",
-            "id_text": "penanda objek",
-            "role": "particle"
-          },
-          {
-            "ja": "飲みます",
-            "reading": "のみます",
-            "romaji": "nomimasu",
-            "id_text": "minum",
-            "role": "verb"
-          }
-        ],
-        "translation": "Saya minum kopi.",
-        "heading": "Tiga aksara dalam satu kalimat",
-        "note": "私 dan 飲 adalah kanji, は を みます adalah hiragana, コーヒー adalah katakana."
-      }
-    },
-    {
-      "id": "scene-06",
       "type": "vocab",
       "section": "examples",
       "content": {
-        "heading": "Kata dari tiga aksara",
+        "heading": "Satu kata, tiga bentuk",
         "items": [
+          {
+            "ja": "みず",
+            "reading": "mizu",
+            "id_text": "air (hiragana)"
+          },
           {
             "ja": "水",
             "reading": "mizu",
             "id_text": "air (kanji)"
           },
           {
-            "ja": "ありがとう",
-            "reading": "arigatou",
-            "id_text": "terima kasih (hiragana)"
-          },
-          {
-            "ja": "テレビ",
-            "reading": "terebi",
-            "id_text": "televisi (katakana)"
-          },
-          {
-            "ja": "コーヒー",
-            "reading": "koohii",
-            "id_text": "kopi (katakana)"
+            "ja": "ミルク",
+            "reading": "miruku",
+            "id_text": "susu (katakana)"
           }
         ]
       }
     },
     {
-      "id": "scene-07",
-      "type": "mistakes",
-      "section": "mistakes",
+      "id": "scene-04",
+      "type": "explain",
+      "section": "concept",
       "content": {
-        "heading": "Kesalahan yang sering dilakukan pemula",
-        "items": [
-          {
-            "wrong": "Mengira hiragana dan katakana itu sama karena bunyinya sama",
-            "right": "Bunyinya sama, tetapi fungsinya berbeda",
-            "why": "Hiragana untuk tata bahasa dan kata asli Jepang, katakana untuk kata serapan dan nama asing."
-          },
-          {
-            "wrong": "Menulis kata serapan seperti テレビ dengan hiragana",
-            "right": "Tulis dengan katakana",
-            "why": "Hiragana bukan salah secara bunyi, tetapi tidak lazim untuk kata serapan dan terasa janggal."
-          },
-          {
-            "wrong": "Menghafal kanji dulu sebelum mengenal hiragana",
-            "right": "Kuasai hiragana dulu",
-            "why": "Tanpa hiragana kamu tidak bisa membaca partikel dan akhiran kata kerja."
-          }
+        "heading": "Kapan dipakai?",
+        "paragraphs": [
+          "Hiragana: kata sehari-hari dan \"lem\" kalimat.",
+          "Katakana: kata dari luar negeri, seperti テレビ (televisi).",
+          "Kanji: supaya kalimat cepat dibaca dan artinya jelas."
         ]
       }
     },
     {
-      "id": "scene-08",
+      "id": "scene-05",
+      "type": "explain",
+      "section": "logic",
+      "content": {
+        "heading": "Kamu mulai dari mana?",
+        "paragraphs": [
+          "Mulai dari hiragana dulu. Itu yang paling penting.",
+          "Katakana menyusul. Kanji sedikit demi sedikit."
+        ]
+      }
+    },
+    {
+      "id": "scene-06",
       "type": "quiz",
       "section": "exercises",
       "content": {
-        "question": "Aksara apa yang lazim dipakai untuk kata serapan seperti テレビ?",
+        "question": "テレビ (televisi) ditulis dengan jenis tulisan apa?",
         "options": [
           "Kanji",
           "Hiragana",
@@ -189,41 +92,42 @@
         ],
         "answer": 2,
         "why": [
-          "Kanji dipakai untuk makna inti kata Jepang dan Tiongkok.",
-          "Hiragana dipakai untuk tata bahasa.",
+          "Kanji dipakai untuk kata yang punya arti sendiri, seperti 水.",
+          "Hiragana untuk kata Jepang sehari-hari.",
           null
         ]
       }
     },
     {
-      "id": "scene-09",
+      "id": "scene-07",
       "type": "quiz",
       "section": "exercises",
       "content": {
-        "question": "Dalam 私は水を飲みます, partikel は dan を ditulis dengan apa?",
+        "question": "Tulisan yang punya arti sendiri, seperti 水 (air), namanya...",
         "options": [
           "Kanji",
           "Hiragana",
           "Katakana"
         ],
-        "answer": 1,
+        "answer": 0,
         "why": [
-          "Partikel tidak punya kanji.",
           null,
-          "Katakana untuk kata serapan, bukan partikel."
+          "Hiragana mewakili bunyi, bukan arti.",
+          "Katakana mewakili bunyi, bukan arti."
         ]
       }
     },
     {
-      "id": "scene-10",
+      "id": "scene-08",
       "type": "summary",
       "section": "summary",
       "content": {
         "heading": "Rangkuman",
         "points": [
-          "Tiga aksara: kanji (makna), hiragana (tata bahasa), katakana (kata serapan).",
-          "Ketiganya dipakai bersamaan dalam satu kalimat.",
-          "Mulai dari hiragana, lalu katakana, lalu kanji bertahap."
+          "Hiragana: huruf dasar.",
+          "Katakana: untuk kata dari luar negeri.",
+          "Kanji: tulisan yang punya arti.",
+          "Mulai dari hiragana dulu."
         ]
       }
     }

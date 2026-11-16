@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 import { ArrowLeft, Clock } from 'lucide-react';
-import { getLesson, LESSONS } from '../products';
+import { getLesson, LESSONS, PRODUCT } from '../products';
 import MorphLearningEngine from '../engine/MorphLearningEngine';
 import { loadProgress, saveLessonProgress } from '../lib/storage';
 
@@ -23,6 +23,9 @@ export default function Learn({ lessonId, go }: { lessonId?: string; go: (to: st
           initialScene={progress[lesson.id]?.completed ? 0 : last}
           onSceneChange={i => saveLessonProgress(lesson.id, i, false)}
           onComplete={() => saveLessonProgress(lesson.id, lesson.scenes.length - 1, true)}
+          onExit={() => go('/discover')}
+          showSectionLabels={PRODUCT.ui.sectionLabels}
+          showTerms={PRODUCT.ui.termChips}
         />
       </section>
     );

@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { AnimatePresence, motion } from 'motion/react';
-import { ArrowLeft, ArrowRight, Check, Pause, Play, RotateCcw, Shuffle } from 'lucide-react';
+import { ArrowLeft, ArrowRight, Check, RotateCcw, Shuffle } from 'lucide-react';
 import { Check as CheckIcon, X as XIcon } from 'lucide-react';
 import { SECTIONS, sentenceJa, sentenceRomaji, type Lesson, type Part, type Scene, type Token, type TokenRole } from './lessonSchema';
 
@@ -14,14 +14,17 @@ interface Props {
   initialScene?: number;
   onSceneChange?: (index: number) => void;
   onComplete?: () => void;
+  /** Dipanggil saat tombol SELESAI di scene terakhir ditekan. */
+  onExit?: () => void;
+  showSectionLabels?: boolean;
+  showTerms?: boolean;
 }
 
 /** Merender scene berdasarkan konfigurasi materi. Satu komponen untuk semua materi. */
-export default function MorphLearningEngine({ lesson, initialScene = 0, onSceneChange, onComplete }: Props) {
+export default function MorphLearningEngine({ lesson, initialScene = 0, onSceneChange, onComplete, onExit, showSectionLabels = true, showTerms = true }: Props) {
   const total = lesson.scenes.length;
   const [index, setIndex] = useState(Math.min(Math.max(initialScene, 0), total - 1));
   const [dir, setDir] = useState(1);
-  const [auto, setAuto] = useState(false);
   const scene = lesson.scenes[index];
 
   const go = useCallback((to: number) => {
@@ -41,19 +44,11 @@ export default function MorphLearningEngine({ lesson, initialScene = 0, onSceneC
     return () => window.removeEventListener('keydown', onKey);
   }, [go, index]);
 
-  // Auto-play hanya untuk scene yang punya durasi; scene interaktif (latihan) tidak pernah maju sendiri.
-  useEffect(() => {
-    if (!auto || !scene.duration || scene.type === 'practice' || index >= total - 1) return;
-    const t = window.setTimeout(() => go(index + 1), scene.duration);
-    return () => window.clearTimeout(t);
-  }, [auto, scene, index, total, go]);
-
   return (
     <section className="panel flex flex-col gap-4" aria-label={lesson.title}>
-      <div className="flex gap-1.5 justify-center" role="progressbar" aria-valuemin={1} aria-valuemax={total} aria-valuenow={index + 1}>
-        {lesson.scenes.map((s, i) => (
-          <button key={s.id} className={`h-1.5 w-6 rounded-full border-0 p-0 ${i === index ? 'bg-gold' : i < index ? 'bg-indigo' : 'bg-surface-elevated'}`} onClick={() => go(i)} aria-label={`Scene ${i + 1}`} />
-        ))}
+      <div className="flex items-center gap-3" role="progressbar" aria-valuemin={1} aria-valuemax={total} aria-valuenow={index + 1}>
+        <div className="rpg-progress-track flex-1"><div className="rpg-progress-fill" style={{ width: `${((index + 1) / total) * 100}%` }} /></div>
+        <span className="text-caption-meta font-mono whitespace-nowrap">{index + 1} dari {total}</span>
       </div>
 
       <div className="engine-stage">
@@ -67,25 +62,25 @@ export default function MorphLearningEngine({ lesson, initialScene = 0, onSceneC
             exit={{ opacity: 0, x: -40 * dir }}
             transition={{ duration: 0.28 }}
           >
-            {scene.section && <div className="flex justify-center mb-3"><span className="rpg-badge font-mono">{SECTIONS[scene.section]}</span></div>}
-            <SceneView scene={scene} />
+            {showSectionLabels && scene.section && <div className="flex justify-center mb-3"><span className="rpg-badge font-mono">{SECTIONS[scene.section]}</span></div>}
+            <SceneView scene={scene} showTerms={showTerms} />
           </motion.div>
         </AnimatePresence>
       </div>
 
-      <div className="flex items-center justify-between gap-2 flex-wrap">
-        <button className="skeuo-btn gap-1.5" onClick={() => go(index - 1)} disabled={index === 0}><ArrowLeft size={16} aria-hidden /> Sebelumnya</button>
-        <button className="skeuo-btn" onClick={() => setAuto(a => !a)} aria-pressed={auto} aria-label={auto ? 'Jeda otomatis' : 'Putar otomatis'}>
-          {auto ? <Pause size={16} aria-hidden /> : <Play size={16} aria-hidden />}
-        </button>
-        <span className="text-caption-meta font-mono">{index + 1} / {total}</span>
-        <button className="skeuo-btn-gold gap-1.5" onClick={() => go(index + 1)} disabled={index === total - 1}>Lanjut <ArrowRight size={16} aria-hidden /></button>
+      <div className="flex items-stretch gap-3">
+        <button className="skeuo-btn !text-sm !px-4 !py-3 gap-1.5" onClick={() => go(index - 1)} disabled={index === 0}><ArrowLeft size={16} aria-hidden /> KEMBALI</button>
+        {index === total - 1 ? (
+          <button className="btn rpg-btn rpg-btn-primary flex-1 !py-3 text-base" onClick={() => onExit?.()}>SELESAI <Check size={18} aria-hidden /></button>
+        ) : (
+          <button className="btn rpg-btn rpg-btn-primary flex-1 !py-3 text-base" onClick={() => go(index + 1)}>LANJUT <ArrowRight size={18} aria-hidden /></button>
+        )}
       </div>
     </section>
   );
 }
 
-function SceneView({ scene }: { scene: Scene }) {
+function SceneView({ scene, showTerms }: { scene: Scene; showTerms: boolean }) {
   switch (scene.type) {
     case 'introduction':
       return (
@@ -167,7 +162,7 @@ function SceneView({ scene }: { scene: Scene }) {
       return (
         <div className="flex flex-col items-center gap-4 w-full">
           <h2 className="text-heading-section text-center">{scene.content.heading}</h2>
-          {scene.content.terms && (
+          {showTerms && scene.content.terms && (
             <div className="flex flex-wrap gap-2 justify-center">
               {scene.content.terms.map(t => (
                 <span key={t.term} className="sq-token !min-w-0 !py-2 !px-3 !text-base">
@@ -179,13 +174,13 @@ function SceneView({ scene }: { scene: Scene }) {
           )}
           <div className="flex flex-col gap-3 w-full max-w-xl text-left">
             {scene.content.paragraphs.map((p, i) => (
-              <motion.p key={i} className="text-body-regular !text-sm" initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.12 * i }}>{p}</motion.p>
+              <motion.p key={i} className="text-text-secondary text-base leading-relaxed font-medium" initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.12 * i }}>{p}</motion.p>
             ))}
           </div>
           {scene.content.analogy && (
             <div className="panel !bg-surface-inset w-full max-w-xl text-left">
               <small className="text-caption-meta font-mono tracking-widest">ANALOGI</small>
-              <p className="text-body-regular !text-sm mt-1">{scene.content.analogy}</p>
+              <p className="text-text-secondary text-base leading-relaxed mt-1">{scene.content.analogy}</p>
             </div>
           )}
         </div>

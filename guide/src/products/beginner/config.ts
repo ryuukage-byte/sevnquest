@@ -6,6 +6,8 @@ export const config: ProductConfig = {
   tagline: 'Dari nol sampai bisa membaca dan menyusun kalimat sendiri.',
   heroTitle: 'MULAI DARI NOL',
   heroSubtitle: 'Belajar bahasa Jepang dengan memahami, selangkah demi selangkah.',
+  features: { planner: false, journey: false, account: false },
+  ui: { sectionLabels: false, termChips: false },
   method: 'Jangan sekadar menghafal bahasa Jepang. Pahami logika di baliknya.',
   paths: [
     {

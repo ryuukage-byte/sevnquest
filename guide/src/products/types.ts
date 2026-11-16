@@ -22,6 +22,9 @@ export interface ProductConfig {
   tagline: string;
   heroTitle: string;
   heroSubtitle: string;
+  /** Fitur yang ditampilkan. Produk pemula sengaja dibuat sesederhana mungkin. */
+  features: { planner: boolean; journey: boolean; account: boolean };
+  ui: { sectionLabels: boolean; termChips: boolean };
   /** Semboyan metode belajar, ditampilkan di beranda. */
   method: string;
   paths: ProductPath[];

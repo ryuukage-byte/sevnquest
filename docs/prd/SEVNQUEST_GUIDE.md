@@ -12,6 +12,7 @@ Bundle sebuah situs hanya berisi materi produknya, dan UI (beranda, peta belajar
 Katakana Mastery (8 bab, seluruhnya terbit) dan Percakapan Dasar (3 bab). Pembelian ditangani di luar situs (Lynk.id); situs ini hanya tempat belajar.
 Standar materi: 12 bagian pengajaran (`section` pada scene), contoh kalimat berbentuk `parts` (Jepang, bacaan hiragana, romaji, arti),
 dan tes otomatis memvalidasi romaji terhadap bacaan, kuis wajib menjelaskan opsi yang salah, dan setiap materi punya latihan dan rangkuman.
+Produk Pemula dibuat sesederhana mungkin untuk pengguna yang tidak terbiasa dengan teknologi: menu hanya Beranda dan Materi, satu tombol besar "Mulai/Lanjutkan belajar", tombol LANJUT besar di pemutar materi, tanpa label bagian dan istilah Jepang tambahan (diatur lewat `features` dan `ui` di `config.ts`; planner, Perjalananku, dan Akun disembunyikan). Gaya tulis materi: kalimat pendek, satu ide per layar, tanpa istilah teknis. Baru Foundation bab 01-04 yang ditulis ulang dengan gaya ini.
 Seluruh teks antarmuka berbahasa Indonesia (produk dijual ke pengguna Indonesia).
 **Materi belum ditinjau penutur asli/pengajar bahasa Jepang**: lakukan tinjauan sebelum dipublikasikan ke pembeli.
 Menambah produk = folder baru di `products/` + proyek deploy sendiri. **Pembatasan akses setelah pembelian** (hanya pembeli

@@ -3,8 +3,8 @@
   "level": "BEGINNER",
   "category": "kana",
   "title": "Mengenal Hiragana",
-  "summary": "Hiragana sebagai aksara bunyi: cara kerjanya dan cara memulainya.",
-  "minutes": 9,
+  "summary": "Hiragana adalah huruf dasar bahasa Jepang. Kita mulai dari lima huruf pertama.",
+  "minutes": 8,
   "scenes": [
     {
       "id": "scene-01",
@@ -13,7 +13,7 @@
       "duration": 4000,
       "content": {
         "title": "ひらがな",
-        "subtitle": "Chapter 03: Mengenal hiragana"
+        "subtitle": "Mengenal hiragana"
       }
     },
     {
@@ -23,43 +23,17 @@
       "content": {
         "heading": "Hiragana itu apa?",
         "paragraphs": [
-          "Hiragana adalah aksara bunyi dengan 46 huruf dasar. Setiap huruf mewakili satu suku kata, misalnya か dibaca \"ka\", bukan \"k\" lalu \"a\".",
-          "Hanya lima vokal (あ い う え お) dan ん yang berdiri sendiri. Selebihnya adalah gabungan konsonan dan vokal.",
-          "Tabel susunannya disebut 五十音 (gojuuon, \"lima puluh bunyi\"). Disusun dalam baris menurut konsonan dan kolom menurut vokal."
-        ],
-        "terms": [
-          {
-            "term": "五十音",
-            "reading": "gojuuon",
-            "meaning": "tabel lima puluh bunyi"
-          },
-          {
-            "term": "あ",
-            "reading": "a",
-            "meaning": "huruf pertama hiragana"
-          }
+          "Hiragana adalah huruf dasar bahasa Jepang.",
+          "Ada 46 huruf. Satu huruf mewakili satu bunyi."
         ]
       }
     },
     {
       "id": "scene-03",
-      "type": "explain",
-      "section": "logic",
-      "content": {
-        "heading": "Kabar baik untuk penutur Indonesia",
-        "paragraphs": [
-          "Bunyi hiragana konsisten. Satu huruf selalu dibaca sama, tidak seperti ejaan bahasa Inggris yang sering berubah-ubah.",
-          "Lima vokal Jepang (a, i, u, e, o) hampir sama dengan vokal bahasa Indonesia, jadi lidahmu sudah siap.",
-          "Kamu tidak perlu menghafal semua sekaligus. Mulai dari baris vokal, lalu satu baris per hari sudah cukup cepat."
-        ]
-      }
-    },
-    {
-      "id": "scene-04",
       "type": "kana",
       "section": "explanation",
       "content": {
-        "heading": "Mulai dari vokal dan baris K",
+        "heading": "Lima huruf pertama",
         "items": [
           {
             "char": "あ",
@@ -80,7 +54,38 @@
           {
             "char": "お",
             "romaji": "o"
-          },
+          }
+        ],
+        "caption": "Bunyinya sama dengan a, i, u, e, o di bahasa Indonesia."
+      }
+    },
+    {
+      "id": "scene-04",
+      "type": "quiz",
+      "section": "exercises",
+      "content": {
+        "question": "Bagaimana cara membaca huruf ini?",
+        "options": [
+          "a",
+          "i",
+          "u"
+        ],
+        "answer": 1,
+        "big": "い",
+        "why": [
+          "Itu あ.",
+          null,
+          "Itu う."
+        ]
+      }
+    },
+    {
+      "id": "scene-05",
+      "type": "kana",
+      "section": "explanation",
+      "content": {
+        "heading": "Lima huruf berikutnya",
+        "items": [
           {
             "char": "か",
             "romaji": "ka"
@@ -102,11 +107,31 @@
             "romaji": "ko"
           }
         ],
-        "caption": "Baris K = konsonan k + tiap vokal. Pola ini berulang di baris lain."
+        "caption": "Polanya: k + a, i, u, e, o."
       }
     },
     {
-      "id": "scene-05",
+      "id": "scene-06",
+      "type": "quiz",
+      "section": "exercises",
+      "content": {
+        "question": "Bagaimana cara membaca huruf ini?",
+        "options": [
+          "ka",
+          "ko",
+          "ku"
+        ],
+        "answer": 1,
+        "big": "こ",
+        "why": [
+          "Itu か.",
+          null,
+          "Itu く."
+        ]
+      }
+    },
+    {
+      "id": "scene-07",
       "type": "vocab",
       "section": "examples",
       "content": {
@@ -128,11 +153,6 @@
             "id_text": "laut"
           },
           {
-            "ja": "さかな",
-            "reading": "sakana",
-            "id_text": "ikan"
-          },
-          {
             "ja": "ねこ",
             "reading": "neko",
             "id_text": "kucing"
@@ -141,85 +161,15 @@
       }
     },
     {
-      "id": "scene-06",
-      "type": "example",
-      "section": "examples",
-      "content": {
-        "parts": [
-          {
-            "ja": "ねこ",
-            "reading": "ねこ",
-            "romaji": "neko",
-            "id_text": "kucing",
-            "role": "subject"
-          },
-          {
-            "ja": "は",
-            "reading": "は",
-            "romaji": "wa",
-            "id_text": "penanda topik",
-            "role": "particle"
-          },
-          {
-            "ja": "さかな",
-            "reading": "さかな",
-            "romaji": "sakana",
-            "id_text": "ikan",
-            "role": "object"
-          },
-          {
-            "ja": "を",
-            "reading": "を",
-            "romaji": "o",
-            "id_text": "penanda objek",
-            "role": "particle"
-          },
-          {
-            "ja": "たべます",
-            "reading": "たべます",
-            "romaji": "tabemasu",
-            "id_text": "makan",
-            "role": "verb"
-          }
-        ],
-        "translation": "Kucing makan ikan.",
-        "heading": "Kalimat yang seluruhnya hiragana"
-      }
-    },
-    {
-      "id": "scene-07",
-      "type": "explain",
-      "section": "usage",
-      "content": {
-        "heading": "Dua huruf yang dibaca \"menyimpang\" sebagai partikel",
-        "paragraphs": [
-          "Ada dua kasus unik. Huruf は biasanya dibaca \"ha\", tetapi sebagai partikel dibaca \"wa\". Huruf を dibaca \"o\" (bukan \"wo\").",
-          "Ini bukan keanehan acak. Penulisannya mempertahankan ejaan lama, sedangkan pelafalannya mengikuti bahasa modern. Kamu akan terbiasa karena partikel selalu muncul di posisi yang sama."
-        ]
-      }
-    },
-    {
       "id": "scene-08",
-      "type": "mistakes",
-      "section": "mistakes",
+      "type": "explain",
+      "section": "concept",
       "content": {
-        "heading": "Kesalahan yang sering dilakukan pemula",
-        "items": [
-          {
-            "wrong": "Membaca し sebagai \"si\"",
-            "right": "Bacalah \"shi\"",
-            "why": "し memang berbunyi \"shi\" di baris S."
-          },
-          {
-            "wrong": "Membaca ふ sebagai \"hu\"",
-            "right": "Bacalah \"fu\"",
-            "why": "ふ berbunyi di antara f dan h, bukan \"hu\"."
-          },
-          {
-            "wrong": "Membaca partikel は sebagai \"ha\"",
-            "right": "Bacalah \"wa\" bila dipakai sebagai partikel",
-            "why": "Di kata biasa (misalnya はな, \"bunga\") tetap \"ha\"."
-          }
+        "heading": "Ada dua huruf yang bunyinya unik",
+        "paragraphs": [
+          "し dibaca \"shi\".",
+          "ふ dibaca \"fu\".",
+          "Tidak apa-apa kalau belum hafal. Nanti kita ulang lagi."
         ]
       }
     },
@@ -228,7 +178,7 @@
       "type": "quiz",
       "section": "exercises",
       "content": {
-        "question": "Bagaimana membaca huruf ini?",
+        "question": "Bagaimana cara membaca し?",
         "options": [
           "si",
           "shi",
@@ -237,7 +187,7 @@
         "answer": 1,
         "big": "し",
         "why": [
-          "Baris S memang ada pengecualian pada huruf ini.",
+          "Di bahasa Jepang, し dibaca \"shi\".",
           null,
           "Itu bunyi huruf ち."
         ]
@@ -245,34 +195,15 @@
     },
     {
       "id": "scene-10",
-      "type": "quiz",
-      "section": "exercises",
-      "content": {
-        "question": "Partikel は dalam わたしは dibaca...",
-        "options": [
-          "ha",
-          "wa",
-          "a"
-        ],
-        "answer": 1,
-        "why": [
-          "Itu bacaan di dalam kata biasa.",
-          null,
-          "は tetap berbunyi konsonan w di sini."
-        ]
-      }
-    },
-    {
-      "id": "scene-11",
       "type": "summary",
       "section": "summary",
       "content": {
         "heading": "Rangkuman",
         "points": [
-          "Hiragana: 46 huruf dasar, satu huruf satu suku kata.",
-          "Tabel 五十音 disusun dalam baris dan kolom.",
-          "は dibaca \"wa\" dan を dibaca \"o\" sebagai partikel.",
-          "Lanjutkan ke path Hiragana Mastery untuk seluruh barisnya."
+          "Hiragana: 46 huruf, satu huruf satu bunyi.",
+          "あ い う え お = a i u e o.",
+          "し dibaca \"shi\", ふ dibaca \"fu\".",
+          "Pelajaran lengkap ada di jalur Hiragana Mastery."
         ]
       }
     }
