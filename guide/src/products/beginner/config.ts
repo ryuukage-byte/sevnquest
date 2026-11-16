@@ -3,14 +3,61 @@ import type { ProductConfig } from '../types';
 export const config: ProductConfig = {
   id: 'beginner',
   title: 'Pemula',
-  tagline: 'Dari nol sampai bisa membaca dan menyusun kalimat dasar.',
+  tagline: 'Dari nol sampai bisa membaca dan menyusun kalimat sendiri.',
   heroTitle: 'MULAI DARI NOL',
   heroSubtitle: 'Belajar bahasa Jepang dengan memahami, selangkah demi selangkah.',
-  modules: [
-    { id: 'kana', title: 'Hiragana', subtitle: 'Huruf dasar bahasa Jepang', lessonIds: ['beginner-001', 'beginner-002', 'beginner-003'] },
-    { id: 'sapaan', title: 'Sapaan & Perkenalan', subtitle: 'Kalimat pertama yang langsung terpakai', lessonIds: ['beginner-004', 'beginner-005'] },
-    { id: 'kalimat', title: 'Struktur Kalimat', subtitle: 'Urutan kata dan partikel', lessonIds: ['beginner-006', 'beginner-007'] },
-    { id: 'angka', title: 'Angka', subtitle: 'Menghitung 1 sampai 10', lessonIds: ['beginner-008'] },
+  method: 'Jangan sekadar menghafal bahasa Jepang. Pahami logika di baliknya.',
+  paths: [
+    {
+      id: 'foundation', title: 'Japanese Foundation', subtitle: 'Starter Pack: dari nol sampai mampu membentuk kalimat sendiri',
+      chapters: [
+        { id: 'f01', title: 'Apa Itu Bahasa Jepang?', lessonId: 'foundation-01' },
+        { id: 'f02', title: 'Mengenal Tiga Sistem Penulisan', lessonId: 'foundation-02' },
+        { id: 'f03', title: 'Mengenal Hiragana', lessonId: 'foundation-03' },
+        { id: 'f04', title: 'Mengenal Katakana', lessonId: 'foundation-04' },
+        { id: 'f05', title: 'Mengenal Kanji', lessonId: 'foundation-05' },
+        { id: 'f06', title: 'Cara Kerja Bahasa Jepang', lessonId: 'foundation-06' },
+        { id: 'f07', title: 'Struktur Kalimat Jepang', lessonId: 'foundation-07' },
+        { id: 'f08', title: 'Mengenal Partikel', lessonId: 'foundation-08' },
+        { id: 'f09', title: 'Mengenal Bunpou' },
+        { id: 'f10', title: 'Mengenal Kata Kerja' },
+        { id: 'f11', title: 'Kata Benda dan Kata Sifat' },
+        { id: 'f12', title: 'Mengenal Tingkat Kesopanan' },
+        { id: 'f13', title: 'Cara Membaca Kalimat Jepang' },
+        { id: 'f14', title: 'Cara Membentuk Kalimat Sendiri' },
+        { id: 'f15', title: 'Kesalahan Umum Pemula' },
+        { id: 'f16', title: 'Evaluasi Foundation' },
+      ],
+    },
+    {
+      id: 'hiragana', title: 'Hiragana Mastery', subtitle: 'Seluruh hiragana, dari seion sampai kombinasi bunyi',
+      chapters: [
+        { id: 'h01', title: 'Baris A dan K', lessonId: 'beginner-001' },
+        { id: 'h02', title: 'Baris S, T, dan N', lessonId: 'beginner-002' },
+        { id: 'h03', title: 'Baris H, M, Y, R, W, dan N', lessonId: 'beginner-003' },
+        { id: 'h04', title: 'Dakuon dan Handakuon' },
+        { id: 'h05', title: 'Youon, Sokuon, dan Chouon' },
+        { id: 'h06', title: 'Latihan Membaca dan Evaluasi' },
+      ],
+    },
+    {
+      id: 'katakana', title: 'Katakana Mastery', subtitle: 'Katakana untuk kata serapan dan nama asing',
+      chapters: [
+        { id: 'k01', title: 'Seion' },
+        { id: 'k02', title: 'Dakuon dan Handakuon' },
+        { id: 'k03', title: 'Youon, Sokuon, dan Chouon' },
+        { id: 'k04', title: 'Kombinasi Bunyi Asing' },
+        { id: 'k05', title: 'Kata Serapan dan Evaluasi' },
+      ],
+    },
+    {
+      id: 'percakapan', title: 'Percakapan Dasar', subtitle: 'Kalimat pertama yang langsung terpakai',
+      chapters: [
+        { id: 'p01', title: 'Sapaan Sehari-hari', lessonId: 'beginner-004' },
+        { id: 'p02', title: 'Memperkenalkan Diri', lessonId: 'beginner-005' },
+        { id: 'p03', title: 'Angka 1 sampai 10', lessonId: 'beginner-008' },
+      ],
+    },
   ],
   planner: {
     goals: [{ v: 'N5', l: 'Fondasi pemula (setara JLPT N5)' }],

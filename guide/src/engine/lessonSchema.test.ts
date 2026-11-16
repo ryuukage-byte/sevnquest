@@ -13,8 +13,9 @@ for (const f of readdirSync(dir).filter(x => x.endsWith('.json'))) {
 }
 
 test('validator menangkap token yang tidak ada', () => {
-  const l = JSON.parse(readFileSync(join(dir, 'beginner-006.json'), 'utf8')) as Lesson;
+  const l = JSON.parse(readFileSync(join(dir, 'foundation-07.json'), 'utf8')) as Lesson;
   const bad = structuredClone(l);
-  (bad.scenes[5] as any).content.answer = ['s', 'x', 'v'];
+  const practice = bad.scenes.find(x => x.type === 'practice') as any;
+  practice.content.answer = ['s', 'x', 'v'];
   assert.ok(validateLesson(bad).length > 0);
 });

@@ -1,0 +1,299 @@
+{
+  "id": "foundation-04",
+  "level": "BEGINNER",
+  "category": "kana",
+  "title": "Mengenal Katakana",
+  "summary": "Katakana untuk kata serapan dan nama asing, termasuk huruf yang mirip dan tanda panjang ー.",
+  "minutes": 9,
+  "scenes": [
+    {
+      "id": "scene-01",
+      "type": "introduction",
+      "section": "introduction",
+      "duration": 4000,
+      "content": {
+        "title": "カタカナ",
+        "subtitle": "Chapter 04: Mengenal katakana"
+      }
+    },
+    {
+      "id": "scene-02",
+      "type": "explain",
+      "section": "definition",
+      "content": {
+        "heading": "Katakana itu apa?",
+        "paragraphs": [
+          "Katakana adalah aksara bunyi kedua. Jumlah dan bunyinya sama dengan hiragana (46 huruf dasar), hanya bentuknya lebih bersudut dan tegas.",
+          "Fungsi utamanya adalah menulis kata serapan, nama orang dan tempat asing, bunyi tiruan, dan terkadang untuk menekankan sebuah kata."
+        ],
+        "terms": [
+          {
+            "term": "外来語",
+            "reading": "gairaigo",
+            "meaning": "kata serapan"
+          },
+          {
+            "term": "テレビ",
+            "reading": "terebi",
+            "meaning": "televisi"
+          }
+        ]
+      }
+    },
+    {
+      "id": "scene-03",
+      "type": "explain",
+      "section": "logic",
+      "content": {
+        "heading": "Kenapa dibedakan dari hiragana?",
+        "paragraphs": [
+          "Bayangkan semua kata ditulis dengan hiragana saja. Kata asing akan berbaur dengan kata asli Jepang dan sulit dikenali.",
+          "Dengan katakana, mata langsung tahu bahwa kata itu berasal dari luar. Fungsinya mirip dengan cetak miring untuk kata asing di bahasa Indonesia."
+        ]
+      }
+    },
+    {
+      "id": "scene-04",
+      "type": "kana",
+      "section": "explanation",
+      "content": {
+        "heading": "Katakana vokal dan baris K",
+        "items": [
+          {
+            "char": "ア",
+            "romaji": "a"
+          },
+          {
+            "char": "イ",
+            "romaji": "i"
+          },
+          {
+            "char": "ウ",
+            "romaji": "u"
+          },
+          {
+            "char": "エ",
+            "romaji": "e"
+          },
+          {
+            "char": "オ",
+            "romaji": "o"
+          },
+          {
+            "char": "カ",
+            "romaji": "ka"
+          },
+          {
+            "char": "キ",
+            "romaji": "ki"
+          },
+          {
+            "char": "ク",
+            "romaji": "ku"
+          },
+          {
+            "char": "ケ",
+            "romaji": "ke"
+          },
+          {
+            "char": "コ",
+            "romaji": "ko"
+          }
+        ],
+        "caption": "Bunyinya sama dengan hiragana. Yang berbeda hanya bentuk hurufnya."
+      }
+    },
+    {
+      "id": "scene-05",
+      "type": "kana",
+      "section": "comparison",
+      "content": {
+        "heading": "Pasangan yang mudah tertukar",
+        "items": [
+          {
+            "char": "シ",
+            "romaji": "shi"
+          },
+          {
+            "char": "ツ",
+            "romaji": "tsu"
+          },
+          {
+            "char": "ソ",
+            "romaji": "so"
+          },
+          {
+            "char": "ン",
+            "romaji": "n"
+          }
+        ],
+        "caption": "シ dan ソ ditulis condong ke samping, ツ dan ン lebih tegak. Perhatikan arah goresan."
+      }
+    },
+    {
+      "id": "scene-06",
+      "type": "explain",
+      "section": "explanation",
+      "content": {
+        "heading": "Tanda panjang ー",
+        "paragraphs": [
+          "Dalam katakana, vokal panjang ditulis dengan tanda ー. Misalnya コーヒー dibaca \"koohii\" (kopi), bukan \"kohi\".",
+          "Panjang-pendek vokal mengubah arti kata, jadi tanda ー wajib diperhatikan."
+        ]
+      }
+    },
+    {
+      "id": "scene-07",
+      "type": "vocab",
+      "section": "examples",
+      "content": {
+        "heading": "Kata serapan yang sering muncul",
+        "items": [
+          {
+            "ja": "テレビ",
+            "reading": "terebi",
+            "id_text": "televisi"
+          },
+          {
+            "ja": "コーヒー",
+            "reading": "koohii",
+            "id_text": "kopi"
+          },
+          {
+            "ja": "バス",
+            "reading": "basu",
+            "id_text": "bus"
+          },
+          {
+            "ja": "ホテル",
+            "reading": "hoteru",
+            "id_text": "hotel"
+          }
+        ]
+      }
+    },
+    {
+      "id": "scene-08",
+      "type": "example",
+      "section": "examples",
+      "content": {
+        "parts": [
+          {
+            "ja": "私",
+            "reading": "わたし",
+            "romaji": "watashi",
+            "id_text": "saya",
+            "role": "subject"
+          },
+          {
+            "ja": "は",
+            "reading": "は",
+            "romaji": "wa",
+            "id_text": "penanda topik",
+            "role": "particle"
+          },
+          {
+            "ja": "テレビ",
+            "reading": "てれび",
+            "romaji": "terebi",
+            "id_text": "televisi",
+            "role": "object"
+          },
+          {
+            "ja": "を",
+            "reading": "を",
+            "romaji": "o",
+            "id_text": "penanda objek",
+            "role": "particle"
+          },
+          {
+            "ja": "見ます",
+            "reading": "みます",
+            "romaji": "mimasu",
+            "id_text": "melihat, menonton",
+            "role": "verb"
+          }
+        ],
+        "translation": "Saya menonton televisi.",
+        "heading": "Kalimat dengan kata serapan"
+      }
+    },
+    {
+      "id": "scene-09",
+      "type": "mistakes",
+      "section": "mistakes",
+      "content": {
+        "heading": "Kesalahan yang sering dilakukan pemula",
+        "items": [
+          {
+            "wrong": "Menukar シ dan ツ",
+            "right": "シ = shi, ツ = tsu",
+            "why": "Bedanya ada pada arah goresan pendek. Latih membaca keduanya berdampingan."
+          },
+          {
+            "wrong": "Menukar ソ dan ン",
+            "right": "ソ = so, ン = n",
+            "why": "Sama: arah goresannya berbeda."
+          },
+          {
+            "wrong": "Mengabaikan ー pada コーヒー",
+            "right": "Baca panjang: koohii",
+            "why": "Tanpa ー, kata bisa berubah arti atau terdengar janggal."
+          }
+        ]
+      }
+    },
+    {
+      "id": "scene-10",
+      "type": "quiz",
+      "section": "exercises",
+      "content": {
+        "question": "Bagaimana membaca huruf ini?",
+        "options": [
+          "shi",
+          "tsu",
+          "so"
+        ],
+        "answer": 1,
+        "big": "ツ",
+        "why": [
+          "Itu シ, yang goresan pendeknya condong ke samping.",
+          null,
+          "Itu ソ."
+        ]
+      }
+    },
+    {
+      "id": "scene-11",
+      "type": "quiz",
+      "section": "exercises",
+      "content": {
+        "question": "Apa fungsi tanda ー dalam katakana?",
+        "options": [
+          "Menandai kata asing",
+          "Memanjangkan vokal sebelumnya",
+          "Menandai akhir kalimat"
+        ],
+        "answer": 1,
+        "why": [
+          "Itu fungsi katakana secara umum, bukan tanda ー.",
+          null,
+          "Akhir kalimat ditandai 。"
+        ]
+      }
+    },
+    {
+      "id": "scene-12",
+      "type": "summary",
+      "section": "summary",
+      "content": {
+        "heading": "Rangkuman",
+        "points": [
+          "Katakana = bunyi sama dengan hiragana, bentuk berbeda, untuk kata serapan.",
+          "Waspadai pasangan シ/ツ dan ソ/ン.",
+          "ー memanjangkan vokal."
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,258 @@
+{
+  "id": "foundation-05",
+  "level": "BEGINNER",
+  "category": "kanji",
+  "title": "Mengenal Kanji",
+  "summary": "Apa itu kanji, dua jenis bacaannya (onyomi dan kunyomi), dan okurigana.",
+  "minutes": 10,
+  "scenes": [
+    {
+      "id": "scene-01",
+      "type": "introduction",
+      "section": "introduction",
+      "duration": 4000,
+      "content": {
+        "title": "漢字",
+        "subtitle": "Chapter 05: Mengenal kanji"
+      }
+    },
+    {
+      "id": "scene-02",
+      "type": "explain",
+      "section": "definition",
+      "content": {
+        "heading": "Kanji itu apa?",
+        "paragraphs": [
+          "Kanji (漢字) adalah aksara yang berasal dari Tiongkok. Berbeda dengan hiragana, satu kanji membawa makna. Contohnya 山 berarti \"gunung\", 川 berarti \"sungai\", dan 人 berarti \"orang\".",
+          "Dalam kehidupan sehari-hari orang Jepang memakai sekitar 2.000 kanji umum (daftar resmi jouyou kanji memuat 2.136 kanji). Kamu tidak perlu menguasainya sekaligus."
+        ],
+        "terms": [
+          {
+            "term": "漢字",
+            "reading": "kanji",
+            "meaning": "aksara bermakna"
+          },
+          {
+            "term": "山",
+            "reading": "yama",
+            "meaning": "gunung"
+          },
+          {
+            "term": "川",
+            "reading": "kawa",
+            "meaning": "sungai"
+          },
+          {
+            "term": "人",
+            "reading": "hito",
+            "meaning": "orang"
+          }
+        ]
+      }
+    },
+    {
+      "id": "scene-03",
+      "type": "explain",
+      "section": "concept",
+      "content": {
+        "heading": "Satu kanji, dua jenis bacaan",
+        "paragraphs": [
+          "Banyak kanji punya lebih dari satu bacaan. Dua jenis yang utama: kunyomi (訓読み), bacaan asli Jepang, dan onyomi (音読み), bacaan yang berasal dari bunyi Tiongkok.",
+          "Contoh 山: berdiri sendiri dibaca やま (yama, kunyomi). Dalam gabungan seperti 富士山 dibaca さん (富士山 = fujisan, onyomi).",
+          "Contoh 人: berdiri sendiri dibaca ひと (hito, kunyomi), dalam 日本人 dibaca じん (nihonjin, \"orang Jepang\", onyomi)."
+        ],
+        "analogy": "Mirip kata serapan di bahasa Indonesia. \"Sekolah\" asalnya dari bahasa asing, tetapi kini bagian dari bahasa kita. Onyomi adalah bunyi \"pinjaman\" lama, kunyomi adalah kata Jepang aslinya.",
+        "terms": [
+          {
+            "term": "訓読み",
+            "reading": "kunyomi",
+            "meaning": "bacaan asli Jepang"
+          },
+          {
+            "term": "音読み",
+            "reading": "onyomi",
+            "meaning": "bacaan dari bunyi Tiongkok"
+          }
+        ]
+      }
+    },
+    {
+      "id": "scene-04",
+      "type": "explain",
+      "section": "logic",
+      "content": {
+        "heading": "Okurigana: hiragana di belakang kanji",
+        "paragraphs": [
+          "Kata kerja dan kata sifat biasanya ditulis dengan kanji di depan dan hiragana di belakang. Hiragana itu disebut okurigana.",
+          "Contoh: 飲みます (nomimasu, \"minum\"). 飲 membawa makna \"minum\", sedangkan みます memberi tahu tata bahasanya (bentuk sopan).",
+          "Jadi, bagian kanji tidak berubah, hiragana di belakangnya yang berubah ketika kata kerjanya berubah."
+        ],
+        "terms": [
+          {
+            "term": "送り仮名",
+            "reading": "okurigana",
+            "meaning": "hiragana di belakang kanji"
+          }
+        ]
+      }
+    },
+    {
+      "id": "scene-05",
+      "type": "vocab",
+      "section": "examples",
+      "content": {
+        "heading": "Lima kanji pertama",
+        "items": [
+          {
+            "ja": "日本",
+            "reading": "nihon",
+            "id_text": "Jepang"
+          },
+          {
+            "ja": "山",
+            "reading": "yama",
+            "id_text": "gunung"
+          },
+          {
+            "ja": "川",
+            "reading": "kawa",
+            "id_text": "sungai"
+          },
+          {
+            "ja": "人",
+            "reading": "hito",
+            "id_text": "orang"
+          },
+          {
+            "ja": "水",
+            "reading": "mizu",
+            "id_text": "air"
+          }
+        ]
+      }
+    },
+    {
+      "id": "scene-06",
+      "type": "example",
+      "section": "examples",
+      "content": {
+        "parts": [
+          {
+            "ja": "私",
+            "reading": "わたし",
+            "romaji": "watashi",
+            "id_text": "saya",
+            "role": "subject"
+          },
+          {
+            "ja": "は",
+            "reading": "は",
+            "romaji": "wa",
+            "id_text": "penanda topik",
+            "role": "particle"
+          },
+          {
+            "ja": "水",
+            "reading": "みず",
+            "romaji": "mizu",
+            "id_text": "air",
+            "role": "object"
+          },
+          {
+            "ja": "を",
+            "reading": "を",
+            "romaji": "o",
+            "id_text": "penanda objek",
+            "role": "particle"
+          },
+          {
+            "ja": "飲みます",
+            "reading": "のみます",
+            "romaji": "nomimasu",
+            "id_text": "minum",
+            "role": "verb"
+          }
+        ],
+        "translation": "Saya minum air.",
+        "heading": "Kanji dalam kalimat"
+      }
+    },
+    {
+      "id": "scene-07",
+      "type": "mistakes",
+      "section": "mistakes",
+      "content": {
+        "heading": "Kesalahan yang sering dilakukan pemula",
+        "items": [
+          {
+            "wrong": "Menghafal satu kanji dengan satu bacaan saja",
+            "right": "Pelajari kanji bersama kata yang memakainya",
+            "why": "Bacaan kanji berubah-ubah menurut kata. Menghafal kata utuh jauh lebih berguna."
+          },
+          {
+            "wrong": "Menulis 飲む sebagai 飲 saja",
+            "right": "Tulis 飲む lengkap dengan okurigana",
+            "why": "Tanpa okurigana, bentuk dan makna kata kerjanya tidak jelas."
+          },
+          {
+            "wrong": "Menyerah karena jumlah kanji ribuan",
+            "right": "Mulai dari kanji paling sering dipakai",
+            "why": "Sedikit demi sedikit, dan kamu akan bertemu kanji yang sama berulang-ulang."
+          }
+        ]
+      }
+    },
+    {
+      "id": "scene-08",
+      "type": "quiz",
+      "section": "exercises",
+      "content": {
+        "question": "Apa bacaan kunyomi dari 山 yang berdiri sendiri?",
+        "options": [
+          "sen",
+          "yama",
+          "kawa"
+        ],
+        "answer": 1,
+        "big": "山",
+        "why": [
+          "sen bukan bacaan 山.",
+          null,
+          "kawa adalah bacaan 川 (sungai)."
+        ]
+      }
+    },
+    {
+      "id": "scene-09",
+      "type": "quiz",
+      "section": "exercises",
+      "content": {
+        "question": "Pada 飲みます, bagian mana yang disebut okurigana?",
+        "options": [
+          "飲",
+          "みます",
+          "飲み"
+        ],
+        "answer": 1,
+        "why": [
+          "飲 adalah kanji.",
+          null,
+          "Okurigana hanya bagian hiraganya."
+        ]
+      }
+    },
+    {
+      "id": "scene-10",
+      "type": "summary",
+      "section": "summary",
+      "content": {
+        "heading": "Rangkuman",
+        "points": [
+          "Kanji = aksara bermakna dari Tiongkok.",
+          "Dua bacaan: kunyomi (asli Jepang) dan onyomi (dari Tiongkok).",
+          "Okurigana adalah hiragana di belakang kanji pada kata kerja dan sifat."
+        ]
+      }
+    }
+  ]
+}

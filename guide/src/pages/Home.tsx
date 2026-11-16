@@ -1,5 +1,5 @@
 import { ArrowDown, Rocket } from 'lucide-react';
-import { LESSONS, PRODUCT } from '../products';
+import { getLesson, LESSONS, PRODUCT } from '../products';
 
 export default function Home({ go }: { go: (to: string) => void }) {
   const steps = ['Understand', 'Plan', 'Practice', 'Master'];
@@ -9,19 +9,23 @@ export default function Home({ go }: { go: (to: string) => void }) {
         <span className="rpg-badge-reward">PAKET {PRODUCT.title.toUpperCase()}</span>
         <h1 className="font-heading text-4xl sm:text-6xl tracking-[0.1em] text-text-primary m-0">{PRODUCT.heroTitle}</h1>
         <p className="text-body-regular max-w-md">{PRODUCT.heroSubtitle}</p>
+        <p className="font-heading italic text-text-secondary max-w-md">{PRODUCT.method}</p>
         <button className="btn rpg-btn rpg-btn-primary px-8 py-3" onClick={() => go(`/learn/${LESSONS[0]?.id ?? ''}`)}><Rocket size={18} aria-hidden /> MULAI BELAJAR</button>
       </section>
 
       <section className="flex flex-col gap-3">
         <h2 className="text-heading-section">Isi Paket</h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-          {PRODUCT.modules.map(m => (
-            <button key={m.id} className="rpg-card-interactive text-left flex flex-col gap-1" onClick={() => go('/discover')}>
-              <span className="text-card-title font-heading text-base">{m.title}</span>
-              <span className="text-body-regular">{m.subtitle}</span>
-              <span className="text-caption-meta">{m.lessonIds.length} materi</span>
-            </button>
-          ))}
+          {PRODUCT.paths.map(path => {
+            const ready = path.chapters.filter(c => c.lessonId && getLesson(c.lessonId)).length;
+            return (
+              <button key={path.id} className="rpg-card-interactive text-left flex flex-col gap-1" onClick={() => go('/discover')}>
+                <span className="text-card-title font-heading text-base">{path.title}</span>
+                <span className="text-body-regular">{path.subtitle}</span>
+                <span className="text-caption-meta">{ready} dari {path.chapters.length} bab sudah terbit</span>
+              </button>
+            );
+          })}
         </div>
       </section>
 

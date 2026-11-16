@@ -1,0 +1,217 @@
+{
+  "id": "foundation-01",
+  "level": "BEGINNER",
+  "category": "concept",
+  "title": "Apa Itu Bahasa Jepang?",
+  "summary": "Gambaran besar: apa yang membuat bahasa Jepang terasa berbeda, dan kabar baik untuk penutur bahasa Indonesia.",
+  "minutes": 8,
+  "scenes": [
+    {
+      "id": "scene-01",
+      "type": "introduction",
+      "section": "introduction",
+      "duration": 4000,
+      "content": {
+        "title": "日本語",
+        "subtitle": "Chapter 01: Apa itu bahasa Jepang?"
+      }
+    },
+    {
+      "id": "scene-02",
+      "type": "explain",
+      "section": "definition",
+      "content": {
+        "heading": "Bahasa Jepang itu apa?",
+        "paragraphs": [
+          "Bahasa Jepang disebut 日本語 (nihongo). Kata ini tersusun dari 日本 (nihon, \"Jepang\") dan 語 (go, \"bahasa\"), jadi artinya persis \"bahasa Jepang\".",
+          "Bahasa ini dipakai oleh lebih dari 120 juta orang, hampir semuanya tinggal di Jepang. Ia punya tata bahasa dan sistem tulis sendiri, dan tidak berkerabat dekat dengan bahasa Indonesia.",
+          "Jangan khawatir soal itu. Justru karena aturannya berbeda, begitu kamu paham logikanya, bahasa Jepang terasa sangat teratur."
+        ],
+        "analogy": "Sama seperti \"Bahasa\" + \"Indonesia\" menjadi Bahasa Indonesia, 日本 + 語 menjadi 日本語.",
+        "terms": [
+          {
+            "term": "日本語",
+            "reading": "nihongo",
+            "meaning": "bahasa Jepang"
+          },
+          {
+            "term": "日本",
+            "reading": "nihon",
+            "meaning": "Jepang"
+          },
+          {
+            "term": "語",
+            "reading": "go",
+            "meaning": "bahasa"
+          }
+        ]
+      }
+    },
+    {
+      "id": "scene-03",
+      "type": "explain",
+      "section": "concept",
+      "content": {
+        "heading": "Empat ciri besar bahasa Jepang",
+        "paragraphs": [
+          "1. Kata kerja ada di akhir kalimat. Kita menyebut pelaku dan objek dulu, aksinya terakhir.",
+          "2. Ada partikel, yaitu kata kecil yang menempel di belakang kata lain untuk memberi tahu perannya (misalnya mana yang topik, mana yang objek).",
+          "3. Ada tingkat kesopanan. Kalimat yang sama bisa diucapkan santai atau sopan, dan bentuk kata kerjanya ikut berubah.",
+          "4. Ada tiga sistem tulis yang dipakai bersamaan: hiragana, katakana, dan kanji.",
+          "Keempatnya akan kita bahas satu per satu di chapter berikutnya. Di sini cukup kenali dulu namanya."
+        ]
+      }
+    },
+    {
+      "id": "scene-04",
+      "type": "explain",
+      "section": "logic",
+      "content": {
+        "heading": "Kabar baik dan tantangannya",
+        "paragraphs": [
+          "Kabar baik: bahasa Jepang tidak punya gender pada kata benda, tidak mewajibkan bentuk jamak, dan kata kerjanya tidak berubah menurut siapa pelakunya. \"Saya makan\" dan \"dia makan\" memakai kata kerja yang sama.",
+          "Bahasa Jepang juga bukan bahasa bernada seperti Mandarin. Ada tinggi-rendah suara (pitch accent), tetapi salah nada jarang membuat kalimatmu tidak dimengerti.",
+          "Tantangannya: kata kerja berubah menurut waktu dan tingkat kesopanan (misalnya たべます \"makan\" menjadi たべました \"sudah makan\"), dan kamu perlu membiasakan diri dengan urutan kata yang terbalik dari bahasa Indonesia."
+        ],
+        "analogy": "Bayangkan membaca peta dengan arah utara di bawah. Petanya sama lengkapnya, kamu hanya perlu membiasakan diri dengan arahnya."
+      }
+    },
+    {
+      "id": "scene-05",
+      "type": "example",
+      "section": "examples",
+      "content": {
+        "parts": [
+          {
+            "ja": "私",
+            "reading": "わたし",
+            "romaji": "watashi",
+            "id_text": "saya",
+            "role": "subject"
+          },
+          {
+            "ja": "は",
+            "reading": "は",
+            "romaji": "wa",
+            "id_text": "penanda topik",
+            "role": "particle"
+          },
+          {
+            "ja": "日本語",
+            "reading": "にほんご",
+            "romaji": "nihongo",
+            "id_text": "bahasa Jepang",
+            "role": "object"
+          },
+          {
+            "ja": "を",
+            "reading": "を",
+            "romaji": "o",
+            "id_text": "penanda objek",
+            "role": "particle"
+          },
+          {
+            "ja": "勉強しています",
+            "reading": "べんきょうしています",
+            "romaji": "benkyou shite imasu",
+            "id_text": "sedang belajar",
+            "role": "verb"
+          }
+        ],
+        "translation": "Saya sedang belajar bahasa Jepang.",
+        "heading": "Contoh kalimat pertamamu",
+        "note": "Perhatikan kata kerja \"sedang belajar\" ada di paling akhir."
+      }
+    },
+    {
+      "id": "scene-06",
+      "type": "comparison",
+      "section": "comparison",
+      "content": {
+        "left": "Saya sedang belajar bahasa Jepang.",
+        "right": "私は日本語を勉強しています。",
+        "leftLabel": "INDONESIA",
+        "rightLabel": "JAPANESE"
+      }
+    },
+    {
+      "id": "scene-07",
+      "type": "mistakes",
+      "section": "mistakes",
+      "content": {
+        "heading": "Kesalahan yang sering dilakukan pemula",
+        "items": [
+          {
+            "wrong": "Menerjemahkan kata per kata dengan urutan bahasa Indonesia",
+            "right": "Pikirkan urutan Jepang: pelaku, objek, lalu kata kerja",
+            "why": "Kalau urutannya dibawa mentah-mentah dari bahasa Indonesia, kalimatnya terbalik."
+          },
+          {
+            "wrong": "Mengira bahasa Jepang itu hanya kanji",
+            "right": "Bahasa Jepang memakai tiga sistem tulis sekaligus",
+            "why": "Sebagian besar kalimat sehari-hari justru berisi hiragana."
+          },
+          {
+            "wrong": "Menunda belajar sampai hafal ribuan kanji",
+            "right": "Mulai dari hiragana, kanji menyusul sedikit demi sedikit",
+            "why": "Kamu bisa membaca dan berbicara dulu, lalu menambah kanji bertahap."
+          }
+        ]
+      }
+    },
+    {
+      "id": "scene-08",
+      "type": "quiz",
+      "section": "exercises",
+      "content": {
+        "question": "Bagaimana urutan dasar kalimat Jepang?",
+        "options": [
+          "Subjek, kata kerja, objek",
+          "Subjek, objek, kata kerja",
+          "Kata kerja, subjek, objek"
+        ],
+        "answer": 1,
+        "explanation": "Kata kerja selalu menutup kalimat.",
+        "why": [
+          "Itu urutan bahasa Indonesia.",
+          null,
+          "Kata kerja tidak ditaruh di depan."
+        ]
+      }
+    },
+    {
+      "id": "scene-09",
+      "type": "quiz",
+      "section": "exercises",
+      "content": {
+        "question": "Mana yang BUKAN ciri bahasa Jepang?",
+        "options": [
+          "Kata kerja di akhir kalimat",
+          "Ada partikel penanda peran kata",
+          "Kata kerja berubah menurut jenis kelamin pelaku",
+          "Memakai tiga sistem tulis"
+        ],
+        "answer": 2,
+        "why": [
+          "Ini memang ciri bahasa Jepang.",
+          "Ini memang ciri bahasa Jepang.",
+          "Bahasa Jepang tidak punya gender gramatikal; kata kerjanya tidak berubah menurut jenis kelamin.",
+          "Ini memang ciri bahasa Jepang."
+        ]
+      }
+    },
+    {
+      "id": "scene-10",
+      "type": "summary",
+      "section": "summary",
+      "content": {
+        "heading": "Rangkuman",
+        "points": [
+          "日本語 (nihongo) = bahasa Jepang.",
+          "Empat ciri: kata kerja di akhir, partikel, tingkat kesopanan, tiga sistem tulis.",
+          "Tidak ada gender atau jamak wajib, tetapi kata kerja berubah menurut waktu dan kesopanan."
+        ]
+      }
+    }
+  ]
+}

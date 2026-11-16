@@ -8,7 +8,11 @@ Kode: [`guide/`](../../guide/README.md). Aplikasi utama SevnQuest **tidak diubah
 Setiap produk (Pemula, JFT-Basic, JLPT N5..N1, SSW 2) di-build sebagai situs terpisah dari basis kode yang sama:
 `VITE_PRODUCT=<id> npm run build` memilih `guide/src/products/<id>/` (konfigurasi + materi JSON) lewat alias `@product`.
 Bundle sebuah situs hanya berisi materi produknya, dan UI (beranda, peta belajar, planner) mengikuti konfigurasi itu.
-**Produk pertama: Pemula** (8 materi: hiragana, sapaan, perkenalan, struktur kalimat, partikel, angka).
+**Produk pertama: Pemula**, 14 materi dalam 4 jalur: Japanese Foundation (16 bab; bab 01-08 terbit), Hiragana Mastery (3 dari 6 bab),
+Katakana Mastery (belum terbit) dan Percakapan Dasar (3 bab). Pembelian ditangani di luar situs (Lynk.id); situs ini hanya tempat belajar.
+Standar materi: 12 bagian pengajaran (`section` pada scene), contoh kalimat berbentuk `parts` (Jepang, bacaan hiragana, romaji, arti),
+dan tes otomatis memvalidasi romaji terhadap bacaan, kuis wajib menjelaskan opsi yang salah, dan setiap materi punya latihan dan rangkuman.
+**Materi belum ditinjau penutur asli/pengajar bahasa Jepang**: lakukan tinjauan sebelum dipublikasikan ke pembeli.
 Menambah produk = folder baru di `products/` + proyek deploy sendiri. **Pembatasan akses setelah pembelian** (hanya pembeli
 produk itu yang masuk) belum dibuat: butuh entitlement per produk di backend (lihat sistem monetisasi/`api/_entitlement.ts`).
 

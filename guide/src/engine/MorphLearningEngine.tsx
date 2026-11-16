@@ -1,7 +1,8 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { AnimatePresence, motion } from 'motion/react';
 import { ArrowLeft, ArrowRight, Check, Pause, Play, RotateCcw, Shuffle } from 'lucide-react';
-import type { Lesson, Scene, Token, TokenRole } from './lessonSchema';
+import { Check as CheckIcon, X as XIcon } from 'lucide-react';
+import { SECTIONS, sentenceJa, sentenceRomaji, type Lesson, type Part, type Scene, type Token, type TokenRole } from './lessonSchema';
 
 const ROLE_LABEL: Record<TokenRole, string> = {
   subject: 'SUBJEK', object: 'OBJEK', verb: 'KATA KERJA', particle: 'PARTIKEL', other: '',
@@ -66,6 +67,7 @@ export default function MorphLearningEngine({ lesson, initialScene = 0, onSceneC
             exit={{ opacity: 0, x: -40 * dir }}
             transition={{ duration: 0.28 }}
           >
+            {scene.section && <div className="flex justify-center mb-3"><span className="rpg-badge font-mono">{SECTIONS[scene.section]}</span></div>}
             <SceneView scene={scene} />
           </motion.div>
         </AnimatePresence>
@@ -161,6 +163,50 @@ function SceneView({ scene }: { scene: Scene }) {
       );
     case 'quiz':
       return <Quiz scene={scene} />;
+    case 'explain':
+      return (
+        <div className="flex flex-col items-center gap-4 w-full">
+          <h2 className="text-heading-section text-center">{scene.content.heading}</h2>
+          {scene.content.terms && (
+            <div className="flex flex-wrap gap-2 justify-center">
+              {scene.content.terms.map(t => (
+                <span key={t.term} className="sq-token !min-w-0 !py-2 !px-3 !text-base">
+                  <span className="font-jp font-bold">{t.term}</span>
+                  <small>{t.reading} = {t.meaning}</small>
+                </span>
+              ))}
+            </div>
+          )}
+          <div className="flex flex-col gap-3 w-full max-w-xl text-left">
+            {scene.content.paragraphs.map((p, i) => (
+              <motion.p key={i} className="text-body-regular !text-sm" initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.12 * i }}>{p}</motion.p>
+            ))}
+          </div>
+          {scene.content.analogy && (
+            <div className="panel !bg-surface-inset w-full max-w-xl text-left">
+              <small className="text-caption-meta font-mono tracking-widest">ANALOGI</small>
+              <p className="text-body-regular !text-sm mt-1">{scene.content.analogy}</p>
+            </div>
+          )}
+        </div>
+      );
+    case 'example':
+      return <Example scene={scene} />;
+    case 'mistakes':
+      return (
+        <div className="flex flex-col items-center gap-4 w-full">
+          <h2 className="text-heading-section text-center">{scene.content.heading}</h2>
+          <div className="flex flex-col gap-3 w-full max-w-xl">
+            {scene.content.items.map(it => (
+              <div key={it.wrong} className="panel !bg-surface-inset text-left flex flex-col gap-2">
+                <p className="m-0 flex gap-2 items-start text-state-danger font-jp"><XIcon size={16} className="shrink-0 mt-1" aria-hidden /> <span>{it.wrong}</span></p>
+                <p className="m-0 flex gap-2 items-start text-state-success font-jp"><CheckIcon size={16} className="shrink-0 mt-1" aria-hidden /> <span>{it.right}</span></p>
+                <p className="text-body-regular !text-sm m-0">{it.why}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      );
     case 'summary':
       return (
         <div className="flex flex-col items-center text-center gap-4">
@@ -248,7 +294,7 @@ function Practice({ scene }: { scene: Extract<Scene, { type: 'practice' }> }) {
 }
 
 function Quiz({ scene }: { scene: Extract<Scene, { type: 'quiz' }> }) {
-  const { question, big, options, answer, explanation } = scene.content;
+  const { question, big, options, answer, explanation, why } = scene.content;
   const [picked, setPicked] = useState<number | null>(null);
   const done = picked !== null;
   return (
@@ -273,12 +319,50 @@ function Quiz({ scene }: { scene: Extract<Scene, { type: 'quiz' }> }) {
       {done && (
         <p role="status" className={`text-sm font-bold ${picked === answer ? 'text-state-success' : 'text-state-danger'}`}>
           {picked === answer ? 'Tepat!' : `Belum tepat. Jawabannya: ${options[answer]}`}
+          {picked !== answer && why?.[picked!] ? ` ${why[picked!]}` : ''}
           {explanation ? ` ${explanation}` : ''}
         </p>
       )}
       {done && picked !== answer && (
         <button className="skeuo-btn gap-1.5" onClick={() => setPicked(null)}><RotateCcw size={14} aria-hidden /> COBA LAGI</button>
       )}
+    </div>
+  );
+}
+
+function Example({ scene }: { scene: Extract<Scene, { type: 'example' }> }) {
+  const { heading, parts, translation, note } = scene.content;
+  const [active, setActive] = useState<number | null>(null);
+  const [showAll, setShowAll] = useState(false);
+  const cur: Part | null = active === null ? null : parts[active];
+  return (
+    <div className="flex flex-col items-center text-center gap-4 w-full">
+      {heading && <h2 className="text-heading-section">{heading}</h2>}
+      <div className="flex flex-wrap gap-2 justify-center">
+        {parts.map((p, i) => (
+          <button key={i} onClick={() => setActive(a => (a === i ? null : i))} aria-pressed={active === i}
+            className={`sq-token !min-w-0 !py-2 !px-3 role-${p.role} ${active === i ? '!bg-surface-elevated' : ''}`}>
+            <span className="font-jp text-2xl font-bold">{p.ja}{i === parts.length - 1 ? '。' : ''}</span>
+          </button>
+        ))}
+      </div>
+      <p className="font-jp text-xl font-bold m-0 sr-only">{sentenceJa(parts)}</p>
+      <p className="font-mono text-sm text-text-secondary m-0">{sentenceRomaji(parts)}</p>
+      <p className="text-body-regular !text-base m-0">{translation}</p>
+      <div className="min-h-12" aria-live="polite">
+        {cur ? (
+          <p className="panel !bg-surface-inset !py-2 !px-4 m-0 text-sm text-text-primary">
+            <span className="font-jp font-bold">{cur.ja}</span> ({cur.romaji}) = {cur.id_text}
+          </p>
+        ) : <p className="text-caption-meta m-0">Ketuk satu bagian kalimat untuk melihat artinya.</p>}
+      </div>
+      <button className="skeuo-btn" onClick={() => setShowAll(v => !v)}>{showAll ? 'SEMBUNYIKAN ANALISIS' : 'TAMPILKAN ANALISIS'}</button>
+      {showAll && (
+        <ul className="list-none p-0 m-0 w-full max-w-md text-left flex flex-col gap-1 text-sm text-text-secondary">
+          {parts.map((p, i) => <li key={i}><span className="font-jp font-bold text-text-primary">{p.ja}</span> ({p.romaji}) = {p.id_text}</li>)}
+        </ul>
+      )}
+      {note && <p className="text-body-regular !text-sm max-w-md">{note}</p>}
     </div>
   );
 }

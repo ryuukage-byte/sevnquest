@@ -1,0 +1,285 @@
+{
+  "id": "foundation-06",
+  "level": "BEGINNER",
+  "category": "concept",
+  "title": "Cara Kerja Bahasa Jepang",
+  "summary": "Tiga prinsip yang membuat kalimat Jepang bisa dipahami, termasuk menghilangkan kata yang sudah jelas.",
+  "minutes": 10,
+  "scenes": [
+    {
+      "id": "scene-01",
+      "type": "introduction",
+      "section": "introduction",
+      "duration": 4000,
+      "content": {
+        "title": "しくみ",
+        "subtitle": "Chapter 06: Cara kerja bahasa Jepang"
+      }
+    },
+    {
+      "id": "scene-02",
+      "type": "explain",
+      "section": "concept",
+      "content": {
+        "heading": "Tiga prinsip utama",
+        "paragraphs": [
+          "1. Kata tidak berubah bentuk untuk menandai peran. Yang menandai peran adalah partikel yang menempel di belakangnya.",
+          "2. Kata kerja menutup kalimat dan membawa informasi waktu serta kesopanan.",
+          "3. Hal yang sudah jelas dari konteks boleh dihilangkan, bahkan subjeknya."
+        ]
+      }
+    },
+    {
+      "id": "scene-03",
+      "type": "explain",
+      "section": "logic",
+      "content": {
+        "heading": "Mengapa subjek boleh hilang?",
+        "paragraphs": [
+          "Bahasa Jepang mengandalkan konteks. Kalau dari percakapan sudah jelas siapa yang dibicarakan, menyebutnya lagi terasa berlebihan.",
+          "Dalam bahasa Indonesia hal ini juga terjadi. Ketika ditanya \"Sudah makan?\", kamu menjawab \"Sudah.\" tanpa menyebut \"saya sudah makan\". Orang Jepang melakukannya jauh lebih sering."
+        ],
+        "analogy": "Seperti chat dengan teman dekat. Kamu tidak mengulang nama dan keterangan yang sudah sama-sama diketahui."
+      }
+    },
+    {
+      "id": "scene-04",
+      "type": "example",
+      "section": "examples",
+      "content": {
+        "parts": [
+          {
+            "ja": "私",
+            "reading": "わたし",
+            "romaji": "watashi",
+            "id_text": "saya",
+            "role": "subject"
+          },
+          {
+            "ja": "は",
+            "reading": "は",
+            "romaji": "wa",
+            "id_text": "penanda topik",
+            "role": "particle"
+          },
+          {
+            "ja": "りんご",
+            "reading": "りんご",
+            "romaji": "ringo",
+            "id_text": "apel",
+            "role": "object"
+          },
+          {
+            "ja": "を",
+            "reading": "を",
+            "romaji": "o",
+            "id_text": "penanda objek",
+            "role": "particle"
+          },
+          {
+            "ja": "たべます",
+            "reading": "たべます",
+            "romaji": "tabemasu",
+            "id_text": "makan",
+            "role": "verb"
+          }
+        ],
+        "translation": "Saya makan apel.",
+        "heading": "Kalimat lengkap"
+      }
+    },
+    {
+      "id": "scene-05",
+      "type": "example",
+      "section": "examples",
+      "content": {
+        "parts": [
+          {
+            "ja": "りんご",
+            "reading": "りんご",
+            "romaji": "ringo",
+            "id_text": "apel",
+            "role": "object"
+          },
+          {
+            "ja": "を",
+            "reading": "を",
+            "romaji": "o",
+            "id_text": "penanda objek",
+            "role": "particle"
+          },
+          {
+            "ja": "たべます",
+            "reading": "たべます",
+            "romaji": "tabemasu",
+            "id_text": "makan",
+            "role": "verb"
+          }
+        ],
+        "translation": "(Saya) makan apel.",
+        "heading": "Kalimat yang sama, subjek dihilangkan",
+        "note": "Dalam percakapan, kalimat ini sudah cukup natural."
+      }
+    },
+    {
+      "id": "scene-06",
+      "type": "example",
+      "section": "usage",
+      "content": {
+        "parts": [
+          {
+            "ja": "なに",
+            "reading": "なに",
+            "romaji": "nani",
+            "id_text": "apa",
+            "role": "object"
+          },
+          {
+            "ja": "を",
+            "reading": "を",
+            "romaji": "o",
+            "id_text": "penanda objek",
+            "role": "particle"
+          },
+          {
+            "ja": "たべます",
+            "reading": "たべます",
+            "romaji": "tabemasu",
+            "id_text": "makan",
+            "role": "verb"
+          },
+          {
+            "ja": "か",
+            "reading": "か",
+            "romaji": "ka",
+            "id_text": "penanda pertanyaan",
+            "role": "particle"
+          }
+        ],
+        "translation": "Makan apa?",
+        "heading": "Tanya jawab sehari-hari",
+        "note": "Partikel か di akhir kalimat mengubahnya menjadi pertanyaan."
+      }
+    },
+    {
+      "id": "scene-07",
+      "type": "example",
+      "section": "usage",
+      "content": {
+        "parts": [
+          {
+            "ja": "すし",
+            "reading": "すし",
+            "romaji": "sushi",
+            "id_text": "sushi",
+            "role": "object"
+          },
+          {
+            "ja": "を",
+            "reading": "を",
+            "romaji": "o",
+            "id_text": "penanda objek",
+            "role": "particle"
+          },
+          {
+            "ja": "たべます",
+            "reading": "たべます",
+            "romaji": "tabemasu",
+            "id_text": "makan",
+            "role": "verb"
+          }
+        ],
+        "translation": "(Saya) makan sushi.",
+        "heading": "Jawabannya"
+      }
+    },
+    {
+      "id": "scene-08",
+      "type": "comparison",
+      "section": "comparison",
+      "content": {
+        "left": "Saya makan apel. / Makan apel.",
+        "right": "わたしは りんごを たべます。 / りんごを たべます。",
+        "leftLabel": "INDONESIA",
+        "rightLabel": "JAPANESE"
+      }
+    },
+    {
+      "id": "scene-09",
+      "type": "mistakes",
+      "section": "mistakes",
+      "content": {
+        "heading": "Kesalahan yang sering dilakukan pemula",
+        "items": [
+          {
+            "wrong": "Selalu menyebut \"saya\" di setiap kalimat",
+            "right": "Hilangkan subjek bila sudah jelas",
+            "why": "Mengulang わたしは terus-menerus terdengar kaku dan tidak natural."
+          },
+          {
+            "wrong": "Mencari padanan kata untuk setiap kata Indonesia",
+            "right": "Cari padanan makna kalimat, bukan kata per kata",
+            "why": "Jepang menghilangkan bagian yang bagi kita wajib disebut."
+          },
+          {
+            "wrong": "Lupa partikel か saat bertanya",
+            "right": "Tambahkan か di akhir kalimat",
+            "why": "Tanpa か (dan nada naik), kalimat terdengar seperti pernyataan."
+          }
+        ]
+      }
+    },
+    {
+      "id": "scene-10",
+      "type": "quiz",
+      "section": "exercises",
+      "content": {
+        "question": "Apa fungsi か di akhir kalimat?",
+        "options": [
+          "Menandai topik",
+          "Menandai pertanyaan",
+          "Menandai objek"
+        ],
+        "answer": 1,
+        "why": [
+          "Itu fungsi は.",
+          null,
+          "Itu fungsi を."
+        ]
+      }
+    },
+    {
+      "id": "scene-11",
+      "type": "quiz",
+      "section": "exercises",
+      "content": {
+        "question": "Kapan subjek boleh dihilangkan?",
+        "options": [
+          "Selalu",
+          "Bila sudah jelas dari konteks",
+          "Tidak pernah"
+        ],
+        "answer": 1,
+        "why": [
+          "Tidak selalu: kadang subjek perlu disebut agar jelas.",
+          null,
+          "Itu bukan aturan bahasa Jepang."
+        ]
+      }
+    },
+    {
+      "id": "scene-12",
+      "type": "summary",
+      "section": "summary",
+      "content": {
+        "heading": "Rangkuman",
+        "points": [
+          "Partikel menandai peran, bukan perubahan bentuk kata.",
+          "Kata kerja menutup kalimat.",
+          "Hal yang jelas dari konteks boleh dihilangkan.",
+          "か mengubah kalimat menjadi pertanyaan."
+        ]
+      }
+    }
+  ]
+}
