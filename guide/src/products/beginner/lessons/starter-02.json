@@ -1,0 +1,247 @@
+{
+  "id": "starter-02",
+  "level": "BEGINNER",
+  "category": "concept",
+  "title": "Tiga Sistem Penulisan",
+  "summary": "Hiragana, katakana, dan kanji bekerja bersama dalam satu kalimat.",
+  "minutes": 9,
+  "scenes": [
+    {
+      "id": "scene-01",
+      "type": "introduction",
+      "section": "introduction",
+      "duration": 4000,
+      "content": {
+        "title": "ひらがな・カタカナ・漢字",
+        "subtitle": "Tiga jenis tulisan Jepang"
+      }
+    },
+    {
+      "id": "scene-02",
+      "type": "explain",
+      "section": "definition",
+      "content": {
+        "heading": "Ada tiga jenis tulisan",
+        "paragraphs": [
+          "1. Hiragana (ひらがな)",
+          "2. Katakana (カタカナ)",
+          "3. Kanji (漢字)",
+          "Ketiganya dipakai bersamaan dalam satu kalimat."
+        ]
+      }
+    },
+    {
+      "id": "scene-03",
+      "type": "kana",
+      "section": "explanation",
+      "content": {
+        "heading": "Hiragana: huruf dasar",
+        "items": [
+          {
+            "char": "あ",
+            "romaji": "a"
+          },
+          {
+            "char": "い",
+            "romaji": "i"
+          },
+          {
+            "char": "う",
+            "romaji": "u"
+          },
+          {
+            "char": "え",
+            "romaji": "e"
+          },
+          {
+            "char": "お",
+            "romaji": "o"
+          }
+        ],
+        "caption": "Dipakai untuk kata asli Jepang, akhiran kata kerja, dan penghubung kalimat. Contoh: たべます (tabemasu) = makan."
+      }
+    },
+    {
+      "id": "scene-04",
+      "type": "vocab",
+      "section": "explanation",
+      "content": {
+        "heading": "Katakana: kata dari luar negeri",
+        "items": [
+          {
+            "ja": "コーヒー",
+            "reading": "koohii",
+            "id_text": "kopi"
+          },
+          {
+            "ja": "ホテル",
+            "reading": "hoteru",
+            "id_text": "hotel"
+          },
+          {
+            "ja": "インドネシア",
+            "reading": "indoneshia",
+            "id_text": "Indonesia"
+          }
+        ]
+      }
+    },
+    {
+      "id": "scene-05",
+      "type": "explain",
+      "section": "concept",
+      "content": {
+        "heading": "Katakana bunyinya sama dengan hiragana",
+        "paragraphs": [
+          "Hanya bentuk hurufnya yang beda.",
+          "Dipakai untuk kata serapan, nama asing, dan nama negara."
+        ]
+      }
+    },
+    {
+      "id": "scene-06",
+      "type": "vocab",
+      "section": "explanation",
+      "content": {
+        "heading": "Kanji: tulisan yang punya arti",
+        "items": [
+          {
+            "ja": "山",
+            "reading": "yama",
+            "id_text": "gunung"
+          },
+          {
+            "ja": "水",
+            "reading": "mizu",
+            "id_text": "air"
+          },
+          {
+            "ja": "人",
+            "reading": "hito",
+            "id_text": "orang"
+          },
+          {
+            "ja": "日本",
+            "reading": "nihon",
+            "id_text": "Jepang"
+          },
+          {
+            "ja": "学校",
+            "reading": "gakkou",
+            "id_text": "sekolah"
+          }
+        ]
+      }
+    },
+    {
+      "id": "scene-07",
+      "type": "example",
+      "section": "examples",
+      "content": {
+        "parts": [
+          {
+            "ja": "私",
+            "reading": "わたし",
+            "romaji": "watashi",
+            "id_text": "saya",
+            "role": "subject"
+          },
+          {
+            "ja": "は",
+            "reading": "は",
+            "romaji": "wa",
+            "id_text": "penanda topik",
+            "role": "particle"
+          },
+          {
+            "ja": "日本",
+            "reading": "にほん",
+            "romaji": "nihon",
+            "id_text": "Jepang",
+            "role": "other"
+          },
+          {
+            "ja": "に",
+            "reading": "に",
+            "romaji": "ni",
+            "id_text": "penanda tujuan/tempat",
+            "role": "particle"
+          },
+          {
+            "ja": "います",
+            "reading": "います",
+            "romaji": "imasu",
+            "id_text": "ada, berada",
+            "role": "verb"
+          }
+        ],
+        "translation": "Saya berada di Jepang.",
+        "heading": "Ketiganya dalam satu kalimat",
+        "note": "に menunjukkan tempat. います dipakai untuk makhluk hidup."
+      }
+    },
+    {
+      "id": "scene-08",
+      "type": "explain",
+      "section": "logic",
+      "content": {
+        "heading": "Ingat ini",
+        "paragraphs": [
+          "Hiragana, katakana, dan kanji bukan tiga bahasa berbeda.",
+          "Ketiganya bekerja sama dalam satu bahasa."
+        ]
+      }
+    },
+    {
+      "id": "scene-09",
+      "type": "quiz",
+      "section": "exercises",
+      "content": {
+        "question": "Aksara mana yang dipakai untuk kata serapan seperti コーヒー?",
+        "options": [
+          "Hiragana",
+          "Katakana",
+          "Kanji"
+        ],
+        "answer": 1,
+        "why": [
+          "Hiragana untuk kata asli Jepang dan penghubung kalimat.",
+          null,
+          "Kanji untuk tulisan yang punya arti, seperti 水."
+        ]
+      }
+    },
+    {
+      "id": "scene-10",
+      "type": "quiz",
+      "section": "exercises",
+      "content": {
+        "question": "Aksara mana yang berasal dari Tiongkok dan punya arti?",
+        "options": [
+          "Kanji",
+          "Hiragana",
+          "Katakana"
+        ],
+        "answer": 0,
+        "why": [
+          null,
+          "Hiragana mewakili bunyi.",
+          "Katakana mewakili bunyi."
+        ]
+      }
+    },
+    {
+      "id": "scene-11",
+      "type": "summary",
+      "section": "summary",
+      "content": {
+        "heading": "Rangkuman",
+        "points": [
+          "Hiragana: huruf dasar.",
+          "Katakana: kata serapan.",
+          "Kanji: tulisan yang punya arti."
+        ]
+      }
+    }
+  ]
+}

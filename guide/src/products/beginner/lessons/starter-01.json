@@ -1,0 +1,197 @@
+{
+  "id": "starter-01",
+  "level": "BEGINNER",
+  "category": "concept",
+  "title": "Apa Itu Bahasa Jepang?",
+  "summary": "Selamat datang di kelas. Kenalan dulu dengan bahasa Jepang.",
+  "minutes": 8,
+  "scenes": [
+    {
+      "id": "scene-01",
+      "type": "introduction",
+      "section": "introduction",
+      "duration": 4000,
+      "content": {
+        "title": "ようこそ",
+        "subtitle": "Selamat datang di kelas bahasa Jepang"
+      }
+    },
+    {
+      "id": "scene-02",
+      "type": "explain",
+      "section": "introduction",
+      "content": {
+        "heading": "Aku akan jadi gurumu",
+        "paragraphs": [
+          "Mulai sekarang, anggap aku guru bahasa Jepangmu. Kita mulai dari dasar.",
+          "Kita tidak akan langsung menghafal ribuan kata atau mengerjakan soal ujian.",
+          "Kita pahami dulu: apa itu bahasa Jepang, bagaimana cara kerjanya, dan bagaimana orang Jepang menyusun kalimat."
+        ]
+      }
+    },
+    {
+      "id": "scene-03",
+      "type": "explain",
+      "section": "definition",
+      "content": {
+        "heading": "Namanya 日本語",
+        "paragraphs": [
+          "Bahasa Jepang disebut 日本語 (ni-hon-go).",
+          "日本 (Nihon) = Jepang. 語 (go) = bahasa.",
+          "Jadi 日本語 artinya bahasa Jepang."
+        ],
+        "terms": [
+          {
+            "term": "日本語",
+            "reading": "nihongo",
+            "meaning": "bahasa Jepang"
+          }
+        ]
+      }
+    },
+    {
+      "id": "scene-04",
+      "type": "vocab",
+      "section": "examples",
+      "content": {
+        "heading": "Empat ucapan pertamamu",
+        "items": [
+          {
+            "ja": "おはようございます",
+            "reading": "ohayou gozaimasu",
+            "id_text": "Selamat pagi"
+          },
+          {
+            "ja": "こんにちは",
+            "reading": "konnichiwa",
+            "id_text": "Halo / selamat siang"
+          },
+          {
+            "ja": "ありがとうございます",
+            "reading": "arigatou gozaimasu",
+            "id_text": "Terima kasih"
+          },
+          {
+            "ja": "すみません",
+            "reading": "sumimasen",
+            "id_text": "Permisi / maaf"
+          }
+        ]
+      }
+    },
+    {
+      "id": "scene-05",
+      "type": "explain",
+      "section": "concept",
+      "content": {
+        "heading": "Bukan sekadar terjemahan",
+        "paragraphs": [
+          "Bahasa Jepang bukan bahasa Indonesia yang diganti kata-katanya.",
+          "Tulisannya, susunan kalimatnya, dan cara menyampaikannya berbeda."
+        ]
+      }
+    },
+    {
+      "id": "scene-06",
+      "type": "comparison",
+      "section": "comparison",
+      "content": {
+        "left": "Saya makan nasi.",
+        "right": "私はご飯を食べます。",
+        "leftLabel": "INDONESIA",
+        "rightLabel": "JEPANG"
+      }
+    },
+    {
+      "id": "scene-07",
+      "type": "example",
+      "section": "examples",
+      "content": {
+        "parts": [
+          {
+            "ja": "私",
+            "reading": "わたし",
+            "romaji": "watashi",
+            "id_text": "saya",
+            "role": "subject"
+          },
+          {
+            "ja": "は",
+            "reading": "は",
+            "romaji": "wa",
+            "id_text": "penanda topik",
+            "role": "particle"
+          },
+          {
+            "ja": "ご飯",
+            "reading": "ごはん",
+            "romaji": "gohan",
+            "id_text": "nasi",
+            "role": "object"
+          },
+          {
+            "ja": "を",
+            "reading": "を",
+            "romaji": "o",
+            "id_text": "penanda objek",
+            "role": "particle"
+          },
+          {
+            "ja": "食べます",
+            "reading": "たべます",
+            "romaji": "tabemasu",
+            "id_text": "makan",
+            "role": "verb"
+          }
+        ],
+        "translation": "Saya makan nasi.",
+        "heading": "Kalimat pertamamu",
+        "note": "Ketuk tiap kotak untuk melihat artinya. Perhatikan: \"makan\" ada di paling akhir."
+      }
+    },
+    {
+      "id": "scene-08",
+      "type": "explain",
+      "section": "concept",
+      "content": {
+        "heading": "Inilah yang akan kita pelajari",
+        "paragraphs": [
+          "Susunan dan fungsi tiap kata memang berbeda.",
+          "Tenang, kita pelajari pelan-pelan."
+        ]
+      }
+    },
+    {
+      "id": "scene-09",
+      "type": "quiz",
+      "section": "exercises",
+      "content": {
+        "question": "Apa arti 日本語?",
+        "options": [
+          "Negara Jepang",
+          "Bahasa Jepang",
+          "Orang Jepang"
+        ],
+        "answer": 1,
+        "why": [
+          "Negara Jepang adalah 日本.",
+          null,
+          "Orang Jepang adalah 日本人."
+        ]
+      }
+    },
+    {
+      "id": "scene-10",
+      "type": "summary",
+      "section": "summary",
+      "content": {
+        "heading": "Rangkuman",
+        "points": [
+          "日本語 (nihongo) = bahasa Jepang.",
+          "Bahasa Jepang punya cara kerja sendiri, bukan sekadar terjemahan.",
+          "Kita belajar dari dasar, pelan-pelan."
+        ]
+      }
+    }
+  ]
+}

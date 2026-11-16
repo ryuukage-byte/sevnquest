@@ -1,0 +1,235 @@
+{
+  "id": "starter-04",
+  "level": "BEGINNER",
+  "category": "grammar",
+  "title": "Apa Itu Partikel?",
+  "summary": "Kata kecil yang menjelaskan peran tiap kata dalam kalimat.",
+  "minutes": 10,
+  "scenes": [
+    {
+      "id": "scene-01",
+      "type": "introduction",
+      "section": "introduction",
+      "duration": 4000,
+      "content": {
+        "title": "助詞",
+        "subtitle": "Partikel: kata kecil yang penting"
+      }
+    },
+    {
+      "id": "scene-02",
+      "type": "explain",
+      "section": "definition",
+      "content": {
+        "heading": "Partikel itu apa?",
+        "paragraphs": [
+          "Partikel disebut 助詞 (joshi).",
+          "Partikel adalah kata kecil yang menjelaskan hubungan antar-kata dalam kalimat."
+        ],
+        "terms": [
+          {
+            "term": "助詞",
+            "reading": "joshi",
+            "meaning": "partikel"
+          }
+        ]
+      }
+    },
+    {
+      "id": "scene-03",
+      "type": "example",
+      "section": "examples",
+      "content": {
+        "parts": [
+          {
+            "ja": "私",
+            "reading": "わたし",
+            "romaji": "watashi",
+            "id_text": "saya",
+            "role": "subject"
+          },
+          {
+            "ja": "は",
+            "reading": "は",
+            "romaji": "wa",
+            "id_text": "penanda topik",
+            "role": "particle"
+          },
+          {
+            "ja": "学校",
+            "reading": "がっこう",
+            "romaji": "gakkou",
+            "id_text": "sekolah",
+            "role": "other"
+          },
+          {
+            "ja": "に",
+            "reading": "に",
+            "romaji": "ni",
+            "id_text": "penanda tujuan/tempat",
+            "role": "particle"
+          },
+          {
+            "ja": "行きます",
+            "reading": "いきます",
+            "romaji": "ikimasu",
+            "id_text": "pergi",
+            "role": "verb"
+          }
+        ],
+        "translation": "Saya pergi ke sekolah.",
+        "heading": "Dua partikel dalam satu kalimat",
+        "note": "は menandai topik (saya). に menandai tujuan (ke sekolah)."
+      }
+    },
+    {
+      "id": "scene-04",
+      "type": "explain",
+      "section": "explanation",
+      "content": {
+        "heading": "Enam partikel pertama",
+        "paragraphs": [
+          "Jangan dihafal sekaligus. Kita pelajari satu per satu nanti."
+        ]
+      }
+    },
+    {
+      "id": "scene-05",
+      "type": "vocab",
+      "section": "explanation",
+      "content": {
+        "heading": "Partikel dasar (1)",
+        "items": [
+          {
+            "ja": "は",
+            "reading": "wa",
+            "id_text": "penanda topik. Contoh: 私は"
+          },
+          {
+            "ja": "が",
+            "reading": "ga",
+            "id_text": "penanda subjek. Contoh: 猫が"
+          },
+          {
+            "ja": "を",
+            "reading": "o",
+            "id_text": "penanda objek. Contoh: 水を"
+          },
+          {
+            "ja": "に",
+            "reading": "ni",
+            "id_text": "waktu, tujuan, tempat. Contoh: 学校に"
+          },
+          {
+            "ja": "で",
+            "reading": "de",
+            "id_text": "tempat kegiatan, alat. Contoh: 学校で"
+          },
+          {
+            "ja": "の",
+            "reading": "no",
+            "id_text": "milik, hubungan. Contoh: 私の"
+          }
+        ]
+      }
+    },
+    {
+      "id": "scene-06",
+      "type": "vocab",
+      "section": "explanation",
+      "content": {
+        "heading": "Partikel dasar (2)",
+        "items": [
+          {
+            "ja": "と",
+            "reading": "to",
+            "id_text": "dan / bersama. Contoh: 友達と"
+          },
+          {
+            "ja": "も",
+            "reading": "mo",
+            "id_text": "juga. Contoh: 私も"
+          },
+          {
+            "ja": "へ",
+            "reading": "e",
+            "id_text": "arah tujuan. Contoh: 日本へ"
+          },
+          {
+            "ja": "から",
+            "reading": "kara",
+            "id_text": "dari. Contoh: 日本から"
+          },
+          {
+            "ja": "まで",
+            "reading": "made",
+            "id_text": "sampai. Contoh: 5時まで"
+          }
+        ]
+      }
+    },
+    {
+      "id": "scene-07",
+      "type": "explain",
+      "section": "logic",
+      "content": {
+        "heading": "Kenapa perlu partikel?",
+        "paragraphs": [
+          "Karena kata Jepang tidak berubah bentuk untuk menunjukkan perannya.",
+          "Partikellah yang memberi tahu: mana topik, mana objek, mana tujuan."
+        ]
+      }
+    },
+    {
+      "id": "scene-08",
+      "type": "quiz",
+      "section": "exercises",
+      "content": {
+        "question": "Apa fungsi partikel を?",
+        "options": [
+          "Menandai topik",
+          "Menandai objek",
+          "Menandai kepemilikan"
+        ],
+        "answer": 1,
+        "why": [
+          "Itu fungsi は.",
+          null,
+          "Itu fungsi の."
+        ]
+      }
+    },
+    {
+      "id": "scene-09",
+      "type": "quiz",
+      "section": "exercises",
+      "content": {
+        "question": "Partikel apa yang berarti \"bersama\"?",
+        "options": [
+          "と",
+          "も",
+          "から"
+        ],
+        "answer": 0,
+        "why": [
+          null,
+          "も berarti \"juga\".",
+          "から berarti \"dari\"."
+        ]
+      }
+    },
+    {
+      "id": "scene-10",
+      "type": "summary",
+      "section": "summary",
+      "content": {
+        "heading": "Rangkuman",
+        "points": [
+          "Partikel (助詞) = kata kecil penunjuk peran.",
+          "は topik, を objek, に tujuan, の milik, も juga.",
+          "Tidak perlu hafal semuanya sekarang."
+        ]
+      }
+    }
+  ]
+}

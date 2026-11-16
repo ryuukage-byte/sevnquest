@@ -1,0 +1,150 @@
+{
+  "id": "starter-09",
+  "level": "BEGINNER",
+  "category": "concept",
+  "title": "Tes Pemahaman Pertama",
+  "summary": "Lima soal untuk menguji pemahamanmu dari pelajaran 01 sampai 08.",
+  "minutes": 8,
+  "scenes": [
+    {
+      "id": "scene-01",
+      "type": "introduction",
+      "section": "introduction",
+      "duration": 4000,
+      "content": {
+        "title": "確認テスト",
+        "subtitle": "Tes pemahaman pertama"
+      }
+    },
+    {
+      "id": "scene-02",
+      "type": "explain",
+      "section": "introduction",
+      "content": {
+        "heading": "Cara mengerjakan",
+        "paragraphs": [
+          "Ada lima soal. Jawab sebisamu.",
+          "Kalau salah, jangan khawatir. Kamu akan melihat penjelasannya."
+        ]
+      }
+    },
+    {
+      "id": "scene-03",
+      "type": "quiz",
+      "section": "exercises",
+      "content": {
+        "question": "Apa yang dimaksud dengan 日本語 (Nihongo)?",
+        "options": [
+          "Tulisan Jepang",
+          "Bahasa Jepang",
+          "Orang Jepang",
+          "Negara Jepang"
+        ],
+        "answer": 1,
+        "why": [
+          "Tulisan Jepang bukan arti 日本語.",
+          null,
+          "Orang Jepang adalah 日本人.",
+          "Negara Jepang adalah 日本."
+        ]
+      }
+    },
+    {
+      "id": "scene-04",
+      "type": "quiz",
+      "section": "exercises",
+      "content": {
+        "question": "Ada berapa sistem penulisan utama dalam bahasa Jepang?",
+        "options": [
+          "1",
+          "2",
+          "3",
+          "4"
+        ],
+        "answer": 2,
+        "why": [
+          "Ada lebih dari satu.",
+          "Ada lebih dari dua.",
+          null,
+          "Hanya tiga yang utama: hiragana, katakana, kanji."
+        ]
+      }
+    },
+    {
+      "id": "scene-05",
+      "type": "quiz",
+      "section": "exercises",
+      "content": {
+        "question": "Di mana posisi kata kerja dalam kalimat bahasa Jepang?",
+        "options": [
+          "Awal kalimat",
+          "Tengah kalimat",
+          "Akhir kalimat",
+          "Bebas tanpa pola"
+        ],
+        "answer": 2,
+        "why": [
+          "Bukan di awal.",
+          "Bukan di tengah.",
+          null,
+          "Kata kerja punya posisi tetap: di akhir."
+        ]
+      }
+    },
+    {
+      "id": "scene-06",
+      "type": "quiz",
+      "section": "exercises",
+      "content": {
+        "question": "Apa fungsi utama partikel を (o)?",
+        "options": [
+          "Menandai topik",
+          "Menandai objek",
+          "Menandai kepemilikan",
+          "Menandai waktu"
+        ],
+        "answer": 1,
+        "why": [
+          "Itu fungsi は.",
+          null,
+          "Itu fungsi の.",
+          "Waktu biasanya ditandai に."
+        ]
+      }
+    },
+    {
+      "id": "scene-07",
+      "type": "quiz",
+      "section": "exercises",
+      "content": {
+        "question": "Apa arti 文法 (bunpou)?",
+        "options": [
+          "Kosakata",
+          "Tata bahasa",
+          "Percakapan",
+          "Tulisan"
+        ],
+        "answer": 1,
+        "why": [
+          "Kosakata disebut 語彙.",
+          null,
+          "Percakapan disebut 会話.",
+          "Tulisan bukan arti 文法."
+        ]
+      }
+    },
+    {
+      "id": "scene-08",
+      "type": "summary",
+      "section": "summary",
+      "content": {
+        "heading": "Rangkuman",
+        "points": [
+          "Kamu sudah mengenal dasar-dasar bahasa Jepang.",
+          "Belajar bahasa Jepang bukan lomba menghafal. Bangun pemahaman sedikit demi sedikit.",
+          "Berikutnya: mengenal bunyi bahasa Jepang lewat Hiragana Mastery."
+        ]
+      }
+    }
+  ]
+}

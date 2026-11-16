@@ -29,9 +29,9 @@ test('jalur belajar hanya merujuk materi yang ada, dan tiap materi masuk tepat s
   assert.equal(new Set(chapterIds).size, chapterIds.length);
 });
 
-test('Japanese Foundation memuat 16 bab sesuai kurikulum', () => {
-  const f = config.paths.find(p => p.id === 'foundation')!;
-  assert.equal(f.chapters.length, 16);
+test('Starter Pack memuat 9 bab dan menjadi jalur pertama', () => {
+  assert.equal(config.paths[0].id, 'starter');
+  assert.equal(config.paths[0].chapters.length, 9);
 });
 
 test('setiap materi punya latihan dan ditutup rangkuman', () => {
@@ -42,7 +42,7 @@ test('setiap materi punya latihan dan ditutup rangkuman', () => {
 });
 
 test('setiap kuis menjelaskan pilihan yang salah (why) bila materi Foundation', () => {
-  for (const l of lessons.filter(x => x.id.startsWith('foundation-'))) {
+  for (const l of lessons.filter(x => x.id.startsWith('foundation-') || x.id.startsWith('starter-'))) {
     for (const s of l.scenes) {
       if (s.type !== 'quiz') continue;
       assert.ok(s.content.why, `${l.id}/${s.id} tanpa why`);
@@ -70,7 +70,7 @@ test('contoh kalimat: bacaan hiragana, romaji, dan kana konsisten', () => {
 // wanakana mengeja ァィゥェォ kecil secara naif (ファ -> fua), jadi gabungan bunyi asing tidak diperiksa otomatis.
 const SMALL_VOWEL = /[ァィゥェォ]/;
 // Partikel は pada kata sapaan berbunyi "wa", bukan "ha".
-const HA_AS_WA = new Set(['こんにちは', 'こんばんは']);
+const HA_AS_WA = new Set(['こんにちは', 'こんばんは', 'は', 'を', 'へ']);
 
 test('scene kana: romaji sesuai huruf', () => {
   let n = 0;

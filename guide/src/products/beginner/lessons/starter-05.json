@@ -1,0 +1,220 @@
+{
+  "id": "starter-05",
+  "level": "BEGINNER",
+  "category": "grammar",
+  "title": "Apa Itu Bunpou?",
+  "summary": "Tata bahasa dan pola kalimat pertama: A は B です.",
+  "minutes": 8,
+  "scenes": [
+    {
+      "id": "scene-01",
+      "type": "introduction",
+      "section": "introduction",
+      "duration": 4000,
+      "content": {
+        "title": "文法",
+        "subtitle": "Bunpou: tata bahasa"
+      }
+    },
+    {
+      "id": "scene-02",
+      "type": "explain",
+      "section": "definition",
+      "content": {
+        "heading": "Bunpou itu apa?",
+        "paragraphs": [
+          "Bunpou (文法) artinya tata bahasa.",
+          "Bunpou adalah aturan untuk menyusun kata menjadi kalimat yang punya arti."
+        ],
+        "terms": [
+          {
+            "term": "文法",
+            "reading": "bunpou",
+            "meaning": "tata bahasa"
+          }
+        ]
+      }
+    },
+    {
+      "id": "scene-03",
+      "type": "example",
+      "section": "examples",
+      "content": {
+        "parts": [
+          {
+            "ja": "私",
+            "reading": "わたし",
+            "romaji": "watashi",
+            "id_text": "saya",
+            "role": "subject"
+          },
+          {
+            "ja": "は",
+            "reading": "は",
+            "romaji": "wa",
+            "id_text": "penanda topik",
+            "role": "particle"
+          },
+          {
+            "ja": "学生",
+            "reading": "がくせい",
+            "romaji": "gakusei",
+            "id_text": "pelajar",
+            "role": "other"
+          },
+          {
+            "ja": "です",
+            "reading": "です",
+            "romaji": "desu",
+            "id_text": "adalah (sopan)",
+            "role": "verb"
+          }
+        ],
+        "translation": "Saya adalah pelajar.",
+        "heading": "Pola kalimat pertama",
+        "note": "Pola: A は B です = A adalah B."
+      }
+    },
+    {
+      "id": "scene-04",
+      "type": "example",
+      "section": "examples",
+      "content": {
+        "parts": [
+          {
+            "ja": "私",
+            "reading": "わたし",
+            "romaji": "watashi",
+            "id_text": "saya",
+            "role": "subject"
+          },
+          {
+            "ja": "は",
+            "reading": "は",
+            "romaji": "wa",
+            "id_text": "penanda topik",
+            "role": "particle"
+          },
+          {
+            "ja": "インドネシア人",
+            "reading": "いんどねしあじん",
+            "romaji": "indoneshiajin",
+            "id_text": "orang Indonesia",
+            "role": "other"
+          },
+          {
+            "ja": "です",
+            "reading": "です",
+            "romaji": "desu",
+            "id_text": "adalah (sopan)",
+            "role": "verb"
+          }
+        ],
+        "translation": "Saya orang Indonesia.",
+        "heading": "Ganti kata, polanya sama"
+      }
+    },
+    {
+      "id": "scene-05",
+      "type": "example",
+      "section": "examples",
+      "content": {
+        "parts": [
+          {
+            "ja": "田中さん",
+            "reading": "たなかさん",
+            "romaji": "tanaka san",
+            "id_text": "Tanaka",
+            "role": "subject"
+          },
+          {
+            "ja": "は",
+            "reading": "は",
+            "romaji": "wa",
+            "id_text": "penanda topik",
+            "role": "particle"
+          },
+          {
+            "ja": "先生",
+            "reading": "せんせい",
+            "romaji": "sensei",
+            "id_text": "guru",
+            "role": "other"
+          },
+          {
+            "ja": "です",
+            "reading": "です",
+            "romaji": "desu",
+            "id_text": "adalah (sopan)",
+            "role": "verb"
+          }
+        ],
+        "translation": "Tanaka adalah guru.",
+        "heading": "Satu lagi"
+      }
+    },
+    {
+      "id": "scene-06",
+      "type": "explain",
+      "section": "concept",
+      "content": {
+        "heading": "Kamu baru belajar satu pola",
+        "paragraphs": [
+          "Pola ini sangat sering dipakai.",
+          "Cukup ganti A dan B untuk membuat kalimat baru."
+        ]
+      }
+    },
+    {
+      "id": "scene-07",
+      "type": "quiz",
+      "section": "exercises",
+      "content": {
+        "question": "Pola \"A は B です\" artinya...",
+        "options": [
+          "A adalah B",
+          "A pergi ke B",
+          "A makan B"
+        ],
+        "answer": 0,
+        "why": [
+          null,
+          "Itu bukan arti pola ini.",
+          "Itu bukan arti pola ini."
+        ]
+      }
+    },
+    {
+      "id": "scene-08",
+      "type": "quiz",
+      "section": "exercises",
+      "content": {
+        "question": "Apa arti 文法?",
+        "options": [
+          "Kosakata",
+          "Tata bahasa",
+          "Percakapan"
+        ],
+        "answer": 1,
+        "why": [
+          "Kosakata disebut 語彙.",
+          null,
+          "Percakapan disebut 会話."
+        ]
+      }
+    },
+    {
+      "id": "scene-09",
+      "type": "summary",
+      "section": "summary",
+      "content": {
+        "heading": "Rangkuman",
+        "points": [
+          "文法 (bunpou) = tata bahasa.",
+          "A は B です = A adalah B.",
+          "Ganti A dan B untuk membuat kalimat baru."
+        ]
+      }
+    }
+  ]
+}

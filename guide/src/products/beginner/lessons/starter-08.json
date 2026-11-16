@@ -1,0 +1,131 @@
+{
+  "id": "starter-08",
+  "level": "BEGINNER",
+  "category": "concept",
+  "title": "Urutan Belajar Bahasa Jepang",
+  "summary": "Peta belajarmu dan cara belajar di kelas ini.",
+  "minutes": 8,
+  "scenes": [
+    {
+      "id": "scene-01",
+      "type": "introduction",
+      "section": "introduction",
+      "duration": 4000,
+      "content": {
+        "title": "学習の順番",
+        "subtitle": "Urutan belajarmu"
+      }
+    },
+    {
+      "id": "scene-02",
+      "type": "explain",
+      "section": "concept",
+      "content": {
+        "heading": "Urutan yang disarankan (1)",
+        "paragraphs": [
+          "1. Pengenalan bahasa Jepang: paham sistemnya.",
+          "2. Hiragana: bisa membaca hiragana.",
+          "3. Katakana: bisa membaca katakana.",
+          "4. Kosakata dasar: kata sehari-hari.",
+          "5. Kanji dasar: karakter dasar.",
+          "6. Tata bahasa dasar: membentuk kalimat."
+        ]
+      }
+    },
+    {
+      "id": "scene-03",
+      "type": "explain",
+      "section": "concept",
+      "content": {
+        "heading": "Urutan yang disarankan (2)",
+        "paragraphs": [
+          "7. Partikel: hubungan antar-kata.",
+          "8. Kata kerja: perubahan bentuk.",
+          "9. Choukai (聴解): melatih pendengaran.",
+          "10. Dokkai (読解): melatih membaca.",
+          "11. Kaiwa (会話): melatih bercakap.",
+          "Setelah fondasi kuat, baru masuk JLPT N5, N4, N3, N2, dan N1."
+        ]
+      }
+    },
+    {
+      "id": "scene-04",
+      "type": "explain",
+      "section": "concept",
+      "content": {
+        "heading": "Cara kita belajar",
+        "paragraphs": [
+          "1. Pengertian: paham dulu apa yang dipelajari.",
+          "2. Logika: kenapa bentuk itu dipakai.",
+          "3. Contoh: kalimat Jepang yang nyata.",
+          "4. Analisis: bedah kata, partikel, dan susunan."
+        ]
+      }
+    },
+    {
+      "id": "scene-05",
+      "type": "explain",
+      "section": "concept",
+      "content": {
+        "heading": "Cara kita belajar (lanjutan)",
+        "paragraphs": [
+          "5. Perbandingan: bedakan pola yang mirip.",
+          "6. Latihan: kerjakan soal.",
+          "7. Evaluasi: lihat penjelasan jawaban."
+        ],
+        "analogy": "Jangan hanya menghafal bahwa pola ini artinya itu. Pahami kenapa pola itu dipakai."
+      }
+    },
+    {
+      "id": "scene-06",
+      "type": "quiz",
+      "section": "exercises",
+      "content": {
+        "question": "Mana yang sebaiknya dipelajari lebih dulu?",
+        "options": [
+          "Hiragana",
+          "Soal JLPT N1",
+          "Kanji tingkat lanjut"
+        ],
+        "answer": 0,
+        "why": [
+          null,
+          "Itu untuk tahap lanjut.",
+          "Kanji dasar dulu, bukan lanjut."
+        ]
+      }
+    },
+    {
+      "id": "scene-07",
+      "type": "quiz",
+      "section": "exercises",
+      "content": {
+        "question": "Apa prinsip belajar di kelas ini?",
+        "options": [
+          "Menghafal sebanyak mungkin",
+          "Memahami kenapa pola dipakai",
+          "Langsung mengerjakan soal ujian"
+        ],
+        "answer": 1,
+        "why": [
+          "Menghafal saja tidak cukup.",
+          null,
+          "Pahami dulu, baru soal."
+        ]
+      }
+    },
+    {
+      "id": "scene-08",
+      "type": "summary",
+      "section": "summary",
+      "content": {
+        "heading": "Rangkuman",
+        "points": [
+          "Mulai dari pengenalan, hiragana, lalu katakana.",
+          "Belajar dengan paham logikanya, bukan hanya hafalan.",
+          "Setelah fondasi, lanjut ke JLPT N5 dan seterusnya."
+        ]
+      }
+    }
+  ]
+}
