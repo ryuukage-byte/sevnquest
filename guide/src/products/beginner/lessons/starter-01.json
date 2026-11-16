@@ -1,0 +1,217 @@
+{
+  "id": "starter-01",
+  "level": "BEGINNER",
+  "category": "kana",
+  "title": "Mengenal Bahasa dan Huruf Jepang",
+  "summary": "Kenalan dengan bahasa Jepang dan empat jenis hurufnya.",
+  "minutes": 8,
+  "scenes": [
+    {
+      "id": "scene-01",
+      "type": "introduction",
+      "section": "introduction",
+      "duration": 4000,
+      "content": {
+        "title": "日本語",
+        "subtitle": "Selamat datang! Kenalan dulu dengan bahasa Jepang"
+      }
+    },
+    {
+      "id": "scene-02",
+      "type": "explain",
+      "section": "definition",
+      "content": {
+        "heading": "Namanya 日本語",
+        "paragraphs": [
+          "Bahasa Jepang disebut 日本語, dibaca \"ni-hon-go\".",
+          "Kita mulai dari yang paling dasar: hurufnya."
+        ],
+        "terms": [
+          {
+            "term": "日本語",
+            "reading": "nihongo",
+            "meaning": "bahasa Jepang"
+          }
+        ]
+      }
+    },
+    {
+      "id": "scene-03",
+      "type": "explain",
+      "section": "concept",
+      "content": {
+        "heading": "Ada empat jenis huruf",
+        "paragraphs": [
+          "1. Hiragana",
+          "2. Katakana",
+          "3. Kanji",
+          "4. Romaji",
+          "Kita kenalan satu per satu. Tenang, belum perlu hafal."
+        ]
+      }
+    },
+    {
+      "id": "scene-04",
+      "type": "kana",
+      "section": "explanation",
+      "content": {
+        "heading": "1. Hiragana",
+        "items": [
+          {
+            "char": "あ",
+            "romaji": "a"
+          },
+          {
+            "char": "い",
+            "romaji": "i"
+          },
+          {
+            "char": "う",
+            "romaji": "u"
+          },
+          {
+            "char": "え",
+            "romaji": "e"
+          },
+          {
+            "char": "お",
+            "romaji": "o"
+          }
+        ],
+        "caption": "Huruf dasar bahasa Jepang. Dipakai untuk kata Jepang sehari-hari."
+      }
+    },
+    {
+      "id": "scene-05",
+      "type": "kana",
+      "section": "explanation",
+      "content": {
+        "heading": "2. Katakana",
+        "items": [
+          {
+            "char": "ア",
+            "romaji": "a"
+          },
+          {
+            "char": "イ",
+            "romaji": "i"
+          },
+          {
+            "char": "ウ",
+            "romaji": "u"
+          },
+          {
+            "char": "エ",
+            "romaji": "e"
+          },
+          {
+            "char": "オ",
+            "romaji": "o"
+          }
+        ],
+        "caption": "Bunyinya sama dengan hiragana, hanya bentuknya beda. Dipakai untuk kata dari luar negeri."
+      }
+    },
+    {
+      "id": "scene-06",
+      "type": "vocab",
+      "section": "explanation",
+      "content": {
+        "heading": "3. Kanji",
+        "items": [
+          {
+            "ja": "山",
+            "reading": "yama",
+            "id_text": "gunung"
+          },
+          {
+            "ja": "水",
+            "reading": "mizu",
+            "id_text": "air"
+          },
+          {
+            "ja": "人",
+            "reading": "hito",
+            "id_text": "orang"
+          }
+        ]
+      }
+    },
+    {
+      "id": "scene-07",
+      "type": "explain",
+      "section": "explanation",
+      "content": {
+        "heading": "Kanji punya arti",
+        "paragraphs": [
+          "Kanji berasal dari Tiongkok. Satu kanji punya arti sendiri, bentuknya seperti gambar.",
+          "Kita belajar kanji sedikit demi sedikit, belakangan."
+        ]
+      }
+    },
+    {
+      "id": "scene-08",
+      "type": "explain",
+      "section": "explanation",
+      "content": {
+        "heading": "4. Romaji",
+        "paragraphs": [
+          "Romaji adalah tulisan Jepang dengan huruf Latin, seperti huruf yang kamu pakai sehari-hari.",
+          "Contoh: ありがとう ditulis arigatou.",
+          "Di pelajaran ini, romaji ditaruh di bawah huruf Jepang sebagai bantuan membaca."
+        ]
+      }
+    },
+    {
+      "id": "scene-09",
+      "type": "quiz",
+      "section": "exercises",
+      "content": {
+        "question": "Huruf mana yang dipakai untuk kata dari luar negeri?",
+        "options": [
+          "Hiragana",
+          "Katakana",
+          "Kanji"
+        ],
+        "answer": 1,
+        "why": [
+          "Hiragana untuk kata Jepang sehari-hari.",
+          null,
+          "Kanji punya arti sendiri, seperti 水."
+        ]
+      }
+    },
+    {
+      "id": "scene-10",
+      "type": "quiz",
+      "section": "exercises",
+      "content": {
+        "question": "Huruf mana yang bentuknya seperti gambar dan punya arti?",
+        "options": [
+          "Kanji",
+          "Hiragana",
+          "Romaji"
+        ],
+        "answer": 0,
+        "why": [
+          null,
+          "Hiragana hanya mewakili bunyi.",
+          "Romaji adalah huruf Latin."
+        ]
+      }
+    },
+    {
+      "id": "scene-11",
+      "type": "summary",
+      "section": "summary",
+      "content": {
+        "heading": "Rangkuman",
+        "points": [
+          "Empat jenis huruf: hiragana, katakana, kanji, romaji.",
+          "Hiragana dan katakana mewakili bunyi.",
+          "Kanji punya arti. Romaji = huruf Latin sebagai bantuan baca."
+        ]
+      }
+    }
+  ]
+}

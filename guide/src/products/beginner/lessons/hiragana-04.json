@@ -1,0 +1,334 @@
+{
+  "id": "hiragana-04",
+  "level": "BEGINNER",
+  "category": "kana",
+  "title": "Dakuon dan Handakuon",
+  "summary": "Menambahkan tanda ゛ dan ゜ untuk mengubah bunyi huruf.",
+  "minutes": 10,
+  "scenes": [
+    {
+      "id": "scene-01",
+      "type": "introduction",
+      "section": "introduction",
+      "duration": 4000,
+      "content": {
+        "title": "濁音・半濁音",
+        "subtitle": "Hiragana Mastery: Dakuon dan Handakuon"
+      }
+    },
+    {
+      "id": "scene-02",
+      "type": "explain",
+      "section": "definition",
+      "content": {
+        "heading": "Dua tanda kecil yang mengubah bunyi",
+        "paragraphs": [
+          "Dakuon (濁音) adalah bunyi bersuara yang dibuat dengan menambahkan tanda ゛ (tenten, dua titik) di kanan atas huruf. Contoh: か (ka) menjadi が (ga).",
+          "Handakuon (半濁音) dibuat dengan tanda ゜ (maru, lingkaran kecil), hanya untuk baris H: は (ha) menjadi ぱ (pa).",
+          "Jadi kamu tidak perlu menghafal huruf baru dari nol. Cukup kenali pola perubahan bunyinya."
+        ],
+        "terms": [
+          {
+            "term": "濁音",
+            "reading": "dakuon",
+            "meaning": "bunyi bersuara (゛)"
+          },
+          {
+            "term": "半濁音",
+            "reading": "handakuon",
+            "meaning": "bunyi semi-bersuara (゜)"
+          },
+          {
+            "term": "゛",
+            "reading": "tenten",
+            "meaning": "tanda dua titik"
+          }
+        ]
+      }
+    },
+    {
+      "id": "scene-03",
+      "type": "explain",
+      "section": "logic",
+      "content": {
+        "heading": "Pola perubahan konsonan",
+        "paragraphs": [
+          "Tanda ゛ mengubah konsonan tak bersuara menjadi bersuara: k menjadi g, s menjadi z, t menjadi d, dan h menjadi b.",
+          "Konsonan \"bersuara\" dibunyikan dengan getaran pita suara. Coba letakkan jari di leher dan ucapkan \"ka\" lalu \"ga\": pada \"ga\" kamu merasakan getaran.",
+          "Tanda ゜ khusus untuk baris H: h menjadi p."
+        ],
+        "analogy": "Tanda ゛ seperti tombol \"volume suara\" pada konsonan: bunyinya sama, tetapi dibunyikan lebih berat."
+      }
+    },
+    {
+      "id": "scene-04",
+      "type": "kana",
+      "section": "explanation",
+      "content": {
+        "heading": "Baris G dan Z",
+        "items": [
+          {
+            "char": "が",
+            "romaji": "ga"
+          },
+          {
+            "char": "ぎ",
+            "romaji": "gi"
+          },
+          {
+            "char": "ぐ",
+            "romaji": "gu"
+          },
+          {
+            "char": "げ",
+            "romaji": "ge"
+          },
+          {
+            "char": "ご",
+            "romaji": "go"
+          },
+          {
+            "char": "ざ",
+            "romaji": "za"
+          },
+          {
+            "char": "じ",
+            "romaji": "ji"
+          },
+          {
+            "char": "ず",
+            "romaji": "zu"
+          },
+          {
+            "char": "ぜ",
+            "romaji": "ze"
+          },
+          {
+            "char": "ぞ",
+            "romaji": "zo"
+          }
+        ],
+        "caption": "じ dibaca \"ji\", bukan \"zi\"."
+      }
+    },
+    {
+      "id": "scene-05",
+      "type": "kana",
+      "section": "explanation",
+      "content": {
+        "heading": "Baris D dan B",
+        "items": [
+          {
+            "char": "だ",
+            "romaji": "da"
+          },
+          {
+            "char": "ぢ",
+            "romaji": "ji"
+          },
+          {
+            "char": "づ",
+            "romaji": "zu"
+          },
+          {
+            "char": "で",
+            "romaji": "de"
+          },
+          {
+            "char": "ど",
+            "romaji": "do"
+          },
+          {
+            "char": "ば",
+            "romaji": "ba"
+          },
+          {
+            "char": "び",
+            "romaji": "bi"
+          },
+          {
+            "char": "ぶ",
+            "romaji": "bu"
+          },
+          {
+            "char": "べ",
+            "romaji": "be"
+          },
+          {
+            "char": "ぼ",
+            "romaji": "bo"
+          }
+        ],
+        "caption": "ぢ dan づ berbunyi sama dengan じ dan ず, dan jarang dipakai (hanya pada beberapa kata)."
+      }
+    },
+    {
+      "id": "scene-06",
+      "type": "kana",
+      "section": "explanation",
+      "content": {
+        "heading": "Baris P (handakuon)",
+        "items": [
+          {
+            "char": "ぱ",
+            "romaji": "pa"
+          },
+          {
+            "char": "ぴ",
+            "romaji": "pi"
+          },
+          {
+            "char": "ぷ",
+            "romaji": "pu"
+          },
+          {
+            "char": "ぺ",
+            "romaji": "pe"
+          },
+          {
+            "char": "ぽ",
+            "romaji": "po"
+          }
+        ],
+        "caption": "Hanya baris H yang bisa mendapat tanda ゜."
+      }
+    },
+    {
+      "id": "scene-07",
+      "type": "vocab",
+      "section": "examples",
+      "content": {
+        "heading": "Kata dengan dakuon dan handakuon",
+        "items": [
+          {
+            "ja": "かぎ",
+            "reading": "kagi",
+            "id_text": "kunci"
+          },
+          {
+            "ja": "ごはん",
+            "reading": "gohan",
+            "id_text": "nasi"
+          },
+          {
+            "ja": "でんわ",
+            "reading": "denwa",
+            "id_text": "telepon"
+          },
+          {
+            "ja": "ばら",
+            "reading": "bara",
+            "id_text": "mawar"
+          },
+          {
+            "ja": "えんぴつ",
+            "reading": "enpitsu",
+            "id_text": "pensil"
+          },
+          {
+            "ja": "ぜんぶ",
+            "reading": "zenbu",
+            "id_text": "semua"
+          }
+        ]
+      }
+    },
+    {
+      "id": "scene-08",
+      "type": "mistakes",
+      "section": "mistakes",
+      "content": {
+        "heading": "Kesalahan yang sering dilakukan pemula",
+        "items": [
+          {
+            "wrong": "Membaca じ sebagai \"zi\"",
+            "right": "Bacalah \"ji\"",
+            "why": "Itu bunyi baku di baris Z."
+          },
+          {
+            "wrong": "Menaruh tanda ゜ pada huruf selain baris H",
+            "right": "゜ hanya untuk は ひ ふ へ ほ",
+            "why": "Baris lain hanya bisa mendapat ゛."
+          },
+          {
+            "wrong": "Menyamakan ば dengan ぱ",
+            "right": "Bedakan ゛ dan ゜",
+            "why": "Keduanya mengubah は menjadi bunyi yang berbeda: ba dan pa."
+          }
+        ]
+      }
+    },
+    {
+      "id": "scene-09",
+      "type": "quiz",
+      "section": "exercises",
+      "content": {
+        "question": "Bagaimana membaca huruf ini?",
+        "options": [
+          "ka",
+          "ga",
+          "pa"
+        ],
+        "answer": 1,
+        "big": "が",
+        "why": [
+          "Itu か (tanpa tanda).",
+          null,
+          "Itu ぱ (dengan ゜)."
+        ]
+      }
+    },
+    {
+      "id": "scene-10",
+      "type": "quiz",
+      "section": "exercises",
+      "content": {
+        "question": "Bagaimana membaca huruf ini?",
+        "options": [
+          "ba",
+          "pa",
+          "ha"
+        ],
+        "answer": 0,
+        "big": "ば",
+        "why": [
+          null,
+          "Itu ぱ (dengan lingkaran ゜).",
+          "Itu は tanpa tanda."
+        ]
+      }
+    },
+    {
+      "id": "scene-11",
+      "type": "quiz",
+      "section": "exercises",
+      "content": {
+        "question": "Tanda apa yang membuat は menjadi ぱ?",
+        "options": [
+          "゛ (tenten)",
+          "゜ (maru)",
+          "Tidak ada"
+        ],
+        "answer": 1,
+        "why": [
+          "゛ membuat は menjadi ば.",
+          null,
+          "Perlu tanda ゜."
+        ]
+      }
+    },
+    {
+      "id": "scene-12",
+      "type": "summary",
+      "section": "summary",
+      "content": {
+        "heading": "Rangkuman",
+        "points": [
+          "゛ membuat konsonan bersuara: k→g, s→z, t→d, h→b.",
+          "゜ khusus baris H: は→ぱ.",
+          "じ = ji, ぢ = ji, づ = zu (ぢ dan づ jarang dipakai)."
+        ]
+      }
+    }
+  ]
+}

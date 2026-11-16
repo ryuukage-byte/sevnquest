@@ -1,0 +1,84 @@
+import type { ProductConfig } from '../types';
+
+export const config: ProductConfig = {
+  id: 'beginner',
+  title: 'Pemula',
+  tagline: 'Dari nol sampai bisa membaca dan menyusun kalimat sendiri.',
+  heroTitle: 'MULAI DARI NOL',
+  heroSubtitle: 'Belajar bahasa Jepang dengan memahami, selangkah demi selangkah.',
+  features: { planner: false, journey: false, account: false },
+  ui: { sectionLabels: false, termChips: false },
+  method: 'Jangan sekadar menghafal bahasa Jepang. Pahami logika di baliknya.',
+  paths: [
+    {
+      id: 'starter', title: 'Starter Pack', subtitle: 'Mulai dari nol: jenis huruf dan susunan bahasa, sebelum masuk hiragana',
+      chapters: [
+        { id: 's01', title: 'Mengenal Bahasa dan Huruf Jepang', lessonId: 'starter-01' },
+        { id: 's02', title: 'Huruf Mana Dipakai untuk Apa?', lessonId: 'starter-02' },
+        { id: 's03', title: 'Susunan Bahasa: Bagian-Bagian Kalimat', lessonId: 'starter-03' },
+        { id: 's04', title: 'Susunan Bahasa: Jenis Kata', lessonId: 'starter-04' },
+        { id: 's05', title: 'Susunan Kalimat Jepang', lessonId: 'starter-05' },
+        { id: 's06', title: 'Apa Itu Partikel?', lessonId: 'starter-06' },
+        { id: 's07', title: 'Urutan dan Cara Belajar', lessonId: 'starter-07' },
+        { id: 's08', title: 'Tes Pemahaman Pertama', lessonId: 'starter-08' },
+      ],
+    },
+    {
+      id: 'hiragana', title: 'Hiragana Mastery', subtitle: 'Seluruh hiragana, dari seion sampai kombinasi bunyi',
+      chapters: [
+        { id: 'h01', title: 'Seion: Baris A dan K', lessonId: 'beginner-001' },
+        { id: 'h02', title: 'Seion: Baris S, T, dan N', lessonId: 'beginner-002' },
+        { id: 'h03', title: 'Seion: Baris H, M, Y, R, W, dan N', lessonId: 'beginner-003' },
+        { id: 'h04', title: 'Dakuon dan Handakuon', lessonId: 'hiragana-04' },
+        { id: 'h05', title: 'Youon: Gabungan Huruf Kecil', lessonId: 'hiragana-05' },
+        { id: 'h06', title: 'Sokuon dan Chouon', lessonId: 'hiragana-06' },
+        { id: 'h07', title: 'Membaca Kombinasi dan Latihan Membaca', lessonId: 'hiragana-07' },
+        { id: 'h08', title: 'Evaluasi Hiragana', lessonId: 'hiragana-08' },
+      ],
+    },
+    {
+      id: 'katakana', title: 'Katakana Mastery', subtitle: 'Katakana untuk kata serapan dan nama asing',
+      chapters: [
+        { id: 'k01', title: 'Seion: Baris A sampai N', lessonId: 'katakana-01' },
+        { id: 'k02', title: 'Seion: Baris H sampai N', lessonId: 'katakana-02' },
+        { id: 'k03', title: 'Dakuon dan Handakuon', lessonId: 'katakana-03' },
+        { id: 'k04', title: 'Youon', lessonId: 'katakana-04' },
+        { id: 'k05', title: 'Sokuon dan Chouon', lessonId: 'katakana-05' },
+        { id: 'k06', title: 'Kombinasi Bunyi Asing', lessonId: 'katakana-06' },
+        { id: 'k07', title: 'Kata Serapan', lessonId: 'katakana-07' },
+        { id: 'k08', title: 'Evaluasi Katakana', lessonId: 'katakana-08' },
+      ],
+    },
+    {
+      id: 'percakapan', title: 'Percakapan Dasar', subtitle: 'Kalimat pertama yang langsung terpakai',
+      chapters: [
+        { id: 'p01', title: 'Sapaan Sehari-hari', lessonId: 'beginner-004' },
+        { id: 'p02', title: 'Memperkenalkan Diri', lessonId: 'beginner-005' },
+        { id: 'p03', title: 'Angka 1 sampai 10', lessonId: 'beginner-008' },
+      ],
+    },
+    {
+      id: 'foundation', title: 'Foundation Lanjutan', subtitle: 'Pendalaman setelah hiragana dan katakana: kanji, kalimat, kata kerja, dan kesopanan',
+      chapters: [
+        { id: 'f05', title: 'Mengenal Kanji', lessonId: 'foundation-05' },
+        { id: 'f06', title: 'Cara Kerja Bahasa Jepang', lessonId: 'foundation-06' },
+        { id: 'f07', title: 'Struktur Kalimat Jepang: Pendalaman', lessonId: 'foundation-07' },
+        { id: 'f08', title: 'Mengenal Partikel: Pendalaman', lessonId: 'foundation-08' },
+        { id: 'l01', title: 'Apa Itu Bunpou?', lessonId: 'lanjutan-01' },
+        { id: 'l02', title: 'Mengenal Kata Kerja', lessonId: 'lanjutan-02' },
+        { id: 'f11', title: 'Kata Benda dan Kata Sifat', lessonId: 'foundation-11' },
+        { id: 'l03', title: 'Kenapa Ada Tingkat Kesopanan?', lessonId: 'lanjutan-03' },
+        { id: 'f13', title: 'Cara Membaca Kalimat Jepang', lessonId: 'foundation-13' },
+        { id: 'f14', title: 'Cara Membentuk Kalimat Sendiri', lessonId: 'foundation-14' },
+        { id: 'f15', title: 'Kesalahan Umum Pemula', lessonId: 'foundation-15' },
+        { id: 'f16', title: 'Evaluasi Foundation', lessonId: 'foundation-16' },
+      ],
+    },
+  ],
+  planner: {
+    goals: [{ v: 'N5', l: 'Fondasi pemula (setara JLPT N5)' }],
+    starts: [{ v: 'none', l: 'Dari nol' }],
+    focuses: ['balanced', 'kotoba', 'kanji', 'bunpou'],
+    defaults: { durationDays: 240, dailyMinutes: 45, daysPerWeek: 6 },
+  },
+};

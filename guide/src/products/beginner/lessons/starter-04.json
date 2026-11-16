@@ -1,0 +1,131 @@
+{
+  "id": "starter-04",
+  "level": "BEGINNER",
+  "category": "grammar",
+  "title": "Susunan Bahasa: Jenis Kata",
+  "summary": "Kata benda, kata kerja, dan kata sifat, dan kata penghubung seperti \"di\" dan \"ke\".",
+  "minutes": 9,
+  "scenes": [
+    {
+      "id": "scene-01",
+      "type": "introduction",
+      "section": "introduction",
+      "duration": 4000,
+      "content": {
+        "title": "品詞",
+        "subtitle": "Susunan bahasa: jenis kata"
+      }
+    },
+    {
+      "id": "scene-02",
+      "type": "explain",
+      "section": "definition",
+      "content": {
+        "heading": "Tiga jenis kata utama",
+        "paragraphs": [
+          "1. Kata benda: nama orang, benda, atau tempat. Contoh: buku, nasi, Jepang.",
+          "2. Kata kerja: kegiatan. Contoh: makan, minum, pergi.",
+          "3. Kata sifat: keadaan. Contoh: besar, mahal, tenang."
+        ]
+      }
+    },
+    {
+      "id": "scene-03",
+      "type": "explain",
+      "section": "concept",
+      "content": {
+        "heading": "Kata penghubung",
+        "paragraphs": [
+          "Ada kata kecil seperti \"di\", \"ke\", \"dari\", \"dan\".",
+          "Contoh: \"di rumah\", \"ke sekolah\", \"dari Jepang\".",
+          "Kata kecil ini menjelaskan hubungan antar-kata."
+        ]
+      }
+    },
+    {
+      "id": "scene-04",
+      "type": "explain",
+      "section": "logic",
+      "content": {
+        "heading": "Kenapa ini penting?",
+        "paragraphs": [
+          "Bahasa Jepang punya kata kecil yang kerjanya mirip \"di\", \"ke\", dan \"dari\".",
+          "Bedanya, kata kecil itu ditaruh SETELAH kata.",
+          "Contoh: \"rumah di\", \"sekolah ke\"."
+        ],
+        "analogy": "Kata kecil ini namanya partikel. Kita belajar sebentar lagi."
+      }
+    },
+    {
+      "id": "scene-05",
+      "type": "quiz",
+      "section": "exercises",
+      "content": {
+        "question": "\"Buku\" termasuk jenis kata apa?",
+        "options": [
+          "Kata benda",
+          "Kata kerja",
+          "Kata sifat"
+        ],
+        "answer": 0,
+        "why": [
+          null,
+          "Kata kerja adalah kegiatan.",
+          "Kata sifat adalah keadaan."
+        ]
+      }
+    },
+    {
+      "id": "scene-06",
+      "type": "quiz",
+      "section": "exercises",
+      "content": {
+        "question": "\"Makan\" termasuk jenis kata apa?",
+        "options": [
+          "Kata benda",
+          "Kata kerja",
+          "Kata sifat"
+        ],
+        "answer": 1,
+        "why": [
+          "Kata benda adalah nama benda atau orang.",
+          null,
+          "Kata sifat adalah keadaan."
+        ]
+      }
+    },
+    {
+      "id": "scene-07",
+      "type": "quiz",
+      "section": "exercises",
+      "content": {
+        "question": "\"Mahal\" termasuk jenis kata apa?",
+        "options": [
+          "Kata benda",
+          "Kata kerja",
+          "Kata sifat"
+        ],
+        "answer": 2,
+        "why": [
+          "Kata benda adalah nama benda atau orang.",
+          "Kata kerja adalah kegiatan.",
+          null
+        ]
+      }
+    },
+    {
+      "id": "scene-08",
+      "type": "summary",
+      "section": "summary",
+      "content": {
+        "heading": "Rangkuman",
+        "points": [
+          "Kata benda: nama benda, orang, tempat.",
+          "Kata kerja: kegiatan.",
+          "Kata sifat: keadaan.",
+          "Kata penghubung seperti \"di\" dan \"ke\" nanti jadi partikel."
+        ]
+      }
+    }
+  ]
+}

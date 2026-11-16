@@ -1,0 +1,243 @@
+{
+  "id": "katakana-06",
+  "level": "BEGINNER",
+  "category": "kana",
+  "title": "Katakana: Kombinasi Bunyi Asing",
+  "summary": "Huruf kecil ァ ィ ゥ ェ ォ untuk menulis bunyi yang tidak ada di bahasa Jepang asli.",
+  "minutes": 10,
+  "scenes": [
+    {
+      "id": "scene-01",
+      "type": "introduction",
+      "section": "introduction",
+      "duration": 4000,
+      "content": {
+        "title": "外来音",
+        "subtitle": "Katakana Mastery: Bunyi asing"
+      }
+    },
+    {
+      "id": "scene-02",
+      "type": "explain",
+      "section": "definition",
+      "content": {
+        "heading": "Bunyi baru untuk kata asing",
+        "paragraphs": [
+          "Bahasa Jepang asli tidak punya bunyi seperti \"fa\", \"ti\", atau \"di\". Untuk menulis kata asing, katakana memakai huruf kecil ァ ィ ゥ ェ ォ.",
+          "Pola umumnya: huruf konsonan + vokal kecil, dibaca menyatu. Contoh: フ + ァ menjadi ファ (\"fa\")."
+        ]
+      }
+    },
+    {
+      "id": "scene-03",
+      "type": "kana",
+      "section": "explanation",
+      "content": {
+        "heading": "Kombinasi yang sering dipakai",
+        "items": [
+          {
+            "char": "ファ",
+            "romaji": "fa"
+          },
+          {
+            "char": "フィ",
+            "romaji": "fi"
+          },
+          {
+            "char": "フェ",
+            "romaji": "fe"
+          },
+          {
+            "char": "フォ",
+            "romaji": "fo"
+          },
+          {
+            "char": "ティ",
+            "romaji": "ti"
+          },
+          {
+            "char": "ディ",
+            "romaji": "di"
+          },
+          {
+            "char": "ウィ",
+            "romaji": "wi"
+          },
+          {
+            "char": "ウェ",
+            "romaji": "we"
+          },
+          {
+            "char": "ウォ",
+            "romaji": "wo"
+          },
+          {
+            "char": "シェ",
+            "romaji": "she"
+          },
+          {
+            "char": "ジェ",
+            "romaji": "je"
+          },
+          {
+            "char": "チェ",
+            "romaji": "che"
+          }
+        ],
+        "caption": "Dibaca sebagai satu suku kata. Contoh: ティ = ti, ディ = di (bukan \"tei\", \"dei\")."
+      }
+    },
+    {
+      "id": "scene-04",
+      "type": "vocab",
+      "section": "examples",
+      "content": {
+        "heading": "Kata dengan bunyi asing",
+        "items": [
+          {
+            "ja": "ファン",
+            "reading": "fan",
+            "id_text": "penggemar"
+          },
+          {
+            "ja": "フィルム",
+            "reading": "firumu",
+            "id_text": "film"
+          },
+          {
+            "ja": "パーティー",
+            "reading": "paatii",
+            "id_text": "pesta"
+          },
+          {
+            "ja": "ディスコ",
+            "reading": "disuko",
+            "id_text": "diskotek"
+          },
+          {
+            "ja": "ウェブ",
+            "reading": "webu",
+            "id_text": "web"
+          },
+          {
+            "ja": "フォーク",
+            "reading": "fooku",
+            "id_text": "garpu"
+          },
+          {
+            "ja": "チェック",
+            "reading": "chekku",
+            "id_text": "cek"
+          }
+        ]
+      }
+    },
+    {
+      "id": "scene-05",
+      "type": "explain",
+      "section": "logic",
+      "content": {
+        "heading": "Mengapa kata asing berubah bunyi?",
+        "paragraphs": [
+          "Bahasa Jepang punya inventaris bunyi yang terbatas, jadi bunyi asing disesuaikan ke bunyi terdekat yang bisa diucapkan, sering dengan menambah vokal. \"Christmas\" menjadi クリスマス (kurisumasu).",
+          "Karena itu kata serapan sering terdengar berbeda dari bahasa asalnya. Pahami polanya, jangan menebak dari bunyi bahasa Inggris."
+        ]
+      }
+    },
+    {
+      "id": "scene-06",
+      "type": "mistakes",
+      "section": "mistakes",
+      "content": {
+        "heading": "Kesalahan yang sering dilakukan pemula",
+        "items": [
+          {
+            "wrong": "Membaca ティ sebagai \"tei\"",
+            "right": "Bacalah \"ti\"",
+            "why": "Huruf kecil ィ menyatu menjadi \"ti\"."
+          },
+          {
+            "wrong": "Membaca ファ sebagai \"fua\"",
+            "right": "Bacalah \"fa\"",
+            "why": "ァ kecil menyatu dengan フ."
+          },
+          {
+            "wrong": "Menyamakan ディ dengan デイ",
+            "right": "ディ = di, デイ = dei",
+            "why": "Huruf kecil mengubah bunyi."
+          }
+        ]
+      }
+    },
+    {
+      "id": "scene-07",
+      "type": "quiz",
+      "section": "exercises",
+      "content": {
+        "question": "Bagaimana membaca ファン?",
+        "options": [
+          "fuan",
+          "fan",
+          "huan"
+        ],
+        "answer": 1,
+        "why": [
+          "ァ kecil menyatu dengan フ.",
+          null,
+          "フ dibaca \"fu\", bukan \"hu\"."
+        ]
+      }
+    },
+    {
+      "id": "scene-08",
+      "type": "quiz",
+      "section": "exercises",
+      "content": {
+        "question": "Bagaimana membaca パーティー?",
+        "options": [
+          "paatii",
+          "paateii",
+          "pati"
+        ],
+        "answer": 0,
+        "why": [
+          null,
+          "ティ dibaca \"ti\", bukan \"tei\".",
+          "Tanda ー memanjangkan vokal."
+        ]
+      }
+    },
+    {
+      "id": "scene-09",
+      "type": "quiz",
+      "section": "exercises",
+      "content": {
+        "question": "Mana yang bunyinya \"she\"?",
+        "options": [
+          "シェ",
+          "チェ",
+          "ジェ"
+        ],
+        "answer": 0,
+        "why": [
+          null,
+          "Itu \"che\".",
+          "Itu \"je\"."
+        ]
+      }
+    },
+    {
+      "id": "scene-10",
+      "type": "summary",
+      "section": "summary",
+      "content": {
+        "heading": "Rangkuman",
+        "points": [
+          "ァ ィ ゥ ェ ォ kecil membuat bunyi asing: ファ, ティ, ディ, ウェ.",
+          "Dibaca sebagai satu suku kata.",
+          "Bunyi asing disesuaikan ke sistem bunyi Jepang."
+        ]
+      }
+    }
+  ]
+}

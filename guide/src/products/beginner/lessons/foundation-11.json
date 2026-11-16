@@ -1,0 +1,331 @@
+{
+  "id": "foundation-11",
+  "level": "BEGINNER",
+  "category": "grammar",
+  "title": "Kata Benda dan Kata Sifat",
+  "summary": "Pola kata benda, dua jenis kata sifat (い dan な), dan cara menerangkan kata benda.",
+  "minutes": 12,
+  "scenes": [
+    {
+      "id": "scene-01",
+      "type": "introduction",
+      "section": "introduction",
+      "duration": 4000,
+      "content": {
+        "title": "名詞と形容詞",
+        "subtitle": "Chapter 11: Kata benda dan kata sifat"
+      }
+    },
+    {
+      "id": "scene-02",
+      "type": "explain",
+      "section": "definition",
+      "content": {
+        "heading": "Kata benda dan です",
+        "paragraphs": [
+          "Kata benda (名詞, meishi) menamai orang, benda, atau tempat: ほん (buku), がくせい (pelajar), うち (rumah).",
+          "Untuk menyatakan \"A adalah B\", kita memakai です setelah kata benda: がくせいです = \"(saya) pelajar\".",
+          "Bentuk negatifnya じゃ ありません (ja arimasen): がくせいじゃ ありません = \"bukan pelajar\". Pertanyaan ditambah か."
+        ],
+        "terms": [
+          {
+            "term": "名詞",
+            "reading": "meishi",
+            "meaning": "kata benda"
+          },
+          {
+            "term": "です",
+            "reading": "desu",
+            "meaning": "adalah (sopan)"
+          },
+          {
+            "term": "じゃ ありません",
+            "reading": "ja arimasen",
+            "meaning": "bukan"
+          }
+        ]
+      }
+    },
+    {
+      "id": "scene-03",
+      "type": "explain",
+      "section": "concept",
+      "content": {
+        "heading": "Dua jenis kata sifat",
+        "paragraphs": [
+          "Kata sifat (形容詞, keiyoushi) dibagi dua. Kata sifat い berakhir dengan い, misalnya たかい (tinggi/mahal), おおきい (besar), あたらしい (baru).",
+          "Kata sifat な tidak berakhir い (atau berakhir い tetapi tetap golongan な), misalnya しずか (tenang), きれい (bersih, indah).",
+          "Kenapa dibedakan? Karena cara menyambungnya ke kata benda berbeda. Kata sifat い langsung dipasang di depan kata benda; kata sifat な perlu な."
+        ],
+        "analogy": "Kata sifat な seperti kabel yang butuh colokan な supaya terhubung ke kata benda. Kata sifat い sudah punya colokan sendiri (akhiran い).",
+        "terms": [
+          {
+            "term": "い形容詞",
+            "reading": "i-keiyoushi",
+            "meaning": "kata sifat い"
+          },
+          {
+            "term": "な形容詞",
+            "reading": "na-keiyoushi",
+            "meaning": "kata sifat な"
+          }
+        ]
+      }
+    },
+    {
+      "id": "scene-04",
+      "type": "vocab",
+      "section": "explanation",
+      "content": {
+        "heading": "Contoh kata sifat",
+        "items": [
+          {
+            "ja": "たかい",
+            "reading": "takai",
+            "id_text": "tinggi, mahal (い)"
+          },
+          {
+            "ja": "おおきい",
+            "reading": "ookii",
+            "id_text": "besar (い)"
+          },
+          {
+            "ja": "あたらしい",
+            "reading": "atarashii",
+            "id_text": "baru (い)"
+          },
+          {
+            "ja": "しずか",
+            "reading": "shizuka",
+            "id_text": "tenang (な)"
+          },
+          {
+            "ja": "きれい",
+            "reading": "kirei",
+            "id_text": "bersih, indah (な)"
+          }
+        ]
+      }
+    },
+    {
+      "id": "scene-05",
+      "type": "example",
+      "section": "examples",
+      "content": {
+        "parts": [
+          {
+            "ja": "この",
+            "reading": "この",
+            "romaji": "kono",
+            "id_text": "ini (di depan benda)",
+            "role": "other"
+          },
+          {
+            "ja": "ほん",
+            "reading": "ほん",
+            "romaji": "hon",
+            "id_text": "buku",
+            "role": "subject"
+          },
+          {
+            "ja": "は",
+            "reading": "は",
+            "romaji": "wa",
+            "id_text": "penanda topik",
+            "role": "particle"
+          },
+          {
+            "ja": "たかい",
+            "reading": "たかい",
+            "romaji": "takai",
+            "id_text": "mahal",
+            "role": "other"
+          },
+          {
+            "ja": "です",
+            "reading": "です",
+            "romaji": "desu",
+            "id_text": "adalah (sopan)",
+            "role": "verb"
+          }
+        ],
+        "translation": "Buku ini mahal.",
+        "heading": "Kata sifat い + です"
+      }
+    },
+    {
+      "id": "scene-06",
+      "type": "example",
+      "section": "examples",
+      "content": {
+        "parts": [
+          {
+            "ja": "ここ",
+            "reading": "ここ",
+            "romaji": "koko",
+            "id_text": "sini, tempat ini",
+            "role": "subject"
+          },
+          {
+            "ja": "は",
+            "reading": "は",
+            "romaji": "wa",
+            "id_text": "penanda topik",
+            "role": "particle"
+          },
+          {
+            "ja": "しずか",
+            "reading": "しずか",
+            "romaji": "shizuka",
+            "id_text": "tenang",
+            "role": "other"
+          },
+          {
+            "ja": "です",
+            "reading": "です",
+            "romaji": "desu",
+            "id_text": "adalah (sopan)",
+            "role": "verb"
+          }
+        ],
+        "translation": "Di sini tenang.",
+        "heading": "Kata sifat な + です"
+      }
+    },
+    {
+      "id": "scene-07",
+      "type": "example",
+      "section": "examples",
+      "content": {
+        "parts": [
+          {
+            "ja": "これ",
+            "reading": "これ",
+            "romaji": "kore",
+            "id_text": "ini",
+            "role": "subject"
+          },
+          {
+            "ja": "は",
+            "reading": "は",
+            "romaji": "wa",
+            "id_text": "penanda topik",
+            "role": "particle"
+          },
+          {
+            "ja": "きれいな",
+            "reading": "きれいな",
+            "romaji": "kirei na",
+            "id_text": "indah",
+            "role": "other"
+          },
+          {
+            "ja": "はな",
+            "reading": "はな",
+            "romaji": "hana",
+            "id_text": "bunga",
+            "role": "other"
+          },
+          {
+            "ja": "です",
+            "reading": "です",
+            "romaji": "desu",
+            "id_text": "adalah (sopan)",
+            "role": "verb"
+          }
+        ],
+        "translation": "Ini adalah bunga yang indah.",
+        "heading": "Kata sifat な menerangkan kata benda",
+        "note": "Sebelum kata benda, kata sifat な harus memakai な: きれいな はな."
+      }
+    },
+    {
+      "id": "scene-08",
+      "type": "comparison",
+      "section": "comparison",
+      "content": {
+        "left": "Rumah besar / Bunga indah (sifat sebelum benda)",
+        "right": "おおきい いえ / きれいな はな",
+        "leftLabel": "INDONESIA",
+        "rightLabel": "JEPANG"
+      }
+    },
+    {
+      "id": "scene-09",
+      "type": "mistakes",
+      "section": "mistakes",
+      "content": {
+        "heading": "Kesalahan yang sering dilakukan pemula",
+        "items": [
+          {
+            "wrong": "きれいい",
+            "right": "きれい / きれいな",
+            "why": "きれい termasuk kata sifat な walaupun berakhir い. Jangan tambahkan い lagi."
+          },
+          {
+            "wrong": "しずかい",
+            "right": "しずか / しずかな",
+            "why": "Kata sifat な tidak diberi akhiran い."
+          },
+          {
+            "wrong": "はな きれいな (sifat sesudah benda)",
+            "right": "きれいな はな",
+            "why": "Kata sifat diletakkan sebelum kata benda yang diterangkannya."
+          }
+        ]
+      }
+    },
+    {
+      "id": "scene-10",
+      "type": "quiz",
+      "section": "exercises",
+      "content": {
+        "question": "Kata sifat mana yang termasuk golongan な?",
+        "options": [
+          "たかい",
+          "おおきい",
+          "きれい"
+        ],
+        "answer": 2,
+        "why": [
+          "Berakhir い dan golongan い.",
+          "Berakhir い dan golongan い.",
+          null
+        ]
+      }
+    },
+    {
+      "id": "scene-11",
+      "type": "quiz",
+      "section": "exercises",
+      "content": {
+        "question": "Bagaimana cara menyambung しずか ke kata benda へや (kamar)?",
+        "options": [
+          "しずかい へや",
+          "しずかな へや",
+          "しずか へや"
+        ],
+        "answer": 1,
+        "why": [
+          "Kata sifat な tidak memakai い.",
+          null,
+          "Perlu な sebelum kata benda."
+        ]
+      }
+    },
+    {
+      "id": "scene-12",
+      "type": "summary",
+      "section": "summary",
+      "content": {
+        "heading": "Rangkuman",
+        "points": [
+          "Kata benda + です = \"adalah\".",
+          "Dua jenis kata sifat: い dan な.",
+          "い langsung di depan benda, な perlu な.",
+          "きれい adalah な walaupun berakhir い."
+        ]
+      }
+    }
+  ]
+}

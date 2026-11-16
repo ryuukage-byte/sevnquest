@@ -1,0 +1,105 @@
+{
+  "id": "beginner-004",
+  "level": "BEGINNER",
+  "category": "vocabulary",
+  "title": "Sapaan Sehari-hari",
+  "summary": "Enam ungkapan yang paling sering dipakai.",
+  "minutes": 5,
+  "scenes": [
+    {
+      "id": "scene-01",
+      "type": "introduction",
+      "duration": 4000,
+      "content": {
+        "title": "あいさつ",
+        "subtitle": "Sapaan: kalimat pertama yang langsung terpakai"
+      }
+    },
+    {
+      "id": "scene-02",
+      "type": "vocab",
+      "content": {
+        "heading": "Sapaan dasar",
+        "items": [
+          {
+            "ja": "おはよう",
+            "reading": "ohayou",
+            "id_text": "Selamat pagi"
+          },
+          {
+            "ja": "こんにちは",
+            "reading": "konnichiwa",
+            "id_text": "Selamat siang / halo"
+          },
+          {
+            "ja": "こんばんは",
+            "reading": "konbanwa",
+            "id_text": "Selamat malam"
+          }
+        ]
+      }
+    },
+    {
+      "id": "scene-03",
+      "type": "vocab",
+      "content": {
+        "heading": "Sopan santun",
+        "items": [
+          {
+            "ja": "ありがとう",
+            "reading": "arigatou",
+            "id_text": "Terima kasih"
+          },
+          {
+            "ja": "すみません",
+            "reading": "sumimasen",
+            "id_text": "Permisi / maaf"
+          },
+          {
+            "ja": "さようなら",
+            "reading": "sayounara",
+            "id_text": "Selamat tinggal"
+          }
+        ]
+      }
+    },
+    {
+      "id": "scene-04",
+      "type": "quiz",
+      "content": {
+        "question": "Apa arti こんにちは?",
+        "options": [
+          "Selamat pagi",
+          "Selamat siang / halo",
+          "Terima kasih"
+        ],
+        "answer": 1,
+        "big": "こんにちは"
+      }
+    },
+    {
+      "id": "scene-05",
+      "type": "quiz",
+      "content": {
+        "question": "Kamu ingin berterima kasih. Mana yang tepat?",
+        "options": [
+          "すみません",
+          "おはよう",
+          "ありがとう"
+        ],
+        "answer": 2
+      }
+    },
+    {
+      "id": "scene-06",
+      "type": "summary",
+      "content": {
+        "heading": "Rangkuman",
+        "points": [
+          "おはよう untuk pagi, こんにちは untuk siang, こんばんは untuk malam.",
+          "ありがとう = terima kasih, すみません = permisi / maaf."
+        ]
+      }
+    }
+  ]
+}

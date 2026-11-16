@@ -1,0 +1,81 @@
+{
+  "id": "starter-07",
+  "level": "BEGINNER",
+  "category": "concept",
+  "title": "Urutan dan Cara Belajar",
+  "summary": "Peta belajarmu ke depan.",
+  "minutes": 6,
+  "scenes": [
+    {
+      "id": "scene-01",
+      "type": "introduction",
+      "section": "introduction",
+      "duration": 4000,
+      "content": {
+        "title": "学習の順番",
+        "subtitle": "Peta belajarmu"
+      }
+    },
+    {
+      "id": "scene-02",
+      "type": "explain",
+      "section": "concept",
+      "content": {
+        "heading": "Urutan belajar",
+        "paragraphs": [
+          "1. Huruf dan susunan bahasa (kamu sudah di sini).",
+          "2. Hiragana.",
+          "3. Katakana.",
+          "4. Kosakata dasar dan percakapan.",
+          "5. Kanji dasar.",
+          "6. Tata bahasa lanjutan."
+        ]
+      }
+    },
+    {
+      "id": "scene-03",
+      "type": "explain",
+      "section": "concept",
+      "content": {
+        "heading": "Cara kita belajar",
+        "paragraphs": [
+          "Paham dulu apa yang dipelajari.",
+          "Pahami kenapa bentuk itu dipakai.",
+          "Lihat contoh, lalu latihan."
+        ],
+        "analogy": "Jangan hanya menghafal. Pahami logikanya."
+      }
+    },
+    {
+      "id": "scene-04",
+      "type": "quiz",
+      "section": "exercises",
+      "content": {
+        "question": "Setelah Starter Pack, kamu belajar apa?",
+        "options": [
+          "Hiragana",
+          "Soal ujian tingkat tinggi",
+          "Kanji tingkat lanjut"
+        ],
+        "answer": 0,
+        "why": [
+          null,
+          "Itu tahap yang jauh lebih lanjut.",
+          "Kanji dasar dulu, nanti."
+        ]
+      }
+    },
+    {
+      "id": "scene-05",
+      "type": "summary",
+      "section": "summary",
+      "content": {
+        "heading": "Rangkuman",
+        "points": [
+          "Belajar pelan-pelan, satu langkah setiap kali.",
+          "Pahami logikanya, jangan hanya menghafal."
+        ]
+      }
+    }
+  ]
+}

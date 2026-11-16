@@ -1,0 +1,155 @@
+{
+  "id": "lanjutan-03",
+  "level": "BEGINNER",
+  "category": "concept",
+  "title": "Kenapa Ada Tingkat Kesopanan?",
+  "summary": "Bahasa Jepang memperhatikan siapa lawan bicaramu.",
+  "minutes": 8,
+  "scenes": [
+    {
+      "id": "scene-01",
+      "type": "introduction",
+      "section": "introduction",
+      "duration": 4000,
+      "content": {
+        "title": "丁寧さ",
+        "subtitle": "Tingkat kesopanan"
+      }
+    },
+    {
+      "id": "scene-02",
+      "type": "explain",
+      "section": "concept",
+      "content": {
+        "heading": "Bahasa mengikuti hubungan",
+        "paragraphs": [
+          "Bahasa Jepang sangat memperhatikan hubungan antar-orang dan situasinya.",
+          "Berbicara dengan teman tentu berbeda dengan berbicara kepada atasan atau pelanggan."
+        ]
+      }
+    },
+    {
+      "id": "scene-03",
+      "type": "vocab",
+      "section": "definition",
+      "content": {
+        "heading": "Empat tingkat",
+        "items": [
+          {
+            "ja": "普通形",
+            "reading": "futsuu-kei",
+            "id_text": "bentuk biasa"
+          },
+          {
+            "ja": "丁寧語",
+            "reading": "teineigo",
+            "id_text": "bahasa sopan"
+          },
+          {
+            "ja": "尊敬語",
+            "reading": "sonkeigo",
+            "id_text": "meninggikan lawan bicara"
+          },
+          {
+            "ja": "謙譲語",
+            "reading": "kenjougo",
+            "id_text": "merendahkan diri sendiri"
+          }
+        ]
+      }
+    },
+    {
+      "id": "scene-04",
+      "type": "vocab",
+      "section": "examples",
+      "content": {
+        "heading": "\"Makan\" di empat tingkat",
+        "items": [
+          {
+            "ja": "食べる",
+            "reading": "taberu",
+            "id_text": "makan (biasa)"
+          },
+          {
+            "ja": "食べます",
+            "reading": "tabemasu",
+            "id_text": "makan (sopan)"
+          },
+          {
+            "ja": "召し上がります",
+            "reading": "meshiagarimasu",
+            "id_text": "makan (hormat, untuk orang lain)"
+          },
+          {
+            "ja": "いただきます",
+            "reading": "itadakimasu",
+            "id_text": "makan / menerima (merendah, untuk diri sendiri)"
+          }
+        ]
+      }
+    },
+    {
+      "id": "scene-05",
+      "type": "explain",
+      "section": "logic",
+      "content": {
+        "heading": "Tidak perlu langsung bisa semuanya",
+        "paragraphs": [
+          "Yang kamu pakai sekarang cukup bentuk sopan (ます).",
+          "Tapi paham bahwa tingkatan ini ada akan sangat membantu di Jepang."
+        ]
+      }
+    },
+    {
+      "id": "scene-06",
+      "type": "quiz",
+      "section": "exercises",
+      "content": {
+        "question": "Kepada atasan atau orang yang baru dikenal, sebaiknya memakai...",
+        "options": [
+          "Bentuk biasa (食べる)",
+          "Bentuk sopan (食べます)",
+          "Tidak perlu memikirkan"
+        ],
+        "answer": 1,
+        "why": [
+          "Bentuk biasa dipakai kepada teman dekat.",
+          null,
+          "Kesopanan penting dalam bahasa Jepang."
+        ]
+      }
+    },
+    {
+      "id": "scene-07",
+      "type": "quiz",
+      "section": "exercises",
+      "content": {
+        "question": "Bentuk \"hormat\" dipakai untuk...",
+        "options": [
+          "Merendahkan diri sendiri",
+          "Meninggikan lawan bicara",
+          "Berbicara dengan teman"
+        ],
+        "answer": 1,
+        "why": [
+          "Itu bentuk merendah (kenjougo).",
+          null,
+          "Itu bentuk biasa."
+        ]
+      }
+    },
+    {
+      "id": "scene-08",
+      "type": "summary",
+      "section": "summary",
+      "content": {
+        "heading": "Rangkuman",
+        "points": [
+          "Ada bentuk biasa, sopan, hormat, dan merendah.",
+          "Mulai dengan bentuk sopan (ます).",
+          "Pilih tingkat sesuai lawan bicaramu."
+        ]
+      }
+    }
+  ]
+}

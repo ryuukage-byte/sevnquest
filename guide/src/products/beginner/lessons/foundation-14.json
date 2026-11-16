@@ -1,0 +1,369 @@
+{
+  "id": "foundation-14",
+  "level": "BEGINNER",
+  "category": "grammar",
+  "title": "Cara Membentuk Kalimat Sendiri",
+  "summary": "Membangun kalimat dari kata kerja ke luar: objek, topik, waktu, tempat.",
+  "minutes": 12,
+  "scenes": [
+    {
+      "id": "scene-01",
+      "type": "introduction",
+      "section": "introduction",
+      "duration": 4000,
+      "content": {
+        "title": "文を作る",
+        "subtitle": "Chapter 14: Cara membentuk kalimat sendiri"
+      }
+    },
+    {
+      "id": "scene-02",
+      "type": "explain",
+      "section": "concept",
+      "content": {
+        "heading": "Resep membangun kalimat",
+        "paragraphs": [
+          "Mulai dari kata kerja, lalu tambahkan keterangan satu per satu di depannya.",
+          "1. Pilih kata kerja (aksinya), tulis di ujung.",
+          "2. Tambahkan objek + を.",
+          "3. Tambahkan topik + は (siapa pelakunya).",
+          "4. Tambahkan keterangan lain: waktu, tempat + で, teman + と, tujuan + へ.",
+          "5. Periksa: kata kerja masih di akhir?"
+        ],
+        "analogy": "Seperti menumpuk tas ke bagasi sebelum menutup pintu. Kata kerja adalah penutup pintu, harus terakhir."
+      }
+    },
+    {
+      "id": "scene-03",
+      "type": "example",
+      "section": "explanation",
+      "content": {
+        "parts": [
+          {
+            "ja": "たべます",
+            "reading": "たべます",
+            "romaji": "tabemasu",
+            "id_text": "makan",
+            "role": "verb"
+          }
+        ],
+        "translation": "(Saya) makan.",
+        "heading": "Langkah 1: kata kerja"
+      }
+    },
+    {
+      "id": "scene-04",
+      "type": "example",
+      "section": "explanation",
+      "content": {
+        "parts": [
+          {
+            "ja": "ごはん",
+            "reading": "ごはん",
+            "romaji": "gohan",
+            "id_text": "nasi",
+            "role": "object"
+          },
+          {
+            "ja": "を",
+            "reading": "を",
+            "romaji": "o",
+            "id_text": "penanda objek",
+            "role": "particle"
+          },
+          {
+            "ja": "たべます",
+            "reading": "たべます",
+            "romaji": "tabemasu",
+            "id_text": "makan",
+            "role": "verb"
+          }
+        ],
+        "translation": "(Saya) makan nasi.",
+        "heading": "Langkah 2: tambah objek"
+      }
+    },
+    {
+      "id": "scene-05",
+      "type": "example",
+      "section": "explanation",
+      "content": {
+        "parts": [
+          {
+            "ja": "わたし",
+            "reading": "わたし",
+            "romaji": "watashi",
+            "id_text": "saya",
+            "role": "subject"
+          },
+          {
+            "ja": "は",
+            "reading": "は",
+            "romaji": "wa",
+            "id_text": "penanda topik",
+            "role": "particle"
+          },
+          {
+            "ja": "ごはん",
+            "reading": "ごはん",
+            "romaji": "gohan",
+            "id_text": "nasi",
+            "role": "object"
+          },
+          {
+            "ja": "を",
+            "reading": "を",
+            "romaji": "o",
+            "id_text": "penanda objek",
+            "role": "particle"
+          },
+          {
+            "ja": "たべます",
+            "reading": "たべます",
+            "romaji": "tabemasu",
+            "id_text": "makan",
+            "role": "verb"
+          }
+        ],
+        "translation": "Saya makan nasi.",
+        "heading": "Langkah 3: tambah topik"
+      }
+    },
+    {
+      "id": "scene-06",
+      "type": "example",
+      "section": "explanation",
+      "content": {
+        "parts": [
+          {
+            "ja": "きょう",
+            "reading": "きょう",
+            "romaji": "kyou",
+            "id_text": "hari ini",
+            "role": "other"
+          },
+          {
+            "ja": "わたし",
+            "reading": "わたし",
+            "romaji": "watashi",
+            "id_text": "saya",
+            "role": "subject"
+          },
+          {
+            "ja": "は",
+            "reading": "は",
+            "romaji": "wa",
+            "id_text": "penanda topik",
+            "role": "particle"
+          },
+          {
+            "ja": "うち",
+            "reading": "うち",
+            "romaji": "uchi",
+            "id_text": "rumah",
+            "role": "other"
+          },
+          {
+            "ja": "で",
+            "reading": "で",
+            "romaji": "de",
+            "id_text": "di",
+            "role": "particle"
+          },
+          {
+            "ja": "ごはん",
+            "reading": "ごはん",
+            "romaji": "gohan",
+            "id_text": "nasi",
+            "role": "object"
+          },
+          {
+            "ja": "を",
+            "reading": "を",
+            "romaji": "o",
+            "id_text": "penanda objek",
+            "role": "particle"
+          },
+          {
+            "ja": "たべます",
+            "reading": "たべます",
+            "romaji": "tabemasu",
+            "id_text": "makan",
+            "role": "verb"
+          }
+        ],
+        "translation": "Hari ini saya makan nasi di rumah.",
+        "heading": "Langkah 4: tambah waktu dan tempat",
+        "note": "Kata kerja tetap di ujung, semua keterangan dikumpulkan di depannya."
+      }
+    },
+    {
+      "id": "scene-07",
+      "type": "explain",
+      "section": "logic",
+      "content": {
+        "heading": "Mengapa urutan keterangan fleksibel?",
+        "paragraphs": [
+          "Karena partikel sudah memberi tahu peran tiap bagian, urutan keterangan boleh bergeser tanpa mengubah arti. Yang tetap hanya satu hal: kata kerja di akhir.",
+          "Sebagai pemula, ikuti urutan yang diajarkan: waktu, topik, tempat, objek, kata kerja. Urutan ini paling aman dan natural."
+        ]
+      }
+    },
+    {
+      "id": "scene-08",
+      "type": "practice",
+      "section": "exercises",
+      "content": {
+        "prompt": "Susun: \"Kemarin saya menonton televisi di rumah.\" (waktu, topik, tempat, objek, kata kerja)",
+        "tokens": [
+          {
+            "id": "o",
+            "ja": "テレビを",
+            "id_text": "televisi",
+            "role": "object"
+          },
+          {
+            "id": "v",
+            "ja": "みました",
+            "id_text": "menonton",
+            "role": "verb"
+          },
+          {
+            "id": "t",
+            "ja": "きのう",
+            "id_text": "kemarin",
+            "role": "other"
+          },
+          {
+            "id": "p",
+            "ja": "うちで",
+            "id_text": "di rumah",
+            "role": "other"
+          },
+          {
+            "id": "s",
+            "ja": "わたしは",
+            "id_text": "Saya",
+            "role": "subject"
+          }
+        ],
+        "answer": [
+          "t",
+          "s",
+          "p",
+          "o",
+          "v"
+        ]
+      }
+    },
+    {
+      "id": "scene-09",
+      "type": "practice",
+      "section": "exercises",
+      "content": {
+        "prompt": "Susun: \"Saya pergi ke sekolah.\"",
+        "tokens": [
+          {
+            "id": "v",
+            "ja": "いきます",
+            "id_text": "pergi",
+            "role": "verb"
+          },
+          {
+            "id": "p",
+            "ja": "がっこうへ",
+            "id_text": "ke sekolah",
+            "role": "other"
+          },
+          {
+            "id": "s",
+            "ja": "わたしは",
+            "id_text": "Saya",
+            "role": "subject"
+          }
+        ],
+        "answer": [
+          "s",
+          "p",
+          "v"
+        ]
+      }
+    },
+    {
+      "id": "scene-10",
+      "type": "mistakes",
+      "section": "mistakes",
+      "content": {
+        "heading": "Kesalahan yang sering dilakukan pemula",
+        "items": [
+          {
+            "wrong": "わたしは ごはんを うちで たべます (kurang lazim)",
+            "right": "わたしは うちで ごはんを たべます",
+            "why": "Kalimat pertama masih dipahami, tetapi urutan waktu, topik, tempat, objek lebih natural."
+          },
+          {
+            "wrong": "Menaruh kata kerja di tengah",
+            "right": "Kata kerja selalu di akhir",
+            "why": "Jika ada keterangan yang belum disebut, taruh sebelum kata kerja."
+          },
+          {
+            "wrong": "Lupa partikel pada keterangan",
+            "right": "Pasang partikel pada tiap keterangan",
+            "why": "Partikel menandai peran tiap keterangan."
+          }
+        ]
+      }
+    },
+    {
+      "id": "scene-11",
+      "type": "quiz",
+      "section": "exercises",
+      "content": {
+        "question": "Mana kalimat yang tersusun benar?",
+        "options": [
+          "わたしは うちで ごはんを たべます",
+          "わたしは ごはんを たべます うちで",
+          "たべます わたしは うちで ごはんを"
+        ],
+        "answer": 0,
+        "why": [
+          null,
+          "Keterangan sesudah kata kerja tidak lazim.",
+          "Kata kerja harus di akhir."
+        ]
+      }
+    },
+    {
+      "id": "scene-12",
+      "type": "quiz",
+      "section": "exercises",
+      "content": {
+        "question": "Partikel apa yang menandai tempat aksi pada \"…で ごはんを たべます\"?",
+        "options": [
+          "へ",
+          "で",
+          "は"
+        ],
+        "answer": 1,
+        "why": [
+          "へ menandai tujuan.",
+          null,
+          "は menandai topik."
+        ]
+      }
+    },
+    {
+      "id": "scene-13",
+      "type": "summary",
+      "section": "summary",
+      "content": {
+        "heading": "Rangkuman",
+        "points": [
+          "Bangun kalimat dari kata kerja ke luar.",
+          "Urutan aman: waktu, topik, tempat, objek, kata kerja.",
+          "Kata kerja selalu di akhir."
+        ]
+      }
+    }
+  ]
+}

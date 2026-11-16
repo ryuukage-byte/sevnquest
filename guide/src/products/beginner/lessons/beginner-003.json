@@ -1,0 +1,172 @@
+{
+  "id": "beginner-003",
+  "level": "BEGINNER",
+  "category": "kana",
+  "title": "Hiragana: Baris H, M, Y, R, W, dan N",
+  "summary": "Menuntaskan seluruh hiragana dasar.",
+  "minutes": 9,
+  "scenes": [
+    {
+      "id": "scene-01",
+      "type": "introduction",
+      "duration": 4000,
+      "content": {
+        "title": "ひらがな 3",
+        "subtitle": "Menuntaskan hiragana dasar"
+      }
+    },
+    {
+      "id": "scene-02",
+      "type": "kana",
+      "content": {
+        "heading": "Baris H dan M",
+        "items": [
+          {
+            "char": "は",
+            "romaji": "ha"
+          },
+          {
+            "char": "ひ",
+            "romaji": "hi"
+          },
+          {
+            "char": "ふ",
+            "romaji": "fu"
+          },
+          {
+            "char": "へ",
+            "romaji": "he"
+          },
+          {
+            "char": "ほ",
+            "romaji": "ho"
+          },
+          {
+            "char": "ま",
+            "romaji": "ma"
+          },
+          {
+            "char": "み",
+            "romaji": "mi"
+          },
+          {
+            "char": "む",
+            "romaji": "mu"
+          },
+          {
+            "char": "め",
+            "romaji": "me"
+          },
+          {
+            "char": "も",
+            "romaji": "mo"
+          }
+        ],
+        "caption": "ふ dibaca \"fu\" (antara f dan h)."
+      }
+    },
+    {
+      "id": "scene-03",
+      "type": "kana",
+      "content": {
+        "heading": "Baris Y, R, W, dan N",
+        "items": [
+          {
+            "char": "や",
+            "romaji": "ya"
+          },
+          {
+            "char": "ゆ",
+            "romaji": "yu"
+          },
+          {
+            "char": "よ",
+            "romaji": "yo"
+          },
+          {
+            "char": "ら",
+            "romaji": "ra"
+          },
+          {
+            "char": "り",
+            "romaji": "ri"
+          },
+          {
+            "char": "る",
+            "romaji": "ru"
+          },
+          {
+            "char": "れ",
+            "romaji": "re"
+          },
+          {
+            "char": "ろ",
+            "romaji": "ro"
+          },
+          {
+            "char": "わ",
+            "romaji": "wa"
+          },
+          {
+            "char": "ん",
+            "romaji": "n"
+          }
+        ],
+        "caption": "ん adalah satu-satunya konsonan tunggal. は bisa dibaca \"wa\" sebagai partikel (pelajaran berikutnya)."
+      }
+    },
+    {
+      "id": "scene-04",
+      "type": "quiz",
+      "content": {
+        "question": "Bagaimana cara membaca huruf ini?",
+        "options": [
+          "fu",
+          "hu",
+          "ho"
+        ],
+        "answer": 0,
+        "big": "ふ"
+      }
+    },
+    {
+      "id": "scene-05",
+      "type": "quiz",
+      "content": {
+        "question": "Bagaimana cara membaca huruf ini?",
+        "options": [
+          "ra",
+          "wa",
+          "ma"
+        ],
+        "answer": 1,
+        "big": "わ"
+      }
+    },
+    {
+      "id": "scene-06",
+      "type": "quiz",
+      "content": {
+        "question": "Huruf mana yang dibaca \"me\"?",
+        "options": [
+          "ね",
+          "め",
+          "れ"
+        ],
+        "answer": 1
+      }
+    },
+    {
+      "id": "scene-07",
+      "type": "summary",
+      "content": {
+        "heading": "Rangkuman",
+        "points": [
+          "Kamu sudah mengenal seluruh hiragana dasar.",
+          "ふ = fu, ん = n.",
+          "Lanjut: kalimat pertama."
+        ]
+      }
+    }
+  ]
+}

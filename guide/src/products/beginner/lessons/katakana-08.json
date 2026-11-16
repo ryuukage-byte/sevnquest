@@ -1,0 +1,238 @@
+{
+  "id": "katakana-08",
+  "level": "BEGINNER",
+  "category": "kana",
+  "title": "Evaluasi Katakana",
+  "summary": "Uji kemampuanmu membaca seluruh katakana.",
+  "minutes": 12,
+  "scenes": [
+    {
+      "id": "scene-01",
+      "type": "introduction",
+      "section": "introduction",
+      "duration": 4000,
+      "content": {
+        "title": "カタカナ 試験",
+        "subtitle": "Evaluasi Katakana"
+      }
+    },
+    {
+      "id": "scene-02",
+      "type": "explain",
+      "section": "introduction",
+      "content": {
+        "heading": "Cara memakai evaluasi",
+        "paragraphs": [
+          "Jawablah tanpa membuka materi. Jika salah, baca penjelasannya lalu ulangi bab terkait."
+        ]
+      }
+    },
+    {
+      "id": "scene-03",
+      "type": "quiz",
+      "section": "exercises",
+      "content": {
+        "question": "Bagaimana membaca シ?",
+        "options": [
+          "shi",
+          "tsu",
+          "so"
+        ],
+        "answer": 0,
+        "big": "シ",
+        "why": [
+          null,
+          "Itu ツ.",
+          "Itu ソ."
+        ]
+      }
+    },
+    {
+      "id": "scene-04",
+      "type": "quiz",
+      "section": "exercises",
+      "content": {
+        "question": "Bagaimana membaca ン?",
+        "options": [
+          "so",
+          "n",
+          "shi"
+        ],
+        "answer": 1,
+        "big": "ン",
+        "why": [
+          "Itu ソ.",
+          null,
+          "Itu シ."
+        ]
+      }
+    },
+    {
+      "id": "scene-05",
+      "type": "quiz",
+      "section": "exercises",
+      "content": {
+        "question": "Bagaimana membaca ウ?",
+        "options": [
+          "u",
+          "wa",
+          "fu"
+        ],
+        "answer": 0,
+        "big": "ウ",
+        "why": [
+          null,
+          "Itu ワ.",
+          "Itu フ."
+        ]
+      }
+    },
+    {
+      "id": "scene-06",
+      "type": "quiz",
+      "section": "exercises",
+      "content": {
+        "question": "Bagaimana membaca ビ?",
+        "options": [
+          "pi",
+          "bi",
+          "hi"
+        ],
+        "answer": 1,
+        "big": "ビ",
+        "why": [
+          "Itu ピ (゜).",
+          null,
+          "Itu ヒ."
+        ]
+      }
+    },
+    {
+      "id": "scene-07",
+      "type": "quiz",
+      "section": "exercises",
+      "content": {
+        "question": "Bagaimana membaca ジュース?",
+        "options": [
+          "jusu",
+          "juusu",
+          "jyuusu"
+        ],
+        "answer": 1,
+        "why": [
+          "Tanda ー memanjangkan vokal.",
+          null,
+          "ジュ dibaca \"ju\", bukan \"jyu\"."
+        ]
+      }
+    },
+    {
+      "id": "scene-08",
+      "type": "quiz",
+      "section": "exercises",
+      "content": {
+        "question": "Bagaimana membaca サッカー?",
+        "options": [
+          "sakaa",
+          "sakkaa",
+          "sakka"
+        ],
+        "answer": 1,
+        "why": [
+          "ッ menggandakan konsonan.",
+          null,
+          "Tanda ー memanjangkan vokal akhir."
+        ]
+      }
+    },
+    {
+      "id": "scene-09",
+      "type": "quiz",
+      "section": "exercises",
+      "content": {
+        "question": "Bagaimana membaca ティ?",
+        "options": [
+          "tei",
+          "ti",
+          "chi"
+        ],
+        "answer": 1,
+        "big": "ティ",
+        "why": [
+          "Itu bukan dua suku kata.",
+          null,
+          "Itu チ."
+        ]
+      }
+    },
+    {
+      "id": "scene-10",
+      "type": "quiz",
+      "section": "exercises",
+      "content": {
+        "question": "Apa arti コンセント?",
+        "options": [
+          "Persetujuan",
+          "Stopkontak",
+          "Konser"
+        ],
+        "answer": 1,
+        "why": [
+          "Itu arti bahasa Inggris, bukan Jepang.",
+          null,
+          "Konser adalah コンサート."
+        ]
+      }
+    },
+    {
+      "id": "scene-11",
+      "type": "quiz",
+      "section": "exercises",
+      "content": {
+        "question": "Bagaimana membaca ショッピング?",
+        "options": [
+          "shopingu",
+          "shoppingu",
+          "shoopingu"
+        ],
+        "answer": 1,
+        "why": [
+          "ッ menggandakan konsonan p.",
+          null,
+          "Tidak ada tanda ー."
+        ]
+      }
+    },
+    {
+      "id": "scene-12",
+      "type": "quiz",
+      "section": "exercises",
+      "content": {
+        "question": "Mana yang bunyinya \"kyo\"?",
+        "options": [
+          "キョ",
+          "ギョ",
+          "チョ"
+        ],
+        "answer": 0,
+        "why": [
+          null,
+          "Itu \"gyo\".",
+          "Itu \"cho\"."
+        ]
+      }
+    },
+    {
+      "id": "scene-13",
+      "type": "summary",
+      "section": "summary",
+      "content": {
+        "heading": "Rangkuman",
+        "points": [
+          "Jika ada yang salah, ulangi bab terkait.",
+          "Selamat! Kamu sudah menuntaskan Katakana Mastery."
+        ]
+      }
+    }
+  ]
+}

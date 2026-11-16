@@ -1,0 +1,158 @@
+{
+  "id": "starter-08",
+  "level": "BEGINNER",
+  "category": "concept",
+  "title": "Tes Pemahaman Pertama",
+  "summary": "Enam soal untuk mengecek pemahamanmu dari Starter Pack.",
+  "minutes": 7,
+  "scenes": [
+    {
+      "id": "scene-01",
+      "type": "introduction",
+      "section": "introduction",
+      "duration": 4000,
+      "content": {
+        "title": "確認テスト",
+        "subtitle": "Tes pemahaman pertama"
+      }
+    },
+    {
+      "id": "scene-02",
+      "type": "explain",
+      "section": "introduction",
+      "content": {
+        "heading": "Cara mengerjakan",
+        "paragraphs": [
+          "Ada enam soal. Jawab sebisamu.",
+          "Kalau salah, kamu akan melihat penjelasannya."
+        ]
+      }
+    },
+    {
+      "id": "scene-03",
+      "type": "quiz",
+      "section": "exercises",
+      "content": {
+        "question": "Apa arti 日本語?",
+        "options": [
+          "Negara Jepang",
+          "Bahasa Jepang",
+          "Orang Jepang"
+        ],
+        "answer": 1,
+        "why": [
+          "Negara Jepang adalah 日本.",
+          null,
+          "Orang Jepang adalah 日本人."
+        ]
+      }
+    },
+    {
+      "id": "scene-04",
+      "type": "quiz",
+      "section": "exercises",
+      "content": {
+        "question": "Huruf Jepang mana yang dipakai untuk kata dari luar negeri?",
+        "options": [
+          "Hiragana",
+          "Katakana",
+          "Kanji"
+        ],
+        "answer": 1,
+        "why": [
+          "Hiragana untuk kata Jepang sehari-hari.",
+          null,
+          "Kanji untuk kata yang punya arti sendiri."
+        ]
+      }
+    },
+    {
+      "id": "scene-05",
+      "type": "quiz",
+      "section": "exercises",
+      "content": {
+        "question": "Pada \"Saya minum air\", kata \"minum\" adalah...",
+        "options": [
+          "Subjek",
+          "Predikat",
+          "Objek"
+        ],
+        "answer": 1,
+        "why": [
+          "Subjek adalah \"saya\".",
+          null,
+          "Objek adalah \"air\"."
+        ]
+      }
+    },
+    {
+      "id": "scene-06",
+      "type": "quiz",
+      "section": "exercises",
+      "content": {
+        "question": "\"Besar\" termasuk jenis kata apa?",
+        "options": [
+          "Kata benda",
+          "Kata kerja",
+          "Kata sifat"
+        ],
+        "answer": 2,
+        "why": [
+          "Kata benda adalah nama benda.",
+          "Kata kerja adalah kegiatan.",
+          null
+        ]
+      }
+    },
+    {
+      "id": "scene-07",
+      "type": "quiz",
+      "section": "exercises",
+      "content": {
+        "question": "Di mana kata kerja ditaruh dalam kalimat Jepang?",
+        "options": [
+          "Awal",
+          "Tengah",
+          "Akhir"
+        ],
+        "answer": 2,
+        "why": [
+          "Bukan di awal.",
+          "Bukan di tengah.",
+          null
+        ]
+      }
+    },
+    {
+      "id": "scene-08",
+      "type": "quiz",
+      "section": "exercises",
+      "content": {
+        "question": "Apa fungsi partikel を?",
+        "options": [
+          "Menandai topik",
+          "Menandai objek",
+          "Menandai milik"
+        ],
+        "answer": 1,
+        "why": [
+          "Itu fungsi は.",
+          null,
+          "Itu fungsi の."
+        ]
+      }
+    },
+    {
+      "id": "scene-09",
+      "type": "summary",
+      "section": "summary",
+      "content": {
+        "heading": "Rangkuman",
+        "points": [
+          "Kamu sudah memahami dasar: jenis huruf dan susunan bahasa.",
+          "Berikutnya: mengenal bunyi lewat Hiragana Mastery."
+        ]
+      }
+    }
+  ]
+}

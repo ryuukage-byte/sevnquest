@@ -1,0 +1,162 @@
+{
+  "id": "starter-03",
+  "level": "BEGINNER",
+  "category": "grammar",
+  "title": "Susunan Bahasa: Bagian-Bagian Kalimat",
+  "summary": "Sebelum belajar susunan bahasa Jepang, kita pahami dulu susunan bahasa Indonesia.",
+  "minutes": 9,
+  "scenes": [
+    {
+      "id": "scene-01",
+      "type": "introduction",
+      "section": "introduction",
+      "duration": 4000,
+      "content": {
+        "title": "文の部分",
+        "subtitle": "Susunan bahasa: bagian-bagian kalimat"
+      }
+    },
+    {
+      "id": "scene-02",
+      "type": "explain",
+      "section": "introduction",
+      "content": {
+        "heading": "Kita latihan dulu pakai bahasa Indonesia",
+        "paragraphs": [
+          "Kita memang bisa berbicara bahasa Indonesia, tetapi jarang memikirkan susunannya.",
+          "Padahal untuk belajar bahasa Jepang, kita perlu tahu bagian-bagian sebuah kalimat.",
+          "Jadi kita latihan dulu dengan bahasa yang sudah kita kenal."
+        ]
+      }
+    },
+    {
+      "id": "scene-03",
+      "type": "explain",
+      "section": "definition",
+      "content": {
+        "heading": "Empat bagian kalimat",
+        "paragraphs": [
+          "1. Subjek: siapa yang melakukan atau dibicarakan.",
+          "2. Predikat: kegiatannya (biasanya kata kerja).",
+          "3. Objek: apa yang dikenai kegiatan.",
+          "4. Keterangan: kapan atau di mana."
+        ]
+      }
+    },
+    {
+      "id": "scene-04",
+      "type": "explain",
+      "section": "examples",
+      "content": {
+        "heading": "Contoh: \"Saya makan nasi.\"",
+        "paragraphs": [
+          "Saya = subjek.",
+          "Makan = predikat.",
+          "Nasi = objek."
+        ]
+      }
+    },
+    {
+      "id": "scene-05",
+      "type": "explain",
+      "section": "examples",
+      "content": {
+        "heading": "Contoh lengkap",
+        "paragraphs": [
+          "\"Tadi pagi saya makan nasi di rumah.\"",
+          "Tadi pagi = keterangan waktu.",
+          "Saya = subjek.",
+          "Makan = predikat.",
+          "Nasi = objek.",
+          "Di rumah = keterangan tempat."
+        ]
+      }
+    },
+    {
+      "id": "scene-06",
+      "type": "structure",
+      "section": "summary",
+      "content": {
+        "heading": "Pola bahasa Indonesia",
+        "caption": "Subjek, lalu predikat (kata kerja), lalu objek.",
+        "pattern": [
+          "subject",
+          "verb",
+          "object"
+        ],
+        "language": "id"
+      }
+    },
+    {
+      "id": "scene-07",
+      "type": "quiz",
+      "section": "exercises",
+      "content": {
+        "question": "Pada kalimat \"Saya minum air\", mana subjeknya?",
+        "options": [
+          "Saya",
+          "minum",
+          "air"
+        ],
+        "answer": 0,
+        "why": [
+          null,
+          "\"Minum\" adalah kegiatan (predikat).",
+          "\"Air\" adalah objek."
+        ]
+      }
+    },
+    {
+      "id": "scene-08",
+      "type": "quiz",
+      "section": "exercises",
+      "content": {
+        "question": "Pada kalimat \"Saya minum air\", mana predikatnya?",
+        "options": [
+          "Saya",
+          "minum",
+          "air"
+        ],
+        "answer": 1,
+        "why": [
+          "\"Saya\" adalah subjek.",
+          null,
+          "\"Air\" adalah objek."
+        ]
+      }
+    },
+    {
+      "id": "scene-09",
+      "type": "quiz",
+      "section": "exercises",
+      "content": {
+        "question": "Pada \"Dia membaca buku di kamar\", mana keterangan tempatnya?",
+        "options": [
+          "Dia",
+          "buku",
+          "di kamar"
+        ],
+        "answer": 2,
+        "why": [
+          "\"Dia\" adalah subjek.",
+          "\"Buku\" adalah objek.",
+          null
+        ]
+      }
+    },
+    {
+      "id": "scene-10",
+      "type": "summary",
+      "section": "summary",
+      "content": {
+        "heading": "Rangkuman",
+        "points": [
+          "Subjek: siapa.",
+          "Predikat: kegiatan.",
+          "Objek: apa yang dikenai kegiatan.",
+          "Keterangan: kapan atau di mana."
+        ]
+      }
+    }
+  ]
+}

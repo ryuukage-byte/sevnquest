@@ -1,0 +1,392 @@
+{
+  "id": "foundation-07",
+  "level": "BEGINNER",
+  "category": "grammar",
+  "title": "Struktur Kalimat Jepang",
+  "summary": "Urutan subjek, objek, dan kata kerja, dengan alasan di balik urutan itu.",
+  "minutes": 10,
+  "scenes": [
+    {
+      "id": "scene-01",
+      "type": "introduction",
+      "section": "introduction",
+      "duration": 4000,
+      "content": {
+        "title": "文の構造",
+        "subtitle": "Chapter 07: Struktur kalimat Jepang"
+      }
+    },
+    {
+      "id": "scene-02",
+      "type": "explain",
+      "section": "definition",
+      "content": {
+        "heading": "Urutan dasar: S, O, V",
+        "paragraphs": [
+          "Struktur kalimat dasar bahasa Jepang adalah Subjek, Objek, Kata kerja (SOV). Bahasa Indonesia memakai Subjek, Kata kerja, Objek (SVO).",
+          "Contoh: \"Saya makan apel\" menjadi \"Saya apel makan\" dalam urutan Jepang."
+        ]
+      }
+    },
+    {
+      "id": "scene-03",
+      "type": "transformation",
+      "section": "examples",
+      "content": {
+        "heading": "Dari kalimat kita ke kalimat Jepang",
+        "caption": "Ketuk Ubah untuk melihat tiap bagian berpindah tempat. Partikel は dan を menandai peran kata.",
+        "tokens": [
+          {
+            "id": "s",
+            "ja": "わたしは",
+            "id_text": "Saya",
+            "role": "subject"
+          },
+          {
+            "id": "v",
+            "ja": "たべます",
+            "id_text": "makan",
+            "role": "verb"
+          },
+          {
+            "id": "o",
+            "ja": "りんごを",
+            "id_text": "apel",
+            "role": "object"
+          }
+        ],
+        "from": [
+          "s",
+          "v",
+          "o"
+        ],
+        "to": [
+          "s",
+          "o",
+          "v"
+        ]
+      }
+    },
+    {
+      "id": "scene-04",
+      "type": "explain",
+      "section": "logic",
+      "content": {
+        "heading": "Mengapa kata kerja di akhir?",
+        "paragraphs": [
+          "Dalam bahasa Jepang, semua keterangan dikumpulkan dulu (siapa, apa, kapan, di mana), lalu aksinya diucapkan terakhir.",
+          "Efeknya: pendengar baru tahu kalimat itu berarti apa saat kata kerja muncul. Karena itu kata kerja memegang informasi penting seperti waktu dan kesopanan.",
+          "Bagian yang menerangkan sebuah kata juga diletakkan di depannya. Dalam bahasa Indonesia kita bilang \"apel merah\", dalam bahasa Jepang urutannya \"merah apel\" (あかい りんご)."
+        ],
+        "analogy": "Bayangkan membangun teka-teki. Potongan kecil disusun dulu, lalu potongan penutup (kata kerja) menyatukan gambarnya."
+      }
+    },
+    {
+      "id": "scene-05",
+      "type": "example",
+      "section": "examples",
+      "content": {
+        "parts": [
+          {
+            "ja": "私",
+            "reading": "わたし",
+            "romaji": "watashi",
+            "id_text": "saya",
+            "role": "subject"
+          },
+          {
+            "ja": "は",
+            "reading": "は",
+            "romaji": "wa",
+            "id_text": "penanda topik",
+            "role": "particle"
+          },
+          {
+            "ja": "ごはん",
+            "reading": "ごはん",
+            "romaji": "gohan",
+            "id_text": "nasi",
+            "role": "object"
+          },
+          {
+            "ja": "を",
+            "reading": "を",
+            "romaji": "o",
+            "id_text": "penanda objek",
+            "role": "particle"
+          },
+          {
+            "ja": "たべます",
+            "reading": "たべます",
+            "romaji": "tabemasu",
+            "id_text": "makan",
+            "role": "verb"
+          }
+        ],
+        "translation": "Saya makan nasi.",
+        "heading": "Pelaku, objek, kata kerja"
+      }
+    },
+    {
+      "id": "scene-06",
+      "type": "example",
+      "section": "examples",
+      "content": {
+        "parts": [
+          {
+            "ja": "私",
+            "reading": "わたし",
+            "romaji": "watashi",
+            "id_text": "saya",
+            "role": "subject"
+          },
+          {
+            "ja": "は",
+            "reading": "は",
+            "romaji": "wa",
+            "id_text": "penanda topik",
+            "role": "particle"
+          },
+          {
+            "ja": "あかい",
+            "reading": "あかい",
+            "romaji": "akai",
+            "id_text": "merah",
+            "role": "other"
+          },
+          {
+            "ja": "りんご",
+            "reading": "りんご",
+            "romaji": "ringo",
+            "id_text": "apel",
+            "role": "object"
+          },
+          {
+            "ja": "を",
+            "reading": "を",
+            "romaji": "o",
+            "id_text": "penanda objek",
+            "role": "particle"
+          },
+          {
+            "ja": "たべます",
+            "reading": "たべます",
+            "romaji": "tabemasu",
+            "id_text": "makan",
+            "role": "verb"
+          }
+        ],
+        "translation": "Saya makan apel merah.",
+        "heading": "Penjelas ditaruh sebelum kata yang dijelaskan"
+      }
+    },
+    {
+      "id": "scene-07",
+      "type": "example",
+      "section": "usage",
+      "content": {
+        "parts": [
+          {
+            "ja": "きょう",
+            "reading": "きょう",
+            "romaji": "kyou",
+            "id_text": "hari ini",
+            "role": "other"
+          },
+          {
+            "ja": "私",
+            "reading": "わたし",
+            "romaji": "watashi",
+            "id_text": "saya",
+            "role": "subject"
+          },
+          {
+            "ja": "は",
+            "reading": "は",
+            "romaji": "wa",
+            "id_text": "penanda topik",
+            "role": "particle"
+          },
+          {
+            "ja": "すし",
+            "reading": "すし",
+            "romaji": "sushi",
+            "id_text": "sushi",
+            "role": "object"
+          },
+          {
+            "ja": "を",
+            "reading": "を",
+            "romaji": "o",
+            "id_text": "penanda objek",
+            "role": "particle"
+          },
+          {
+            "ja": "たべます",
+            "reading": "たべます",
+            "romaji": "tabemasu",
+            "id_text": "makan",
+            "role": "verb"
+          }
+        ],
+        "translation": "Hari ini saya makan sushi.",
+        "heading": "Keterangan waktu di depan",
+        "note": "Keterangan waktu biasanya di awal kalimat. Kata kerja tetap di akhir."
+      }
+    },
+    {
+      "id": "scene-08",
+      "type": "comparison",
+      "section": "comparison",
+      "content": {
+        "left": "Saya makan apel. (S, V, O)",
+        "right": "わたしは りんごを たべます。 (S, O, V)",
+        "leftLabel": "INDONESIA",
+        "rightLabel": "JEPANG"
+      }
+    },
+    {
+      "id": "scene-09",
+      "type": "practice",
+      "section": "exercises",
+      "content": {
+        "prompt": "Susun kalimat: \"Saya minum air.\"",
+        "tokens": [
+          {
+            "id": "v",
+            "ja": "のみます",
+            "id_text": "minum",
+            "role": "verb"
+          },
+          {
+            "id": "s",
+            "ja": "わたしは",
+            "id_text": "Saya",
+            "role": "subject"
+          },
+          {
+            "id": "o",
+            "ja": "みずを",
+            "id_text": "air",
+            "role": "object"
+          }
+        ],
+        "answer": [
+          "s",
+          "o",
+          "v"
+        ]
+      }
+    },
+    {
+      "id": "scene-10",
+      "type": "practice",
+      "section": "exercises",
+      "content": {
+        "prompt": "Susun kalimat: \"Teman membaca buku.\"",
+        "tokens": [
+          {
+            "id": "o",
+            "ja": "ほんを",
+            "id_text": "buku",
+            "role": "object"
+          },
+          {
+            "id": "v",
+            "ja": "よみます",
+            "id_text": "membaca",
+            "role": "verb"
+          },
+          {
+            "id": "s",
+            "ja": "ともだちは",
+            "id_text": "Teman",
+            "role": "subject"
+          }
+        ],
+        "answer": [
+          "s",
+          "o",
+          "v"
+        ]
+      }
+    },
+    {
+      "id": "scene-11",
+      "type": "mistakes",
+      "section": "mistakes",
+      "content": {
+        "heading": "Kesalahan yang sering dilakukan pemula",
+        "items": [
+          {
+            "wrong": "わたしは たべます りんごを。",
+            "right": "わたしは りんごを たべます。",
+            "why": "Kata kerja harus di akhir, bukan di tengah."
+          },
+          {
+            "wrong": "りんご あかい (penjelas sesudah kata benda)",
+            "right": "あかい りんご",
+            "why": "Penjelas diletakkan sebelum kata yang dijelaskan."
+          },
+          {
+            "wrong": "わたしを りんごは たべます。 (partikel tertukar)",
+            "right": "わたしは りんごを たべます。",
+            "why": "は menandai topik (pelaku) dan を menandai objek. Kalau tertukar, artinya menjadi aneh."
+          }
+        ]
+      }
+    },
+    {
+      "id": "scene-12",
+      "type": "quiz",
+      "section": "exercises",
+      "content": {
+        "question": "Mana kalimat dengan urutan dasar yang benar?",
+        "options": [
+          "わたしは たべます りんごを",
+          "たべます わたしは りんごを",
+          "わたしは りんごを たべます"
+        ],
+        "answer": 2,
+        "why": [
+          "Kata kerja harus menutup kalimat, bukan di tengah.",
+          "Kata kerja tidak boleh di awal.",
+          null
+        ]
+      }
+    },
+    {
+      "id": "scene-13",
+      "type": "quiz",
+      "section": "exercises",
+      "content": {
+        "question": "Apa fungsi kata kerja di akhir kalimat?",
+        "options": [
+          "Hanya hiasan",
+          "Menyatukan seluruh informasi dan membawa waktu/kesopanan",
+          "Menandai topik"
+        ],
+        "answer": 1,
+        "why": [
+          "Posisinya sengaja dan penting.",
+          null,
+          "Topik ditandai oleh は."
+        ]
+      }
+    },
+    {
+      "id": "scene-14",
+      "type": "summary",
+      "section": "summary",
+      "content": {
+        "heading": "Rangkuman",
+        "points": [
+          "Urutan dasar: Subjek, Objek, Kata kerja.",
+          "Kata kerja di akhir karena keterangan dikumpulkan dulu.",
+          "Penjelas diletakkan sebelum kata yang dijelaskan.",
+          "Keterangan waktu lazim di awal kalimat."
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,459 @@
+{
+  "id": "foundation-08",
+  "level": "BEGINNER",
+  "category": "grammar",
+  "title": "Mengenal Partikel",
+  "summary": "Partikel は, が, を, も, dan の, dimulai dari memahami apa itu topik.",
+  "minutes": 14,
+  "scenes": [
+    {
+      "id": "scene-01",
+      "type": "introduction",
+      "section": "introduction",
+      "duration": 4000,
+      "content": {
+        "title": "助詞",
+        "subtitle": "Chapter 08: Mengenal partikel"
+      }
+    },
+    {
+      "id": "scene-02",
+      "type": "explain",
+      "section": "definition",
+      "content": {
+        "heading": "Partikel itu apa?",
+        "paragraphs": [
+          "Partikel (助詞, joshi) adalah kata kecil yang menempel di belakang kata lain untuk menandai perannya dalam kalimat.",
+          "Karena kata benda dalam bahasa Jepang tidak berubah bentuk, partikel yang memberi tahu: mana topik, mana objek, mana pemilik.",
+          "Di chapter ini kita bahas lima partikel dasar: は, が, を, も, dan の."
+        ],
+        "analogy": "Partikel seperti label nama pada koper di bandara. Koper (kata) bentuknya sama, labelnya yang menunjukkan siapa pemiliknya.",
+        "terms": [
+          {
+            "term": "助詞",
+            "reading": "joshi",
+            "meaning": "partikel"
+          }
+        ]
+      }
+    },
+    {
+      "id": "scene-03",
+      "type": "explain",
+      "section": "concept",
+      "content": {
+        "heading": "Pertama, apa itu topik?",
+        "paragraphs": [
+          "Topik adalah hal yang sedang kita bicarakan. Kalimat \"Saya pelajar\" berbicara tentang saya, sehingga \"saya\" adalah topiknya.",
+          "Mengapa bahasa Jepang perlu menandai topik? Karena subjek sering dihilangkan dan urutan kata cukup bebas. Penanda topik menjelaskan \"inilah bahan pembicaraan kita\", baru sesudahnya komentar tentang topik itu."
+        ]
+      }
+    },
+    {
+      "id": "scene-04",
+      "type": "explain",
+      "section": "explanation",
+      "content": {
+        "heading": "Cara kerja は",
+        "paragraphs": [
+          "は menandai topik. Dibaca \"wa\" ketika menjadi partikel.",
+          "Rumus pikirnya: [topik] は [komentar tentang topik].",
+          "Karena topik biasanya hal yang sudah diketahui pendengar, は sering dipakai untuk \"dia\" atau \"saya\" yang sudah jelas."
+        ]
+      }
+    },
+    {
+      "id": "scene-05",
+      "type": "example",
+      "section": "examples",
+      "content": {
+        "parts": [
+          {
+            "ja": "私",
+            "reading": "わたし",
+            "romaji": "watashi",
+            "id_text": "saya",
+            "role": "subject"
+          },
+          {
+            "ja": "は",
+            "reading": "は",
+            "romaji": "wa",
+            "id_text": "penanda topik",
+            "role": "particle"
+          },
+          {
+            "ja": "がくせい",
+            "reading": "がくせい",
+            "romaji": "gakusei",
+            "id_text": "pelajar, mahasiswa",
+            "role": "other"
+          },
+          {
+            "ja": "です",
+            "reading": "です",
+            "romaji": "desu",
+            "id_text": "adalah (sopan)",
+            "role": "verb"
+          }
+        ],
+        "translation": "Saya adalah pelajar.",
+        "heading": "Topik dan komentar",
+        "note": "わたしは = topik, がくせいです = komentar tentang topik."
+      }
+    },
+    {
+      "id": "scene-06",
+      "type": "explain",
+      "section": "explanation",
+      "content": {
+        "heading": "は dan が: apa bedanya?",
+        "paragraphs": [
+          "が menandai subjek yang menjadi informasi baru atau jawaban. Kalau は berarti \"tentang X, ...\" (X sudah jadi bahan bicara), が berarti \"yang melakukannya adalah X\".",
+          "Ketika ada yang bertanya \"Siapa yang datang?\", jawabannya adalah informasi baru, sehingga memakai が."
+        ],
+        "analogy": "は seperti menyoroti tokoh yang sudah dikenal di panggung. が seperti menunjuk seseorang dari kerumunan: \"yang itu!\""
+      }
+    },
+    {
+      "id": "scene-07",
+      "type": "example",
+      "section": "examples",
+      "content": {
+        "parts": [
+          {
+            "ja": "だれ",
+            "reading": "だれ",
+            "romaji": "dare",
+            "id_text": "siapa",
+            "role": "subject"
+          },
+          {
+            "ja": "が",
+            "reading": "が",
+            "romaji": "ga",
+            "id_text": "penanda subjek",
+            "role": "particle"
+          },
+          {
+            "ja": "きますか",
+            "reading": "きますか",
+            "romaji": "kimasu ka",
+            "id_text": "datang?",
+            "role": "verb"
+          }
+        ],
+        "translation": "Siapa yang datang?",
+        "heading": "Pertanyaan dengan が"
+      }
+    },
+    {
+      "id": "scene-08",
+      "type": "example",
+      "section": "examples",
+      "content": {
+        "parts": [
+          {
+            "ja": "やまださん",
+            "reading": "やまださん",
+            "romaji": "yamada san",
+            "id_text": "Yamada",
+            "role": "subject"
+          },
+          {
+            "ja": "が",
+            "reading": "が",
+            "romaji": "ga",
+            "id_text": "penanda subjek",
+            "role": "particle"
+          },
+          {
+            "ja": "きます",
+            "reading": "きます",
+            "romaji": "kimasu",
+            "id_text": "datang",
+            "role": "verb"
+          }
+        ],
+        "translation": "Yamada-san yang datang.",
+        "heading": "Jawaban dengan が",
+        "note": "が menekankan bahwa Yamada-san-lah jawabannya."
+      }
+    },
+    {
+      "id": "scene-09",
+      "type": "comparison",
+      "section": "comparison",
+      "content": {
+        "left": "Tentang saya: saya pelajar. (topik, は)",
+        "right": "わたしは がくせいです。",
+        "leftLabel": "INDONESIA",
+        "rightLabel": "は: TOPIK"
+      }
+    },
+    {
+      "id": "scene-10",
+      "type": "comparison",
+      "section": "comparison",
+      "content": {
+        "left": "Siapa yang datang? Yamada yang datang. (yang melakukan, が)",
+        "right": "やまださんが きます。",
+        "leftLabel": "INDONESIA",
+        "rightLabel": "が: SUBJEK BARU"
+      }
+    },
+    {
+      "id": "scene-11",
+      "type": "explain",
+      "section": "explanation",
+      "content": {
+        "heading": "Tiga partikel lain: を, も, の",
+        "paragraphs": [
+          "を menandai objek langsung dari kata kerja. Dibaca \"o\". Contoh: みずを のみます (\"minum air\").",
+          "も berarti \"juga\" dan menggantikan は atau を. Contoh: わたしも がくせいです (\"Saya juga pelajar\").",
+          "の menghubungkan dua kata benda dan menunjukkan kepemilikan atau hubungan. Contoh: わたしの ほん (\"buku saya\")."
+        ],
+        "terms": [
+          {
+            "term": "を",
+            "reading": "o",
+            "meaning": "penanda objek"
+          },
+          {
+            "term": "も",
+            "reading": "mo",
+            "meaning": "juga"
+          },
+          {
+            "term": "の",
+            "reading": "no",
+            "meaning": "milik / hubungan"
+          }
+        ]
+      }
+    },
+    {
+      "id": "scene-12",
+      "type": "example",
+      "section": "examples",
+      "content": {
+        "parts": [
+          {
+            "ja": "私",
+            "reading": "わたし",
+            "romaji": "watashi",
+            "id_text": "saya",
+            "role": "subject"
+          },
+          {
+            "ja": "も",
+            "reading": "も",
+            "romaji": "mo",
+            "id_text": "juga",
+            "role": "particle"
+          },
+          {
+            "ja": "がくせい",
+            "reading": "がくせい",
+            "romaji": "gakusei",
+            "id_text": "pelajar, mahasiswa",
+            "role": "other"
+          },
+          {
+            "ja": "です",
+            "reading": "です",
+            "romaji": "desu",
+            "id_text": "adalah (sopan)",
+            "role": "verb"
+          }
+        ],
+        "translation": "Saya juga pelajar.",
+        "heading": "Partikel も"
+      }
+    },
+    {
+      "id": "scene-13",
+      "type": "example",
+      "section": "examples",
+      "content": {
+        "parts": [
+          {
+            "ja": "これ",
+            "reading": "これ",
+            "romaji": "kore",
+            "id_text": "ini",
+            "role": "subject"
+          },
+          {
+            "ja": "は",
+            "reading": "は",
+            "romaji": "wa",
+            "id_text": "penanda topik",
+            "role": "particle"
+          },
+          {
+            "ja": "わたし",
+            "reading": "わたし",
+            "romaji": "watashi",
+            "id_text": "saya",
+            "role": "other"
+          },
+          {
+            "ja": "の",
+            "reading": "の",
+            "romaji": "no",
+            "id_text": "milik",
+            "role": "particle"
+          },
+          {
+            "ja": "ほん",
+            "reading": "ほん",
+            "romaji": "hon",
+            "id_text": "buku",
+            "role": "other"
+          },
+          {
+            "ja": "です",
+            "reading": "です",
+            "romaji": "desu",
+            "id_text": "adalah (sopan)",
+            "role": "verb"
+          }
+        ],
+        "translation": "Ini adalah buku saya.",
+        "heading": "Partikel の"
+      }
+    },
+    {
+      "id": "scene-14",
+      "type": "mistakes",
+      "section": "mistakes",
+      "content": {
+        "heading": "Kesalahan yang sering dilakukan pemula",
+        "items": [
+          {
+            "wrong": "Membaca は sebagai \"ha\" saat menjadi partikel",
+            "right": "Bacalah \"wa\"",
+            "why": "Hanya sebagai partikel dibaca \"wa\". Di dalam kata biasa tetap \"ha\"."
+          },
+          {
+            "wrong": "Memakai は untuk menjawab \"Siapa yang...?\"",
+            "right": "Pakai が",
+            "why": "Jawaban atas pertanyaan \"siapa/apa\" adalah informasi baru, sehingga memakai が."
+          },
+          {
+            "wrong": "わたしは ほん よみます (partikel hilang)",
+            "right": "わたしは ほんを よみます",
+            "why": "Tanpa を, hubungan antara \"buku\" dan \"membaca\" tidak ditandai."
+          }
+        ]
+      }
+    },
+    {
+      "id": "scene-15",
+      "type": "quiz",
+      "section": "exercises",
+      "content": {
+        "question": "Partikel mana yang menandai topik?",
+        "options": [
+          "を",
+          "は",
+          "の"
+        ],
+        "answer": 1,
+        "why": [
+          "を menandai objek.",
+          null,
+          "の menandai milik atau hubungan."
+        ]
+      }
+    },
+    {
+      "id": "scene-16",
+      "type": "quiz",
+      "section": "exercises",
+      "content": {
+        "question": "Untuk menjawab \"Siapa yang datang?\", partikel yang tepat setelah nama orang adalah...",
+        "options": [
+          "は",
+          "が",
+          "を"
+        ],
+        "answer": 1,
+        "why": [
+          "は lebih cocok untuk topik yang sudah diketahui.",
+          null,
+          "を untuk objek, bukan pelaku."
+        ]
+      }
+    },
+    {
+      "id": "scene-17",
+      "type": "quiz",
+      "section": "exercises",
+      "content": {
+        "question": "Partikel apa dalam わたしの ほん?",
+        "options": [
+          "Menandai topik",
+          "Menandai milik",
+          "Menandai pertanyaan"
+        ],
+        "answer": 1,
+        "big": "の",
+        "why": [
+          "Topik ditandai は.",
+          null,
+          "Pertanyaan ditandai か."
+        ]
+      }
+    },
+    {
+      "id": "scene-18",
+      "type": "practice",
+      "section": "exercises",
+      "content": {
+        "prompt": "Susun kalimat: \"Saya membaca buku.\"",
+        "tokens": [
+          {
+            "id": "o",
+            "ja": "ほんを",
+            "id_text": "buku",
+            "role": "object"
+          },
+          {
+            "id": "v",
+            "ja": "よみます",
+            "id_text": "membaca",
+            "role": "verb"
+          },
+          {
+            "id": "s",
+            "ja": "わたしは",
+            "id_text": "Saya",
+            "role": "subject"
+          }
+        ],
+        "answer": [
+          "s",
+          "o",
+          "v"
+        ]
+      }
+    },
+    {
+      "id": "scene-19",
+      "type": "summary",
+      "section": "summary",
+      "content": {
+        "heading": "Rangkuman",
+        "points": [
+          "は = topik (dibaca \"wa\").",
+          "が = subjek yang menjadi informasi baru.",
+          "を = objek (dibaca \"o\").",
+          "も = juga, の = milik/hubungan.",
+          "Partikel menempel di belakang kata dan menjelaskan perannya."
+        ]
+      }
+    }
+  ]
+}

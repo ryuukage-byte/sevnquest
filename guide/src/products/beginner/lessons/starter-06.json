@@ -1,0 +1,185 @@
+{
+  "id": "starter-06",
+  "level": "BEGINNER",
+  "category": "grammar",
+  "title": "Apa Itu Partikel?",
+  "summary": "Kata kecil yang ditaruh setelah kata, seperti \"di\", \"ke\", dan \"dari\" dalam bahasa Indonesia.",
+  "minutes": 9,
+  "scenes": [
+    {
+      "id": "scene-01",
+      "type": "introduction",
+      "section": "introduction",
+      "duration": 4000,
+      "content": {
+        "title": "助詞",
+        "subtitle": "Partikel"
+      }
+    },
+    {
+      "id": "scene-02",
+      "type": "explain",
+      "section": "definition",
+      "content": {
+        "heading": "Partikel itu apa?",
+        "paragraphs": [
+          "Partikel disebut 助詞 (joshi).",
+          "Partikel adalah kata kecil yang ditaruh setelah kata untuk menjelaskan perannya.",
+          "Kerjanya mirip \"di\", \"ke\", dan \"dari\" di bahasa Indonesia."
+        ],
+        "terms": [
+          {
+            "term": "助詞",
+            "reading": "joshi",
+            "meaning": "partikel"
+          }
+        ]
+      }
+    },
+    {
+      "id": "scene-03",
+      "type": "example",
+      "section": "examples",
+      "content": {
+        "parts": [
+          {
+            "ja": "私",
+            "reading": "わたし",
+            "romaji": "watashi",
+            "id_text": "saya",
+            "role": "subject"
+          },
+          {
+            "ja": "は",
+            "reading": "は",
+            "romaji": "wa",
+            "id_text": "penanda topik",
+            "role": "particle"
+          },
+          {
+            "ja": "学校",
+            "reading": "がっこう",
+            "romaji": "gakkou",
+            "id_text": "sekolah",
+            "role": "other"
+          },
+          {
+            "ja": "に",
+            "reading": "に",
+            "romaji": "ni",
+            "id_text": "penanda tujuan",
+            "role": "particle"
+          },
+          {
+            "ja": "行きます",
+            "reading": "いきます",
+            "romaji": "ikimasu",
+            "id_text": "pergi",
+            "role": "verb"
+          }
+        ],
+        "translation": "Saya pergi ke sekolah.",
+        "heading": "Dua partikel dalam satu kalimat",
+        "note": "は menandai topik (saya). に menandai tujuan (ke sekolah)."
+      }
+    },
+    {
+      "id": "scene-04",
+      "type": "vocab",
+      "section": "explanation",
+      "content": {
+        "heading": "Lima partikel pertama",
+        "items": [
+          {
+            "ja": "は",
+            "reading": "wa",
+            "id_text": "penanda topik. Contoh: 私は (saya)"
+          },
+          {
+            "ja": "を",
+            "reading": "o",
+            "id_text": "penanda objek. Contoh: 水を (air)"
+          },
+          {
+            "ja": "に",
+            "reading": "ni",
+            "id_text": "tujuan atau tempat. Contoh: 学校に (ke sekolah)"
+          },
+          {
+            "ja": "の",
+            "reading": "no",
+            "id_text": "milik. Contoh: 私の (milik saya)"
+          },
+          {
+            "ja": "も",
+            "reading": "mo",
+            "id_text": "juga. Contoh: 私も (saya juga)"
+          }
+        ]
+      }
+    },
+    {
+      "id": "scene-05",
+      "type": "explain",
+      "section": "logic",
+      "content": {
+        "heading": "Jangan dihafal semuanya sekarang",
+        "paragraphs": [
+          "Masih ada partikel lain, seperti が, で, と, へ, から, dan まで.",
+          "Kita pelajari satu per satu nanti."
+        ]
+      }
+    },
+    {
+      "id": "scene-06",
+      "type": "quiz",
+      "section": "exercises",
+      "content": {
+        "question": "Apa fungsi partikel を?",
+        "options": [
+          "Menandai topik",
+          "Menandai objek",
+          "Menandai milik"
+        ],
+        "answer": 1,
+        "why": [
+          "Itu fungsi は.",
+          null,
+          "Itu fungsi の."
+        ]
+      }
+    },
+    {
+      "id": "scene-07",
+      "type": "quiz",
+      "section": "exercises",
+      "content": {
+        "question": "Partikel yang berarti \"juga\" adalah...",
+        "options": [
+          "も",
+          "の",
+          "に"
+        ],
+        "answer": 0,
+        "why": [
+          null,
+          "の berarti milik.",
+          "に berarti tujuan atau tempat."
+        ]
+      }
+    },
+    {
+      "id": "scene-08",
+      "type": "summary",
+      "section": "summary",
+      "content": {
+        "heading": "Rangkuman",
+        "points": [
+          "Partikel = kata kecil setelah kata, penjelas peran.",
+          "は topik, を objek, に tujuan, の milik, も juga.",
+          "Partikel lain dipelajari nanti."
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,180 @@
+{
+  "id": "starter-02",
+  "level": "BEGINNER",
+  "category": "concept",
+  "title": "Huruf Mana Dipakai untuk Apa?",
+  "summary": "Ketiga huruf dipakai bersamaan dalam satu kalimat. Ini tugas masing-masing.",
+  "minutes": 7,
+  "scenes": [
+    {
+      "id": "scene-01",
+      "type": "introduction",
+      "section": "introduction",
+      "duration": 4000,
+      "content": {
+        "title": "使い分け",
+        "subtitle": "Huruf mana dipakai untuk apa?"
+      }
+    },
+    {
+      "id": "scene-02",
+      "type": "explain",
+      "section": "concept",
+      "content": {
+        "heading": "Tiga huruf, tiga tugas",
+        "paragraphs": [
+          "Hiragana: kata Jepang sehari-hari, akhiran kata kerja, dan penghubung kalimat.",
+          "Katakana: kata dari luar negeri, nama asing, dan nama negara.",
+          "Kanji: kata yang punya arti, supaya cepat dibaca."
+        ]
+      }
+    },
+    {
+      "id": "scene-03",
+      "type": "vocab",
+      "section": "examples",
+      "content": {
+        "heading": "Contoh katakana",
+        "items": [
+          {
+            "ja": "コーヒー",
+            "reading": "koohii",
+            "id_text": "kopi"
+          },
+          {
+            "ja": "ホテル",
+            "reading": "hoteru",
+            "id_text": "hotel"
+          },
+          {
+            "ja": "インドネシア",
+            "reading": "indoneshia",
+            "id_text": "Indonesia"
+          }
+        ]
+      }
+    },
+    {
+      "id": "scene-04",
+      "type": "example",
+      "section": "examples",
+      "content": {
+        "parts": [
+          {
+            "ja": "私",
+            "reading": "わたし",
+            "romaji": "watashi",
+            "id_text": "saya",
+            "role": "subject"
+          },
+          {
+            "ja": "は",
+            "reading": "は",
+            "romaji": "wa",
+            "id_text": "penanda topik",
+            "role": "particle"
+          },
+          {
+            "ja": "コーヒー",
+            "reading": "こおひい",
+            "romaji": "koohii",
+            "id_text": "kopi",
+            "role": "object"
+          },
+          {
+            "ja": "を",
+            "reading": "を",
+            "romaji": "o",
+            "id_text": "penanda objek",
+            "role": "particle"
+          },
+          {
+            "ja": "飲みます",
+            "reading": "のみます",
+            "romaji": "nomimasu",
+            "id_text": "minum",
+            "role": "verb"
+          }
+        ],
+        "translation": "Saya minum kopi.",
+        "heading": "Tiga huruf dalam satu kalimat",
+        "note": "私 dan 飲 adalah kanji. は を みます adalah hiragana. コーヒー adalah katakana."
+      }
+    },
+    {
+      "id": "scene-05",
+      "type": "explain",
+      "section": "logic",
+      "content": {
+        "heading": "Ingat ini",
+        "paragraphs": [
+          "Hiragana, katakana, dan kanji bukan tiga bahasa.",
+          "Ketiganya satu bahasa yang saling melengkapi."
+        ]
+      }
+    },
+    {
+      "id": "scene-06",
+      "type": "explain",
+      "section": "usage",
+      "content": {
+        "heading": "Kamu mulai dari mana?",
+        "paragraphs": [
+          "Pertama, kita pahami dulu susunan bahasa.",
+          "Lalu hiragana, katakana, dan kanji sedikit demi sedikit."
+        ]
+      }
+    },
+    {
+      "id": "scene-07",
+      "type": "quiz",
+      "section": "exercises",
+      "content": {
+        "question": "Kata \"kopi\" (コーヒー) ditulis dengan huruf apa?",
+        "options": [
+          "Hiragana",
+          "Katakana",
+          "Kanji"
+        ],
+        "answer": 1,
+        "why": [
+          "Hiragana untuk kata Jepang asli.",
+          null,
+          "Kanji untuk kata yang punya arti, seperti 水."
+        ]
+      }
+    },
+    {
+      "id": "scene-08",
+      "type": "quiz",
+      "section": "exercises",
+      "content": {
+        "question": "Dalam 私は水を飲みます, は dan を ditulis dengan...",
+        "options": [
+          "Kanji",
+          "Hiragana",
+          "Katakana"
+        ],
+        "answer": 1,
+        "why": [
+          "Penghubung kalimat tidak ditulis dengan kanji.",
+          null,
+          "Katakana untuk kata dari luar negeri."
+        ]
+      }
+    },
+    {
+      "id": "scene-09",
+      "type": "summary",
+      "section": "summary",
+      "content": {
+        "heading": "Rangkuman",
+        "points": [
+          "Hiragana: kata Jepang dan penghubung kalimat.",
+          "Katakana: kata dari luar negeri.",
+          "Kanji: kata yang punya arti."
+        ]
+      }
+    }
+  ]
+}

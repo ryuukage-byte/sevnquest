@@ -1,0 +1,328 @@
+{
+  "id": "hiragana-05",
+  "level": "BEGINNER",
+  "category": "kana",
+  "title": "Youon: Gabungan Huruf Kecil",
+  "summary": "Menggabungkan huruf baris I dengan ゃ ゅ ょ kecil menjadi satu bunyi.",
+  "minutes": 11,
+  "scenes": [
+    {
+      "id": "scene-01",
+      "type": "introduction",
+      "section": "introduction",
+      "duration": 4000,
+      "content": {
+        "title": "拗音",
+        "subtitle": "Hiragana Mastery: Youon"
+      }
+    },
+    {
+      "id": "scene-02",
+      "type": "explain",
+      "section": "definition",
+      "content": {
+        "heading": "Youon itu apa?",
+        "paragraphs": [
+          "Youon (拗音) adalah bunyi gabungan: sebuah huruf dari baris I (き, し, ち, に, ひ, み, り, ぎ, じ, び, ぴ) diikuti ゃ, ゅ, atau ょ yang ditulis kecil.",
+          "Hasilnya satu suku kata, bukan dua. Contoh: き + ゃ menjadi きゃ (kya), dibaca sekali tarikan.",
+          "Huruf ゃ ゅ ょ kecil dibaca \"ya\", \"yu\", \"yo\" tetapi menyatu dengan huruf sebelumnya."
+        ],
+        "terms": [
+          {
+            "term": "拗音",
+            "reading": "youon",
+            "meaning": "bunyi gabungan"
+          },
+          {
+            "term": "ゃ ゅ ょ",
+            "reading": "ya yu yo kecil",
+            "meaning": "penyusun youon"
+          }
+        ]
+      }
+    },
+    {
+      "id": "scene-03",
+      "type": "explain",
+      "section": "logic",
+      "content": {
+        "heading": "Mengapa ditulis kecil?",
+        "paragraphs": [
+          "Ukuran huruf mengubah jumlah ketukan (mora). きや (dua huruf penuh) dibaca \"ki-ya\" dengan dua ketukan, sedangkan きゃ (huruf kecil) dibaca \"kya\" dengan satu ketukan.",
+          "Dalam bahasa Jepang, jumlah ketukan menentukan ritme dan arti, jadi ukuran huruf harus diperhatikan."
+        ],
+        "analogy": "Seperti \"kya\" di bahasa Indonesia (misalnya dalam kata \"kyai\"): satu bunyi yang menyatu, bukan \"ki\" lalu \"ya\"."
+      }
+    },
+    {
+      "id": "scene-04",
+      "type": "kana",
+      "section": "explanation",
+      "content": {
+        "heading": "Baris K, S, C, N, H",
+        "items": [
+          {
+            "char": "きゃ",
+            "romaji": "kya"
+          },
+          {
+            "char": "きゅ",
+            "romaji": "kyu"
+          },
+          {
+            "char": "きょ",
+            "romaji": "kyo"
+          },
+          {
+            "char": "しゃ",
+            "romaji": "sha"
+          },
+          {
+            "char": "しゅ",
+            "romaji": "shu"
+          },
+          {
+            "char": "しょ",
+            "romaji": "sho"
+          },
+          {
+            "char": "ちゃ",
+            "romaji": "cha"
+          },
+          {
+            "char": "ちゅ",
+            "romaji": "chu"
+          },
+          {
+            "char": "ちょ",
+            "romaji": "cho"
+          },
+          {
+            "char": "にゃ",
+            "romaji": "nya"
+          },
+          {
+            "char": "にゅ",
+            "romaji": "nyu"
+          },
+          {
+            "char": "にょ",
+            "romaji": "nyo"
+          },
+          {
+            "char": "ひゃ",
+            "romaji": "hya"
+          },
+          {
+            "char": "ひゅ",
+            "romaji": "hyu"
+          },
+          {
+            "char": "ひょ",
+            "romaji": "hyo"
+          }
+        ]
+      }
+    },
+    {
+      "id": "scene-05",
+      "type": "kana",
+      "section": "explanation",
+      "content": {
+        "heading": "Baris M, R, G, J, B, P",
+        "items": [
+          {
+            "char": "みゃ",
+            "romaji": "mya"
+          },
+          {
+            "char": "みゅ",
+            "romaji": "myu"
+          },
+          {
+            "char": "みょ",
+            "romaji": "myo"
+          },
+          {
+            "char": "りゃ",
+            "romaji": "rya"
+          },
+          {
+            "char": "りゅ",
+            "romaji": "ryu"
+          },
+          {
+            "char": "りょ",
+            "romaji": "ryo"
+          },
+          {
+            "char": "ぎゃ",
+            "romaji": "gya"
+          },
+          {
+            "char": "ぎゅ",
+            "romaji": "gyu"
+          },
+          {
+            "char": "ぎょ",
+            "romaji": "gyo"
+          },
+          {
+            "char": "じゃ",
+            "romaji": "ja"
+          },
+          {
+            "char": "じゅ",
+            "romaji": "ju"
+          },
+          {
+            "char": "じょ",
+            "romaji": "jo"
+          },
+          {
+            "char": "びゃ",
+            "romaji": "bya"
+          },
+          {
+            "char": "びゅ",
+            "romaji": "byu"
+          },
+          {
+            "char": "びょ",
+            "romaji": "byo"
+          },
+          {
+            "char": "ぴゃ",
+            "romaji": "pya"
+          },
+          {
+            "char": "ぴゅ",
+            "romaji": "pyu"
+          },
+          {
+            "char": "ぴょ",
+            "romaji": "pyo"
+          }
+        ],
+        "caption": "じゃ, じゅ, じょ dibaca \"ja\", \"ju\", \"jo\" (bukan \"jya\")."
+      }
+    },
+    {
+      "id": "scene-06",
+      "type": "vocab",
+      "section": "examples",
+      "content": {
+        "heading": "Kata dengan youon",
+        "items": [
+          {
+            "ja": "きょう",
+            "reading": "kyou",
+            "id_text": "hari ini"
+          },
+          {
+            "ja": "しゃしん",
+            "reading": "shashin",
+            "id_text": "foto"
+          },
+          {
+            "ja": "おちゃ",
+            "reading": "ocha",
+            "id_text": "teh"
+          },
+          {
+            "ja": "りょこう",
+            "reading": "ryokou",
+            "id_text": "perjalanan"
+          },
+          {
+            "ja": "びょういん",
+            "reading": "byouin",
+            "id_text": "rumah sakit"
+          },
+          {
+            "ja": "じゅう",
+            "reading": "juu",
+            "id_text": "sepuluh"
+          }
+        ]
+      }
+    },
+    {
+      "id": "scene-07",
+      "type": "mistakes",
+      "section": "mistakes",
+      "content": {
+        "heading": "Kesalahan yang sering dilakukan pemula",
+        "items": [
+          {
+            "wrong": "Membaca きゃ sebagai \"ki-ya\" (dua ketukan)",
+            "right": "Bacalah \"kya\" (satu ketukan)",
+            "why": "Huruf kecil menyatu dengan huruf di depannya."
+          },
+          {
+            "wrong": "Menulis ゃ dengan ukuran penuh (きや)",
+            "right": "Tulis ゃ lebih kecil (きゃ)",
+            "why": "Ukuran mengubah bunyi dan arti kata."
+          },
+          {
+            "wrong": "Membaca じゃ sebagai \"jya\"",
+            "right": "Bacalah \"ja\"",
+            "why": "じ sudah berbunyi \"ji\", dan じゃ menjadi \"ja\"."
+          }
+        ]
+      }
+    },
+    {
+      "id": "scene-08",
+      "type": "quiz",
+      "section": "exercises",
+      "content": {
+        "question": "Bagaimana membaca きょう?",
+        "options": [
+          "ki-yo-u",
+          "kyou",
+          "kiyou"
+        ],
+        "answer": 1,
+        "why": [
+          "Itu dua ketukan berlebih; ょ kecil menyatu dengan き.",
+          null,
+          "Itu bukan bacaan きょう."
+        ]
+      }
+    },
+    {
+      "id": "scene-09",
+      "type": "quiz",
+      "section": "exercises",
+      "content": {
+        "question": "Bagaimana membaca huruf ini?",
+        "options": [
+          "sha",
+          "sya",
+          "shi-ya"
+        ],
+        "answer": 0,
+        "big": "しゃ",
+        "why": [
+          null,
+          "Baca dengan bunyi \"sh\", bukan \"sy\".",
+          "Itu dua suku kata, padahal ゃ kecil menyatu."
+        ]
+      }
+    },
+    {
+      "id": "scene-10",
+      "type": "summary",
+      "section": "summary",
+      "content": {
+        "heading": "Rangkuman",
+        "points": [
+          "Youon: huruf baris I + ゃ ゅ ょ kecil = satu suku kata.",
+          "しゃ しゅ しょ = sha shu sho; じゃ じゅ じょ = ja ju jo.",
+          "Ukuran huruf mengubah jumlah ketukan."
+        ]
+      }
+    }
+  ]
+}

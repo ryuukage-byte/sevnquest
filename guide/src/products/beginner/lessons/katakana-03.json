@@ -1,0 +1,311 @@
+{
+  "id": "katakana-03",
+  "level": "BEGINNER",
+  "category": "kana",
+  "title": "Katakana: Dakuon dan Handakuon",
+  "summary": "Tanda ゛ dan ゜ pada katakana, sama seperti pada hiragana.",
+  "minutes": 9,
+  "scenes": [
+    {
+      "id": "scene-01",
+      "type": "introduction",
+      "section": "introduction",
+      "duration": 4000,
+      "content": {
+        "title": "濁音・半濁音",
+        "subtitle": "Katakana Mastery: Dakuon dan Handakuon"
+      }
+    },
+    {
+      "id": "scene-02",
+      "type": "explain",
+      "section": "definition",
+      "content": {
+        "heading": "Aturannya sama dengan hiragana",
+        "paragraphs": [
+          "Tanda ゛ mengubah bunyi tak bersuara menjadi bersuara: カ menjadi ガ, サ menjadi ザ, タ menjadi ダ, dan ハ menjadi バ.",
+          "Tanda ゜ khusus untuk baris H: ハ menjadi パ.",
+          "Karena kata serapan sering memuat bunyi G, Z, D, B, dan P, bab ini sangat penting."
+        ]
+      }
+    },
+    {
+      "id": "scene-03",
+      "type": "kana",
+      "section": "explanation",
+      "content": {
+        "heading": "Baris G dan Z",
+        "items": [
+          {
+            "char": "ガ",
+            "romaji": "ga"
+          },
+          {
+            "char": "ギ",
+            "romaji": "gi"
+          },
+          {
+            "char": "グ",
+            "romaji": "gu"
+          },
+          {
+            "char": "ゲ",
+            "romaji": "ge"
+          },
+          {
+            "char": "ゴ",
+            "romaji": "go"
+          },
+          {
+            "char": "ザ",
+            "romaji": "za"
+          },
+          {
+            "char": "ジ",
+            "romaji": "ji"
+          },
+          {
+            "char": "ズ",
+            "romaji": "zu"
+          },
+          {
+            "char": "ゼ",
+            "romaji": "ze"
+          },
+          {
+            "char": "ゾ",
+            "romaji": "zo"
+          }
+        ]
+      }
+    },
+    {
+      "id": "scene-04",
+      "type": "kana",
+      "section": "explanation",
+      "content": {
+        "heading": "Baris D dan B",
+        "items": [
+          {
+            "char": "ダ",
+            "romaji": "da"
+          },
+          {
+            "char": "ヂ",
+            "romaji": "ji"
+          },
+          {
+            "char": "ヅ",
+            "romaji": "zu"
+          },
+          {
+            "char": "デ",
+            "romaji": "de"
+          },
+          {
+            "char": "ド",
+            "romaji": "do"
+          },
+          {
+            "char": "バ",
+            "romaji": "ba"
+          },
+          {
+            "char": "ビ",
+            "romaji": "bi"
+          },
+          {
+            "char": "ブ",
+            "romaji": "bu"
+          },
+          {
+            "char": "ベ",
+            "romaji": "be"
+          },
+          {
+            "char": "ボ",
+            "romaji": "bo"
+          }
+        ],
+        "caption": "ヂ dan ヅ sangat jarang dipakai."
+      }
+    },
+    {
+      "id": "scene-05",
+      "type": "kana",
+      "section": "explanation",
+      "content": {
+        "heading": "Baris P",
+        "items": [
+          {
+            "char": "パ",
+            "romaji": "pa"
+          },
+          {
+            "char": "ピ",
+            "romaji": "pi"
+          },
+          {
+            "char": "プ",
+            "romaji": "pu"
+          },
+          {
+            "char": "ペ",
+            "romaji": "pe"
+          },
+          {
+            "char": "ポ",
+            "romaji": "po"
+          }
+        ]
+      }
+    },
+    {
+      "id": "scene-06",
+      "type": "vocab",
+      "section": "examples",
+      "content": {
+        "heading": "Kata serapan dengan dakuon dan handakuon",
+        "items": [
+          {
+            "ja": "ゲーム",
+            "reading": "geemu",
+            "id_text": "permainan"
+          },
+          {
+            "ja": "ドア",
+            "reading": "doa",
+            "id_text": "pintu"
+          },
+          {
+            "ja": "ビール",
+            "reading": "biiru",
+            "id_text": "bir"
+          },
+          {
+            "ja": "パン",
+            "reading": "pan",
+            "id_text": "roti"
+          },
+          {
+            "ja": "ペン",
+            "reading": "pen",
+            "id_text": "pena"
+          },
+          {
+            "ja": "ピアノ",
+            "reading": "piano",
+            "id_text": "piano"
+          },
+          {
+            "ja": "ガス",
+            "reading": "gasu",
+            "id_text": "gas"
+          },
+          {
+            "ja": "ポスト",
+            "reading": "posuto",
+            "id_text": "kotak pos"
+          }
+        ]
+      }
+    },
+    {
+      "id": "scene-07",
+      "type": "mistakes",
+      "section": "mistakes",
+      "content": {
+        "heading": "Kesalahan yang sering dilakukan pemula",
+        "items": [
+          {
+            "wrong": "Menaruh ゜ pada selain baris H",
+            "right": "゜ hanya untuk ハ ヒ フ ヘ ホ",
+            "why": "Baris lain hanya mendapat ゛."
+          },
+          {
+            "wrong": "Membaca ジ sebagai \"zi\"",
+            "right": "Bacalah \"ji\"",
+            "why": "Itu bunyi baku di baris Z."
+          },
+          {
+            "wrong": "Menukar ビ dan ピ",
+            "right": "ビ = bi (゛), ピ = pi (゜)",
+            "why": "Perhatikan tanda yang menyertai."
+          }
+        ]
+      }
+    },
+    {
+      "id": "scene-08",
+      "type": "quiz",
+      "section": "exercises",
+      "content": {
+        "question": "Bagaimana membaca huruf ini?",
+        "options": [
+          "ba",
+          "pa",
+          "ha"
+        ],
+        "answer": 0,
+        "big": "バ",
+        "why": [
+          null,
+          "Itu パ.",
+          "Itu ハ."
+        ]
+      }
+    },
+    {
+      "id": "scene-09",
+      "type": "quiz",
+      "section": "exercises",
+      "content": {
+        "question": "Bagaimana membaca ビール?",
+        "options": [
+          "piiru",
+          "biiru",
+          "biru"
+        ],
+        "answer": 1,
+        "why": [
+          "Itu ピ (゜), bukan ビ (゛).",
+          null,
+          "Tanda ー memanjangkan vokal."
+        ]
+      }
+    },
+    {
+      "id": "scene-10",
+      "type": "quiz",
+      "section": "exercises",
+      "content": {
+        "question": "Bagaimana membaca ジ?",
+        "options": [
+          "zi",
+          "ji",
+          "gi"
+        ],
+        "answer": 1,
+        "big": "ジ",
+        "why": [
+          "Dibaca \"ji\" di bahasa Jepang.",
+          null,
+          "Itu ギ."
+        ]
+      }
+    },
+    {
+      "id": "scene-11",
+      "type": "summary",
+      "section": "summary",
+      "content": {
+        "heading": "Rangkuman",
+        "points": [
+          "゛ mengubah bunyi menjadi bersuara; ゜ khusus baris H.",
+          "ジ = ji; ヂ dan ヅ jarang dipakai.",
+          "Banyak kata serapan memakai bunyi G, Z, D, B, P."
+        ]
+      }
+    }
+  ]
+}

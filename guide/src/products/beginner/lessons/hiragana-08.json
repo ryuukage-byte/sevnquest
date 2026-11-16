@@ -1,0 +1,236 @@
+{
+  "id": "hiragana-08",
+  "level": "BEGINNER",
+  "category": "kana",
+  "title": "Evaluasi Hiragana",
+  "summary": "Uji kemampuanmu membaca seluruh hiragana.",
+  "minutes": 12,
+  "scenes": [
+    {
+      "id": "scene-01",
+      "type": "introduction",
+      "section": "introduction",
+      "duration": 4000,
+      "content": {
+        "title": "ひらがな 試験",
+        "subtitle": "Evaluasi Hiragana"
+      }
+    },
+    {
+      "id": "scene-02",
+      "type": "explain",
+      "section": "introduction",
+      "content": {
+        "heading": "Cara memakai evaluasi",
+        "paragraphs": [
+          "Jawablah tanpa membuka materi. Jika salah, baca penjelasannya, lalu ulangi bab terkait."
+        ]
+      }
+    },
+    {
+      "id": "scene-03",
+      "type": "quiz",
+      "section": "exercises",
+      "content": {
+        "question": "Bagaimana membaca し?",
+        "options": [
+          "si",
+          "shi",
+          "chi"
+        ],
+        "answer": 1,
+        "big": "し",
+        "why": [
+          "Di baris S, し dibaca \"shi\".",
+          null,
+          "Itu ち."
+        ]
+      }
+    },
+    {
+      "id": "scene-04",
+      "type": "quiz",
+      "section": "exercises",
+      "content": {
+        "question": "Bagaimana membaca ふ?",
+        "options": [
+          "hu",
+          "fu",
+          "pu"
+        ],
+        "answer": 1,
+        "big": "ふ",
+        "why": [
+          "Bunyinya antara f dan h: \"fu\".",
+          null,
+          "Itu ぷ (dengan ゜)."
+        ]
+      }
+    },
+    {
+      "id": "scene-05",
+      "type": "quiz",
+      "section": "exercises",
+      "content": {
+        "question": "Bagaimana membaca ぢ?",
+        "options": [
+          "di",
+          "ji",
+          "gi"
+        ],
+        "answer": 1,
+        "big": "ぢ",
+        "why": [
+          "ぢ berbunyi sama dengan じ.",
+          null,
+          "Itu bunyi が-baris."
+        ]
+      }
+    },
+    {
+      "id": "scene-06",
+      "type": "quiz",
+      "section": "exercises",
+      "content": {
+        "question": "Tanda ゜ dipakai pada baris...",
+        "options": [
+          "K",
+          "S",
+          "H"
+        ],
+        "answer": 2,
+        "why": [
+          "Baris K memakai ゛ (menjadi G).",
+          "Baris S memakai ゛ (menjadi Z).",
+          null
+        ]
+      }
+    },
+    {
+      "id": "scene-07",
+      "type": "quiz",
+      "section": "exercises",
+      "content": {
+        "question": "Bagaimana membaca りょこう?",
+        "options": [
+          "ryokou",
+          "rikou",
+          "riyokou"
+        ],
+        "answer": 0,
+        "why": [
+          null,
+          "Ada ょ kecil.",
+          "ょ kecil menyatu dengan り, bukan suku kata terpisah."
+        ]
+      }
+    },
+    {
+      "id": "scene-08",
+      "type": "quiz",
+      "section": "exercises",
+      "content": {
+        "question": "Bagaimana membaca きって?",
+        "options": [
+          "kite",
+          "kitte",
+          "kitsute"
+        ],
+        "answer": 1,
+        "why": [
+          "Ada っ kecil yang menggandakan konsonan.",
+          null,
+          "っ tidak dibaca \"tsu\"."
+        ]
+      }
+    },
+    {
+      "id": "scene-09",
+      "type": "quiz",
+      "section": "exercises",
+      "content": {
+        "question": "Mana yang berarti \"nenek\"?",
+        "options": [
+          "おばさん",
+          "おばあさん",
+          "おかあさん"
+        ],
+        "answer": 1,
+        "why": [
+          "Itu bibi.",
+          null,
+          "Itu ibu."
+        ]
+      }
+    },
+    {
+      "id": "scene-10",
+      "type": "quiz",
+      "section": "exercises",
+      "content": {
+        "question": "Partikel を dibaca...",
+        "options": [
+          "wo",
+          "o",
+          "u"
+        ],
+        "answer": 1,
+        "why": [
+          "Sebagai partikel dibaca \"o\".",
+          null,
+          "Itu bukan bunyi を."
+        ]
+      }
+    },
+    {
+      "id": "scene-11",
+      "type": "quiz",
+      "section": "exercises",
+      "content": {
+        "question": "Partikel は dibaca \"wa\" ketika...",
+        "options": [
+          "Menjadi partikel",
+          "Di dalam kata biasa",
+          "Selalu"
+        ],
+        "answer": 0,
+        "why": [
+          null,
+          "Di kata biasa dibaca \"ha\".",
+          "Tidak selalu."
+        ]
+      }
+    },
+    {
+      "id": "scene-12",
+      "type": "quiz",
+      "section": "exercises",
+      "content": {
+        "question": "Mana yang bunyinya \"ja\"?",
+        "options": [
+          "じゃ",
+          "ちゃ",
+          "しゃ"
+        ],
+        "answer": 0,
+        "why": [
+          null,
+          "Itu \"cha\".",
+          "Itu \"sha\"."
+        ]
+      }
+    },
+    {
+      "id": "scene-13",
+      "type": "summary",
+      "section": "summary",
+      "content": {
+        "heading": "Rangkuman",
+        "points": [
+          "Jika ada yang salah, ulangi bab terkait.",
+          "Lanjutkan ke Katakana Mastery."
+        ]
+      }
+    }
+  ]
+}

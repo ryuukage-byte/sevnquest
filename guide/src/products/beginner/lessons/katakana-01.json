@@ -1,0 +1,342 @@
+{
+  "id": "katakana-01",
+  "level": "BEGINNER",
+  "category": "kana",
+  "title": "Katakana: Seion Baris A sampai N",
+  "summary": "Dua puluh lima huruf pertama katakana dan pasangan yang mudah tertukar.",
+  "minutes": 10,
+  "scenes": [
+    {
+      "id": "scene-01",
+      "type": "introduction",
+      "section": "introduction",
+      "duration": 4000,
+      "content": {
+        "title": "カタカナ",
+        "subtitle": "Katakana Mastery: Seion bagian 1"
+      }
+    },
+    {
+      "id": "scene-02",
+      "type": "explain",
+      "section": "definition",
+      "content": {
+        "heading": "Mulai dari lima baris pertama",
+        "paragraphs": [
+          "Katakana punya bunyi yang sama dengan hiragana. Kalau kamu sudah hafal hiragana, kamu hanya perlu mengenali bentuk baru yang lebih bersudut.",
+          "Di bab ini kita pelajari baris A, K, S, T, dan N. Bab berikutnya menyelesaikan sisanya."
+        ]
+      }
+    },
+    {
+      "id": "scene-03",
+      "type": "kana",
+      "section": "explanation",
+      "content": {
+        "heading": "Vokal dan baris K",
+        "items": [
+          {
+            "char": "ア",
+            "romaji": "a"
+          },
+          {
+            "char": "イ",
+            "romaji": "i"
+          },
+          {
+            "char": "ウ",
+            "romaji": "u"
+          },
+          {
+            "char": "エ",
+            "romaji": "e"
+          },
+          {
+            "char": "オ",
+            "romaji": "o"
+          },
+          {
+            "char": "カ",
+            "romaji": "ka"
+          },
+          {
+            "char": "キ",
+            "romaji": "ki"
+          },
+          {
+            "char": "ク",
+            "romaji": "ku"
+          },
+          {
+            "char": "ケ",
+            "romaji": "ke"
+          },
+          {
+            "char": "コ",
+            "romaji": "ko"
+          }
+        ]
+      }
+    },
+    {
+      "id": "scene-04",
+      "type": "kana",
+      "section": "explanation",
+      "content": {
+        "heading": "Baris S dan T",
+        "items": [
+          {
+            "char": "サ",
+            "romaji": "sa"
+          },
+          {
+            "char": "シ",
+            "romaji": "shi"
+          },
+          {
+            "char": "ス",
+            "romaji": "su"
+          },
+          {
+            "char": "セ",
+            "romaji": "se"
+          },
+          {
+            "char": "ソ",
+            "romaji": "so"
+          },
+          {
+            "char": "タ",
+            "romaji": "ta"
+          },
+          {
+            "char": "チ",
+            "romaji": "chi"
+          },
+          {
+            "char": "ツ",
+            "romaji": "tsu"
+          },
+          {
+            "char": "テ",
+            "romaji": "te"
+          },
+          {
+            "char": "ト",
+            "romaji": "to"
+          }
+        ]
+      }
+    },
+    {
+      "id": "scene-05",
+      "type": "kana",
+      "section": "explanation",
+      "content": {
+        "heading": "Baris N",
+        "items": [
+          {
+            "char": "ナ",
+            "romaji": "na"
+          },
+          {
+            "char": "ニ",
+            "romaji": "ni"
+          },
+          {
+            "char": "ヌ",
+            "romaji": "nu"
+          },
+          {
+            "char": "ネ",
+            "romaji": "ne"
+          },
+          {
+            "char": "ノ",
+            "romaji": "no"
+          }
+        ]
+      }
+    },
+    {
+      "id": "scene-06",
+      "type": "kana",
+      "section": "comparison",
+      "content": {
+        "heading": "Pasangan yang mudah tertukar",
+        "items": [
+          {
+            "char": "シ",
+            "romaji": "shi"
+          },
+          {
+            "char": "ツ",
+            "romaji": "tsu"
+          },
+          {
+            "char": "ソ",
+            "romaji": "so"
+          },
+          {
+            "char": "ク",
+            "romaji": "ku"
+          },
+          {
+            "char": "タ",
+            "romaji": "ta"
+          },
+          {
+            "char": "ス",
+            "romaji": "su"
+          },
+          {
+            "char": "ヌ",
+            "romaji": "nu"
+          },
+          {
+            "char": "ナ",
+            "romaji": "na"
+          }
+        ],
+        "caption": "Perhatikan arah goresan: シ dan ソ condong ke samping, ツ lebih tegak. ク dan タ, juga ス dan ヌ, mirip dan perlu dilatih berdampingan."
+      }
+    },
+    {
+      "id": "scene-07",
+      "type": "vocab",
+      "section": "examples",
+      "content": {
+        "heading": "Kata serapan pertama",
+        "items": [
+          {
+            "ja": "アイス",
+            "reading": "aisu",
+            "id_text": "es krim"
+          },
+          {
+            "ja": "コーヒー",
+            "reading": "koohii",
+            "id_text": "kopi"
+          },
+          {
+            "ja": "テレビ",
+            "reading": "terebi",
+            "id_text": "televisi"
+          },
+          {
+            "ja": "ケーキ",
+            "reading": "keeki",
+            "id_text": "kue"
+          },
+          {
+            "ja": "ノート",
+            "reading": "nooto",
+            "id_text": "buku catatan"
+          },
+          {
+            "ja": "ネクタイ",
+            "reading": "nekutai",
+            "id_text": "dasi"
+          }
+        ]
+      }
+    },
+    {
+      "id": "scene-08",
+      "type": "mistakes",
+      "section": "mistakes",
+      "content": {
+        "heading": "Kesalahan yang sering dilakukan pemula",
+        "items": [
+          {
+            "wrong": "Menukar シ dan ツ",
+            "right": "シ = shi, ツ = tsu",
+            "why": "Bedakan arah goresan kecilnya."
+          },
+          {
+            "wrong": "Menukar ソ dan ン",
+            "right": "ソ = so, ン = n",
+            "why": "ン ada di bab berikutnya; kenali bedanya sejak sekarang."
+          },
+          {
+            "wrong": "Menukar ス dan ヌ",
+            "right": "ス = su, ヌ = nu",
+            "why": "ヌ punya goresan tambahan di kanan bawah."
+          }
+        ]
+      }
+    },
+    {
+      "id": "scene-09",
+      "type": "quiz",
+      "section": "exercises",
+      "content": {
+        "question": "Bagaimana membaca huruf ini?",
+        "options": [
+          "shi",
+          "tsu",
+          "so"
+        ],
+        "answer": 0,
+        "big": "シ",
+        "why": [
+          null,
+          "Itu ツ.",
+          "Itu ソ."
+        ]
+      }
+    },
+    {
+      "id": "scene-10",
+      "type": "quiz",
+      "section": "exercises",
+      "content": {
+        "question": "Bagaimana membaca huruf ini?",
+        "options": [
+          "ku",
+          "ta",
+          "ke"
+        ],
+        "answer": 1,
+        "big": "タ",
+        "why": [
+          "Itu ク, goresan yang berbeda.",
+          null,
+          "Itu ケ."
+        ]
+      }
+    },
+    {
+      "id": "scene-11",
+      "type": "quiz",
+      "section": "exercises",
+      "content": {
+        "question": "Bagaimana membaca ケーキ?",
+        "options": [
+          "keki",
+          "keeki",
+          "kuuki"
+        ],
+        "answer": 1,
+        "why": [
+          "Tanda ー memanjangkan vokal.",
+          null,
+          "Bunyi ke tidak menjadi ku."
+        ]
+      }
+    },
+    {
+      "id": "scene-12",
+      "type": "summary",
+      "section": "summary",
+      "content": {
+        "heading": "Rangkuman",
+        "points": [
+          "Katakana bunyinya sama dengan hiragana.",
+          "Latih pasangan シ/ツ, ソ/ン, ク/タ, ス/ヌ.",
+          "Tanda ー memanjangkan vokal."
+        ]
+      }
+    }
+  ]
+}

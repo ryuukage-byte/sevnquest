@@ -1,0 +1,300 @@
+{
+  "id": "starter-05",
+  "level": "BEGINNER",
+  "category": "grammar",
+  "title": "Susunan Kalimat Jepang",
+  "summary": "Pola Subjek, Objek, Kata kerja, dan kenapa kata kerja ada di akhir.",
+  "minutes": 10,
+  "scenes": [
+    {
+      "id": "scene-01",
+      "type": "introduction",
+      "section": "introduction",
+      "duration": 4000,
+      "content": {
+        "title": "日本語の順番",
+        "subtitle": "Susunan kalimat Jepang"
+      }
+    },
+    {
+      "id": "scene-02",
+      "type": "explain",
+      "section": "concept",
+      "content": {
+        "heading": "Ingat susunan bahasa Indonesia",
+        "paragraphs": [
+          "Subjek + Predikat + Objek.",
+          "Contoh: Saya makan nasi."
+        ]
+      }
+    },
+    {
+      "id": "scene-03",
+      "type": "explain",
+      "section": "concept",
+      "content": {
+        "heading": "Susunan bahasa Jepang beda",
+        "paragraphs": [
+          "Subjek + Objek + Predikat.",
+          "Kata kerja ada di akhir kalimat."
+        ],
+        "analogy": "Seperti bilang: \"Saya nasi makan.\""
+      }
+    },
+    {
+      "id": "scene-04",
+      "type": "transformation",
+      "section": "examples",
+      "content": {
+        "heading": "Dari kalimat kita ke kalimat Jepang",
+        "caption": "Tekan tombol untuk melihat tiap bagian berpindah tempat.",
+        "tokens": [
+          {
+            "id": "s",
+            "ja": "私は",
+            "id_text": "Saya",
+            "role": "subject"
+          },
+          {
+            "id": "v",
+            "ja": "食べます",
+            "id_text": "makan",
+            "role": "verb"
+          },
+          {
+            "id": "o",
+            "ja": "ご飯を",
+            "id_text": "nasi",
+            "role": "object"
+          }
+        ],
+        "from": [
+          "s",
+          "v",
+          "o"
+        ],
+        "to": [
+          "s",
+          "o",
+          "v"
+        ]
+      }
+    },
+    {
+      "id": "scene-05",
+      "type": "example",
+      "section": "breakdown",
+      "content": {
+        "parts": [
+          {
+            "ja": "私",
+            "reading": "わたし",
+            "romaji": "watashi",
+            "id_text": "saya",
+            "role": "subject"
+          },
+          {
+            "ja": "は",
+            "reading": "は",
+            "romaji": "wa",
+            "id_text": "penanda topik",
+            "role": "particle"
+          },
+          {
+            "ja": "ご飯",
+            "reading": "ごはん",
+            "romaji": "gohan",
+            "id_text": "nasi",
+            "role": "object"
+          },
+          {
+            "ja": "を",
+            "reading": "を",
+            "romaji": "o",
+            "id_text": "penanda objek",
+            "role": "particle"
+          },
+          {
+            "ja": "食べます",
+            "reading": "たべます",
+            "romaji": "tabemasu",
+            "id_text": "makan",
+            "role": "verb"
+          }
+        ],
+        "translation": "Saya makan nasi.",
+        "heading": "Bedah satu kalimat",
+        "note": "Ketuk tiap kotak: 私 = saya, は = penanda topik, ご飯 = nasi, を = penanda objek, 食べます = makan."
+      }
+    },
+    {
+      "id": "scene-06",
+      "type": "example",
+      "section": "examples",
+      "content": {
+        "parts": [
+          {
+            "ja": "私",
+            "reading": "わたし",
+            "romaji": "watashi",
+            "id_text": "saya",
+            "role": "subject"
+          },
+          {
+            "ja": "は",
+            "reading": "は",
+            "romaji": "wa",
+            "id_text": "penanda topik",
+            "role": "particle"
+          },
+          {
+            "ja": "水",
+            "reading": "みず",
+            "romaji": "mizu",
+            "id_text": "air",
+            "role": "object"
+          },
+          {
+            "ja": "を",
+            "reading": "を",
+            "romaji": "o",
+            "id_text": "penanda objek",
+            "role": "particle"
+          },
+          {
+            "ja": "飲みます",
+            "reading": "のみます",
+            "romaji": "nomimasu",
+            "id_text": "minum",
+            "role": "verb"
+          }
+        ],
+        "translation": "Saya minum air.",
+        "heading": "Contoh lain"
+      }
+    },
+    {
+      "id": "scene-07",
+      "type": "example",
+      "section": "examples",
+      "content": {
+        "parts": [
+          {
+            "ja": "私",
+            "reading": "わたし",
+            "romaji": "watashi",
+            "id_text": "saya",
+            "role": "subject"
+          },
+          {
+            "ja": "は",
+            "reading": "は",
+            "romaji": "wa",
+            "id_text": "penanda topik",
+            "role": "particle"
+          },
+          {
+            "ja": "日本語",
+            "reading": "にほんご",
+            "romaji": "nihongo",
+            "id_text": "bahasa Jepang",
+            "role": "object"
+          },
+          {
+            "ja": "を",
+            "reading": "を",
+            "romaji": "o",
+            "id_text": "penanda objek",
+            "role": "particle"
+          },
+          {
+            "ja": "勉強します",
+            "reading": "べんきょうします",
+            "romaji": "benkyou shimasu",
+            "id_text": "belajar",
+            "role": "verb"
+          }
+        ],
+        "translation": "Saya belajar bahasa Jepang.",
+        "heading": "Satu lagi"
+      }
+    },
+    {
+      "id": "scene-08",
+      "type": "explain",
+      "section": "usage",
+      "content": {
+        "heading": "Tips dari guru",
+        "paragraphs": [
+          "Saat membaca kalimat Jepang, jangan buru-buru menerjemahkan dari kiri ke kanan.",
+          "Cari kata kerjanya dulu."
+        ]
+      }
+    },
+    {
+      "id": "scene-09",
+      "type": "practice",
+      "section": "exercises",
+      "content": {
+        "prompt": "Susun: \"Saya minum air.\"",
+        "tokens": [
+          {
+            "id": "v",
+            "ja": "飲みます",
+            "id_text": "minum",
+            "role": "verb"
+          },
+          {
+            "id": "s",
+            "ja": "私は",
+            "id_text": "Saya",
+            "role": "subject"
+          },
+          {
+            "id": "o",
+            "ja": "水を",
+            "id_text": "air",
+            "role": "object"
+          }
+        ],
+        "answer": [
+          "s",
+          "o",
+          "v"
+        ]
+      }
+    },
+    {
+      "id": "scene-10",
+      "type": "quiz",
+      "section": "exercises",
+      "content": {
+        "question": "Di mana kata kerja ditaruh dalam kalimat Jepang?",
+        "options": [
+          "Di awal",
+          "Di tengah",
+          "Di akhir"
+        ],
+        "answer": 2,
+        "why": [
+          "Kata kerja bukan di awal.",
+          "Kata kerja bukan di tengah.",
+          null
+        ]
+      }
+    },
+    {
+      "id": "scene-11",
+      "type": "summary",
+      "section": "summary",
+      "content": {
+        "heading": "Rangkuman",
+        "points": [
+          "Indonesia: Subjek, Predikat, Objek.",
+          "Jepang: Subjek, Objek, Predikat.",
+          "Kata kerja selalu di akhir."
+        ]
+      }
+    }
+  ]
+}

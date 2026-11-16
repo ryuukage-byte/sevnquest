@@ -1,0 +1,102 @@
+{
+  "id": "beginner-005",
+  "level": "BEGINNER",
+  "category": "grammar",
+  "title": "Memperkenalkan Diri",
+  "summary": "Pola わたしは ___ です untuk menyebut siapa dirimu.",
+  "minutes": 6,
+  "scenes": [
+    {
+      "id": "scene-01",
+      "type": "introduction",
+      "duration": 4000,
+      "content": {
+        "title": "じこしょうかい",
+        "subtitle": "Memperkenalkan diri"
+      }
+    },
+    {
+      "id": "scene-02",
+      "type": "transformation",
+      "content": {
+        "heading": "Saya adalah Yamada",
+        "caption": "は menandai topik (saya), です menutup kalimat dengan sopan. Tidak ada kata \"adalah\" yang berdiri sendiri.",
+        "tokens": [
+          {
+            "id": "s",
+            "ja": "わたしは",
+            "id_text": "Saya",
+            "role": "subject"
+          },
+          {
+            "id": "n",
+            "ja": "やまだです",
+            "id_text": "Yamada",
+            "role": "verb"
+          }
+        ],
+        "from": [
+          "s",
+          "n"
+        ],
+        "to": [
+          "s",
+          "n"
+        ]
+      }
+    },
+    {
+      "id": "scene-03",
+      "type": "comparison",
+      "content": {
+        "leftLabel": "INDONESIA",
+        "left": "Saya Yamada.",
+        "rightLabel": "JEPANG",
+        "right": "わたしは やまだです。"
+      }
+    },
+    {
+      "id": "scene-04",
+      "type": "practice",
+      "content": {
+        "prompt": "Susun: \"Perkenalkan. Saya Yamada.\"",
+        "tokens": [
+          {
+            "id": "n",
+            "ja": "やまだです",
+            "id_text": "Yamada",
+            "role": "verb"
+          },
+          {
+            "id": "h",
+            "ja": "はじめまして",
+            "id_text": "Perkenalkan",
+            "role": "other"
+          },
+          {
+            "id": "s",
+            "ja": "わたしは",
+            "id_text": "Saya",
+            "role": "subject"
+          }
+        ],
+        "answer": [
+          "h",
+          "s",
+          "n"
+        ]
+      }
+    },
+    {
+      "id": "scene-05",
+      "type": "summary",
+      "content": {
+        "heading": "Rangkuman",
+        "points": [
+          "はじめまして = perkenalkan (salam pertama kali bertemu).",
+          "わたしは (nama) です = saya (nama)."
+        ]
+      }
+    }
+  ]
+}

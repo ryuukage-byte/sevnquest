@@ -1,0 +1,161 @@
+{
+  "id": "beginner-002",
+  "level": "BEGINNER",
+  "category": "kana",
+  "title": "Hiragana: Baris S, T, dan N",
+  "summary": "Tiga baris berikutnya, termasuk bunyi yang tidak mengikuti pola biasa.",
+  "minutes": 8,
+  "scenes": [
+    {
+      "id": "scene-01",
+      "type": "introduction",
+      "duration": 4000,
+      "content": {
+        "title": "ひらがな 2",
+        "subtitle": "Tiga baris berikutnya"
+      }
+    },
+    {
+      "id": "scene-02",
+      "type": "kana",
+      "content": {
+        "heading": "Baris S",
+        "items": [
+          {
+            "char": "さ",
+            "romaji": "sa"
+          },
+          {
+            "char": "し",
+            "romaji": "shi"
+          },
+          {
+            "char": "す",
+            "romaji": "su"
+          },
+          {
+            "char": "せ",
+            "romaji": "se"
+          },
+          {
+            "char": "そ",
+            "romaji": "so"
+          }
+        ],
+        "caption": "Perhatikan し dibaca \"shi\", bukan \"si\"."
+      }
+    },
+    {
+      "id": "scene-03",
+      "type": "kana",
+      "content": {
+        "heading": "Baris T",
+        "items": [
+          {
+            "char": "た",
+            "romaji": "ta"
+          },
+          {
+            "char": "ち",
+            "romaji": "chi"
+          },
+          {
+            "char": "つ",
+            "romaji": "tsu"
+          },
+          {
+            "char": "て",
+            "romaji": "te"
+          },
+          {
+            "char": "と",
+            "romaji": "to"
+          }
+        ],
+        "caption": "ち dibaca \"chi\" dan つ dibaca \"tsu\"."
+      }
+    },
+    {
+      "id": "scene-04",
+      "type": "kana",
+      "content": {
+        "heading": "Baris N",
+        "items": [
+          {
+            "char": "な",
+            "romaji": "na"
+          },
+          {
+            "char": "に",
+            "romaji": "ni"
+          },
+          {
+            "char": "ぬ",
+            "romaji": "nu"
+          },
+          {
+            "char": "ね",
+            "romaji": "ne"
+          },
+          {
+            "char": "の",
+            "romaji": "no"
+          }
+        ]
+      }
+    },
+    {
+      "id": "scene-05",
+      "type": "quiz",
+      "content": {
+        "question": "Bagaimana cara membaca huruf ini?",
+        "options": [
+          "shi",
+          "si",
+          "chi"
+        ],
+        "answer": 0,
+        "big": "し"
+      }
+    },
+    {
+      "id": "scene-06",
+      "type": "quiz",
+      "content": {
+        "question": "Bagaimana cara membaca huruf ini?",
+        "options": [
+          "tu",
+          "tsu",
+          "su"
+        ],
+        "answer": 1,
+        "big": "つ"
+      }
+    },
+    {
+      "id": "scene-07",
+      "type": "quiz",
+      "content": {
+        "question": "Huruf mana yang dibaca \"na\"?",
+        "options": [
+          "な",
+          "に",
+          "の"
+        ],
+        "answer": 0
+      }
+    },
+    {
+      "id": "scene-08",
+      "type": "summary",
+      "content": {
+        "heading": "Rangkuman",
+        "points": [
+          "Baris S: さ し す せ そ (し = shi).",
+          "Baris T: た ち つ て と (ち = chi, つ = tsu).",
+          "Baris N: な に ぬ ね の."
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,205 @@
+{
+  "id": "lanjutan-02",
+  "level": "BEGINNER",
+  "category": "grammar",
+  "title": "Mengenal Kata Kerja",
+  "summary": "Kata kerja dan empat bentuk sopan yang paling sering dipakai.",
+  "minutes": 9,
+  "scenes": [
+    {
+      "id": "scene-01",
+      "type": "introduction",
+      "section": "introduction",
+      "duration": 4000,
+      "content": {
+        "title": "動詞",
+        "subtitle": "Kata kerja"
+      }
+    },
+    {
+      "id": "scene-02",
+      "type": "explain",
+      "section": "definition",
+      "content": {
+        "heading": "Kata kerja = 動詞",
+        "paragraphs": [
+          "Kata kerja disebut 動詞 (doushi).",
+          "Ini sepuluh kata kerja yang akan sering kamu temui."
+        ],
+        "terms": [
+          {
+            "term": "動詞",
+            "reading": "doushi",
+            "meaning": "kata kerja"
+          }
+        ]
+      }
+    },
+    {
+      "id": "scene-03",
+      "type": "vocab",
+      "section": "examples",
+      "content": {
+        "heading": "Sepuluh kata kerja",
+        "items": [
+          {
+            "ja": "食べる",
+            "reading": "taberu",
+            "id_text": "makan"
+          },
+          {
+            "ja": "飲む",
+            "reading": "nomu",
+            "id_text": "minum"
+          },
+          {
+            "ja": "行く",
+            "reading": "iku",
+            "id_text": "pergi"
+          },
+          {
+            "ja": "来る",
+            "reading": "kuru",
+            "id_text": "datang"
+          },
+          {
+            "ja": "見る",
+            "reading": "miru",
+            "id_text": "melihat"
+          },
+          {
+            "ja": "聞く",
+            "reading": "kiku",
+            "id_text": "mendengar"
+          },
+          {
+            "ja": "話す",
+            "reading": "hanasu",
+            "id_text": "berbicara"
+          },
+          {
+            "ja": "寝る",
+            "reading": "neru",
+            "id_text": "tidur"
+          },
+          {
+            "ja": "起きる",
+            "reading": "okiru",
+            "id_text": "bangun"
+          },
+          {
+            "ja": "勉強する",
+            "reading": "benkyou suru",
+            "id_text": "belajar"
+          }
+        ]
+      }
+    },
+    {
+      "id": "scene-04",
+      "type": "explain",
+      "section": "concept",
+      "content": {
+        "heading": "Kata kerja berubah bentuk",
+        "paragraphs": [
+          "食べる = makan (bentuk biasa).",
+          "食べます = makan (bentuk sopan).",
+          "Perubahan bentuk ini disebut katsuyou (活用)."
+        ]
+      }
+    },
+    {
+      "id": "scene-05",
+      "type": "vocab",
+      "section": "explanation",
+      "content": {
+        "heading": "Empat bentuk dari 食べる",
+        "items": [
+          {
+            "ja": "食べます",
+            "reading": "tabemasu",
+            "id_text": "makan"
+          },
+          {
+            "ja": "食べません",
+            "reading": "tabemasen",
+            "id_text": "tidak makan"
+          },
+          {
+            "ja": "食べました",
+            "reading": "tabemashita",
+            "id_text": "sudah makan"
+          },
+          {
+            "ja": "食べませんでした",
+            "reading": "tabemasen deshita",
+            "id_text": "tidak makan (waktu lalu)"
+          }
+        ]
+      }
+    },
+    {
+      "id": "scene-06",
+      "type": "explain",
+      "section": "logic",
+      "content": {
+        "heading": "Kita pelajari lebih dalam nanti",
+        "paragraphs": [
+          "Untuk sekarang, cukup kenali bahwa ujung kata kerja berubah.",
+          "Ujung itulah yang memberi tahu waktu dan kesopanan."
+        ]
+      }
+    },
+    {
+      "id": "scene-07",
+      "type": "quiz",
+      "section": "exercises",
+      "content": {
+        "question": "\"Sudah makan\" dalam bahasa Jepang adalah...",
+        "options": [
+          "食べます",
+          "食べました",
+          "食べません"
+        ],
+        "answer": 1,
+        "why": [
+          "Itu \"makan\" (belum lampau).",
+          null,
+          "Itu \"tidak makan\"."
+        ]
+      }
+    },
+    {
+      "id": "scene-08",
+      "type": "quiz",
+      "section": "exercises",
+      "content": {
+        "question": "\"Tidak makan\" adalah...",
+        "options": [
+          "食べます",
+          "食べました",
+          "食べません"
+        ],
+        "answer": 2,
+        "why": [
+          "Itu \"makan\".",
+          "Itu \"sudah makan\".",
+          null
+        ]
+      }
+    },
+    {
+      "id": "scene-09",
+      "type": "summary",
+      "section": "summary",
+      "content": {
+        "heading": "Rangkuman",
+        "points": [
+          "Kata kerja = 動詞 (doushi).",
+          "ます = sopan, ません = tidak, ました = sudah.",
+          "Perubahan bentuk disebut 活用 (katsuyou)."
+        ]
+      }
+    }
+  ]
+}

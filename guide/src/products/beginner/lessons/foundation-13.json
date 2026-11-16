@@ -1,0 +1,289 @@
+{
+  "id": "foundation-13",
+  "level": "BEGINNER",
+  "category": "concept",
+  "title": "Cara Membaca Kalimat Jepang",
+  "summary": "Cara memotong kalimat tanpa spasi menjadi bagian-bagian yang bisa dipahami, dengan partikel と dan で.",
+  "minutes": 12,
+  "scenes": [
+    {
+      "id": "scene-01",
+      "type": "introduction",
+      "section": "introduction",
+      "duration": 4000,
+      "content": {
+        "title": "文を読む",
+        "subtitle": "Chapter 13: Cara membaca kalimat Jepang"
+      }
+    },
+    {
+      "id": "scene-02",
+      "type": "explain",
+      "section": "definition",
+      "content": {
+        "heading": "Kalimat tanpa spasi",
+        "paragraphs": [
+          "Teks Jepang tidak memakai spasi antar-kata. Pada buku pemula, spasi ditambahkan supaya mudah dibaca. Pada teks asli, kamu harus memotongnya sendiri.",
+          "Tanda baca penting: 。(maru) mengakhiri kalimat dan 、(touten) memisahkan bagian kalimat, mirip koma."
+        ],
+        "terms": [
+          {
+            "term": "。",
+            "reading": "maru",
+            "meaning": "titik"
+          },
+          {
+            "term": "、",
+            "reading": "touten",
+            "meaning": "koma"
+          }
+        ]
+      }
+    },
+    {
+      "id": "scene-03",
+      "type": "explain",
+      "section": "concept",
+      "content": {
+        "heading": "Metode baca empat langkah",
+        "paragraphs": [
+          "1. Cari kata kerja di ujung kalimat dan pahami waktu serta kesopanannya.",
+          "2. Potong kalimat setelah setiap partikel. Biasanya partikel menandai akhir satu potongan.",
+          "3. Tanyakan peran tiap potongan: topik, objek, tempat, teman, waktu.",
+          "4. Susun artinya dengan urutan bahasa Indonesia: siapa, kapan, di mana, melakukan apa."
+        ],
+        "analogy": "Seperti membongkar kereta api. Kata kerja adalah lokomotif di ujung, partikel adalah sambungan antar-gerbong."
+      }
+    },
+    {
+      "id": "scene-04",
+      "type": "explain",
+      "section": "explanation",
+      "content": {
+        "heading": "Dua partikel baru: と dan で",
+        "paragraphs": [
+          "と (to) berarti \"dan\" atau \"bersama\". Contoh: ともだちと = \"bersama teman\".",
+          "で (de) menandai tempat terjadinya sebuah aksi: レストランで = \"di restoran\".",
+          "Dengan dua partikel ini kamu sudah bisa membaca kalimat yang cukup panjang."
+        ],
+        "terms": [
+          {
+            "term": "と",
+            "reading": "to",
+            "meaning": "dan, bersama"
+          },
+          {
+            "term": "で",
+            "reading": "de",
+            "meaning": "di (tempat aksi)"
+          }
+        ]
+      }
+    },
+    {
+      "id": "scene-05",
+      "type": "example",
+      "section": "examples",
+      "content": {
+        "parts": [
+          {
+            "ja": "わたし",
+            "reading": "わたし",
+            "romaji": "watashi",
+            "id_text": "saya",
+            "role": "subject"
+          },
+          {
+            "ja": "は",
+            "reading": "は",
+            "romaji": "wa",
+            "id_text": "penanda topik",
+            "role": "particle"
+          },
+          {
+            "ja": "きのう",
+            "reading": "きのう",
+            "romaji": "kinou",
+            "id_text": "kemarin",
+            "role": "other"
+          },
+          {
+            "ja": "ともだち",
+            "reading": "ともだち",
+            "romaji": "tomodachi",
+            "id_text": "teman",
+            "role": "other"
+          },
+          {
+            "ja": "と",
+            "reading": "と",
+            "romaji": "to",
+            "id_text": "bersama",
+            "role": "particle"
+          },
+          {
+            "ja": "レストラン",
+            "reading": "れすとらん",
+            "romaji": "resutoran",
+            "id_text": "restoran",
+            "role": "other"
+          },
+          {
+            "ja": "で",
+            "reading": "で",
+            "romaji": "de",
+            "id_text": "di",
+            "role": "particle"
+          },
+          {
+            "ja": "ごはん",
+            "reading": "ごはん",
+            "romaji": "gohan",
+            "id_text": "nasi",
+            "role": "object"
+          },
+          {
+            "ja": "を",
+            "reading": "を",
+            "romaji": "o",
+            "id_text": "penanda objek",
+            "role": "particle"
+          },
+          {
+            "ja": "たべました",
+            "reading": "たべました",
+            "romaji": "tabemashita",
+            "id_text": "sudah makan",
+            "role": "verb"
+          }
+        ],
+        "translation": "Kemarin saya makan nasi bersama teman di restoran.",
+        "heading": "Satu kalimat, enam potongan",
+        "note": "Ketuk tiap potongan, lalu bandingkan dengan empat langkah metode baca."
+      }
+    },
+    {
+      "id": "scene-06",
+      "type": "practice",
+      "section": "exercises",
+      "content": {
+        "prompt": "Susun dengan urutan: waktu, topik, tempat, objek, kata kerja. \"Hari ini saya membaca buku di rumah.\"",
+        "tokens": [
+          {
+            "id": "v",
+            "ja": "よみます",
+            "id_text": "membaca",
+            "role": "verb"
+          },
+          {
+            "id": "p",
+            "ja": "うちで",
+            "id_text": "di rumah",
+            "role": "other"
+          },
+          {
+            "id": "o",
+            "ja": "ほんを",
+            "id_text": "buku",
+            "role": "object"
+          },
+          {
+            "id": "t",
+            "ja": "きょう",
+            "id_text": "hari ini",
+            "role": "other"
+          },
+          {
+            "id": "s",
+            "ja": "わたしは",
+            "id_text": "Saya",
+            "role": "subject"
+          }
+        ],
+        "answer": [
+          "t",
+          "s",
+          "p",
+          "o",
+          "v"
+        ]
+      }
+    },
+    {
+      "id": "scene-07",
+      "type": "mistakes",
+      "section": "mistakes",
+      "content": {
+        "heading": "Kesalahan yang sering dilakukan pemula",
+        "items": [
+          {
+            "wrong": "Mencoba membaca dari kiri ke kanan sambil menerjemahkan satu per satu",
+            "right": "Cari kata kerja di akhir dulu",
+            "why": "Kata kerja memberi tahu inti kalimat, jadi baca ujungnya lebih dulu."
+          },
+          {
+            "wrong": "Mencampur で (tempat aksi) dengan へ (tujuan)",
+            "right": "で = di mana aksi terjadi, へ = ke mana menuju",
+            "why": "Contoh: がっこうへ いきます (pergi ke sekolah), がっこうで べんきょうします (belajar di sekolah)."
+          },
+          {
+            "wrong": "Mengabaikan partikel karena kecil",
+            "right": "Partikel adalah penunjuk jalan",
+            "why": "Tanpa partikel, kamu tidak tahu peran tiap potongan."
+          }
+        ]
+      }
+    },
+    {
+      "id": "scene-08",
+      "type": "quiz",
+      "section": "exercises",
+      "content": {
+        "question": "Dalam ともだちと, partikel と berarti...",
+        "options": [
+          "di",
+          "bersama",
+          "menuju"
+        ],
+        "answer": 1,
+        "why": [
+          "Itu で.",
+          null,
+          "Itu へ."
+        ]
+      }
+    },
+    {
+      "id": "scene-09",
+      "type": "quiz",
+      "section": "exercises",
+      "content": {
+        "question": "Partikel yang menandai tempat terjadinya aksi adalah...",
+        "options": [
+          "で",
+          "を",
+          "と"
+        ],
+        "answer": 0,
+        "why": [
+          null,
+          "を menandai objek.",
+          "と berarti dan/bersama."
+        ]
+      }
+    },
+    {
+      "id": "scene-10",
+      "type": "summary",
+      "section": "summary",
+      "content": {
+        "heading": "Rangkuman",
+        "points": [
+          "Teks asli tidak berspasi; potong setelah partikel.",
+          "Cari kata kerja di ujung lebih dulu.",
+          "と = bersama, で = di (tempat aksi)."
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,177 @@
+{
+  "id": "foundation-15",
+  "level": "BEGINNER",
+  "category": "concept",
+  "title": "Kesalahan Umum Pemula",
+  "summary": "Kumpulan kesalahan yang paling sering terjadi, beserta cara menghindarinya.",
+  "minutes": 10,
+  "scenes": [
+    {
+      "id": "scene-01",
+      "type": "introduction",
+      "section": "introduction",
+      "duration": 4000,
+      "content": {
+        "title": "よくある間違い",
+        "subtitle": "Chapter 15: Kesalahan umum pemula"
+      }
+    },
+    {
+      "id": "scene-02",
+      "type": "explain",
+      "section": "introduction",
+      "content": {
+        "heading": "Kenapa belajar dari kesalahan?",
+        "paragraphs": [
+          "Hampir semua pemula membuat kesalahan yang mirip. Kalau kamu sudah tahu pola kesalahannya, kamu bisa mengenalinya sebelum terlanjur terbiasa.",
+          "Di bab ini kita rangkum kesalahan dari bab-bab sebelumnya."
+        ]
+      }
+    },
+    {
+      "id": "scene-03",
+      "type": "mistakes",
+      "section": "mistakes",
+      "content": {
+        "heading": "Kesalahan penulisan dan bacaan",
+        "items": [
+          {
+            "wrong": "Membaca partikel は sebagai \"ha\" dan を sebagai \"wo\"",
+            "right": "Dibaca \"wa\" dan \"o\" sebagai partikel",
+            "why": "Penulisan lama dipertahankan, pelafalan mengikuti bahasa modern."
+          },
+          {
+            "wrong": "Melupakan tanda ー pada コーヒー",
+            "right": "Tulis dan baca panjang (koohii)",
+            "why": "Vokal panjang dan pendek bisa mengubah arti."
+          },
+          {
+            "wrong": "Menukar シ dengan ツ dan ソ dengan ン",
+            "right": "Perhatikan arah goresan",
+            "why": "Ini pasangan yang paling sering tertukar."
+          }
+        ]
+      }
+    },
+    {
+      "id": "scene-04",
+      "type": "mistakes",
+      "section": "mistakes",
+      "content": {
+        "heading": "Kesalahan tata bahasa",
+        "items": [
+          {
+            "wrong": "たべますです",
+            "right": "たべます",
+            "why": "ます sudah sopan. です tidak ditambahkan setelah kata kerja ます."
+          },
+          {
+            "wrong": "きれいい / しずかい",
+            "right": "きれい / しずか",
+            "why": "Kata sifat な tidak diberi い."
+          },
+          {
+            "wrong": "はな きれいな",
+            "right": "きれいな はな",
+            "why": "Kata sifat harus di depan kata benda."
+          }
+        ]
+      }
+    },
+    {
+      "id": "scene-05",
+      "type": "mistakes",
+      "section": "mistakes",
+      "content": {
+        "heading": "Kesalahan cara berpikir",
+        "items": [
+          {
+            "wrong": "Menerjemahkan kata per kata dari bahasa Indonesia",
+            "right": "Pikirkan struktur Jepang: topik, objek, kata kerja",
+            "why": "Urutan dan kebutuhan kata berbeda."
+          },
+          {
+            "wrong": "Selalu menyebut わたしは",
+            "right": "Hilangkan subjek bila sudah jelas",
+            "why": "Mengulang subjek membuat kalimat kaku."
+          },
+          {
+            "wrong": "Menghafal tanpa memahami kenapa",
+            "right": "Cari logika di balik aturan",
+            "why": "Pemahaman membuatmu mampu menyusun kalimat baru."
+          }
+        ]
+      }
+    },
+    {
+      "id": "scene-06",
+      "type": "quiz",
+      "section": "exercises",
+      "content": {
+        "question": "Mana yang salah?",
+        "options": [
+          "わたしは コーヒーを のみます。",
+          "わたしは コーヒーを のみますです。",
+          "わたしは コーヒーを のみません。"
+        ],
+        "answer": 1,
+        "why": [
+          "Kalimat ini benar.",
+          null,
+          "Kalimat ini benar (negatif)."
+        ]
+      }
+    },
+    {
+      "id": "scene-07",
+      "type": "quiz",
+      "section": "exercises",
+      "content": {
+        "question": "Mana yang salah?",
+        "options": [
+          "きれいな はな",
+          "おおきい いえ",
+          "しずかい へや"
+        ],
+        "answer": 2,
+        "why": [
+          "Kalimat ini benar.",
+          "Kalimat ini benar.",
+          null
+        ]
+      }
+    },
+    {
+      "id": "scene-08",
+      "type": "quiz",
+      "section": "exercises",
+      "content": {
+        "question": "Partikel は dibaca \"wa\" ketika...",
+        "options": [
+          "Ia dipakai sebagai partikel",
+          "Ia berada di dalam kata biasa",
+          "Selalu"
+        ],
+        "answer": 0,
+        "why": [
+          null,
+          "Di dalam kata biasa tetap \"ha\".",
+          "Tidak selalu: hanya sebagai partikel."
+        ]
+      }
+    },
+    {
+      "id": "scene-09",
+      "type": "summary",
+      "section": "summary",
+      "content": {
+        "heading": "Rangkuman",
+        "points": [
+          "Waspadai bacaan は dan を, tanda ー, dan シ/ツ ソ/ン.",
+          "Jangan tambahkan です setelah kata kerja ます dan い setelah kata sifat な.",
+          "Sifat di depan benda, kata kerja di akhir, subjek boleh hilang."
+        ]
+      }
+    }
+  ]
+}
