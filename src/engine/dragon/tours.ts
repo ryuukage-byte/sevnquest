@@ -30,7 +30,7 @@ export interface TourStep {
 
 export type TourId =
   | 'welcome' | 'menulis-kanji' | 'login' | 'kotak-pos' | 'donasi' | 'panduan' | 'arcade' | 'dungeon'
-  | 'status' | 'kotoba' | 'bunpou' | 'konjugasi' | 'dokkai' | 'deck-baru' | 'deck-ai' | 'deck-isi' | 'menara' | 'misi' | 'pengaturan';
+  | 'status' | 'kotoba' | 'bunpou' | 'konjugasi' | 'dokkai' | 'writing-companion' | 'deck-baru' | 'deck-ai' | 'deck-isi' | 'menara' | 'misi' | 'pengaturan';
 
 export interface DragonTour {
   id: string;
@@ -48,7 +48,7 @@ const goTab = (tab: 'home' | 'maps' | 'daily' | 'deck' | 'settings', label: stri
 });
 
 /** Pembuka: ke Library lalu langsung ke sebuah tab (dilewati otomatis bila sudah di tab itu). */
-const goLibrary = (tab: 'kotoba' | 'kanji' | 'bunpou' | 'dokkai' | 'choukai' | 'soal', name: string): TourStep => ({
+const goLibrary = (tab: 'kotoba' | 'kanji' | 'bunpou' | 'dokkai' | 'choukai' | 'soal' | 'menulis', name: string): TourStep => ({
   selector: '[data-tour="nav-library"]',
   label: 'Library',
   text: `Ketuk Library di sini, aku langsung bukakan tab ${name}.`,
@@ -71,6 +71,7 @@ export const DEEP_GUIDES: { tour: TourId; label: string }[] = [
   { tour: 'bunpou', label: 'Tata Bahasa' },
   { tour: 'konjugasi', label: 'Konjugasi' },
   { tour: 'dokkai', label: 'Dokkai (Membaca)' },
+  { tour: 'writing-companion', label: 'Writing Companion' },
   { tour: 'deck-baru', label: 'Buat Deck' },
   { tour: 'deck-ai', label: 'Deck AI' },
   { tour: 'deck-isi', label: 'Isi & Latih Deck' },
@@ -588,6 +589,28 @@ export const TOURS: Record<TourId, DragonTour> = {
       info('[data-tour="dokkai-nav"]', 'Dua pilihan', 'Pilih salah satu:', [
         'Kerjakan soal: langsung menjawab soal bacaan.',
         'Bahas bacaan: bacaan dibedah per paragraf, kosakata, kanji, pola, dan intinya. Saat dibahas, ketuk sebuah kalimat untuk melihat arti, kata, dan polanya.',
+      ], 'Selesai'),
+    ],
+  },
+  'writing-companion': {
+    id: 'writing-companion',
+    steps: [
+      goLibrary('menulis', 'Menulis'),
+      tapStep('[data-tour="wc-item"]', 'paragraf', 'Siapkan buku dan pena dulu. Lalu ketuk salah satu paragraf untuk membuka ruang menulisnya.'),
+      info('[data-tour="wc-paragraph"]', 'Kotak paragraf', 'Ini paragraf yang kamu salin ke bukumu. Ketuk bagian yang sedang kamu tulis; bagian itu akan disorot.', [
+        'Panah kiri/kanan (atau tombol < > di panel) pindah ke bagian berikutnya.',
+        'Ketuk bagian yang sama sekali lagi untuk melepas pilihan.',
+      ]),
+      info('[data-tour="wc-toolbar"]', 'Cara memilih', 'Atur cara memilih di baris ini:', [
+        'Kata: satu kata atau partikel.',
+        'Kanji: satu huruf saja.',
+        'Frasa: pola tata bahasa, atau kata beserta partikelnya.',
+        'ふ menyalakan furigana, T mengganti ukuran huruf, ¶1 ¶2 menampilkan satu paragraf saja.',
+      ]),
+      info('[data-tour="wc-panel"]', 'Panel pembahasan', 'Setelah kamu memilih, pembahasannya muncul di sini dengan dua tombol:', [
+        'Writing: animasi urutan goresan, maju per goresan, dan diagram langkah untuk ditiru di kertas.',
+        'Explanation: romaji, arti, perubahan bentuk kata, fungsi partikel, pola, dan makna sesuai kalimat.',
+        'Selesai menyalin satu kalimat? Tekan "Tandai kalimat ini sudah kutulis" untuk mencatat progresmu.',
       ], 'Selesai'),
     ],
   },

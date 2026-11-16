@@ -291,6 +291,27 @@ export const KNOWLEDGE: KnowledgeTopic[] = [
     related: ['dungeon', 'soal'],
   },
   {
+    id: 'writing-companion',
+    title: 'Writing Companion (menyalin paragraf)',
+    group: 'belajar',
+    keywords: ['writing companion', 'companion', 'menyalin', 'salin paragraf', 'tulis tangan', 'menulis tangan', 'menulis di buku', 'tulis di kertas', 'jilid vii', 'tab menulis'],
+    text: 'Writing Companion di Library (Jilid VII, tab Menulis) menemanimu menyalin paragraf Jepang dengan tangan di buku. Kamu tidak mengetik apa pun; aku yang menunjukkan goresan dan penjelasannya.',
+    sections: [
+      { title: 'Cara pakai', items: [
+        'Pilih paragraf: ada 7 Paragraf Menulis per level (N5–N1) plus semua bacaan Dokkai, atau tempel teksmu sendiri.',
+        'Salin paragrafnya ke buku. Ketuk kata, kanji, atau frasa yang sedang kamu tulis; bagiannya disorot.',
+        'Writing: animasi urutan goresan dan diagram langkah untuk ditiru di kertas.',
+        'Explanation: romaji, arti, perubahan bentuk, partikel, pola, dan makna sesuai kalimat.',
+        'Tandai kalimat yang sudah kamu tulis; progresnya tampil di kartu paragraf.',
+      ] },
+    ],
+    actions: [
+      { label: 'Tunjukkan caranya', command: { type: 'guide_tour', tour: 'writing-companion' } },
+      { label: 'Buka tab Menulis', command: { type: 'library', tab: 'menulis' } },
+    ],
+    related: ['dokkai', 'kanji'],
+  },
+  {
     id: 'choukai',
     title: 'Choukai (mendengar)',
     group: 'belajar',
