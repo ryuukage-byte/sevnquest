@@ -1,0 +1,257 @@
+{
+  "id": "hiragana-06",
+  "level": "BEGINNER",
+  "category": "kana",
+  "title": "Sokuon dan Chouon",
+  "summary": "Konsonan ganda dengan っ kecil dan vokal panjang.",
+  "minutes": 11,
+  "scenes": [
+    {
+      "id": "scene-01",
+      "type": "introduction",
+      "section": "introduction",
+      "duration": 4000,
+      "content": {
+        "title": "促音・長音",
+        "subtitle": "Hiragana Mastery: Sokuon dan Chouon"
+      }
+    },
+    {
+      "id": "scene-02",
+      "type": "explain",
+      "section": "definition",
+      "content": {
+        "heading": "Sokuon: っ kecil",
+        "paragraphs": [
+          "Sokuon (促音) adalah huruf っ ditulis kecil. Ia tidak dibaca sendiri, tetapi menggandakan konsonan pada huruf berikutnya dengan jeda singkat.",
+          "Contoh: がっこう dibaca \"gakkou\" (sekolah). Kata きて (kite, \"datang\") berbeda dari きって (kitte, \"perangko\").",
+          "Hitungannya satu ketukan, jadi jeda sebelum konsonan ganda harus dipertahankan."
+        ],
+        "terms": [
+          {
+            "term": "促音",
+            "reading": "sokuon",
+            "meaning": "huruf っ kecil"
+          },
+          {
+            "term": "がっこう",
+            "reading": "gakkou",
+            "meaning": "sekolah"
+          },
+          {
+            "term": "きって",
+            "reading": "kitte",
+            "meaning": "perangko"
+          }
+        ]
+      }
+    },
+    {
+      "id": "scene-03",
+      "type": "vocab",
+      "section": "examples",
+      "content": {
+        "heading": "Kata dengan sokuon",
+        "items": [
+          {
+            "ja": "がっこう",
+            "reading": "gakkou",
+            "id_text": "sekolah"
+          },
+          {
+            "ja": "きって",
+            "reading": "kitte",
+            "id_text": "perangko"
+          },
+          {
+            "ja": "ざっし",
+            "reading": "zasshi",
+            "id_text": "majalah"
+          },
+          {
+            "ja": "ちょっと",
+            "reading": "chotto",
+            "id_text": "sebentar, agak"
+          },
+          {
+            "ja": "にっき",
+            "reading": "nikki",
+            "id_text": "buku harian"
+          }
+        ]
+      }
+    },
+    {
+      "id": "scene-04",
+      "type": "explain",
+      "section": "definition",
+      "content": {
+        "heading": "Chouon: vokal panjang",
+        "paragraphs": [
+          "Chouon (長音) adalah vokal yang dibaca dua ketukan. Panjang-pendek vokal mengubah arti kata.",
+          "Aturannya: tambahkan あ setelah huruf baris A, い setelah baris I, う setelah baris U, え atau い setelah baris E, dan お atau う setelah baris O.",
+          "Contoh: おばさん (obasan, bibi) berbeda dari おばあさん (obaasan, nenek). おじさん (ojisan, paman) berbeda dari おじいさん (ojiisan, kakek)."
+        ],
+        "terms": [
+          {
+            "term": "長音",
+            "reading": "chouon",
+            "meaning": "vokal panjang"
+          }
+        ]
+      }
+    },
+    {
+      "id": "scene-05",
+      "type": "vocab",
+      "section": "examples",
+      "content": {
+        "heading": "Pasangan pendek dan panjang",
+        "items": [
+          {
+            "ja": "おばさん",
+            "reading": "obasan",
+            "id_text": "bibi"
+          },
+          {
+            "ja": "おばあさん",
+            "reading": "obaasan",
+            "id_text": "nenek"
+          },
+          {
+            "ja": "おじさん",
+            "reading": "ojisan",
+            "id_text": "paman"
+          },
+          {
+            "ja": "おじいさん",
+            "reading": "ojiisan",
+            "id_text": "kakek"
+          },
+          {
+            "ja": "おかあさん",
+            "reading": "okaasan",
+            "id_text": "ibu"
+          },
+          {
+            "ja": "おとうさん",
+            "reading": "otousan",
+            "id_text": "ayah"
+          },
+          {
+            "ja": "せんせい",
+            "reading": "sensei",
+            "id_text": "guru"
+          }
+        ]
+      }
+    },
+    {
+      "id": "scene-06",
+      "type": "explain",
+      "section": "logic",
+      "content": {
+        "heading": "Mengapa ketukan penting?",
+        "paragraphs": [
+          "Bahasa Jepang dihitung dengan ketukan (mora) yang berdurasi sama. っ dan vokal panjang menambah ketukan.",
+          "Jadi がっこう punya empat ketukan (ga-k-ko-u), bukan tiga. Kalau kamu mengabaikan itu, kata terdengar berbeda."
+        ]
+      }
+    },
+    {
+      "id": "scene-07",
+      "type": "mistakes",
+      "section": "mistakes",
+      "content": {
+        "heading": "Kesalahan yang sering dilakukan pemula",
+        "items": [
+          {
+            "wrong": "Membaca おばあさん sebagai \"obasan\"",
+            "right": "Bacalah \"obaasan\" dengan vokal panjang",
+            "why": "Vokal panjang mengubah arti: \"obasan\" bibi, \"obaasan\" nenek."
+          },
+          {
+            "wrong": "Membaca がっこう sebagai \"gakou\"",
+            "right": "Bacalah \"gakkou\" dengan jeda",
+            "why": "っ menggandakan konsonan k."
+          },
+          {
+            "wrong": "Menulis せんせい sebagai \"senseii\"",
+            "right": "Bacalah \"sensei\"",
+            "why": "Gabungan え + い dibaca panjang \"ee\" tetapi dalam romaji ditulis \"ei\"."
+          }
+        ]
+      }
+    },
+    {
+      "id": "scene-08",
+      "type": "quiz",
+      "section": "exercises",
+      "content": {
+        "question": "Bagaimana membaca がっこう?",
+        "options": [
+          "gakou",
+          "gakkou",
+          "gaku-u"
+        ],
+        "answer": 1,
+        "why": [
+          "Konsonan k perlu digandakan.",
+          null,
+          "Itu bukan bacaan kata ini."
+        ]
+      }
+    },
+    {
+      "id": "scene-09",
+      "type": "quiz",
+      "section": "exercises",
+      "content": {
+        "question": "Apa arti おばあさん?",
+        "options": [
+          "Bibi",
+          "Nenek",
+          "Ibu"
+        ],
+        "answer": 1,
+        "why": [
+          "Bibi adalah おばさん (vokal pendek).",
+          null,
+          "Ibu adalah おかあさん."
+        ]
+      }
+    },
+    {
+      "id": "scene-10",
+      "type": "quiz",
+      "section": "exercises",
+      "content": {
+        "question": "Mana yang berarti \"kakek\"?",
+        "options": [
+          "おじさん",
+          "おじいさん",
+          "おとうさん"
+        ],
+        "answer": 1,
+        "why": [
+          "Itu paman.",
+          null,
+          "Itu ayah."
+        ]
+      }
+    },
+    {
+      "id": "scene-11",
+      "type": "summary",
+      "section": "summary",
+      "content": {
+        "heading": "Rangkuman",
+        "points": [
+          "っ kecil menggandakan konsonan berikutnya.",
+          "Vokal panjang dibaca dua ketukan dan mengubah arti.",
+          "Hitung ketukan (mora), bukan huruf."
+        ]
+      }
+    }
+  ]
+}

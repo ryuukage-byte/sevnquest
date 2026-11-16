@@ -20,10 +20,10 @@ function useRoute(): [string, (to: string) => void] {
 }
 
 const NAV = [
-  { to: '/discover', label: 'Discover', icon: Compass },
-  { to: '/learn', label: 'Learn', icon: BookOpen },
-  { to: '/planner', label: 'Planner', icon: CalendarDays },
-  { to: '/journey', label: 'My Journey', icon: MapIcon },
+  { to: '/discover', label: 'Peta Belajar', icon: Compass },
+  { to: '/learn', label: 'Belajar', icon: BookOpen },
+  { to: '/planner', label: 'Rencana', icon: CalendarDays },
+  { to: '/journey', label: 'Perjalananku', icon: MapIcon },
 ];
 
 export default function App() {
@@ -51,7 +51,7 @@ export default function App() {
             <button className="skeuo-btn" onClick={toggleTheme} aria-label={theme === 'dark' ? 'Mode terang' : 'Mode gelap'}>
               {theme === 'dark' ? <Sun size={14} aria-hidden /> : <Moon size={14} aria-hidden />}
             </button>
-            <a href="#/account" className="skeuo-btn gap-1.5 no-underline"><UserRound size={14} aria-hidden /> LOGIN</a>
+            <a href="#/account" className="skeuo-btn gap-1.5 no-underline"><UserRound size={14} aria-hidden /> MASUK</a>
           </div>
         </header>
       </div>
@@ -64,7 +64,7 @@ export default function App() {
         {section === 'account' && <Account />}
       </main>
       <footer className="text-center text-text-muted text-xs font-mono py-6 pb-safe">
-        Learn with understanding. Practice with purpose.
+        Pahami logikanya. Latih dengan tujuan.
       </footer>
     </div>
   );

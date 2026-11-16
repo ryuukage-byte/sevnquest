@@ -3,18 +3,18 @@ export type TokenRole = 'subject' | 'object' | 'verb' | 'particle' | 'other';
 
 /** 12 bagian standar pengajaran. Tidak wajib dipakai semuanya; sesuaikan dengan kebutuhan materi. */
 export const SECTIONS = {
-  introduction: '01 INTRODUCTION',
-  definition: '02 DEFINITION',
-  concept: '03 CORE CONCEPT',
-  logic: '04 LOGIC',
-  explanation: '05 EXPLANATION',
-  examples: '06 EXAMPLES',
-  breakdown: '07 BREAKDOWN',
-  usage: '08 REAL USAGE',
-  comparison: '09 COMPARISON',
-  mistakes: '10 COMMON MISTAKES',
-  summary: '11 SUMMARY',
-  exercises: '12 EXERCISES',
+  introduction: '01 PENGANTAR',
+  definition: '02 DEFINISI',
+  concept: '03 KONSEP INTI',
+  logic: '04 LOGIKA',
+  explanation: '05 PENJELASAN',
+  examples: '06 CONTOH',
+  breakdown: '07 URAIAN',
+  usage: '08 PENGGUNAAN NYATA',
+  comparison: '09 PERBANDINGAN',
+  mistakes: '10 KESALAHAN UMUM',
+  summary: '11 RANGKUMAN',
+  exercises: '12 LATIHAN',
 } as const;
 export type Section = keyof typeof SECTIONS;
 

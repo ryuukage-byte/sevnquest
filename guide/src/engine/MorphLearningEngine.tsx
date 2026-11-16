@@ -135,8 +135,8 @@ function SceneView({ scene }: { scene: Scene }) {
           <h2 className="text-heading-section">{scene.content.heading}</h2>
           <div className="grid grid-cols-3 sm:grid-cols-5 gap-3 w-full max-w-xl">
             {scene.content.items.map((it, i) => (
-              <motion.div key={it.char} className="sq-token !min-w-0" initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.04 * i }}>
-                <span className="font-jp text-4xl font-bold">{it.char}</span>
+              <motion.div key={it.char} className="sq-token !min-w-0 !px-2" initial={{ opacity: 0, y: 12 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.04 * i }}>
+                <span className={`font-jp font-bold whitespace-nowrap ${it.char.length > 1 ? 'text-3xl' : 'text-4xl'}`}>{it.char}</span>
                 <small>{it.romaji}</small>
               </motion.div>
             ))}

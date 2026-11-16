@@ -31,7 +31,7 @@ export default function Learn({ lessonId, go }: { lessonId?: string; go: (to: st
   return (
     <section className="flex flex-col gap-4 pt-4">
       <div>
-        <h1 className="text-heading-page">Learn</h1>
+        <h1 className="text-heading-page">Belajar</h1>
         <p className="text-body-regular">Materi dibagi menjadi scene yang saling bertransisi, bukan artikel panjang.</p>
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">

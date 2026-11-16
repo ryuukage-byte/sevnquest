@@ -12,8 +12,8 @@ export default function Journey({ go }: { go: (to: string) => void }) {
   return (
     <section className="flex flex-col gap-4 pt-4">
       <div>
-        <h1 className="text-heading-page">My Journey</h1>
-        <p className="text-body-regular">Mode tamu: data tersimpan di perangkat ini. Login untuk menyinkronkan ke SevnQuest (segera hadir).</p>
+        <h1 className="text-heading-page">Perjalananku</h1>
+        <p className="text-body-regular">Mode tamu: data tersimpan di perangkat ini. Masuk untuk menyinkronkan ke SevnQuest (segera hadir).</p>
       </div>
 
       <div className="panel flex flex-col gap-2">

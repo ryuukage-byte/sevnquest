@@ -1,0 +1,172 @@
+{
+  "id": "katakana-05",
+  "level": "BEGINNER",
+  "category": "kana",
+  "title": "Katakana: Sokuon dan Chouon",
+  "summary": "ッ kecil dan tanda ー pada katakana.",
+  "minutes": 9,
+  "scenes": [
+    {
+      "id": "scene-01",
+      "type": "introduction",
+      "section": "introduction",
+      "duration": 4000,
+      "content": {
+        "title": "促音・長音",
+        "subtitle": "Katakana Mastery: Sokuon dan Chouon"
+      }
+    },
+    {
+      "id": "scene-02",
+      "type": "explain",
+      "section": "definition",
+      "content": {
+        "heading": "Sokuon ッ",
+        "paragraphs": [
+          "ッ kecil menggandakan konsonan berikutnya, sama seperti っ pada hiragana. Contoh: ベッド dibaca \"beddo\" (tempat tidur), サッカー dibaca \"sakkaa\" (sepak bola).",
+          "Dalam kata serapan, ッ sering muncul untuk meniru konsonan ganda atau penutup bunyi dari bahasa asal."
+        ]
+      }
+    },
+    {
+      "id": "scene-03",
+      "type": "explain",
+      "section": "definition",
+      "content": {
+        "heading": "Chouon ー",
+        "paragraphs": [
+          "Dalam katakana, vokal panjang ditulis dengan tanda ー, bukan dengan menambah huruf vokal. Misalnya コーヒー dibaca \"koohii\".",
+          "Tanda ー mengulang vokal huruf di depannya: カー menjadi \"kaa\", キー menjadi \"kii\", クー menjadi \"kuu\", ケー menjadi \"kee\", コー menjadi \"koo\"."
+        ]
+      }
+    },
+    {
+      "id": "scene-04",
+      "type": "vocab",
+      "section": "examples",
+      "content": {
+        "heading": "Kata dengan ッ dan ー",
+        "items": [
+          {
+            "ja": "ベッド",
+            "reading": "beddo",
+            "id_text": "tempat tidur"
+          },
+          {
+            "ja": "サッカー",
+            "reading": "sakkaa",
+            "id_text": "sepak bola"
+          },
+          {
+            "ja": "コップ",
+            "reading": "koppu",
+            "id_text": "gelas"
+          },
+          {
+            "ja": "スーパー",
+            "reading": "suupaa",
+            "id_text": "supermarket"
+          },
+          {
+            "ja": "タクシー",
+            "reading": "takushii",
+            "id_text": "taksi"
+          },
+          {
+            "ja": "ケーキ",
+            "reading": "keeki",
+            "id_text": "kue"
+          }
+        ]
+      }
+    },
+    {
+      "id": "scene-05",
+      "type": "explain",
+      "section": "logic",
+      "content": {
+        "heading": "Mengapa ketukan penting?",
+        "paragraphs": [
+          "Seperti pada hiragana, ッ dan ー menambah ketukan. サカー dan サッカー adalah dua kata yang berbeda bunyinya.",
+          "Jadi, ketika membaca kata serapan, hitung ketukan: サッカー = sa-k-ka-a (empat ketukan)."
+        ]
+      }
+    },
+    {
+      "id": "scene-06",
+      "type": "mistakes",
+      "section": "mistakes",
+      "content": {
+        "heading": "Kesalahan yang sering dilakukan pemula",
+        "items": [
+          {
+            "wrong": "Mengabaikan ー pada タクシー",
+            "right": "Bacalah \"takushii\" dengan vokal panjang",
+            "why": "Tanpa memanjangkan vokal, kata terdengar janggal."
+          },
+          {
+            "wrong": "Membaca ベッド sebagai \"bedo\"",
+            "right": "Bacalah \"beddo\"",
+            "why": "ッ menggandakan konsonan d."
+          },
+          {
+            "wrong": "Menulis ー di kata hiragana",
+            "right": "ー hanya dipakai pada katakana",
+            "why": "Pada hiragana, vokal panjang ditulis dengan huruf vokal."
+          }
+        ]
+      }
+    },
+    {
+      "id": "scene-07",
+      "type": "quiz",
+      "section": "exercises",
+      "content": {
+        "question": "Bagaimana membaca サッカー?",
+        "options": [
+          "sakaa",
+          "sakkaa",
+          "sakka"
+        ],
+        "answer": 1,
+        "why": [
+          "ッ menggandakan konsonan k.",
+          null,
+          "Tanda ー memanjangkan vokal akhir."
+        ]
+      }
+    },
+    {
+      "id": "scene-08",
+      "type": "quiz",
+      "section": "exercises",
+      "content": {
+        "question": "Apa fungsi tanda ー?",
+        "options": [
+          "Menggandakan konsonan",
+          "Memanjangkan vokal sebelumnya",
+          "Menandai kata asing"
+        ],
+        "answer": 1,
+        "why": [
+          "Itu fungsi ッ.",
+          null,
+          "Itu fungsi katakana secara umum."
+        ]
+      }
+    },
+    {
+      "id": "scene-09",
+      "type": "summary",
+      "section": "summary",
+      "content": {
+        "heading": "Rangkuman",
+        "points": [
+          "ッ menggandakan konsonan berikutnya.",
+          "ー memanjangkan vokal sebelumnya.",
+          "Hitung ketukan saat membaca."
+        ]
+      }
+    }
+  ]
+}

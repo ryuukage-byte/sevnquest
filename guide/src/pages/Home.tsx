@@ -2,7 +2,7 @@ import { ArrowDown, Rocket } from 'lucide-react';
 import { getLesson, LESSONS, PRODUCT } from '../products';
 
 export default function Home({ go }: { go: (to: string) => void }) {
-  const steps = ['Understand', 'Plan', 'Practice', 'Master'];
+  const steps = ['Pahami', 'Rencanakan', 'Latih', 'Kuasai'];
   return (
     <div className="flex flex-col gap-8 pt-4">
       <section className="panel panel-stitched text-center flex flex-col items-center gap-4 py-12">
@@ -30,7 +30,7 @@ export default function Home({ go }: { go: (to: string) => void }) {
       </section>
 
       <section className="flex flex-col gap-3 items-center">
-        <h2 className="text-heading-section self-start">How It Works</h2>
+        <h2 className="text-heading-section self-start">Cara Belajarnya</h2>
         <ol className="list-none p-0 m-0 flex flex-col items-center gap-2">
           {steps.map((s, i) => (
             <li key={s} className="flex flex-col items-center gap-2 font-heading text-xl text-text-primary">
@@ -41,7 +41,7 @@ export default function Home({ go }: { go: (to: string) => void }) {
       </section>
 
       <section className="panel text-center flex flex-col items-center gap-3">
-        <h2 className="text-heading-section">Start Your Journey</h2>
+        <h2 className="text-heading-section">Mulai Perjalananmu</h2>
         <button className="btn rpg-btn btn-cta max-w-sm" onClick={() => go('/planner')}>BUAT RENCANA BELAJAR</button>
         <p className="text-body-regular">Tanpa login. Masuk hanya saat ingin menyimpan rencana ke akun SevnQuest.</p>
       </section>

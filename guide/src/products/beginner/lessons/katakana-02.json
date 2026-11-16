@@ -1,0 +1,305 @@
+{
+  "id": "katakana-02",
+  "level": "BEGINNER",
+  "category": "kana",
+  "title": "Katakana: Seion Baris H sampai N",
+  "summary": "Menuntaskan seluruh katakana dasar.",
+  "minutes": 10,
+  "scenes": [
+    {
+      "id": "scene-01",
+      "type": "introduction",
+      "section": "introduction",
+      "duration": 4000,
+      "content": {
+        "title": "カタカナ 2",
+        "subtitle": "Katakana Mastery: Seion bagian 2"
+      }
+    },
+    {
+      "id": "scene-02",
+      "type": "kana",
+      "section": "explanation",
+      "content": {
+        "heading": "Baris H dan M",
+        "items": [
+          {
+            "char": "ハ",
+            "romaji": "ha"
+          },
+          {
+            "char": "ヒ",
+            "romaji": "hi"
+          },
+          {
+            "char": "フ",
+            "romaji": "fu"
+          },
+          {
+            "char": "ヘ",
+            "romaji": "he"
+          },
+          {
+            "char": "ホ",
+            "romaji": "ho"
+          },
+          {
+            "char": "マ",
+            "romaji": "ma"
+          },
+          {
+            "char": "ミ",
+            "romaji": "mi"
+          },
+          {
+            "char": "ム",
+            "romaji": "mu"
+          },
+          {
+            "char": "メ",
+            "romaji": "me"
+          },
+          {
+            "char": "モ",
+            "romaji": "mo"
+          }
+        ]
+      }
+    },
+    {
+      "id": "scene-03",
+      "type": "kana",
+      "section": "explanation",
+      "content": {
+        "heading": "Baris Y, R, W, dan N",
+        "items": [
+          {
+            "char": "ヤ",
+            "romaji": "ya"
+          },
+          {
+            "char": "ユ",
+            "romaji": "yu"
+          },
+          {
+            "char": "ヨ",
+            "romaji": "yo"
+          },
+          {
+            "char": "ラ",
+            "romaji": "ra"
+          },
+          {
+            "char": "リ",
+            "romaji": "ri"
+          },
+          {
+            "char": "ル",
+            "romaji": "ru"
+          },
+          {
+            "char": "レ",
+            "romaji": "re"
+          },
+          {
+            "char": "ロ",
+            "romaji": "ro"
+          },
+          {
+            "char": "ワ",
+            "romaji": "wa"
+          },
+          {
+            "char": "ヲ",
+            "romaji": "wo"
+          },
+          {
+            "char": "ン",
+            "romaji": "n"
+          }
+        ],
+        "caption": "ヲ hampir tidak dipakai dalam kata serapan; ia dipakai terutama sebagai partikel を di tulisan khusus."
+      }
+    },
+    {
+      "id": "scene-04",
+      "type": "kana",
+      "section": "comparison",
+      "content": {
+        "heading": "Pasangan yang mudah tertukar",
+        "items": [
+          {
+            "char": "ウ",
+            "romaji": "u"
+          },
+          {
+            "char": "ワ",
+            "romaji": "wa"
+          },
+          {
+            "char": "ナ",
+            "romaji": "na"
+          },
+          {
+            "char": "メ",
+            "romaji": "me"
+          },
+          {
+            "char": "コ",
+            "romaji": "ko"
+          },
+          {
+            "char": "ユ",
+            "romaji": "yu"
+          },
+          {
+            "char": "ソ",
+            "romaji": "so"
+          },
+          {
+            "char": "ン",
+            "romaji": "n"
+          }
+        ],
+        "caption": "ウ dan ワ, ナ dan メ, コ dan ユ, serta ソ dan ン perlu diperhatikan arah goresannya."
+      }
+    },
+    {
+      "id": "scene-05",
+      "type": "vocab",
+      "section": "examples",
+      "content": {
+        "heading": "Kata serapan sehari-hari",
+        "items": [
+          {
+            "ja": "ホテル",
+            "reading": "hoteru",
+            "id_text": "hotel"
+          },
+          {
+            "ja": "カメラ",
+            "reading": "kamera",
+            "id_text": "kamera"
+          },
+          {
+            "ja": "ラジオ",
+            "reading": "rajio",
+            "id_text": "radio"
+          },
+          {
+            "ja": "メール",
+            "reading": "meeru",
+            "id_text": "surel"
+          },
+          {
+            "ja": "レストラン",
+            "reading": "resutoran",
+            "id_text": "restoran"
+          },
+          {
+            "ja": "スーパー",
+            "reading": "suupaa",
+            "id_text": "supermarket"
+          }
+        ]
+      }
+    },
+    {
+      "id": "scene-06",
+      "type": "mistakes",
+      "section": "mistakes",
+      "content": {
+        "heading": "Kesalahan yang sering dilakukan pemula",
+        "items": [
+          {
+            "wrong": "Menukar ウ dengan ワ",
+            "right": "ウ = u, ワ = wa",
+            "why": "ワ tidak punya goresan atas."
+          },
+          {
+            "wrong": "Menukar ソ dengan ン",
+            "right": "ソ = so, ン = n",
+            "why": "Perhatikan arah goresan."
+          },
+          {
+            "wrong": "Mengira ヲ sama sering dengan ワ",
+            "right": "ヲ jarang dipakai",
+            "why": "Dalam kata serapan hampir tidak ditemukan."
+          }
+        ]
+      }
+    },
+    {
+      "id": "scene-07",
+      "type": "quiz",
+      "section": "exercises",
+      "content": {
+        "question": "Bagaimana membaca huruf ini?",
+        "options": [
+          "ha",
+          "fu",
+          "ho"
+        ],
+        "answer": 1,
+        "big": "フ",
+        "why": [
+          "Itu ハ.",
+          null,
+          "Itu ホ."
+        ]
+      }
+    },
+    {
+      "id": "scene-08",
+      "type": "quiz",
+      "section": "exercises",
+      "content": {
+        "question": "Bagaimana membaca huruf ini?",
+        "options": [
+          "n",
+          "so",
+          "shi"
+        ],
+        "answer": 0,
+        "big": "ン",
+        "why": [
+          null,
+          "Itu ソ.",
+          "Itu シ."
+        ]
+      }
+    },
+    {
+      "id": "scene-09",
+      "type": "quiz",
+      "section": "exercises",
+      "content": {
+        "question": "Bagaimana membaca ホテル?",
+        "options": [
+          "hoteru",
+          "hotel",
+          "horeru"
+        ],
+        "answer": 0,
+        "why": [
+          null,
+          "Bunyi akhir ル dibaca \"ru\" dalam bahasa Jepang.",
+          "テ dibaca \"te\", bukan \"re\"."
+        ]
+      }
+    },
+    {
+      "id": "scene-10",
+      "type": "summary",
+      "section": "summary",
+      "content": {
+        "heading": "Rangkuman",
+        "points": [
+          "Seluruh katakana dasar sudah dikenal.",
+          "Latih pasangan ウ/ワ, ナ/メ, コ/ユ, ソ/ン.",
+          "Berikutnya: dakuon dan handakuon."
+        ]
+      }
+    }
+  ]
+}

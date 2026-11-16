@@ -1,0 +1,319 @@
+{
+  "id": "katakana-04",
+  "level": "BEGINNER",
+  "category": "kana",
+  "title": "Katakana: Youon",
+  "summary": "Gabungan huruf dengan ャ ュ ョ kecil pada katakana.",
+  "minutes": 9,
+  "scenes": [
+    {
+      "id": "scene-01",
+      "type": "introduction",
+      "section": "introduction",
+      "duration": 4000,
+      "content": {
+        "title": "拗音",
+        "subtitle": "Katakana Mastery: Youon"
+      }
+    },
+    {
+      "id": "scene-02",
+      "type": "explain",
+      "section": "definition",
+      "content": {
+        "heading": "Aturannya sama dengan hiragana",
+        "paragraphs": [
+          "Gabungan huruf baris I dengan ャ, ュ, atau ョ kecil menjadi satu suku kata. Contoh: キ + ャ menjadi キャ (kya).",
+          "Huruf kecil tidak dibaca terpisah; ia menyatu dengan huruf sebelumnya, dan hanya dihitung satu ketukan."
+        ]
+      }
+    },
+    {
+      "id": "scene-03",
+      "type": "kana",
+      "section": "explanation",
+      "content": {
+        "heading": "Baris K, S, C, N, H",
+        "items": [
+          {
+            "char": "キャ",
+            "romaji": "kya"
+          },
+          {
+            "char": "キュ",
+            "romaji": "kyu"
+          },
+          {
+            "char": "キョ",
+            "romaji": "kyo"
+          },
+          {
+            "char": "シャ",
+            "romaji": "sha"
+          },
+          {
+            "char": "シュ",
+            "romaji": "shu"
+          },
+          {
+            "char": "ショ",
+            "romaji": "sho"
+          },
+          {
+            "char": "チャ",
+            "romaji": "cha"
+          },
+          {
+            "char": "チュ",
+            "romaji": "chu"
+          },
+          {
+            "char": "チョ",
+            "romaji": "cho"
+          },
+          {
+            "char": "ニャ",
+            "romaji": "nya"
+          },
+          {
+            "char": "ニュ",
+            "romaji": "nyu"
+          },
+          {
+            "char": "ニョ",
+            "romaji": "nyo"
+          },
+          {
+            "char": "ヒャ",
+            "romaji": "hya"
+          },
+          {
+            "char": "ヒュ",
+            "romaji": "hyu"
+          },
+          {
+            "char": "ヒョ",
+            "romaji": "hyo"
+          }
+        ]
+      }
+    },
+    {
+      "id": "scene-04",
+      "type": "kana",
+      "section": "explanation",
+      "content": {
+        "heading": "Baris M, R, G, J, B, P",
+        "items": [
+          {
+            "char": "ミャ",
+            "romaji": "mya"
+          },
+          {
+            "char": "ミュ",
+            "romaji": "myu"
+          },
+          {
+            "char": "ミョ",
+            "romaji": "myo"
+          },
+          {
+            "char": "リャ",
+            "romaji": "rya"
+          },
+          {
+            "char": "リュ",
+            "romaji": "ryu"
+          },
+          {
+            "char": "リョ",
+            "romaji": "ryo"
+          },
+          {
+            "char": "ギャ",
+            "romaji": "gya"
+          },
+          {
+            "char": "ギュ",
+            "romaji": "gyu"
+          },
+          {
+            "char": "ギョ",
+            "romaji": "gyo"
+          },
+          {
+            "char": "ジャ",
+            "romaji": "ja"
+          },
+          {
+            "char": "ジュ",
+            "romaji": "ju"
+          },
+          {
+            "char": "ジョ",
+            "romaji": "jo"
+          },
+          {
+            "char": "ビャ",
+            "romaji": "bya"
+          },
+          {
+            "char": "ビュ",
+            "romaji": "byu"
+          },
+          {
+            "char": "ビョ",
+            "romaji": "byo"
+          },
+          {
+            "char": "ピャ",
+            "romaji": "pya"
+          },
+          {
+            "char": "ピュ",
+            "romaji": "pyu"
+          },
+          {
+            "char": "ピョ",
+            "romaji": "pyo"
+          }
+        ]
+      }
+    },
+    {
+      "id": "scene-05",
+      "type": "vocab",
+      "section": "examples",
+      "content": {
+        "heading": "Kata serapan dengan youon",
+        "items": [
+          {
+            "ja": "シャツ",
+            "reading": "shatsu",
+            "id_text": "kemeja"
+          },
+          {
+            "ja": "ニュース",
+            "reading": "nyuusu",
+            "id_text": "berita"
+          },
+          {
+            "ja": "ジュース",
+            "reading": "juusu",
+            "id_text": "jus"
+          },
+          {
+            "ja": "チョコレート",
+            "reading": "chokoreeto",
+            "id_text": "cokelat"
+          },
+          {
+            "ja": "キャンプ",
+            "reading": "kyanpu",
+            "id_text": "berkemah"
+          },
+          {
+            "ja": "ショッピング",
+            "reading": "shoppingu",
+            "id_text": "belanja"
+          }
+        ]
+      }
+    },
+    {
+      "id": "scene-06",
+      "type": "mistakes",
+      "section": "mistakes",
+      "content": {
+        "heading": "Kesalahan yang sering dilakukan pemula",
+        "items": [
+          {
+            "wrong": "Membaca シャ sebagai \"shi-ya\"",
+            "right": "Bacalah \"sha\"",
+            "why": "ャ kecil menyatu dengan シ."
+          },
+          {
+            "wrong": "Menulis ャ dengan ukuran penuh",
+            "right": "Tulis lebih kecil",
+            "why": "Ukuran mengubah ketukan dan arti."
+          },
+          {
+            "wrong": "Menukar シュ dan ジュ",
+            "right": "シュ = shu, ジュ = ju",
+            "why": "Perhatikan tanda ゛."
+          }
+        ]
+      }
+    },
+    {
+      "id": "scene-07",
+      "type": "quiz",
+      "section": "exercises",
+      "content": {
+        "question": "Bagaimana membaca ニュース?",
+        "options": [
+          "nyuusu",
+          "niusu",
+          "nuusu"
+        ],
+        "answer": 0,
+        "why": [
+          null,
+          "ュ kecil menyatu dengan ニ.",
+          "Itu ヌ, bukan ニュ."
+        ]
+      }
+    },
+    {
+      "id": "scene-08",
+      "type": "quiz",
+      "section": "exercises",
+      "content": {
+        "question": "Bagaimana membaca シャツ?",
+        "options": [
+          "shatsu",
+          "shiyatsu",
+          "satsu"
+        ],
+        "answer": 0,
+        "why": [
+          null,
+          "ャ kecil menyatu dengan シ.",
+          "Bunyi awalnya \"sh\", bukan \"s\"."
+        ]
+      }
+    },
+    {
+      "id": "scene-09",
+      "type": "quiz",
+      "section": "exercises",
+      "content": {
+        "question": "Mana yang bunyinya \"ju\"?",
+        "options": [
+          "シュ",
+          "ジュ",
+          "チュ"
+        ],
+        "answer": 1,
+        "why": [
+          "Itu \"shu\".",
+          null,
+          "Itu \"chu\"."
+        ]
+      }
+    },
+    {
+      "id": "scene-10",
+      "type": "summary",
+      "section": "summary",
+      "content": {
+        "heading": "Rangkuman",
+        "points": [
+          "Youon katakana sama dengan hiragana: ャ ュ ョ kecil.",
+          "ジャ ジュ ジョ = ja ju jo.",
+          "Huruf kecil menyatu dengan huruf sebelumnya."
+        ]
+      }
+    }
+  ]
+}

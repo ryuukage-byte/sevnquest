@@ -26,7 +26,7 @@ export default function Planner({ query }: { query: string }) {
 
   return (
     <section className="flex flex-col gap-4 pt-4">
-      <div><h1 className="text-heading-page">Learning Planner</h1>
+      <div><h1 className="text-heading-page">Perencana Belajar</h1>
       <p className="text-body-regular">Jadwal dihitung dari jumlah materi di kurikulum SevnQuest dengan aturan tetap (bukan tebakan AI), sehingga hasilnya konsisten dan bisa diuji.</p></div>
 
       <form className="panel grid grid-cols-1 sm:grid-cols-2 gap-3" onSubmit={e => e.preventDefault()}>
@@ -67,7 +67,7 @@ export default function Planner({ query }: { query: string }) {
             <div className="panel !p-3 flex flex-col"><strong className="font-heading text-2xl text-gold">{plan.summary.requiredMinutesPerDay}</strong><span className="text-caption-meta">menit/hari ideal</span></div>
           </div>
 
-          <h2 className="text-heading-section">Roadmap ({input.startDate} sampai {plan.summary.endDate})</h2>
+          <h2 className="text-heading-section">Peta Jalan ({input.startDate} sampai {plan.summary.endDate})</h2>
           <div className="panel !p-0 overflow-x-auto">
             <table className="w-full text-xs font-medium text-text-secondary [&_th]:text-left [&_th]:font-mono [&_th]:text-text-muted [&_th]:p-3 [&_td]:p-3 [&_td]:border-t [&_td]:border-border-subtle whitespace-nowrap">
               <thead><tr><th>Minggu</th><th>Fokus</th><th>Kosakata</th><th>Kanji</th><th>Tata bahasa</th><th>Menit</th></tr></thead>
@@ -100,7 +100,7 @@ export default function Planner({ query }: { query: string }) {
             <button className="btn rpg-btn rpg-btn-primary" onClick={() => { savePlan(input); setSaved(true); }}><Save size={16} aria-hidden /> Simpan di perangkat ini</button>
             <button className="btn rpg-btn opacity-50 cursor-not-allowed" disabled title="Perlu login SevnQuest (segera hadir)"><CalendarCheck size={16} aria-hidden /> Impor ke SevnQuest</button>
           </div>
-          {saved && <p role="status" className="text-state-success text-sm font-bold">Tersimpan. Lihat di My Journey.</p>}
+          {saved && <p role="status" className="text-state-success text-sm font-bold">Tersimpan. Lihat di Perjalananku.</p>}
         </>
       )}
     </section>

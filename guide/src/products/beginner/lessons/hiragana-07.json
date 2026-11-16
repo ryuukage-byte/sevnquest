@@ -1,0 +1,298 @@
+{
+  "id": "hiragana-07",
+  "level": "BEGINNER",
+  "category": "kana",
+  "title": "Membaca Kombinasi dan Latihan Membaca",
+  "summary": "Menggabungkan semua aturan hiragana dan berlatih membaca kata serta kalimat.",
+  "minutes": 12,
+  "scenes": [
+    {
+      "id": "scene-01",
+      "type": "introduction",
+      "section": "introduction",
+      "duration": 4000,
+      "content": {
+        "title": "読む練習",
+        "subtitle": "Hiragana Mastery: Membaca kombinasi"
+      }
+    },
+    {
+      "id": "scene-02",
+      "type": "explain",
+      "section": "concept",
+      "content": {
+        "heading": "Cara membaca kombinasi: lima langkah",
+        "paragraphs": [
+          "1. Lihat hurufnya, baca bunyi dasar.",
+          "2. Ada tanda ゛ atau ゜? Ubah bunyi konsonannya.",
+          "3. Ada ゃ ゅ ょ kecil? Gabungkan dengan huruf sebelumnya.",
+          "4. Ada っ kecil? Gandakan konsonan berikutnya.",
+          "5. Ada vokal panjang? Baca dua ketukan."
+        ],
+        "analogy": "Seperti menyusun kode: dasar, lalu ubah satu per satu sesuai tanda kecil yang menyertainya."
+      }
+    },
+    {
+      "id": "scene-03",
+      "type": "vocab",
+      "section": "examples",
+      "content": {
+        "heading": "Latihan membaca kata",
+        "items": [
+          {
+            "ja": "きょうしつ",
+            "reading": "kyoushitsu",
+            "id_text": "ruang kelas"
+          },
+          {
+            "ja": "しゅくだい",
+            "reading": "shukudai",
+            "id_text": "pekerjaan rumah"
+          },
+          {
+            "ja": "ざっし",
+            "reading": "zasshi",
+            "id_text": "majalah"
+          },
+          {
+            "ja": "おんがく",
+            "reading": "ongaku",
+            "id_text": "musik"
+          },
+          {
+            "ja": "びょういん",
+            "reading": "byouin",
+            "id_text": "rumah sakit"
+          }
+        ]
+      }
+    },
+    {
+      "id": "scene-04",
+      "type": "example",
+      "section": "examples",
+      "content": {
+        "parts": [
+          {
+            "ja": "わたし",
+            "reading": "わたし",
+            "romaji": "watashi",
+            "id_text": "saya",
+            "role": "subject"
+          },
+          {
+            "ja": "は",
+            "reading": "は",
+            "romaji": "wa",
+            "id_text": "penanda topik",
+            "role": "particle"
+          },
+          {
+            "ja": "しゃしん",
+            "reading": "しゃしん",
+            "romaji": "shashin",
+            "id_text": "foto",
+            "role": "object"
+          },
+          {
+            "ja": "を",
+            "reading": "を",
+            "romaji": "o",
+            "id_text": "penanda objek",
+            "role": "particle"
+          },
+          {
+            "ja": "みます",
+            "reading": "みます",
+            "romaji": "mimasu",
+            "id_text": "melihat",
+            "role": "verb"
+          }
+        ],
+        "translation": "Saya melihat foto.",
+        "heading": "Membaca kalimat"
+      }
+    },
+    {
+      "id": "scene-05",
+      "type": "example",
+      "section": "examples",
+      "content": {
+        "parts": [
+          {
+            "ja": "わたし",
+            "reading": "わたし",
+            "romaji": "watashi",
+            "id_text": "saya",
+            "role": "subject"
+          },
+          {
+            "ja": "は",
+            "reading": "は",
+            "romaji": "wa",
+            "id_text": "penanda topik",
+            "role": "particle"
+          },
+          {
+            "ja": "びょういん",
+            "reading": "びょういん",
+            "romaji": "byouin",
+            "id_text": "rumah sakit",
+            "role": "other"
+          },
+          {
+            "ja": "へ",
+            "reading": "へ",
+            "romaji": "e",
+            "id_text": "menuju",
+            "role": "particle"
+          },
+          {
+            "ja": "いきます",
+            "reading": "いきます",
+            "romaji": "ikimasu",
+            "id_text": "pergi",
+            "role": "verb"
+          }
+        ],
+        "translation": "Saya pergi ke rumah sakit.",
+        "heading": "Membaca kalimat"
+      }
+    },
+    {
+      "id": "scene-06",
+      "type": "example",
+      "section": "examples",
+      "content": {
+        "parts": [
+          {
+            "ja": "ともだち",
+            "reading": "ともだち",
+            "romaji": "tomodachi",
+            "id_text": "teman",
+            "role": "subject"
+          },
+          {
+            "ja": "は",
+            "reading": "は",
+            "romaji": "wa",
+            "id_text": "penanda topik",
+            "role": "particle"
+          },
+          {
+            "ja": "ざっし",
+            "reading": "ざっし",
+            "romaji": "zasshi",
+            "id_text": "majalah",
+            "role": "object"
+          },
+          {
+            "ja": "を",
+            "reading": "を",
+            "romaji": "o",
+            "id_text": "penanda objek",
+            "role": "particle"
+          },
+          {
+            "ja": "よみます",
+            "reading": "よみます",
+            "romaji": "yomimasu",
+            "id_text": "membaca",
+            "role": "verb"
+          }
+        ],
+        "translation": "Teman membaca majalah.",
+        "heading": "Membaca kalimat"
+      }
+    },
+    {
+      "id": "scene-07",
+      "type": "quiz",
+      "section": "exercises",
+      "content": {
+        "question": "Bagaimana membaca しゅくだい?",
+        "options": [
+          "shukudai",
+          "shiyukudai",
+          "shuku-dai-i"
+        ],
+        "answer": 0,
+        "why": [
+          null,
+          "ゅ kecil menyatu dengan し, jadi bukan dua suku kata.",
+          "Tidak ada vokal panjang tambahan di sini."
+        ]
+      }
+    },
+    {
+      "id": "scene-08",
+      "type": "quiz",
+      "section": "exercises",
+      "content": {
+        "question": "Bagaimana membaca ざっし?",
+        "options": [
+          "zashi",
+          "zasshi",
+          "zatsushi"
+        ],
+        "answer": 1,
+        "why": [
+          "っ menggandakan konsonan berikutnya.",
+          null,
+          "Bukan bunyi \"tsu\" yang dibaca; っ hanya jeda."
+        ]
+      }
+    },
+    {
+      "id": "scene-09",
+      "type": "quiz",
+      "section": "exercises",
+      "content": {
+        "question": "Bagaimana membaca おんがく?",
+        "options": [
+          "ongaku",
+          "onkaku",
+          "oungaku"
+        ],
+        "answer": 0,
+        "why": [
+          null,
+          "が dibaca \"ga\", bukan \"ka\".",
+          "Tidak ada vokal panjang di sini."
+        ]
+      }
+    },
+    {
+      "id": "scene-10",
+      "type": "quiz",
+      "section": "exercises",
+      "content": {
+        "question": "Mana yang bunyinya \"kyou\"?",
+        "options": [
+          "きよう",
+          "きょう",
+          "きゆう"
+        ],
+        "answer": 1,
+        "why": [
+          "Itu dua suku kata: ki-yo-u.",
+          null,
+          "Itu dua suku kata: ki-yu-u."
+        ]
+      }
+    },
+    {
+      "id": "scene-11",
+      "type": "summary",
+      "section": "summary",
+      "content": {
+        "heading": "Rangkuman",
+        "points": [
+          "Baca dasar, lalu periksa ゛゜, ゃゅょ, っ, dan vokal panjang.",
+          "Berlatih membaca kata dan kalimat sampai lancar.",
+          "Berikutnya: Evaluasi Hiragana."
+        ]
+      }
+    }
+  ]
+}

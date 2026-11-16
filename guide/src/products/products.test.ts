@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';
 import { readdirSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { test } from 'node:test';
-import { toRomaji, isHiragana } from 'wanakana';
+import { toRomaji, isHiragana, isKana } from 'wanakana';
 import { generatePlan, isPlanError } from '../planner/planner';
 import { config } from './beginner/config';
 import { particleRomaji, validateLesson, type Lesson, type Part } from '../engine/lessonSchema';
@@ -65,6 +65,42 @@ test('contoh kalimat: bacaan hiragana, romaji, dan kana konsisten', () => {
     }
   }
   assert.ok(n > 30, 'terlalu sedikit contoh kalimat');
+});
+
+// wanakana mengeja ァィゥェォ kecil secara naif (ファ -> fua), jadi gabungan bunyi asing tidak diperiksa otomatis.
+const SMALL_VOWEL = /[ァィゥェォ]/;
+// Partikel は pada kata sapaan berbunyi "wa", bukan "ha".
+const HA_AS_WA = new Set(['こんにちは', 'こんばんは']);
+
+test('scene kana: romaji sesuai huruf', () => {
+  let n = 0;
+  for (const l of lessons) for (const s of l.scenes) {
+    if (s.type !== 'kana') continue;
+    for (const it of s.content.items) {
+      if (SMALL_VOWEL.test(it.char)) continue;
+      n++;
+      assert.equal(toRomaji(it.char), it.romaji, `${l.id}/${s.id}: ${it.char}`);
+    }
+  }
+  assert.ok(n > 150, 'terlalu sedikit huruf diperiksa');
+});
+
+test('scene vocab: romaji sesuai tulisan kana', () => {
+  let n = 0;
+  for (const l of lessons) for (const s of l.scenes) {
+    if (s.type !== 'vocab') continue;
+    for (const it of s.content.items) {
+      if (!isKana(it.ja) || HA_AS_WA.has(it.ja) || SMALL_VOWEL.test(it.ja)) continue;
+      n++;
+      assert.equal(toRomaji(it.ja), it.reading.replace(/ /g, ''), `${l.id}/${s.id}: ${it.ja}`);
+    }
+  }
+  assert.ok(n > 40, 'terlalu sedikit kosakata diperiksa');
+});
+
+test('semua bab di jalur belajar terbit (tidak ada "segera hadir") kecuali yang dinyatakan', () => {
+  const pending = config.paths.flatMap(p => p.chapters).filter(c => !c.lessonId);
+  assert.equal(pending.length, 0, `bab belum terbit: ${pending.map(c => c.title).join(', ')}`);
 });
 
 test('pengaturan bawaan planner Pemula menuntaskan seluruh materi target', () => {

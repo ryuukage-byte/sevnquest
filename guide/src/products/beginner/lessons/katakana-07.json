@@ -1,0 +1,264 @@
+{
+  "id": "katakana-07",
+  "level": "BEGINNER",
+  "category": "kana",
+  "title": "Kata Serapan",
+  "summary": "Pola kata serapan, kata yang artinya berubah, dan kemiripan dengan bahasa Indonesia.",
+  "minutes": 12,
+  "scenes": [
+    {
+      "id": "scene-01",
+      "type": "introduction",
+      "section": "introduction",
+      "duration": 4000,
+      "content": {
+        "title": "外来語",
+        "subtitle": "Katakana Mastery: Kata serapan"
+      }
+    },
+    {
+      "id": "scene-02",
+      "type": "explain",
+      "section": "definition",
+      "content": {
+        "heading": "Kata serapan (外来語, gairaigo)",
+        "paragraphs": [
+          "Kata serapan adalah kata dari bahasa asing yang diserap ke bahasa Jepang dan ditulis dengan katakana. Sebagian besar berasal dari bahasa Inggris, tetapi ada juga dari bahasa lain.",
+          "Contoh: パン (roti) berasal dari bahasa Portugis, アルバイト (kerja paruh waktu) berasal dari bahasa Jerman."
+        ],
+        "terms": [
+          {
+            "term": "外来語",
+            "reading": "gairaigo",
+            "meaning": "kata serapan"
+          },
+          {
+            "term": "和製英語",
+            "reading": "wasei eigo",
+            "meaning": "\"bahasa Inggris buatan Jepang\""
+          }
+        ]
+      }
+    },
+    {
+      "id": "scene-03",
+      "type": "explain",
+      "section": "concept",
+      "content": {
+        "heading": "Pola penyerapan",
+        "paragraphs": [
+          "1. Bunyi disesuaikan ke sistem bunyi Jepang. Konsonan berurutan diberi vokal: \"Christmas\" menjadi クリスマス (kurisumasu).",
+          "2. Kata sering dipendekkan: \"department store\" menjadi デパート (depaato).",
+          "3. Kata benda serapan bisa dijadikan kata kerja dengan する, misalnya ショッピングする (\"berbelanja\")."
+        ]
+      }
+    },
+    {
+      "id": "scene-04",
+      "type": "vocab",
+      "section": "examples",
+      "content": {
+        "heading": "Kata serapan yang sering dipakai",
+        "items": [
+          {
+            "ja": "パソコン",
+            "reading": "pasokon",
+            "id_text": "komputer pribadi"
+          },
+          {
+            "ja": "スマホ",
+            "reading": "sumaho",
+            "id_text": "ponsel pintar"
+          },
+          {
+            "ja": "デパート",
+            "reading": "depaato",
+            "id_text": "pusat perbelanjaan"
+          },
+          {
+            "ja": "アルバイト",
+            "reading": "arubaito",
+            "id_text": "kerja paruh waktu"
+          },
+          {
+            "ja": "コンビニ",
+            "reading": "konbini",
+            "id_text": "minimarket"
+          },
+          {
+            "ja": "エアコン",
+            "reading": "eakon",
+            "id_text": "pendingin udara"
+          }
+        ]
+      }
+    },
+    {
+      "id": "scene-05",
+      "type": "explain",
+      "section": "logic",
+      "content": {
+        "heading": "Hati-hati: artinya bisa berbeda",
+        "paragraphs": [
+          "Beberapa kata terlihat seperti bahasa asing, tetapi artinya berbeda. Kata-kata ini disebut wasei eigo.",
+          "Contoh: マンション (manshon) bukan \"mansion\" mewah, melainkan apartemen. コンセント (konsento) berarti stopkontak, bukan \"consent\"."
+        ]
+      }
+    },
+    {
+      "id": "scene-06",
+      "type": "example",
+      "section": "usage",
+      "content": {
+        "parts": [
+          {
+            "ja": "わたし",
+            "reading": "わたし",
+            "romaji": "watashi",
+            "id_text": "saya",
+            "role": "subject"
+          },
+          {
+            "ja": "は",
+            "reading": "は",
+            "romaji": "wa",
+            "id_text": "penanda topik",
+            "role": "particle"
+          },
+          {
+            "ja": "コンビニ",
+            "reading": "こんびに",
+            "romaji": "konbini",
+            "id_text": "minimarket",
+            "role": "other"
+          },
+          {
+            "ja": "で",
+            "reading": "で",
+            "romaji": "de",
+            "id_text": "di",
+            "role": "particle"
+          },
+          {
+            "ja": "ジュース",
+            "reading": "じゅうす",
+            "romaji": "juusu",
+            "id_text": "jus",
+            "role": "object"
+          },
+          {
+            "ja": "を",
+            "reading": "を",
+            "romaji": "o",
+            "id_text": "penanda objek",
+            "role": "particle"
+          },
+          {
+            "ja": "かいます",
+            "reading": "かいます",
+            "romaji": "kaimasu",
+            "id_text": "membeli",
+            "role": "verb"
+          }
+        ],
+        "translation": "Saya membeli jus di minimarket.",
+        "heading": "Kata serapan dalam kalimat"
+      }
+    },
+    {
+      "id": "scene-07",
+      "type": "mistakes",
+      "section": "mistakes",
+      "content": {
+        "heading": "Kesalahan yang sering dilakukan pemula",
+        "items": [
+          {
+            "wrong": "Mengucapkan kata serapan dengan bunyi bahasa Inggris",
+            "right": "Ucapkan dengan bunyi Jepang",
+            "why": "Kata serapan mengikuti sistem bunyi Jepang, bukan bahasa asalnya."
+          },
+          {
+            "wrong": "Menganggap semua kata serapan artinya sama dengan bahasa asalnya",
+            "right": "Cek arti kata wasei eigo",
+            "why": "Beberapa kata berubah arti."
+          },
+          {
+            "wrong": "Menulis kata serapan dengan hiragana",
+            "right": "Tulis dengan katakana",
+            "why": "Itu konvensi penulisan."
+          }
+        ]
+      }
+    },
+    {
+      "id": "scene-08",
+      "type": "quiz",
+      "section": "exercises",
+      "content": {
+        "question": "Apa arti マンション?",
+        "options": [
+          "Rumah mewah",
+          "Apartemen",
+          "Hotel"
+        ],
+        "answer": 1,
+        "why": [
+          "Itu arti bahasa Inggris, bukan Jepang.",
+          null,
+          "Hotel adalah ホテル."
+        ]
+      }
+    },
+    {
+      "id": "scene-09",
+      "type": "quiz",
+      "section": "exercises",
+      "content": {
+        "question": "Dari mana asal kata パン?",
+        "options": [
+          "Bahasa Inggris",
+          "Bahasa Portugis",
+          "Bahasa Jerman"
+        ],
+        "answer": 1,
+        "why": [
+          "Dalam bahasa Inggris disebut \"bread\".",
+          null,
+          "Jerman: アルバイト."
+        ]
+      }
+    },
+    {
+      "id": "scene-10",
+      "type": "quiz",
+      "section": "exercises",
+      "content": {
+        "question": "Aksara apa untuk kata serapan?",
+        "options": [
+          "Kanji",
+          "Hiragana",
+          "Katakana"
+        ],
+        "answer": 2,
+        "why": [
+          "Kanji untuk makna.",
+          "Hiragana untuk tata bahasa.",
+          null
+        ]
+      }
+    },
+    {
+      "id": "scene-11",
+      "type": "summary",
+      "section": "summary",
+      "content": {
+        "heading": "Rangkuman",
+        "points": [
+          "Kata serapan ditulis dengan katakana.",
+          "Bunyi disesuaikan ke sistem bunyi Jepang; kata sering dipendekkan.",
+          "Waspadai wasei eigo: bentuknya mirip, artinya berbeda."
+        ]
+      }
+    }
+  ]
+}
