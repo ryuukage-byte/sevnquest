@@ -12,7 +12,7 @@ import type { DeckType } from '../../types/rpg';
 import { DEEP_GUIDES, type TourId } from './tours';
 
 export type DragonTab = 'home' | 'maps' | 'daily' | 'weekly' | 'leaderboard' | 'library' | 'deck' | 'settings';
-export type LibrarySubTab = 'kotoba' | 'kanji' | 'bunpou' | 'dokkai' | 'choukai' | 'soal';
+export type LibrarySubTab = 'kotoba' | 'kanji' | 'bunpou' | 'dokkai' | 'choukai' | 'soal' | 'menulis';
 
 export type DragonCommand =
   | { type: 'tab'; tab: DragonTab }
@@ -389,6 +389,7 @@ function cleanPrefill(s: DeckSlots): DeckAiPrefill {
 
 const RE_WRITE = /\b(nulis|menulis|tulis|nulisin|writing|goresan|stroke|urutan goresan)\b/;
 const RE_KANA = /\b(hiragana|katakana|kana)\b/;
+const RE_COMPANION = /\b(writing companion|companion|salin paragraf|menyalin|nyalin|nyalin paragraf|tulis tangan|menulis tangan|nulis di buku|menulis di buku|tulis di kertas|nulis di kertas)\b/;
 
 /** Panduan lengkap latihan menulis: tempat, cara penilaian, bonus EXP, dan tur bertahap. */
 export function writingGuide(kana: boolean): DragonReply {
@@ -408,6 +409,7 @@ export function writingGuide(kana: boolean): DragonReply {
           'Buku Saku → buka deck → Latihan Menulis. Menulis semua isi deck berurutan.',
           'Library → Kotoba → buka kata → Latih dengan Menulis. Menulis kata utuh dari ingatan.',
           'World → Arena Arcade → Kanji Speed Rush. Tulis sebanyak mungkin dalam 60 detik.',
+          'Library → Menulis (Writing Companion). Salin paragraf di buku sungguhan, aku tunjukkan goresan dan penjelasannya.',
           ...(kana ? ['Untuk pemula: Buku Saku → Buku Resmi → Kuil Aksara Kana Dojo.'] : []),
         ],
       },
@@ -432,6 +434,7 @@ export function writingGuide(kana: boolean): DragonReply {
       { label: 'Pandu aku sampai kanvas', command: { type: 'guide_tour', tour: 'menulis-kanji' } },
       { label: 'Latihan dari deck', command: { type: 'tab', tab: 'deck' } },
       { label: 'Kanji Speed Rush', command: { type: 'guide_tour', tour: 'arcade' } },
+      { label: 'Writing Companion', command: { type: 'guide_tour', tour: 'writing-companion' } },
       { label: 'Bikin deck kanji', say: 'Aku mau bikin flashcard kanji' },
     ],
   };
@@ -509,6 +512,9 @@ export function interpret(text: string, ctx: DragonContext = {}): DragonReply {
 
   const matches = matchTopics(n);
   const top = matches[0];
+
+  // Writing Companion (menyalin paragraf di kertas) lebih spesifik daripada latihan menulis umum.
+  if (has(n, RE_COMPANION) && !wantsDeck) return replyForTopic('writing-companion');
 
   // Latihan menulis (kanji / kana): panduan lengkap, bukan sekadar menunjuk satu menu.
   // Kecuali jelas topik lain ("tulis surat ke admin", "tulis nama").

@@ -7,7 +7,9 @@ import { CheckCircle2, ClipboardPaste, NotebookPen, Search } from 'lucide-react'
 import { getDokkaiCollection } from '../../engine/dokkaiStudy/collection';
 import { splitParagraphs } from '../../engine/dokkaiStudy/text';
 import { splitSentences } from '../../engine/textStudy/textAnalyzer';
-import { DOKKAI_LEVELS, type DokkaiLevel, type DokkaiPassage } from '../../engine/dokkaiStudy/types';
+import { DOKKAI_LEVELS, type DokkaiLevel } from '../../engine/dokkaiStudy/types';
+import { normSentence } from '../../engine/dokkaiStudy/text';
+import { COMPANION_TEXTS } from '../../data/writingCompanionTexts';
 import { playSound } from '../../utils/audio';
 import { WritingCompanionStudy } from './writingCompanion/WritingCompanionStudy';
 import { loadDone, type CompanionSource } from './writingCompanion/storage';
@@ -20,8 +22,44 @@ const MAX_CUSTOM = 1200;
 const PAGE = 24;
 const HAS_JP = /[぀-ヿ一-龯]/;
 
-const fromPassage = (p: DokkaiPassage): CompanionSource => ({
-  id: p.id, title: p.title, text: p.text, translations: p.sentenceTranslations, meta: `${p.levelLabel} · ${p.sourceLabel}`,
+type SourceKind = 'kurasi' | 'dokkai';
+
+interface ListItem {
+  id: string;
+  kind: SourceKind;
+  level: DokkaiLevel;
+  levelLabel: string;
+  title: string;
+  text: string;
+  translations?: Record<string, string>;
+  sourceLabel: string;
+}
+
+const SOURCE_TABS: { value: 'all' | SourceKind; label: string }[] = [
+  { value: 'all', label: 'Semua' },
+  { value: 'kurasi', label: 'Paragraf Menulis' },
+  { value: 'dokkai', label: 'Bacaan Dokkai' },
+];
+
+/** Paragraf kurasi khusus menulis (terjemahan per kalimat) didahulukan, lalu koleksi Dokkai. */
+function buildItems(): ListItem[] {
+  const curated: ListItem[] = COMPANION_TEXTS.map(t => {
+    const translations: Record<string, string> = {};
+    for (const [jp, id] of t.sentences) translations[normSentence(jp)] = id;
+    return {
+      id: t.id, kind: 'kurasi', level: t.level, levelLabel: t.level,
+      title: t.topic, text: t.sentences.map(([jp]) => jp).join(''), translations, sourceLabel: 'Paragraf Menulis',
+    };
+  });
+  const dokkai: ListItem[] = getDokkaiCollection().map(p => ({
+    id: p.id, kind: 'dokkai', level: p.level, levelLabel: p.levelLabel, title: p.title, text: p.text,
+    translations: p.sentenceTranslations, sourceLabel: p.sourceLabel,
+  }));
+  return [...curated, ...dokkai];
+}
+
+const toSource = (p: ListItem): CompanionSource => ({
+  id: p.id, title: p.title, text: p.text, translations: p.translations, meta: `${p.levelLabel} · ${p.sourceLabel}`,
 });
 
 function shape(text: string) {
@@ -30,10 +68,11 @@ function shape(text: string) {
 }
 
 export const WritingCompanionView: React.FC<Props> = ({ soundEnabled = true }) => {
-  const collection = useMemo(() => getDokkaiCollection(), []);
+  const collection = useMemo(buildItems, []);
   const shapes = useMemo(() => new Map(collection.map(p => [p.id, shape(p.text)])), [collection]);
   const [level, setLevel] = useState<'all' | DokkaiLevel>('N5');
   const [query, setQuery] = useState('');
+  const [kind, setKind] = useState<'all' | SourceKind>('all');
   const [limit, setLimit] = useState(PAGE);
   const [active, setActive] = useState<CompanionSource | null>(null);
   const [customOpen, setCustomOpen] = useState(false);
@@ -48,9 +87,10 @@ export const WritingCompanionView: React.FC<Props> = ({ soundEnabled = true }) =
     const ql = q.toLowerCase();
     return collection.filter(p =>
       (level === 'all' || p.level === level) &&
+      (kind === 'all' || p.kind === kind) &&
       (!q || p.title.toLowerCase().includes(ql) || p.text.includes(q) || p.sourceLabel.toLowerCase().includes(ql)),
     );
-  }, [collection, level, query]);
+  }, [collection, level, kind, query]);
 
   const counts = useMemo(() => {
     const c: Record<string, number> = {};
@@ -136,6 +176,11 @@ export const WritingCompanionView: React.FC<Props> = ({ soundEnabled = true }) =
           />
         </div>
         <div className="flex gap-1.5 flex-wrap">
+          {SOURCE_TABS.map(t => (
+            <button key={t.value} type="button" className={pill(kind === t.value)} onClick={() => { click(); setKind(t.value); setLimit(PAGE); }}>{t.label}</button>
+          ))}
+        </div>
+        <div className="flex gap-1.5 flex-wrap">
           <button type="button" className={pill(level === 'all')} onClick={() => { click(); setLevel('all'); setLimit(PAGE); }}>Semua level</button>
           {DOKKAI_LEVELS.map(lv => (
             <button key={lv} type="button" className={pill(level === lv)} onClick={() => { click(); setLevel(lv); setLimit(PAGE); }}>
@@ -157,15 +202,16 @@ export const WritingCompanionView: React.FC<Props> = ({ soundEnabled = true }) =
             return (
               <button
                 key={p.id}
+                data-tour="wc-item"
                 type="button"
-                onClick={() => { click(); setActive(fromPassage(p)); }}
+                onClick={() => { click(); setActive(toSource(p)); }}
                 className="panel panel-stitched text-left p-4 rounded-2xl border border-border-subtle hover:border-gold/50 transition-colors cursor-pointer space-y-2"
               >
                 <div className="flex items-center justify-between gap-2">
                   <span className="text-[10px] font-mono font-bold px-2 py-0.5 rounded-md bg-surface-inset border border-border-subtle text-text-primary">{p.levelLabel}</span>
                   <span className="text-[10px] font-mono text-text-muted truncate">{p.sourceLabel}</span>
                 </div>
-                <div className="font-jp font-bold text-text-primary leading-snug line-clamp-2">{p.title}</div>
+                <div className={`${p.kind === 'kurasi' ? 'font-heading' : 'font-jp'} font-bold text-text-primary leading-snug line-clamp-2`}>{p.title}</div>
                 <p className="font-jp text-xs text-text-secondary line-clamp-2">{p.text.replace(/\s+/g, ' ').slice(0, 90)}</p>
                 <div className="flex items-center justify-between gap-2 text-[10.5px] font-mono text-text-muted">
                   <span>{sh.paragraphs} paragraf · {sh.sentences} kalimat</span>

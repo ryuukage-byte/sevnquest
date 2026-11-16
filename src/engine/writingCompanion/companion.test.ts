@@ -70,3 +70,23 @@ test('kata kerja terkonjugasi menyebut perubahan bentuk', () => {
   assert.ok(ex.words[0].inflection);
   assert.ok(/^[ぁ-ゖ]+$/.test(ex.words[0].reading), ex.words[0].reading);
 });
+
+test('paragraf kurasi: 7 per level, tiap kalimat berterjemahan dan terbaca utuh', async () => {
+  const { COMPANION_TEXTS } = await import('../../data/writingCompanionTexts');
+  const { normSentence } = await import('../dokkaiStudy/text');
+  for (const lv of ['N5', 'N4', 'N3', 'N2', 'N1']) {
+    assert.equal(COMPANION_TEXTS.filter(t => t.level === lv).length, 7, lv);
+  }
+  assert.equal(new Set(COMPANION_TEXTS.map(t => t.id)).size, COMPANION_TEXTS.length, 'id unik');
+  for (const t of COMPANION_TEXTS) {
+    const translations: Record<string, string> = {};
+    for (const [jp, id] of t.sentences) {
+      assert.ok(/[。？！]$/.test(jp), `${t.id}: ${jp}`);
+      assert.ok(id.trim().length > 3, `${t.id}: terjemahan kosong`);
+      translations[normSentence(jp)] = id;
+    }
+    const doc = buildCompanionDoc(t.sentences.map(([jp]) => jp).join(''), translations);
+    assert.equal(doc.sentences.length, t.sentences.length, `${t.id}: jumlah kalimat`);
+    for (const s of doc.sentences) assert.ok(s.translation, `${t.id}: terjemahan tidak tersambung untuk ${s.text}`);
+  }
+});

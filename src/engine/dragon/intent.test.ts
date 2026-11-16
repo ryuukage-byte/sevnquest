@@ -195,3 +195,15 @@ test('pencocokan toleran salah ketik', async () => {
   assert.equal(interpret('peringakt').intent, 'topic:peringkat');
   assert.equal(interpret('leaderbord').intent, 'topic:peringkat');
 });
+
+test('Tatsu mengenali Writing Companion dan menawarkan tur', () => {
+  for (const q of ['cara pakai writing companion', 'aku mau menyalin paragraf di buku', 'gimana cara nulis di buku pakai sevnquest']) {
+    const r = interpret(q);
+    const tours = (r.choices || []).map(c => (c.command && 'tour' in c.command ? c.command.tour : undefined));
+    assert.ok(tours.includes('writing-companion'), `${q} → ${r.intent} ${JSON.stringify(r.choices)}`);
+  }
+  // Latihan menulis kanji biasa tetap ke panduan menulis, tapi menyebut Writing Companion sebagai pilihan.
+  const w = interpret('mau latihan menulis kanji');
+  assert.equal(w.intent, 'guide_writing');
+  assert.ok((w.choices || []).some(c => c.command && 'tour' in c.command && c.command.tour === 'writing-companion'));
+});

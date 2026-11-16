@@ -337,7 +337,7 @@ export const WritingCompanionStudy: React.FC<Props> = ({ source, soundEnabled = 
         <div className="flex-1 min-h-0 flex flex-col lg:grid lg:grid-cols-2">
           {/* KOTAK 1 — Paragraf */}
           <div className="h-[40%] lg:h-auto shrink-0 lg:shrink min-h-0 flex flex-col border-b lg:border-b-0 lg:border-r border-border-subtle">
-            <div className="flex items-center gap-1.5 px-3 py-1.5 overflow-x-auto no-scrollbar border-b border-border-subtle">
+            <div data-tour="wc-toolbar" className="flex items-center gap-1.5 px-3 py-1.5 overflow-x-auto no-scrollbar border-b border-border-subtle">
               {MODES.map(m => (
                 <button key={m.value} type="button" role="radio" aria-checked={mode === m.value} onClick={() => { click(); setMode(m.value); }} className={chip(mode === m.value)}>
                   {m.label}
@@ -365,6 +365,7 @@ export const WritingCompanionStudy: React.FC<Props> = ({ source, soundEnabled = 
               )}
             </div>
             <div
+              data-tour="wc-paragraph"
               role="application"
               aria-label="Paragraf untuk disalin. Ketuk bagian untuk pembahasan, panah kiri/kanan untuk pindah."
               tabIndex={0}
@@ -383,7 +384,7 @@ export const WritingCompanionStudy: React.FC<Props> = ({ source, soundEnabled = 
           </div>
 
           {/* KOTAK 2 — Pembahasan */}
-          <div className="flex-1 min-h-0 flex flex-col">
+          <div data-tour="wc-panel" className="flex-1 min-h-0 flex flex-col">
             {!explanation ? (
               <div className="flex-1 flex flex-col items-center justify-center gap-2 p-6 text-center">
                 <PenLine className="w-7 h-7 text-text-muted" />
