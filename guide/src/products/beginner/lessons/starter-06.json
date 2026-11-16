@@ -2,8 +2,8 @@
   "id": "starter-06",
   "level": "BEGINNER",
   "category": "grammar",
-  "title": "Mengenal Kata Kerja",
-  "summary": "Kata kerja dan empat bentuk sopan yang paling sering dipakai.",
+  "title": "Apa Itu Partikel?",
+  "summary": "Kata kecil yang ditaruh setelah kata, seperti \"di\", \"ke\", dan \"dari\" dalam bahasa Indonesia.",
   "minutes": 9,
   "scenes": [
     {
@@ -12,8 +12,8 @@
       "section": "introduction",
       "duration": 4000,
       "content": {
-        "title": "動詞",
-        "subtitle": "Kata kerja"
+        "title": "助詞",
+        "subtitle": "Partikel"
       }
     },
     {
@@ -21,132 +21,131 @@
       "type": "explain",
       "section": "definition",
       "content": {
-        "heading": "Kata kerja = 動詞",
+        "heading": "Partikel itu apa?",
         "paragraphs": [
-          "Kata kerja disebut 動詞 (doushi).",
-          "Ini sepuluh kata kerja yang akan sering kamu temui."
+          "Partikel disebut 助詞 (joshi).",
+          "Partikel adalah kata kecil yang ditaruh setelah kata untuk menjelaskan perannya.",
+          "Kerjanya mirip \"di\", \"ke\", dan \"dari\" di bahasa Indonesia."
         ],
         "terms": [
           {
-            "term": "動詞",
-            "reading": "doushi",
-            "meaning": "kata kerja"
+            "term": "助詞",
+            "reading": "joshi",
+            "meaning": "partikel"
           }
         ]
       }
     },
     {
       "id": "scene-03",
-      "type": "vocab",
+      "type": "example",
       "section": "examples",
       "content": {
-        "heading": "Sepuluh kata kerja",
-        "items": [
+        "parts": [
           {
-            "ja": "食べる",
-            "reading": "taberu",
-            "id_text": "makan"
+            "ja": "私",
+            "reading": "わたし",
+            "romaji": "watashi",
+            "id_text": "saya",
+            "role": "subject"
           },
           {
-            "ja": "飲む",
-            "reading": "nomu",
-            "id_text": "minum"
+            "ja": "は",
+            "reading": "は",
+            "romaji": "wa",
+            "id_text": "penanda topik",
+            "role": "particle"
           },
           {
-            "ja": "行く",
-            "reading": "iku",
-            "id_text": "pergi"
+            "ja": "学校",
+            "reading": "がっこう",
+            "romaji": "gakkou",
+            "id_text": "sekolah",
+            "role": "other"
           },
           {
-            "ja": "来る",
-            "reading": "kuru",
-            "id_text": "datang"
+            "ja": "に",
+            "reading": "に",
+            "romaji": "ni",
+            "id_text": "penanda tujuan",
+            "role": "particle"
           },
           {
-            "ja": "見る",
-            "reading": "miru",
-            "id_text": "melihat"
-          },
-          {
-            "ja": "聞く",
-            "reading": "kiku",
-            "id_text": "mendengar"
-          },
-          {
-            "ja": "話す",
-            "reading": "hanasu",
-            "id_text": "berbicara"
-          },
-          {
-            "ja": "寝る",
-            "reading": "neru",
-            "id_text": "tidur"
-          },
-          {
-            "ja": "起きる",
-            "reading": "okiru",
-            "id_text": "bangun"
-          },
-          {
-            "ja": "勉強する",
-            "reading": "benkyou suru",
-            "id_text": "belajar"
+            "ja": "行きます",
+            "reading": "いきます",
+            "romaji": "ikimasu",
+            "id_text": "pergi",
+            "role": "verb"
           }
-        ]
+        ],
+        "translation": "Saya pergi ke sekolah.",
+        "heading": "Dua partikel dalam satu kalimat",
+        "note": "は menandai topik (saya). に menandai tujuan (ke sekolah)."
       }
     },
     {
       "id": "scene-04",
-      "type": "explain",
-      "section": "concept",
+      "type": "vocab",
+      "section": "explanation",
       "content": {
-        "heading": "Kata kerja berubah bentuk",
-        "paragraphs": [
-          "食べる = makan (bentuk biasa).",
-          "食べます = makan (bentuk sopan).",
-          "Perubahan bentuk ini disebut katsuyou (活用)."
+        "heading": "Lima partikel pertama",
+        "items": [
+          {
+            "ja": "は",
+            "reading": "wa",
+            "id_text": "penanda topik. Contoh: 私は (saya)"
+          },
+          {
+            "ja": "を",
+            "reading": "o",
+            "id_text": "penanda objek. Contoh: 水を (air)"
+          },
+          {
+            "ja": "に",
+            "reading": "ni",
+            "id_text": "tujuan atau tempat. Contoh: 学校に (ke sekolah)"
+          },
+          {
+            "ja": "の",
+            "reading": "no",
+            "id_text": "milik. Contoh: 私の (milik saya)"
+          },
+          {
+            "ja": "も",
+            "reading": "mo",
+            "id_text": "juga. Contoh: 私も (saya juga)"
+          }
         ]
       }
     },
     {
       "id": "scene-05",
-      "type": "vocab",
-      "section": "explanation",
+      "type": "explain",
+      "section": "logic",
       "content": {
-        "heading": "Empat bentuk dari 食べる",
-        "items": [
-          {
-            "ja": "食べます",
-            "reading": "tabemasu",
-            "id_text": "makan"
-          },
-          {
-            "ja": "食べません",
-            "reading": "tabemasen",
-            "id_text": "tidak makan"
-          },
-          {
-            "ja": "食べました",
-            "reading": "tabemashita",
-            "id_text": "sudah makan"
-          },
-          {
-            "ja": "食べませんでした",
-            "reading": "tabemasen deshita",
-            "id_text": "tidak makan (waktu lalu)"
-          }
+        "heading": "Jangan dihafal semuanya sekarang",
+        "paragraphs": [
+          "Masih ada partikel lain, seperti が, で, と, へ, から, dan まで.",
+          "Kita pelajari satu per satu nanti."
         ]
       }
     },
     {
       "id": "scene-06",
-      "type": "explain",
-      "section": "logic",
+      "type": "quiz",
+      "section": "exercises",
       "content": {
-        "heading": "Kita pelajari lebih dalam nanti",
-        "paragraphs": [
-          "Untuk sekarang, cukup kenali bahwa ujung kata kerja berubah.",
-          "Ujung itulah yang memberi tahu waktu dan kesopanan."
+        "question": "Apa fungsi partikel を?",
+        "options": [
+          "Menandai topik",
+          "Menandai objek",
+          "Menandai milik"
+        ],
+        "answer": 1,
+        "why": [
+          "Itu fungsi は.",
+          null,
+          "Itu fungsi の."
         ]
       }
     },
@@ -155,49 +154,30 @@
       "type": "quiz",
       "section": "exercises",
       "content": {
-        "question": "\"Sudah makan\" dalam bahasa Jepang adalah...",
+        "question": "Partikel yang berarti \"juga\" adalah...",
         "options": [
-          "食べます",
-          "食べました",
-          "食べません"
+          "も",
+          "の",
+          "に"
         ],
-        "answer": 1,
+        "answer": 0,
         "why": [
-          "Itu \"makan\" (belum lampau).",
           null,
-          "Itu \"tidak makan\"."
+          "の berarti milik.",
+          "に berarti tujuan atau tempat."
         ]
       }
     },
     {
       "id": "scene-08",
-      "type": "quiz",
-      "section": "exercises",
-      "content": {
-        "question": "\"Tidak makan\" adalah...",
-        "options": [
-          "食べます",
-          "食べました",
-          "食べません"
-        ],
-        "answer": 2,
-        "why": [
-          "Itu \"makan\".",
-          "Itu \"sudah makan\".",
-          null
-        ]
-      }
-    },
-    {
-      "id": "scene-09",
       "type": "summary",
       "section": "summary",
       "content": {
         "heading": "Rangkuman",
         "points": [
-          "Kata kerja = 動詞 (doushi).",
-          "ます = sopan, ません = tidak, ました = sudah.",
-          "Perubahan bentuk disebut 活用 (katsuyou)."
+          "Partikel = kata kecil setelah kata, penjelas peran.",
+          "は topik, を objek, に tujuan, の milik, も juga.",
+          "Partikel lain dipelajari nanti."
         ]
       }
     }

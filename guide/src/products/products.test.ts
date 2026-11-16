@@ -29,9 +29,9 @@ test('jalur belajar hanya merujuk materi yang ada, dan tiap materi masuk tepat s
   assert.equal(new Set(chapterIds).size, chapterIds.length);
 });
 
-test('Starter Pack memuat 9 bab dan menjadi jalur pertama', () => {
+test('Starter Pack memuat 8 bab dan menjadi jalur pertama', () => {
   assert.equal(config.paths[0].id, 'starter');
-  assert.equal(config.paths[0].chapters.length, 9);
+  assert.equal(config.paths[0].chapters.length, 8);
 });
 
 test('setiap materi punya latihan dan ditutup rangkuman', () => {
@@ -42,7 +42,7 @@ test('setiap materi punya latihan dan ditutup rangkuman', () => {
 });
 
 test('setiap kuis menjelaskan pilihan yang salah (why) bila materi Foundation', () => {
-  for (const l of lessons.filter(x => x.id.startsWith('foundation-') || x.id.startsWith('starter-'))) {
+  for (const l of lessons.filter(x => x.id.startsWith('foundation-') || x.id.startsWith('starter-') || x.id.startsWith('lanjutan-'))) {
     for (const s of l.scenes) {
       if (s.type !== 'quiz') continue;
       assert.ok(s.content.why, `${l.id}/${s.id} tanpa why`);

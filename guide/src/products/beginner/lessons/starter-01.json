@@ -1,9 +1,9 @@
 {
   "id": "starter-01",
   "level": "BEGINNER",
-  "category": "concept",
-  "title": "Apa Itu Bahasa Jepang?",
-  "summary": "Selamat datang di kelas. Kenalan dulu dengan bahasa Jepang.",
+  "category": "kana",
+  "title": "Mengenal Bahasa dan Huruf Jepang",
+  "summary": "Kenalan dengan bahasa Jepang dan empat jenis hurufnya.",
   "minutes": 8,
   "scenes": [
     {
@@ -12,33 +12,19 @@
       "section": "introduction",
       "duration": 4000,
       "content": {
-        "title": "ようこそ",
-        "subtitle": "Selamat datang di kelas bahasa Jepang"
+        "title": "日本語",
+        "subtitle": "Selamat datang! Kenalan dulu dengan bahasa Jepang"
       }
     },
     {
       "id": "scene-02",
       "type": "explain",
-      "section": "introduction",
-      "content": {
-        "heading": "Aku akan jadi gurumu",
-        "paragraphs": [
-          "Mulai sekarang, anggap aku guru bahasa Jepangmu. Kita mulai dari dasar.",
-          "Kita tidak akan langsung menghafal ribuan kata atau mengerjakan soal ujian.",
-          "Kita pahami dulu: apa itu bahasa Jepang, bagaimana cara kerjanya, dan bagaimana orang Jepang menyusun kalimat."
-        ]
-      }
-    },
-    {
-      "id": "scene-03",
-      "type": "explain",
       "section": "definition",
       "content": {
         "heading": "Namanya 日本語",
         "paragraphs": [
-          "Bahasa Jepang disebut 日本語 (ni-hon-go).",
-          "日本 (Nihon) = Jepang. 語 (go) = bahasa.",
-          "Jadi 日本語 artinya bahasa Jepang."
+          "Bahasa Jepang disebut 日本語, dibaca \"ni-hon-go\".",
+          "Kita mulai dari yang paling dasar: hurufnya."
         ],
         "terms": [
           {
@@ -50,114 +36,129 @@
       }
     },
     {
-      "id": "scene-04",
-      "type": "vocab",
-      "section": "examples",
+      "id": "scene-03",
+      "type": "explain",
+      "section": "concept",
       "content": {
-        "heading": "Empat ucapan pertamamu",
+        "heading": "Ada empat jenis huruf",
+        "paragraphs": [
+          "1. Hiragana",
+          "2. Katakana",
+          "3. Kanji",
+          "4. Romaji",
+          "Kita kenalan satu per satu. Tenang, belum perlu hafal."
+        ]
+      }
+    },
+    {
+      "id": "scene-04",
+      "type": "kana",
+      "section": "explanation",
+      "content": {
+        "heading": "1. Hiragana",
         "items": [
           {
-            "ja": "おはようございます",
-            "reading": "ohayou gozaimasu",
-            "id_text": "Selamat pagi"
+            "char": "あ",
+            "romaji": "a"
           },
           {
-            "ja": "こんにちは",
-            "reading": "konnichiwa",
-            "id_text": "Halo / selamat siang"
+            "char": "い",
+            "romaji": "i"
           },
           {
-            "ja": "ありがとうございます",
-            "reading": "arigatou gozaimasu",
-            "id_text": "Terima kasih"
+            "char": "う",
+            "romaji": "u"
           },
           {
-            "ja": "すみません",
-            "reading": "sumimasen",
-            "id_text": "Permisi / maaf"
+            "char": "え",
+            "romaji": "e"
+          },
+          {
+            "char": "お",
+            "romaji": "o"
           }
-        ]
+        ],
+        "caption": "Huruf dasar bahasa Jepang. Dipakai untuk kata Jepang sehari-hari."
       }
     },
     {
       "id": "scene-05",
-      "type": "explain",
-      "section": "concept",
+      "type": "kana",
+      "section": "explanation",
       "content": {
-        "heading": "Bukan sekadar terjemahan",
-        "paragraphs": [
-          "Bahasa Jepang bukan bahasa Indonesia yang diganti kata-katanya.",
-          "Tulisannya, susunan kalimatnya, dan cara menyampaikannya berbeda."
-        ]
+        "heading": "2. Katakana",
+        "items": [
+          {
+            "char": "ア",
+            "romaji": "a"
+          },
+          {
+            "char": "イ",
+            "romaji": "i"
+          },
+          {
+            "char": "ウ",
+            "romaji": "u"
+          },
+          {
+            "char": "エ",
+            "romaji": "e"
+          },
+          {
+            "char": "オ",
+            "romaji": "o"
+          }
+        ],
+        "caption": "Bunyinya sama dengan hiragana, hanya bentuknya beda. Dipakai untuk kata dari luar negeri."
       }
     },
     {
       "id": "scene-06",
-      "type": "comparison",
-      "section": "comparison",
+      "type": "vocab",
+      "section": "explanation",
       "content": {
-        "left": "Saya makan nasi.",
-        "right": "私はご飯を食べます。",
-        "leftLabel": "INDONESIA",
-        "rightLabel": "JEPANG"
+        "heading": "3. Kanji",
+        "items": [
+          {
+            "ja": "山",
+            "reading": "yama",
+            "id_text": "gunung"
+          },
+          {
+            "ja": "水",
+            "reading": "mizu",
+            "id_text": "air"
+          },
+          {
+            "ja": "人",
+            "reading": "hito",
+            "id_text": "orang"
+          }
+        ]
       }
     },
     {
       "id": "scene-07",
-      "type": "example",
-      "section": "examples",
+      "type": "explain",
+      "section": "explanation",
       "content": {
-        "parts": [
-          {
-            "ja": "私",
-            "reading": "わたし",
-            "romaji": "watashi",
-            "id_text": "saya",
-            "role": "subject"
-          },
-          {
-            "ja": "は",
-            "reading": "は",
-            "romaji": "wa",
-            "id_text": "penanda topik",
-            "role": "particle"
-          },
-          {
-            "ja": "ご飯",
-            "reading": "ごはん",
-            "romaji": "gohan",
-            "id_text": "nasi",
-            "role": "object"
-          },
-          {
-            "ja": "を",
-            "reading": "を",
-            "romaji": "o",
-            "id_text": "penanda objek",
-            "role": "particle"
-          },
-          {
-            "ja": "食べます",
-            "reading": "たべます",
-            "romaji": "tabemasu",
-            "id_text": "makan",
-            "role": "verb"
-          }
-        ],
-        "translation": "Saya makan nasi.",
-        "heading": "Kalimat pertamamu",
-        "note": "Ketuk tiap kotak untuk melihat artinya. Perhatikan: \"makan\" ada di paling akhir."
+        "heading": "Kanji punya arti",
+        "paragraphs": [
+          "Kanji berasal dari Tiongkok. Satu kanji punya arti sendiri, bentuknya seperti gambar.",
+          "Kita belajar kanji sedikit demi sedikit, belakangan."
+        ]
       }
     },
     {
       "id": "scene-08",
       "type": "explain",
-      "section": "concept",
+      "section": "explanation",
       "content": {
-        "heading": "Inilah yang akan kita pelajari",
+        "heading": "4. Romaji",
         "paragraphs": [
-          "Susunan dan fungsi tiap kata memang berbeda.",
-          "Tenang, kita pelajari pelan-pelan."
+          "Romaji adalah tulisan Jepang dengan huruf Latin, seperti huruf yang kamu pakai sehari-hari.",
+          "Contoh: ありがとう ditulis arigatou.",
+          "Di pelajaran ini, romaji ditaruh di bawah huruf Jepang sebagai bantuan membaca."
         ]
       }
     },
@@ -166,30 +167,49 @@
       "type": "quiz",
       "section": "exercises",
       "content": {
-        "question": "Apa arti 日本語?",
+        "question": "Huruf mana yang dipakai untuk kata dari luar negeri?",
         "options": [
-          "Negara Jepang",
-          "Bahasa Jepang",
-          "Orang Jepang"
+          "Hiragana",
+          "Katakana",
+          "Kanji"
         ],
         "answer": 1,
         "why": [
-          "Negara Jepang adalah 日本.",
+          "Hiragana untuk kata Jepang sehari-hari.",
           null,
-          "Orang Jepang adalah 日本人."
+          "Kanji punya arti sendiri, seperti 水."
         ]
       }
     },
     {
       "id": "scene-10",
+      "type": "quiz",
+      "section": "exercises",
+      "content": {
+        "question": "Huruf mana yang bentuknya seperti gambar dan punya arti?",
+        "options": [
+          "Kanji",
+          "Hiragana",
+          "Romaji"
+        ],
+        "answer": 0,
+        "why": [
+          null,
+          "Hiragana hanya mewakili bunyi.",
+          "Romaji adalah huruf Latin."
+        ]
+      }
+    },
+    {
+      "id": "scene-11",
       "type": "summary",
       "section": "summary",
       "content": {
         "heading": "Rangkuman",
         "points": [
-          "日本語 (nihongo) = bahasa Jepang.",
-          "Bahasa Jepang punya cara kerja sendiri, bukan sekadar terjemahan.",
-          "Kita belajar dari dasar, pelan-pelan."
+          "Empat jenis huruf: hiragana, katakana, kanji, romaji.",
+          "Hiragana dan katakana mewakili bunyi.",
+          "Kanji punya arti. Romaji = huruf Latin sebagai bantuan baca."
         ]
       }
     }

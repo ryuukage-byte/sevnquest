@@ -2,9 +2,9 @@
   "id": "starter-04",
   "level": "BEGINNER",
   "category": "grammar",
-  "title": "Apa Itu Partikel?",
-  "summary": "Kata kecil yang menjelaskan peran tiap kata dalam kalimat.",
-  "minutes": 10,
+  "title": "Susunan Bahasa: Jenis Kata",
+  "summary": "Kata benda, kata kerja, dan kata sifat, dan kata penghubung seperti \"di\" dan \"ke\".",
+  "minutes": 9,
   "scenes": [
     {
       "id": "scene-01",
@@ -12,8 +12,8 @@
       "section": "introduction",
       "duration": 4000,
       "content": {
-        "title": "助詞",
-        "subtitle": "Partikel: kata kecil yang penting"
+        "title": "品詞",
+        "subtitle": "Susunan bahasa: jenis kata"
       }
     },
     {
@@ -21,213 +21,109 @@
       "type": "explain",
       "section": "definition",
       "content": {
-        "heading": "Partikel itu apa?",
+        "heading": "Tiga jenis kata utama",
         "paragraphs": [
-          "Partikel disebut 助詞 (joshi).",
-          "Partikel adalah kata kecil yang menjelaskan hubungan antar-kata dalam kalimat."
-        ],
-        "terms": [
-          {
-            "term": "助詞",
-            "reading": "joshi",
-            "meaning": "partikel"
-          }
+          "1. Kata benda: nama orang, benda, atau tempat. Contoh: buku, nasi, Jepang.",
+          "2. Kata kerja: kegiatan. Contoh: makan, minum, pergi.",
+          "3. Kata sifat: keadaan. Contoh: besar, mahal, tenang."
         ]
       }
     },
     {
       "id": "scene-03",
-      "type": "example",
-      "section": "examples",
+      "type": "explain",
+      "section": "concept",
       "content": {
-        "parts": [
-          {
-            "ja": "私",
-            "reading": "わたし",
-            "romaji": "watashi",
-            "id_text": "saya",
-            "role": "subject"
-          },
-          {
-            "ja": "は",
-            "reading": "は",
-            "romaji": "wa",
-            "id_text": "penanda topik",
-            "role": "particle"
-          },
-          {
-            "ja": "学校",
-            "reading": "がっこう",
-            "romaji": "gakkou",
-            "id_text": "sekolah",
-            "role": "other"
-          },
-          {
-            "ja": "に",
-            "reading": "に",
-            "romaji": "ni",
-            "id_text": "penanda tujuan/tempat",
-            "role": "particle"
-          },
-          {
-            "ja": "行きます",
-            "reading": "いきます",
-            "romaji": "ikimasu",
-            "id_text": "pergi",
-            "role": "verb"
-          }
-        ],
-        "translation": "Saya pergi ke sekolah.",
-        "heading": "Dua partikel dalam satu kalimat",
-        "note": "は menandai topik (saya). に menandai tujuan (ke sekolah)."
+        "heading": "Kata penghubung",
+        "paragraphs": [
+          "Ada kata kecil seperti \"di\", \"ke\", \"dari\", \"dan\".",
+          "Contoh: \"di rumah\", \"ke sekolah\", \"dari Jepang\".",
+          "Kata kecil ini menjelaskan hubungan antar-kata."
+        ]
       }
     },
     {
       "id": "scene-04",
       "type": "explain",
-      "section": "explanation",
+      "section": "logic",
       "content": {
-        "heading": "Enam partikel pertama",
+        "heading": "Kenapa ini penting?",
         "paragraphs": [
-          "Jangan dihafal sekaligus. Kita pelajari satu per satu nanti."
-        ]
+          "Bahasa Jepang punya kata kecil yang kerjanya mirip \"di\", \"ke\", dan \"dari\".",
+          "Bedanya, kata kecil itu ditaruh SETELAH kata.",
+          "Contoh: \"rumah di\", \"sekolah ke\"."
+        ],
+        "analogy": "Kata kecil ini namanya partikel. Kita belajar sebentar lagi."
       }
     },
     {
       "id": "scene-05",
-      "type": "vocab",
-      "section": "explanation",
+      "type": "quiz",
+      "section": "exercises",
       "content": {
-        "heading": "Partikel dasar (1)",
-        "items": [
-          {
-            "ja": "は",
-            "reading": "wa",
-            "id_text": "penanda topik. Contoh: 私は"
-          },
-          {
-            "ja": "が",
-            "reading": "ga",
-            "id_text": "penanda subjek. Contoh: 猫が"
-          },
-          {
-            "ja": "を",
-            "reading": "o",
-            "id_text": "penanda objek. Contoh: 水を"
-          },
-          {
-            "ja": "に",
-            "reading": "ni",
-            "id_text": "waktu, tujuan, tempat. Contoh: 学校に"
-          },
-          {
-            "ja": "で",
-            "reading": "de",
-            "id_text": "tempat kegiatan, alat. Contoh: 学校で"
-          },
-          {
-            "ja": "の",
-            "reading": "no",
-            "id_text": "milik, hubungan. Contoh: 私の"
-          }
+        "question": "\"Buku\" termasuk jenis kata apa?",
+        "options": [
+          "Kata benda",
+          "Kata kerja",
+          "Kata sifat"
+        ],
+        "answer": 0,
+        "why": [
+          null,
+          "Kata kerja adalah kegiatan.",
+          "Kata sifat adalah keadaan."
         ]
       }
     },
     {
       "id": "scene-06",
-      "type": "vocab",
-      "section": "explanation",
+      "type": "quiz",
+      "section": "exercises",
       "content": {
-        "heading": "Partikel dasar (2)",
-        "items": [
-          {
-            "ja": "と",
-            "reading": "to",
-            "id_text": "dan / bersama. Contoh: 友達と"
-          },
-          {
-            "ja": "も",
-            "reading": "mo",
-            "id_text": "juga. Contoh: 私も"
-          },
-          {
-            "ja": "へ",
-            "reading": "e",
-            "id_text": "arah tujuan. Contoh: 日本へ"
-          },
-          {
-            "ja": "から",
-            "reading": "kara",
-            "id_text": "dari. Contoh: 日本から"
-          },
-          {
-            "ja": "まで",
-            "reading": "made",
-            "id_text": "sampai. Contoh: 5時まで"
-          }
+        "question": "\"Makan\" termasuk jenis kata apa?",
+        "options": [
+          "Kata benda",
+          "Kata kerja",
+          "Kata sifat"
+        ],
+        "answer": 1,
+        "why": [
+          "Kata benda adalah nama benda atau orang.",
+          null,
+          "Kata sifat adalah keadaan."
         ]
       }
     },
     {
       "id": "scene-07",
-      "type": "explain",
-      "section": "logic",
+      "type": "quiz",
+      "section": "exercises",
       "content": {
-        "heading": "Kenapa perlu partikel?",
-        "paragraphs": [
-          "Karena kata Jepang tidak berubah bentuk untuk menunjukkan perannya.",
-          "Partikellah yang memberi tahu: mana topik, mana objek, mana tujuan."
+        "question": "\"Mahal\" termasuk jenis kata apa?",
+        "options": [
+          "Kata benda",
+          "Kata kerja",
+          "Kata sifat"
+        ],
+        "answer": 2,
+        "why": [
+          "Kata benda adalah nama benda atau orang.",
+          "Kata kerja adalah kegiatan.",
+          null
         ]
       }
     },
     {
       "id": "scene-08",
-      "type": "quiz",
-      "section": "exercises",
-      "content": {
-        "question": "Apa fungsi partikel を?",
-        "options": [
-          "Menandai topik",
-          "Menandai objek",
-          "Menandai kepemilikan"
-        ],
-        "answer": 1,
-        "why": [
-          "Itu fungsi は.",
-          null,
-          "Itu fungsi の."
-        ]
-      }
-    },
-    {
-      "id": "scene-09",
-      "type": "quiz",
-      "section": "exercises",
-      "content": {
-        "question": "Partikel apa yang berarti \"bersama\"?",
-        "options": [
-          "と",
-          "も",
-          "から"
-        ],
-        "answer": 0,
-        "why": [
-          null,
-          "も berarti \"juga\".",
-          "から berarti \"dari\"."
-        ]
-      }
-    },
-    {
-      "id": "scene-10",
       "type": "summary",
       "section": "summary",
       "content": {
         "heading": "Rangkuman",
         "points": [
-          "Partikel (助詞) = kata kecil penunjuk peran.",
-          "は topik, を objek, に tujuan, の milik, も juga.",
-          "Tidak perlu hafal semuanya sekarang."
+          "Kata benda: nama benda, orang, tempat.",
+          "Kata kerja: kegiatan.",
+          "Kata sifat: keadaan.",
+          "Kata penghubung seperti \"di\" dan \"ke\" nanti jadi partikel."
         ]
       }
     }
