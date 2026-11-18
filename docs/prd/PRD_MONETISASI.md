@@ -218,6 +218,12 @@ Bukti bayar disimpan di bucket Storage privat `payment-proofs`, path `<user_id>/
 - Semua keputusan admin tercatat (`verified_by`, `verified_at`, `reject_reason`).
 - Kapasitas wajar: sampai sekitar 30–50 order per malam (15–25 menit).
 
+**Fase 1b: otomatis lewat notifikasi HP admin (sudah berjalan, pelengkap fase 1).**
+- HP Android admin meneruskan notifikasi uang masuk GoPay / GoPay Merchant ke `POST /api/payment-notify` dengan header `X-Webhook-Key`. Jalur utamanya aplikasi **SevnQuest Notifier** (lihat `docs/ANDROID_NOTIFIER.md`); MacroDroid tetap bisa dipakai sebagai alternatif.
+- Body: `{"title", "text", "package", "posted_at"}`. `package` dan `posted_at` hanya menjadi penanda sumber di log admin; deteksi uang masuk dan nominal dibaca dari `title` + `text` saja.
+- Pemasangan dari panel "Verifikasi otomatis lewat HP" di halaman admin: buat kunci webhook, lalu hubungkan aplikasi lewat tombol atau kode QR (deep link `sevnquest-notifier://setup?url=...&key=...`). Kunci hanya tampil sekali; database menyimpan hash-nya.
+- Pesanan disetujui otomatis hanya bila nominal cocok dengan tepat satu pesanan terbuka. Notifikasi keluar milik admin, nominal tidak terbaca, atau cocok ganda tetap jatuh ke verifikasi manual fase 1. Jalur ini rapuh (bergantung pada teks notifikasi dan HP yang menyala), jadi bukan pengganti fase 2.
+
 **Fase 2: otomatis lewat payment gateway.**
 - QRIS statis tidak bisa diverifikasi otomatis secara andal. GoPay Merchant tidak menyediakan API riwayat transaksi untuk QRIS statis, dan membaca notifikasi HP dengan aplikasi pihak ketiga itu rapuh dan berisiko melanggar ketentuan.
 - Untuk ratusan sampai ribuan pembeli, pakai gateway yang membuat **QRIS dinamis per order** dan mengirim webhook (contoh: Midtrans, Xendit, Duitku, Tripay). Langganan aktif dalam hitungan detik tanpa campur tangan admin. Biaya QRIS di gateway umumnya sekitar 0,7% per transaksi (cek harga terbaru saat memilih).

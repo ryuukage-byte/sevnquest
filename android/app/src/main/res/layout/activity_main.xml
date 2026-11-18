@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clipToPadding="false"
+    android:fillViewport="true"
+    android:fitsSystemWindows="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/app_name"
+            android:textColor="@color/text"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+        <TextView
+            style="@style/Secondary"
+            android:layout_marginTop="2dp"
+            android:text="@string/app_subtitle" />
+
+        <TextView
+            android:id="@+id/text_summary"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="12dp"
+            android:textColor="@color/text"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/banner_auth"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            android:background="@drawable/banner_error_bg"
+            android:padding="14dp"
+            android:textColor="@color/status_error"
+            android:textSize="14sp"
+            android:visibility="gone" />
+
+        <LinearLayout style="@style/Card">
+
+            <TextView
+                style="@style/CardTitle"
+                android:text="@string/card_forward_title" />
+
+            <Switch
+                android:id="@+id/switch_enabled"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:minHeight="48dp"
+                android:text="@string/switch_enabled"
+                android:textColor="@color/text"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <LinearLayout style="@style/Card">
+
+            <TextView
+                style="@style/CardTitle"
+                android:text="@string/card_access_title" />
+
+            <TextView
+                android:id="@+id/text_access"
+                style="@style/Body" />
+
+            <TextView
+                android:id="@+id/text_access_hint"
+                style="@style/Secondary"
+                android:text="@string/access_hint" />
+
+            <Button
+                android:id="@+id/btn_open_access"
+                style="@style/ActionButton"
+                android:text="@string/btn_open_access" />
+
+            <Button
+                android:id="@+id/btn_app_info"
+                style="@style/ActionButton"
+                android:layout_marginTop="0dp"
+                android:text="@string/btn_app_info" />
+        </LinearLayout>
+
+        <LinearLayout style="@style/Card">
+
+            <TextView
+                style="@style/CardTitle"
+                android:text="@string/card_battery_title" />
+
+            <TextView
+                android:id="@+id/text_battery"
+                style="@style/Body" />
+
+            <Button
+                android:id="@+id/btn_battery"
+                style="@style/ActionButton"
+                android:text="@string/btn_battery" />
+        </LinearLayout>
+
+        <LinearLayout style="@style/Card">
+
+            <TextView
+                style="@style/CardTitle"
+                android:text="@string/card_conn_title" />
+
+            <TextView
+                android:id="@+id/text_endpoint"
+                style="@style/Body" />
+
+            <TextView
+                android:id="@+id/text_key"
+                style="@style/Body" />
+
+            <TextView
+                android:id="@+id/text_test"
+                style="@style/Secondary"
+                android:visibility="gone" />
+
+            <Button
+                android:id="@+id/btn_edit_conn"
+                style="@style/ActionButton"
+                android:text="@string/btn_edit_conn" />
+
+            <Button
+                android:id="@+id/btn_test"
+                style="@style/ActionButton"
+                android:layout_marginTop="0dp"
+                android:text="@string/btn_test" />
+        </LinearLayout>
+
+        <LinearLayout style="@style/Card">
+
+            <TextView
+                style="@style/CardTitle"
+                android:text="@string/card_packages_title" />
+
+            <TextView
+                android:id="@+id/text_packages"
+                style="@style/Body" />
+
+            <TextView
+                style="@style/Secondary"
+                android:text="@string/packages_note" />
+
+            <Button
+                android:id="@+id/btn_edit_packages"
+                style="@style/ActionButton"
+                android:text="@string/btn_edit_packages" />
+        </LinearLayout>
+
+        <LinearLayout style="@style/Card">
+
+            <TextView
+                style="@style/CardTitle"
+                android:text="@string/card_queue_title" />
+
+            <TextView
+                android:id="@+id/text_queue"
+                style="@style/Body" />
+
+            <Button
+                android:id="@+id/btn_send_now"
+                style="@style/ActionButton"
+                android:text="@string/btn_send_now" />
+        </LinearLayout>
+
+        <LinearLayout style="@style/Card">
+
+            <TextView
+                style="@style/CardTitle"
+                android:text="@string/card_log_title" />
+
+            <TextView
+                android:id="@+id/text_log_empty"
+                style="@style/Secondary"
+                android:text="@string/log_empty" />
+
+            <LinearLayout
+                android:id="@+id/log_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" />
+
+            <Button
+                android:id="@+id/btn_clear_log"
+                style="@style/ActionButton"
+                android:text="@string/btn_clear_log" />
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>

@@ -115,6 +115,17 @@ export async function adminRotateGatewayKey(): Promise<string> {
   return String(data);
 }
 
+/** Skema deep link aplikasi Android SevnQuest Notifier (penerus notifikasi uang masuk dari HP admin). */
+export const NOTIFIER_SETUP_SCHEME = 'sevnquest-notifier://setup';
+
+/**
+ * Deep link pemasangan SevnQuest Notifier: `sevnquest-notifier://setup?url=<endpoint>&key=<kunci>`.
+ * Kedua nilai di-encode dengan encodeURIComponent (spasi menjadi %20, bukan "+").
+ */
+export function buildNotifierSetupLink(endpoint: string, key: string): string {
+  return `${NOTIFIER_SETUP_SCHEME}?url=${encodeURIComponent(endpoint.trim())}&key=${encodeURIComponent(key.trim())}`;
+}
+
 export async function listMyOrders(): Promise<PaymentOrder[]> {
   const { data, error } = await supabase
     .from('payment_orders')

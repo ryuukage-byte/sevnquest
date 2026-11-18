@@ -18,3 +18,15 @@ kotoba kaigo raw/
 marketing/
 motionads/
 motionads.zip
+
+# Android: SevnQuest Notifier (android/)
+android/.gradle/
+android/.kotlin/
+android/local.properties
+android/**/build/
+android/captures/
+android/.idea/
+android/*.iml
+# Wrapper Gradle dan keystore debug tetap HARUS ikut di repo.
+!android/gradle/wrapper/gradle-wrapper.jar
+!android/keystore/debug.keystore

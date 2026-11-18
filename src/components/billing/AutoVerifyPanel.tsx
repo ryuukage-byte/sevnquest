@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import { Smartphone, KeyRound, Copy, Check, Loader2, ChevronDown, ChevronUp, RefreshCw } from 'lucide-react';
-import { adminGatewayStatus, adminRotateGatewayKey, billingErrorMessage, type GatewayStatus } from '../../lib/billing';
+import { Smartphone, KeyRound, Copy, Check, Loader2, ChevronDown, ChevronUp, RefreshCw, Link2 } from 'lucide-react';
+import { adminGatewayStatus, adminRotateGatewayKey, billingErrorMessage, buildNotifierSetupLink, type GatewayStatus } from '../../lib/billing';
 import { formatIdr } from '../../utils/access';
 
 const RESULT_LABEL: Record<string, { text: string; cls: string }> = {
@@ -34,8 +34,54 @@ const CopyField: React.FC<{ label: string; value: string }> = ({ label, value })
 };
 
 /**
- * Verifikasi otomatis lewat notifikasi HP: HP Android yang memasang GoPay Merchant meneruskan notifikasi
- * uang masuk ke /api/payment-notify (mis. lewat MacroDroid). Nominal unik dicocokkan ke pesanan.
+ * Tombol dan kode QR untuk menghubungkan aplikasi SevnQuest Notifier: keduanya memuat deep link yang sama
+ * (URL endpoint + kunci webhook). Tombol dipakai bila panel dibuka di HP; QR dipindai bila dibuka di laptop.
+ */
+const NotifierConnect: React.FC<{ endpoint: string; webhookKey: string }> = ({ endpoint, webhookKey }) => {
+  const link = buildNotifierSetupLink(endpoint, webhookKey);
+  const [qr, setQr] = useState<string | null>(null);
+  useEffect(() => {
+    let cancelled = false;
+    setQr(null);
+    (async () => {
+      try {
+        const { default: QRCode } = await import('qrcode');
+        const url = await QRCode.toDataURL(link, { errorCorrectionLevel: 'M', margin: 2, width: 480 });
+        if (!cancelled) setQr(url);
+      } catch (err) {
+        console.warn('[notifier] gagal membuat kode QR:', err);
+      }
+    })();
+    return () => { cancelled = true; };
+  }, [link]);
+
+  return (
+    <div className="space-y-2 pt-1">
+      <a
+        href={link}
+        className="btn-physical-secondary w-full px-3 py-2 rounded-xl font-bold flex items-center justify-center gap-1.5"
+      >
+        <Link2 className="w-4 h-4 text-gold" />
+        Hubungkan ke SevnQuest Notifier
+      </a>
+      <p className="text-text-muted">
+        Buka tombol ini dari HP yang sudah memasang aplikasi SevnQuest Notifier. Sedang di laptop? Pindai kode QR di bawah
+        dengan kamera HP itu.
+      </p>
+      {qr && (
+        <div className="rounded-xl overflow-hidden border border-border-subtle bg-white mx-auto max-w-[220px] p-2">
+          <img src={qr} alt="Kode QR untuk menghubungkan SevnQuest Notifier" className="w-full h-auto block" style={{ imageRendering: 'pixelated' }} />
+        </div>
+      )}
+      <p className="text-text-muted">Kode QR ini memuat kunci webhook. Jangan dibagikan atau di-screenshot ke orang lain.</p>
+    </div>
+  );
+};
+
+/**
+ * Verifikasi otomatis lewat notifikasi HP: HP Android admin meneruskan notifikasi uang masuk GoPay / GoPay
+ * Merchant ke /api/payment-notify lewat aplikasi SevnQuest Notifier (alternatif: MacroDroid). Nominal unik
+ * dicocokkan ke pesanan.
  */
 export const AutoVerifyPanel: React.FC = () => {
   const [open, setOpen] = useState(false);
@@ -93,6 +139,7 @@ export const AutoVerifyPanel: React.FC = () => {
               <p className="text-text-primary font-bold">Kunci baru dibuat. Salin sekarang — kunci tidak bisa ditampilkan lagi.</p>
               <CopyField label="Kunci webhook (header X-Webhook-Key)" value={newKey} />
               <CopyField label="URL" value={endpoint} />
+              <NotifierConnect endpoint={endpoint} webhookKey={newKey} />
             </div>
           ) : (
             <button
@@ -106,7 +153,23 @@ export const AutoVerifyPanel: React.FC = () => {
           )}
 
           <details className="space-y-1" open={!status?.configured}>
-            <summary className="cursor-pointer font-bold text-text-secondary">Cara memasang di HP (MacroDroid, Android)</summary>
+            <summary className="cursor-pointer font-bold text-text-secondary">Cara memasang di HP (aplikasi SevnQuest Notifier, Android)</summary>
+            <ol className="list-decimal pl-5 space-y-1 text-text-secondary mt-1">
+              <li>Unduh APK <b>SevnQuest Notifier</b> ke HP Android yang menerima notifikasi pembayaran (app <b>GoPay</b> atau <b>GoPay Merchant</b>).</li>
+              <li>Pasang APK itu. Bila diminta, izinkan pemasangan dari sumber ini.</li>
+              <li>Buka aplikasinya, lalu izinkan <b>akses notifikasi</b> untuk SevnQuest Notifier.</li>
+              <li>Hubungkan: tekan <b>Buat kunci webhook</b> di atas, lalu tekan <b>Hubungkan ke SevnQuest Notifier</b> dari HP itu, atau pindai kode QR-nya dengan kamera HP.</li>
+              <li>Di Pengaturan HP → Baterai, matikan optimasi baterai untuk SevnQuest Notifier (set ke <b>Tidak dibatasi</b>) supaya tetap berjalan di latar belakang.</li>
+              <li>Tekan <b>Kirim uji</b> di aplikasi. Kiriman uji tampil di log di bawah.</li>
+            </ol>
+            <p className="text-text-muted mt-1">
+              Hanya notifikasi uang masuk ("diterima") yang dihitung; notifikasi pembayaranmu sendiri diabaikan. Pesanan disetujui
+              otomatis bila nominal cocok dengan tepat satu pesanan terbuka (≤ 48 jam); selain itu tetap menunggu verifikasi manual.
+            </p>
+          </details>
+
+          <details className="space-y-1">
+            <summary className="cursor-pointer font-bold text-text-secondary">Alternatif: MacroDroid</summary>
             <ol className="list-decimal pl-5 space-y-1 text-text-secondary mt-1">
               <li>Pasang <b>MacroDroid</b> dari Play Store di HP yang menerima notifikasi pembayaran merchant (app <b>GoPay</b>, judul "Pembayaran QRIS statis diterima").</li>
               <li>Buat Macro baru. <b>Trigger</b>: Notification → Notification Received → pilih app yang memunculkan notifikasi itu (biasanya <b>GoPay</b>) → teks berisi <b>diterima</b>.</li>
@@ -116,10 +179,7 @@ export const AutoVerifyPanel: React.FC = () => {
               <li>Izinkan akses notifikasi untuk MacroDroid, lalu di Pengaturan HP → Baterai, set MacroDroid ke <b>Tidak dibatasi</b>.</li>
               <li>Uji dengan donasi kecil. Notifikasi yang masuk tampil di log di bawah.</li>
             </ol>
-            <p className="text-text-muted mt-1">
-              Hanya notifikasi uang masuk ("diterima") yang dihitung; notifikasi pembayaranmu sendiri diabaikan. Pesanan disetujui
-              otomatis bila nominal cocok dengan tepat satu pesanan terbuka (≤ 48 jam); selain itu tetap menunggu verifikasi manual.
-            </p>
+            <p className="text-text-muted mt-1">Pakai salah satu saja. Bila keduanya aktif, satu pembayaran terkirim dua kali.</p>
           </details>
 
           <div className="space-y-1">
