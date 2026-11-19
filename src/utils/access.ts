@@ -4,6 +4,8 @@
 //                   Dibuka lewat donasi: total bulanan >= Rp 17.000, tiap setoran lifetime, atau lifetime penuh.
 // 'medium' hanya tersisa sebagai nilai lama; tidak dijual lagi.
 
+import { STATIONERY, TIER_TITLES } from '../lib/mailCore';
+
 export type AccessTier = 'basic' | 'medium' | 'full';
 
 const TIER_RANK: Record<AccessTier, number> = { basic: 1, medium: 2, full: 3 };
@@ -280,6 +282,49 @@ export function monthTierPerks(tier: number): string {
   if (tier <= 0) return 'Belum ada tingkat bulan ini';
   if (tier === 1) return 'Akses Full 30 hari';
   return `Akses Full 30 hari + prioritas Lv.${tier - 1}${tier === 7 ? ' (maksimal)' : ''}`;
+}
+
+/**
+ * Jatah surat Kotak Pos per hari menurut rank (cermin `v_limits` di mail_plan_for, server):
+ * rank 0 Free, 1 Premium, 2..8 Super Premium Lv.1..7.
+ */
+export const MAIL_DAILY_LIMITS = [3, 6, 8, 10, 12, 15, 18, 22, 30] as const;
+
+export interface MonthTierFeatures {
+  tier: number;
+  /** Nama tier Kotak Pos yang didapat (Premium / Super Premium Lv.n · Gelar). */
+  mailTier: string;
+  /** Surat ke admin per hari. */
+  mailPerDay: number;
+  /** Layanan pos (kecepatan surat dibaca admin). */
+  postService: string;
+  /** Kertas surat yang baru terbuka di tingkat ini. */
+  newPaper: string | null;
+  /** Jumlah kertas surat yang bisa dipakai di tingkat ini (termasuk tingkat di bawahnya). */
+  paperCount: number;
+  /** Urutan request konten. */
+  requestPriority: string;
+}
+
+/**
+ * Keuntungan nyata satu tingkat donasi bulanan. Tingkat bulan ini = rank Kotak Pos (lihat mail_plan_for):
+ * T1 Premium, T2..T7 Super Premium Lv.1..6. Semua tingkat mendapat akses Full 30 hari.
+ */
+export function monthTierFeatures(tier: number): MonthTierFeatures {
+  const t = Math.max(1, Math.min(7, Math.round(tier)));
+  const lv = t - 1;
+  const titles = TIER_TITLES;
+  const papers = STATIONERY.filter(x => x.rank <= t);
+  const fresh = STATIONERY.find(x => x.rank === t);
+  return {
+    tier: t,
+    mailTier: lv === 0 ? 'Premium' : `Super Premium Lv.${lv} · ${titles[lv - 1]}`,
+    mailPerDay: MAIL_DAILY_LIMITS[t] ?? MAIL_DAILY_LIMITS[MAIL_DAILY_LIMITS.length - 1],
+    postService: lv === 0 ? 'Pos Kilat' : `Kilat Khusus · ${titles[lv - 1]}`,
+    newPaper: fresh ? fresh.label : null,
+    paperCount: papers.length,
+    requestPriority: lv === 0 ? 'Didahulukan dari akun Gratis' : `Prioritas Lv.${lv}${t === 7 ? ' (tertinggi)' : ''}`,
+  };
 }
 
 export function planLabel(tierCode: string, baseAmount: number): string {

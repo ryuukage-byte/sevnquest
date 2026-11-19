@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import {
   requiredTierForLevel, canAccessLevel, tierAtLeast, requiredTierForTowerFloor,
   parseEntitlement, entitlementFromCache, ENTITLEMENT_CACHE_MAX_AGE_MS, BASIC_ENTITLEMENT, daysUntil, formatIdr,
-  badgeForTotal, nextBadge, monthlyRemaining, lifetimeUnitsLeft, DEFAULT_DONATION_CONFIG,
+  badgeForTotal, nextBadge, monthlyRemaining, lifetimeUnitsLeft, DEFAULT_DONATION_CONFIG, monthTierFeatures, MAIL_DAILY_LIMITS,
 } from './access';
 
 test('level → tier: kana/N5 gratis, selain itu Full', () => {
@@ -125,4 +125,19 @@ test('tingkat donasi bulanan 1..7', async () => {
   assert.equal(e.monthTier, 3);
   assert.equal(e.config.monthlyTiers.length, 7);
   assert.match(monthTierPerks(7), /maksimal/);
+});
+
+test('keuntungan tingkat bulanan: tiap tingkat punya rincian, kuota & kertas naik', () => {
+  const t1 = monthTierFeatures(1);
+  assert.equal(t1.mailTier, 'Premium');
+  assert.equal(t1.mailPerDay, MAIL_DAILY_LIMITS[1]);
+  assert.equal(t1.newPaper, 'Pos Kilat');
+  const t7 = monthTierFeatures(7);
+  assert.equal(t7.mailTier, 'Super Premium Lv.6 · Taiyou');
+  assert.equal(t7.newPaper, 'Taiyou');
+  for (let t = 2; t <= 7; t++) {
+    const a = monthTierFeatures(t - 1), b = monthTierFeatures(t);
+    assert.ok(b.mailPerDay > a.mailPerDay, `kuota T${t}`);
+    assert.ok(b.paperCount > a.paperCount, `kertas T${t}`);
+  }
 });

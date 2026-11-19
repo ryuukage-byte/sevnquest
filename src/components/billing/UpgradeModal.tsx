@@ -1,12 +1,12 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import {
   X, Crown, Copy, Check, Loader2, Download, Clock, Heart, Lock, AlertCircle, Upload, ChevronLeft, Minus, Plus,
-  Infinity as InfinityIcon,
+  Infinity as InfinityIcon, Mail, Send, FileText, ListOrdered,
 } from 'lucide-react';
 import { playSound } from '../../utils/audio';
 import { useBackButton } from '../../hooks/useBackButton';
 import {
-  BADGES, badgeForTotal, nextBadge, monthlyRemaining, lifetimeUnitsLeft, monthTierFor, monthTierPerks, daysUntil, formatIdr, planLabel,
+  BADGES, badgeForTotal, nextBadge, monthlyRemaining, lifetimeUnitsLeft, monthTierFor, monthTierPerks, monthTierFeatures, daysUntil, formatIdr, planLabel,
   type Entitlement,
 } from '../../utils/access';
 import {
@@ -28,6 +28,51 @@ const FULL_FEATURES = [
   'Deck AI dan Imersi YouTube',
   'Latihan Ekstra Recall tanpa batas',
 ];
+
+/** Rincian lengkap keuntungan satu tingkat bulanan: akses Full (semua tingkat) + prioritas tingkat itu. */
+const TierFeatureList: React.FC<{ tier: number }> = ({ tier }) => {
+  const f = monthTierFeatures(tier);
+  const prev = tier > 1 ? monthTierFeatures(tier - 1) : null;
+  const up = (cur: number, before?: number) => (before !== undefined && cur > before ? (
+    <span className="ml-1.5 px-1.5 py-px rounded-full bg-emerald-500/15 text-emerald-400 text-[9px] font-bold uppercase">naik</span>
+  ) : null);
+  const perks: { Icon: React.FC<{ className?: string }>; label: string; value: React.ReactNode }[] = [
+    { Icon: Crown, label: 'Status Kotak Pos', value: f.mailTier },
+    { Icon: Mail, label: 'Surat ke admin', value: <>{f.mailPerDay} surat/hari{up(f.mailPerDay, prev?.mailPerDay)}</> },
+    { Icon: Send, label: 'Layanan pos', value: f.postService },
+    {
+      Icon: FileText, label: 'Kertas surat',
+      value: <>{f.paperCount} kertas{f.newPaper ? <> · baru: <b className="text-text-primary">{f.newPaper}</b></> : null}{up(f.paperCount, prev?.paperCount)}</>,
+    },
+    { Icon: ListOrdered, label: 'Request konten', value: f.requestPriority },
+  ];
+  return (
+    <div className="space-y-3">
+      <div className="space-y-1.5">
+        <p className="text-[10px] font-bold uppercase tracking-wider text-text-muted">Keuntungan Tingkat {f.tier}</p>
+        <ul className="grid gap-1.5">
+          {perks.map(p => (
+            <li key={p.label} className="flex items-start gap-2 px-2.5 py-2 rounded-xl border border-border-subtle bg-surface-card">
+              <p.Icon className="w-3.5 h-3.5 mt-0.5 shrink-0 text-gold" />
+              <span className="flex-1 min-w-0 flex flex-wrap items-baseline justify-between gap-x-2 text-[11px]">
+                <span className="text-text-secondary">{p.label}</span>
+                <span className="font-semibold text-text-primary text-right">{p.value}</span>
+              </span>
+            </li>
+          ))}
+        </ul>
+      </div>
+      <div className="space-y-1">
+        <p className="text-[10px] font-bold uppercase tracking-wider text-text-muted">
+          Akses Full 30 hari {tier > 1 ? '(sama di semua tingkat)' : ''}
+        </p>
+        <ul className="text-[11px] text-text-secondary space-y-0.5">
+          {FULL_FEATURES.map(x => <li key={x} className="flex gap-1.5"><Check className="w-3.5 h-3.5 text-emerald-400 shrink-0" />{x}</li>)}
+        </ul>
+      </div>
+    </div>
+  );
+};
 
 const STATUS_LABEL: Record<PaymentOrder['status'], string> = {
   pending: 'Menunggu pembayaran',
@@ -323,17 +368,7 @@ export const UpgradeModal: React.FC<Props> = ({ request, userId, entitlement, so
                     )}
                   </div>
 
-                  {targetTier === 1 && (
-                    <ul className="text-[11px] text-text-secondary space-y-0.5">
-                      {FULL_FEATURES.map(f => <li key={f} className="flex gap-1.5"><Check className="w-3.5 h-3.5 text-emerald-400 shrink-0" />{f}</li>)}
-                    </ul>
-                  )}
-                  {targetTier > 1 && (
-                    <p className="text-[11px] text-text-muted">
-                      Akses sudah maksimal sejak Tingkat 1. Tingkat lebih tinggi menaikkan prioritas: kuota & kertas Kotak Pos, serta urutan
-                      request konten.
-                    </p>
-                  )}
+                  <TierFeatureList tier={targetTier} />
 
                   {!customOpen ? (
                     <>

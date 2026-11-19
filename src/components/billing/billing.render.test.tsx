@@ -4,6 +4,7 @@ import React from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
 import { UpgradeModal } from './UpgradeModal';
 import { LockedOverlay, withLevelGate } from './AccessGate';
+import { sortMonthlyDonors } from './DonorBoard';
 import { parseEntitlement, BASIC_ENTITLEMENT } from '../../utils/access';
 
 const noop = () => {};
@@ -75,4 +76,22 @@ test('withLevelGate: tanpa provider (saklar monetisasi mati) semua level terbuka
   const Gated = withLevelGate(Inner, { getLevel: p => p.level, isOpen: p => p.isOpen, getClose: p => p.onClose, labelPrefix: 'Kotoba' });
   assert.match(renderToStaticMarkup(<Gated isOpen level="N5" onClose={noop} />), /ISI N5/);
   assert.match(renderToStaticMarkup(<Gated isOpen level="N1" onClose={noop} />), /ISI N1/);
+});
+
+test('UpgradeModal: rincian keuntungan tampil di tingkat selain Tingkat 1', () => {
+  const html = renderToStaticMarkup(
+    <UpgradeModal request={{ requiredTier: 'full', label: 'X' }} userId="u1" entitlement={parseEntitlement({ access_tier: 'full', month_total: 17000, month_tier: 1 })} onClose={noop} onChanged={noop} />,
+  );
+  assert.match(html, /Keuntungan Tingkat 2/);
+  assert.match(html, /Super Premium Lv\.1/);
+  assert.match(html, /Semua materi N4 sampai N1/);
+});
+
+test('donatur bulan ini diurutkan dari donasi terbesar', () => {
+  const row = (n: string, rank: number | null, tier = 1) => ({
+    display_name: n, is_anonymous: false, badge_level: 0, badge_title: null, is_lifetime: false,
+    monthly_this_month: true, month_tier: tier, month_rank: rank,
+  });
+  const out = sortMonthlyDonors([row('C', 3), row('A', 1), row('X', null, 5), row('B', 2)]);
+  assert.deepEqual(out.map(r => r.display_name), ['A', 'B', 'C', 'X']);
 });

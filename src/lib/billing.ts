@@ -35,6 +35,10 @@ export interface DonorBoardRow {
   badge_title: string | null;
   is_lifetime: boolean;
   monthly_this_month: boolean;
+  /** Tingkat donasi bulan ini (0..7). Nominal tidak dikirim. */
+  month_tier?: number | null;
+  /** Urutan donatur bulan ini menurut total donasi (1 = terbesar). */
+  month_rank?: number | null;
 }
 
 export type DonationKind = 'monthly' | 'lifetime';
