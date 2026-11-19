@@ -3,7 +3,7 @@ import { createPortal } from 'react-dom';
 import { motion } from 'motion/react';
 import {
   Mailbox, Mail, MailOpen, Send, PenLine, Archive, ArchiveRestore, Reply, Landmark, X, ArrowLeft,
-  RefreshCw, EyeOff, UserRound, Copy, Check, Lock, Gauge,
+  RefreshCw, EyeOff, UserRound, Copy, Check, Lock, Gauge, Gift,
 } from 'lucide-react';
 import {
   ADMIN_ADDRESS,
@@ -39,6 +39,7 @@ import {
   currentUserId,
   listMyLetters,
   markLetterRead,
+  openGiftLetter,
   sendLetter,
   useMailStatus,
 } from '../../lib/mail';
@@ -46,6 +47,7 @@ import { playSound } from '../../utils/audio';
 import { LetterPaper } from './LetterPaper';
 import { BoxVariant, PostScene, TakeScene } from './MailScenes';
 import { useBodyScrollLock } from '../../hooks/useBodyScrollLock';
+import { GiftBoxClosed, GiftContents } from './GiftBox';
 
 /** Surat muncul halus setelah diambil dari kotak pos. */
 const REVEAL = {
@@ -75,9 +77,11 @@ const ADMIN_BOXES: { value: AdminBox; label: string }[] = [
 // --------------------------- Amplop (item daftar) ---------------------------
 
 function Envelope({
-  sealed, who, subject, date, category, stationery, badge, onOpen,
+  sealed, who, subject, date, category, stationery, badge, onOpen, gift = false,
 }: {
   sealed: boolean;
+  /** Surat berisi kotak hadiah yang belum dibuka. */
+  gift?: boolean;
   who: string;
   subject: string;
   date: string;
@@ -87,7 +91,7 @@ function Envelope({
   onOpen: () => void;
 }) {
   const s = stationeryStyle(stationery);
-  const Icon = sealed ? Mail : MailOpen;
+  const Icon = gift ? Gift : sealed ? Mail : MailOpen;
   return (
     <button
       type="button"
@@ -558,8 +562,35 @@ export const PostOffice: React.FC<PostOfficeProps> = ({ initialView, playerName,
 
   // ----- isi tiap tampilan -----
 
+  const openGift = async (l: Letter) => {
+    playSound('fanfare', soundEnabled);
+    const now = new Date().toISOString();
+    const opened = { ...l, giftOpenedAt: now, readAt: l.readAt ?? now };
+    setLetters(list => list.map(x => (x.id === l.id ? opened : x)));
+    setOpenLetter(opened);
+    const res = await openGiftLetter(l.id);
+    if (!res.ok) setError(res.error);
+  };
+
+  const requestFeature = () => {
+    setDraft({ ...draft, subject: draft.subject || 'Permintaan fitur', category: 'suggestion' });
+    goto('compose');
+  };
+
   const renderPlayerLetter = (l: Letter) => {
     const incoming = l.recipientId === me;
+    if (incoming && l.gift && !l.giftOpenedAt) {
+      return (
+        <div className="space-y-3">
+          <button type="button" onClick={() => setOpenLetter(null)} className="btn btn-pill text-xs gap-1.5">
+            <ArrowLeft className="w-3.5 h-3.5" /> Kembali
+          </button>
+          <motion.div {...REVEAL}>
+            <GiftBoxClosed gift={l.gift} subject={l.subject} onOpen={() => void openGift(l)} />
+          </motion.div>
+        </div>
+      );
+    }
     const isArchived = incoming ? l.archivedByRecipient : l.archivedBySender;
     const original = incoming ? subjectOf(l.replyTo) : null;
     const reply = incoming ? null : replyFor(l.id);
@@ -582,6 +613,7 @@ export const PostOffice: React.FC<PostOfficeProps> = ({ initialView, playerName,
           note={original ? `Membalas suratmu: "${original}"` : null}
         />
         </motion.div>
+        {incoming && l.gift && <GiftContents gift={l.gift} onRequestFeature={requestFeature} />}
         {!incoming && (
           <div className="flex items-center gap-1.5 flex-wrap text-[11px] text-text-secondary">
             {l.isAnonymous && <Pill tone="muted">Dikirim anonim</Pill>}
@@ -598,7 +630,7 @@ export const PostOffice: React.FC<PostOfficeProps> = ({ initialView, playerName,
             <button
               type="button"
               onClick={() => {
-                setDraft({ ...draft, subject: replySubject(l.subject), category: l.category });
+                setDraft({ ...draft, subject: replySubject(l.subject), category: l.category === 'donation' ? 'suggestion' : l.category });
                 goto('compose');
               }}
               className="btn btn-pill text-xs gap-1.5 text-indigo"
@@ -634,9 +666,12 @@ export const PostOffice: React.FC<PostOfficeProps> = ({ initialView, playerName,
             date={l.sentAt}
             category={l.category}
             stationery={l.stationery}
+            gift={incoming && !!l.gift && !l.giftOpenedAt}
             badge={
               incoming
-                ? !l.readAt && <Pill tone="wine">Baru</Pill>
+                ? l.gift && !l.giftOpenedAt
+                  ? <Pill tone="gold">Hadiah</Pill>
+                  : !l.readAt && <Pill tone="wine">Baru</Pill>
                 : l.repliedAt
                   ? <Pill tone="green">Dibalas</Pill>
                   : l.isAnonymous && <Pill tone="muted">Anonim</Pill>

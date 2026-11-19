@@ -161,8 +161,10 @@ export async function adminListOrders(statuses: OrderStatus[]): Promise<AdminOrd
   return (data || []) as AdminOrder[];
 }
 
-export async function adminApprove(orderId: string): Promise<void> {
-  const { error } = await supabase.rpc('approve_payment', { p_order_id: orderId });
+/** Setujui pesanan. note = pesan pribadi admin untuk surat hadiah di Kotak Pos (kosong = templat otomatis). */
+export async function adminApprove(orderId: string, note?: string): Promise<void> {
+  const trimmed = (note || '').trim();
+  const { error } = await supabase.rpc('approve_payment', trimmed ? { p_order_id: orderId, p_note: trimmed } : { p_order_id: orderId });
   if (error) throw error;
 }
 

@@ -299,6 +299,15 @@ export function monthTierPerks(tier: number): string {
   return `Akses Full 30 hari + prioritas Lv.${tier - 1}${tier === 7 ? ' (maksimal)' : ''}`;
 }
 
+/** Fitur akses Full (sama di semua tingkat bulanan, Tahunan, dan Lifetime). */
+export const FULL_FEATURES = [
+  'Semua materi N4 sampai N1, Kaigo, dan SSW',
+  'Bedah Soal tanpa batas (gratis 3 soal per hari)',
+  'Seluruh Bank Soal dan semua tryout, Tower lantai 61–100, semua mode Dungeon',
+  'Deck AI dan Imersi YouTube',
+  'Latihan Ekstra Recall tanpa batas',
+] as const;
+
 /**
  * Jatah surat Kotak Pos per hari menurut rank (cermin `v_limits` di mail_plan_for, server):
  * rank 0 Free, 1 Premium, 2..8 Super Premium Lv.1..7.

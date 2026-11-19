@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
-import { X, Loader2, Check, Ban, RefreshCw, Image as ImageIcon, ShieldCheck } from 'lucide-react';
+import { X, Loader2, Check, Ban, RefreshCw, Image as ImageIcon, ShieldCheck, PenLine } from 'lucide-react';
 import { playSound } from '../../utils/audio';
 import { useBackButton } from '../../hooks/useBackButton';
 import { formatIdr, planLabel } from '../../utils/access';
@@ -62,6 +62,10 @@ export const AdminPaymentsModal: React.FC<{ onClose: () => void; soundEnabled?: 
     [orders, selected]
   );
 
+  // Pesan pribadi untuk surat hadiah di Kotak Pos donatur (kosong = templat terima kasih otomatis).
+  const [notes, setNotes] = useState<Record<string, string>>({});
+  const [noteOpen, setNoteOpen] = useState<string | null>(null);
+
   const approve = async (ids: string[]) => {
     if (ids.length === 0) return;
     if (ids.length > 1 && !window.confirm(`Setujui ${ids.length} pesanan? Pastikan semua nominal sudah ada di riwayat GoPay Merchant.`)) return;
@@ -69,7 +73,7 @@ export const AdminPaymentsModal: React.FC<{ onClose: () => void; soundEnabled?: 
     for (const id of ids) {
       setBusyId(id);
       try {
-        await adminApprove(id);
+        await adminApprove(id, notes[id]);
       } catch (err) {
         setError(`${orders.find(o => o.id === id)?.order_code}: ${billingErrorMessage(err)}`);
         break;
@@ -191,6 +195,24 @@ export const AdminPaymentsModal: React.FC<{ onClose: () => void; soundEnabled?: 
                       {o.verified_at && <> · diproses {fmt(o.verified_at)}</>}
                     </div>
                     {o.reject_reason && <div className="text-[11px] text-rose-400">Ditolak: {o.reject_reason}</div>}
+                    {(actionable(o) || o.status === 'rejected') && (
+                      noteOpen === o.id ? (
+                        <label className="block pt-1.5 space-y-1">
+                          <span className="text-[11px] font-bold text-text-secondary">Pesan untuk Kotak Pos donatur (opsional)</span>
+                          <textarea
+                            value={notes[o.id] ?? ''}
+                            onChange={e => setNotes(n => ({ ...n, [o.id]: e.target.value.slice(0, 4000) }))}
+                            rows={4}
+                            placeholder="Kosongkan untuk memakai templat terima kasih otomatis sesuai jenis donasi."
+                            className="w-full px-3 py-2 rounded-xl border border-border-subtle bg-surface-card text-xs text-text-primary outline-none focus:border-gold/60"
+                          />
+                        </label>
+                      ) : (
+                        <button type="button" onClick={() => setNoteOpen(o.id)} className="pt-1 text-[11px] text-indigo flex items-center gap-1">
+                          <PenLine className="w-3 h-3" /> {notes[o.id] ? 'Ubah pesan untuk donatur' : 'Tulis pesan untuk donatur'}
+                        </button>
+                      )
+                    )}
                   </div>
                   <div className="flex flex-col gap-1.5 shrink-0">
                     {o.proof_path && (

@@ -17,7 +17,7 @@ import {
 /** Kolom eksplisit: sender_id sengaja tidak diminta (server juga tidak mengizinkannya). */
 const LETTER_COLUMNS =
   'id,from_admin,is_anonymous,sender_name,sender_address,recipient_id,to_admin,subject,body,category,' +
-  'stationery,reply_to,priority,sent_at,read_at,replied_at,archived_by_recipient,archived_by_sender';
+  'stationery,reply_to,priority,sent_at,read_at,replied_at,archived_by_recipient,archived_by_sender,gift,gift_opened_at';
 const REFRESH_EVENT = 'nq:mail-refresh';
 const POLL_MS = 3 * 60 * 1000;
 
@@ -228,6 +228,14 @@ export function adminReplyLetter(
 export function markLetterRead(letterId: string): Promise<MailResult> {
   return run(async () => {
     const { error } = await supabase.rpc('mark_letter_read', { p_letter_id: letterId });
+    return afterWrite(error ? { ok: false, error: mailError(error) } : { ok: true, data: undefined });
+  });
+}
+
+/** Buka kotak hadiah pada surat donasi (sekaligus menandai surat terbaca). */
+export function openGiftLetter(letterId: string): Promise<MailResult> {
+  return run(async () => {
+    const { error } = await supabase.rpc('open_gift_letter', { p_letter_id: letterId });
     return afterWrite(error ? { ok: false, error: mailError(error) } : { ok: true, data: undefined });
   });
 }

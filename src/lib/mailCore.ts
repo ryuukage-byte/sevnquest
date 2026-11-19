@@ -3,7 +3,7 @@
  * Skema & aturan server: supabase/migrations/20261107b_letters.sql.
  */
 
-export type LetterCategory = 'general' | 'bug' | 'account' | 'suggestion' | 'thanks';
+export type LetterCategory = 'general' | 'bug' | 'account' | 'suggestion' | 'thanks' | 'donation';
 export type Stationery =
   | 'classic' | 'sakura' | 'night'                                       // Free
   | 'kilat'                                                               // Premium
@@ -126,7 +126,48 @@ export function stationeryStyle(s: Stationery): StationeryStyle {
 }
 
 export function categoryLabel(c: LetterCategory): string {
+  if (c === 'donation') return 'Donasi';
   return CATEGORIES.find(x => x.value === c)?.label ?? 'Umum';
+}
+
+/** Isi kotak hadiah pada surat donasi dari admin (snapshot saat pembayaran disetujui). */
+export interface LetterGift {
+  kind: 'monthly' | 'yearly' | 'lifetime' | 'gift_key';
+  amount: number;
+  /** Disetujui lewat verifikasi otomatis. */
+  auto: boolean;
+  /** Key hadiah (hanya kind gift_key). */
+  key: string | null;
+  monthTier: number;
+  accessExpiresAt: string | null;
+  isLifetime: boolean;
+  lifetimeTotal: number;
+  badgeLevel: number;
+  badgeTitle: string | null;
+}
+
+const GIFT_KINDS = new Set(['monthly', 'yearly', 'lifetime', 'gift_key']);
+
+export function parseGift(v: unknown): LetterGift | null {
+  if (!v || typeof v !== 'object') return null;
+  const r = v as Record<string, unknown>;
+  if (typeof r.kind !== 'string' || !GIFT_KINDS.has(r.kind)) return null;
+  const n = (x: unknown, max = 1e9) => {
+    const k = Number(x);
+    return Number.isFinite(k) && k >= 0 ? Math.min(max, Math.trunc(k)) : 0;
+  };
+  return {
+    kind: r.kind as LetterGift['kind'],
+    amount: n(r.amount),
+    auto: r.auto === true,
+    key: typeof r.key === 'string' && r.key ? r.key : null,
+    monthTier: n(r.month_tier, 7),
+    accessExpiresAt: typeof r.access_expires_at === 'string' ? r.access_expires_at : null,
+    isLifetime: r.is_lifetime === true,
+    lifetimeTotal: n(r.lifetime_total),
+    badgeLevel: n(r.badge_level, 8),
+    badgeTitle: typeof r.badge_title === 'string' && r.badge_title ? r.badge_title : null,
+  };
 }
 
 /** Surat seperti terlihat pemain (tanpa sender_id; server tidak memberikannya). */
@@ -149,6 +190,9 @@ export interface Letter {
   repliedAt: string | null;
   archivedByRecipient: boolean;
   archivedBySender: boolean;
+  /** Kotak hadiah (surat donasi dari admin); null untuk surat biasa. */
+  gift: LetterGift | null;
+  giftOpenedAt: string | null;
 }
 
 /** Surat di Kantor Pos Pusat seperti terlihat admin. */
@@ -171,7 +215,7 @@ export interface AdminLetter {
   senderTier: string | null;
 }
 
-const CATEGORY_SET = new Set<string>(CATEGORIES.map(c => c.value));
+const CATEGORY_SET = new Set<string>([...CATEGORIES.map(c => c.value), 'donation']);
 const STATIONERY_SET = new Set<string>(STATIONERY.map(s => s.value));
 
 function str(v: unknown): string | null {
@@ -218,6 +262,8 @@ export function parseLetterRow(row: unknown): Letter | null {
     repliedAt: str(r.replied_at),
     archivedByRecipient: r.archived_by_recipient === true,
     archivedBySender: r.archived_by_sender === true,
+    gift: parseGift(r.gift),
+    giftOpenedAt: str(r.gift_opened_at),
   };
 }
 

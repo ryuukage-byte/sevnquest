@@ -6,7 +6,7 @@ import {
 import { playSound } from '../../utils/audio';
 import { useBackButton } from '../../hooks/useBackButton';
 import {
-  BADGES, badgeForTotal, nextBadge, monthlyRemaining, lifetimeUnitsLeft, monthTierFor, monthTierPerks, monthTierFeatures, yearlyDeal, daysUntil, formatIdr, planLabel,
+  BADGES, badgeForTotal, nextBadge, monthlyRemaining, lifetimeUnitsLeft, monthTierFor, monthTierPerks, monthTierFeatures, yearlyDeal, FULL_FEATURES, daysUntil, formatIdr, planLabel,
   type Entitlement,
 } from '../../utils/access';
 import {
@@ -21,13 +21,6 @@ export const QRIS_IMAGE_URL = '/payment/qris-sevnsoul.png';
 export const MERCHANT_NMID = 'ID1026625677186';
 export const MERCHANT_NAME = 'SEVNSOUL STORE, DIGITAL & KREATIF';
 
-const FULL_FEATURES = [
-  'Semua materi N4 sampai N1, Kaigo, dan SSW',
-  'Bedah Soal tanpa batas (gratis 3 soal per hari)',
-  'Seluruh Bank Soal dan semua tryout, Tower lantai 61–100, semua mode Dungeon',
-  'Deck AI dan Imersi YouTube',
-  'Latihan Ekstra Recall tanpa batas',
-];
 
 /** Rincian lengkap keuntungan satu tingkat bulanan: akses Full (semua tingkat) + prioritas tingkat itu. */
 const TierFeatureList: React.FC<{ tier: number }> = ({ tier }) => {
