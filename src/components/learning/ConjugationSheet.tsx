@@ -10,6 +10,7 @@ import {
 } from '../../data/conjugationBank';
 import { getSiblingSubBranches } from '../../data/bunpouSubKnowledge';
 import { speakJapanese } from '../../utils/audio';
+import { ViewportPortal } from '../ui/ViewportPortal';
 
 interface ConjugationSheetProps {
   patternId: string;
@@ -52,8 +53,9 @@ export const ConjugationSheet: React.FC<ConjugationSheetProps> = ({
   const siblingBranches = type === 'connector' ? getSiblingSubBranches(activeConnectorId) : [];
 
   return (
+    <ViewportPortal>
     <div
-      className="fixed inset-0 z-50 flex items-end justify-center bg-black/75 animate-fade-in"
+      className="fixed inset-0 z-[95] flex items-end justify-center bg-black/75 animate-fade-in"
       onClick={(e) => {
         if (e.target === e.currentTarget) onClose();
       }}
@@ -438,5 +440,6 @@ export const ConjugationSheet: React.FC<ConjugationSheetProps> = ({
         }
       `}</style>
     </div>
+    </ViewportPortal>
   );
 };

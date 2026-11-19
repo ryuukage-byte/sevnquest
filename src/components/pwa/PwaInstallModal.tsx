@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Smartphone, Laptop, Share2, PlusSquare, Download, Check, X } from 'lucide-react';
 import { playSound } from '../../utils/audio';
+import { ViewportPortal } from '../ui/ViewportPortal';
 
 interface PwaInstallModalProps {
   isOpen: boolean;
@@ -57,9 +58,10 @@ export const PwaInstallModal: React.FC<PwaInstallModalProps> = ({
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/75 animate-fade-in">
+    <ViewportPortal>
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 bg-black/75 animate-fade-in overflow-y-auto overscroll-contain">
       <div 
-        className="panel panel-stitched w-full max-w-lg overflow-hidden relative shadow-2xl border border-border-primary text-text-primary animate-scale-in"
+        className="my-auto panel panel-stitched w-full max-w-lg overflow-hidden relative shadow-2xl border border-border-primary text-text-primary animate-scale-in"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Header */}
@@ -321,5 +323,6 @@ export const PwaInstallModal: React.FC<PwaInstallModalProps> = ({
         </div>
       </div>
     </div>
+    </ViewportPortal>
   );
 };

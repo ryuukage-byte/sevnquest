@@ -27,6 +27,7 @@ import { getKanjiPoolForBook } from '../../utils/arcadeSourceUtils';
 import { ArcadeSourceSelector } from './ArcadeSourceSelector';
 import { calcEngineExp, getKanjiBaseExp } from '../../utils/rewards';
 import { useArcadeGuard } from './useArcadeGuard';
+import { useBodyScrollLock } from '../../hooks/useBodyScrollLock';
 
 interface KanjiSpeedRushModalProps {
   isOpen: boolean;
@@ -247,10 +248,10 @@ export const KanjiSpeedRushModal: React.FC<KanjiSpeedRushModalProps> = ({
   }, [currentIndex, kanjiQueue, onRewardPlayer, onCompleteStudyItem, soundEnabled, buildQueue, selectedLevel]);
 
   // Body scroll lock & Escape key handler
+  useBodyScrollLock(isOpen);
+
   useEffect(() => {
     if (!isOpen) return;
-    const prevOverflow = document.body.style.overflow;
-    document.body.style.overflow = 'hidden';
 
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
@@ -260,7 +261,6 @@ export const KanjiSpeedRushModal: React.FC<KanjiSpeedRushModalProps> = ({
     window.addEventListener('keydown', handleKeyDown);
 
     return () => {
-      document.body.style.overflow = prevOverflow;
       window.removeEventListener('keydown', handleKeyDown);
     };
   }, [isOpen, handleClose]);

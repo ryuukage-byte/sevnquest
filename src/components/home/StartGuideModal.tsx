@@ -4,6 +4,7 @@ import {
   X, ChevronRight, ChevronLeft, Compass, Languages, BookOpen, Repeat, Flame, Sprout, Library, Map as MapIcon,
 } from 'lucide-react';
 import { playSound } from '../../utils/audio';
+import { ViewportPortal } from '../ui/ViewportPortal';
 
 export type GuidePath = 'foundation' | 'library' | 'world';
 
@@ -115,8 +116,9 @@ export const StartGuideModal: React.FC<StartGuideModalProps> = ({
   };
 
   return (
+    <ViewportPortal>
     <div
-      className="fixed inset-0 z-[9980] flex items-center justify-center p-4 bg-slate-950/85"
+      className="fixed inset-0 z-[9980] flex items-center justify-center p-4 bg-slate-950/85 overflow-y-auto overscroll-contain"
       role="dialog"
       aria-modal="true"
       aria-label="Panduan SevnQuest"
@@ -229,5 +231,6 @@ export const StartGuideModal: React.FC<StartGuideModalProps> = ({
         </div>
       </motion.div>
     </div>
+    </ViewportPortal>
   );
 };

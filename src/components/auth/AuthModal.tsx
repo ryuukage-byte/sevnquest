@@ -3,6 +3,7 @@ import { supabase } from '../../lib/supabase';
 import { mountGoogleButton, GOOGLE_CLIENT_ID } from '../../lib/googleIdentity';
 import { Mail, Lock, Loader2, X, AlertCircle } from 'lucide-react';
 import { playSound } from '../../utils/audio';
+import { ViewportPortal } from '../ui/ViewportPortal';
 
 interface AuthModalProps {
   isOpen: boolean;
@@ -130,8 +131,9 @@ export const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, onSuccess
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/75">
-      <div className="w-full max-w-md panel panel-stitched bg-surface-card border border-border-subtle rounded-3xl overflow-hidden shadow-[6px_6px_24px_var(--neu-d),-4px_-4px_16px_var(--neu-l)] relative animate-in fade-in zoom-in duration-200">
+    <ViewportPortal>
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/75 overflow-y-auto overscroll-contain">
+      <div className="my-auto w-full max-w-md panel panel-stitched bg-surface-card border border-border-subtle rounded-3xl overflow-hidden shadow-[6px_6px_24px_var(--neu-d),-4px_-4px_16px_var(--neu-l)] relative animate-in fade-in zoom-in duration-200">
         {/* Washi Texture Overlay */}
         <div className="skeuo-grain" />
 
@@ -263,5 +265,6 @@ export const AuthModal: React.FC<AuthModalProps> = ({ isOpen, onClose, onSuccess
         </div>
       </div>
     </div>
+    </ViewportPortal>
   );
 };

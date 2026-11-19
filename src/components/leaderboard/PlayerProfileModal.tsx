@@ -26,6 +26,7 @@ import {
   RpgLockIcon,
   RpgCheckIcon,
 } from '../ui/RpgLineIcons';
+import { useBodyScrollLock } from '../../hooks/useBodyScrollLock';
 
 export interface PlayerProfileModalProps {
   player: (LeaderboardEntry & { rank?: number; weeklyScore?: number }) | null;
@@ -53,15 +54,14 @@ export const PlayerProfileModal: React.FC<PlayerProfileModalProps> = ({
   const [tempSignature, setTempSignature] = useState('');
 
   // Prevent background scrolling while modal is open & listen for ESC key
+  useBodyScrollLock(isOpen);
+
   useEffect(() => {
     if (!isOpen) return;
 
     // Reset to primary tab upon opening
     setActiveTab('rpg');
     setIsEditingSignature(false);
-
-    const originalOverflow = document.body.style.overflow;
-    document.body.style.overflow = 'hidden';
 
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
@@ -72,7 +72,6 @@ export const PlayerProfileModal: React.FC<PlayerProfileModalProps> = ({
     window.addEventListener('keydown', handleKeyDown);
 
     return () => {
-      document.body.style.overflow = originalOverflow;
       window.removeEventListener('keydown', handleKeyDown);
     };
   }, [isOpen, onClose, soundEnabled]);

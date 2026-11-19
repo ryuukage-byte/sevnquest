@@ -5,6 +5,7 @@ import { Announcement, AnnouncementKind, ackGate, popupQueue } from '../../lib/a
 import { markClosed, markRead, markShownThisSession, useAnnouncements } from '../../lib/announcements';
 import { playSound } from '../../utils/audio';
 import { AnnouncementBody } from './AnnouncementBody';
+import { ViewportPortal } from '../ui/ViewportPortal';
 
 export const KIND_META: Record<AnnouncementKind, { label: string; Icon: typeof Info; tone: string; accent: string }> = {
   info: { label: 'Info', Icon: Info, tone: 'text-indigo', accent: 'border-l-indigo' },
@@ -154,8 +155,9 @@ export const AnnouncementReader: React.FC<{
   );
 
   return (
+    <ViewportPortal>
     <div
-      className="fixed inset-0 z-[9970] flex items-center justify-center p-4 bg-slate-950/85"
+      className="fixed inset-0 z-[9970] flex items-center justify-center p-4 bg-slate-950/85 overflow-y-auto overscroll-contain"
       role="dialog"
       aria-modal="true"
       aria-label="Pengumuman"
@@ -172,6 +174,7 @@ export const AnnouncementReader: React.FC<{
         <AnnouncementCard announcement={a} onClose={closable ? onClose : undefined} counter={counter} footer={footer} />
       </motion.div>
     </div>
+    </ViewportPortal>
   );
 };
 

@@ -45,6 +45,7 @@ import {
 import { playSound } from '../../utils/audio';
 import { LetterPaper } from './LetterPaper';
 import { BoxVariant, PostScene, TakeScene } from './MailScenes';
+import { useBodyScrollLock } from '../../hooks/useBodyScrollLock';
 
 /** Surat muncul halus setelah diambil dari kotak pos. */
 const REVEAL = {
@@ -402,13 +403,9 @@ export const PostOffice: React.FC<PostOfficeProps> = ({ initialView, playerName,
       if (e.key === 'Escape') onClose();
     };
     window.addEventListener('keydown', onKey);
-    const prev = document.body.style.overflow;
-    document.body.style.overflow = 'hidden';
-    return () => {
-      window.removeEventListener('keydown', onKey);
-      document.body.style.overflow = prev;
-    };
+    return () => window.removeEventListener('keydown', onKey);
   }, [onClose]);
+  useBodyScrollLock();
 
   const me = myId ?? '';
   const inbox = useMemo(() => playerBox(letters, me, 'inbox'), [letters, me]);

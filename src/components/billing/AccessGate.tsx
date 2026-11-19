@@ -2,6 +2,7 @@ import React from 'react';
 import { Lock, Crown, X } from 'lucide-react';
 import { useAccess } from '../../state/entitlement';
 import { requiredTierForLevel, TIER_LABEL, type AccessTier } from '../../utils/access';
+import { ViewportPortal } from '../ui/ViewportPortal';
 
 /** Pengganti isi modal saat materi terkunci (gating lunak, PRD 6.4). */
 export const LockedOverlay: React.FC<{
@@ -10,10 +11,20 @@ export const LockedOverlay: React.FC<{
   onClose?: () => void;
 }> = ({ requiredTier, label, onClose }) => {
   const { openUpgrade } = useAccess();
+  // Di-portal ke body: modal ini dirender dari dalam halaman (Library, Buku Saku, dst.) yang
+  // bisa punya leluhur ber-transform; tanpa portal ia muncul di luar layar setelah digulir.
+  // z-[85]: menggantikan modal materi (lapisan z-[80]) dan bisa bersarang di modal materi lain.
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80" onClick={onClose}>
+    <ViewportPortal>
+    <div
+      className="fixed inset-0 z-[85] flex items-center justify-center p-4 bg-black/80 overflow-y-auto overscroll-contain"
+      role="dialog"
+      aria-modal="true"
+      aria-label={`${label} terkunci`}
+      onClick={onClose}
+    >
       <div
-        className="w-full max-w-sm panel panel-stitched bg-surface-card border border-border-subtle rounded-3xl p-6 text-center space-y-4 relative shadow-2xl"
+        className="my-auto w-full max-w-sm panel panel-stitched bg-surface-card border border-border-subtle rounded-3xl p-6 text-center space-y-4 relative shadow-2xl"
         onClick={e => e.stopPropagation()}
       >
         {onClose && (
@@ -39,6 +50,7 @@ export const LockedOverlay: React.FC<{
         </button>
       </div>
     </div>
+    </ViewportPortal>
   );
 };
 

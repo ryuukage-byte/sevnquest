@@ -314,9 +314,12 @@ export const KotobaLibraryView: React.FC<KotobaLibraryViewProps> = ({
 
           {isDropdownOpen && (
             <>
-              <div 
-                className="fixed inset-0 z-40" 
-                onClick={() => setIsDropdownOpen(false)} 
+              {/* Lapisan penutup dropdown: sengaja TIDAK di-portal agar satu stacking context dengan
+                  menunya (z-50 di bawah). Lihat docs/architecture/UI_POSITIONING_STANDARD.md. */}
+              <div
+                data-dismiss-layer
+                className="fixed inset-0 z-40"
+                onClick={() => setIsDropdownOpen(false)}
               />
               <div className="absolute right-0 top-full mt-2 w-56 rounded-2xl bg-surface-card border border-border-subtle shadow-xl z-50 p-1.5 space-y-1 animate-fade-in">
                 {LEVEL_OPTIONS.map((opt) => {
