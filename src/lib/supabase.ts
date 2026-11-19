@@ -395,6 +395,32 @@ export const STORAGE_KEY_LB_CACHE = 'nihongo_quest_leaderboard_alltime_cache';
 export const STORAGE_KEY_WEEKLY_CACHE = 'nihongo_quest_leaderboard_weekly_cache';
 
 /**
+ * Reset progres: nolkan baris leaderboard milik sendiri + skor Arena Mingguan minggu ini.
+ * Diperlukan karena upsert_leaderboard_entry tidak pernah menurunkan EXP (anti-curang).
+ */
+export async function resetMyLeaderboard(): Promise<boolean> {
+  try {
+    // Tamu tidak punya baris leaderboard: tidak ada yang perlu direset.
+    if (!(await getSession())) return true;
+    const { error } = await supabase.rpc('reset_my_leaderboard');
+    if (error) {
+      console.error('Error resetting leaderboard:', error);
+      return false;
+    }
+    try {
+      localStorage.removeItem(STORAGE_KEY_LB_CACHE);
+      localStorage.removeItem(STORAGE_KEY_WEEKLY_CACHE);
+    } catch {
+      /* storage diblokir */
+    }
+    return true;
+  } catch (err) {
+    console.error('Failed to reset leaderboard:', err);
+    return false;
+  }
+}
+
+/**
  * Fetch players from the All-Time leaderboard (default limit: 100).
  * Falls back to local storage cache if network is temporarily unreachable.
  */
