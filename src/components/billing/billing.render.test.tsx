@@ -95,3 +95,11 @@ test('donatur bulan ini diurutkan dari donasi terbesar', () => {
   const out = sortMonthlyDonors([row('C', 3), row('A', 1), row('X', null, 5), row('B', 2)]);
   assert.deepEqual(out.map(r => r.display_name), ['A', 'B', 'C', 'X']);
 });
+
+test('UpgradeModal tab Tahunan tampil dengan label hemat', () => {
+  const html = renderToStaticMarkup(
+    <UpgradeModal request={{ requiredTier: 'full', label: 'X' }} userId="u1" entitlement={parseEntitlement({ access_tier: 'basic' })} onClose={noop} onChanged={noop} />,
+  );
+  assert.match(html, /Tahunan/);
+  assert.match(html, /-50%/);
+});

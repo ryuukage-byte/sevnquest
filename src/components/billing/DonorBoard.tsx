@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Heart, Loader2, Infinity as InfinityIcon, Award, Crown, Medal } from 'lucide-react';
+import { Heart, Loader2, Award, Crown, Medal, Trophy, CalendarDays } from 'lucide-react';
 import { fetchDonorBoard, type DonorBoardRow } from '../../lib/billing';
 import { useAccess } from '../../state/entitlement';
 import { BADGES } from '../../utils/access';
@@ -49,8 +49,10 @@ export const DonorBoard: React.FC = () => {
     fetchDonorBoard().then(setRows).catch(() => { setError(true); setRows([]); });
   }, []);
 
-  const lifetime = (rows || []).filter(r => r.is_lifetime);
-  const badged = (rows || []).filter(r => !r.is_lifetime && r.badge_level > 0);
+  // Hall of Fame: pemegang Lifetime dulu, lalu pembeli Tahunan (server sudah mengurutkan dari total terbesar).
+  const fame = (rows || []).filter(r => r.is_lifetime || r.is_yearly)
+    .sort((a, b) => Number(b.is_lifetime) - Number(a.is_lifetime));
+  const badged = (rows || []).filter(r => !r.is_lifetime && !r.is_yearly && r.badge_level > 0);
   const monthly = sortMonthlyDonors((rows || []).filter(r => r.monthly_this_month));
   const podium = monthly.slice(0, 3);
   const rest = monthly.slice(3);
@@ -65,16 +67,34 @@ export const DonorBoard: React.FC = () => {
       {rows === null && <div className="flex justify-center py-10"><Loader2 className="w-6 h-6 animate-spin text-text-muted" /></div>}
       {error && <p className="text-center text-xs text-rose-400">Papan donatur belum bisa dimuat. Coba lagi nanti.</p>}
 
-      {lifetime.length > 0 && (
-        <section className="space-y-2">
-          <h3 className="text-[11px] font-bold uppercase tracking-wider text-gold font-heading flex items-center gap-1.5">
-            <InfinityIcon className="w-4 h-4" /> Lifetime · 永遠 Eien
-          </h3>
+      {fame.length > 0 && (
+        <section className="space-y-2.5 p-3 sm:p-4 rounded-2xl border border-gold/50 bg-gradient-to-b from-gold/15 to-transparent">
+          <div className="space-y-1">
+            <h3 className="text-[11px] font-bold uppercase tracking-wider text-gold font-heading flex items-center gap-1.5">
+              <Trophy className="w-4 h-4" /> Hall of Fame
+            </h3>
+            <p className="text-[11px] text-text-secondary leading-relaxed">
+              Mereka berada di urutan teratas, dan akan diusahakan selalu mendapat fitur-fitur yang dibutuhkan selama SevnQuest masih
+              hidup.
+            </p>
+          </div>
           <div className="grid sm:grid-cols-2 gap-2">
-            {lifetime.map((r, i) => (
-              <div key={`l${i}`} className="flex items-center gap-2.5 p-3 rounded-2xl border border-gold/50 bg-gold/10">
-                <span className="text-lg">👑</span>
-                <span className="flex-1 min-w-0 font-bold text-sm text-text-primary truncate">{name(r)}</span>
+            {fame.map((r, i) => (
+              <div key={`f${i}`} className="flex items-center gap-3 p-3 rounded-2xl border border-gold/50 bg-surface-card/60">
+                <span className="shrink-0 w-10 h-10 rounded-full border border-gold/50 bg-gold/15 text-gold flex items-center justify-center">
+                  {r.is_lifetime ? <Crown className="w-5 h-5" /> : <CalendarDays className="w-5 h-5" />}
+                </span>
+                <span className="flex-1 min-w-0">
+                  <span className="block font-bold text-sm text-text-primary truncate">{name(r)}</span>
+                  {r.badge_level > 0 && (
+                    <span className="block text-[11px] text-text-secondary truncate">
+                      <span className="font-heading text-gold">{kanjiOf(r.badge_level)}</span> {r.badge_title}
+                    </span>
+                  )}
+                </span>
+                <span className="shrink-0 px-2 py-0.5 rounded-full border border-gold/40 bg-gold/10 text-[10px] font-bold text-gold">
+                  {r.is_lifetime ? 'Selamanya' : 'Tahunan'}
+                </span>
               </div>
             ))}
           </div>

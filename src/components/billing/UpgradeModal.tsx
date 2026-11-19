@@ -1,12 +1,12 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import {
   X, Crown, Copy, Check, Loader2, Download, Clock, Heart, Lock, AlertCircle, Upload, ChevronLeft, Minus, Plus,
-  Infinity as InfinityIcon, Mail, Send, FileText, ListOrdered,
+  Infinity as InfinityIcon, Mail, Send, FileText, ListOrdered, Trophy, CalendarDays,
 } from 'lucide-react';
 import { playSound } from '../../utils/audio';
 import { useBackButton } from '../../hooks/useBackButton';
 import {
-  BADGES, badgeForTotal, nextBadge, monthlyRemaining, lifetimeUnitsLeft, monthTierFor, monthTierPerks, monthTierFeatures, daysUntil, formatIdr, planLabel,
+  BADGES, badgeForTotal, nextBadge, monthlyRemaining, lifetimeUnitsLeft, monthTierFor, monthTierPerks, monthTierFeatures, yearlyDeal, daysUntil, formatIdr, planLabel,
   type Entitlement,
 } from '../../utils/access';
 import {
@@ -130,7 +130,7 @@ type View = { kind: 'plans' } | { kind: 'order'; order: PaymentOrder };
 
 export const UpgradeModal: React.FC<Props> = ({ request, userId, entitlement, soundEnabled = true, onClose, onChanged }) => {
   const cfg = entitlement.config;
-  const [tab, setTab] = useState<'monthly' | 'lifetime'>(request.tab === 'donor' ? 'lifetime' : 'monthly');
+  const [tab, setTab] = useState<'monthly' | 'yearly' | 'lifetime'>(request.tab === 'donor' ? 'lifetime' : 'monthly');
   const [view, setView] = useState<View>({ kind: 'plans' });
   const [orders, setOrders] = useState<PaymentOrder[]>([]);
   const [busy, setBusy] = useState<DonationKind | null>(null);
@@ -199,6 +199,8 @@ export const UpgradeModal: React.FC<Props> = ({ request, userId, entitlement, so
   const badge = badgeForTotal(entitlement.lifetimeTotal);
   const next = nextBadge(entitlement.lifetimeTotal);
   const expiresIn = daysUntil(entitlement.accessExpiresAt);
+  const deal = yearlyDeal(cfg);
+  const yearlyBadge = badgeForTotal(entitlement.lifetimeTotal + cfg.yearlyPrice);
 
 
   return (
@@ -295,13 +297,18 @@ export const UpgradeModal: React.FC<Props> = ({ request, userId, entitlement, so
 
               {/* Tab */}
               <div className="flex gap-1.5 p-1 rounded-2xl bg-surface-inset border border-border-subtle text-xs font-bold">
-                {(['monthly', 'lifetime'] as const).map(t => (
+                {(['monthly', 'yearly', 'lifetime'] as const).map(t => (
                   <button
                     key={t}
                     onClick={() => { setTab(t); playSound('click', soundEnabled); }}
-                    className={`flex-1 py-2 rounded-xl transition-all ${tab === t ? 'bg-surface-elevated text-text-primary border border-border-subtle' : 'text-text-muted'}`}
+                    className={`relative flex-1 min-w-0 px-1 py-2 rounded-xl transition-all ${tab === t ? 'bg-surface-elevated text-text-primary border border-border-subtle' : 'text-text-muted'}`}
                   >
-                    {t === 'monthly' ? 'Bulanan (7 tingkat)' : 'Lifetime (per Rp 25 rb)'}
+                    {t === 'monthly' ? 'Bulanan' : t === 'yearly' ? 'Tahunan' : 'Lifetime'}
+                    {t === 'yearly' && deal.percent > 0 && (
+                      <span className="absolute -top-2 right-1 px-1.5 py-px rounded-full bg-emerald-500 text-white text-[9px] font-black leading-tight shadow">
+                        -{deal.percent}%
+                      </span>
+                    )}
                   </button>
                 ))}
               </div>
@@ -370,6 +377,19 @@ export const UpgradeModal: React.FC<Props> = ({ request, userId, entitlement, so
 
                   <TierFeatureList tier={targetTier} />
 
+                  {targetTier === 1 && deal.percent > 0 && (
+                    <button
+                      onClick={() => { setTab('yearly'); playSound('click', soundEnabled); }}
+                      className="w-full flex items-center gap-2.5 p-2.5 rounded-xl border border-emerald-500/50 bg-emerald-500/10 text-left"
+                    >
+                      <CalendarDays className="w-4 h-4 shrink-0 text-emerald-400" />
+                      <span className="flex-1 min-w-0 text-[11px] text-text-primary">
+                        Lebih hemat: <b>Tahunan {formatIdr(cfg.yearlyPrice)}</b> untuk 12 bulan, bukan {formatIdr(deal.normal)}
+                      </span>
+                      <span className="shrink-0 px-1.5 py-0.5 rounded-full bg-emerald-500 text-white text-[10px] font-black">-{deal.percent}%</span>
+                    </button>
+                  )}
+
                   {!customOpen ? (
                     <>
                       <button
@@ -422,6 +442,80 @@ export const UpgradeModal: React.FC<Props> = ({ request, userId, entitlement, so
                     Total dihitung per bulan kalender (WIB) dan kembali ke 0 tiap awal bulan. Full {cfg.fullDays} hari terbuka saat total
                     mencapai Tingkat 1, sekali per bulan.
                   </p>
+                </div>
+              )}
+
+              {tab === 'yearly' && (
+                <div className="rounded-2xl border border-emerald-500/50 bg-gradient-to-br from-emerald-500/10 via-transparent to-gold/10 p-4 space-y-3">
+                  <div className="flex items-start justify-between gap-3">
+                    <div className="min-w-0">
+                      <h3 className="font-heading font-black text-text-primary text-sm flex items-center gap-1.5">
+                        <CalendarDays className="w-4 h-4 text-emerald-400" /> Paket Tahunan
+                      </h3>
+                      <p className="text-[11px] text-text-secondary mt-0.5">Penawaran terbaik: setahun penuh dengan setengah harga.</p>
+                    </div>
+                    <span className="shrink-0 px-2.5 py-1 rounded-full bg-emerald-500 text-white text-[11px] font-black shadow">
+                      Hemat {deal.percent}%
+                    </span>
+                  </div>
+
+                  <div className="rounded-xl border border-border-subtle bg-surface-card p-3 space-y-1.5">
+                    <div className="flex items-baseline justify-between gap-2 text-xs">
+                      <span className="text-text-secondary">Tingkat 1 × 12 bulan</span>
+                      <span className="font-mono text-text-muted line-through">{formatIdr(deal.normal)}</span>
+                    </div>
+                    <div className="flex flex-wrap items-baseline justify-between gap-x-2">
+                      <span className="font-heading font-black text-text-primary whitespace-nowrap">Paket Tahunan</span>
+                      <span className="font-mono font-black text-lg text-gold whitespace-nowrap">{formatIdr(cfg.yearlyPrice)}<span className="text-xs font-bold text-text-secondary"> / tahun</span></span>
+                    </div>
+                    <div className="flex items-baseline justify-between gap-2 text-[11px] pt-1.5 border-t border-border-subtle">
+                      <span className="text-emerald-400 font-bold">Kamu hemat {formatIdr(deal.save)}</span>
+                      <span className="font-mono text-text-muted">≈ {formatIdr(Math.round(cfg.yearlyPrice / 12))} / bulan</span>
+                    </div>
+                  </div>
+
+                  <ul className="grid gap-1.5 text-[11px]">
+                    <li className="flex items-start gap-2 px-2.5 py-2 rounded-xl border border-border-subtle bg-surface-card">
+                      <Crown className="w-3.5 h-3.5 mt-0.5 shrink-0 text-gold" />
+                      <span className="text-text-primary"><b>Akses Full {cfg.yearlyDays} hari</b> + Kotak Pos minimal Premium, setara Tingkat 1 selama setahun</span>
+                    </li>
+                    <li className="flex items-start gap-2 px-2.5 py-2 rounded-xl border border-border-subtle bg-surface-card">
+                      <InfinityIcon className="w-3.5 h-3.5 mt-0.5 shrink-0 text-gold" />
+                      <span className="text-text-primary">
+                        Dihitung ke tabungan lifetime{yearlyBadge && <>: langsung badge <b className="text-gold">{yearlyBadge.kanji} {yearlyBadge.title}</b></>}
+                        {' '}({formatIdr(Math.min(cfg.lifetimeTarget, entitlement.lifetimeTotal + cfg.yearlyPrice))} / {formatIdr(cfg.lifetimeTarget)})
+                      </span>
+                    </li>
+                    <li className="flex items-start gap-2 px-2.5 py-2 rounded-xl border border-border-subtle bg-surface-card">
+                      <Trophy className="w-3.5 h-3.5 mt-0.5 shrink-0 text-gold" />
+                      <span className="text-text-primary">Namamu masuk <b>Hall of Fame</b> di urutan teratas papan donatur</span>
+                    </li>
+                  </ul>
+
+                  <div className="space-y-1">
+                    <p className="text-[10px] font-bold uppercase tracking-wider text-text-muted">Termasuk akses Full</p>
+                    <ul className="text-[11px] text-text-secondary space-y-0.5">
+                      {FULL_FEATURES.map(x => <li key={x} className="flex gap-1.5"><Check className="w-3.5 h-3.5 text-emerald-400 shrink-0" />{x}</li>)}
+                    </ul>
+                  </div>
+
+                  {!asGift && entitlement.isLifetime ? (
+                    <p className="text-xs text-emerald-400">Kamu sudah Lifetime: Full selamanya. Terima kasih!</p>
+                  ) : (
+                    <>
+                      <button
+                        disabled={!!busy}
+                        onClick={() => donate('yearly', cfg.yearlyPrice)}
+                        className="btn-cta w-full py-3 text-xs font-heading font-black flex items-center justify-center gap-2 disabled:opacity-50"
+                      >
+                        {busy === 'yearly' ? <Loader2 className="w-4 h-4 animate-spin" /> : <CalendarDays className="w-4 h-4" />}
+                        Ambil Tahunan {formatIdr(cfg.yearlyPrice)}
+                      </button>
+                      <p className="text-[10px] text-text-muted">
+                        Full {cfg.yearlyDays} hari bersambung dengan masa Full yang masih aktif. Tidak diperpanjang otomatis.
+                      </p>
+                    </>
+                  )}
                 </div>
               )}
 

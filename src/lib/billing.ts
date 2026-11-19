@@ -39,9 +39,11 @@ export interface DonorBoardRow {
   month_tier?: number | null;
   /** Urutan donatur bulan ini menurut total donasi (1 = terbesar). */
   month_rank?: number | null;
+  /** Pernah membeli paket Tahunan (tampil di Hall of Fame). */
+  is_yearly?: boolean | null;
 }
 
-export type DonationKind = 'monthly' | 'lifetime';
+export type DonationKind = 'monthly' | 'yearly' | 'lifetime';
 
 /** Pesan Indonesia untuk kode error dari RPC. */
 export function billingErrorMessage(err: unknown): string {

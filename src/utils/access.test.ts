@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import {
   requiredTierForLevel, canAccessLevel, tierAtLeast, requiredTierForTowerFloor,
   parseEntitlement, entitlementFromCache, ENTITLEMENT_CACHE_MAX_AGE_MS, BASIC_ENTITLEMENT, daysUntil, formatIdr,
-  badgeForTotal, nextBadge, monthlyRemaining, lifetimeUnitsLeft, DEFAULT_DONATION_CONFIG, monthTierFeatures, MAIL_DAILY_LIMITS,
+  badgeForTotal, nextBadge, monthlyRemaining, lifetimeUnitsLeft, DEFAULT_DONATION_CONFIG, monthTierFeatures, MAIL_DAILY_LIMITS, yearlyDeal, parseEntitlement as parseEnt,
 } from './access';
 
 test('level → tier: kana/N5 gratis, selain itu Full', () => {
@@ -140,4 +140,15 @@ test('keuntungan tingkat bulanan: tiap tingkat punya rincian, kuota & kertas nai
     assert.ok(b.mailPerDay > a.mailPerDay, `kuota T${t}`);
     assert.ok(b.paperCount > a.paperCount, `kertas T${t}`);
   }
+});
+
+test('paket Tahunan: Rp 102.000 = hemat 50% dari 12 x Rp 17.000', () => {
+  const d = yearlyDeal(DEFAULT_DONATION_CONFIG);
+  assert.equal(DEFAULT_DONATION_CONFIG.yearlyPrice, 102000);
+  assert.equal(d.normal, 204000);
+  assert.equal(d.save, 102000);
+  assert.equal(d.percent, 50);
+  const e = parseEnt({ is_yearly: true, config: { yearly_price: 102000, yearly_days: 365 } });
+  assert.equal(e.isYearly, true);
+  assert.equal(e.config.yearlyDays, 365);
 });

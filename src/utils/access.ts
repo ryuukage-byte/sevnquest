@@ -69,6 +69,10 @@ export interface DonationConfig {
   lifetimeUnit: number;
   lifetimeTarget: number;
   fullDays: number;
+  /** Harga paket Tahunan (ikut dihitung ke total lifetime). */
+  yearlyPrice: number;
+  /** Lama akses Full dari paket Tahunan. */
+  yearlyDays: number;
 }
 
 export const DEFAULT_DONATION_CONFIG: DonationConfig = {
@@ -78,6 +82,8 @@ export const DEFAULT_DONATION_CONFIG: DonationConfig = {
   lifetimeUnit: 25000,
   lifetimeTarget: 700000,
   fullDays: 30,
+  yearlyPrice: 102000,
+  yearlyDays: 365,
 };
 
 export interface Entitlement {
@@ -97,6 +103,8 @@ export interface Entitlement {
   monthUnlocked: boolean;
   /** Tingkat donasi bulan ini (0..7). */
   monthTier: number;
+  /** Pernah membeli paket Tahunan (masuk Hall of Fame). */
+  isYearly: boolean;
   config: DonationConfig;
   /** Saklar admin: false = premium belum ditampilkan ke pengguna dan tidak ada yang dikunci. */
   monetizationPublic: boolean;
@@ -115,6 +123,7 @@ export const BASIC_ENTITLEMENT: Entitlement = {
   monthTotal: 0,
   monthUnlocked: false,
   monthTier: 0,
+  isYearly: false,
   config: DEFAULT_DONATION_CONFIG,
   monetizationPublic: false,
   isAdmin: false,
@@ -138,6 +147,8 @@ function parseConfig(raw: unknown): DonationConfig {
     lifetimeUnit: num(r.lifetime_unit, d.lifetimeUnit) || d.lifetimeUnit,
     lifetimeTarget: num(r.lifetime_target, d.lifetimeTarget) || d.lifetimeTarget,
     fullDays: num(r.full_days, d.fullDays) || d.fullDays,
+    yearlyPrice: num(r.yearly_price, d.yearlyPrice) || d.yearlyPrice,
+    yearlyDays: num(r.yearly_days, d.yearlyDays) || d.yearlyDays,
   };
 }
 
@@ -159,6 +170,7 @@ export function parseEntitlement(raw: unknown): Entitlement {
     monthTotal: num(r.month_total, 0),
     monthUnlocked: r.month_unlocked === true,
     monthTier: num(r.month_tier, 0, 7),
+    isYearly: r.is_yearly === true,
     config: parseConfig(r.config),
     monetizationPublic: r.monetization_public === true,
     isAdmin: r.is_admin === true,
@@ -206,6 +218,7 @@ function toRaw(e: Entitlement): Record<string, unknown> {
     month_total: e.monthTotal,
     month_unlocked: e.monthUnlocked,
     month_tier: e.monthTier,
+    is_yearly: e.isYearly,
     config: {
       monthly_threshold: e.config.monthlyThreshold,
       monthly_tiers: e.config.monthlyTiers,
@@ -213,6 +226,8 @@ function toRaw(e: Entitlement): Record<string, unknown> {
       lifetime_unit: e.config.lifetimeUnit,
       lifetime_target: e.config.lifetimeTarget,
       full_days: e.config.fullDays,
+      yearly_price: e.config.yearlyPrice,
+      yearly_days: e.config.yearlyDays,
     },
     monetization_public: e.monetizationPublic,
     is_admin: e.isAdmin,
@@ -327,9 +342,17 @@ export function monthTierFeatures(tier: number): MonthTierFeatures {
   };
 }
 
+/** Hitungan hemat paket Tahunan dibanding 12 bulan Tingkat 1. */
+export function yearlyDeal(cfg: DonationConfig): { normal: number; save: number; percent: number } {
+  const normal = cfg.monthlyThreshold * 12;
+  const save = Math.max(0, normal - cfg.yearlyPrice);
+  return { normal, save, percent: normal > 0 ? Math.round((save / normal) * 100) : 0 };
+}
+
 export function planLabel(tierCode: string, baseAmount: number): string {
   if (tierCode === 'monthly') return `Donasi bulanan ${formatIdr(baseAmount)}`;
   if (tierCode === 'lifetime_unit') return `Setoran lifetime ${formatIdr(baseAmount)}`;
+  if (tierCode === 'yearly') return `Donasi tahunan ${formatIdr(baseAmount)}`;
   return `${tierCode} ${formatIdr(baseAmount)}`;
 }
 
