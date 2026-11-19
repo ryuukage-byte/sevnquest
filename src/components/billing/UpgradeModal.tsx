@@ -850,7 +850,7 @@ const OrderView: React.FC<{
               {copied ? <Check className="w-5 h-5 text-emerald-400" /> : <Copy className="w-5 h-5 opacity-70" />}
             </button>
             <p className="text-[11px] text-text-muted">
-              Donasi {formatIdr(order.base_price_idr)} dikurangi kode unik {order.unique_code}. Nominal persis ini yang dipakai untuk
+              Donasi {formatIdr(order.base_price_idr)} ditambah kode unik {order.unique_code}. Nominal persis ini yang dipakai untuk
               mencocokkan pembayaran ke akunmu secara otomatis.
             </p>
             {order.status === 'pending' && (
