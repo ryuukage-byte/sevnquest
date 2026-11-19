@@ -446,7 +446,9 @@ export const UpgradeModal: React.FC<Props> = ({ request, userId, entitlement, so
               )}
 
               {tab === 'yearly' && (
-                <div className="rounded-2xl border border-emerald-500/50 bg-gradient-to-br from-emerald-500/10 via-transparent to-gold/10 p-4 space-y-3">
+                <div className="relative rounded-2xl border border-emerald-500/60 bg-surface-inset p-5 space-y-3 overflow-hidden [&>*:not(.skeuo-grain):not([aria-hidden])]:relative [&>*:not(.skeuo-grain):not([aria-hidden])]:z-[2]">
+                  <div className="skeuo-grain" />
+                  <span aria-hidden className="pointer-events-none absolute inset-1.5 rounded-[14px] border border-dashed border-emerald-500/35" />
                   <div className="flex items-start justify-between gap-3">
                     <div className="min-w-0">
                       <h3 className="font-heading font-black text-text-primary text-sm flex items-center gap-1.5">
@@ -454,9 +456,7 @@ export const UpgradeModal: React.FC<Props> = ({ request, userId, entitlement, so
                       </h3>
                       <p className="text-[11px] text-text-secondary mt-0.5">Penawaran terbaik: setahun penuh dengan setengah harga.</p>
                     </div>
-                    <span className="shrink-0 px-2.5 py-1 rounded-full bg-emerald-500 text-white text-[11px] font-black shadow">
-                      Hemat {deal.percent}%
-                    </span>
+                    <span className="rpg-badge-status shrink-0">Hemat {deal.percent}%</span>
                   </div>
 
                   <div className="rounded-xl border border-border-subtle bg-surface-card p-3 space-y-1.5">
@@ -520,7 +520,9 @@ export const UpgradeModal: React.FC<Props> = ({ request, userId, entitlement, so
               )}
 
               {tab === 'lifetime' && (
-                <div className="rounded-2xl border border-gold/50 bg-gradient-to-br from-gold/10 to-transparent p-4 space-y-3">
+                <div className="relative rounded-2xl border border-gold/60 bg-surface-inset p-5 space-y-3 overflow-hidden [&>*:not(.skeuo-grain):not([aria-hidden])]:relative [&>*:not(.skeuo-grain):not([aria-hidden])]:z-[2]">
+                  <div className="skeuo-grain" />
+                  <span aria-hidden className="pointer-events-none absolute inset-1.5 rounded-[14px] border border-dashed border-gold/35" />
                   <div className="flex items-baseline justify-between gap-2">
                     <h3 className="font-heading font-black text-text-primary text-sm flex items-center gap-1.5">
                       <InfinityIcon className="w-4 h-4 text-gold" /> Tabungan Lifetime

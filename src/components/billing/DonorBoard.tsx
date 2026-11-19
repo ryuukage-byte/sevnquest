@@ -22,19 +22,28 @@ export function sortMonthlyDonors(rows: DonorBoardRow[]): DonorBoardRow[] {
     .map(x => x.r);
 }
 
-/** Gaya podium untuk 3 donatur teratas bulan ini. */
+/** Gaya podium untuk 3 donatur teratas bulan ini (permukaan washi polos, jahitan sashiko berwarna). */
 const PODIUM = [
-  { label: '1', card: 'border-gold/60 bg-gradient-to-br from-gold/20 via-gold/5 to-transparent', ring: 'bg-gold/20 text-gold border-gold/50', Icon: Crown },
-  { label: '2', card: 'border-slate-400/40 bg-gradient-to-br from-slate-400/15 via-slate-400/5 to-transparent', ring: 'bg-slate-300/15 text-slate-400 border-slate-400/40', Icon: Medal },
-  { label: '3', card: 'border-amber-600/50 bg-gradient-to-br from-amber-600/15 via-amber-600/5 to-transparent', ring: 'bg-amber-600/15 text-amber-500 border-amber-600/40', Icon: Medal },
+  { label: '1', edge: 'border-gold', stitch: 'border-gold/50', icon: 'text-gold', Icon: Crown },
+  { label: '2', edge: 'border-slate-400/70', stitch: 'border-slate-400/40', icon: 'text-slate-400', Icon: Medal },
+  { label: '3', edge: 'border-amber-700/80', stitch: 'border-amber-700/50', icon: 'text-amber-700', Icon: Medal },
 ] as const;
 
+/** Jahitan sashiko di dalam kartu (garis putus-putus seperti kain dijahit). */
+const Stitch: React.FC<{ className?: string }> = ({ className = 'border-[color:var(--thread)]' }) => (
+  <span aria-hidden className={`pointer-events-none absolute inset-1 rounded-[12px] border border-dashed ${className}`} />
+);
+
+/** Bagian papan: panel washi dengan serat kertas dan jahitan sashiko. */
+const BoardSection: React.FC<{ children: React.ReactNode; accent?: string }> = ({ children, accent = '' }) => (
+  <section className={`panel panel-stitched !p-4 sm:!p-5 overflow-hidden ${accent}`}>
+    <div className="skeuo-grain" />
+    <div className="relative z-10 space-y-3">{children}</div>
+  </section>
+);
+
 const TierChip: React.FC<{ tier?: number | null }> = ({ tier }) =>
-  tier && tier > 0 ? (
-    <span className="shrink-0 px-2 py-0.5 rounded-full border border-rose-400/40 bg-rose-400/10 text-[10px] font-bold text-rose-400">
-      Tingkat {tier}
-    </span>
-  ) : null;
+  tier && tier > 0 ? <span className="rpg-badge-reward shrink-0">Tingkat {tier}</span> : null;
 
 /**
  * Papan donatur: hanya di dalam app (pengguna login), terpisah dari papan skor belajar.
@@ -68,10 +77,10 @@ export const DonorBoard: React.FC = () => {
       {error && <p className="text-center text-xs text-rose-400">Papan donatur belum bisa dimuat. Coba lagi nanti.</p>}
 
       {fame.length > 0 && (
-        <section className="space-y-2.5 p-3 sm:p-4 rounded-2xl border border-gold/50 bg-gradient-to-b from-gold/15 to-transparent">
+        <BoardSection accent="!border-gold/60">
           <div className="space-y-1">
             <h3 className="text-[11px] font-bold uppercase tracking-wider text-gold font-heading flex items-center gap-1.5">
-              <Trophy className="w-4 h-4" /> Hall of Fame
+              <Trophy className="w-4 h-4" fill="currentColor" /> Hall of Fame
             </h3>
             <p className="text-[11px] text-text-secondary leading-relaxed">
               Mereka berada di urutan teratas, dan akan diusahakan selalu mendapat fitur-fitur yang dibutuhkan selama SevnQuest masih
@@ -80,11 +89,12 @@ export const DonorBoard: React.FC = () => {
           </div>
           <div className="grid sm:grid-cols-2 gap-2">
             {fame.map((r, i) => (
-              <div key={`f${i}`} className="flex items-center gap-3 p-3 rounded-2xl border border-gold/50 bg-surface-card/60">
-                <span className="shrink-0 w-10 h-10 rounded-full border border-gold/50 bg-gold/15 text-gold flex items-center justify-center">
-                  {r.is_lifetime ? <Crown className="w-5 h-5" /> : <CalendarDays className="w-5 h-5" />}
+              <div key={`f${i}`} className="relative flex items-center gap-3 p-3 rounded-2xl border border-gold/60 bg-surface-inset">
+                <Stitch className="border-gold/40" />
+                <span className="relative shrink-0 w-10 h-10 rounded-full border border-gold/50 bg-surface-card text-gold flex items-center justify-center">
+                  {r.is_lifetime ? <Crown className="w-5 h-5" fill="currentColor" /> : <CalendarDays className="w-5 h-5" />}
                 </span>
-                <span className="flex-1 min-w-0">
+                <span className="relative flex-1 min-w-0">
                   <span className="block font-bold text-sm text-text-primary truncate">{name(r)}</span>
                   {r.badge_level > 0 && (
                     <span className="block text-[11px] text-text-secondary truncate">
@@ -92,13 +102,11 @@ export const DonorBoard: React.FC = () => {
                     </span>
                   )}
                 </span>
-                <span className="shrink-0 px-2 py-0.5 rounded-full border border-gold/40 bg-gold/10 text-[10px] font-bold text-gold">
-                  {r.is_lifetime ? 'Selamanya' : 'Tahunan'}
-                </span>
+                <span className="relative rpg-badge-reward shrink-0">{r.is_lifetime ? 'Selamanya' : 'Tahunan'}</span>
               </div>
             ))}
           </div>
-        </section>
+        </BoardSection>
       )}
 
       {badged.length > 0 && (
@@ -119,10 +127,10 @@ export const DonorBoard: React.FC = () => {
       )}
 
       {monthly.length > 0 && (
-        <section className="space-y-2.5 p-3 sm:p-4 rounded-2xl border border-rose-400/30 bg-gradient-to-b from-rose-400/10 to-transparent">
-          <div className="flex items-center justify-between gap-2">
-            <h3 className="text-[11px] font-bold uppercase tracking-wider text-rose-400 font-heading flex items-center gap-1.5">
-              <Heart className="w-4 h-4 text-rose-400 fill-rose-400/30" /> Donatur Bulan Ini
+        <BoardSection>
+          <div className="flex flex-wrap items-center justify-between gap-x-2 gap-y-0.5">
+            <h3 className="text-[11px] font-bold uppercase tracking-wider text-text-secondary font-heading flex items-center gap-1.5">
+              <Heart className="w-4 h-4 text-rose-400" fill="currentColor" /> Donatur Bulan Ini
             </h3>
             <span className="text-[10px] text-text-muted">{monthly.length} donatur · urut dari donasi terbesar</span>
           </div>
@@ -133,16 +141,17 @@ export const DonorBoard: React.FC = () => {
               return (
                 <li
                   key={`p${i}`}
-                  className={`flex sm:flex-col items-center sm:text-center gap-3 sm:gap-2 p-3 sm:py-4 rounded-2xl border ${st.card} ${i === 0 ? 'sm:order-2 sm:-translate-y-1' : i === 1 ? 'sm:order-1' : 'sm:order-3'}`}
+                  className={`relative flex sm:flex-col items-center sm:text-center gap-3 sm:gap-2 p-3 sm:py-4 rounded-2xl border bg-surface-inset ${st.edge} ${i === 0 ? 'sm:order-2' : i === 1 ? 'sm:order-1' : 'sm:order-3'}`}
                 >
-                  <span className={`relative shrink-0 w-11 h-11 sm:w-12 sm:h-12 rounded-full border flex items-center justify-center ${st.ring}`}>
-                    <st.Icon className="w-5 h-5" />
-                    <span className="absolute -bottom-1 -right-1 w-5 h-5 rounded-full bg-surface-base border border-border-subtle text-[10px] font-black text-text-primary flex items-center justify-center">
+                  <Stitch className={st.stitch} />
+                  <span className={`relative shrink-0 w-11 h-11 sm:w-12 sm:h-12 rounded-full border bg-surface-card flex items-center justify-center ${st.edge} ${st.icon}`}>
+                    <st.Icon className="w-5 h-5" fill={i === 0 ? 'currentColor' : 'none'} />
+                    <span className="absolute -bottom-1 -right-1 w-5 h-5 rounded-full bg-surface-card border border-border-subtle text-[10px] font-black text-text-primary flex items-center justify-center">
                       {st.label}
                     </span>
                   </span>
-                  <div className="flex-1 min-w-0 w-full flex sm:flex-col items-center sm:items-center justify-between gap-1.5">
-                    <span className={`min-w-0 truncate font-bold text-text-primary ${i === 0 ? 'text-base' : 'text-sm'}`}>{name(r)}</span>
+                  <div className="relative flex-1 min-w-0 w-full flex sm:flex-col items-center justify-between gap-1.5">
+                    <span className={`min-w-0 max-w-full truncate font-bold text-text-primary ${i === 0 ? 'text-base' : 'text-sm'}`}>{name(r)}</span>
                     <TierChip tier={r.month_tier} />
                   </div>
                 </li>
@@ -162,7 +171,7 @@ export const DonorBoard: React.FC = () => {
               ))}
             </ol>
           )}
-        </section>
+        </BoardSection>
       )}
 
       {rows && rows.length === 0 && !error && (
