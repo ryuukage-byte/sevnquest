@@ -2195,9 +2195,16 @@ button, a, input, select, textarea, [role="button"] {
   }
 }
 
+/*
+ * JANGAN tambahkan will-change: transform / transform / filter / perspective / contain
+ * yang menetap di sini: pembungkus tab adalah leluhur SEMUA konten halaman, dan properti
+ * itu menjadikannya containing block untuk `position: fixed` → modal ikut menempel ke
+ * pembungkus (muncul jauh di bawah layar setelah halaman digulir). Animasi di bawah
+ * hanya memakai transform selama 0.12s lalu kembali ke `none`.
+ * Lihat docs/architecture/UI_POSITIONING_STANDARD.md
+ */
 .animate-tab-enter {
   animation: tabFadeIn 0.12s cubic-bezier(0.16, 1, 0.3, 1);
-  will-change: opacity, transform;
 }
 
 /* ==========================================================================

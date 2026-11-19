@@ -26,6 +26,7 @@ import { INITIAL_STUDY_STATS } from '../../utils/activity';
 import { calculateAscensionProgress, getEffectiveTier } from '../../utils/ascension';
 import { useBackButton } from '../../hooks/useBackButton';
 import { getDojoRestCost, canRestAtDojo, countPotions } from '../../utils/recovery';
+import { useBodyScrollLock } from '../../hooks/useBodyScrollLock';
 
 interface CharacterStatusModalProps {
   isOpen: boolean;
@@ -60,10 +61,10 @@ export const CharacterStatusModal: React.FC<CharacterStatusModalProps> = ({
     onClose();
   }, 'character_status_modal');
 
+  useBodyScrollLock(isOpen);
+
   useEffect(() => {
     if (!isOpen) return;
-    const originalOverflow = document.body.style.overflow;
-    document.body.style.overflow = 'hidden';
 
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
@@ -74,7 +75,6 @@ export const CharacterStatusModal: React.FC<CharacterStatusModalProps> = ({
     window.addEventListener('keydown', handleKeyDown);
 
     return () => {
-      document.body.style.overflow = originalOverflow;
       window.removeEventListener('keydown', handleKeyDown);
     };
   }, [isOpen, onClose, stats.soundEnabled]);

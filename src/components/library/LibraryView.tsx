@@ -80,7 +80,7 @@ export const LibraryView: React.FC<LibraryViewProps> = ({
       {/* Clean Header & 4 Grimoire Volume Tabs */}
       <div className="panel panel-stitched p-5 sm:p-6 rounded-3xl space-y-4 shadow-sm border border-border-subtle">
         <div className="flex flex-col lg:flex-row items-center justify-between gap-5">
-          <div className="text-center lg:text-left space-y-1">
+          <div className="text-center lg:text-left space-y-1 min-w-0 lg:min-w-[16rem]">
             <span className="text-[11px] font-mono font-bold uppercase tracking-wider text-text-muted">
               Pustaka Referensi JLPT & Identity Architecture
             </span>
@@ -93,7 +93,7 @@ export const LibraryView: React.FC<LibraryViewProps> = ({
           </div>
 
           {/* Volume Tab Switcher */}
-          <div data-tour="library-tabs" className="book-tab-nav flex-wrap justify-center sm:justify-start shrink-0">
+          <div data-tour="library-tabs" className="book-tab-nav flex-wrap justify-center sm:justify-start min-w-0">
             {/* Jilid I: Kosakata */}
             <button
               onClick={() => handleTabChange('kotoba')}

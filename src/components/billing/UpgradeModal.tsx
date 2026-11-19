@@ -14,6 +14,7 @@ import {
   type AccessKey, type DonationKind, type PaymentOrder,
 } from '../../lib/billing';
 import type { UpgradeRequest } from '../../state/entitlement';
+import { ViewportPortal } from '../ui/ViewportPortal';
 
 /** Kode QRIS statis merchant (SEVNSOUL STORE, NMID ID1026625677186), hanya kode QR hitam-putih tanpa poster. */
 export const QRIS_IMAGE_URL = '/payment/qris-sevnsoul.png';
@@ -156,8 +157,9 @@ export const UpgradeModal: React.FC<Props> = ({ request, userId, entitlement, so
 
 
   return (
-    <div className="fixed inset-0 z-[60] flex items-start sm:items-center justify-center p-2.5 sm:p-4 bg-black/80 overflow-y-auto">
-      <div className="w-full max-w-2xl my-4 panel panel-stitched bg-surface-card border border-border-subtle rounded-3xl overflow-hidden shadow-2xl relative">
+    <ViewportPortal>
+    <div className="fixed inset-0 z-[9950] flex items-start sm:items-center justify-center p-2.5 sm:p-4 bg-black/80 overflow-y-auto overscroll-contain">
+      <div className="w-full max-w-2xl my-4 sm:my-auto panel panel-stitched bg-surface-card border border-border-subtle rounded-3xl overflow-hidden shadow-2xl relative">
         <div className="skeuo-grain" />
 
         {/* Header */}
@@ -491,6 +493,7 @@ export const UpgradeModal: React.FC<Props> = ({ request, userId, entitlement, so
         </div>
       </div>
     </div>
+    </ViewportPortal>
   );
 };
 

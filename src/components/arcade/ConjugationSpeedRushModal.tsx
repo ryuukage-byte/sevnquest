@@ -36,6 +36,7 @@ import {
 } from '../../utils/arcadeSourceUtils';
 import { ArcadeSourceSelector, LevelOption } from './ArcadeSourceSelector';
 import { useArcadeGuard } from './useArcadeGuard';
+import { useBodyScrollLock } from '../../hooks/useBodyScrollLock';
 
 interface ConjugationSpeedRushModalProps {
   isOpen: boolean;
@@ -318,6 +319,8 @@ export const ConjugationSpeedRushModal: React.FC<ConjugationSpeedRushModalProps>
     }
   };
 
+  useBodyScrollLock(isOpen);
+
   // Keyboard shortcut listener: ESC to close
   useEffect(() => {
     if (!isOpen) return;
@@ -328,12 +331,9 @@ export const ConjugationSpeedRushModal: React.FC<ConjugationSpeedRushModalProps>
       }
     };
 
-    const prevOverflow = document.body.style.overflow;
-    document.body.style.overflow = 'hidden';
     window.addEventListener('keydown', handleKeyDown);
 
     return () => {
-      document.body.style.overflow = prevOverflow;
       window.removeEventListener('keydown', handleKeyDown);
     };
   }, [isOpen, handleClose]);

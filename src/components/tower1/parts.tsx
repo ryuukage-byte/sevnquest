@@ -5,7 +5,6 @@
 // ==============================================================================
 
 import React, { useEffect, useRef, useState } from 'react';
-import { createPortal } from 'react-dom';
 import { BookOpen, CheckCircle2, Ear, Languages, MessageSquare, PenLine, Shapes, Volume2, XCircle } from 'lucide-react';
 import { RoomSkill } from '../../engine/tower1/types';
 import { TOWER1_SKILL_LABEL } from '../../data/tower1/floors';
@@ -241,8 +240,7 @@ export const RoomComplete: React.FC<{ correct: number; total: number; onContinue
 );
 
 /**
- * Modal harus dirender ke document.body: pembungkus tab memakai will-change: transform,
- * yang membuat `position: fixed` di dalamnya menempel ke pembungkus (bukan ke layar).
+ * Modal harus dirender ke document.body agar `position: fixed` relatif ke layar, bukan ke
+ * leluhur ber-transform. Alias dari komponen bersama (GLOBAL UI POSITIONING STANDARD).
  */
-export const ModalPortal: React.FC<{ children: React.ReactNode }> = ({ children }) =>
-  typeof document === 'undefined' ? null : createPortal(children, document.body);
+export { ViewportPortal as ModalPortal } from '../ui/ViewportPortal';

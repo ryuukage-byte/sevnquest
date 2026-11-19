@@ -8,6 +8,7 @@ import { MonetizationSwitch } from './MonetizationSwitch';
 import {
   adminApprove, adminListOrders, adminProofUrl, adminReject, billingErrorMessage, type AdminOrder, type OrderStatus,
 } from '../../lib/billing';
+import { ViewportPortal } from '../ui/ViewportPortal';
 
 const FILTERS: { id: string; label: string; statuses: OrderStatus[] }[] = [
   { id: 'open', label: 'Perlu dicek', statuses: ['claimed', 'pending'] },
@@ -117,7 +118,8 @@ export const AdminPaymentsModal: React.FC<{ onClose: () => void; soundEnabled?: 
   const actionable = (o: AdminOrder) => o.status === 'claimed' || o.status === 'pending' || o.status === 'expired';
 
   return (
-    <div className="fixed inset-0 z-[60] flex items-start justify-center p-2 sm:p-4 bg-black/80 overflow-y-auto">
+    <ViewportPortal>
+    <div className="fixed inset-0 z-[60] flex items-start justify-center p-2 sm:p-4 bg-black/80 overflow-y-auto overscroll-contain">
       <div className="w-full max-w-3xl my-4 panel bg-surface-card border border-border-subtle rounded-3xl overflow-hidden shadow-2xl">
         <div className="flex justify-between items-center p-4 border-b border-border-subtle bg-surface-inset/80">
           <h2 className="font-bold text-text-primary text-base font-heading flex items-center gap-2">
@@ -222,5 +224,6 @@ export const AdminPaymentsModal: React.FC<{ onClose: () => void; soundEnabled?: 
         </div>
       </div>
     </div>
+    </ViewportPortal>
   );
 };

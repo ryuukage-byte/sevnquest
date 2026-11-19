@@ -54,6 +54,7 @@ import { KanjiDetailModal } from '../library/KanjiDetailModal';
 import { recordKanjiWriting } from '../../utils/kanjiWritingRecord';
 import { BunpouDetailModal } from '../library/BunpouDetailModal';
 import type { DeckAiRequest } from '../../engine/deck/deckPrefill';
+import { ViewportPortal } from '../ui/ViewportPortal';
 
 
 interface BukuSakuViewProps {
@@ -729,8 +730,9 @@ export const BukuSakuView: React.FC<BukuSakuViewProps> = ({
 
       {/* Quick Preset Generator Modal for Active Deck */}
       {isQuickPresetModalOpen && activeDeck && (
-        <div className="fixed inset-0 z-[80] flex items-center justify-center p-4 bg-surface-ground/80 animate-fade-in">
-          <div className="panel panel-stitched w-full max-w-md border border-border-subtle rounded-3xl shadow-2xl p-5 space-y-4">
+        <ViewportPortal>
+        <div className="fixed inset-0 z-[80] flex items-center justify-center p-4 bg-surface-ground/80 animate-fade-in overflow-y-auto overscroll-contain">
+          <div className="my-auto panel panel-stitched w-full max-w-md border border-border-subtle rounded-3xl shadow-2xl p-5 space-y-4">
             <div className="flex items-center justify-between border-b border-border-subtle pb-3">
               <div className="flex items-center gap-2">
                 <Layers className="w-4 h-4 text-gold" />
@@ -815,6 +817,7 @@ export const BukuSakuView: React.FC<BukuSakuViewProps> = ({
             </div>
           </div>
         </div>
+        </ViewportPortal>
       )}
 
       {/* Universal Pluggable Entity Modal (ECS Inspector) */}

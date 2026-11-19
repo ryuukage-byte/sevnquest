@@ -25,6 +25,7 @@ import { getKotobaPoolForBook } from '../../utils/arcadeSourceUtils';
 import { ArcadeSourceSelector } from './ArcadeSourceSelector';
 import { calcEngineExp, getEntityBaseExp } from '../../utils/rewards';
 import { useArcadeGuard } from './useArcadeGuard';
+import { useBodyScrollLock } from '../../hooks/useBodyScrollLock';
 
 interface SuddenDeathStreakModalProps {
   isOpen: boolean;
@@ -290,10 +291,10 @@ export const SuddenDeathStreakModal: React.FC<SuddenDeathStreakModalProps> = ({
   };
 
   // Body scroll lock & Escape key handler
+  useBodyScrollLock(isOpen);
+
   useEffect(() => {
     if (!isOpen) return;
-    const prevOverflow = document.body.style.overflow;
-    document.body.style.overflow = 'hidden';
 
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
@@ -303,7 +304,6 @@ export const SuddenDeathStreakModal: React.FC<SuddenDeathStreakModalProps> = ({
     window.addEventListener('keydown', handleKeyDown);
 
     return () => {
-      document.body.style.overflow = prevOverflow;
       window.removeEventListener('keydown', handleKeyDown);
     };
   }, [isOpen, handleClose]);

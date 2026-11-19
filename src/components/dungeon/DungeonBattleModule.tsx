@@ -11,6 +11,7 @@ import { TryOutData } from '../../types/content';
 import { playSound, speakJapanese } from '../../utils/audio';
 import { ALL_TRYOUTS, DEFAULT_TRYOUT } from '../../data/tryouts';
 import { CHOUKAI_ENABLED } from '../../data/featureFlags';
+import { ViewportPortal } from '../ui/ViewportPortal';
 
 interface DungeonBattleModuleProps {
   tryOutData?: TryOutData;
@@ -377,8 +378,9 @@ export const DungeonBattleModule: React.FC<DungeonBattleModuleProps> = ({
         {/* Modal Konfirmasi & Mulai Ujian (Muncul langsung saat paket diklik) */}
         <AnimatePresence>
           {launchModalPack && (
+            <ViewportPortal>
             <div 
-              className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/65 animate-fade-in"
+              className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/65 animate-fade-in overflow-y-auto overscroll-contain"
               onClick={() => setLaunchModalPack(null)}
             >
               <motion.div
@@ -387,7 +389,7 @@ export const DungeonBattleModule: React.FC<DungeonBattleModuleProps> = ({
                 exit={{ scale: 0.95, opacity: 0, y: 8 }}
                 transition={{ duration: 0.15 }}
                 onClick={(e) => e.stopPropagation()}
-                className="panel panel-stitched p-6 sm:p-7 rounded-3xl bg-surface-card border border-border-subtle shadow-2xl max-w-lg w-full relative space-y-5"
+                className="my-auto panel panel-stitched p-6 sm:p-7 rounded-3xl bg-surface-card border border-border-subtle shadow-2xl max-w-lg w-full relative space-y-5"
               >
                 {/* Close Button */}
                 <button
@@ -472,6 +474,7 @@ export const DungeonBattleModule: React.FC<DungeonBattleModuleProps> = ({
                 </div>
               </motion.div>
             </div>
+            </ViewportPortal>
           )}
         </AnimatePresence>
       </div>

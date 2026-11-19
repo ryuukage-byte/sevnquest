@@ -522,8 +522,9 @@ export const LeaderboardView: React.FC<LeaderboardViewProps> = ({
       </div>
 
       {/* Prominent Bottom Bar for Current Player's Rank & Standing (Floating above bottom navigation) */}
+      {/* Offset = tinggi navigasi bawah (±66px + safe-area iOS); md+ navigasi pindah ke samping. */}
       {myRankInfo && (
-        <div className="sticky bottom-16 sm:bottom-20 z-20 mt-3 animate-fade-in">
+        <div className="sticky bottom-[calc(4.5rem+env(safe-area-inset-bottom))] sm:bottom-[calc(5rem+env(safe-area-inset-bottom))] md:bottom-20 z-20 mt-3 animate-fade-in">
           <div
             onClick={() => {
               handleSelectPlayer(myRankInfo.entry, myRankInfo.rank - 1);

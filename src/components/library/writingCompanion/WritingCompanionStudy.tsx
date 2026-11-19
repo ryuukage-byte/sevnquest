@@ -15,6 +15,7 @@ import { playSound, speakJapanese } from '../../../utils/audio';
 import { useBackButton } from '../../../hooks/useBackButton';
 import { StrokeOrderPlayer } from './StrokeOrderPlayer';
 import { loadDone, saveDone, type CompanionSource } from './storage';
+import { useBodyScrollLock } from '../../../hooks/useBodyScrollLock';
 
 const MODES: { value: SelectMode; label: string }[] = [
   { value: 'word', label: 'Kata' },
@@ -252,11 +253,7 @@ export const WritingCompanionStudy: React.FC<Props> = ({ source, soundEnabled = 
   useBackButton(true, () => { onClose(); });
 
   // Kunci gulir halaman di belakang ruang belajar.
-  useEffect(() => {
-    const prev = document.body.style.overflow;
-    document.body.style.overflow = 'hidden';
-    return () => { document.body.style.overflow = prev; };
-  }, []);
+  useBodyScrollLock();
 
   const explanation = useMemo(() => (sel ? explainSelection(doc, sel) : null), [doc, sel]);
   const chars = useMemo(() => (explanation ? writableChars(explanation.text) : []), [explanation]);

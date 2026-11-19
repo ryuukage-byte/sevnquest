@@ -12,6 +12,7 @@ Snapshot: **2026-10-13**, branch `ccr-45fec575-9x86pe` (PR #14). Audit ini mengg
 | [TECHNICAL_DEBT.md](TECHNICAL_DEBT.md) | Bug, risiko, utang teknis: ID, bukti, status (FIXED / OPEN) |
 | [ROADMAP.md](ROADMAP.md) | Rekomendasi berurutan dengan kriteria sukses |
 | [TESTING.md](TESTING.md) | Tes yang ada, hasil aktual, celah |
+| [../architecture/UI_POSITIONING_STANDARD.md](../architecture/UI_POSITIONING_STANDARD.md) | **Standar permanen** posisi overlay/floating UI, skala z-index, kunci gulir; audit & temuan 2026-11-19 |
 
 ## Metode & tingkat bukti
 - **✅ terverifikasi**: dibaca dari kode atau dieksekusi (tes, `tsc`, build, kueri katalog Supabase read-only).

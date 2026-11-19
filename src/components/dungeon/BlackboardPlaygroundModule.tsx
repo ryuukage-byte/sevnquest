@@ -1,5 +1,6 @@
 import React, { useState, useMemo } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
+import { ViewportPortal } from '../ui/ViewportPortal';
 import {
   Volume2,
   Shuffle,
@@ -734,7 +735,8 @@ export const BlackboardPlaygroundModule: React.FC<BlackboardPlaygroundModuleProp
           ───────────────────────────────────────────────────────────── */}
       <AnimatePresence>
         {showVerbPicker && (
-          <div className="fixed inset-0 z-[90] flex items-center justify-center p-3 sm:p-4 bg-black/60">
+          <ViewportPortal>
+          <div className="fixed inset-0 z-[90] flex items-center justify-center p-3 sm:p-4 bg-black/60 overflow-y-auto overscroll-contain">
             <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
@@ -844,6 +846,7 @@ export const BlackboardPlaygroundModule: React.FC<BlackboardPlaygroundModuleProp
               </div>
             </motion.div>
           </div>
+          </ViewportPortal>
         )}
       </AnimatePresence>
 
@@ -852,7 +855,8 @@ export const BlackboardPlaygroundModule: React.FC<BlackboardPlaygroundModuleProp
           ───────────────────────────────────────────────────────────── */}
       <AnimatePresence>
         {showPatternPicker && (
-          <div className="fixed inset-0 z-[90] flex items-center justify-center p-3 sm:p-4 bg-black/60">
+          <ViewportPortal>
+          <div className="fixed inset-0 z-[90] flex items-center justify-center p-3 sm:p-4 bg-black/60 overflow-y-auto overscroll-contain">
             <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
@@ -949,6 +953,7 @@ export const BlackboardPlaygroundModule: React.FC<BlackboardPlaygroundModuleProp
               </div>
             </motion.div>
           </div>
+          </ViewportPortal>
         )}
       </AnimatePresence>
     </div>
