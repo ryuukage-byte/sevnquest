@@ -16,6 +16,27 @@ const FILTERS: { id: string; label: string; statuses: OrderStatus[] }[] = [
   { id: 'done', label: 'Selesai', statuses: ['paid', 'rejected'] },
 ];
 
+/**
+ * Email pembeli: separuh belakang diburamkan (aman saat layar dibagikan/di-screenshot).
+ * Klik untuk menampilkan penuh, klik lagi untuk memburamkan kembali.
+ */
+const MaskedEmail: React.FC<{ email: string }> = ({ email }) => {
+  const [shown, setShown] = useState(false);
+  const cut = Math.max(1, Math.ceil(email.length / 2));
+  return (
+    <button
+      type="button"
+      onClick={e => { e.stopPropagation(); setShown(v => !v); }}
+      className="inline font-[inherit] text-left cursor-pointer"
+      title={shown ? 'Klik untuk memburamkan email' : 'Klik untuk menampilkan email'}
+      aria-label={shown ? 'Sembunyikan email' : 'Tampilkan email'}
+    >
+      {email.slice(0, cut)}
+      <span className={shown ? '' : 'blur-[4px] select-none'} aria-hidden={!shown}>{email.slice(cut)}</span>
+    </button>
+  );
+};
+
 const REJECT_REASONS = [
   'Pembayaran dengan nominal ini tidak ditemukan',
   'Nominal yang masuk kurang dari tagihan',
@@ -187,7 +208,7 @@ export const AdminPaymentsModal: React.FC<{ onClose: () => void; soundEnabled?: 
                       <span className="text-[10px] uppercase text-text-muted">{o.status}</span>
                     </div>
                     <div className="text-text-secondary truncate">
-                      {o.player_name || '—'} · {o.user_email || o.user_id}
+                      {o.player_name || '—'} · {o.user_email ? <MaskedEmail email={o.user_email} /> : o.user_id}
                     </div>
                     <div className="text-[11px] text-text-muted font-mono">
                       {o.order_code} · dibuat {fmt(o.created_at)}
