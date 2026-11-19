@@ -237,8 +237,8 @@ export const LeaderboardView: React.FC<LeaderboardViewProps> = ({
 
   const getRankIcon = (index: number) => {
     if (index === 0) return <Crown className="w-5 h-5 text-yellow-400 shrink-0" fill="currentColor" />;
-    if (index === 1) return <Medal className="w-5 h-5 text-gray-300 shrink-0" fill="currentColor" />;
-    if (index === 2) return <Medal className="w-5 h-5 text-amber-700 shrink-0" fill="currentColor" />;
+    if (index === 1) return <Medal className="w-5 h-5 text-slate-400 shrink-0" />;
+    if (index === 2) return <Medal className="w-5 h-5 text-amber-700 shrink-0" />;
 
     const rankNum = index + 1;
     const isLarge = rankNum >= 100;
@@ -409,8 +409,12 @@ export const LeaderboardView: React.FC<LeaderboardViewProps> = ({
                   ? (entry as LeaderboardEntry).total_exp 
                   : (entry as WeeklyLeaderboardEntry).score;
 
-                // Dynamically reconcile tier with rebalanced EXP curve
-                const { tierIndex: computedTierIndex } = getTierForExp(expToDisplay);
+                // All-time: tier dari total EXP. Mingguan: skor minggu ini bukan EXP, jadi pakai tier yang
+                // tersimpan bersama skor (tier akun saat itu), bukan getTierForExp(skor).
+                const storedTier = Number((entry as WeeklyLeaderboardEntry).tier_index);
+                const computedTierIndex = activeTab === 'all-time' || !Number.isFinite(storedTier)
+                  ? getTierForExp(expToDisplay).tierIndex
+                  : Math.min(Math.max(0, storedTier), RPG_TIERS.length - 1);
                 const tier = RPG_TIERS[computedTierIndex];
                 const userGender = (entry as any)?.character_gender || (entry as any)?.characterGender || 'male';
                 const avatarMap = userGender === 'female' ? TIER_AVATAR_FEMALE_MAP : TIER_AVATAR_MAP;
@@ -451,7 +455,7 @@ export const LeaderboardView: React.FC<LeaderboardViewProps> = ({
                         <div className="w-6 h-6 bg-surface-elevated rounded-full" />
                       )}
                       {levelToDisplay && (
-                        <span className="absolute bottom-0 text-[8px] font-mono font-bold text-gold bg-black/70 px-1 rounded-t">
+                        <span className="absolute inset-x-0 bottom-0 text-center whitespace-nowrap leading-tight tracking-tighter text-[8px] font-mono font-bold text-gold bg-black/70">
                           Lv.{levelToDisplay}
                         </span>
                       )}
@@ -523,7 +527,7 @@ export const LeaderboardView: React.FC<LeaderboardViewProps> = ({
 
       {/* Prominent Bottom Bar for Current Player's Rank & Standing (Floating above bottom navigation) */}
       {/* Offset = tinggi navigasi bawah (±66px + safe-area iOS); md+ navigasi pindah ke samping. */}
-      {myRankInfo && (
+      {myRankInfo && activeTab === 'all-time' && (
         <div className="sticky bottom-[calc(4.5rem+env(safe-area-inset-bottom))] sm:bottom-[calc(5rem+env(safe-area-inset-bottom))] md:bottom-20 z-20 mt-3 animate-fade-in">
           <div
             onClick={() => {

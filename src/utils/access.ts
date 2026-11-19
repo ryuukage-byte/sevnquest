@@ -4,6 +4,8 @@
 //                   Dibuka lewat donasi: total bulanan >= Rp 17.000, tiap setoran lifetime, atau lifetime penuh.
 // 'medium' hanya tersisa sebagai nilai lama; tidak dijual lagi.
 
+import { STATIONERY, TIER_TITLES } from '../lib/mailCore';
+
 export type AccessTier = 'basic' | 'medium' | 'full';
 
 const TIER_RANK: Record<AccessTier, number> = { basic: 1, medium: 2, full: 3 };
@@ -67,6 +69,10 @@ export interface DonationConfig {
   lifetimeUnit: number;
   lifetimeTarget: number;
   fullDays: number;
+  /** Harga paket Tahunan (ikut dihitung ke total lifetime). */
+  yearlyPrice: number;
+  /** Lama akses Full dari paket Tahunan. */
+  yearlyDays: number;
 }
 
 export const DEFAULT_DONATION_CONFIG: DonationConfig = {
@@ -76,6 +82,8 @@ export const DEFAULT_DONATION_CONFIG: DonationConfig = {
   lifetimeUnit: 25000,
   lifetimeTarget: 700000,
   fullDays: 30,
+  yearlyPrice: 102000,
+  yearlyDays: 365,
 };
 
 export interface Entitlement {
@@ -95,6 +103,8 @@ export interface Entitlement {
   monthUnlocked: boolean;
   /** Tingkat donasi bulan ini (0..7). */
   monthTier: number;
+  /** Pernah membeli paket Tahunan (masuk Hall of Fame). */
+  isYearly: boolean;
   config: DonationConfig;
   /** Saklar admin: false = premium belum ditampilkan ke pengguna dan tidak ada yang dikunci. */
   monetizationPublic: boolean;
@@ -113,6 +123,7 @@ export const BASIC_ENTITLEMENT: Entitlement = {
   monthTotal: 0,
   monthUnlocked: false,
   monthTier: 0,
+  isYearly: false,
   config: DEFAULT_DONATION_CONFIG,
   monetizationPublic: false,
   isAdmin: false,
@@ -136,6 +147,8 @@ function parseConfig(raw: unknown): DonationConfig {
     lifetimeUnit: num(r.lifetime_unit, d.lifetimeUnit) || d.lifetimeUnit,
     lifetimeTarget: num(r.lifetime_target, d.lifetimeTarget) || d.lifetimeTarget,
     fullDays: num(r.full_days, d.fullDays) || d.fullDays,
+    yearlyPrice: num(r.yearly_price, d.yearlyPrice) || d.yearlyPrice,
+    yearlyDays: num(r.yearly_days, d.yearlyDays) || d.yearlyDays,
   };
 }
 
@@ -157,6 +170,7 @@ export function parseEntitlement(raw: unknown): Entitlement {
     monthTotal: num(r.month_total, 0),
     monthUnlocked: r.month_unlocked === true,
     monthTier: num(r.month_tier, 0, 7),
+    isYearly: r.is_yearly === true,
     config: parseConfig(r.config),
     monetizationPublic: r.monetization_public === true,
     isAdmin: r.is_admin === true,
@@ -204,6 +218,7 @@ function toRaw(e: Entitlement): Record<string, unknown> {
     month_total: e.monthTotal,
     month_unlocked: e.monthUnlocked,
     month_tier: e.monthTier,
+    is_yearly: e.isYearly,
     config: {
       monthly_threshold: e.config.monthlyThreshold,
       monthly_tiers: e.config.monthlyTiers,
@@ -211,6 +226,8 @@ function toRaw(e: Entitlement): Record<string, unknown> {
       lifetime_unit: e.config.lifetimeUnit,
       lifetime_target: e.config.lifetimeTarget,
       full_days: e.config.fullDays,
+      yearly_price: e.config.yearlyPrice,
+      yearly_days: e.config.yearlyDays,
     },
     monetization_public: e.monetizationPublic,
     is_admin: e.isAdmin,
@@ -282,9 +299,69 @@ export function monthTierPerks(tier: number): string {
   return `Akses Full 30 hari + prioritas Lv.${tier - 1}${tier === 7 ? ' (maksimal)' : ''}`;
 }
 
+/** Fitur akses Full (sama di semua tingkat bulanan, Tahunan, dan Lifetime). */
+export const FULL_FEATURES = [
+  'Semua materi N4 sampai N1, Kaigo, dan SSW',
+  'Bedah Soal tanpa batas (gratis 3 soal per hari)',
+  'Seluruh Bank Soal dan semua tryout, Tower lantai 61–100, semua mode Dungeon',
+  'Deck AI dan Imersi YouTube',
+  'Latihan Ekstra Recall tanpa batas',
+] as const;
+
+/**
+ * Jatah surat Kotak Pos per hari menurut rank (cermin `v_limits` di mail_plan_for, server):
+ * rank 0 Free, 1 Premium, 2..8 Super Premium Lv.1..7.
+ */
+export const MAIL_DAILY_LIMITS = [3, 6, 8, 10, 12, 15, 18, 22, 30] as const;
+
+export interface MonthTierFeatures {
+  tier: number;
+  /** Nama tier Kotak Pos yang didapat (Premium / Super Premium Lv.n · Gelar). */
+  mailTier: string;
+  /** Surat ke admin per hari. */
+  mailPerDay: number;
+  /** Layanan pos (kecepatan surat dibaca admin). */
+  postService: string;
+  /** Kertas surat yang baru terbuka di tingkat ini. */
+  newPaper: string | null;
+  /** Jumlah kertas surat yang bisa dipakai di tingkat ini (termasuk tingkat di bawahnya). */
+  paperCount: number;
+  /** Urutan request konten. */
+  requestPriority: string;
+}
+
+/**
+ * Keuntungan nyata satu tingkat donasi bulanan. Tingkat bulan ini = rank Kotak Pos (lihat mail_plan_for):
+ * T1 Premium, T2..T7 Super Premium Lv.1..6. Semua tingkat mendapat akses Full 30 hari.
+ */
+export function monthTierFeatures(tier: number): MonthTierFeatures {
+  const t = Math.max(1, Math.min(7, Math.round(tier)));
+  const lv = t - 1;
+  const titles = TIER_TITLES;
+  const papers = STATIONERY.filter(x => x.rank <= t);
+  const fresh = STATIONERY.find(x => x.rank === t);
+  return {
+    tier: t,
+    mailTier: lv === 0 ? 'Premium' : `Super Premium Lv.${lv} · ${titles[lv - 1]}`,
+    mailPerDay: MAIL_DAILY_LIMITS[t] ?? MAIL_DAILY_LIMITS[MAIL_DAILY_LIMITS.length - 1],
+    postService: lv === 0 ? 'Pos Kilat' : `Kilat Khusus · ${titles[lv - 1]}`,
+    newPaper: fresh ? fresh.label : null,
+    paperCount: papers.length,
+    requestPriority: lv === 0 ? 'Didahulukan dari akun Gratis' : `Prioritas Lv.${lv}${t === 7 ? ' (tertinggi)' : ''}`,
+  };
+}
+
+/** Hitungan hemat paket Tahunan dibanding 12 bulan Tingkat 1. */
+export function yearlyDeal(cfg: DonationConfig): { normal: number; save: number; percent: number } {
+  const normal = cfg.monthlyThreshold * 12;
+  const save = Math.max(0, normal - cfg.yearlyPrice);
+  return { normal, save, percent: normal > 0 ? Math.round((save / normal) * 100) : 0 };
+}
+
 export function planLabel(tierCode: string, baseAmount: number): string {
   if (tierCode === 'monthly') return `Donasi bulanan ${formatIdr(baseAmount)}`;
   if (tierCode === 'lifetime_unit') return `Setoran lifetime ${formatIdr(baseAmount)}`;
+  if (tierCode === 'yearly') return `Donasi tahunan ${formatIdr(baseAmount)}`;
   return `${tierCode} ${formatIdr(baseAmount)}`;
 }
 

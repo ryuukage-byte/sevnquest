@@ -7,6 +7,8 @@ import {
   mailError,
   parseAdminLetterRow,
   parseLetterRow,
+  parseGift,
+  categoryLabel,
   playerBox,
   postmark,
   replySubject,
@@ -26,7 +28,7 @@ function letter(over: Partial<Letter> = {}): Letter {
     id: 'l1', fromAdmin: false, isAnonymous: false, senderName: 'Budi', senderAddress: 'SQ-AAAA-BBBB',
     recipientId: null, toAdmin: true, subject: 'S', body: 'B', category: 'general', stationery: 'classic',
     replyTo: null, priority: 0, sentAt: '2026-11-01T00:00:00Z', readAt: null, repliedAt: null,
-    archivedByRecipient: false, archivedBySender: false, ...over,
+    archivedByRecipient: false, archivedBySender: false, gift: null, giftOpenedAt: null, ...over,
   };
 }
 
@@ -165,4 +167,17 @@ test('paper ranks match mail_paper_rank on the server', () => {
   assert.equal(paperUnlocked('tsuki', 6), true);
   assert.equal(paperUnlocked('taiyou', 6), false);
   assert.equal(paperUnlocked('fuji', 9), true);
+});
+
+test('parseGift: kotak hadiah surat donasi', () => {
+  const g = parseGift({ kind: 'yearly', amount: 102000, auto: true, month_tier: 0, is_lifetime: false, lifetime_total: 102000, badge_level: 3, badge_title: 'Take' });
+  assert.ok(g);
+  assert.equal(g!.kind, 'yearly');
+  assert.equal(g!.badgeTitle, 'Take');
+  assert.equal(parseGift({ kind: 'aneh' }), null);
+  assert.equal(parseGift(null), null);
+  const row = parseLetterRow({ id: 'x', subject: 'S', body: 'B', category: 'donation', gift: { kind: 'monthly', amount: 17000 } });
+  assert.equal(row?.category, 'donation');
+  assert.equal(row?.gift?.kind, 'monthly');
+  assert.equal(categoryLabel('donation'), 'Donasi');
 });

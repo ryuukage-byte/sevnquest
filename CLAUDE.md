@@ -45,3 +45,16 @@ z-index, hasil audit): `docs/architecture/UI_POSITIONING_STANDARD.md`. Ringkasny
 
 Dijaga otomatis oleh `src/utils/viewportPositioning.test.ts` dan `src/utils/scrollLock.test.ts`
 (ikut `npm test`). Jika gagal, perbaiki komponennya — **jangan** melonggarkan tesnya.
+
+## ATURAN UTAMA — GAYA WASHI & SASHIKO (TANPA GRADIENT)
+
+Semua UI mengikuti design system "Washi Scroll" di `src/index.css`:
+
+- **Dilarang gradient dekoratif** (`bg-gradient-*`, `linear-gradient`/`radial-gradient` baru) pada panel, kartu,
+  bagian, atau chip. Pakai permukaan polos token: `bg-surface-card`, `bg-surface-inset`, `bg-surface-elevated`.
+- **Kain/tekstur wajib**: panel & bagian penting memakai serat washi (`<div className="skeuo-grain" />` di dalam
+  wadah `relative overflow-hidden`, konten di atasnya `relative z-[2]`) dan **jahitan sashiko** (`panel panel-stitched`,
+  `skeuo-card`, atau garis `border-dashed` warna `--thread`/aksen di dalam kartu).
+- Label/lencana pakai kelas yang ada (`rpg-badge`, `rpg-badge-reward`, `rpg-badge-status`, `ui-chip`), warna lewat
+  token (`text-gold`, `text-text-*`) agar terbaca di tema gelap dan terang (`.theme-light`).
+- Pengecualian: gradient fungsional yang sudah ada (fade tepi area gulir, bayangan tombol fisik di `index.css`).

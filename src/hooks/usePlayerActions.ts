@@ -16,7 +16,7 @@ import { advanceDailyMissions, advanceWeeklyMissions, syncStreakMission, type Mi
 import { touchActiveDay } from '../state/streak';
 import { awardExp, LEGACY_META } from '../engine/reward/awardExp';
 import { REWARD_POLICY } from '../engine/reward/policy';
-import { sendScoreEvent } from '../lib/supabase';
+import { sendScoreEvent, resetMyLeaderboard } from '../lib/supabase';
 import type { RewardDecision, RewardMeta, StudyCompleteResult } from '../engine/reward/types';
 import { getGameOverHp, HP_POTION_ID } from '../utils/recovery';
 import { DEFAULT_STATS } from '../state/defaultStats';
@@ -412,6 +412,10 @@ export function usePlayerActions({
     setIsRecallActive(false);
     setActiveTab('home');
     playSound('click', true);
+    // Leaderboard tidak pernah turun lewat sinkron biasa; nolkan lewat RPC khusus milik sendiri.
+    void resetMyLeaderboard().then(ok => {
+      if (!ok) showToast('Progres direset, tetapi leaderboard belum ikut ter-reset. Coba lagi saat online.', 6000);
+    });
   };
 
   // Handle Name Update
