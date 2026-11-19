@@ -17,12 +17,12 @@ const FILTERS: { id: string; label: string; statuses: OrderStatus[] }[] = [
 ];
 
 /**
- * Email pembeli: separuh belakang diburamkan (aman saat layar dibagikan/di-screenshot).
+ * Email pembeli: 75% bagian belakang diburamkan (aman saat layar dibagikan/di-screenshot).
  * Klik untuk menampilkan penuh, klik lagi untuk memburamkan kembali.
  */
 const MaskedEmail: React.FC<{ email: string }> = ({ email }) => {
   const [shown, setShown] = useState(false);
-  const cut = Math.max(1, Math.ceil(email.length / 2));
+  const cut = Math.max(1, Math.ceil(email.length * 0.25));
   return (
     <button
       type="button"
