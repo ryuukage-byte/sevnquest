@@ -720,7 +720,19 @@ const OrderKey: React.FC<{ orderId: string }> = ({ orderId }) => {
   );
 };
 
-const OrderView: React.FC<{
+/** Menit tunggu sebelum pembeli boleh melapor "sudah bayar" (mencegah klaim sebelum benar-benar membayar). */
+export const CLAIM_DELAY_MIN = 5;
+
+/** Kapan formulir lapor pembayaran boleh dibuka: sudah pernah klaim, pesanan kedaluwarsa, atau lewat CLAIM_DELAY_MIN. */
+export function claimUnlocked(order: Pick<PaymentOrder, 'status' | 'created_at' | 'expires_at'>, now = Date.now()): boolean {
+  if (order.status === 'claimed' || order.status === 'expired') return true;
+  if (order.status !== 'pending') return false;
+  if (Date.parse(order.expires_at) < now) return true;
+  const created = Date.parse(order.created_at);
+  return !Number.isFinite(created) || now - created >= CLAIM_DELAY_MIN * 60_000;
+}
+
+export const OrderView: React.FC<{
   order: PaymentOrder;
   userId: string | null;
   soundEnabled: boolean;
@@ -732,6 +744,15 @@ const OrderView: React.FC<{
   const [file, setFile] = useState<File | null>(null);
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [claimOpen, setClaimOpen] = useState(order.status === 'claimed');
+  const [now, setNow] = useState(() => Date.now());
+
+  // Jam lokal untuk membuka tautan lapor setelah CLAIM_DELAY_MIN menit.
+  useEffect(() => {
+    if (order.status !== 'pending') return;
+    const t = setInterval(() => setNow(Date.now()), 15_000);
+    return () => clearInterval(t);
+  }, [order.status]);
 
   // Pantau status: pembayaran yang terdeteksi otomatis langsung terlihat tanpa memuat ulang.
   useEffect(() => {
@@ -754,6 +775,9 @@ const OrderView: React.FC<{
 
   const expired = order.status === 'pending' && Date.parse(order.expires_at) < Date.now();
   const canClaim = order.status === 'pending' || order.status === 'claimed' || order.status === 'expired';
+  const unlocked = claimUnlocked(order, now);
+  const minutesLeft = Math.max(1, Math.ceil((Date.parse(order.created_at) + CLAIM_DELAY_MIN * 60_000 - now) / 60_000));
+  const hasProof = !!file || !!order.proof_path;
 
   const copyAmount = async () => {
     try {
@@ -767,6 +791,10 @@ const OrderView: React.FC<{
 
   const submitClaim = async () => {
     setError(null);
+    if (!hasProof) {
+      setError('Lampirkan screenshot bukti bayar dulu (halaman "berhasil" dari e-wallet/m-banking).');
+      return;
+    }
     if (file && file.size > 3 * 1024 * 1024) {
       setError('Ukuran screenshot maksimal 3 MB.');
       return;
@@ -774,12 +802,16 @@ const OrderView: React.FC<{
     setBusy(true);
     try {
       let proofPath: string | null = null;
-      if (file && userId) {
-        // Bukti hanya pendukung: gagal unggah tidak boleh menggagalkan klaim.
+      if (file) {
+        if (!userId) throw new Error('not_authenticated');
+        // Bukti wajib: gagal unggah = klaim tidak dikirim.
         try {
           proofPath = await uploadPaymentProof(userId, order.id, file);
         } catch (err) {
-          console.warn('[upgrade] unggah bukti gagal, klaim dikirim tanpa bukti:', err);
+          console.warn('[upgrade] unggah bukti gagal:', err);
+          setError('Screenshot gagal diunggah. Periksa koneksi lalu coba lagi.');
+          playSound('wrong', soundEnabled);
+          return;
         }
       }
       const when = paidAt ? new Date(paidAt) : new Date();
@@ -855,7 +887,7 @@ const OrderView: React.FC<{
             </p>
             {order.status === 'pending' && (
               <p className={`text-[11px] ${expired ? 'text-rose-400' : 'text-text-secondary'}`}>
-                {expired ? 'Batas waktu lewat. Bila sudah terlanjur bayar, tetap kirim klaim di bawah.' : `Bayar sebelum ${formatDate(order.expires_at)}`}
+                {expired ? 'Batas waktu lewat. Bila sudah terlanjur bayar, kirim bukti bayar di bawah.' : `Bayar sebelum ${formatDate(order.expires_at)}`}
               </p>
             )}
           </div>
@@ -866,11 +898,33 @@ const OrderView: React.FC<{
             <li>Buka e-wallet atau m-banking apa pun yang mendukung QRIS.</li>
             <li>Scan QRIS di atas (atau simpan gambarnya lalu scan dari galeri).</li>
             <li>Pastikan nama merchant <b>{MERCHANT_NAME}</b> dan nominal <b className="text-gold">{formatIdr(order.amount_idr)}</b> (sudah terisi; bila aplikasi tetap meminta nominal, ketik persis angka itu).</li>
-            <li>Bayar. Biasanya terverifikasi otomatis dalam 1–2 menit dan halaman ini berubah sendiri.</li>
-            <li>Belum berubah setelah beberapa menit? Tekan <b>Saya sudah bayar</b> supaya admin mengecek.</li>
+            <li>Bayar. Halaman ini berubah sendiri begitu pembayaran terverifikasi.</li>
+            <li>Belum terverifikasi setelah {CLAIM_DELAY_MIN} menit? Laporkan dengan screenshot bukti bayar supaya admin mengecek.</li>
           </ol>
 
-          {canClaim && (
+          {order.status === 'pending' && !claimOpen && (
+            <div className="rounded-2xl border border-border-subtle bg-surface-inset p-4 space-y-2 text-center">
+              <p className="text-xs text-text-secondary flex items-center justify-center gap-2">
+                <Loader2 className="w-4 h-4 animate-spin text-gold" /> Menunggu pembayaran…
+              </p>
+              {unlocked ? (
+                <button type="button" onClick={() => setClaimOpen(true)} className="text-[11px] font-bold text-indigo underline underline-offset-2">
+                  Sudah bayar tapi belum terverifikasi?
+                </button>
+              ) : (
+                <p className="text-[11px] text-text-muted">
+                  Sudah bayar tapi belum terverifikasi? Opsi lapor muncul dalam {minutesLeft} menit.
+                </p>
+              )}
+              {!expired && (
+                <button disabled={busy} onClick={cancel} className="block w-full text-[11px] text-text-muted hover:text-rose-400">
+                  Batalkan pesanan
+                </button>
+              )}
+            </div>
+          )}
+
+          {canClaim && unlocked && (claimOpen || order.status !== 'pending') && (
             <div className="rounded-2xl border border-border-subtle bg-surface-inset p-4 space-y-3">
               {error && <p className="text-xs text-rose-400">{error}</p>}
               <label className="block space-y-1">
@@ -883,7 +937,7 @@ const OrderView: React.FC<{
                 />
               </label>
               <label className="block space-y-1">
-                <span className="text-[11px] font-bold text-text-secondary">Screenshot bukti bayar (opsional, maks. 3 MB)</span>
+                <span className="text-[11px] font-bold text-text-secondary">Screenshot bukti bayar (wajib, maks. 3 MB)</span>
                 <span className="flex items-center gap-2 px-3 py-2 rounded-xl border border-dashed border-border-subtle text-xs text-text-muted cursor-pointer">
                   <Upload className="w-4 h-4" />
                   <span className="truncate">{file ? file.name : order.proof_path ? 'Bukti sudah terunggah (pilih untuk mengganti)' : 'Pilih gambar'}</span>
@@ -896,16 +950,16 @@ const OrderView: React.FC<{
                 </span>
               </label>
               <button
-                disabled={busy}
+                disabled={busy || !hasProof}
                 onClick={submitClaim}
                 className="btn-cta w-full py-3 text-xs font-heading font-black flex items-center justify-center gap-2 disabled:opacity-50"
               >
                 {busy ? <Loader2 className="w-4 h-4 animate-spin" /> : <Check className="w-4 h-4" />}
-                {order.status === 'claimed' ? 'Perbarui klaim' : 'Saya sudah bayar'}
+                {order.status === 'claimed' ? 'Perbarui laporan' : 'Kirim bukti bayar'}
               </button>
-              {order.status === 'pending' && !expired && (
-                <button disabled={busy} onClick={cancel} className="w-full text-[11px] text-text-muted hover:text-rose-400">
-                  Batalkan pesanan
+              {order.status === 'pending' && (
+                <button type="button" disabled={busy} onClick={() => setClaimOpen(false)} className="w-full text-[11px] text-text-muted">
+                  Tutup
                 </button>
               )}
             </div>

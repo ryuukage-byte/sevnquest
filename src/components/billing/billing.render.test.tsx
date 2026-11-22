@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import React from 'react';
 import { renderToStaticMarkup } from 'react-dom/server';
-import { UpgradeModal } from './UpgradeModal';
+import { UpgradeModal, claimUnlocked, CLAIM_DELAY_MIN } from './UpgradeModal';
 import { LockedOverlay, withLevelGate } from './AccessGate';
 import { sortMonthlyDonors } from './DonorBoard';
 import { parseEntitlement, BASIC_ENTITLEMENT } from '../../utils/access';
@@ -102,4 +102,15 @@ test('UpgradeModal tab Tahunan tampil dengan label hemat', () => {
   );
   assert.match(html, /Tahunan/);
   assert.match(html, /-50%/);
+});
+
+test('lapor "sudah bayar" baru terbuka setelah 5 menit, atau bila sudah diklaim/kedaluwarsa', () => {
+  const t0 = Date.parse('2026-11-22T08:00:00Z');
+  const order = { status: 'pending' as const, created_at: new Date(t0).toISOString(), expires_at: new Date(t0 + 30 * 60_000).toISOString() };
+  assert.equal(claimUnlocked(order, t0 + 60_000), false);
+  assert.equal(claimUnlocked(order, t0 + CLAIM_DELAY_MIN * 60_000), true);
+  assert.equal(claimUnlocked({ ...order, status: 'claimed' }, t0), true);
+  assert.equal(claimUnlocked({ ...order, status: 'expired' }, t0), true);
+  assert.equal(claimUnlocked({ ...order, expires_at: new Date(t0 - 1).toISOString() }, t0), true);
+  assert.equal(claimUnlocked({ ...order, status: 'paid' }, t0 + 99 * 60_000), false);
 });

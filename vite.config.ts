@@ -14,6 +14,8 @@ function manualChunks(id: string): string | undefined {
     if (/\/node_modules\/(motion|framer-motion|motion-dom|motion-utils)\//.test(normalized)) return 'vendor-motion';
     if (normalized.includes('/node_modules/hanzi-writer')) return 'vendor-hanzi';
     if (normalized.includes('/node_modules/lucide-react/')) return 'vendor-icons';
+    // OCR bukti bayar: hanya halaman admin, dimuat lewat import() dinamis.
+    if (/\/node_modules\/(tesseract\.js|tesseract\.js-core|bmp-js|is-url|node-fetch|regenerator-runtime|wasm-feature-detect|zlibjs|idb-keyval|is-electron|opencollective-postinstall)\//.test(normalized)) return 'vendor-ocr';
     return 'vendor';
   }
 
