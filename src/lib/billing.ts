@@ -52,6 +52,7 @@ export function billingErrorMessage(err: unknown): string {
   if (/key_used/.test(msg)) return 'Key ini sudah dipakai.';
   if (/invalid_amount/.test(msg)) return 'Nominal tidak valid. Donasi bulanan minimal Rp 5.000; setoran lifetime kelipatan Rp 25.000.';
   if (/exceeds_lifetime_target/.test(msg)) return 'Setoran melebihi sisa menuju Rp 700.000. Kurangi jumlah setoran.';
+  if (/proof_required/.test(msg)) return 'Lampirkan screenshot bukti bayar dulu.';
   if (/already_lifetime/.test(msg)) return 'Kamu sudah Lifetime. Terima kasih!';
   if (/too_many_pending/.test(msg)) return 'Masih ada 3 pesanan belum dibayar. Bayar atau batalkan salah satunya dulu.';
   if (/invalid_plan/.test(msg)) return 'Paket tidak tersedia.';
