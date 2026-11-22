@@ -1,5 +1,7 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
-import { X, Loader2, Check, Ban, RefreshCw, Image as ImageIcon, ShieldCheck, PenLine } from 'lucide-react';
+import { X, Loader2, Check, Ban, RefreshCw, Image as ImageIcon, ShieldCheck, PenLine, ScanText, AlertTriangle } from 'lucide-react';
+import { checkProofImage } from '../../lib/proofOcr';
+import type { ProofCheck } from '../../utils/proofCheck';
 import { playSound } from '../../utils/audio';
 import { useBackButton } from '../../hooks/useBackButton';
 import { formatIdr, planLabel } from '../../utils/access';
@@ -52,6 +54,45 @@ function fmt(iso: string | null): string {
  * Halaman verifikasi pembayaran (PRD 6.3 fase 1). Admin membuka riwayat transaksi di app GoPay Merchant di sebelahnya
  * dan mencocokkan nominal unik + jam bayar. Akses dijaga di server (RPC memeriksa tabel admins).
  */
+type ProofScan = { state: 'running' } | { state: 'error' } | { state: 'done'; result: ProofCheck };
+
+/** Hasil baca otomatis screenshot bukti bayar. Hanya petunjuk: persetujuan tetap manual. */
+const ProofBadge: React.FC<{ scan?: ProofScan; amount: number; onRetry: () => void }> = ({ scan, amount, onRetry }) => {
+  if (!scan) return null;
+  if (scan.state === 'running') {
+    return (
+      <div className="flex items-center gap-1.5 text-[11px] text-text-muted">
+        <Loader2 className="w-3.5 h-3.5 animate-spin" /> Membaca bukti bayar…
+      </div>
+    );
+  }
+  if (scan.state === 'error') {
+    return (
+      <button type="button" onClick={onRetry} className="flex items-center gap-1.5 text-[11px] text-text-muted hover:text-text-primary">
+        <ScanText className="w-3.5 h-3.5" /> Bukti gagal dibaca. Coba lagi
+      </button>
+    );
+  }
+  const r = scan.result;
+  const mark = (ok: boolean, label: string) => (
+    <span className={ok ? 'text-emerald-400' : 'text-rose-400'}>{ok ? '✓' : '✗'} {label}</span>
+  );
+  return (
+    <div className="flex flex-wrap items-center gap-x-2 gap-y-1 text-[11px] pt-0.5">
+      {r.verdict === 'verified' ? (
+        <span className="rpg-badge-status gap-1"><ShieldCheck className="w-3 h-3" /> VERIFIED</span>
+      ) : (
+        <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full border border-amber-500/50 bg-amber-500/10 text-amber-400 font-bold">
+          <AlertTriangle className="w-3 h-3" /> Perlu dicek
+        </span>
+      )}
+      {mark(r.amountOk, r.amountOk ? formatIdr(amount) : `nominal ${r.amounts.length ? r.amounts.map(formatIdr).join(', ') : 'tidak terbaca'}`)}
+      {mark(r.merchantOk, 'toko SevnSoul')}
+      {mark(r.successOk, 'status sukses')}
+    </div>
+  );
+};
+
 export const AdminPaymentsModal: React.FC<{ onClose: () => void; soundEnabled?: boolean }> = ({ onClose, soundEnabled = true }) => {
   const [filter, setFilter] = useState(FILTERS[0]);
   const [orders, setOrders] = useState<AdminOrder[]>([]);
@@ -60,6 +101,7 @@ export const AdminPaymentsModal: React.FC<{ onClose: () => void; soundEnabled?: 
   const [selected, setSelected] = useState<Set<string>>(new Set());
   const [busyId, setBusyId] = useState<string | null>(null);
   const [proofUrls, setProofUrls] = useState<Record<string, string | null>>({});
+  const [scans, setScans] = useState<Record<string, ProofScan>>({});
 
   useBackButton(true, () => { onClose(); }, 'admin_payments');
 
@@ -77,6 +119,28 @@ export const AdminPaymentsModal: React.FC<{ onClose: () => void; soundEnabled?: 
   }, [filter]);
 
   useEffect(() => { void load(); }, [load]);
+
+  // Baca otomatis screenshot bukti bayar (OCR di browser admin) lalu cocokkan nominal & nama toko.
+  const scanProof = useCallback(async (o: AdminOrder) => {
+    if (!o.proof_path) return;
+    setScans(prev => ({ ...prev, [o.id]: { state: 'running' } }));
+    try {
+      const url = await adminProofUrl(o.proof_path);
+      if (!url) throw new Error('no_url');
+      const result = await checkProofImage(`${o.id}:${o.proof_path}`, url, o.amount_idr);
+      setScans(prev => ({ ...prev, [o.id]: { state: 'done', result } }));
+    } catch (err) {
+      console.warn('[admin] OCR bukti gagal:', err);
+      setScans(prev => ({ ...prev, [o.id]: { state: 'error' } }));
+    }
+  }, []);
+
+  useEffect(() => {
+    for (const o of orders) {
+      if (o.proof_path && o.status !== 'paid' && !scans[o.id]) void scanProof(o);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [orders, scanProof]);
 
   const total = useMemo(
     () => orders.filter(o => selected.has(o.id)).reduce((s, o) => s + o.amount_idr, 0),
@@ -216,6 +280,9 @@ export const AdminPaymentsModal: React.FC<{ onClose: () => void; soundEnabled?: 
                       {o.verified_at && <> · diproses {fmt(o.verified_at)}</>}
                     </div>
                     {o.reject_reason && <div className="text-[11px] text-rose-400">Ditolak: {o.reject_reason}</div>}
+                    {o.proof_path && o.status !== 'paid' && (
+                      <ProofBadge scan={scans[o.id]} amount={o.amount_idr} onRetry={() => void scanProof(o)} />
+                    )}
                     {(actionable(o) || o.status === 'rejected') && (
                       noteOpen === o.id ? (
                         <label className="block pt-1.5 space-y-1">
