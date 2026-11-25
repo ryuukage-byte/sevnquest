@@ -26,6 +26,14 @@ import { ArcadeSourceSelector } from './ArcadeSourceSelector';
 import { calcEngineExp, getKotobaBaseExp } from '../../utils/rewards';
 import { useArcadeGuard } from './useArcadeGuard';
 import { useBodyScrollLock } from '../../hooks/useBodyScrollLock';
+import { WordCategoryFilter } from './WordCategoryFilter';
+import {
+  filterByWordCategories,
+  countByWordCategory,
+  wordCategoryLabel,
+  MIN_POOL_SIZE,
+  type WordCategoryId,
+} from '../../utils/wordTypeFilter';
 
 interface KotobaGuessModalProps {
   isOpen: boolean;
@@ -83,6 +91,7 @@ export const KotobaGuessModal: React.FC<KotobaGuessModalProps> = ({
   const guardArcade = useArcadeGuard();
   const [selectedLevel, setSelectedLevel] = useState<LevelFilter>('N5');
   const [selectedBookId, setSelectedBookId] = useState<string>('book_theme_body');
+  const [selectedCategories, setSelectedCategories] = useState<Set<WordCategoryId>>(new Set());
   const [gameState, setGameState] = useState<'ready' | 'playing' | 'finished'>('ready');
   
   // Timer: 45 seconds sprint
@@ -120,8 +129,10 @@ export const KotobaGuessModal: React.FC<KotobaGuessModalProps> = ({
     return currentLevelOption.label;
   }, [sourceType, selectedBookId, currentLevelOption]);
 
+  const categoryLabel = wordCategoryLabel(selectedCategories);
+
   // Filter pool
-  const filteredPool = useMemo(() => {
+  const sourcePool = useMemo(() => {
     if (sourceType === 'TEMPLATE_BOOK') {
       const pool = getKotobaPoolForBook(selectedBookId);
       return pool.length > 0 ? pool : rawKotobaList.filter(k => k.jlpt === 'N5');
@@ -131,6 +142,13 @@ export const KotobaGuessModal: React.FC<KotobaGuessModalProps> = ({
     }
     return rawKotobaList.filter(k => k.jlpt === selectedLevel || k.level === selectedLevel);
   }, [sourceType, selectedBookId, selectedLevel]);
+
+  const categoryCounts = useMemo(() => countByWordCategory(sourcePool), [sourcePool]);
+  const filteredPool = useMemo(
+    () => filterByWordCategories(sourcePool, selectedCategories),
+    [sourcePool, selectedCategories]
+  );
+  const canStart = filteredPool.length >= MIN_POOL_SIZE;
 
   // Generate word question
   const generateWord = useCallback((): GuessWord | null => {
@@ -197,6 +215,7 @@ export const KotobaGuessModal: React.FC<KotobaGuessModalProps> = ({
 
   // Start game
   const handleStartGame = () => {
+    if (!canStart) return;
     if (!guardArcade(sourceType, selectedLevel, selectedBookId)) return;
     playSound('attack', soundEnabled);
     setTimeLeft(45);
@@ -437,6 +456,14 @@ export const KotobaGuessModal: React.FC<KotobaGuessModalProps> = ({
                 challengeDurationText="45s Sprint"
                 soundEnabled={soundEnabled}
               />
+
+              <WordCategoryFilter
+                selected={selectedCategories}
+                onChange={setSelectedCategories}
+                counts={categoryCounts}
+                poolSize={filteredPool.length}
+                soundEnabled={soundEnabled}
+              />
             </div>
 
             {/* Sticky Bottom CTA */}
@@ -444,7 +471,8 @@ export const KotobaGuessModal: React.FC<KotobaGuessModalProps> = ({
               <button
                 type="button"
                 onClick={handleStartGame}
-                className="w-full btn-physical-primary py-3.5 rounded-2xl text-sm font-bold font-heading flex items-center justify-center gap-2 cursor-pointer"
+                disabled={!canStart}
+                className="w-full btn-physical-primary disabled:opacity-50 disabled:cursor-not-allowed py-3.5 rounded-2xl text-sm font-bold font-heading flex items-center justify-center gap-2 cursor-pointer"
               >
                 <Zap className="w-4 h-4 fill-current" />
                 <span>Mulai Sprint (45 Detik)</span>
@@ -663,6 +691,13 @@ export const KotobaGuessModal: React.FC<KotobaGuessModalProps> = ({
                 <span className="text-text-muted">Sumber / Tingkat:</span>
                 <span className="text-text-primary font-bold font-mono text-sm">
                   {activeSourceLabel}
+                </span>
+              </div>
+
+              <div className="p-3 rounded-2xl bg-surface-inset border border-border-subtle flex items-center justify-between gap-3 text-xs font-mono">
+                <span className="text-text-muted shrink-0">Kategori:</span>
+                <span className="text-text-primary font-bold font-heading text-right">
+                  {categoryLabel}
                 </span>
               </div>
 
