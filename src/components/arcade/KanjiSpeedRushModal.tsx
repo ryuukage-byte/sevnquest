@@ -23,8 +23,8 @@ import { playSound } from '../../utils/audio';
 import { RPG_TIERS } from '../../data/rpg/tiers';
 import { UserDeck } from '../../types/rpg';
 import { OFFICIAL_BOOKS } from '../../data/officialBooks';
-import { getKanjiPoolForBook } from '../../utils/arcadeSourceUtils';
-import { ArcadeSourceSelector } from './ArcadeSourceSelector';
+import { getKanjiPoolForBook, getKanjiPoolForDeck } from '../../utils/arcadeSourceUtils';
+import { ArcadeSourceSelector, type ArcadeSourceType } from './ArcadeSourceSelector';
 import { calcEngineExp, getKanjiBaseExp } from '../../utils/rewards';
 import { useArcadeGuard } from './useArcadeGuard';
 import { useBodyScrollLock } from '../../hooks/useBodyScrollLock';
@@ -78,7 +78,8 @@ export const KanjiSpeedRushModal: React.FC<KanjiSpeedRushModalProps> = ({
   onRewardPlayer,
   onCompleteStudyItem,
 }) => {
-  const [sourceType, setSourceType] = useState<'LEVEL' | 'TEMPLATE_BOOK'>('LEVEL');
+  const [sourceType, setSourceType] = useState<ArcadeSourceType>('LEVEL');
+  const [selectedDeckId, setSelectedDeckId] = useState<string>('');
   const guardArcade = useArcadeGuard();
   const [selectedLevel, setSelectedLevel] = useState<LevelFilter>('N5');
   const [selectedBookId, setSelectedBookId] = useState<string>('book_minna_n5');
@@ -102,20 +103,33 @@ export const KanjiSpeedRushModal: React.FC<KanjiSpeedRushModalProps> = ({
     return LEVEL_OPTIONS.find(opt => opt.id === selectedLevel) || LEVEL_OPTIONS[0];
   }, [selectedLevel]);
 
+  // Buku Saku aktif: pilihan pemain, atau Buku Saku pertama yang berisi kanji
+  const activeDeck = useMemo(
+    () =>
+      userDecks.find(d => d.id === selectedDeckId) ||
+      userDecks.find(d => getKanjiPoolForDeck(d).length > 0),
+    [userDecks, selectedDeckId]
+  );
+  const deckKanjiCount = useMemo(() => getKanjiPoolForDeck(activeDeck).length, [activeDeck]);
+  const canStart = sourceType !== 'USER_DECK' || deckKanjiCount > 0;
+
   // Active Source Label (for cards, summaries, and retries)
   const activeSourceLabel = useMemo(() => {
+    if (sourceType === 'USER_DECK') return activeDeck?.title || 'Buku Saku Saya';
     if (sourceType === 'TEMPLATE_BOOK') {
       const b = OFFICIAL_BOOKS.find(book => book.id === selectedBookId);
       return b ? b.title : 'Rak Buku Template';
     }
     return currentLevelOption.label;
-  }, [sourceType, selectedBookId, currentLevelOption]);
+  }, [sourceType, selectedBookId, currentLevelOption, activeDeck]);
 
   // Helper to build randomized queue
   const buildQueue = useCallback((): KanjiItem[] => {
     let pool: KanjiItem[] = [];
 
-    if (sourceType === 'TEMPLATE_BOOK') {
+    if (sourceType === 'USER_DECK') {
+      pool = getKanjiPoolForDeck(activeDeck);
+    } else if (sourceType === 'TEMPLATE_BOOK') {
       pool = getKanjiPoolForBook(selectedBookId);
       if (pool.length === 0) {
         pool = Object.values(KANJI_DATABASE).filter(k => k.jlpt === 'N5');
@@ -140,7 +154,7 @@ export const KanjiSpeedRushModal: React.FC<KanjiSpeedRushModalProps> = ({
     // Shuffle
     const shuffled = [...uniquePool].sort(() => Math.random() - 0.5);
     return shuffled.length > 0 ? shuffled : Object.values(KANJI_DATABASE).slice(0, 30);
-  }, [sourceType, selectedBookId, selectedLevel]);
+  }, [sourceType, selectedBookId, selectedLevel, activeDeck]);
 
   // Reset state whenever modal is opened
   useEffect(() => {
@@ -165,6 +179,7 @@ export const KanjiSpeedRushModal: React.FC<KanjiSpeedRushModalProps> = ({
 
   // Start new game
   const handleStartGame = () => {
+    if (!canStart) return;
     if (!guardArcade(sourceType, selectedLevel, selectedBookId)) return;
     playSound('attack', soundEnabled);
     const queue = buildQueue();
@@ -345,6 +360,9 @@ export const KanjiSpeedRushModal: React.FC<KanjiSpeedRushModalProps> = ({
                 onSelectLevel={setSelectedLevel}
                 selectedBookId={selectedBookId}
                 onSelectBookId={setSelectedBookId}
+                userDecks={userDecks}
+                selectedDeckId={activeDeck?.id}
+                onSelectDeckId={setSelectedDeckId}
                 levelOptions={LEVEL_OPTIONS}
                 mode="kanji"
                 challengeDurationText="60.0s Bersih"
@@ -357,7 +375,8 @@ export const KanjiSpeedRushModal: React.FC<KanjiSpeedRushModalProps> = ({
               <button
                 type="button"
                 onClick={handleStartGame}
-                className="w-full btn-physical-primary py-3.5 rounded-2xl text-sm font-bold font-heading flex items-center justify-center gap-2 cursor-pointer"
+                disabled={!canStart}
+                className="w-full btn-physical-primary disabled:opacity-50 disabled:cursor-not-allowed py-3.5 rounded-2xl text-sm font-bold font-heading flex items-center justify-center gap-2 cursor-pointer"
               >
                 <Zap className="w-4 h-4 fill-current" />
                 <span>Mulai Tantangan (60 Detik)</span>

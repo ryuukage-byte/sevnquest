@@ -46,15 +46,12 @@ export const WordCategoryFilter: React.FC<WordCategoryFilterProps> = ({
       <div className="flex flex-wrap gap-1.5">
         <button
           type="button"
+          aria-pressed={isAll}
           onClick={() => {
             playSound('click', soundEnabled);
             onChange(new Set());
           }}
-          className={`px-2.5 py-1.5 rounded-xl text-[11px] font-bold font-heading border transition-all cursor-pointer ${
-            isAll
-              ? 'bg-gold/15 text-gold border-gold/40'
-              : 'bg-surface-inset text-text-muted border-border-subtle hover:text-text-primary'
-          }`}
+          className="arc-pill"
         >
           Semua
         </button>
@@ -62,25 +59,19 @@ export const WordCategoryFilter: React.FC<WordCategoryFilterProps> = ({
         {WORD_CATEGORIES.map(cat => {
           const active = selected.has(cat.id);
           const count = counts[cat.id] ?? 0;
-          const empty = count === 0;
           return (
             <button
               key={cat.id}
               type="button"
               title={cat.desc}
-              disabled={empty}
+              aria-pressed={active}
+              disabled={count === 0}
               onClick={() => toggle(cat.id)}
-              className={`px-2.5 py-1.5 rounded-xl text-[11px] font-bold font-heading border transition-all flex items-center gap-1.5 ${
-                empty
-                  ? 'opacity-40 cursor-not-allowed bg-surface-inset text-text-muted border-border-subtle'
-                  : active
-                  ? 'bg-teal/15 text-teal border-teal/40 cursor-pointer'
-                  : 'bg-surface-inset text-text-muted border-border-subtle hover:text-text-primary cursor-pointer'
-              }`}
+              className="arc-pill"
             >
               {active && <Check className="w-3 h-3 stroke-[3]" />}
               <span>{cat.label}</span>
-              <span className="font-mono text-[10px] opacity-70">{count}</span>
+              <span className="arc-pill-count">{count}</span>
             </button>
           );
         })}

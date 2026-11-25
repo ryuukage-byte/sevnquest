@@ -4,6 +4,8 @@ import { KANJI_DATABASE } from '../data/kanji';
 import { KanjiItem } from '../types/content';
 import { VerbItem, VERB_CONJUGATION_DATABASE, kotobaItemToVerbItem } from '../data/conjugationRules';
 import { KOTOBA_DATABASE as kotobaDb } from '../data/kotoba';
+import type { UserDeck } from '../types/rpg';
+import { resolveDeckItem } from './decks';
 
 const kotobaMap = kotobaDb as Record<string, any>;
 const rawKotobaList = Object.values(kotobaMap);
@@ -234,4 +236,69 @@ export function getBookStatsMap(): Record<string, { kanjiCount: number; kotobaCo
     };
   }
   return stats;
+}
+
+
+// ---------------------------------------------------------------------------
+// Buku Saku buatan sendiri (UserDeck) sebagai sumber soal Arcade
+// ---------------------------------------------------------------------------
+
+/** Kosakata dalam satu Buku Saku (item master + item kustom/AI), tanpa duplikat kata. */
+export function getKotobaPoolForDeck(deck?: UserDeck): any[] {
+  if (!deck) return [];
+  const pool: any[] = [];
+  const seen = new Set<string>();
+  for (const ref of deck.items) {
+    if (ref.category !== 'kotoba') continue;
+    const kt = resolveDeckItem(ref)?.kotoba;
+    if (kt && kt.word && !seen.has(kt.word)) {
+      seen.add(kt.word);
+      pool.push(kt);
+    }
+  }
+  return pool;
+}
+
+/** Kanji dalam satu Buku Saku: kanji yang disimpan + kanji penyusun kosakata yang disimpan. */
+export function getKanjiPoolForDeck(deck?: UserDeck): KanjiItem[] {
+  if (!deck) return [];
+  const pool: KanjiItem[] = [];
+  const seen = new Set<string>();
+  const add = (k?: KanjiItem) => {
+    // Entri kana (hiragana/katakana) ada di tabel kanji, tapi bukan materi Kanji Rush.
+    if (k && k.character && k.jlpt !== 'KANA' && !seen.has(k.character)) {
+      seen.add(k.character);
+      pool.push(k);
+    }
+  };
+  for (const ref of deck.items) {
+    if (ref.category === 'kanji') {
+      add(resolveDeckItem(ref)?.kanji);
+    } else if (ref.category === 'kotoba') {
+      const word = resolveDeckItem(ref)?.kotoba?.word || '';
+      for (const ch of word) add(kanjiByCharCache.get(ch));
+    }
+  }
+  return pool;
+}
+
+/** Kata kerja yang bisa dikonjugasi dalam satu Buku Saku. */
+export function getVerbsForDeck(deck?: UserDeck): VerbItem[] {
+  const result: VerbItem[] = [];
+  const seen = new Set<string>();
+  for (const kt of getKotobaPoolForDeck(deck)) {
+    if (!isConjugatableKotoba(kt)) continue;
+    const verb = kotobaItemToVerbItem(kt);
+    if (verb && !seen.has(verb.kanji)) {
+      seen.add(verb.kanji);
+      result.push(verb);
+    }
+  }
+  return result;
+}
+
+export function getDeckItemCount(deck: UserDeck, mode: 'kanji' | 'kotoba' | 'conjugation'): number {
+  if (mode === 'kanji') return getKanjiPoolForDeck(deck).length;
+  if (mode === 'conjugation') return getVerbsForDeck(deck).length;
+  return getKotobaPoolForDeck(deck).length;
 }
