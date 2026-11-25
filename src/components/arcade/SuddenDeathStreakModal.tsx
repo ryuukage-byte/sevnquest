@@ -26,6 +26,14 @@ import { ArcadeSourceSelector } from './ArcadeSourceSelector';
 import { calcEngineExp, getEntityBaseExp } from '../../utils/rewards';
 import { useArcadeGuard } from './useArcadeGuard';
 import { useBodyScrollLock } from '../../hooks/useBodyScrollLock';
+import { WordCategoryFilter } from './WordCategoryFilter';
+import {
+  filterByWordCategories,
+  countByWordCategory,
+  wordCategoryLabel,
+  MIN_POOL_SIZE,
+  type WordCategoryId,
+} from '../../utils/wordTypeFilter';
 
 interface SuddenDeathStreakModalProps {
   isOpen: boolean;
@@ -85,6 +93,7 @@ export const SuddenDeathStreakModal: React.FC<SuddenDeathStreakModalProps> = ({
   const guardArcade = useArcadeGuard();
   const [selectedLevel, setSelectedLevel] = useState<LevelFilter>('N5');
   const [selectedBookId, setSelectedBookId] = useState<string>('book_theme_body');
+  const [selectedCategories, setSelectedCategories] = useState<Set<WordCategoryId>>(new Set());
   const [gameState, setGameState] = useState<'ready' | 'playing' | 'gameover'>('ready');
   
   // 3 Nyawa
@@ -114,8 +123,10 @@ export const SuddenDeathStreakModal: React.FC<SuddenDeathStreakModalProps> = ({
     return currentLevelOption.label;
   }, [sourceType, selectedBookId, currentLevelOption]);
 
+  const categoryLabel = wordCategoryLabel(selectedCategories);
+
   // Filter pool based on level
-  const filteredPool = useMemo(() => {
+  const sourcePool = useMemo(() => {
     if (sourceType === 'TEMPLATE_BOOK') {
       const pool = getKotobaPoolForBook(selectedBookId);
       return pool.length > 0 ? pool : rawKotobaList.filter(k => k.jlpt === 'N5');
@@ -125,6 +136,13 @@ export const SuddenDeathStreakModal: React.FC<SuddenDeathStreakModalProps> = ({
     }
     return rawKotobaList.filter(k => k.jlpt === selectedLevel || k.level === selectedLevel);
   }, [sourceType, selectedBookId, selectedLevel]);
+
+  const categoryCounts = useMemo(() => countByWordCategory(sourcePool), [sourcePool]);
+  const filteredPool = useMemo(
+    () => filterByWordCategories(sourcePool, selectedCategories),
+    [sourcePool, selectedCategories]
+  );
+  const canStart = filteredPool.length >= MIN_POOL_SIZE;
 
   // Generator for fresh multiple-choice question
   const generateQuestion = useCallback((): QuizQuestion | null => {
@@ -213,6 +231,7 @@ export const SuddenDeathStreakModal: React.FC<SuddenDeathStreakModalProps> = ({
 
   // Start / Restart game
   const handleStartGame = () => {
+    if (!canStart) return;
     if (!guardArcade(sourceType, selectedLevel, selectedBookId)) return;
     playSound('attack', soundEnabled);
     setLives(3);
@@ -391,6 +410,14 @@ export const SuddenDeathStreakModal: React.FC<SuddenDeathStreakModalProps> = ({
                 challengeDurationText="3 Nyawa Survival"
                 soundEnabled={soundEnabled}
               />
+
+              <WordCategoryFilter
+                selected={selectedCategories}
+                onChange={setSelectedCategories}
+                counts={categoryCounts}
+                poolSize={filteredPool.length}
+                soundEnabled={soundEnabled}
+              />
             </div>
 
             {/* Sticky Bottom CTA */}
@@ -398,7 +425,8 @@ export const SuddenDeathStreakModal: React.FC<SuddenDeathStreakModalProps> = ({
               <button
                 type="button"
                 onClick={handleStartGame}
-                className="w-full btn-physical-primary py-3.5 rounded-2xl text-sm font-bold font-heading flex items-center justify-center gap-2 cursor-pointer"
+                disabled={!canStart}
+                className="w-full btn-physical-primary disabled:opacity-50 disabled:cursor-not-allowed py-3.5 rounded-2xl text-sm font-bold font-heading flex items-center justify-center gap-2 cursor-pointer"
               >
                 <Flame className="w-4 h-4 fill-current" />
                 <span>Mulai Uji 3 Nyawa</span>
@@ -553,6 +581,13 @@ export const SuddenDeathStreakModal: React.FC<SuddenDeathStreakModalProps> = ({
                 <span className="text-text-muted">Sumber / Tingkat:</span>
                 <span className="text-text-primary font-bold font-mono text-sm">
                   {activeSourceLabel}
+                </span>
+              </div>
+
+              <div className="p-3 rounded-2xl bg-surface-inset border border-border-subtle flex items-center justify-between gap-3 text-xs font-mono">
+                <span className="text-text-muted shrink-0">Kategori:</span>
+                <span className="text-text-primary font-bold font-heading text-right">
+                  {categoryLabel}
                 </span>
               </div>
 
