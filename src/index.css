@@ -2728,3 +2728,115 @@ html:not(.ui-a):not(.ui-b) .btn-cta:active:not(:disabled) {
   [class*="text-[10px]"] { font-size: 0.75rem; }
   [class*="text-[11px]"] { font-size: 0.8125rem; }
 }
+
+
+/* ==========================================================================
+   KONTROL LOBI ARCADE (pemilih sumber, kartu pilihan, chip kategori)
+   Permukaan polos token (tanpa gradient), tepi bawah "tertekan" saat aktif, dan
+   jahitan sashiko putus-putus pada pilihan yang terpilih. Terbaca di tema gelap & terang.
+   ========================================================================== */
+@layer components {
+  .arc-seg {
+    display: flex;
+    width: 100%;
+    gap: 4px;
+    padding: 4px;
+    border-radius: 16px;
+    background: var(--color-surface-inset);
+    border: 1px solid var(--color-border-subtle);
+  }
+  .arc-seg-btn {
+    flex: 1 1 0;
+    min-width: 0;
+    justify-content: center;
+    white-space: nowrap;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 7px 12px;
+    border-radius: 12px;
+    border: 1px solid transparent;
+    font-family: var(--font-heading);
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--color-text-muted);
+    cursor: pointer;
+    transition: background-color 0.12s ease, color 0.12s ease, transform 0.08s ease;
+  }
+  .arc-seg-btn:hover { color: var(--color-text-primary); }
+  .arc-seg-btn[aria-pressed='true'] {
+    color: var(--color-text-primary);
+    background: var(--color-surface-elevated);
+    border-color: var(--gold);
+    box-shadow: 0 2px 0 var(--gold);
+  }
+  .arc-seg-btn:active { transform: translateY(1px); }
+
+  .arc-opt {
+    position: relative;
+    text-align: left;
+    padding: 12px;
+    border-radius: 16px;
+    border: 1px solid var(--color-border-subtle);
+    background: var(--color-surface-inset);
+    color: var(--color-text-muted);
+    cursor: pointer;
+    transition: transform 0.08s ease, border-color 0.12s ease, background-color 0.12s ease;
+  }
+  .arc-opt:hover { border-color: var(--color-border-primary); color: var(--color-text-primary); }
+  .arc-opt:active { transform: translateY(1px); }
+  .arc-opt[aria-pressed='true'] {
+    background: var(--color-surface-elevated);
+    border-color: var(--gold);
+    color: var(--color-text-primary);
+    box-shadow: 0 3px 0 var(--gold);
+  }
+  .arc-opt[aria-pressed='true']::after {
+    content: '';
+    position: absolute;
+    inset: 4px;
+    border: 1px dashed var(--thread);
+    border-radius: 12px;
+    pointer-events: none;
+  }
+  .arc-opt:disabled { opacity: 0.45; cursor: not-allowed; box-shadow: none; }
+
+  .arc-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 12px;
+    border-radius: 999px;
+    border: 1px solid var(--color-border-subtle);
+    background: var(--color-surface-inset);
+    font-family: var(--font-heading);
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--color-text-muted);
+    cursor: pointer;
+    transition: transform 0.08s ease, border-color 0.12s ease, color 0.12s ease;
+  }
+  .arc-pill:hover { color: var(--color-text-primary); border-color: var(--color-border-primary); }
+  .arc-pill:active { transform: translateY(1px); }
+  .arc-pill[aria-pressed='true'] {
+    color: var(--color-text-primary);
+    background: var(--color-surface-elevated);
+    border-color: var(--gold);
+    box-shadow: 0 2px 0 var(--gold);
+  }
+  .arc-pill:disabled { opacity: 0.4; cursor: not-allowed; box-shadow: none; }
+  @media (min-width: 640px) {
+    .arc-seg { width: auto; }
+    .arc-seg-btn { flex: 0 0 auto; }
+  }
+  .arc-pill-count {
+    white-space: nowrap;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    padding: 1px 6px;
+    border-radius: 999px;
+    background: var(--color-surface-card);
+    border: 1px solid var(--color-border-subtle);
+    color: var(--color-text-secondary);
+  }
+}

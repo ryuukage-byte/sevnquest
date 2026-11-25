@@ -31,10 +31,11 @@ import { UserDeck } from '../../types/rpg';
 import { OFFICIAL_BOOKS } from '../../data/officialBooks';
 import { 
   getVerbsForBook, 
+  getVerbsForDeck,
   getVerbsForLevel, 
   getConjugationFormsForLevel 
 } from '../../utils/arcadeSourceUtils';
-import { ArcadeSourceSelector, LevelOption } from './ArcadeSourceSelector';
+import { ArcadeSourceSelector, LevelOption, type ArcadeSourceType } from './ArcadeSourceSelector';
 import { useArcadeGuard } from './useArcadeGuard';
 import { useBodyScrollLock } from '../../hooks/useBodyScrollLock';
 
@@ -89,7 +90,8 @@ export const ConjugationSpeedRushModal: React.FC<ConjugationSpeedRushModalProps>
   onRewardPlayer,
   onCompleteStudyItem,
 }) => {
-  const [sourceType, setSourceType] = useState<'LEVEL' | 'TEMPLATE_BOOK'>('LEVEL');
+  const [sourceType, setSourceType] = useState<ArcadeSourceType>('LEVEL');
+  const [selectedDeckId, setSelectedDeckId] = useState<string>('');
   const guardArcade = useArcadeGuard();
   const [selectedLevel, setSelectedLevel] = useState<LevelFilter>('N5');
   const [selectedBookId, setSelectedBookId] = useState<string>('book_minna_n5');
@@ -120,14 +122,25 @@ export const ConjugationSpeedRushModal: React.FC<ConjugationSpeedRushModalProps>
     return LEVEL_OPTIONS.find(opt => opt.id === selectedLevel) || LEVEL_OPTIONS[0];
   }, [selectedLevel]);
 
+  // Buku Saku aktif: pilihan pemain, atau Buku Saku pertama yang berisi kata kerja
+  const activeDeck = useMemo(
+    () =>
+      userDecks.find(d => d.id === selectedDeckId) ||
+      userDecks.find(d => getVerbsForDeck(d).length > 0),
+    [userDecks, selectedDeckId]
+  );
+  const deckVerbCount = useMemo(() => getVerbsForDeck(activeDeck).length, [activeDeck]);
+  const canStart = sourceType !== 'USER_DECK' || deckVerbCount > 0;
+
   // Active Source Label (for cards, summaries, and retries)
   const activeSourceLabel = useMemo(() => {
+    if (sourceType === 'USER_DECK') return activeDeck?.title || 'Buku Saku Saya';
     if (sourceType === 'TEMPLATE_BOOK') {
       const b = OFFICIAL_BOOKS.find(book => book.id === selectedBookId);
       return b ? b.title : 'Rak Buku Template';
     }
     return currentLevelOption.label;
-  }, [sourceType, selectedBookId, currentLevelOption]);
+  }, [sourceType, selectedBookId, currentLevelOption, activeDeck]);
 
   // Generate next fresh question based on active source
   const getNextQuestion = useCallback((): ConjugationDrillQuestion | null => {
@@ -135,7 +148,11 @@ export const ConjugationSpeedRushModal: React.FC<ConjugationSpeedRushModalProps>
       let verbs = [];
       let allowedForms = [];
 
-      if (sourceType === 'TEMPLATE_BOOK') {
+      if (sourceType === 'USER_DECK') {
+        verbs = getVerbsForDeck(activeDeck);
+        // Kata kerja milik pemain bisa bertingkat campur: pakai bentuk sampai N4.
+        allowedForms = getConjugationFormsForLevel('N4');
+      } else if (sourceType === 'TEMPLATE_BOOK') {
         verbs = getVerbsForBook(selectedBookId);
         const b = OFFICIAL_BOOKS.find(book => book.id === selectedBookId);
         const bookLevel = b?.level === 'TEMATIK' || b?.level === 'KANA' || b?.level === 'Kaigo' ? 'N5' : (b?.level || 'N5');
@@ -154,7 +171,7 @@ export const ConjugationSpeedRushModal: React.FC<ConjugationSpeedRushModalProps>
       console.error('Failed to generate arcade conjugation question:', err);
       return null;
     }
-  }, [sourceType, selectedBookId, selectedLevel]);
+  }, [sourceType, selectedBookId, selectedLevel, activeDeck]);
 
   // Reset state on open
   useEffect(() => {
@@ -185,6 +202,7 @@ export const ConjugationSpeedRushModal: React.FC<ConjugationSpeedRushModalProps>
 
   // Start new game
   const handleStartGame = () => {
+    if (!canStart) return;
     if (!guardArcade(sourceType, selectedLevel, selectedBookId)) return;
     playSound('attack', soundEnabled);
     const firstQ = getNextQuestion();
@@ -419,6 +437,9 @@ export const ConjugationSpeedRushModal: React.FC<ConjugationSpeedRushModalProps>
                 onSelectLevel={setSelectedLevel}
                 selectedBookId={selectedBookId}
                 onSelectBookId={setSelectedBookId}
+                userDecks={userDecks}
+                selectedDeckId={activeDeck?.id}
+                onSelectDeckId={setSelectedDeckId}
                 levelOptions={LEVEL_OPTIONS}
                 mode="conjugation"
                 challengeDurationText="60.0s Bersih"
@@ -431,7 +452,8 @@ export const ConjugationSpeedRushModal: React.FC<ConjugationSpeedRushModalProps>
               <button
                 type="button"
                 onClick={handleStartGame}
-                className="w-full btn-physical-primary py-3.5 rounded-2xl text-sm font-bold font-heading flex items-center justify-center gap-2 cursor-pointer"
+                disabled={!canStart}
+                className="w-full btn-physical-primary disabled:opacity-50 disabled:cursor-not-allowed py-3.5 rounded-2xl text-sm font-bold font-heading flex items-center justify-center gap-2 cursor-pointer"
               >
                 <Zap className="w-4 h-4 fill-current text-amber-300" />
                 <span>Mulai Uji Konjugasi (60 Detik)</span>

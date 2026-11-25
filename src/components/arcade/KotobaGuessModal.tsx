@@ -21,8 +21,8 @@ import { KOTOBA_DATABASE as kotobaDb } from '../../data/kotoba';
 import { playSound, speakJapanese } from '../../utils/audio';
 import { UserDeck } from '../../types/rpg';
 import { OFFICIAL_BOOKS } from '../../data/officialBooks';
-import { getKotobaPoolForBook } from '../../utils/arcadeSourceUtils';
-import { ArcadeSourceSelector } from './ArcadeSourceSelector';
+import { getKotobaPoolForBook, getKotobaPoolForDeck } from '../../utils/arcadeSourceUtils';
+import { ArcadeSourceSelector, type ArcadeSourceType } from './ArcadeSourceSelector';
 import { calcEngineExp, getKotobaBaseExp } from '../../utils/rewards';
 import { useArcadeGuard } from './useArcadeGuard';
 import { useBodyScrollLock } from '../../hooks/useBodyScrollLock';
@@ -87,10 +87,11 @@ export const KotobaGuessModal: React.FC<KotobaGuessModalProps> = ({
   onRewardPlayer,
   onCompleteStudyItem,
 }) => {
-  const [sourceType, setSourceType] = useState<'LEVEL' | 'TEMPLATE_BOOK'>('LEVEL');
+  const [sourceType, setSourceType] = useState<ArcadeSourceType>('LEVEL');
   const guardArcade = useArcadeGuard();
   const [selectedLevel, setSelectedLevel] = useState<LevelFilter>('N5');
   const [selectedBookId, setSelectedBookId] = useState<string>('book_theme_body');
+  const [selectedDeckId, setSelectedDeckId] = useState<string>('');
   const [selectedCategories, setSelectedCategories] = useState<Set<WordCategoryId>>(new Set());
   const [gameState, setGameState] = useState<'ready' | 'playing' | 'finished'>('ready');
   
@@ -120,19 +121,31 @@ export const KotobaGuessModal: React.FC<KotobaGuessModalProps> = ({
     return LEVEL_OPTIONS.find(opt => opt.id === selectedLevel) || LEVEL_OPTIONS[0];
   }, [selectedLevel]);
 
+  // Buku Saku aktif: pilihan pemain, atau Buku Saku pertama yang berisi kosakata
+  const activeDeck = useMemo(
+    () =>
+      userDecks.find(d => d.id === selectedDeckId) ||
+      userDecks.find(d => getKotobaPoolForDeck(d).length > 0),
+    [userDecks, selectedDeckId]
+  );
+
   // Active Source Label (for cards, summaries, and retries)
   const activeSourceLabel = useMemo(() => {
+    if (sourceType === 'USER_DECK') return activeDeck?.title || 'Buku Saku Saya';
     if (sourceType === 'TEMPLATE_BOOK') {
       const b = OFFICIAL_BOOKS.find(book => book.id === selectedBookId);
       return b ? b.title : 'Rak Buku Template';
     }
     return currentLevelOption.label;
-  }, [sourceType, selectedBookId, currentLevelOption]);
+  }, [sourceType, selectedBookId, currentLevelOption, activeDeck]);
 
   const categoryLabel = wordCategoryLabel(selectedCategories);
 
   // Filter pool
   const sourcePool = useMemo(() => {
+    if (sourceType === 'USER_DECK') {
+      return getKotobaPoolForDeck(activeDeck);
+    }
     if (sourceType === 'TEMPLATE_BOOK') {
       const pool = getKotobaPoolForBook(selectedBookId);
       return pool.length > 0 ? pool : rawKotobaList.filter(k => k.jlpt === 'N5');
@@ -141,7 +154,7 @@ export const KotobaGuessModal: React.FC<KotobaGuessModalProps> = ({
       return rawKotobaList;
     }
     return rawKotobaList.filter(k => k.jlpt === selectedLevel || k.level === selectedLevel);
-  }, [sourceType, selectedBookId, selectedLevel]);
+  }, [sourceType, selectedBookId, selectedLevel, activeDeck]);
 
   const categoryCounts = useMemo(() => countByWordCategory(sourcePool), [sourcePool]);
   const filteredPool = useMemo(
@@ -451,6 +464,9 @@ export const KotobaGuessModal: React.FC<KotobaGuessModalProps> = ({
                 onSelectLevel={setSelectedLevel}
                 selectedBookId={selectedBookId}
                 onSelectBookId={setSelectedBookId}
+                userDecks={userDecks}
+                selectedDeckId={activeDeck?.id}
+                onSelectDeckId={setSelectedDeckId}
                 levelOptions={LEVEL_OPTIONS}
                 mode="kotoba"
                 challengeDurationText="45s Sprint"
