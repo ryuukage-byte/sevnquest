@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { motion } from 'motion/react';
 import {
   Gift, Check, Crown, Mail, Send, FileText, ListOrdered, CalendarDays, Infinity as InfinityIcon, Trophy, KeyRound, Copy,
-  Lightbulb, PenLine, Award,
+  Lightbulb, PenLine, Award, Ticket, Store,
 } from 'lucide-react';
 import type { LetterGift } from '../../lib/mailCore';
 import { BADGES, FULL_FEATURES, formatIdr, monthTierFeatures } from '../../utils/access';
@@ -12,6 +12,7 @@ const KIND_LABEL: Record<LetterGift['kind'], string> = {
   yearly: 'Paket Tahunan',
   lifetime: 'Setoran Lifetime',
   gift_key: 'Key Hadiah',
+  pass: 'Pack Pass',
 };
 
 /** Wadah washi berjahit sashiko (aturan gaya: tanpa gradient, ada serat & jahitan). */
@@ -134,7 +135,15 @@ export const GiftContents: React.FC<{ gift: LetterGift; onRequestFeature: () => 
             </div>
           )}
 
-          {gift.kind !== 'gift_key' && (
+          {gift.kind === 'pass' && (
+            <ul className="grid gap-1.5">
+              <Perk Icon={Ticket} label="Pass masuk" value={`${gift.passes} pass`} />
+              <Perk Icon={Ticket} label="Saldo pass" value={`${gift.passBalance} pass`} />
+              <Perk Icon={Store} label="Dipakai di" value="Buku Saku, tab Toko" />
+            </ul>
+          )}
+
+          {gift.kind !== 'gift_key' && gift.kind !== 'pass' && (
             <ul className="grid gap-1.5">
               <Perk Icon={Crown} label="Akses" value={until ? `Full sampai ${until}` : 'Full'} />
               {gift.kind === 'monthly' && tier && (
@@ -162,7 +171,7 @@ export const GiftContents: React.FC<{ gift: LetterGift; onRequestFeature: () => 
             </ul>
           )}
 
-          {gift.kind !== 'gift_key' && (
+          {gift.kind !== 'gift_key' && gift.kind !== 'pass' && (
             <div className="space-y-1">
               <p className="text-[10px] font-bold uppercase tracking-wider text-text-muted">Termasuk akses Full</p>
               <ul className="text-[11px] text-text-secondary space-y-0.5">

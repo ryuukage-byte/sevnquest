@@ -18,3 +18,5 @@ kotoba kaigo raw/
 marketing/
 motionads/
 motionads.zip
+scripts/packs/out/
+__pycache__/

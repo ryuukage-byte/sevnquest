@@ -1,0 +1,121 @@
+0|ばりばり|Bunyi merobek/mengunyah renyah; giat, bersemangat (bekerja)
+1|じわじわ|Perlahan tapi pasti; sedikit demi sedikit
+2|寡黙|Pendiam; tidak banyak bicara
+3|却下|Penolakan (permohonan, usul)
+4|境目|Batas; garis perbatasan
+5|凝視|Menatap tajam; memandang lekat-lekat
+6|交錯|Bercampur aduk; silang-menyilang
+7|仕方ない|Apa boleh buat; tidak bisa dihindari
+8|遮断|Pemutusan; memblokir; menutup (jalan, arus)
+9|心遣い|Perhatian; kepedulian pada orang lain
+10|甚大|Sangat besar; parah (kerugian, kerusakan)
+11|絶叫|Jeritan; berteriak sekuat tenaga
+12|潜伏|Bersembunyi; masa inkubasi (penyakit)
+13|足止め|Tertahan; tidak bisa melanjutkan perjalanan
+14|途端に|Tepat saat; begitu ... langsung
+15|媒介|Perantara; menjadi media (penular)
+16|諭す|Menasihati; menegur dengan lembut
+17|翌週|Minggu berikutnya
+18|露出|Keterbukaan; memperlihatkan (kulit); pencahayaan (foto)
+19|テイクアウト|Bawa pulang (makanan)
+20|ノルマ|Target kerja; kuota
+21|お互いに|Saling; satu sama lain
+22|アクシデント|Kecelakaan; kejadian tak terduga
+23|アクション|Aksi; tindakan
+24|アクセス|Akses; jalan menuju (lokasi)
+25|アナウンス|Pengumuman (lewat pengeras suara)
+26|インパクト|Dampak; kesan kuat
+27|エコノミー|Ekonomi; kelas ekonomi; penghematan
+28|エラー|Kesalahan; galat
+29|オーダー|Pesanan; urutan
+30|ガイダンス|Bimbingan; sesi orientasi
+31|クレーム|Keluhan (pelanggan); komplain
+32|コンスタント|Konstan; stabil; terus-menerus
+33|セールス|Penjualan; salesman
+34|タブー|Tabu; pantangan
+35|ダメージ|Kerusakan; pukulan (fisik/mental)
+36|チェック|Pemeriksaan; mengecek; motif kotak-kotak
+37|チェックアウト|Check-out (hotel)
+38|チャージ|Isi ulang (saldo, baterai); biaya
+39|チャレンジ|Tantangan; mencoba hal baru
+40|ディスカウント|Diskon; potongan harga
+41|ニーズ|Kebutuhan; permintaan
+42|ネック|Leher; hambatan utama
+43|ノイズ|Bising; derau
+44|ピッチ|Laju; kecepatan; nada
+45|プレッシャー|Tekanan (mental)
+46|リハーサル|Gladi; latihan sebelum pentas
+47|掛け合う|Bernegosiasi; saling (menyiram, berbalas)
+48|及び腰|Ragu-ragu; sikap setengah hati
+49|駆け込む|Berlari masuk; bergegas mencari perlindungan
+50|駆け抜ける|Berlari melewati; melintas cepat
+51|行き交う|Lalu-lalang; datang dan pergi
+52|仕返し|Balas dendam; membalas perlakuan
+53|施錠|Mengunci (pintu, gedung)
+54|手厚い|Penuh perhatian; hangat (perawatan, sambutan)
+55|終業|Akhir jam kerja; akhir semester
+56|助長|Mendorong; memperburuk (kecenderungan buruk)
+57|息抜き|Istirahat sejenak; rehat
+58|張り合う|Bersaing; berebut
+59|通り道|Jalan yang dilewati; jalur
+60|憤る|Marah; geram
+61|問い詰める|Mendesak dengan pertanyaan; menginterogasi
+62|絡まる|Terbelit; kusut
+63|弱々しい|Lemah; rapuh; lesu
+64|踏襲|Meneruskan (cara, kebijakan) yang sudah ada
+65|行き詰まる|Menemui jalan buntu
+66|取り払う|Menyingkirkan; membongkar
+67|足手まとい|Beban; penghalang (bagi orang lain)
+68|差し替える|Mengganti; menukar
+69|補填|Menutup kekurangan; mengganti kerugian
+70|自重|-
+71|素振り|-
+72|誓約書|Surat pernyataan; surat ikrar
+73|うじゃうじゃ|Berkerumun banyak (serangga dsb.)
+74|からから|Kering kerontang; kosong melompong; bunyi berderak
+75|がらがら|Bunyi gemeretak; sepi, kosong (tempat); suara serak
+76|ぎくしゃく|Kaku; canggung (gerakan, hubungan)
+77|ぐうぐう|Mendengkur; tidur pulas; perut keroncongan
+78|ぐちゃぐちゃ|Berantakan; lembek, becek
+79|じりじり|Perlahan tapi pasti; tak sabar; terik menyengat
+80|たどたどしい|Terbata-bata; tertatih-tatih
+81|べったり|Lengket; menempel terus
+82|アポイントメント|Janji temu
+83|クリア|Jernih; lolos/berhasil melewati
+84|ざあざあ|Hujan deras; bunyi air mengucur
+85|ほぐれる|Terurai; menjadi rileks (otot, suasana)
+86|噛み合う|Saling cocok; nyambung (pembicaraan); bergigitan
+87|繰り越す|Memindahkan ke periode berikutnya; menunda
+88|考え抜く|Memikirkan matang-matang
+89|行き着く|Akhirnya sampai; berujung pada
+90|骨折り|Jerih payah; usaha keras
+91|ありきたり|Biasa saja; klise
+92|自重|Menahan diri; berhati-hati bertindak
+93|取り付ける|Memasang; mendapatkan (persetujuan)
+94|素振り|Gelagat; sikap; tingkah
+95|飛びつく|Melompat menerkam; langsung tertarik
+96|考えつく|Terpikirkan; mendapat ide
+97|引き落す|Mendebet otomatis (rekening)
+98|不用|Tidak terpakai; tidak diperlukan
+99|うっとり|Terpesona; terbuai
+100|ごつごつ|Kasar; berbonggol; keras bersudut
+101|どっしり|Kokoh; berat; tenang berwibawa
+102|なだらか|Landai; lancar
+103|うなだれる|Menundukkan kepala (sedih, malu)
+104|ふさふさ|Lebat; berumbai (rambut, bulu)
+105|ごくごく|-
+106|ほつれる|-
+107|憤る|-
+108|ピックアップ|Memilih; menjemput
+109|レシピ|Resep (masakan)
+110|すべすべ|Halus; licin (kulit)
+111|どっさり|Banyak sekali; bertumpuk
+112|どんより|Mendung; kelabu; lesu
+113|みっちり|Secara intensif; habis-habisan
+114|じろじろ|Menatap terus-menerus (tidak sopan)
+115|うろちょろ|Mondar-mandir; berkeliaran
+116|ちかちか|Berkedip-kedip; silau menyakitkan mata
+117|ぎしぎし|Bunyi berderit
+118|ごくごく|Bunyi meneguk; minum dengan tegukan besar
+119|ぎしぎし|-
+120|クレーム|-

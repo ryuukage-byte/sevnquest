@@ -132,7 +132,7 @@ export function categoryLabel(c: LetterCategory): string {
 
 /** Isi kotak hadiah pada surat donasi dari admin (snapshot saat pembayaran disetujui). */
 export interface LetterGift {
-  kind: 'monthly' | 'yearly' | 'lifetime' | 'gift_key';
+  kind: 'monthly' | 'yearly' | 'lifetime' | 'gift_key' | 'pass';
   amount: number;
   /** Disetujui lewat verifikasi otomatis. */
   auto: boolean;
@@ -144,9 +144,13 @@ export interface LetterGift {
   lifetimeTotal: number;
   badgeLevel: number;
   badgeTitle: string | null;
+  /** Jumlah Pack Pass yang masuk (kind pass). */
+  passes: number;
+  /** Saldo pass saat pembayaran disetujui (kind pass). */
+  passBalance: number;
 }
 
-const GIFT_KINDS = new Set(['monthly', 'yearly', 'lifetime', 'gift_key']);
+const GIFT_KINDS = new Set(['monthly', 'yearly', 'lifetime', 'gift_key', 'pass']);
 
 export function parseGift(v: unknown): LetterGift | null {
   if (!v || typeof v !== 'object') return null;
@@ -167,6 +171,8 @@ export function parseGift(v: unknown): LetterGift | null {
     lifetimeTotal: n(r.lifetime_total),
     badgeLevel: n(r.badge_level, 8),
     badgeTitle: typeof r.badge_title === 'string' && r.badge_title ? r.badge_title : null,
+    passes: n(r.passes, 1000),
+    passBalance: n(r.pass_balance),
   };
 }
 

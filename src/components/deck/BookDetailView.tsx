@@ -20,6 +20,8 @@ interface BookDetailViewProps {
   clonedSuccessChapterId?: string | null;
   soundEnabled?: boolean;
   itemMastery?: Record<string, ItemMasteryRecord>;
+  /** Teks tombol kembali (default: ke Rak Buku). */
+  backLabel?: string;
 }
 
 export const BookDetailView: React.FC<BookDetailViewProps> = ({
@@ -30,6 +32,7 @@ export const BookDetailView: React.FC<BookDetailViewProps> = ({
   clonedSuccessChapterId,
   soundEnabled = true,
   itemMastery = {},
+  backLabel = 'Kembali ke Rak Buku',
 }) => {
   // Helper to calculate chapter mastery
   const getChapterStats = (chapter: OfficialChapter) => {
@@ -65,7 +68,7 @@ export const BookDetailView: React.FC<BookDetailViewProps> = ({
           className="flex items-center gap-2 text-xs sm:text-sm font-heading font-bold text-text-muted hover:text-text-primary transition-colors p-2 rounded-xl hover:bg-surface-inset"
         >
           <ArrowLeft className="w-4 h-4" />
-          <span>Kembali ke Rak Buku</span>
+          <span>{backLabel}</span>
         </button>
 
         <span className="text-xs font-mono text-text-muted">

@@ -398504,5 +398504,1880 @@
       "jlpt-estimasi",
       "sehari-hari"
     ]
+  },
+  "kotoba_jm_1010340": {
+    "id": "kotoba_jm_1010340",
+    "word": "ばりばり",
+    "reading": "ばりばり",
+    "meaningId": "Bunyi merobek/mengunyah renyah; giat, bersemangat (bekerja)",
+    "meaningEn": "tearing; ripping; scratching",
+    "meaningJa": "",
+    "jlpt": "N2",
+    "wordType": "adjective-na",
+    "kanjiComponents": [],
+    "tags": [
+      "jmdict",
+      "ujian-jlpt"
+    ]
+  },
+  "kotoba_jm_1066570": {
+    "id": "kotoba_jm_1066570",
+    "word": "じわじわ",
+    "reading": "じわじわ",
+    "meaningId": "Perlahan tapi pasti; sedikit demi sedikit",
+    "meaningEn": "slowly (but steadily); gradually; bit-by-bit",
+    "meaningJa": "",
+    "jlpt": "N1",
+    "wordType": "adverb",
+    "kanjiComponents": [],
+    "tags": [
+      "jmdict",
+      "ujian-jlpt"
+    ]
+  },
+  "kotoba_jm_1192660": {
+    "id": "kotoba_jm_1192660",
+    "word": "寡黙",
+    "reading": "かもく",
+    "meaningId": "Pendiam; tidak banyak bicara",
+    "meaningEn": "untalkative; quiet; taciturn",
+    "meaningJa": "",
+    "jlpt": "N1",
+    "wordType": "adjective-na",
+    "kanjiComponents": [
+      "寡",
+      "黙"
+    ],
+    "tags": [
+      "jmdict",
+      "jlpt-estimasi",
+      "ujian-jlpt"
+    ]
+  },
+  "kotoba_jm_1226620": {
+    "id": "kotoba_jm_1226620",
+    "word": "却下",
+    "reading": "きゃっか",
+    "meaningId": "Penolakan (permohonan, usul)",
+    "meaningEn": "rejection; dismissal",
+    "meaningJa": "",
+    "jlpt": "N1",
+    "wordType": "noun",
+    "kanjiComponents": [
+      "却",
+      "下"
+    ],
+    "tags": [
+      "jmdict",
+      "ujian-jlpt"
+    ]
+  },
+  "kotoba_jm_1236030": {
+    "id": "kotoba_jm_1236030",
+    "word": "境目",
+    "reading": "さかいめ",
+    "meaningId": "Batas; garis perbatasan",
+    "meaningEn": "borderline; boundary",
+    "meaningJa": "",
+    "jlpt": "N2",
+    "wordType": "noun",
+    "kanjiComponents": [
+      "境",
+      "目"
+    ],
+    "tags": [
+      "jmdict",
+      "ujian-jlpt"
+    ]
+  },
+  "kotoba_jm_1239160": {
+    "id": "kotoba_jm_1239160",
+    "word": "凝視",
+    "reading": "ぎょうし",
+    "meaningId": "Menatap tajam; memandang lekat-lekat",
+    "meaningEn": "stare; gaze; fixation",
+    "meaningJa": "",
+    "jlpt": "N1",
+    "wordType": "noun",
+    "kanjiComponents": [
+      "凝",
+      "視"
+    ],
+    "tags": [
+      "jmdict",
+      "jlpt-estimasi",
+      "ujian-jlpt"
+    ]
+  },
+  "kotoba_jm_1272100": {
+    "id": "kotoba_jm_1272100",
+    "word": "交錯",
+    "reading": "こうさく",
+    "meaningId": "Bercampur aduk; silang-menyilang",
+    "meaningEn": "mixture; blending; complication",
+    "meaningJa": "",
+    "jlpt": "N1",
+    "wordType": "noun",
+    "kanjiComponents": [
+      "交",
+      "錯"
+    ],
+    "tags": [
+      "jmdict",
+      "ujian-jlpt"
+    ]
+  },
+  "kotoba_jm_1305440": {
+    "id": "kotoba_jm_1305440",
+    "word": "仕方ない",
+    "reading": "しかたない",
+    "meaningId": "Apa boleh buat; tidak bisa dihindari",
+    "meaningEn": "there's no (other) way",
+    "meaningJa": "",
+    "jlpt": "N3",
+    "wordType": "adjective-i",
+    "kanjiComponents": [
+      "仕",
+      "方"
+    ],
+    "tags": [
+      "jmdict",
+      "ujian-jlpt"
+    ]
+  },
+  "kotoba_jm_1323320": {
+    "id": "kotoba_jm_1323320",
+    "word": "遮断",
+    "reading": "しゃだん",
+    "meaningId": "Pemutusan; memblokir; menutup (jalan, arus)",
+    "meaningEn": "isolation; cut off; blockade",
+    "meaningJa": "",
+    "jlpt": "N1",
+    "wordType": "noun",
+    "kanjiComponents": [
+      "遮",
+      "断"
+    ],
+    "tags": [
+      "jmdict",
+      "ujian-jlpt"
+    ]
+  },
+  "kotoba_jm_1360660": {
+    "id": "kotoba_jm_1360660",
+    "word": "心遣い",
+    "reading": "こころづかい",
+    "meaningId": "Perhatian; kepedulian pada orang lain",
+    "meaningEn": "consideration (for); thoughtfulness; solicitude",
+    "meaningJa": "",
+    "jlpt": "N1",
+    "wordType": "noun",
+    "kanjiComponents": [
+      "心",
+      "遣"
+    ],
+    "tags": [
+      "jmdict",
+      "ujian-jlpt"
+    ]
+  },
+  "kotoba_jm_1370040": {
+    "id": "kotoba_jm_1370040",
+    "word": "甚大",
+    "reading": "じんだい",
+    "meaningId": "Sangat besar; parah (kerugian, kerusakan)",
+    "meaningEn": "very great; enormous; serious",
+    "meaningJa": "",
+    "jlpt": "N1",
+    "wordType": "adjective-na",
+    "kanjiComponents": [
+      "甚",
+      "大"
+    ],
+    "tags": [
+      "jmdict",
+      "ujian-jlpt"
+    ]
+  },
+  "kotoba_jm_1386780": {
+    "id": "kotoba_jm_1386780",
+    "word": "絶叫",
+    "reading": "ぜっきょう",
+    "meaningId": "Jeritan; berteriak sekuat tenaga",
+    "meaningEn": "scream; shriek; shout",
+    "meaningJa": "",
+    "jlpt": "N1",
+    "wordType": "noun",
+    "kanjiComponents": [
+      "絶",
+      "叫"
+    ],
+    "tags": [
+      "jmdict",
+      "ujian-jlpt"
+    ]
+  },
+  "kotoba_jm_1391380": {
+    "id": "kotoba_jm_1391380",
+    "word": "潜伏",
+    "reading": "せんぷく",
+    "meaningId": "Bersembunyi; masa inkubasi (penyakit)",
+    "meaningEn": "concealment; hiding; ambush",
+    "meaningJa": "",
+    "jlpt": "N1",
+    "wordType": "noun",
+    "kanjiComponents": [
+      "潜",
+      "伏"
+    ],
+    "tags": [
+      "jmdict",
+      "ujian-jlpt"
+    ]
+  },
+  "kotoba_jm_1404820": {
+    "id": "kotoba_jm_1404820",
+    "word": "足止め",
+    "reading": "あしどめ",
+    "meaningId": "Tertahan; tidak bisa melanjutkan perjalanan",
+    "meaningEn": "preventing (someone) from leaving; confinement; keeping indoors",
+    "meaningJa": "",
+    "jlpt": "N1",
+    "wordType": "noun",
+    "kanjiComponents": [
+      "足",
+      "止"
+    ],
+    "tags": [
+      "jmdict",
+      "ujian-jlpt"
+    ]
+  },
+  "kotoba_jm_1444910": {
+    "id": "kotoba_jm_1444910",
+    "word": "途端に",
+    "reading": "とたんに",
+    "meaningId": "Tepat saat; begitu ... langsung",
+    "meaningEn": "just as; in the act of; as soon as",
+    "meaningJa": "",
+    "jlpt": "N2",
+    "wordType": "adverb",
+    "kanjiComponents": [
+      "途",
+      "端"
+    ],
+    "tags": [
+      "jmdict",
+      "ujian-jlpt"
+    ]
+  },
+  "kotoba_jm_1473380": {
+    "id": "kotoba_jm_1473380",
+    "word": "媒介",
+    "reading": "ばいかい",
+    "meaningId": "Perantara; menjadi media (penular)",
+    "meaningEn": "mediation; agency; serving as a medium",
+    "meaningJa": "",
+    "jlpt": "N1",
+    "wordType": "noun",
+    "kanjiComponents": [
+      "媒",
+      "介"
+    ],
+    "tags": [
+      "jmdict",
+      "ujian-jlpt"
+    ]
+  },
+  "kotoba_jm_1538770": {
+    "id": "kotoba_jm_1538770",
+    "word": "諭す",
+    "reading": "さとす",
+    "meaningId": "Menasihati; menegur dengan lembut",
+    "meaningEn": "to admonish; to persuade; to warn",
+    "meaningJa": "",
+    "jlpt": "N1",
+    "wordType": "verb",
+    "kanjiComponents": [
+      "諭"
+    ],
+    "tags": [
+      "jmdict",
+      "ujian-jlpt"
+    ]
+  },
+  "kotoba_jm_1547500": {
+    "id": "kotoba_jm_1547500",
+    "word": "翌週",
+    "reading": "よくしゅう",
+    "meaningId": "Minggu berikutnya",
+    "meaningEn": "the following week; the next week",
+    "meaningJa": "",
+    "jlpt": "N3",
+    "wordType": "noun",
+    "kanjiComponents": [
+      "翌",
+      "週"
+    ],
+    "tags": [
+      "jmdict",
+      "ujian-jlpt"
+    ]
+  },
+  "kotoba_jm_1560130": {
+    "id": "kotoba_jm_1560130",
+    "word": "露出",
+    "reading": "ろしゅつ",
+    "meaningId": "Keterbukaan; memperlihatkan (kulit); pencahayaan (foto)",
+    "meaningEn": "exposure; laying bare; baring (e.g. skin)",
+    "meaningJa": "",
+    "jlpt": "N1",
+    "wordType": "noun",
+    "kanjiComponents": [
+      "露",
+      "出"
+    ],
+    "tags": [
+      "jmdict",
+      "ujian-jlpt"
+    ]
+  },
+  "kotoba_jm_2003420": {
+    "id": "kotoba_jm_2003420",
+    "word": "テイクアウト",
+    "reading": "テイクアウト",
+    "meaningId": "Bawa pulang (makanan)",
+    "meaningEn": "take-out; take-away; carry-out",
+    "meaningJa": "",
+    "jlpt": "N3",
+    "wordType": "noun",
+    "kanjiComponents": [],
+    "tags": [
+      "jmdict",
+      "ujian-jlpt"
+    ]
+  },
+  "kotoba_jm_2037400": {
+    "id": "kotoba_jm_2037400",
+    "word": "ノルマ",
+    "reading": "ノルマ",
+    "meaningId": "Target kerja; kuota",
+    "meaningEn": "(one's) quota; assignment",
+    "meaningJa": "",
+    "jlpt": "N1",
+    "wordType": "noun",
+    "kanjiComponents": [],
+    "tags": [
+      "jmdict",
+      "ujian-jlpt"
+    ]
+  },
+  "kotoba_jm_2231160": {
+    "id": "kotoba_jm_2231160",
+    "word": "お互いに",
+    "reading": "おたがいに",
+    "meaningId": "Saling; satu sama lain",
+    "meaningEn": "mutually; with each other; reciprocally",
+    "meaningJa": "",
+    "jlpt": "N3",
+    "wordType": "adverb",
+    "kanjiComponents": [
+      "互"
+    ],
+    "tags": [
+      "jmdict",
+      "ujian-jlpt"
+    ]
+  },
+  "kotoba_jm_1015160": {
+    "id": "kotoba_jm_1015160",
+    "word": "アクシデント",
+    "reading": "アクシデント",
+    "meaningId": "Kecelakaan; kejadian tak terduga",
+    "meaningEn": "accident",
+    "meaningJa": "",
+    "jlpt": "N2",
+    "wordType": "noun",
+    "kanjiComponents": [],
+    "tags": [
+      "jmdict",
+      "ujian-jlpt"
+    ]
+  },
+  "kotoba_jm_1015170": {
+    "id": "kotoba_jm_1015170",
+    "word": "アクション",
+    "reading": "アクション",
+    "meaningId": "Aksi; tindakan",
+    "meaningEn": "action",
+    "meaningJa": "",
+    "jlpt": "N2",
+    "wordType": "noun",
+    "kanjiComponents": [],
+    "tags": [
+      "jmdict",
+      "ujian-jlpt"
+    ]
+  },
+  "kotoba_jm_1015230": {
+    "id": "kotoba_jm_1015230",
+    "word": "アクセス",
+    "reading": "アクセス",
+    "meaningId": "Akses; jalan menuju (lokasi)",
+    "meaningEn": "access",
+    "meaningJa": "",
+    "jlpt": "N3",
+    "wordType": "noun",
+    "kanjiComponents": [],
+    "tags": [
+      "jmdict",
+      "ujian-jlpt"
+    ]
+  },
+  "kotoba_jm_1017340": {
+    "id": "kotoba_jm_1017340",
+    "word": "アナウンス",
+    "reading": "アナウンス",
+    "meaningId": "Pengumuman (lewat pengeras suara)",
+    "meaningEn": "announcement (esp. over public-address system)",
+    "meaningJa": "",
+    "jlpt": "N3",
+    "wordType": "noun",
+    "kanjiComponents": [],
+    "tags": [
+      "jmdict",
+      "ujian-jlpt"
+    ]
+  },
+  "kotoba_jm_1024010": {
+    "id": "kotoba_jm_1024010",
+    "word": "インパクト",
+    "reading": "インパクト",
+    "meaningId": "Dampak; kesan kuat",
+    "meaningEn": "impact (on); (strong) impression; effect",
+    "meaningJa": "",
+    "jlpt": "N2",
+    "wordType": "noun",
+    "kanjiComponents": [],
+    "tags": [
+      "jmdict",
+      "ujian-jlpt"
+    ]
+  },
+  "kotoba_jm_1028320": {
+    "id": "kotoba_jm_1028320",
+    "word": "エコノミー",
+    "reading": "エコノミー",
+    "meaningId": "Ekonomi; kelas ekonomi; penghematan",
+    "meaningEn": "economy; economics; finance",
+    "meaningJa": "",
+    "jlpt": "N2",
+    "wordType": "noun",
+    "kanjiComponents": [],
+    "tags": [
+      "jmdict",
+      "ujian-jlpt"
+    ]
+  },
+  "kotoba_jm_1030040": {
+    "id": "kotoba_jm_1030040",
+    "word": "エラー",
+    "reading": "エラー",
+    "meaningId": "Kesalahan; galat",
+    "meaningEn": "error",
+    "meaningJa": "",
+    "jlpt": "N1",
+    "wordType": "noun",
+    "kanjiComponents": [],
+    "tags": [
+      "jmdict",
+      "ujian-jlpt"
+    ]
+  },
+  "kotoba_jm_1031780": {
+    "id": "kotoba_jm_1031780",
+    "word": "オーダー",
+    "reading": "オーダー",
+    "meaningId": "Pesanan; urutan",
+    "meaningEn": "order; reservation",
+    "meaningJa": "",
+    "jlpt": "N3",
+    "wordType": "noun",
+    "kanjiComponents": [],
+    "tags": [
+      "jmdict",
+      "ujian-jlpt"
+    ]
+  },
+  "kotoba_jm_1039890": {
+    "id": "kotoba_jm_1039890",
+    "word": "ガイダンス",
+    "reading": "ガイダンス",
+    "meaningId": "Bimbingan; sesi orientasi",
+    "meaningEn": "guidance",
+    "meaningJa": "",
+    "jlpt": "N3",
+    "wordType": "noun",
+    "kanjiComponents": [],
+    "tags": [
+      "jmdict",
+      "ujian-jlpt"
+    ]
+  },
+  "kotoba_jm_1045270": {
+    "id": "kotoba_jm_1045270",
+    "word": "クレーム",
+    "reading": "クレーム",
+    "meaningId": "Keluhan (pelanggan); komplain",
+    "meaningEn": "claim (for compensation); customer complaint seeking compensation",
+    "meaningJa": "",
+    "jlpt": "N1",
+    "wordType": "noun",
+    "kanjiComponents": [],
+    "tags": [
+      "jmdict",
+      "ujian-jlpt"
+    ]
+  },
+  "kotoba_jm_1052190": {
+    "id": "kotoba_jm_1052190",
+    "word": "コンスタント",
+    "reading": "コンスタント",
+    "meaningId": "Konstan; stabil; terus-menerus",
+    "meaningEn": "constant; steady",
+    "meaningJa": "",
+    "jlpt": "N1",
+    "wordType": "adjective-na",
+    "kanjiComponents": [],
+    "tags": [
+      "jmdict",
+      "ujian-jlpt"
+    ]
+  },
+  "kotoba_jm_1074340": {
+    "id": "kotoba_jm_1074340",
+    "word": "セールス",
+    "reading": "セールス",
+    "meaningId": "Penjualan; salesman",
+    "meaningEn": "sales; selling",
+    "meaningJa": "",
+    "jlpt": "N2",
+    "wordType": "noun",
+    "kanjiComponents": [],
+    "tags": [
+      "jmdict",
+      "ujian-jlpt"
+    ]
+  },
+  "kotoba_jm_1076400": {
+    "id": "kotoba_jm_1076400",
+    "word": "タブー",
+    "reading": "タブー",
+    "meaningId": "Tabu; pantangan",
+    "meaningEn": "taboo",
+    "meaningJa": "",
+    "jlpt": "N1",
+    "wordType": "noun",
+    "kanjiComponents": [],
+    "tags": [
+      "jmdict",
+      "ujian-jlpt"
+    ]
+  },
+  "kotoba_jm_1077160": {
+    "id": "kotoba_jm_1077160",
+    "word": "ダメージ",
+    "reading": "ダメージ",
+    "meaningId": "Kerusakan; pukulan (fisik/mental)",
+    "meaningEn": "damage",
+    "meaningJa": "",
+    "jlpt": "N1",
+    "wordType": "noun",
+    "kanjiComponents": [],
+    "tags": [
+      "jmdict",
+      "ujian-jlpt"
+    ]
+  },
+  "kotoba_jm_1077550": {
+    "id": "kotoba_jm_1077550",
+    "word": "チェック",
+    "reading": "チェック",
+    "meaningId": "Pemeriksaan; mengecek; motif kotak-kotak",
+    "meaningEn": "check; plaid; checkered",
+    "meaningJa": "",
+    "jlpt": "N3",
+    "wordType": "noun",
+    "kanjiComponents": [],
+    "tags": [
+      "jmdict",
+      "ujian-jlpt"
+    ]
+  },
+  "kotoba_jm_1077560": {
+    "id": "kotoba_jm_1077560",
+    "word": "チェックアウト",
+    "reading": "チェックアウト",
+    "meaningId": "Check-out (hotel)",
+    "meaningEn": "check-out",
+    "meaningJa": "",
+    "jlpt": "N3",
+    "wordType": "noun",
+    "kanjiComponents": [],
+    "tags": [
+      "jmdict",
+      "ujian-jlpt"
+    ]
+  },
+  "kotoba_jm_1077780": {
+    "id": "kotoba_jm_1077780",
+    "word": "チャージ",
+    "reading": "チャージ",
+    "meaningId": "Isi ulang (saldo, baterai); biaya",
+    "meaningEn": "charge (electrical); recharging",
+    "meaningJa": "",
+    "jlpt": "N2",
+    "wordType": "noun",
+    "kanjiComponents": [],
+    "tags": [
+      "jmdict",
+      "ujian-jlpt"
+    ]
+  },
+  "kotoba_jm_1078020": {
+    "id": "kotoba_jm_1078020",
+    "word": "チャレンジ",
+    "reading": "チャレンジ",
+    "meaningId": "Tantangan; mencoba hal baru",
+    "meaningEn": "taking on (a challenge); attempt; try",
+    "meaningJa": "",
+    "jlpt": "N3",
+    "wordType": "noun",
+    "kanjiComponents": [],
+    "tags": [
+      "jmdict",
+      "ujian-jlpt"
+    ]
+  },
+  "kotoba_jm_1081680": {
+    "id": "kotoba_jm_1081680",
+    "word": "ディスカウント",
+    "reading": "ディスカウント",
+    "meaningId": "Diskon; potongan harga",
+    "meaningEn": "discount",
+    "meaningJa": "",
+    "jlpt": "N3",
+    "wordType": "noun",
+    "kanjiComponents": [],
+    "tags": [
+      "jmdict",
+      "ujian-jlpt"
+    ]
+  },
+  "kotoba_jm_1090960": {
+    "id": "kotoba_jm_1090960",
+    "word": "ニーズ",
+    "reading": "ニーズ",
+    "meaningId": "Kebutuhan; permintaan",
+    "meaningEn": "needs; demands; requests",
+    "meaningJa": "",
+    "jlpt": "N2",
+    "wordType": "noun",
+    "kanjiComponents": [],
+    "tags": [
+      "jmdict",
+      "ujian-jlpt"
+    ]
+  },
+  "kotoba_jm_1092970": {
+    "id": "kotoba_jm_1092970",
+    "word": "ネック",
+    "reading": "ネック",
+    "meaningId": "Leher; hambatan utama",
+    "meaningEn": "neck",
+    "meaningJa": "",
+    "jlpt": "N1",
+    "wordType": "noun",
+    "kanjiComponents": [],
+    "tags": [
+      "jmdict",
+      "ujian-jlpt"
+    ]
+  },
+  "kotoba_jm_1093720": {
+    "id": "kotoba_jm_1093720",
+    "word": "ノイズ",
+    "reading": "ノイズ",
+    "meaningId": "Bising; derau",
+    "meaningEn": "noise",
+    "meaningJa": "",
+    "jlpt": "N1",
+    "wordType": "noun",
+    "kanjiComponents": [],
+    "tags": [
+      "jmdict",
+      "ujian-jlpt"
+    ]
+  },
+  "kotoba_jm_1106760": {
+    "id": "kotoba_jm_1106760",
+    "word": "ピッチ",
+    "reading": "ピッチ",
+    "meaningId": "Laju; kecepatan; nada",
+    "meaningEn": "pace; rate; speed",
+    "meaningJa": "",
+    "jlpt": "N1",
+    "wordType": "noun",
+    "kanjiComponents": [],
+    "tags": [
+      "jmdict",
+      "ujian-jlpt"
+    ]
+  },
+  "kotoba_jm_1116860": {
+    "id": "kotoba_jm_1116860",
+    "word": "プレッシャー",
+    "reading": "プレッシャー",
+    "meaningId": "Tekanan (mental)",
+    "meaningEn": "pressure",
+    "meaningJa": "",
+    "jlpt": "N2",
+    "wordType": "noun",
+    "kanjiComponents": [],
+    "tags": [
+      "jmdict",
+      "ujian-jlpt"
+    ]
+  },
+  "kotoba_jm_1142230": {
+    "id": "kotoba_jm_1142230",
+    "word": "リハーサル",
+    "reading": "リハーサル",
+    "meaningId": "Gladi; latihan sebelum pentas",
+    "meaningEn": "rehearsal",
+    "meaningJa": "",
+    "jlpt": "N2",
+    "wordType": "noun",
+    "kanjiComponents": [],
+    "tags": [
+      "jmdict",
+      "ujian-jlpt"
+    ]
+  },
+  "kotoba_jm_1207620": {
+    "id": "kotoba_jm_1207620",
+    "word": "掛け合う",
+    "reading": "かけあう",
+    "meaningId": "Bernegosiasi; saling (menyiram, berbalas)",
+    "meaningEn": "to negotiate (with someone about); to talk over (something with); to tackle someone (about)",
+    "meaningJa": "",
+    "jlpt": "N2",
+    "wordType": "verb",
+    "kanjiComponents": [
+      "掛",
+      "合"
+    ],
+    "tags": [
+      "jmdict",
+      "jlpt-estimasi",
+      "ujian-jlpt"
+    ]
+  },
+  "kotoba_jm_1228150": {
+    "id": "kotoba_jm_1228150",
+    "word": "及び腰",
+    "reading": "およびごし",
+    "meaningId": "Ragu-ragu; sikap setengah hati",
+    "meaningEn": "bent back",
+    "meaningJa": "",
+    "jlpt": "N1",
+    "wordType": "noun",
+    "kanjiComponents": [
+      "及",
+      "腰"
+    ],
+    "tags": [
+      "jmdict",
+      "jlpt-estimasi",
+      "ujian-jlpt"
+    ]
+  },
+  "kotoba_jm_1244780": {
+    "id": "kotoba_jm_1244780",
+    "word": "駆け込む",
+    "reading": "かけこむ",
+    "meaningId": "Berlari masuk; bergegas mencari perlindungan",
+    "meaningEn": "to run into; to rush into",
+    "meaningJa": "",
+    "jlpt": "N2",
+    "wordType": "verb",
+    "kanjiComponents": [
+      "駆",
+      "込"
+    ],
+    "tags": [
+      "jmdict",
+      "ujian-jlpt"
+    ]
+  },
+  "kotoba_jm_1244820": {
+    "id": "kotoba_jm_1244820",
+    "word": "駆け抜ける",
+    "reading": "かけぬける",
+    "meaningId": "Berlari melewati; melintas cepat",
+    "meaningEn": "to run past from behind; to run through (e.g. gate, one's mind)",
+    "meaningJa": "",
+    "jlpt": "N2",
+    "wordType": "verb",
+    "kanjiComponents": [
+      "駆",
+      "抜"
+    ],
+    "tags": [
+      "jmdict",
+      "ujian-jlpt"
+    ]
+  },
+  "kotoba_jm_1281700": {
+    "id": "kotoba_jm_1281700",
+    "word": "行き交う",
+    "reading": "いきかう",
+    "meaningId": "Lalu-lalang; datang dan pergi",
+    "meaningEn": "to come and go; to go back and forth",
+    "meaningJa": "",
+    "jlpt": "N1",
+    "wordType": "verb",
+    "kanjiComponents": [
+      "行",
+      "交"
+    ],
+    "tags": [
+      "jmdict",
+      "ujian-jlpt"
+    ]
+  },
+  "kotoba_jm_1305410": {
+    "id": "kotoba_jm_1305410",
+    "word": "仕返し",
+    "reading": "しかえし",
+    "meaningId": "Balas dendam; membalas perlakuan",
+    "meaningEn": "payback; tit for tat; retaliation",
+    "meaningJa": "",
+    "jlpt": "N1",
+    "wordType": "noun",
+    "kanjiComponents": [
+      "仕",
+      "返"
+    ],
+    "tags": [
+      "jmdict",
+      "ujian-jlpt"
+    ]
+  },
+  "kotoba_jm_1310390": {
+    "id": "kotoba_jm_1310390",
+    "word": "施錠",
+    "reading": "せじょう",
+    "meaningId": "Mengunci (pintu, gedung)",
+    "meaningEn": "locking",
+    "meaningJa": "",
+    "jlpt": "N1",
+    "wordType": "noun",
+    "kanjiComponents": [
+      "施",
+      "錠"
+    ],
+    "tags": [
+      "jmdict",
+      "ujian-jlpt"
+    ]
+  },
+  "kotoba_jm_1327580": {
+    "id": "kotoba_jm_1327580",
+    "word": "手厚い",
+    "reading": "てあつい",
+    "meaningId": "Penuh perhatian; hangat (perawatan, sambutan)",
+    "meaningEn": "warm (treatment, reception, etc.); kind; cordial",
+    "meaningJa": "",
+    "jlpt": "N1",
+    "wordType": "adjective-i",
+    "kanjiComponents": [
+      "手",
+      "厚"
+    ],
+    "tags": [
+      "jmdict",
+      "ujian-jlpt"
+    ]
+  },
+  "kotoba_jm_1332790": {
+    "id": "kotoba_jm_1332790",
+    "word": "終業",
+    "reading": "しゅうぎょう",
+    "meaningId": "Akhir jam kerja; akhir semester",
+    "meaningEn": "end of work day",
+    "meaningJa": "",
+    "jlpt": "N2",
+    "wordType": "noun",
+    "kanjiComponents": [
+      "終",
+      "業"
+    ],
+    "tags": [
+      "jmdict",
+      "ujian-jlpt"
+    ]
+  },
+  "kotoba_jm_1344740": {
+    "id": "kotoba_jm_1344740",
+    "word": "助長",
+    "reading": "じょちょう",
+    "meaningId": "Mendorong; memperburuk (kecenderungan buruk)",
+    "meaningEn": "promotion; encouragement; fostering",
+    "meaningJa": "",
+    "jlpt": "N1",
+    "wordType": "noun",
+    "kanjiComponents": [
+      "助",
+      "長"
+    ],
+    "tags": [
+      "jmdict",
+      "ujian-jlpt"
+    ]
+  },
+  "kotoba_jm_1404430": {
+    "id": "kotoba_jm_1404430",
+    "word": "息抜き",
+    "reading": "いきぬき",
+    "meaningId": "Istirahat sejenak; rehat",
+    "meaningEn": "taking a breather; relaxation; vent hole",
+    "meaningJa": "",
+    "jlpt": "N1",
+    "wordType": "noun",
+    "kanjiComponents": [
+      "息",
+      "抜"
+    ],
+    "tags": [
+      "jmdict",
+      "ujian-jlpt"
+    ]
+  },
+  "kotoba_jm_1427780": {
+    "id": "kotoba_jm_1427780",
+    "word": "張り合う",
+    "reading": "はりあう",
+    "meaningId": "Bersaing; berebut",
+    "meaningEn": "to compete (with each other); to contend for; to vie for",
+    "meaningJa": "",
+    "jlpt": "N2",
+    "wordType": "verb",
+    "kanjiComponents": [
+      "張",
+      "合"
+    ],
+    "tags": [
+      "jmdict",
+      "jlpt-estimasi",
+      "ujian-jlpt"
+    ]
+  },
+  "kotoba_jm_1433000": {
+    "id": "kotoba_jm_1433000",
+    "word": "通り道",
+    "reading": "とおりみち",
+    "meaningId": "Jalan yang dilewati; jalur",
+    "meaningEn": "passage; path; route",
+    "meaningJa": "",
+    "jlpt": "N3",
+    "wordType": "noun",
+    "kanjiComponents": [
+      "通",
+      "道"
+    ],
+    "tags": [
+      "jmdict",
+      "ujian-jlpt"
+    ]
+  },
+  "kotoba_jm_1504640": {
+    "id": "kotoba_jm_1504640",
+    "word": "憤る",
+    "reading": "いきどおる",
+    "meaningId": "Marah; geram",
+    "meaningEn": "to be angry; to resent; to be enraged",
+    "meaningJa": "",
+    "jlpt": "N1",
+    "wordType": "verb",
+    "kanjiComponents": [
+      "憤"
+    ],
+    "tags": [
+      "jmdict",
+      "ujian-jlpt"
+    ]
+  },
+  "kotoba_jm_1535950": {
+    "id": "kotoba_jm_1535950",
+    "word": "問い詰める",
+    "reading": "といつめる",
+    "meaningId": "Mendesak dengan pertanyaan; menginterogasi",
+    "meaningEn": "to press a question; to cross-examine",
+    "meaningJa": "",
+    "jlpt": "N1",
+    "wordType": "verb",
+    "kanjiComponents": [
+      "問",
+      "詰"
+    ],
+    "tags": [
+      "jmdict",
+      "ujian-jlpt"
+    ]
+  },
+  "kotoba_jm_1548490": {
+    "id": "kotoba_jm_1548490",
+    "word": "絡まる",
+    "reading": "からまる",
+    "meaningId": "Terbelit; kusut",
+    "meaningEn": "to be entwined; to be involved",
+    "meaningJa": "",
+    "jlpt": "N2",
+    "wordType": "verb",
+    "kanjiComponents": [
+      "絡"
+    ],
+    "tags": [
+      "jmdict",
+      "ujian-jlpt"
+    ]
+  },
+  "kotoba_jm_1606170": {
+    "id": "kotoba_jm_1606170",
+    "word": "弱々しい",
+    "reading": "よわよわしい",
+    "meaningId": "Lemah; rapuh; lesu",
+    "meaningEn": "frail; slender; feminine",
+    "meaningJa": "",
+    "jlpt": "N2",
+    "wordType": "adjective-i",
+    "kanjiComponents": [
+      "弱",
+      "々"
+    ],
+    "tags": [
+      "jmdict",
+      "ujian-jlpt"
+    ]
+  },
+  "kotoba_jm_1619900": {
+    "id": "kotoba_jm_1619900",
+    "word": "踏襲",
+    "reading": "とうしゅう",
+    "meaningId": "Meneruskan (cara, kebijakan) yang sudah ada",
+    "meaningEn": "following (a precedent, former policy, etc.); continuing with; sticking to",
+    "meaningJa": "",
+    "jlpt": "N1",
+    "wordType": "noun",
+    "kanjiComponents": [
+      "踏",
+      "襲"
+    ],
+    "tags": [
+      "jmdict",
+      "ujian-jlpt"
+    ]
+  },
+  "kotoba_jm_1631350": {
+    "id": "kotoba_jm_1631350",
+    "word": "行き詰まる",
+    "reading": "いきづまる",
+    "meaningId": "Menemui jalan buntu",
+    "meaningEn": "to come to a dead end; to come to a standstill; to reach a deadlock",
+    "meaningJa": "",
+    "jlpt": "N1",
+    "wordType": "verb",
+    "kanjiComponents": [
+      "行",
+      "詰"
+    ],
+    "tags": [
+      "jmdict",
+      "ujian-jlpt"
+    ]
+  },
+  "kotoba_jm_1654740": {
+    "id": "kotoba_jm_1654740",
+    "word": "取り払う",
+    "reading": "とりはらう",
+    "meaningId": "Menyingkirkan; membongkar",
+    "meaningEn": "to clear away; to remove; to demolish",
+    "meaningJa": "",
+    "jlpt": "N2",
+    "wordType": "verb",
+    "kanjiComponents": [
+      "取",
+      "払"
+    ],
+    "tags": [
+      "jmdict",
+      "ujian-jlpt"
+    ]
+  },
+  "kotoba_jm_1663120": {
+    "id": "kotoba_jm_1663120",
+    "word": "足手まとい",
+    "reading": "あしでまとい",
+    "meaningId": "Beban; penghalang (bagi orang lain)",
+    "meaningEn": "impediment; burden; encumbrance",
+    "meaningJa": "",
+    "jlpt": "N1",
+    "wordType": "adjective-na",
+    "kanjiComponents": [
+      "足",
+      "手"
+    ],
+    "tags": [
+      "jmdict",
+      "ujian-jlpt"
+    ]
+  },
+  "kotoba_jm_1664660": {
+    "id": "kotoba_jm_1664660",
+    "word": "差し替える",
+    "reading": "さしかえる",
+    "meaningId": "Mengganti; menukar",
+    "meaningEn": "to change; to replace",
+    "meaningJa": "",
+    "jlpt": "N1",
+    "wordType": "verb",
+    "kanjiComponents": [
+      "差",
+      "替"
+    ],
+    "tags": [
+      "jmdict",
+      "ujian-jlpt"
+    ]
+  },
+  "kotoba_jm_1690280": {
+    "id": "kotoba_jm_1690280",
+    "word": "補填",
+    "reading": "ほてん",
+    "meaningId": "Menutup kekurangan; mengganti kerugian",
+    "meaningEn": "compensating; making up for; supplementation",
+    "meaningJa": "",
+    "jlpt": "N1",
+    "wordType": "noun",
+    "kanjiComponents": [
+      "補",
+      "填"
+    ],
+    "tags": [
+      "jmdict",
+      "ujian-jlpt"
+    ]
+  },
+  "kotoba_jm_1784780": {
+    "id": "kotoba_jm_1784780",
+    "word": "誓約書",
+    "reading": "せいやくしょ",
+    "meaningId": "Surat pernyataan; surat ikrar",
+    "meaningEn": "written oath; covenant; pledge",
+    "meaningJa": "",
+    "jlpt": "N1",
+    "wordType": "noun",
+    "kanjiComponents": [
+      "誓",
+      "約",
+      "書"
+    ],
+    "tags": [
+      "jmdict",
+      "ujian-jlpt"
+    ]
+  },
+  "kotoba_jm_1000970": {
+    "id": "kotoba_jm_1000970",
+    "word": "うじゃうじゃ",
+    "reading": "うじゃうじゃ",
+    "meaningId": "Berkerumun banyak (serangga dsb.)",
+    "meaningEn": "in swarms; in clusters",
+    "meaningJa": "",
+    "jlpt": "N2",
+    "wordType": "adverb",
+    "kanjiComponents": [],
+    "tags": [
+      "jmdict",
+      "ujian-jlpt"
+    ]
+  },
+  "kotoba_jm_1003000": {
+    "id": "kotoba_jm_1003000",
+    "word": "からから",
+    "reading": "からから",
+    "meaningId": "Kering kerontang; kosong melompong; bunyi berderak",
+    "meaningEn": "parched; dried-up; bone-dry",
+    "meaningJa": "",
+    "jlpt": "N3",
+    "wordType": "adjective-na",
+    "kanjiComponents": [],
+    "tags": [
+      "jmdict",
+      "ujian-jlpt"
+    ]
+  },
+  "kotoba_jm_1003290": {
+    "id": "kotoba_jm_1003290",
+    "word": "がらがら",
+    "reading": "がらがら",
+    "meaningId": "Bunyi gemeretak; sepi, kosong (tempat); suara serak",
+    "meaningEn": "with a clatter; with a rattle",
+    "meaningJa": "",
+    "jlpt": "N3",
+    "wordType": "adverb",
+    "kanjiComponents": [],
+    "tags": [
+      "jmdict",
+      "ujian-jlpt"
+    ]
+  },
+  "kotoba_jm_1003540": {
+    "id": "kotoba_jm_1003540",
+    "word": "ぎくしゃく",
+    "reading": "ぎくしゃく",
+    "meaningId": "Kaku; canggung (gerakan, hubungan)",
+    "meaningEn": "awkward (movements, speech, etc.); jerky; stiff",
+    "meaningJa": "",
+    "jlpt": "N1",
+    "wordType": "adverb",
+    "kanjiComponents": [],
+    "tags": [
+      "jmdict",
+      "ujian-jlpt"
+    ]
+  },
+  "kotoba_jm_1004020": {
+    "id": "kotoba_jm_1004020",
+    "word": "ぐうぐう",
+    "reading": "ぐうぐう",
+    "meaningId": "Mendengkur; tidur pulas; perut keroncongan",
+    "meaningEn": "fast (asleep); snoring or grumbling sound",
+    "meaningJa": "",
+    "jlpt": "N3",
+    "wordType": "adverb",
+    "kanjiComponents": [],
+    "tags": [
+      "jmdict",
+      "ujian-jlpt"
+    ]
+  },
+  "kotoba_jm_1004050": {
+    "id": "kotoba_jm_1004050",
+    "word": "ぐちゃぐちゃ",
+    "reading": "ぐちゃぐちゃ",
+    "meaningId": "Berantakan; lembek, becek",
+    "meaningEn": "pulpy; soppy",
+    "meaningJa": "",
+    "jlpt": "N1",
+    "wordType": "adverb",
+    "kanjiComponents": [],
+    "tags": [
+      "jmdict",
+      "ujian-jlpt"
+    ]
+  },
+  "kotoba_jm_1006000": {
+    "id": "kotoba_jm_1006000",
+    "word": "じりじり",
+    "reading": "じりじり",
+    "meaningId": "Perlahan tapi pasti; tak sabar; terik menyengat",
+    "meaningEn": "slowly (but steadily); gradually; bit-by-bit",
+    "meaningJa": "",
+    "jlpt": "N2",
+    "wordType": "adverb",
+    "kanjiComponents": [],
+    "tags": [
+      "jmdict",
+      "ujian-jlpt"
+    ]
+  },
+  "kotoba_jm_1007250": {
+    "id": "kotoba_jm_1007250",
+    "word": "たどたどしい",
+    "reading": "たどたどしい",
+    "meaningId": "Terbata-bata; tertatih-tatih",
+    "meaningEn": "with difficulty; faltering; tottering",
+    "meaningJa": "",
+    "jlpt": "N2",
+    "wordType": "adjective-i",
+    "kanjiComponents": [],
+    "tags": [
+      "jmdict",
+      "ujian-jlpt"
+    ]
+  },
+  "kotoba_jm_1011480": {
+    "id": "kotoba_jm_1011480",
+    "word": "べったり",
+    "reading": "べったり",
+    "meaningId": "Lengket; menempel terus",
+    "meaningEn": "sticking; clinging",
+    "meaningJa": "",
+    "jlpt": "N1",
+    "wordType": "adverb",
+    "kanjiComponents": [],
+    "tags": [
+      "jmdict",
+      "ujian-jlpt"
+    ]
+  },
+  "kotoba_jm_1018460": {
+    "id": "kotoba_jm_1018460",
+    "word": "アポイントメント",
+    "reading": "アポイントメント",
+    "meaningId": "Janji temu",
+    "meaningEn": "appointment",
+    "meaningJa": "",
+    "jlpt": "N2",
+    "wordType": "noun",
+    "kanjiComponents": [],
+    "tags": [
+      "jmdict",
+      "ujian-jlpt"
+    ]
+  },
+  "kotoba_jm_1044620": {
+    "id": "kotoba_jm_1044620",
+    "word": "クリア",
+    "reading": "クリア",
+    "meaningId": "Jernih; lolos/berhasil melewati",
+    "meaningEn": "clear",
+    "meaningJa": "",
+    "jlpt": "N2",
+    "wordType": "adjective-na",
+    "kanjiComponents": [],
+    "tags": [
+      "jmdict",
+      "ujian-jlpt"
+    ]
+  },
+  "kotoba_jm_1058910": {
+    "id": "kotoba_jm_1058910",
+    "word": "ざあざあ",
+    "reading": "ざあざあ",
+    "meaningId": "Hujan deras; bunyi air mengucur",
+    "meaningEn": "(raining) heavily; (water rushing) plentily",
+    "meaningJa": "",
+    "jlpt": "N3",
+    "wordType": "adverb",
+    "kanjiComponents": [],
+    "tags": [
+      "jmdict",
+      "ujian-jlpt"
+    ]
+  },
+  "kotoba_jm_1198940": {
+    "id": "kotoba_jm_1198940",
+    "word": "ほぐれる",
+    "reading": "ほぐれる",
+    "meaningId": "Terurai; menjadi rileks (otot, suasana)",
+    "meaningEn": "to come untied; to come apart",
+    "meaningJa": "",
+    "jlpt": "N1",
+    "wordType": "verb",
+    "kanjiComponents": [],
+    "tags": [
+      "jmdict",
+      "ujian-jlpt"
+    ]
+  },
+  "kotoba_jm_1209150": {
+    "id": "kotoba_jm_1209150",
+    "word": "噛み合う",
+    "reading": "かみあう",
+    "meaningId": "Saling cocok; nyambung (pembicaraan); bergigitan",
+    "meaningEn": "to gear (engage) with; to be in gear (mesh)",
+    "meaningJa": "",
+    "jlpt": "N2",
+    "wordType": "verb",
+    "kanjiComponents": [
+      "噛",
+      "合"
+    ],
+    "tags": [
+      "jmdict",
+      "jlpt-estimasi",
+      "ujian-jlpt"
+    ]
+  },
+  "kotoba_jm_1246910": {
+    "id": "kotoba_jm_1246910",
+    "word": "繰り越す",
+    "reading": "くりこす",
+    "meaningId": "Memindahkan ke periode berikutnya; menunda",
+    "meaningEn": "to carry forward (i.e. on a balance sheet); to transfer",
+    "meaningJa": "",
+    "jlpt": "N1",
+    "wordType": "verb",
+    "kanjiComponents": [
+      "繰",
+      "越"
+    ],
+    "tags": [
+      "jmdict",
+      "ujian-jlpt"
+    ]
+  },
+  "kotoba_jm_1281080": {
+    "id": "kotoba_jm_1281080",
+    "word": "考え抜く",
+    "reading": "かんがえぬく",
+    "meaningId": "Memikirkan matang-matang",
+    "meaningEn": "to think thoroughly",
+    "meaningJa": "",
+    "jlpt": "N2",
+    "wordType": "verb",
+    "kanjiComponents": [
+      "考",
+      "抜"
+    ],
+    "tags": [
+      "jmdict",
+      "ujian-jlpt"
+    ]
+  },
+  "kotoba_jm_1281730": {
+    "id": "kotoba_jm_1281730",
+    "word": "行き着く",
+    "reading": "ゆきつく",
+    "meaningId": "Akhirnya sampai; berujung pada",
+    "meaningEn": "to arrive at; to end up",
+    "meaningJa": "",
+    "jlpt": "N1",
+    "wordType": "verb",
+    "kanjiComponents": [
+      "行",
+      "着"
+    ],
+    "tags": [
+      "jmdict",
+      "ujian-jlpt"
+    ]
+  },
+  "kotoba_jm_1288650": {
+    "id": "kotoba_jm_1288650",
+    "word": "骨折り",
+    "reading": "ほねおり",
+    "meaningId": "Jerih payah; usaha keras",
+    "meaningEn": "pains; efforts; trouble",
+    "meaningJa": "",
+    "jlpt": "N1",
+    "wordType": "noun",
+    "kanjiComponents": [
+      "骨",
+      "折"
+    ],
+    "tags": [
+      "jmdict",
+      "ujian-jlpt"
+    ]
+  },
+  "kotoba_jm_1296390": {
+    "id": "kotoba_jm_1296390",
+    "word": "ありきたり",
+    "reading": "ありきたり",
+    "meaningId": "Biasa saja; klise",
+    "meaningEn": "common; ordinary; conventional",
+    "meaningJa": "",
+    "jlpt": "N1",
+    "wordType": "noun",
+    "kanjiComponents": [],
+    "tags": [
+      "jmdict",
+      "ujian-jlpt"
+    ]
+  },
+  "kotoba_jm_1317910": {
+    "id": "kotoba_jm_1317910",
+    "word": "自重",
+    "reading": "じちょう",
+    "meaningId": "Menahan diri; berhati-hati bertindak",
+    "meaningEn": "self-respect",
+    "meaningJa": "",
+    "jlpt": "N1",
+    "wordType": "noun",
+    "kanjiComponents": [
+      "自",
+      "重"
+    ],
+    "tags": [
+      "jmdict",
+      "ujian-jlpt"
+    ]
+  },
+  "kotoba_jm_1326910": {
+    "id": "kotoba_jm_1326910",
+    "word": "取り付ける",
+    "reading": "とりつける",
+    "meaningId": "Memasang; mendapatkan (persetujuan)",
+    "meaningEn": "to furnish; to install",
+    "meaningJa": "",
+    "jlpt": "N3",
+    "wordType": "verb",
+    "kanjiComponents": [
+      "取",
+      "付"
+    ],
+    "tags": [
+      "jmdict",
+      "ujian-jlpt"
+    ]
+  },
+  "kotoba_jm_1397260": {
+    "id": "kotoba_jm_1397260",
+    "word": "素振り",
+    "reading": "そぶり",
+    "meaningId": "Gelagat; sikap; tingkah",
+    "meaningEn": "behavior; behaviour; manner",
+    "meaningJa": "",
+    "jlpt": "N1",
+    "wordType": "noun",
+    "kanjiComponents": [
+      "素",
+      "振"
+    ],
+    "tags": [
+      "jmdict",
+      "ujian-jlpt"
+    ]
+  },
+  "kotoba_jm_1485400": {
+    "id": "kotoba_jm_1485400",
+    "word": "飛びつく",
+    "reading": "とびつく",
+    "meaningId": "Melompat menerkam; langsung tertarik",
+    "meaningEn": "to jump at; to be attracted by",
+    "meaningJa": "",
+    "jlpt": "N2",
+    "wordType": "verb",
+    "kanjiComponents": [
+      "飛"
+    ],
+    "tags": [
+      "jmdict",
+      "ujian-jlpt"
+    ]
+  },
+  "kotoba_jm_1590840": {
+    "id": "kotoba_jm_1590840",
+    "word": "考えつく",
+    "reading": "かんがえつく",
+    "meaningId": "Terpikirkan; mendapat ide",
+    "meaningEn": "to think of; to come up with",
+    "meaningJa": "",
+    "jlpt": "N2",
+    "wordType": "verb",
+    "kanjiComponents": [
+      "考"
+    ],
+    "tags": [
+      "jmdict",
+      "ujian-jlpt"
+    ]
+  },
+  "kotoba_jm_1601540": {
+    "id": "kotoba_jm_1601540",
+    "word": "引き落す",
+    "reading": "ひきおとす",
+    "meaningId": "Mendebet otomatis (rekening)",
+    "meaningEn": "to pull down; to automatically debit (from a bank account)",
+    "meaningJa": "",
+    "jlpt": "N2",
+    "wordType": "verb",
+    "kanjiComponents": [
+      "引",
+      "落"
+    ],
+    "tags": [
+      "jmdict",
+      "jlpt-estimasi",
+      "ujian-jlpt"
+    ]
+  },
+  "kotoba_jm_1602905": {
+    "id": "kotoba_jm_1602905",
+    "word": "不用",
+    "reading": "ふよう",
+    "meaningId": "Tidak terpakai; tidak diperlukan",
+    "meaningEn": "disused; unused",
+    "meaningJa": "",
+    "jlpt": "N3",
+    "wordType": "adjective-na",
+    "kanjiComponents": [
+      "不",
+      "用"
+    ],
+    "tags": [
+      "jmdict",
+      "ujian-jlpt"
+    ]
+  },
+  "kotoba_jm_1631640": {
+    "id": "kotoba_jm_1631640",
+    "word": "うっとり",
+    "reading": "うっとり",
+    "meaningId": "Terpesona; terbuai",
+    "meaningEn": "ecstatically; spellbound; with rapt attention",
+    "meaningJa": "",
+    "jlpt": "N2",
+    "wordType": "adverb",
+    "kanjiComponents": [],
+    "tags": [
+      "jmdict",
+      "ujian-jlpt"
+    ]
+  },
+  "kotoba_jm_1631900": {
+    "id": "kotoba_jm_1631900",
+    "word": "ごつごつ",
+    "reading": "ごつごつ",
+    "meaningId": "Kasar; berbonggol; keras bersudut",
+    "meaningEn": "rugged; scraggy; angular",
+    "meaningJa": "",
+    "jlpt": "N1",
+    "wordType": "noun",
+    "kanjiComponents": [],
+    "tags": [
+      "jmdict",
+      "ujian-jlpt"
+    ]
+  },
+  "kotoba_jm_1632270": {
+    "id": "kotoba_jm_1632270",
+    "word": "どっしり",
+    "reading": "どっしり",
+    "meaningId": "Kokoh; berat; tenang berwibawa",
+    "meaningEn": "bulky and heavy; massive; solid",
+    "meaningJa": "",
+    "jlpt": "N2",
+    "wordType": "adverb",
+    "kanjiComponents": [],
+    "tags": [
+      "jmdict",
+      "ujian-jlpt"
+    ]
+  },
+  "kotoba_jm_1632290": {
+    "id": "kotoba_jm_1632290",
+    "word": "なだらか",
+    "reading": "なだらか",
+    "meaningId": "Landai; lancar",
+    "meaningEn": "gently sloping; gentle; easy",
+    "meaningJa": "",
+    "jlpt": "N2",
+    "wordType": "adjective-na",
+    "kanjiComponents": [],
+    "tags": [
+      "jmdict",
+      "ujian-jlpt"
+    ]
+  },
+  "kotoba_jm_1676500": {
+    "id": "kotoba_jm_1676500",
+    "word": "うなだれる",
+    "reading": "うなだれる",
+    "meaningId": "Menundukkan kepala (sedih, malu)",
+    "meaningEn": "to hang one's head; to droop one's head",
+    "meaningJa": "",
+    "jlpt": "N1",
+    "wordType": "verb",
+    "kanjiComponents": [],
+    "tags": [
+      "jmdict",
+      "jlpt-estimasi",
+      "ujian-jlpt"
+    ]
+  },
+  "kotoba_jm_1710400": {
+    "id": "kotoba_jm_1710400",
+    "word": "ふさふさ",
+    "reading": "ふさふさ",
+    "meaningId": "Lebat; berumbai (rambut, bulu)",
+    "meaningEn": "in tufts; tufty; bushy",
+    "meaningJa": "",
+    "jlpt": "N2",
+    "wordType": "adjective-na",
+    "kanjiComponents": [],
+    "tags": [
+      "jmdict",
+      "ujian-jlpt"
+    ]
+  },
+  "kotoba_jm_1984890": {
+    "id": "kotoba_jm_1984890",
+    "word": "ピックアップ",
+    "reading": "ピックアップ",
+    "meaningId": "Memilih; menjemput",
+    "meaningEn": "choice; selection; picking out (from a larger list)",
+    "meaningJa": "",
+    "jlpt": "N3",
+    "wordType": "noun",
+    "kanjiComponents": [],
+    "tags": [
+      "jmdict",
+      "ujian-jlpt"
+    ]
+  },
+  "kotoba_jm_2003960": {
+    "id": "kotoba_jm_2003960",
+    "word": "レシピ",
+    "reading": "レシピ",
+    "meaningId": "Resep (masakan)",
+    "meaningEn": "recipe",
+    "meaningJa": "",
+    "jlpt": "N3",
+    "wordType": "noun",
+    "kanjiComponents": [],
+    "tags": [
+      "jmdict",
+      "ujian-jlpt"
+    ]
+  },
+  "kotoba_jm_2008450": {
+    "id": "kotoba_jm_2008450",
+    "word": "すべすべ",
+    "reading": "すべすべ",
+    "meaningId": "Halus; licin (kulit)",
+    "meaningEn": "smooth (skin, etc.); sleek; velvety",
+    "meaningJa": "",
+    "jlpt": "N1",
+    "wordType": "noun",
+    "kanjiComponents": [],
+    "tags": [
+      "jmdict",
+      "ujian-jlpt"
+    ]
+  },
+  "kotoba_jm_2009250": {
+    "id": "kotoba_jm_2009250",
+    "word": "どっさり",
+    "reading": "どっさり",
+    "meaningId": "Banyak sekali; bertumpuk",
+    "meaningEn": "heaps; a lot; plenty",
+    "meaningJa": "",
+    "jlpt": "N1",
+    "wordType": "adverb",
+    "kanjiComponents": [],
+    "tags": [
+      "jmdict",
+      "ujian-jlpt"
+    ]
+  },
+  "kotoba_jm_2009280": {
+    "id": "kotoba_jm_2009280",
+    "word": "どんより",
+    "reading": "どんより",
+    "meaningId": "Mendung; kelabu; lesu",
+    "meaningEn": "dark; gloomy; overcast",
+    "meaningJa": "",
+    "jlpt": "N1",
+    "wordType": "adverb",
+    "kanjiComponents": [],
+    "tags": [
+      "jmdict",
+      "ujian-jlpt"
+    ]
+  },
+  "kotoba_jm_2015520": {
+    "id": "kotoba_jm_2015520",
+    "word": "みっちり",
+    "reading": "みっちり",
+    "meaningId": "Secara intensif; habis-habisan",
+    "meaningEn": "intensely; severely; strictly",
+    "meaningJa": "",
+    "jlpt": "N1",
+    "wordType": "adverb",
+    "kanjiComponents": [],
+    "tags": [
+      "jmdict",
+      "ujian-jlpt"
+    ]
+  },
+  "kotoba_jm_2016440": {
+    "id": "kotoba_jm_2016440",
+    "word": "じろじろ",
+    "reading": "じろじろ",
+    "meaningId": "Menatap terus-menerus (tidak sopan)",
+    "meaningEn": "staringly; scrutinizing; scrutinising",
+    "meaningJa": "",
+    "jlpt": "N2",
+    "wordType": "adverb",
+    "kanjiComponents": [],
+    "tags": [
+      "jmdict",
+      "ujian-jlpt"
+    ]
+  },
+  "kotoba_jm_2036330": {
+    "id": "kotoba_jm_2036330",
+    "word": "うろちょろ",
+    "reading": "うろちょろ",
+    "meaningId": "Mondar-mandir; berkeliaran",
+    "meaningEn": "loitering; hanging around; wandering around",
+    "meaningJa": "",
+    "jlpt": "N1",
+    "wordType": "noun",
+    "kanjiComponents": [],
+    "tags": [
+      "jmdict",
+      "ujian-jlpt"
+    ]
+  },
+  "kotoba_jm_2080500": {
+    "id": "kotoba_jm_2080500",
+    "word": "ちかちか",
+    "reading": "ちかちか",
+    "meaningId": "Berkedip-kedip; silau menyakitkan mata",
+    "meaningEn": "flickering; flashing on and off; twinkling",
+    "meaningJa": "",
+    "jlpt": "N3",
+    "wordType": "adverb",
+    "kanjiComponents": [],
+    "tags": [
+      "jmdict",
+      "ujian-jlpt"
+    ]
+  },
+  "kotoba_jm_2115420": {
+    "id": "kotoba_jm_2115420",
+    "word": "ぎしぎし",
+    "reading": "ぎしぎし",
+    "meaningId": "Bunyi berderit",
+    "meaningEn": "creak; squeak; creaking sound",
+    "meaningJa": "",
+    "jlpt": "N2",
+    "wordType": "noun",
+    "kanjiComponents": [],
+    "tags": [
+      "jmdict",
+      "ujian-jlpt"
+    ]
+  },
+  "kotoba_jm_2178890": {
+    "id": "kotoba_jm_2178890",
+    "word": "ごくごく",
+    "reading": "ごくごく",
+    "meaningId": "Bunyi meneguk; minum dengan tegukan besar",
+    "meaningEn": "in big gulps",
+    "meaningJa": "",
+    "jlpt": "N2",
+    "wordType": "adverb",
+    "kanjiComponents": [],
+    "tags": [
+      "jmdict",
+      "ujian-jlpt"
+    ]
   }
 }

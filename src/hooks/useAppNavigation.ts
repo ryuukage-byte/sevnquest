@@ -1,3 +1,4 @@
+import type { BukuSakuSubTab } from '../components/deck/BukuSakuView';
 import { useState, useEffect, useCallback } from 'react';
 import type { TabType } from '../components/layout/BottomNavigation';
 import type { WorldNavView } from '../components/map/WorldView';
@@ -29,7 +30,7 @@ export function useAppNavigation() {
   const [worldNavView, setWorldNavView] = useState<WorldNavView>('world_hub');
   const [worldResetCount, setWorldResetCount] = useState(0);
   const [deckResetCount, setDeckResetCount] = useState(0);
-  const [deckInitialSubTab, setDeckInitialSubTab] = useState<'my_pocket' | 'official_books'>('my_pocket');
+  const [deckInitialSubTab, setDeckInitialSubTab] = useState<BukuSakuSubTab>('my_pocket');
   const [tabHistory, setTabHistory] = useState<TabType[]>([]);
   // Permintaan membuka tab tertentu di Library (mis. misi evaluasi kurikulum -> Soal).
   const [libraryTabRequest, setLibraryTabRequest] = useState<{ tab: 'kotoba' | 'kanji' | 'bunpou' | 'dokkai' | 'choukai' | 'soal' | 'menulis'; n: number } | undefined>();
@@ -129,6 +130,12 @@ export function useAppNavigation() {
     setDeckInitialSubTab('official_books');
     handleTabChange('deck');
   }, [handleTabChange]);
+
+  /** Pintasan Toko Pack (Castle, Menu): Buku Saku → tab Toko. */
+  const handleNavigateToStore = useCallback(() => {
+    setDeckInitialSubTab('store');
+    handleTabChange('deck');
+  }, [handleTabChange]);
   const [isOnboardingActive, setIsOnboardingActive] = useState<boolean>(() => {
     try {
       return !localStorage.getItem(STORAGE_KEY_ONBOARDING);
@@ -159,7 +166,7 @@ export function useAppNavigation() {
     isAuthModalOpen, setIsAuthModalOpen,
     worldNavView, setWorldNavView, worldResetCount,
     deckResetCount, deckInitialSubTab, setDeckInitialSubTab,
-    handleTabChange, handleOpenTower, handleNavigateToOfficialBooks,
+    handleTabChange, handleOpenTower, handleNavigateToOfficialBooks, handleNavigateToStore,
     libraryTabRequest, handleOpenLibraryTab,
     deckAiRequest, handleOpenDeckAi,
     isOnboardingActive, handleCompleteOnboarding, handleReplayOnboarding,

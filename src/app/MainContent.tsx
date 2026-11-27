@@ -47,7 +47,7 @@ export function MainContent(props: MainContentProps) {
     setIsStatusModalOpen, isRecallActive, setIsRecallActive,
     isAuthModalOpen, setIsAuthModalOpen,
     worldNavView, setWorldNavView, worldResetCount, deckResetCount, deckInitialSubTab, setDeckInitialSubTab,
-    handleTabChange, handleOpenTower, libraryTabRequest, handleOpenLibraryTab, deckAiRequest,
+    handleTabChange, handleOpenTower, handleNavigateToStore, libraryTabRequest, handleOpenLibraryTab, deckAiRequest,
     handleRewardPlayer, handleStudyComplete, handleRecordItemInteraction, handleTowerMastery,
     handleStartRemediationRecall, handleItemReviewed, handleCompleteRecallSession, handleUseMp,
     handleClaimMission, handleGameOver, handleHpDamage, handleResetData,
@@ -97,6 +97,7 @@ export function MainContent(props: MainContentProps) {
                     onStartRecall={() => setIsRecallActive(true)}
                     onOpenTower={handleOpenTower}
                     onOpenAuth={() => setIsAuthModalOpen(true)}
+                    onOpenStore={handleNavigateToStore}
                   />
                   </ModuleBoundary>
                 )}
@@ -275,6 +276,7 @@ export function MainContent(props: MainContentProps) {
                     lastSyncedAt={lastSyncedAt}
                     onUpdateName={handleUpdateName}
                     onReplayTutorial={handleReplayOnboarding}
+                    onOpenStore={handleNavigateToStore}
                   />
                   </ModuleBoundary>
                 )}
