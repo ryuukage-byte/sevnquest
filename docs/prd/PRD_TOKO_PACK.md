@@ -286,10 +286,11 @@ Semua pertanyaan v0.1 sudah diputuskan (bagian 0, butir 6–10). Pertanyaan v0.2
 
 | Bagian | Lokasi | Status |
 |---|---|---|
-| Skema, RLS, RPC, perubahan alur pembayaran, backfill | `supabase/migrations/20261127_store_packs.sql` | Selesai, **belum diterapkan** ke proyek Supabase |
+| Skema, RLS, RPC, perubahan alur pembayaran, backfill | `supabase/migrations/20261127_store_packs.sql`, `20261127b_pack_preview_all_chapters.sql` | **Diterapkan** ke produksi 27 Nov 2026 (backfill: 24 dompet, 78 pass) |
 | Tes SQL (43 cek alur + backfill) di Postgres lokal | `supabase/tests/`, jalankan `bash supabase/tests/run_local.sh` | Lulus |
 | Pembuat isi pack + tes | `scripts/packs/packBuilder.ts`, `scripts/packs/build_pack.ts`, `scripts/packs/packBuilder.test.ts` | Selesai |
 | Lapisan murni klien + tes | `src/lib/storeCore.ts`, `src/lib/storeCore.test.ts`; `passBalance` dan `canBuyPasses` di `src/utils/access.ts` | Selesai |
+| Kilat N3/N2/N1 diunggah sebagai **draft** (hanya admin) | `packs`, `pack_contents` | Selesai, menunggu diterbitkan |
 | UI Toko (tab ketiga Buku Saku), detail pack + pratinjau gratis, dialog buka, Pack Saya | `src/components/store/`, `src/state/store.tsx`, `src/lib/store.ts`, `BukuSakuView.tsx` | Selesai |
 | Tambah Pass (tab Pass di Upgrade), kotak hadiah surat `pass` | `UpgradeModal.tsx`, `GiftBox.tsx`, `mailCore.ts` | Selesai |
 | Tab admin kelola pack & beri pass | `AdminPaymentsModal.tsx` | Belum (sementara lewat `upload.sql` dan `admin_grant_passes` di SQL) |
