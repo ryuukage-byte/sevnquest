@@ -43,7 +43,8 @@ export interface DonorBoardRow {
   is_yearly?: boolean | null;
 }
 
-export type DonationKind = 'monthly' | 'yearly' | 'lifetime';
+/** 'pass' = pembelian Pack Pass (Toko), bukan donasi. */
+export type DonationKind = 'monthly' | 'yearly' | 'lifetime' | 'pass';
 
 /** Pesan Indonesia untuk kode error dari RPC. */
 export function billingErrorMessage(err: unknown): string {
@@ -56,6 +57,8 @@ export function billingErrorMessage(err: unknown): string {
   if (/already_lifetime/.test(msg)) return 'Kamu sudah Lifetime. Terima kasih!';
   if (/too_many_pending/.test(msg)) return 'Masih ada 3 pesanan belum dibayar. Bayar atau batalkan salah satunya dulu.';
   if (/invalid_plan/.test(msg)) return 'Paket tidak tersedia.';
+  if (/not_full/.test(msg)) return 'Pass tambahan hanya untuk pengguna Full yang masih aktif.';
+  if (/pass_gift_not_supported/.test(msg)) return 'Pass belum bisa dihadiahkan.';
   if (/not_authenticated|JWT/.test(msg)) return 'Sesi login habis. Silakan masuk lagi.';
   if (/order_not_claimable/.test(msg)) return 'Pesanan ini sudah diproses atau dibatalkan.';
   if (/forbidden/.test(msg)) return 'Akun ini bukan admin.';

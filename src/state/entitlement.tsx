@@ -19,12 +19,14 @@ export interface UpgradeRequest {
   requiredTier?: AccessTier;
   /** Nama materi/fitur, ditampilkan di modal ("N3", "Deck AI", "Lantai 61"). */
   label?: string;
-  /** Tab awal modal. */
-  tab?: 'access' | 'donor';
+  /** Tab awal modal. 'pass' = Tambah Pack Pass (Toko). */
+  tab?: 'access' | 'donor' | 'pass';
 }
 
 interface EntitlementContextValue {
   entitlement: Entitlement;
+  /** Id pengguna login (untuk cache per akun, mis. isi pack Toko). */
+  userId: string | null;
   /** Premium (halaman donasi, tingkat, badge, gembok) boleh tampil: saklar publik menyala, atau pengguna admin. */
   monetizationVisible: boolean;
   /** true sampai entitlement pertama (cache atau server) siap. */
@@ -49,6 +51,7 @@ const noopFalse = () => false as const;
 const allowAll = () => true;
 const EntitlementContext = createContext<EntitlementContextValue>({
   entitlement: BASIC_ENTITLEMENT,
+  userId: null,
   monetizationVisible: false,
   loading: false,
   refresh: async () => {},
@@ -132,6 +135,7 @@ export function EntitlementProvider({ userId, isAuthenticated, soundEnabled = tr
     const canAccessTier = (t: AccessTier) => tierAtLeast(tier, t);
     return {
       entitlement,
+      userId: userId || null,
       monetizationVisible,
       loading,
       refresh,
@@ -148,7 +152,7 @@ export function EntitlementProvider({ userId, isAuthenticated, soundEnabled = tr
       guardFeature: (f, label) => (canAccessTier(FEATURE_TIER[f]) ? true : openUpgrade({ requiredTier: FEATURE_TIER[f], label })),
       openAdmin: () => setAdminOpen(true),
     };
-  }, [entitlement, loading, refresh]);
+  }, [entitlement, loading, refresh, userId]);
 
   return (
     <EntitlementContext.Provider value={value}>

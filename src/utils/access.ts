@@ -374,6 +374,7 @@ export function planLabel(tierCode: string, baseAmount: number): string {
   if (tierCode === 'monthly') return `Donasi bulanan ${formatIdr(baseAmount)}`;
   if (tierCode === 'lifetime_unit') return `Setoran lifetime ${formatIdr(baseAmount)}`;
   if (tierCode === 'yearly') return `Donasi tahunan ${formatIdr(baseAmount)}`;
+  if (tierCode === 'pass') return `Pack Pass ${formatIdr(baseAmount)}`;
   return `${tierCode} ${formatIdr(baseAmount)}`;
 }
 

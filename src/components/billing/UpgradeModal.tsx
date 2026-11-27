@@ -1,13 +1,13 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import {
   X, Crown, Copy, Check, Loader2, Download, Clock, Heart, Lock, AlertCircle, Upload, ChevronLeft, Minus, Plus,
-  Infinity as InfinityIcon, Mail, Send, FileText, ListOrdered, Trophy, CalendarDays,
+  Infinity as InfinityIcon, Mail, Send, FileText, ListOrdered, Trophy, CalendarDays, Ticket,
 } from 'lucide-react';
 import { playSound } from '../../utils/audio';
 import { useBackButton } from '../../hooks/useBackButton';
 import {
   BADGES, badgeForTotal, nextBadge, monthlyRemaining, lifetimeUnitsLeft, monthTierFor, monthTierPerks, monthTierFeatures, yearlyDeal, FULL_FEATURES, daysUntil, formatIdr, planLabel,
-  type Entitlement,
+  canBuyPasses, type Entitlement,
 } from '../../utils/access';
 import {
   billingErrorMessage, cancelPaymentOrder, createPaymentOrder, fetchOrder, listMyAccessKeys, listMyOrders, submitPaymentClaim, uploadPaymentProof,
@@ -15,6 +15,7 @@ import {
 } from '../../lib/billing';
 import type { UpgradeRequest } from '../../state/entitlement';
 import { ViewportPortal } from '../ui/ViewportPortal';
+import { PASS_QUANTITY_OPTIONS, passOrderAmount } from '../../lib/storeCore';
 
 /** Kode QRIS statis merchant (SEVNSOUL STORE, NMID ID1026625677186), hanya kode QR hitam-putih tanpa poster. */
 export const QRIS_IMAGE_URL = '/payment/qris-sevnsoul.png';
@@ -123,7 +124,11 @@ type View = { kind: 'plans' } | { kind: 'order'; order: PaymentOrder };
 
 export const UpgradeModal: React.FC<Props> = ({ request, userId, entitlement, soundEnabled = true, onClose, onChanged }) => {
   const cfg = entitlement.config;
-  const [tab, setTab] = useState<'monthly' | 'yearly' | 'lifetime'>(request.tab === 'donor' ? 'lifetime' : 'monthly');
+  type Tab = 'monthly' | 'yearly' | 'lifetime' | 'pass';
+  const passAllowed = canBuyPasses(entitlement);
+  const [tab, setTab] = useState<Tab>(request.tab === 'pass' ? 'pass' : request.tab === 'donor' ? 'lifetime' : 'monthly');
+  const tabs: Tab[] = passAllowed || request.tab === 'pass' ? ['monthly', 'yearly', 'lifetime', 'pass'] : ['monthly', 'yearly', 'lifetime'];
+  const [passQty, setPassQty] = useState(1);
   const [view, setView] = useState<View>({ kind: 'plans' });
   const [orders, setOrders] = useState<PaymentOrder[]>([]);
   const [busy, setBusy] = useState<DonationKind | null>(null);
@@ -169,7 +174,8 @@ export const UpgradeModal: React.FC<Props> = ({ request, userId, entitlement, so
     setBusy(kind);
     playSound('click', soundEnabled);
     try {
-      const order = await createPaymentOrder(kind, amount, asGift);
+      // Pass tidak bisa dihadiahkan (v1).
+      const order = await createPaymentOrder(kind, amount, kind === 'pass' ? false : asGift);
       setView({ kind: 'order', order });
       void reloadOrders();
     } catch (err) {
@@ -290,13 +296,13 @@ export const UpgradeModal: React.FC<Props> = ({ request, userId, entitlement, so
 
               {/* Tab */}
               <div className="flex gap-1.5 p-1 rounded-2xl bg-surface-inset border border-border-subtle text-xs font-bold">
-                {(['monthly', 'yearly', 'lifetime'] as const).map(t => (
+                {tabs.map(t => (
                   <button
                     key={t}
                     onClick={() => { setTab(t); playSound('click', soundEnabled); }}
                     className={`relative flex-1 min-w-0 px-1 py-2 rounded-xl transition-all ${tab === t ? 'bg-surface-elevated text-text-primary border border-border-subtle' : 'text-text-muted'}`}
                   >
-                    {t === 'monthly' ? 'Bulanan' : t === 'yearly' ? 'Tahunan' : 'Lifetime'}
+                    {t === 'monthly' ? 'Bulanan' : t === 'yearly' ? 'Tahunan' : t === 'lifetime' ? 'Lifetime' : 'Pass'}
                     {t === 'yearly' && deal.percent > 0 && (
                       <span className="absolute -top-2 right-1 px-1.5 py-px rounded-full bg-emerald-500 text-white text-[9px] font-black leading-tight shadow">
                         -{deal.percent}%
@@ -589,6 +595,61 @@ export const UpgradeModal: React.FC<Props> = ({ request, userId, entitlement, so
                 </div>
               )}
 
+              {tab === 'pass' && (
+                <div className="rounded-2xl border border-border-subtle bg-surface-inset p-4 space-y-3 relative overflow-hidden">
+                  <div className="skeuo-grain" />
+                  <div className="relative z-[2] space-y-3">
+                    <div className="flex items-start justify-between gap-3">
+                      <div>
+                        <h3 className="font-heading font-black text-text-primary text-sm flex items-center gap-1.5">
+                          <Ticket className="w-4 h-4 text-gold" /> Tambah Pack Pass
+                        </h3>
+                        <p className="text-[11px] text-text-secondary">
+                          {formatIdr(cfg.passPriceIdr)} per pass. Dipakai di Toko (Buku Saku) untuk membuka pack. Tidak pernah hangus.
+                        </p>
+                      </div>
+                      <span className="rpg-badge-reward shrink-0">Saldo {entitlement.passBalance}</span>
+                    </div>
+                    {!passAllowed ? (
+                      <p className="text-xs text-text-secondary">
+                        Pass tambahan khusus pengguna Full yang masih aktif. Donasi bulanan atau tahunan sudah memberi pass setiap bulan.
+                      </p>
+                    ) : (
+                      <>
+                        <div className="grid grid-cols-4 gap-1.5">
+                          {PASS_QUANTITY_OPTIONS.filter(q => q <= cfg.passMaxPerOrder).map(q => (
+                            <button
+                              key={q}
+                              type="button"
+                              onClick={() => { setPassQty(q); playSound('click', soundEnabled); }}
+                              className={`py-2.5 rounded-xl border text-xs font-bold transition-all ${passQty === q ? 'border-gold bg-gold/10 text-text-primary' : 'border-border-subtle bg-surface-card text-text-muted'}`}
+                            >
+                              {q} pass
+                            </button>
+                          ))}
+                        </div>
+                        <button
+                          disabled={!!busy || passOrderAmount(passQty, { priceIdr: cfg.passPriceIdr, maxPerOrder: cfg.passMaxPerOrder }) === null}
+                          onClick={() => {
+                            const amount = passOrderAmount(passQty, { priceIdr: cfg.passPriceIdr, maxPerOrder: cfg.passMaxPerOrder });
+                            if (amount !== null) void donate('pass', amount);
+                          }}
+                          className="btn-cta w-full py-3 text-xs font-heading font-black flex items-center justify-center gap-2 disabled:opacity-50"
+                        >
+                          {busy === 'pass' ? <Loader2 className="w-4 h-4 animate-spin" /> : <Ticket className="w-4 h-4" />}
+                          Beli {passQty} pass · {formatIdr(passQty * cfg.passPriceIdr)}
+                        </button>
+                        <p className="text-[10px] text-text-muted">
+                          Pembelian pass bukan donasi: tidak menambah tingkat bulanan, tabungan lifetime, atau badge. Pass masuk setelah
+                          pembayaran terverifikasi.
+                        </p>
+                      </>
+                    )}
+                  </div>
+                </div>
+              )}
+
+              {tab !== 'pass' && (
               <details className="text-xs" open={asGift}>
                 <summary className="cursor-pointer text-text-muted">Beli untuk orang lain?</summary>
                 <label className="mt-2 flex items-start gap-2.5 p-3 rounded-2xl border border-border-subtle bg-surface-inset cursor-pointer">
@@ -601,6 +662,7 @@ export const UpgradeModal: React.FC<Props> = ({ request, userId, entitlement, so
                   </span>
                 </label>
               </details>
+              )}
 
               {orders.some(o => o.status !== 'pending' && o.status !== 'claimed') && (
                 <details className="text-xs">
@@ -855,7 +917,9 @@ export const OrderView: React.FC<{
           <p>
             {order.as_gift
               ? `Pembayaran terverifikasi pada ${formatDate(order.verified_at)}. Berikan key di bawah kepada penerima hadiah.`
-              : `Donasi sudah diverifikasi pada ${formatDate(order.verified_at)} dan tercatat di akunmu. Terima kasih sudah mendukung SevnQuest!`}
+              : order.tier_code === 'pass'
+                ? `Pembayaran terverifikasi pada ${formatDate(order.verified_at)}. Pass sudah masuk ke saldo Toko-mu.`
+                : `Donasi sudah diverifikasi pada ${formatDate(order.verified_at)} dan tercatat di akunmu. Terima kasih sudah mendukung SevnQuest!`}
           </p>
           <OrderKey orderId={order.id} />
         </div>

@@ -290,8 +290,9 @@ Semua pertanyaan v0.1 sudah diputuskan (bagian 0, butir 6–10). Pertanyaan v0.2
 | Tes SQL (43 cek alur + backfill) di Postgres lokal | `supabase/tests/`, jalankan `bash supabase/tests/run_local.sh` | Lulus |
 | Pembuat isi pack + tes | `scripts/packs/packBuilder.ts`, `scripts/packs/build_pack.ts`, `scripts/packs/packBuilder.test.ts` | Selesai |
 | Lapisan murni klien + tes | `src/lib/storeCore.ts`, `src/lib/storeCore.test.ts`; `passBalance` dan `canBuyPasses` di `src/utils/access.ts` | Selesai |
-| UI Toko, detail pack, dialog buka, rak Pack Saya | `src/components/store/` | Belum |
-| Tambah Pass di Upgrade, kotak hadiah surat `pass`, tab admin | `UpgradeModal.tsx`, `GiftBox.tsx`/`mailCore.ts`, `AdminPaymentsModal.tsx` | Belum |
+| UI Toko (tab ketiga Buku Saku), detail pack + pratinjau gratis, dialog buka, Pack Saya | `src/components/store/`, `src/state/store.tsx`, `src/lib/store.ts`, `BukuSakuView.tsx` | Selesai |
+| Tambah Pass (tab Pass di Upgrade), kotak hadiah surat `pass` | `UpgradeModal.tsx`, `GiftBox.tsx`, `mailCore.ts` | Selesai |
+| Tab admin kelola pack & beri pass | `AdminPaymentsModal.tsx` | Belum (sementara lewat `upload.sql` dan `admin_grant_passes` di SQL) |
 
 Membuat isi pack:
 

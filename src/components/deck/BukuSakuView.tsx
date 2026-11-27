@@ -12,6 +12,8 @@ import {
   Bookmark,
   Layers,
   X,
+  Store as StoreIcon,
+  Zap,
 } from 'lucide-react';
 import { UserDeck, DeckItemCategory, DeckType, DeckItemRef } from '../../types/rpg';
 import { OfficialBook, OfficialChapter } from '../../types/books';
@@ -55,6 +57,11 @@ import { recordKanjiWriting } from '../../utils/kanjiWritingRecord';
 import { BunpouDetailModal } from '../library/BunpouDetailModal';
 import type { DeckAiRequest } from '../../engine/deck/deckPrefill';
 import { ViewportPortal } from '../ui/ViewportPortal';
+import { StoreView } from '../store/StoreView';
+import { useStore } from '../../state/store';
+import { canBuyPasses } from '../../utils/access';
+
+export type BukuSakuSubTab = 'my_pocket' | 'official_books' | 'store';
 
 
 interface BukuSakuViewProps {
@@ -84,8 +91,8 @@ interface BukuSakuViewProps {
   onStartRemediationRecall?: (itemIds: string[]) => void;
   itemMastery?: Record<string, ItemMasteryRecord>;
   furiganaEnabled?: boolean;
-  initialSubTab?: 'my_pocket' | 'official_books';
-  onSubTabChange?: (tab: 'my_pocket' | 'official_books') => void;
+  initialSubTab?: BukuSakuSubTab;
+  onSubTabChange?: (tab: BukuSakuSubTab) => void;
   /** Permintaan membuka Penyusun Deck dengan isian awal (mis. dari Naga Pemandu). */
   aiRequest?: DeckAiRequest;
 }
@@ -117,7 +124,7 @@ export const BukuSakuView: React.FC<BukuSakuViewProps> = ({
 
   const [selectedDeckId, setSelectedDeckId] = useState<string | null>(null);
 
-  const [activeSubTab, setActiveSubTab] = useState<'my_pocket' | 'official_books'>(initialSubTab || 'my_pocket');
+  const [activeSubTab, setActiveSubTab] = useState<BukuSakuSubTab>(initialSubTab || 'my_pocket');
   const [selectedOfficialBook, setSelectedOfficialBook] = useState<OfficialBook | null>(null);
   const [activeOfficialDeck, setActiveOfficialDeck] = useState<UserDeck | null>(null);
   const [clonedSuccessChapterId, setClonedSuccessChapterId] = useState<string | null>(null);
@@ -149,7 +156,23 @@ export const BukuSakuView: React.FC<BukuSakuViewProps> = ({
   }, [resetSignal]);
   const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
   const [isAiCustomizerOpen, setIsAiCustomizerOpen] = useState(false);
-  const { guardFeature } = useAccess();
+  const { guardFeature, monetizationVisible, entitlement, openUpgrade } = useAccess();
+  // Toko hanya tampil bila monetisasi tampil (saklar publik atau admin). Data diambil saat tab Toko dibuka.
+  const storeVisible = monetizationVisible;
+  const store = useStore(storeVisible && activeSubTab === 'store');
+  const switchSubTab = (tab: BukuSakuSubTab) => {
+    setActiveSubTab(tab);
+    onSubTabChange?.(tab);
+    setSelectedOfficialBook(null);
+    setActiveOfficialDeck(null);
+    playSound('click', soundEnabled);
+  };
+  const openOwnedPack = (book: OfficialBook) => {
+    setActiveSubTab('store');
+    onSubTabChange?.('store');
+    setActiveOfficialDeck(null);
+    setSelectedOfficialBook(book);
+  };
   // Dideklarasikan sesudah efek reset di atas: navigasi ke tab ini menaikkan resetSignal (menutup modal),
   // lalu efek ini membukanya lagi dengan isian awal.
   const [aiPrefillRequest, setAiPrefillRequest] = useState<DeckAiRequest | undefined>();
@@ -388,43 +411,29 @@ export const BukuSakuView: React.FC<BukuSakuViewProps> = ({
         <div className="space-y-6">
           {/* Sub-Tab Navigation Bar: Buku Saku Saya vs Buku Kurikulum Resmi */}
           <div data-tour="deck-subtabs" className="panel p-1.5 rounded-2xl bg-surface-inset border border-border-subtle flex items-center gap-2 shadow-inner">
-            <button
-              type="button"
-              onClick={() => {
-                setActiveSubTab('my_pocket');
-                onSubTabChange?.('my_pocket');
-                setSelectedOfficialBook(null);
-                playSound('click', soundEnabled);
-              }}
-              className={`flex-1 flex items-center justify-center gap-2 py-2.5 px-3 sm:px-4 rounded-xl text-xs sm:text-sm font-bold font-sans transition-all ${
-                activeSubTab === 'my_pocket'
-                  ? 'bg-surface-card text-text-primary shadow-sm border border-border-subtle'
-                  : 'text-text-muted hover:text-text-primary'
-              }`}
-            >
-              <Bookmark className={`w-4 h-4 shrink-0 ${activeSubTab === 'my_pocket' ? 'text-gold fill-gold' : ''}`} />
-              <span>Buku Saku Saya ({decks.length})</span>
-            </button>
-
-            <button
-              type="button"
-              onClick={() => {
-                setActiveSubTab('official_books');
-                onSubTabChange?.('official_books');
-                playSound('click', soundEnabled);
-              }}
-              className={`flex-1 flex items-center justify-center gap-2 py-2.5 px-3 sm:px-4 rounded-xl text-xs sm:text-sm font-bold font-sans transition-all ${
-                activeSubTab === 'official_books'
-                  ? 'bg-surface-card text-text-primary shadow-sm border border-border-subtle'
-                  : 'text-text-muted hover:text-text-primary'
-              }`}
-            >
-              <BookOpen className={`w-4 h-4 shrink-0 ${activeSubTab === 'official_books' ? 'text-gold' : ''}`} />
-              <span>Buku Kurikulum Resmi ({OFFICIAL_BOOKS.length})</span>
-            </button>
+            {([
+              { id: 'my_pocket', label: `Buku Saku Saya (${decks.length})`, short: 'Saku', Icon: Bookmark },
+              { id: 'official_books', label: `Buku Kurikulum Resmi (${OFFICIAL_BOOKS.length})`, short: 'Kurikulum', Icon: BookOpen },
+              ...(storeVisible ? [{ id: 'store' as const, label: 'Toko Pack', short: 'Toko', Icon: StoreIcon }] : []),
+            ] as const).map(({ id, label, short, Icon }) => (
+              <button
+                key={id}
+                type="button"
+                onClick={() => switchSubTab(id)}
+                className={`flex-1 min-w-0 flex items-center justify-center gap-2 py-2.5 px-2 sm:px-4 rounded-xl text-xs sm:text-sm font-bold font-sans transition-all ${
+                  activeSubTab === id
+                    ? 'bg-surface-card text-text-primary shadow-sm border border-border-subtle'
+                    : 'text-text-muted hover:text-text-primary'
+                }`}
+              >
+                <Icon className={`w-4 h-4 shrink-0 ${activeSubTab === id ? (id === 'my_pocket' ? 'text-gold fill-gold' : 'text-gold') : ''}`} />
+                <span className={storeVisible ? 'hidden sm:inline truncate' : 'truncate'}>{label}</span>
+                {storeVisible && <span className="sm:hidden truncate">{short}</span>}
+              </button>
+            ))}
           </div>
 
-          {activeSubTab === 'official_books' ? (
+          {activeSubTab === 'official_books' || activeSubTab === 'store' ? (
             activeOfficialDeck ? (
               <DeckDetailView
                 deck={activeOfficialDeck}
@@ -450,6 +459,7 @@ export const BukuSakuView: React.FC<BukuSakuViewProps> = ({
             ) : selectedOfficialBook ? (
               <BookDetailView
                 book={selectedOfficialBook}
+                backLabel={activeSubTab === 'store' ? 'Kembali ke Toko' : undefined}
                 onBack={() => {
                   setSelectedOfficialBook(null);
                   playSound('click', soundEnabled);
@@ -464,6 +474,30 @@ export const BukuSakuView: React.FC<BukuSakuViewProps> = ({
                 soundEnabled={soundEnabled}
                 itemMastery={itemMastery}
               />
+            ) : activeSubTab === 'store' ? (
+              <StoreView
+                store={store}
+                canBuyPasses={canBuyPasses(entitlement)}
+                onOpenOwned={openOwnedPack}
+                onPreview={(pack) => {
+                  const nowIso = new Date().toISOString();
+                  setVirtualRunnerDeck({
+                    id: `preview_${pack.id}`,
+                    title: `${pack.title} (pratinjau)`,
+                    description: `Pratinjau gratis ${pack.preview.length} kartu`,
+                    level: pack.level,
+                    type: 'flashcard',
+                    isDefault: false,
+                    createdAt: nowIso,
+                    updatedAt: nowIso,
+                    items: pack.preview,
+                  });
+                  setActiveRunner('flashcard');
+                }}
+                onBuyPasses={() => openUpgrade({ tab: 'pass' })}
+                onUpgrade={() => openUpgrade({ tab: 'access', label: 'Pack Pass' })}
+                soundEnabled={soundEnabled}
+              />
             ) : (
               <BookshelfView
                 onSelectBook={(b) => {
@@ -476,6 +510,23 @@ export const BukuSakuView: React.FC<BukuSakuViewProps> = ({
             )
           ) : (
             <>
+              {storeVisible && store.ownedBooks.length > 0 && (
+                <div className="flex gap-2 overflow-x-auto pb-1 -mx-1 px-1">
+                  {store.ownedBooks.map(book => (
+                    <button
+                      key={book.id}
+                      type="button"
+                      onClick={() => { playSound('click', soundEnabled); openOwnedPack(book); }}
+                      className="skeuo-card shrink-0 rounded-2xl px-3.5 py-2.5 relative overflow-hidden flex items-center gap-2 text-left"
+                    >
+                      <div className="skeuo-grain" />
+                      <Zap className="relative z-[2] w-4 h-4 text-gold shrink-0" />
+                      <span className="relative z-[2] text-xs font-bold font-heading text-text-primary whitespace-nowrap">{book.title}</span>
+                      <span className="relative z-[2] text-[10px] text-text-muted whitespace-nowrap">Pack</span>
+                    </button>
+                  ))}
+                </div>
+              )}
               {/* Header & Stats Banner */}
               <div className="panel panel-stitched p-5 sm:p-6 rounded-3xl space-y-4 shadow-sm border border-border-subtle">
             <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
