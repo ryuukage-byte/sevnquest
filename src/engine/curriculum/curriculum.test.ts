@@ -366,8 +366,8 @@ test('gabungan lokal ↔ cloud: yang terakhir diubah menang, klaim di-union, pen
 test('basis data asli: N2 → N1 memisahkan materi inti dari Library dan menilai kelayakan dengan jujur', () => {
   const c = getCurriculum(profile({ currentLevel: 'N2', targetLevel: 'N1' }));
   assert.deepEqual(c.levels, ['N1']);
-  assert.equal(c.library.kotoba, 11369);
-  assert.equal(c.kotoba.length, 3483, 'hanya kosakata N1 yang levelnya dikurasi');
+  assert.equal(c.library.kotoba, 11424); // termasuk 55 kata N1 dari soal ujian resmi (tag ujian-jlpt)
+  assert.equal(c.kotoba.length, 3534, 'hanya kosakata N1 yang levelnya dikurasi (termasuk level dari soal ujian resmi)');
   assert.equal(c.kanji.length, 1373);
   assert.equal(c.bunpou.length, 267);
   assert.equal(new Set([...c.kotoba, ...c.kanji, ...c.bunpou]).size, c.kotoba.length + c.kanji.length + c.bunpou.length);

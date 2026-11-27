@@ -20,6 +20,7 @@ const DICT: DictEntry[] = [
   { id: 'k_kekkou', word: '結構', reading: 'けっこう', jlpt: 'N1', wordType: 'noun' },
   { id: 'k_kekkou2', word: '決行', reading: 'けっこう', jlpt: 'N1', wordType: 'noun' },
   { id: 'k_nokosu', word: '残す', reading: 'のこす', jlpt: 'N4', wordType: 'verb' },
+  { id: 'k_barabara', word: 'バラバラ', reading: 'バラバラ', jlpt: 'N2', wordType: 'adverb' },
 ];
 const idx = buildDictIndex(DICT);
 
@@ -45,6 +46,7 @@ test('matchSurface: na-adjektiva, kana untuk kata berkanji, bentuk turunan, dan 
   assert.equal(matchSurface(idx, 'あくび', 'N3'), 'k_akubi', 'homonim: level terdekat menang');
   assert.equal(matchSurface(idx, 'けっこう', 'N3'), null, 'homonim seri: tidak ditebak');
   assert.equal(matchSurface(idx, '順審', 'N3'), null, 'kanji karangan tidak cocok');
+  assert.equal(matchSurface(idx, 'ばらばら', 'N3'), 'k_barabara', 'katakana di kamus, hiragana di soal');
 });
 
 test('usageWord mengambil kata dari baris pertama dan membuang awalan instruksi', () => {

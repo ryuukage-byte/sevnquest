@@ -1,6 +1,6 @@
 # PRD: Toko Pack & Pack Pass
 
-Versi: 0.2
+Versi: 0.3
 Tanggal: 27 November 2026
 Status: Draft untuk review
 Terkait: `docs/prd/PRD_MONETISASI.md` (model donasi, QRIS, entitlement)
@@ -276,9 +276,9 @@ Hak cipta: pack hanya berisi referensi ke kata di kamus app (JMdict) beserta cat
 
 ## 14. Pertanyaan Terbuka
 
-Semua pertanyaan v0.1 sudah diputuskan (bagian 0, butir 6–10). Yang tersisa:
-1. Kata dari ujian yang belum ada di kamus app (banyak kata serapan katakana dan onomatope, mis. アナウンス, ざあざあ, 翌週) tidak bisa masuk pack karena pack menunjuk ke id kamus. Tambahkan ke kamus dulu, atau biarkan di luar pack? Daftarnya ada di `report.md` tiap pack.
-2. Kilat N1 lebih sedikit katanya (±300) dibanding N3 (±570) padahal harganya 3 pass, karena soal 文字・語彙 N1 per ujian lebih sedikit dan tidak ada kata yang muncul di 3 ujian atau lebih. Tetap 3 pass, atau ditambah sumber lain (mis. kata dari 読解)?
+Semua pertanyaan v0.1 sudah diputuskan (bagian 0, butir 6–10). Pertanyaan v0.2:
+1. (Diputuskan v0.3) Kata ujian yang belum ada di kamus ditambahkan: 114 entri baru dari JMdict dengan arti Indonesia (tag `ujian-jlpt`, `scripts/jmdict/exam_words.py`). Sisa yang tidak cocok sebagian besar kanji karangan (pengecoh soal 表記), homonim kana yang seri (うつった), atau tebakan 言い換え.
+2. (Diputuskan v0.3) Kilat N1 tetap 3 pass walau katanya lebih sedikit (±360) dibanding N3 (±600).
 
 ---
 
@@ -301,10 +301,10 @@ npx tsx scripts/packs/build_pack.ts N3
 
 Hasil di `scripts/packs/out/kilat-n3/` (di-ignore git): `book.json`, `meta.json`, `report.md`, dan `upload.sql`. Jalankan `upload.sql` di Supabase SQL Editor untuk mengunggah pack sebagai draft (hanya terlihat admin); terbitkan dengan baris yang tertulis di kepala file itu.
 
-Hasil build pertama:
+Hasil build (setelah 114 kata ujian ditambahkan ke kamus):
 
 | Pack | Ujian | Kata | Bab | Tidak cocok ke kamus | Tebakan 言い換え (tidak dimasukkan) |
 |---|---|---|---|---|---|
-| Kilat N3 | 10 | 574 | Wajib 28, Sering 98, Pernah 448 | 42 | 30 |
-| Kilat N2 | 8 | 443 | Wajib 2, Sering 28, Pernah 413 | 46 | 35 |
-| Kilat N1 | 7 | 301 | Sering 20, Pernah 281 | 71 | 31 |
+| Kilat N3 | 10 | 598 | Wajib 30, Sering 102, Pernah 466 | 10 | 30 |
+| Kilat N2 | 8 | 479 | Wajib 2, Sering 30, Pernah 447 | 8 | 35 |
+| Kilat N1 | 7 | 360 | Sering 22, Pernah 338 | 12 | 34 |

@@ -23,3 +23,11 @@ selain itu N1) dan tag `jlpt-estimasi`; belum memiliki kalimat contoh.
 - `translations_makanan/` : kata makanan/dapur/peralatan makan (tag `makanan`).
 - `translations_sehari_hari/` : kata sehari-hari berstatus `ichi1` yang sebelumnya di bawah ambang (tag `sehari-hari`).
 - Merge: `python3 -I merge_jmdict.py <cands.json> <translations_dir> <kotoba.json> <tag_tema>`.
+
+## Batch kata ujian JLPT (Pack Kilat)
+
+- `curated_ujian.txt`: bentuk kamus kata dari soal 文字・語彙 tryout resmi yang belum ada di library
+  (dari `report.md` hasil `scripts/packs/build_pack.ts`).
+- `translations_ujian/`: arti Indonesia (tag `ujian-jlpt`).
+- `exam_words.py`: langkah lengkap ada di docstring-nya. Level JLPT entri baru diambil dari level ujian terendah
+  tempat kata itu muncul, jadi tag `jlpt-estimasi` dilepas (kata itu ikut menjadi kosakata inti kurikulum).

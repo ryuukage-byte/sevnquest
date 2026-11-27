@@ -58,6 +58,11 @@ const DERIVED_ICHIDAN = new Set(['passive', 'potential', 'causative', 'causative
 const ICHIDAN_SUFFIXES = ['た', 'て', 'ない', 'ます', 'なかった'];
 const POLITE_SUFFIXES = ['ました', 'ません', 'ましょう', 'ませんでした'];
 
+/** Katakana → hiragana (ー dibiarkan). */
+export function toHiragana(s: string): string {
+  return s.replace(/[ァ-ヶ]/g, ch => String.fromCharCode(ch.charCodeAt(0) - 0x60));
+}
+
 export function hasKanji(s: string): boolean {
   return KANJI.test(s);
 }
@@ -130,6 +135,11 @@ export function buildDictIndex(entries: Iterable<DictEntry>): DictIndex {
     for (const f of formsFor(e)) {
       push(idx.bySurface, f.surface, f);
       if (f.reading) push(idx.byReading, f.reading, f);
+      // Onomatope/kata kana di kamus sering berkatakana (バラバラ), di soal berhiragana (ばらばら).
+      const hs = toHiragana(f.surface);
+      if (hs !== f.surface && !hasKanji(hs)) push(idx.bySurface, hs, f);
+      const hr = toHiragana(f.reading);
+      if (f.reading && hr !== f.reading) push(idx.byReading, hr, f);
     }
   }
   return idx;
