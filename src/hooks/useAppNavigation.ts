@@ -130,6 +130,12 @@ export function useAppNavigation() {
     setDeckInitialSubTab('official_books');
     handleTabChange('deck');
   }, [handleTabChange]);
+
+  /** Pintasan Toko Pack (Castle, Menu): Buku Saku → tab Toko. */
+  const handleNavigateToStore = useCallback(() => {
+    setDeckInitialSubTab('store');
+    handleTabChange('deck');
+  }, [handleTabChange]);
   const [isOnboardingActive, setIsOnboardingActive] = useState<boolean>(() => {
     try {
       return !localStorage.getItem(STORAGE_KEY_ONBOARDING);
@@ -160,7 +166,7 @@ export function useAppNavigation() {
     isAuthModalOpen, setIsAuthModalOpen,
     worldNavView, setWorldNavView, worldResetCount,
     deckResetCount, deckInitialSubTab, setDeckInitialSubTab,
-    handleTabChange, handleOpenTower, handleNavigateToOfficialBooks,
+    handleTabChange, handleOpenTower, handleNavigateToOfficialBooks, handleNavigateToStore,
     libraryTabRequest, handleOpenLibraryTab,
     deckAiRequest, handleOpenDeckAi,
     isOnboardingActive, handleCompleteOnboarding, handleReplayOnboarding,

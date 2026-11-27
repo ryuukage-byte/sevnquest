@@ -18,6 +18,7 @@ import { AnnouncementBanners } from '../announcements/AnnouncementBanners';
 import { MailboxCard } from '../mailbox/MailboxCard';
 import { SupportCard } from './SupportCard';
 import { CommunityCard } from './CommunityCard';
+import { StoreShortcut } from '../store/StoreShortcut';
 
 export interface HomeViewProps {
   stats: PlayerStats;
@@ -26,6 +27,8 @@ export interface HomeViewProps {
   onStartRecall?: () => void;
   onOpenTower?: () => void;
   onOpenAuth?: () => void;
+  /** Buka Buku Saku → tab Toko. */
+  onOpenStore?: () => void;
 }
 
 export const HomeView: React.FC<HomeViewProps> = ({
@@ -35,6 +38,7 @@ export const HomeView: React.FC<HomeViewProps> = ({
   onStartRecall,
   onOpenTower,
   onOpenAuth,
+  onOpenStore,
 }) => {
   const { effectiveTierIndex } = getEffectiveTier(stats);
   const displayTierIndex = Math.min(RPG_TIERS.length - 1, Math.max(0, effectiveTierIndex ?? stats.tierIndex ?? 0));
@@ -355,6 +359,9 @@ export const HomeView: React.FC<HomeViewProps> = ({
         <SupportCard soundEnabled={stats.soundEnabled} />
         <CommunityCard soundEnabled={stats.soundEnabled} />
       </div>
+
+      {/* 6. TOKO PACK (hanya bila monetisasi tampil) */}
+      {onOpenStore && <StoreShortcut onOpen={onOpenStore} soundEnabled={stats.soundEnabled} />}
 
       <StartGuideModal
         isOpen={isGuideOpen}

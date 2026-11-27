@@ -116,3 +116,9 @@ test('Kotak hadiah surat pass', () => {
   assert.match(html, /5 pass/);
   assert.doesNotMatch(html, /Termasuk akses Full/);
 });
+
+test('StoreShortcut tersembunyi selama monetisasi belum tampil (di luar provider = saklar mati)', async () => {
+  const { StoreShortcut } = await import('./StoreShortcut');
+  assert.equal(renderToStaticMarkup(<StoreShortcut onOpen={noop} />), '');
+  assert.equal(renderToStaticMarkup(<StoreShortcut onOpen={noop} variant="tile" />), '');
+});

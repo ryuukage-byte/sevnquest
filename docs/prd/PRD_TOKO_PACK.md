@@ -106,6 +106,7 @@ Jumlah kartu per pack dihitung skrip pembuat pack (bagian 9) dan ditampilkan di 
 
 ### 4.1 Pintu masuk Toko
 - Tab/tombol **Toko** di Buku Saku (rak buku), dengan saldo pass di pojok: "Pass: 5".
+- (v0.3) Pintasan **Toko Pack** di Castle (baris di bawah ubin Kotak Pos/Donasi/Komunitas, lencana saldo pass) dan di Menu (bagian Dukungan & Komunitas). Tidak ditambahkan ke navbar bawah: navbar sudah 7 ikon.
 - Seluruh Toko tersembunyi selama `monetization_public = false` (saklar yang sudah ada), kecuali untuk admin.
 
 ### 4.2 Halaman Toko

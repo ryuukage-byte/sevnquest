@@ -8,6 +8,7 @@ import { QrisModal } from '../home/SupportCard';
 import { KeysAndDevicesPanel } from '../billing/KeysAndDevicesPanel';
 import { useAccess } from '../../state/entitlement';
 import { checkIsAdmin } from '../../lib/announcements';
+import { StoreShortcut } from '../store/StoreShortcut';
 
 const AdminBroadcastPanel = lazy(() =>
   import('../announcements/AdminBroadcastPanel').then(m => ({ default: m.AdminBroadcastPanel })),
@@ -24,6 +25,8 @@ interface SettingsViewProps {
   lastSyncedAt?: string | null;
   onUpdateName?: (newName: string) => void;
   onReplayTutorial?: () => void;
+  /** Buka Buku Saku → tab Toko. */
+  onOpenStore?: () => void;
 }
 
 function SettingSwitch({ checked, onChange, label }: { checked: boolean; onChange: (next: boolean) => void; label: string }) {
@@ -65,6 +68,7 @@ export const SettingsView: React.FC<SettingsViewProps> = ({
   lastSyncedAt,
   onUpdateName,
   onReplayTutorial,
+  onOpenStore,
 }) => {
   const { openUpgrade, monetizationVisible } = useAccess();
   const [qrisOpen, setQrisOpen] = useState(false);
@@ -585,6 +589,7 @@ export const SettingsView: React.FC<SettingsViewProps> = ({
               <div className="text-[10px] text-text-muted">via QRIS (semua e-wallet & bank)</div>
             </div>
           </button>
+          {onOpenStore && <StoreShortcut onOpen={onOpenStore} soundEnabled={stats.soundEnabled} variant="tile" />}
         </div>
         {qrisOpen && <QrisModal soundEnabled={stats.soundEnabled} onClose={() => setQrisOpen(false)} />}
         <p className="text-[11px] text-text-muted">
