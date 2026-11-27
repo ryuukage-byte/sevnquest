@@ -1,6 +1,6 @@
 # PRD: Toko Pack & Pack Pass
 
-Versi: 0.1
+Versi: 0.2
 Tanggal: 27 November 2026
 Status: Draft untuk review
 Terkait: `docs/prd/PRD_MONETISASI.md` (model donasi, QRIS, entitlement)
@@ -16,8 +16,11 @@ Terkait: `docs/prd/PRD_MONETISASI.md` (model donasi, QRIS, entitlement)
 | 3 | Pack yang sudah dibuka **permanen**. Pack hanya muncul di Buku Saku pengguna. |
 | 4 | Donatur bulanan mendapat **3 pass** per bulan. Donatur tahunan mendapat **36 pass** setahun, dibagikan **bertahap (drip) 3 pass per 30 hari**. |
 | 5 | Pass tambahan **Rp 7.000 per pass**, dan **hanya bisa dibeli oleh pengguna Full**. Pass tambahan adalah add-on untuk pelanggan, bukan jalur pembelian terpisah. |
-
-Usulan default di spec ini yang belum dikonfirmasi pemilik ditandai **[usulan]** dan dikumpulkan di bagian 14.
+| 6 | (v0.2) Pass **tidak pernah hangus**, tanpa batas tumpukan. |
+| 7 | (v0.2) Sisa pass **boleh dipakai** setelah akses Full habis; membeli pass baru tetap wajib Full aktif. Pack tetap bisa dilatih setelah langganan habis. |
+| 8 | (v0.2) Setoran Lifetime Rp 25.000 memberi 3 pass; status Lifetime memberi 3 pass per 30 hari selamanya. |
+| 9 | (v0.2) Harga: Kilat N3 **2 pass**, Kilat N2 **2 pass**, Kilat N1 **3 pass**. Belum ada bundel diskon di v1. |
+| 10 | (v0.2) Backfill: pembeli tahunan lama langsung mendapat tahap drip yang sudah lewat. |
 
 ---
 
@@ -58,15 +61,15 @@ Pack Pass adalah saldo dalam akun (bilangan bulat). Pass bisa didapat dari langg
 |---|---|---|
 | Donasi bulanan mencapai ambang (Rp 17.000 dalam satu bulan WIB) | 3 | Saat `monthly_grants` bulan itu tercatat (sekali per bulan kalender) |
 | Paket Tahunan (Rp 102.000) | 36 total | 3 saat disetujui, lalu 3 setiap 30 hari, 12 tahap |
-| Setoran Lifetime (kelipatan Rp 25.000, tiap setoran = Full 30 hari) **[usulan]** | 3 per setoran | Saat setoran disetujui |
-| Status Lifetime (total Rp 700.000) **[usulan]** | 3 per 30 hari | Drip tanpa batas selama status Lifetime ada |
+| Setoran Lifetime (kelipatan Rp 25.000, tiap setoran = Full 30 hari) | 3 per setoran | Saat setoran disetujui |
+| Status Lifetime (total Rp 700.000) | 3 per 30 hari | Drip tanpa batas selama status Lifetime ada |
 | Beli pass tambahan | n × Rp 7.000 | Saat pesanan disetujui |
 | Admin (kompensasi, promo, refund) | bebas | Manual |
 
 Aturan pass:
-- **Pass tidak pernah hangus**, baik pass jatah maupun pass beli **[usulan]**. Drip tahunan sudah mencegah pengguna menghabiskan 36 pass di bulan pertama, jadi batas rollover tidak diperlukan di v1.
+- **Pass tidak pernah hangus**, baik pass jatah maupun pass beli. Drip tahunan sudah mencegah pengguna menghabiskan 36 pass di bulan pertama, jadi batas rollover tidak diperlukan di v1.
 - **Membeli pass** wajib akses Full aktif (bukan masa tenggang).
-- **Memakai pass** untuk membuka pack tetap boleh walau langganan sudah habis **[usulan]**. Pass yang sudah dimiliki tetap bernilai. Ini konsisten dengan "pack permanen".
+- **Memakai pass** untuk membuka pack tetap boleh walau langganan sudah habis. Pass yang sudah dimiliki tetap bernilai. Ini konsisten dengan "pack permanen".
 - Pass tidak bisa ditransfer, dijual kembali, atau ditukar uang.
 - Pembelian pass **bukan donasi**: tidak dihitung ke tingkat bulanan, total lifetime, badge, atau papan donatur.
 - Hadiah key (gift) mengikuti jalurnya: key bulanan/tahunan/lifetime yang ditukar memberi pass ke **penukar**, bukan pembeli. Pass tambahan tidak bisa dihadiahkan di v1.
@@ -90,7 +93,7 @@ Sumber kata: tryout resmi di `src/data/tryouts/official/` (bagian `mojiGoi`).
 | Pack | Sumber | Harga | Catatan |
 |---|---|---|---|
 | Kilat N1 | 7 ujian (2020-12 s.d. 2024-12) | 3 pass | |
-| Kilat N2 | 8 ujian (2021-07 s.d. 2024-12) | 2 pass **[usulan]** | |
+| Kilat N2 | 8 ujian (2021-07 s.d. 2024-12) | 2 pass | |
 | Kilat N3 | 10 ujian (2020-12 s.d. 2025-12) | 2 pass | |
 
 N5 dan N4 belum punya tryout resmi di repo, jadi tidak ada Kilat N5/N4 di v1. Pack tematik (Kaigo, SSW, dan lain-lain) bisa menyusul memakai mesin yang sama.
@@ -119,7 +122,7 @@ Jumlah kartu per pack dihitung skrip pembuat pack (bagian 9) dan ditampilkan di 
 ### 4.4 Setelah dibuka
 - Pack muncul di Buku Saku pada rak **Pack Saya**, ditampilkan seperti buku resmi (`BookDetailView`): per bab, plus "Seluruh Bab".
 - Bisa dilatih dengan runner flashcard dan menulis yang sudah ada, dan bisa disalin ke deck pribadi (`cloneChapterToUserDecks`).
-- Pack tetap bisa dilatih walau langganan habis **[usulan]**. Modal detail kata level terkunci tetap mengikuti gating lunak yang ada.
+- Pack tetap bisa dilatih walau langganan habis. Modal detail kata level terkunci tetap mengikuti gating lunak yang ada.
 - Isi pack disimpan di cache lokal sehingga bisa dipakai offline.
 
 ### 4.5 Tambah Pass
@@ -172,7 +175,7 @@ Perubahan pada fungsi yang sudah ada (diubah dari definisi **terbaru**, bukan da
 - `entitlement_for`: tambah `pass_balance` agar klien bisa menampilkan saldo tanpa panggilan tambahan.
 - `get_donor_board` dan `lifetime_total_for` **tidak** berubah (pembelian pass bukan donasi).
 
-Migrasi pengguna lama: satu kali saat rilis, beri pass untuk bulan berjalan ke semua yang punya `monthly_grants` bulan ini, dan buat `pass_drips` untuk pembeli tahunan aktif (starts_at = tanggal persetujuan aslinya, sehingga tahap yang sudah lewat langsung diberikan) dan pemegang Lifetime. **[usulan]**
+Migrasi pengguna lama: satu kali saat rilis, beri pass untuk bulan berjalan ke semua yang punya `monthly_grants` bulan ini, dan buat `pass_drips` untuk pembeli tahunan aktif (starts_at = tanggal persetujuan aslinya, sehingga tahap yang sudah lewat langsung diberikan) dan pemegang Lifetime.
 
 ---
 
@@ -229,8 +232,8 @@ Hak cipta: pack hanya berisi referensi ke kata di kamus app (JMdict) beserta cat
 | Klik "Buka" dua kali | Panggilan kedua mendapat `already_owned`, saldo tidak berkurang dua kali |
 | Pack ditarik (`retired`) | Tidak tampil di Toko; pemilik tetap bisa membuka dan melatihnya |
 | Harga pack berubah | Pemilik lama tidak terpengaruh; `passes_spent` mencatat harga saat dibuka |
-| Langganan habis dengan sisa pass | Saldo tetap; boleh membuka pack; tidak bisa membeli pass baru **[usulan]** |
-| Tahunan lalu upgrade ke Lifetime | Drip tahunan tetap berjalan sampai 12 tahap; drip Lifetime mulai saat status Lifetime tercatat **[usulan]** |
+| Langganan habis dengan sisa pass | Saldo tetap; boleh membuka pack; tidak bisa membeli pass baru |
+| Tahunan lalu upgrade ke Lifetime | Drip tahunan tetap berjalan sampai 12 tahap; drip Lifetime mulai saat status Lifetime tercatat |
 | Pesanan pass disetujui padahal user sudah tidak Full | Tetap diberikan (pembayaran sudah terjadi) |
 | Refund | Pack yang sudah dibuka tidak bisa dikembalikan. Admin bisa mengembalikan pass lewat `admin_grant_passes` |
 | Pengguna menghapus akun | Mengikuti aturan hapus akun yang ada; dompet dan pack ikut terhapus (`on delete cascade`) |
@@ -273,10 +276,35 @@ Hak cipta: pack hanya berisi referensi ke kata di kamus app (JMdict) beserta cat
 
 ## 14. Pertanyaan Terbuka
 
-1. Pass tidak pernah hangus (tanpa batas rollover)? Usulan: ya.
-2. Pass boleh dipakai setelah langganan habis? Usulan: ya, tetapi beli pass baru wajib Full.
-3. Pack tetap bisa dilatih setelah langganan habis? Usulan: ya (pack permanen).
-4. Setoran Lifetime Rp 25.000 memberi 3 pass, dan status Lifetime memberi 3 pass per 30 hari selamanya? Usulan: ya.
-5. Harga Kilat N2: 2 atau 3 pass?
-6. Bundel pass dengan diskon (mis. 5 pass Rp 30.000)? Usulan: belum di v1.
-7. Backfill: pembeli tahunan lama langsung mendapat tahap yang sudah lewat? Usulan: ya.
+Semua pertanyaan v0.1 sudah diputuskan (bagian 0, butir 6–10). Yang tersisa:
+1. Kata dari ujian yang belum ada di kamus app (banyak kata serapan katakana dan onomatope, mis. アナウンス, ざあざあ, 翌週) tidak bisa masuk pack karena pack menunjuk ke id kamus. Tambahkan ke kamus dulu, atau biarkan di luar pack? Daftarnya ada di `report.md` tiap pack.
+2. Kilat N1 lebih sedikit katanya (±300) dibanding N3 (±570) padahal harganya 3 pass, karena soal 文字・語彙 N1 per ujian lebih sedikit dan tidak ada kata yang muncul di 3 ujian atau lebih. Tetap 3 pass, atau ditambah sumber lain (mis. kata dari 読解)?
+
+---
+
+## 15. Status Implementasi
+
+| Bagian | Lokasi | Status |
+|---|---|---|
+| Skema, RLS, RPC, perubahan alur pembayaran, backfill | `supabase/migrations/20261127_store_packs.sql` | Selesai, **belum diterapkan** ke proyek Supabase |
+| Tes SQL (43 cek alur + backfill) di Postgres lokal | `supabase/tests/`, jalankan `bash supabase/tests/run_local.sh` | Lulus |
+| Pembuat isi pack + tes | `scripts/packs/packBuilder.ts`, `scripts/packs/build_pack.ts`, `scripts/packs/packBuilder.test.ts` | Selesai |
+| Lapisan murni klien + tes | `src/lib/storeCore.ts`, `src/lib/storeCore.test.ts`; `passBalance` dan `canBuyPasses` di `src/utils/access.ts` | Selesai |
+| UI Toko, detail pack, dialog buka, rak Pack Saya | `src/components/store/` | Belum |
+| Tambah Pass di Upgrade, kotak hadiah surat `pass`, tab admin | `UpgradeModal.tsx`, `GiftBox.tsx`/`mailCore.ts`, `AdminPaymentsModal.tsx` | Belum |
+
+Membuat isi pack:
+
+```bash
+npx tsx scripts/packs/build_pack.ts N3
+```
+
+Hasil di `scripts/packs/out/kilat-n3/` (di-ignore git): `book.json`, `meta.json`, `report.md`, dan `upload.sql`. Jalankan `upload.sql` di Supabase SQL Editor untuk mengunggah pack sebagai draft (hanya terlihat admin); terbitkan dengan baris yang tertulis di kepala file itu.
+
+Hasil build pertama:
+
+| Pack | Ujian | Kata | Bab | Tidak cocok ke kamus | Tebakan 言い換え (tidak dimasukkan) |
+|---|---|---|---|---|---|
+| Kilat N3 | 10 | 574 | Wajib 28, Sering 98, Pernah 448 | 42 | 30 |
+| Kilat N2 | 8 | 443 | Wajib 2, Sering 28, Pernah 413 | 46 | 35 |
+| Kilat N1 | 7 | 301 | Sering 20, Pernah 281 | 71 | 31 |

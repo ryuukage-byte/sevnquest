@@ -73,6 +73,10 @@ export interface DonationConfig {
   yearlyPrice: number;
   /** Lama akses Full dari paket Tahunan. */
   yearlyDays: number;
+  /** Harga satu Pack Pass tambahan (Toko). */
+  passPriceIdr: number;
+  /** Jumlah pass maksimal per pesanan. */
+  passMaxPerOrder: number;
 }
 
 export const DEFAULT_DONATION_CONFIG: DonationConfig = {
@@ -84,6 +88,8 @@ export const DEFAULT_DONATION_CONFIG: DonationConfig = {
   fullDays: 30,
   yearlyPrice: 102000,
   yearlyDays: 365,
+  passPriceIdr: 7000,
+  passMaxPerOrder: 20,
 };
 
 export interface Entitlement {
@@ -105,6 +111,8 @@ export interface Entitlement {
   monthTier: number;
   /** Pernah membeli paket Tahunan (masuk Hall of Fame). */
   isYearly: boolean;
+  /** Saldo Pack Pass (Toko). */
+  passBalance: number;
   config: DonationConfig;
   /** Saklar admin: false = premium belum ditampilkan ke pengguna dan tidak ada yang dikunci. */
   monetizationPublic: boolean;
@@ -124,6 +132,7 @@ export const BASIC_ENTITLEMENT: Entitlement = {
   monthUnlocked: false,
   monthTier: 0,
   isYearly: false,
+  passBalance: 0,
   config: DEFAULT_DONATION_CONFIG,
   monetizationPublic: false,
   isAdmin: false,
@@ -149,6 +158,8 @@ function parseConfig(raw: unknown): DonationConfig {
     fullDays: num(r.full_days, d.fullDays) || d.fullDays,
     yearlyPrice: num(r.yearly_price, d.yearlyPrice) || d.yearlyPrice,
     yearlyDays: num(r.yearly_days, d.yearlyDays) || d.yearlyDays,
+    passPriceIdr: num(r.pass_price_idr, d.passPriceIdr) || d.passPriceIdr,
+    passMaxPerOrder: num(r.pass_max_per_order, d.passMaxPerOrder, 100) || d.passMaxPerOrder,
   };
 }
 
@@ -171,6 +182,7 @@ export function parseEntitlement(raw: unknown): Entitlement {
     monthUnlocked: r.month_unlocked === true,
     monthTier: num(r.month_tier, 0, 7),
     isYearly: r.is_yearly === true,
+    passBalance: num(r.pass_balance, 0),
     config: parseConfig(r.config),
     monetizationPublic: r.monetization_public === true,
     isAdmin: r.is_admin === true,
@@ -404,4 +416,9 @@ export function consumeDailyAllowance(
   if (current.ids.length >= limit) return { allowed: false, next: current, remaining: 0 };
   const next = { day: current.day, ids: [...current.ids, id] };
   return { allowed: true, next, remaining: Math.max(0, limit - next.ids.length) };
+}
+
+/** Membeli Pack Pass tambahan hanya untuk pengguna Full aktif (bukan masa tenggang). Server memeriksa ulang. */
+export function canBuyPasses(e: Entitlement): boolean {
+  return e.accessTier === 'full' && !e.accessInGrace;
 }

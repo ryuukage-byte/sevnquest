@@ -1,0 +1,3504 @@
+{
+  "id": "kilat-n3",
+  "title": "Kilat N3",
+  "japaneseTitle": "N3 速習 語彙",
+  "subtitle": "Kotoba dari 10 ujian JLPT resmi",
+  "description": "Kosakata yang benar-benar keluar di 10 ujian JLPT N3 (Des 2020, Des 2021, Jul 2022, Des 2022, Jul 2023, Des 2023, Jul 2024, Des 2024, Jul 2025, Des 2025), diurutkan dari yang paling sering muncul.",
+  "level": "N3",
+  "category": "thematic",
+  "coverIcon": "速",
+  "colorTheme": {
+    "accentColor": "text-gold",
+    "badgeBg": "bg-gold/15 text-gold border-gold/30",
+    "borderAccent": "border-gold/40 hover:border-gold",
+    "cardBg": "bg-surface-card"
+  },
+  "sources": [
+    "n3_2020_12",
+    "n3_2021_12",
+    "n3_2022_07",
+    "n3_2022_12",
+    "n3_2023_07",
+    "n3_2023_12",
+    "n3_2024_07",
+    "n3_2024_12",
+    "n3_2025_07",
+    "n3_2025_12"
+  ],
+  "chapters": [
+    {
+      "id": "kilat-n3_ch1",
+      "bookId": "kilat-n3",
+      "chapterNumber": 1,
+      "titleJp": "必修",
+      "titleId": "Wajib",
+      "description": "Muncul di 3 ujian atau lebih.",
+      "items": [
+        {
+          "id": "kotoba_n2_0342",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 5 ujian (Des 2020, Jul 2023, Jul 2024, Jul 2025, Des 2025) · jawaban 1×, pengecoh 4×"
+        },
+        {
+          "id": "kotoba_2840",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 4 ujian (Des 2020, Des 2022, Jul 2023, Jul 2024) · kata soal 2×, pengecoh 2×"
+        },
+        {
+          "id": "kotoba_n2_1317",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 4 ujian (Des 2021, Jul 2024, Des 2024, Jul 2025) · kata soal 1×, jawaban 1×, pengecoh 2×"
+        },
+        {
+          "id": "kotoba_1771",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 4 ujian (Des 2021, Des 2022, Des 2023, Des 2025) · kata soal 1×, pengecoh 3×"
+        },
+        {
+          "id": "kotoba_2285",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 4 ujian (Des 2020, Des 2021, Des 2022, Jul 2025) · jawaban 2×, pengecoh 2×"
+        },
+        {
+          "id": "kotoba_0873",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 4 ujian (Des 2020, Des 2022, Jul 2023, Des 2023) · pengecoh 4×"
+        },
+        {
+          "id": "kotoba_1414",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 4 ujian (Jul 2022, Jul 2023, Des 2024, Jul 2025) · pengecoh 4×"
+        },
+        {
+          "id": "kotoba_2734",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 3 ujian (Des 2021, Des 2024, Des 2025) · kata soal 3×"
+        },
+        {
+          "id": "kotoba_1434",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 3 ujian (Des 2020, Des 2021, Des 2025) · kata soal 2×, jawaban 1×"
+        },
+        {
+          "id": "kotoba_n2_1766",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 3 ujian (Des 2021, Jul 2023, Des 2024) · kata soal 1×, jawaban 1×, pengecoh 1×"
+        },
+        {
+          "id": "kotoba_0391",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 3 ujian (Des 2021, Jul 2024, Jul 2025) · jawaban 2×, pengecoh 1×"
+        },
+        {
+          "id": "kotoba_1241",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 3 ujian (Des 2020, Jul 2022, Des 2024) · kata soal 1×, pengecoh 2×"
+        },
+        {
+          "id": "kotoba_1407",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 3 ujian (Jul 2023, Jul 2025, Des 2025) · kata soal 1×, pengecoh 2×"
+        },
+        {
+          "id": "kotoba_1487",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 3 ujian (Des 2020, Jul 2025, Des 2025) · jawaban 2×, pengecoh 1×"
+        },
+        {
+          "id": "kotoba_2467",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 3 ujian (Des 2020, Des 2022, Des 2023) · jawaban 2×, pengecoh 1×"
+        },
+        {
+          "id": "kotoba_2901",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 3 ujian (Des 2020, Des 2022, Jul 2023) · jawaban 2×, pengecoh 1×"
+        },
+        {
+          "id": "kotoba_2951",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 3 ujian (Des 2020, Des 2022, Jul 2024) · jawaban 2×, pengecoh 1×"
+        },
+        {
+          "id": "kotoba_3009",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 3 ujian (Des 2021, Des 2023, Jul 2025) · kata soal 1×, pengecoh 2×"
+        },
+        {
+          "id": "kotoba_n2_0007",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 3 ujian (Des 2020, Jul 2023, Des 2024) · jawaban 2×, pengecoh 1×"
+        },
+        {
+          "id": "kotoba_0956",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 3 ujian (Des 2020, Des 2021, Jul 2022) · jawaban 1×, pengecoh 2×"
+        },
+        {
+          "id": "kotoba_2802",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 3 ujian (Des 2021, Jul 2024, Des 2025) · jawaban 1×, pengecoh 2×"
+        },
+        {
+          "id": "kotoba_n2_0030",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 3 ujian (Des 2021, Des 2022, Jul 2023) · jawaban 1×, pengecoh 2×"
+        },
+        {
+          "id": "kotoba_n2_0190",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 3 ujian (Des 2021, Des 2022, Des 2025) · jawaban 1×, pengecoh 2×"
+        },
+        {
+          "id": "kotoba_0655",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 3 ujian (Des 2021, Jul 2025, Des 2025) · pengecoh 3×"
+        },
+        {
+          "id": "kotoba_0819",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 3 ujian (Des 2022, Des 2023, Jul 2024) · pengecoh 3×"
+        },
+        {
+          "id": "kotoba_1242",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 3 ujian (Jul 2023, Jul 2024, Des 2024) · pengecoh 3×"
+        },
+        {
+          "id": "kotoba_jm_1008050",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 3 ujian (Des 2020, Des 2022, Des 2023) · pengecoh 3×"
+        },
+        {
+          "id": "kotoba_jm_1228570",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 3 ujian (Des 2023, Jul 2025, Des 2025) · pengecoh 3×"
+        }
+      ]
+    },
+    {
+      "id": "kilat-n3_ch2",
+      "bookId": "kilat-n3",
+      "chapterNumber": 2,
+      "titleJp": "頻出",
+      "titleId": "Sering",
+      "description": "Muncul di 2 ujian.",
+      "items": [
+        {
+          "id": "kotoba_0172",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 2 ujian (Des 2020, Jul 2024) · kata soal 2×"
+        },
+        {
+          "id": "kotoba_0863",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 2 ujian (Des 2020, Jul 2023) · kata soal 2×"
+        },
+        {
+          "id": "kotoba_1116",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 2 ujian (Des 2020, Des 2025) · kata soal 2×"
+        },
+        {
+          "id": "kotoba_2074",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 2 ujian (Des 2021, Jul 2023) · kata soal 2×"
+        },
+        {
+          "id": "kotoba_2075",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 2 ujian (Des 2020, Des 2024) · kata soal 2×"
+        },
+        {
+          "id": "kotoba_3038",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 2 ujian (Des 2023, Des 2024) · kata soal 2×"
+        },
+        {
+          "id": "kotoba_n1_2318",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 2 ujian (Jul 2022, Jul 2023) · kata soal 2×"
+        },
+        {
+          "id": "kotoba_n2_0686",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 2 ujian (Des 2020, Jul 2023) · kata soal 2×"
+        },
+        {
+          "id": "kotoba_n2_1681",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 2 ujian (Jul 2023, Jul 2025) · kata soal 2×"
+        },
+        {
+          "id": "kotoba_1387",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 2 ujian (Jul 2022, Jul 2024) · kata soal 1×, jawaban 1×"
+        },
+        {
+          "id": "kotoba_1508",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 2 ujian (Des 2022, Jul 2023) · kata soal 1×, jawaban 1×"
+        },
+        {
+          "id": "kotoba_1804",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 2 ujian (Jul 2023, Jul 2025) · kata soal 1×, jawaban 1×"
+        },
+        {
+          "id": "kotoba_2942",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 2 ujian (Des 2021, Jul 2025) · kata soal 1×, jawaban 1×"
+        },
+        {
+          "id": "kotoba_2960",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 2 ujian (Jul 2022, Jul 2025) · kata soal 1×, jawaban 1×"
+        },
+        {
+          "id": "kotoba_jm_1877330",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 2 ujian (Jul 2022, Des 2023) · kata soal 1×, jawaban 1×"
+        },
+        {
+          "id": "kotoba_n1_2256",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 2 ujian (Des 2021, Des 2023) · kata soal 1×, jawaban 1×"
+        },
+        {
+          "id": "kotoba_0298",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 2 ujian (Jul 2022, Jul 2025) · kata soal 1×, pengecoh 1×"
+        },
+        {
+          "id": "kotoba_0940",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 2 ujian (Jul 2022, Des 2024) · kata soal 1×, pengecoh 1×"
+        },
+        {
+          "id": "kotoba_0989",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 2 ujian (Des 2020, Des 2022) · kata soal 1×, pengecoh 1×"
+        },
+        {
+          "id": "kotoba_1080",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 2 ujian (Des 2020, Des 2024) · kata soal 1×, pengecoh 1×"
+        },
+        {
+          "id": "kotoba_1322",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 2 ujian (Jul 2023, Des 2024) · kata soal 1×, pengecoh 1×"
+        },
+        {
+          "id": "kotoba_1548",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 2 ujian (Des 2020, Jul 2022) · kata soal 1×, pengecoh 1×"
+        },
+        {
+          "id": "kotoba_1787",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 2 ujian (Des 2022, Jul 2023) · kata soal 1×, pengecoh 1×"
+        },
+        {
+          "id": "kotoba_1835",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 2 ujian (Des 2020, Des 2024) · kata soal 1×, pengecoh 1×"
+        },
+        {
+          "id": "kotoba_1958",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 2 ujian (Jul 2023, Des 2025) · kata soal 1×, pengecoh 1×"
+        },
+        {
+          "id": "kotoba_2282",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 2 ujian (Jul 2022, Des 2024) · kata soal 1×, pengecoh 1×"
+        },
+        {
+          "id": "kotoba_2388",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 2 ujian (Jul 2025, Des 2025) · kata soal 1×, pengecoh 1×"
+        },
+        {
+          "id": "kotoba_2550",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 2 ujian (Jul 2022, Des 2023) · kata soal 1×, pengecoh 1×"
+        },
+        {
+          "id": "kotoba_2617",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 2 ujian (Jul 2022, Des 2024) · kata soal 1×, pengecoh 1×"
+        },
+        {
+          "id": "kotoba_2664",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 2 ujian (Jul 2022, Des 2025) · kata soal 1×, pengecoh 1×"
+        },
+        {
+          "id": "kotoba_2907",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 2 ujian (Des 2021, Jul 2025) · kata soal 1×, pengecoh 1×"
+        },
+        {
+          "id": "kotoba_2956",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 2 ujian (Jul 2024, Jul 2025) · kata soal 1×, pengecoh 1×"
+        },
+        {
+          "id": "kotoba_jm_1012960",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 2 ujian (Des 2022, Des 2023) · kata soal 1×, pengecoh 1×"
+        },
+        {
+          "id": "kotoba_jm_1611580",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 2 ujian (Des 2024, Jul 2025) · kata soal 1×, pengecoh 1×"
+        },
+        {
+          "id": "kotoba_n1_3240",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 2 ujian (Des 2021, Des 2025) · kata soal 1×, pengecoh 1×"
+        },
+        {
+          "id": "kotoba_n2_0142",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 2 ujian (Des 2022, Jul 2025) · kata soal 1×, pengecoh 1×"
+        },
+        {
+          "id": "kotoba_n2_0193",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 2 ujian (Des 2022, Jul 2023) · kata soal 1×, pengecoh 1×"
+        },
+        {
+          "id": "kotoba_n2_0439",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 2 ujian (Jul 2022, Jul 2025) · jawaban 2×"
+        },
+        {
+          "id": "kotoba_n2_0441",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 2 ujian (Jul 2024, Des 2025) · kata soal 1×, pengecoh 1×"
+        },
+        {
+          "id": "kotoba_n2_0570",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 2 ujian (Des 2022, Jul 2024) · kata soal 1×, pengecoh 1×"
+        },
+        {
+          "id": "kotoba_n2_0823",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 2 ujian (Des 2022, Jul 2024) · kata soal 1×, pengecoh 1×"
+        },
+        {
+          "id": "kotoba_n2_1370",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 2 ujian (Des 2020, Des 2022) · jawaban 2×"
+        },
+        {
+          "id": "kotoba_n2_1455",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 2 ujian (Des 2024, Des 2025) · kata soal 1×, pengecoh 1×"
+        },
+        {
+          "id": "kotoba_x_0140",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 2 ujian (Des 2020, Jul 2025) · kata soal 1×, pengecoh 1×"
+        },
+        {
+          "id": "kotoba_0139",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 2 ujian (Jul 2025, Des 2025) · jawaban 1×, pengecoh 1×"
+        },
+        {
+          "id": "kotoba_0159",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 2 ujian (Jul 2023, Des 2025) · jawaban 1×, pengecoh 1×"
+        },
+        {
+          "id": "kotoba_0421",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 2 ujian (Jul 2024, Des 2024) · jawaban 1×, pengecoh 1×"
+        },
+        {
+          "id": "kotoba_0796",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 2 ujian (Des 2021, Jul 2022) · jawaban 1×, pengecoh 1×"
+        },
+        {
+          "id": "kotoba_0971",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 2 ujian (Des 2021, Des 2023) · jawaban 1×, pengecoh 1×"
+        },
+        {
+          "id": "kotoba_1221",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 2 ujian (Jul 2024, Des 2024) · jawaban 1×, pengecoh 1×"
+        },
+        {
+          "id": "kotoba_1539",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 2 ujian (Des 2020, Jul 2024) · jawaban 1×, pengecoh 1×"
+        },
+        {
+          "id": "kotoba_1779",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 2 ujian (Des 2020, Des 2024) · jawaban 1×, pengecoh 1×"
+        },
+        {
+          "id": "kotoba_1889",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 2 ujian (Des 2023, Des 2024) · jawaban 1×, pengecoh 1×"
+        },
+        {
+          "id": "kotoba_1933",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 2 ujian (Des 2020, Des 2025) · jawaban 1×, pengecoh 1×"
+        },
+        {
+          "id": "kotoba_2319",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 2 ujian (Des 2020, Des 2021) · jawaban 1×, pengecoh 1×"
+        },
+        {
+          "id": "kotoba_2441",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 2 ujian (Des 2023, Jul 2025) · jawaban 1×, pengecoh 1×"
+        },
+        {
+          "id": "kotoba_2647",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 2 ujian (Des 2020, Des 2023) · jawaban 1×, pengecoh 1×"
+        },
+        {
+          "id": "kotoba_2815",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 2 ujian (Des 2021, Jul 2023) · jawaban 1×, pengecoh 1×"
+        },
+        {
+          "id": "kotoba_2967",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 2 ujian (Jul 2023, Jul 2025) · jawaban 1×, pengecoh 1×"
+        },
+        {
+          "id": "kotoba_jm_1006340",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 2 ujian (Des 2021, Jul 2022) · jawaban 1×, pengecoh 1×"
+        },
+        {
+          "id": "kotoba_jm_1589330",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 2 ujian (Jul 2023, Jul 2025) · jawaban 1×, pengecoh 1×"
+        },
+        {
+          "id": "kotoba_n2_0002",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 2 ujian (Des 2021, Des 2023) · jawaban 1×, pengecoh 1×"
+        },
+        {
+          "id": "kotoba_n2_0308",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 2 ujian (Des 2020, Des 2025) · jawaban 1×, pengecoh 1×"
+        },
+        {
+          "id": "kotoba_n2_0438",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 2 ujian (Jul 2022, Des 2024) · jawaban 1×, pengecoh 1×"
+        },
+        {
+          "id": "kotoba_n2_0500",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 2 ujian (Des 2022, Jul 2025) · jawaban 1×, pengecoh 1×"
+        },
+        {
+          "id": "kotoba_n2_0975",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 2 ujian (Des 2023, Jul 2024) · jawaban 1×, pengecoh 1×"
+        },
+        {
+          "id": "kotoba_n2_1139",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 2 ujian (Jul 2024, Des 2025) · jawaban 1×, pengecoh 1×"
+        },
+        {
+          "id": "kotoba_0105",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 2 ujian (Jul 2024, Des 2024) · pengecoh 2×"
+        },
+        {
+          "id": "kotoba_0743",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 2 ujian (Jul 2022, Jul 2025) · pengecoh 2×"
+        },
+        {
+          "id": "kotoba_0770",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 2 ujian (Des 2021, Des 2024) · pengecoh 2×"
+        },
+        {
+          "id": "kotoba_0790",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 2 ujian (Des 2020, Jul 2023) · pengecoh 2×"
+        },
+        {
+          "id": "kotoba_0941",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 2 ujian (Des 2022, Jul 2025) · pengecoh 2×"
+        },
+        {
+          "id": "kotoba_1002",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 2 ujian (Des 2020, Jul 2023) · pengecoh 2×"
+        },
+        {
+          "id": "kotoba_1053",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 2 ujian (Jul 2023, Jul 2024) · pengecoh 2×"
+        },
+        {
+          "id": "kotoba_1228",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 2 ujian (Des 2023, Jul 2025) · pengecoh 2×"
+        },
+        {
+          "id": "kotoba_1252",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 2 ujian (Des 2020, Des 2022) · pengecoh 2×"
+        },
+        {
+          "id": "kotoba_1482",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 2 ujian (Des 2021, Des 2025) · pengecoh 2×"
+        },
+        {
+          "id": "kotoba_2412",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 2 ujian (Jul 2023, Des 2023) · pengecoh 2×"
+        },
+        {
+          "id": "kotoba_2421",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 2 ujian (Des 2020, Jul 2023) · pengecoh 2×"
+        },
+        {
+          "id": "kotoba_2502",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 2 ujian (Des 2022, Des 2023) · pengecoh 2×"
+        },
+        {
+          "id": "kotoba_2578",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 2 ujian (Des 2021, Des 2024) · pengecoh 2×"
+        },
+        {
+          "id": "kotoba_2686",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 2 ujian (Des 2020, Jul 2022) · pengecoh 2×"
+        },
+        {
+          "id": "kotoba_2731",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 2 ujian (Jul 2023, Jul 2024) · pengecoh 2×"
+        },
+        {
+          "id": "kotoba_2807",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 2 ujian (Des 2022, Jul 2023) · pengecoh 2×"
+        },
+        {
+          "id": "kotoba_3035",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 2 ujian (Jul 2023, Des 2025) · pengecoh 2×"
+        },
+        {
+          "id": "kotoba_jm_1180000",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 2 ujian (Des 2021, Jul 2025) · pengecoh 2×"
+        },
+        {
+          "id": "kotoba_jm_1318470",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 2 ujian (Des 2023, Jul 2024) · pengecoh 2×"
+        },
+        {
+          "id": "kotoba_jm_1320230",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 2 ujian (Des 2020, Jul 2025) · pengecoh 2×"
+        },
+        {
+          "id": "kotoba_jm_1367590",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 2 ujian (Des 2023, Jul 2024) · pengecoh 2×"
+        },
+        {
+          "id": "kotoba_n1_0318",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 2 ujian (Jul 2023, Des 2023) · pengecoh 2×"
+        },
+        {
+          "id": "kotoba_n1_2001",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 2 ujian (Jul 2023, Des 2025) · pengecoh 2×"
+        },
+        {
+          "id": "kotoba_n1_2760",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 2 ujian (Des 2020, Des 2022) · pengecoh 2×"
+        },
+        {
+          "id": "kotoba_n2_0082",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 2 ujian (Des 2020, Jul 2023) · pengecoh 2×"
+        },
+        {
+          "id": "kotoba_n2_0131",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 2 ujian (Des 2020, Jul 2023) · pengecoh 2×"
+        },
+        {
+          "id": "kotoba_n2_0177",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 2 ujian (Jul 2023, Des 2025) · pengecoh 2×"
+        },
+        {
+          "id": "kotoba_n2_1185",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 2 ujian (Jul 2023, Des 2024) · pengecoh 2×"
+        },
+        {
+          "id": "kotoba_n2_1790",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 2 ujian (Jul 2022, Jul 2025) · pengecoh 2×"
+        },
+        {
+          "id": "kotoba_x_0173",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 2 ujian (Des 2022, Des 2025) · pengecoh 2×"
+        }
+      ]
+    },
+    {
+      "id": "kilat-n3_ch3",
+      "bookId": "kilat-n3",
+      "chapterNumber": 3,
+      "titleJp": "既出",
+      "titleId": "Pernah Muncul",
+      "description": "Muncul di 1 ujian.",
+      "items": [
+        {
+          "id": "kotoba_0083",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2024) · kata soal 1×"
+        },
+        {
+          "id": "kotoba_0149",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Jul 2025) · kata soal 1×"
+        },
+        {
+          "id": "kotoba_0209",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2022) · kata soal 1×"
+        },
+        {
+          "id": "kotoba_0305",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2023) · kata soal 1×"
+        },
+        {
+          "id": "kotoba_0329",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2022) · kata soal 1×"
+        },
+        {
+          "id": "kotoba_0359",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Jul 2024) · kata soal 1×"
+        },
+        {
+          "id": "kotoba_0411",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2022) · kata soal 1×"
+        },
+        {
+          "id": "kotoba_0581",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Jul 2022) · kata soal 1×"
+        },
+        {
+          "id": "kotoba_0619",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Jul 2024) · kata soal 1×"
+        },
+        {
+          "id": "kotoba_0646",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Jul 2023) · kata soal 1×"
+        },
+        {
+          "id": "kotoba_0681",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Jul 2023) · kata soal 1×"
+        },
+        {
+          "id": "kotoba_0696",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Jul 2024) · kata soal 1×"
+        },
+        {
+          "id": "kotoba_0703",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Jul 2024) · kata soal 1×"
+        },
+        {
+          "id": "kotoba_0714",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Jul 2024) · kata soal 1×"
+        },
+        {
+          "id": "kotoba_0809",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2023) · kata soal 1×"
+        },
+        {
+          "id": "kotoba_0825",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Jul 2022) · kata soal 1×"
+        },
+        {
+          "id": "kotoba_0857",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2024) · kata soal 1×"
+        },
+        {
+          "id": "kotoba_0904",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2025) · kata soal 1×"
+        },
+        {
+          "id": "kotoba_0916",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2020) · kata soal 1×"
+        },
+        {
+          "id": "kotoba_1025",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2023) · kata soal 1×"
+        },
+        {
+          "id": "kotoba_1082",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Jul 2023) · kata soal 1×"
+        },
+        {
+          "id": "kotoba_1085",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Jul 2023) · kata soal 1×"
+        },
+        {
+          "id": "kotoba_1119",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2021) · kata soal 1×"
+        },
+        {
+          "id": "kotoba_1127",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2023) · kata soal 1×"
+        },
+        {
+          "id": "kotoba_1207",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Jul 2025) · kata soal 1×"
+        },
+        {
+          "id": "kotoba_1231",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Jul 2023) · kata soal 1×"
+        },
+        {
+          "id": "kotoba_1240",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2022) · kata soal 1×"
+        },
+        {
+          "id": "kotoba_1273",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2024) · kata soal 1×"
+        },
+        {
+          "id": "kotoba_1285",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Jul 2022) · kata soal 1×"
+        },
+        {
+          "id": "kotoba_1302",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2025) · kata soal 1×"
+        },
+        {
+          "id": "kotoba_1348",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Jul 2025) · kata soal 1×"
+        },
+        {
+          "id": "kotoba_1408",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Jul 2024) · kata soal 1×"
+        },
+        {
+          "id": "kotoba_1442",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Jul 2023) · kata soal 1×"
+        },
+        {
+          "id": "kotoba_1471",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Jul 2025) · kata soal 1×"
+        },
+        {
+          "id": "kotoba_1489",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Jul 2022) · kata soal 1×"
+        },
+        {
+          "id": "kotoba_1512",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2020) · kata soal 1×"
+        },
+        {
+          "id": "kotoba_1537",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2025) · kata soal 1×"
+        },
+        {
+          "id": "kotoba_1570",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Jul 2024) · kata soal 1×"
+        },
+        {
+          "id": "kotoba_1668",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2025) · kata soal 1×"
+        },
+        {
+          "id": "kotoba_1711",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Jul 2023) · kata soal 1×"
+        },
+        {
+          "id": "kotoba_1731",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2024) · kata soal 1×"
+        },
+        {
+          "id": "kotoba_1736",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Jul 2022) · kata soal 1×"
+        },
+        {
+          "id": "kotoba_1760",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2025) · kata soal 1×"
+        },
+        {
+          "id": "kotoba_1768",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2025) · kata soal 1×"
+        },
+        {
+          "id": "kotoba_1812",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Jul 2025) · kata soal 1×"
+        },
+        {
+          "id": "kotoba_1834",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Jul 2025) · kata soal 1×"
+        },
+        {
+          "id": "kotoba_1904",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Jul 2025) · kata soal 1×"
+        },
+        {
+          "id": "kotoba_1911",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2023) · kata soal 1×"
+        },
+        {
+          "id": "kotoba_1914",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2024) · kata soal 1×"
+        },
+        {
+          "id": "kotoba_1969",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2023) · kata soal 1×"
+        },
+        {
+          "id": "kotoba_2036",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2020) · kata soal 1×"
+        },
+        {
+          "id": "kotoba_2037",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2025) · kata soal 1×"
+        },
+        {
+          "id": "kotoba_2098",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2020) · kata soal 1×"
+        },
+        {
+          "id": "kotoba_2189",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2025) · kata soal 1×"
+        },
+        {
+          "id": "kotoba_2201",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Jul 2024) · kata soal 1×"
+        },
+        {
+          "id": "kotoba_2242",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2022) · kata soal 1×"
+        },
+        {
+          "id": "kotoba_2280",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Jul 2022) · kata soal 1×"
+        },
+        {
+          "id": "kotoba_2300",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Jul 2024) · kata soal 1×"
+        },
+        {
+          "id": "kotoba_2311",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Jul 2022) · kata soal 1×"
+        },
+        {
+          "id": "kotoba_2332",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Jul 2022) · kata soal 1×"
+        },
+        {
+          "id": "kotoba_2349",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Jul 2024) · kata soal 1×"
+        },
+        {
+          "id": "kotoba_2359",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2024) · kata soal 1×"
+        },
+        {
+          "id": "kotoba_2390",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Jul 2022) · kata soal 1×"
+        },
+        {
+          "id": "kotoba_2398",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2024) · kata soal 1×"
+        },
+        {
+          "id": "kotoba_2403",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Jul 2024) · kata soal 1×"
+        },
+        {
+          "id": "kotoba_2432",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2023) · kata soal 1×"
+        },
+        {
+          "id": "kotoba_2442",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Jul 2022) · kata soal 1×"
+        },
+        {
+          "id": "kotoba_2537",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2022) · kata soal 1×"
+        },
+        {
+          "id": "kotoba_2557",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2025) · kata soal 1×"
+        },
+        {
+          "id": "kotoba_2561",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Jul 2025) · kata soal 1×"
+        },
+        {
+          "id": "kotoba_2564",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Jul 2024) · kata soal 1×"
+        },
+        {
+          "id": "kotoba_2619",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2023) · kata soal 1×"
+        },
+        {
+          "id": "kotoba_2651",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2025) · kata soal 1×"
+        },
+        {
+          "id": "kotoba_2659",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2022) · kata soal 1×"
+        },
+        {
+          "id": "kotoba_2669",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2024) · kata soal 1×"
+        },
+        {
+          "id": "kotoba_2676",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2022) · kata soal 1×"
+        },
+        {
+          "id": "kotoba_2716",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Jul 2025) · kata soal 1×"
+        },
+        {
+          "id": "kotoba_2756",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2020) · kata soal 1×"
+        },
+        {
+          "id": "kotoba_2781",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2024) · kata soal 1×"
+        },
+        {
+          "id": "kotoba_2782",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2023) · kata soal 1×"
+        },
+        {
+          "id": "kotoba_2810",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Jul 2022) · kata soal 1×"
+        },
+        {
+          "id": "kotoba_2828",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2024) · kata soal 1×"
+        },
+        {
+          "id": "kotoba_2873",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2022) · kata soal 1×"
+        },
+        {
+          "id": "kotoba_2896",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2025) · kata soal 1×"
+        },
+        {
+          "id": "kotoba_2929",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2023) · kata soal 1×"
+        },
+        {
+          "id": "kotoba_2958",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2021) · kata soal 1×"
+        },
+        {
+          "id": "kotoba_2963",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Jul 2025) · kata soal 1×"
+        },
+        {
+          "id": "kotoba_2970",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2021) · kata soal 1×"
+        },
+        {
+          "id": "kotoba_2987",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2021) · kata soal 1×"
+        },
+        {
+          "id": "kotoba_3003",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2022) · kata soal 1×"
+        },
+        {
+          "id": "kotoba_jm_1011060",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2020) · kata soal 1×"
+        },
+        {
+          "id": "kotoba_jm_1165880",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2022) · kata soal 1×"
+        },
+        {
+          "id": "kotoba_jm_1198860",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2023) · kata soal 1×"
+        },
+        {
+          "id": "kotoba_jm_1281720",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2023) · kata soal 1×"
+        },
+        {
+          "id": "kotoba_jm_1421510",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Jul 2025) · kata soal 1×"
+        },
+        {
+          "id": "kotoba_jm_1428320",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2023) · kata soal 1×"
+        },
+        {
+          "id": "kotoba_jm_1432370",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2021) · kata soal 1×"
+        },
+        {
+          "id": "kotoba_jm_1515530",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Jul 2024) · kata soal 1×"
+        },
+        {
+          "id": "kotoba_jm_1562300",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Jul 2023) · kata soal 1×"
+        },
+        {
+          "id": "kotoba_jm_1591330",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2020) · kata soal 1×"
+        },
+        {
+          "id": "kotoba_jm_1614170",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2024) · kata soal 1×"
+        },
+        {
+          "id": "kotoba_jm_1620810",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Jul 2023) · kata soal 1×"
+        },
+        {
+          "id": "kotoba_kaigo_0185",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2025) · kata soal 1×"
+        },
+        {
+          "id": "kotoba_n1_1096",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2022) · kata soal 1×"
+        },
+        {
+          "id": "kotoba_n1_1157",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Jul 2025) · kata soal 1×"
+        },
+        {
+          "id": "kotoba_n1_1978",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Jul 2023) · kata soal 1×"
+        },
+        {
+          "id": "kotoba_n2_0018",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Jul 2024) · kata soal 1×"
+        },
+        {
+          "id": "kotoba_n2_0310",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2020) · kata soal 1×"
+        },
+        {
+          "id": "kotoba_n2_0369",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2023) · kata soal 1×"
+        },
+        {
+          "id": "kotoba_n2_0404",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2024) · kata soal 1×"
+        },
+        {
+          "id": "kotoba_n2_0482",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2020) · kata soal 1×"
+        },
+        {
+          "id": "kotoba_n2_0618",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2022) · kata soal 1×"
+        },
+        {
+          "id": "kotoba_n2_0622",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2023) · kata soal 1×"
+        },
+        {
+          "id": "kotoba_n2_0640",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2021) · kata soal 1×"
+        },
+        {
+          "id": "kotoba_n2_0650",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2022) · kata soal 1×"
+        },
+        {
+          "id": "kotoba_n2_0712",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2023) · kata soal 1×"
+        },
+        {
+          "id": "kotoba_n2_0859",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Jul 2024) · kata soal 1×"
+        },
+        {
+          "id": "kotoba_n2_0882",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2023) · kata soal 1×"
+        },
+        {
+          "id": "kotoba_n2_0901",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2025) · kata soal 1×"
+        },
+        {
+          "id": "kotoba_n2_0907",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2021) · kata soal 1×"
+        },
+        {
+          "id": "kotoba_n2_0914",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2022) · kata soal 1×"
+        },
+        {
+          "id": "kotoba_n2_1022",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Jul 2025) · kata soal 1×"
+        },
+        {
+          "id": "kotoba_n2_1095",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2021) · kata soal 1×"
+        },
+        {
+          "id": "kotoba_n2_1181",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2021) · kata soal 1×"
+        },
+        {
+          "id": "kotoba_n2_1533",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2022) · kata soal 1×"
+        },
+        {
+          "id": "kotoba_n2_1696",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2021) · kata soal 1×"
+        },
+        {
+          "id": "kotoba_n2_1698",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2022) · kata soal 1×"
+        },
+        {
+          "id": "kotoba_n2_1708",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2022) · kata soal 1×"
+        },
+        {
+          "id": "kotoba_n2_1730",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2024) · kata soal 1×"
+        },
+        {
+          "id": "kotoba_0005",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2025) · jawaban 1×"
+        },
+        {
+          "id": "kotoba_0122",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2024) · jawaban 1×"
+        },
+        {
+          "id": "kotoba_0142",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Jul 2025) · jawaban 1×"
+        },
+        {
+          "id": "kotoba_0145",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Jul 2023) · jawaban 1×"
+        },
+        {
+          "id": "kotoba_0251",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Jul 2025) · jawaban 1×"
+        },
+        {
+          "id": "kotoba_0389",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2023) · jawaban 1×"
+        },
+        {
+          "id": "kotoba_0457",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Jul 2024) · jawaban 1×"
+        },
+        {
+          "id": "kotoba_0508",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2020) · jawaban 1×"
+        },
+        {
+          "id": "kotoba_0737",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2021) · jawaban 1×"
+        },
+        {
+          "id": "kotoba_0803",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2022) · jawaban 1×"
+        },
+        {
+          "id": "kotoba_0900",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2022) · jawaban 1×"
+        },
+        {
+          "id": "kotoba_0970",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2022) · jawaban 1×"
+        },
+        {
+          "id": "kotoba_1036",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2023) · jawaban 1×"
+        },
+        {
+          "id": "kotoba_1077",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2022) · jawaban 1×"
+        },
+        {
+          "id": "kotoba_1087",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Jul 2025) · jawaban 1×"
+        },
+        {
+          "id": "kotoba_1282",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2020) · jawaban 1×"
+        },
+        {
+          "id": "kotoba_1303",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2023) · jawaban 1×"
+        },
+        {
+          "id": "kotoba_1347",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Jul 2024) · jawaban 1×"
+        },
+        {
+          "id": "kotoba_1386",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2020) · jawaban 1×"
+        },
+        {
+          "id": "kotoba_1564",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2020) · jawaban 1×"
+        },
+        {
+          "id": "kotoba_1882",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2025) · jawaban 1×"
+        },
+        {
+          "id": "kotoba_1890",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2023) · jawaban 1×"
+        },
+        {
+          "id": "kotoba_1893",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2023) · jawaban 1×"
+        },
+        {
+          "id": "kotoba_1900",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2025) · jawaban 1×"
+        },
+        {
+          "id": "kotoba_1944",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Jul 2024) · jawaban 1×"
+        },
+        {
+          "id": "kotoba_1947",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Jul 2022) · jawaban 1×"
+        },
+        {
+          "id": "kotoba_1954",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2024) · jawaban 1×"
+        },
+        {
+          "id": "kotoba_1981",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Jul 2024) · jawaban 1×"
+        },
+        {
+          "id": "kotoba_2008",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Jul 2023) · jawaban 1×"
+        },
+        {
+          "id": "kotoba_2070",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Jul 2022) · jawaban 1×"
+        },
+        {
+          "id": "kotoba_2140",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Jul 2022) · jawaban 1×"
+        },
+        {
+          "id": "kotoba_2178",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2023) · jawaban 1×"
+        },
+        {
+          "id": "kotoba_2217",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2022) · jawaban 1×"
+        },
+        {
+          "id": "kotoba_2237",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Jul 2022) · jawaban 1×"
+        },
+        {
+          "id": "kotoba_2317",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2024) · jawaban 1×"
+        },
+        {
+          "id": "kotoba_2353",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2020) · jawaban 1×"
+        },
+        {
+          "id": "kotoba_2386",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2022) · jawaban 1×"
+        },
+        {
+          "id": "kotoba_2395",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2021) · jawaban 1×"
+        },
+        {
+          "id": "kotoba_2414",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2020) · jawaban 1×"
+        },
+        {
+          "id": "kotoba_2429",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2024) · jawaban 1×"
+        },
+        {
+          "id": "kotoba_2470",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2021) · jawaban 1×"
+        },
+        {
+          "id": "kotoba_2641",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2021) · jawaban 1×"
+        },
+        {
+          "id": "kotoba_2683",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2023) · jawaban 1×"
+        },
+        {
+          "id": "kotoba_2712",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Jul 2024) · jawaban 1×"
+        },
+        {
+          "id": "kotoba_2753",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Jul 2022) · jawaban 1×"
+        },
+        {
+          "id": "kotoba_2776",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Jul 2022) · jawaban 1×"
+        },
+        {
+          "id": "kotoba_2795",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2024) · jawaban 1×"
+        },
+        {
+          "id": "kotoba_2844",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2021) · jawaban 1×"
+        },
+        {
+          "id": "kotoba_2935",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2024) · jawaban 1×"
+        },
+        {
+          "id": "kotoba_3025",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2023) · jawaban 1×"
+        },
+        {
+          "id": "kotoba_jm_1001060",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Jul 2024) · jawaban 1×"
+        },
+        {
+          "id": "kotoba_jm_1042050",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Jul 2022) · jawaban 1×"
+        },
+        {
+          "id": "kotoba_jm_1141500",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Jul 2025) · jawaban 1×"
+        },
+        {
+          "id": "kotoba_jm_1172730",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2024) · jawaban 1×"
+        },
+        {
+          "id": "kotoba_jm_1172950",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Jul 2022) · jawaban 1×"
+        },
+        {
+          "id": "kotoba_jm_1275150",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2023) · jawaban 1×"
+        },
+        {
+          "id": "kotoba_jm_1297120",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Jul 2025) · jawaban 1×"
+        },
+        {
+          "id": "kotoba_jm_1391110",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Jul 2022) · jawaban 1×"
+        },
+        {
+          "id": "kotoba_jm_1412910",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Jul 2023) · jawaban 1×"
+        },
+        {
+          "id": "kotoba_jm_1532710",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2022) · jawaban 1×"
+        },
+        {
+          "id": "kotoba_jm_1547510",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2021) · jawaban 1×"
+        },
+        {
+          "id": "kotoba_n1_0257",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2023) · jawaban 1×"
+        },
+        {
+          "id": "kotoba_n1_0275",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2025) · jawaban 1×"
+        },
+        {
+          "id": "kotoba_n1_0916",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Jul 2025) · jawaban 1×"
+        },
+        {
+          "id": "kotoba_n1_0981",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Jul 2024) · jawaban 1×"
+        },
+        {
+          "id": "kotoba_n1_1531",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2025) · jawaban 1×"
+        },
+        {
+          "id": "kotoba_n1_1779",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2023) · jawaban 1×"
+        },
+        {
+          "id": "kotoba_n1_2875",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Jul 2023) · jawaban 1×"
+        },
+        {
+          "id": "kotoba_n2_0184",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Jul 2023) · jawaban 1×"
+        },
+        {
+          "id": "kotoba_n2_0278",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2024) · jawaban 1×"
+        },
+        {
+          "id": "kotoba_n2_0323",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2024) · jawaban 1×"
+        },
+        {
+          "id": "kotoba_n2_0528",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Jul 2023) · jawaban 1×"
+        },
+        {
+          "id": "kotoba_n2_0881",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Jul 2024) · jawaban 1×"
+        },
+        {
+          "id": "kotoba_n2_1003",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Jul 2025) · jawaban 1×"
+        },
+        {
+          "id": "kotoba_n2_1311",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2022) · jawaban 1×"
+        },
+        {
+          "id": "kotoba_n2_1393",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Jul 2023) · jawaban 1×"
+        },
+        {
+          "id": "kotoba_n2_1448",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2024) · jawaban 1×"
+        },
+        {
+          "id": "kotoba_n2_1558",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Jul 2023) · jawaban 1×"
+        },
+        {
+          "id": "kotoba_n2_1565",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Jul 2022) · jawaban 1×"
+        },
+        {
+          "id": "kotoba_n2_1655",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Jul 2023) · jawaban 1×"
+        },
+        {
+          "id": "kotoba_x_0238",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2021) · jawaban 1×"
+        },
+        {
+          "id": "kotoba_0014",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2023) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_0017",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2023) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_0040",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2022) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_0046",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2021) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_0072",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2025) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_0079",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Jul 2024) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_0113",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2024) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_0119",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2024) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_0150",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2022) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_0154",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Jul 2025) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_0167",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Jul 2024) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_0200",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2023) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_0203",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2023) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_0212",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2021) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_0236",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Jul 2022) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_0260",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Jul 2023) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_0276",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2020) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_0314",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Jul 2024) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_0381",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Jul 2023) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_0396",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Jul 2022) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_0415",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Jul 2024) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_0477",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2024) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_0483",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2020) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_0490",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2021) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_0498",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2021) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_0499",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2023) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_0526",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2022) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_0541",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2025) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_0578",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Jul 2025) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_0584",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2025) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_0585",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2021) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_0613",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2021) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_0626",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Jul 2024) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_0631",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2025) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_0654",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2022) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_0666",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Jul 2024) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_0674",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Jul 2022) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_0683",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2021) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_0690",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2023) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_0706",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2023) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_0752",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2024) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_0758",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2023) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_0760",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2025) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_0789",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2023) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_0791",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2021) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_0793",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2025) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_0806",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Jul 2025) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_0818",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2022) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_0820",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2021) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_0826",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Jul 2022) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_0827",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Jul 2022) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_0830",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2020) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_0840",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2025) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_0854",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2025) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_0864",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Jul 2025) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_0866",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Jul 2025) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_0879",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Jul 2022) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_0892",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2023) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_0899",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2025) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_0915",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Jul 2024) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_0918",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2021) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_0957",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Jul 2024) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_0960",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2021) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_0961",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2022) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_0972",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2020) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_0973",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2021) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_1012",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2022) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_1027",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2021) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_1032",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2021) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_1033",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2020) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_1035",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2024) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_1066",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Jul 2022) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_1083",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2020) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_1100",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2020) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_1131",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2020) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_1134",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2021) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_1139",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2020) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_1140",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Jul 2025) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_1154",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Jul 2025) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_1170",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2022) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_1215",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2025) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_1257",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2023) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_1271",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Jul 2024) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_1283",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2020) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_1295",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2024) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_1314",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Jul 2025) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_1317",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Jul 2024) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_1330",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2024) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_1340",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2023) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_1345",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2023) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_1354",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2022) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_1365",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2024) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_1388",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Jul 2022) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_1415",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2025) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_1416",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2023) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_1423",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2020) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_1426",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Jul 2024) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_1498",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2020) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_1535",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2020) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_1543",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2024) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_1544",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2025) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_1624",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Jul 2023) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_1642",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2025) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_1647",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2024) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_1726",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Jul 2023) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_1737",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2025) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_1747",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Jul 2024) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_1767",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2024) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_1819",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Jul 2024) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_1856",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2023) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_1857",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Jul 2022) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_1872",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2025) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_1909",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2022) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_1950",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Jul 2025) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_1952",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2022) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_1972",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Jul 2025) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_1988",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2021) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_1990",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2025) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_2013",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2022) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_2060",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2020) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_2071",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2022) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_2073",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Jul 2024) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_2080",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Jul 2023) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_2101",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2022) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_2117",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2022) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_2125",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Jul 2024) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_2127",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Jul 2023) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_2147",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2022) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_2151",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Jul 2022) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_2205",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2021) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_2220",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2021) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_2241",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Jul 2023) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_2253",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2023) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_2266",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Jul 2022) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_2275",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2020) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_2324",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2022) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_2335",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2024) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_2354",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2020) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_2427",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2024) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_2438",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Jul 2022) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_2446",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2025) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_2449",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Jul 2022) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_2563",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Jul 2023) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_2590",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2021) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_2593",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2025) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_2605",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2025) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_2661",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Jul 2024) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_2672",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Jul 2024) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_2709",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Jul 2022) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_2720",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2021) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_2741",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2020) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_2747",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Jul 2023) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_2784",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Jul 2022) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_2849",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2025) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_2878",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2024) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_2882",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2020) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_2905",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Jul 2025) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_2920",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2025) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_2982",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2023) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_3036",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2025) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_3047",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Jul 2024) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_3051",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2023) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_ext_0020",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2023) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_ext_0093",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2023) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_jm_1001740",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2021) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_jm_1008800",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Jul 2022) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_jm_1011580",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2025) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_jm_1037560",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Jul 2025) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_jm_1215550",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Jul 2024) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_jm_1264290",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Jul 2022) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_jm_1269540",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Jul 2025) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_jm_1270040",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Jul 2025) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_jm_1326550",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Jul 2023) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_jm_1326720",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Jul 2022) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_jm_1335760",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Jul 2023) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_jm_1400150",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Jul 2022) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_jm_1420450",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Jul 2025) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_jm_1466790",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2020) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_jm_1496930",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2024) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_jm_1569660",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Jul 2022) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_jm_1597380",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Jul 2025) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_jm_1601210",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Jul 2022) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_n1_0006",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2020) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_n1_0021",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2024) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_n1_0040",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2021) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_n1_0110",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2025) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_n1_0195",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2022) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_n1_0213",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Jul 2023) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_n1_0291",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2021) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_n1_0301",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2022) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_n1_0508",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2022) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_n1_1663",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2025) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_n1_1856",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Jul 2022) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_n1_1915",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2024) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_n1_1922",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Jul 2024) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_n1_2515",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2024) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_n1_2529",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Jul 2025) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_n1_2582",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Jul 2022) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_n1_2757",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2021) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_n1_2849",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2021) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_n1_3463",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2024) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_n2_0041",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2021) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_n2_0056",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2021) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_n2_0067",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2023) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_n2_0075",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2020) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_n2_0102",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2022) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_n2_0113",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2024) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_n2_0149",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Jul 2024) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_n2_0197",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2021) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_n2_0241",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Jul 2025) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_n2_0253",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2022) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_n2_0258",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2023) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_n2_0271",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2023) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_n2_0297",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2020) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_n2_0389",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Jul 2024) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_n2_0397",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2025) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_n2_0502",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2023) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_n2_0503",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2025) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_n2_0509",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Jul 2025) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_n2_0625",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2024) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_n2_0749",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2022) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_n2_0777",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2022) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_n2_0840",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2025) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_n2_0927",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2024) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_n2_1027",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Jul 2025) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_n2_1120",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2020) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_n2_1154",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2023) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_n2_1165",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2021) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_n2_1277",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Jul 2025) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_n2_1430",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Jul 2023) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_n2_1468",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2025) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_n2_1490",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2021) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_n2_1525",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Jul 2022) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_n2_1528",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Jul 2022) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_n2_1569",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Jul 2025) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_n2_1619",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2020) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_n2_1710",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Des 2022) · pengecoh 1×"
+        },
+        {
+          "id": "kotoba_x_0063",
+          "category": "kotoba",
+          "addedAt": "2026-11-27T12:45:00.142Z",
+          "notes": "Muncul di 1 ujian (Jul 2022) · pengecoh 1×"
+        }
+      ]
+    }
+  ]
+}
